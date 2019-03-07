@@ -1,0 +1,41 @@
+0: Olá, muito boa noite, daqui fala Telmo. Em que posso ajudar?
+1: Boa noite, é assim eu tenho uma pergunta sobre a nova tarifário que eu fiz, que ativei, mas como eu liguei para a MEO aquele 16200 mas estou a espera 15, 20 minutos mas ninguém atendeu o telemóvel, por isso é que estou a ligar porque quero resolver este assunto
+0: Então diga, qual é a sua questão
+1: Há quase 1 mês atrás eu fiz uma, não é bem uma renovação, eu desativei um tarifário antigo que eu tinha de pagar 28 euros por mês e agora mudei para um novo que só acho que só pago 19 ou algo assim por mês e tinha 3 gigas
+0: Sim
+1: Disseram-me que depois de ativado , isso sim, dentro de 1 hora , terão ligado este o antigo para o novo que eu mudei , mas estou há 1 hora, 2 horas, 1 dias, 2 dias e não aconteceu . Eu fui para a MEO para perguntar este assunto e disseram-me que foi um engano, eles informaram-me uma coisa errada e portanto disseram-me que só vai renovar, que só vai ser ativo este mês
+0: Sim
+1: E hoje é um de dezembro
+0: Sim
+1: Eu fui ver se já esta ativo e ele só tem de internet 2 gigas e eu recebi uma mensagem a dizer que o meu saldo é inferior a 2.5 euros mais iva para eu cancelar o meu cartão. Não estou a perceber o que esta a acontecer
+0: é assim, Em termos da sua internet passou a ter os 3 gigas, não foi isso ?
+1: Sim
+0: Os 3 gigas foram repostos na noite de hoje. Como deve compreender ainda é meia noite e 22 há vários clientes, temos milhões de clientes e não conseguimos ser imediatos para todos os clientes. É renovado à meia note os plafonds aqueles que os clientes têm e depois durante a noite é que é alterado em termos do pacote
+1: Mas eu ainda tinha um bocadinho de internet do antigo. Eu não estou a perceber
+0: Correto. Mas no dia 1 é sempre renovado todos os plafonds , tanto o da senhora como em todos os clientes que são nosso clientes
+1: Eu sei, mas quando vocês estão a fazer esta mudança, eu não vou estar a pagar isso, não é ?
+0: Mas a senhora não vai pagar nada. A senhora só vai pagar aquilo que a senhora acordou, ponto final, não vai pagar nem mais, nem menos. Agora em termos de alterações esta é feita durante a noite
+1: Sim, mas eu aqui, eu recebi a mensagem que o meu saldo esta inferior a 2,5 euros, eu não estou a perceber bem isto
+0: Essa mensagem pode ignorar, em termos a senhora não tem saldo e portanto não há qualquer tipo de problema . Agora em termos de internet é só mesmo aguardar que ela amanha de manhã já tem os 3 gigas de Internet no seu número
+1: Sim mas, é assim,  quando eu agarrei isto para dezembro já estava lá com 2 gigas
+0: Correto, porque foi renovado o plafond, como eu lhe indiquei , no dia 1 é sempre renovado todos os clientes , correto ?
+1: Mas no mês passado em novembro eu já tinha usado quase tudo
+0: Correto, mas hoje já estamos em dezembro, já passou da meia noite já estamos em dezembro, logo ai foi renovado e muito bem, e durante esta noite, é feita a alteração para os 3 gigas
+1: para 3 gigas
+0: É o que eu lhe estou a tentar indicar , foi renovado e muito bem porque hoje é dia 1 , agora em termos de alterações , é efetuado em 2º plano, 1º é renovado porque temos milhares de clientes e todos eles têm de ter internet sempre a meia noite que é quando é renovado o plafond . em termos de alterações é feita depois durante a noite automaticamente
+1: E o que é que significa o saldo recarga
+0: O saldo recarga é aquele saldo que a senhora ainda tem que desde do tarifário como se tivesse um pré-pago , veio com o saldo e ainda tem 1 euro e 95 , para poder gastar desse saldo
+1: Sim, mas eu ainda tinha mais , só que não sei porque desapareceu. Eu tinha 9 euros ..
+0: As chamadas para a linha de apoio ao cliente são pagas são descontadas desse saldo. Imagine, a chamada que a senhora esta a ter comigo tem um custo e será descontado desse saldo. Estou-me a fazer compreender ?
+1: Mesmo eu a esperar pela chamada custa ?
+0: A senhora sempre que fala com um assistente tem um custo máximo de 2 euros
+1: Sim, mas isto assim é falar com assistente, mas durante o tempo eu a esperar aqui e vocês não atenderem, também pago ?
+0: Enquanto esta na gravação não tem qualquer custo
+1: Ah então quando eu estou à espera não tenho qualquer custo, quando começarmos a esta chamada é que tem custo
+0: exatamente, É taxada 20 cêntimos por minuto até um valor máximo então de 2 euros
+1: Está bem. Então portanto esta coisa de tarifário vai ser mudado amanhã
+0: Será mudado durante esta noite
+1: Esta noite, sim está bem
+0: mais alguma questão que eu possa ajudar?
+1: é só isso
+0: muito obrigada pelo seu contacto e pedi para que não desligasse só para avaliar a qualidade do meu atendimento, que é muito importante para o meu posto de trabalho

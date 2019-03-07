@@ -1,0 +1,25 @@
+0: muito boa noite, está a falar com o João campos, em que posso ajudar?
+1: muito boa noite, daqui falar João Peixoto
+0: como está? Em que posso ajudar?
+1: olhe, é assim, eu ainda não tenho o plafond que costumo ter, não é? Todos os meses tenho o saldo, portanto, e eu não tenho nada disso
+0: Senhor João Peixoto, pode-me indicar o número em questão?
+1: É 96... não sei de cor, tenho que alcançar um cartãozinho que tenho aqui... não dá o número de contribuinte?
+0: sim sim
+1: então é assim, 162 122 128
+0: 162 122 128, não é?
+1: correto, correto
+0: dê-me só um momento por favor. só mais uns momentos por favor
+1: sim sim, obrigado
+0: estou aqui a consultar os plafonds do serviço, vou-lhe pedir só um momento por favor... vejo aqui carregados, portanto, dois plafonds. Um plafond de 300 mega e um plafond de 15 giga e este de 15 giga já tem uns 5 utilizados
+1: já tem 5 utilizado?
+0: já. desses 15 giga, está com 13,9. Portanto, tem cerca de 1 giga utilizado... mas estão carregados 550 minutos de sms para todas as redes nacionais
+1: pronto, então...
+0: o senhor quanto tentou fazer as chamadas, teve alguma dificuldade, não conseguiu?
+1: não... para esse número?
+0: não, portanto, para outro número
+1: não, ainda não experimentei. Estive agora a ver o saldo... andei sem saldo uma semana, quase
+0: sim, ao dia um foi reposto, exatamente, 550 minutos ou sms ou mensagens para todas as redes
+1: então está carregado, não está?
+0: sim sim sim, está carregado perfeitamente
+1: pronto, obrigado, sim?
+0: eu é que agradeço, boa tarde

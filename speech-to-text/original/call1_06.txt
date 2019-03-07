@@ -1,0 +1,96 @@
+0: Muito bom dia, fala Catarina. Em que posso ajudar?
+1: Bom dia, está a falar com o *NOME*. Eu queria fazer uma pergunta, neste tarifário que eu tenho neste número, quanto é que eu tenho de internet, quantos gigas ? Consegue-me dizer?
+0: Sim, só um momento por favor
+1: OK.
+0: Bruno, ainda agora falou comigo, é a tal situação que eu lhe dei os 2 gigas que ainda não estavam.
+1: Sim, mas eu consulto o saldo e continua exatamente na mesma.
+0: Mas já desligou e voltou a ligar o telemóvel?
+1: não, não, não desliguei e voltei a ligar, isso não
+0: tem que desligar e voltar a ligar o telemóvel, está bem?
+1: Então diga-me uma coisa, a minha fatura mensal, caso não exceda o plafond de internet, quanto é que será?  Só para …
+0: Caso não... ?
+1: Caso não exceda os minutos nem o plafond de internet quanto é que é ?
+0: É o que foi acordado
+1: Quanto é que foi acordado?
+0: Só um momento por favor
+1: OK
+0: Só um momento por favor
+1: Sim, esteja à vontade
+0: É só um momento por favor que estou a abrir o documento para poder informar o valor, esta bem. Só um momento por favor
+1: OK
+0: Sr Bruno, muito obrigada por ter aguardado. Neste momento verifico que são 14 e 99 mensal
+1: 14 e 99, certo. OK. Então diga-me uma coisa
+0: Sim. Tem 3 gigas mais os 2 gigas adicionais por mais 1 euro e 99
+1: Ou seja seria 16 e 99
+0: Exatamente
+1: Então já estranho porque não aparece no , lá no assinatura do telefone, na mensagem vinda da... daquela mensagem vinda dos minutos
+0:: O que é que não aparece ?
+1: Os tais 2 gigas
+0: É como lhe digo, Desligue o telemóvel completo e volte a ligar, para verificar, mas geralmente como é um extra não é do plafond base, não aparece
+1: então diga-me uma coisa. Caso não aparecer, não apareça, como esta aí a ver, eu tenho os 3 gigas mais 2 . Como é que eu sei que já gastei os 2 gigas
+0: É informado através de mensagem, primeiramente que gastou o plafond base, primeiro com 80% e depois que esgotou o plafond base. E depois ainda tem os 2 gigas de promoção. Mas é sempre informado.
+1: Eu custa-me um pouco a crer nessa informação. Porque assim, eu gosto de consultar, imagine eu não quero ser o plafond, porque eu acho que este valor de internet de telefone  que eu gasto mensalmente é de 2 gigas , não é, e não queria gastar mais do que é estabelecido mensalmente e não aparece ao consultar
+0: Mas para o senhor não gastar mais poderemos barrar a internet diária, que é depois de gastar os seus plafonds dos 5 gigas poderá utilizar a internet diária. Essa internet diária é 1 euro e 99 dia e tem 250 Mega de utilização. Mas se o senhor quiser eu poderei barra-la já, ou seja mesmo que o senhor ligue os seus dados moveis não é taxado por esse valor. Pretende que eu barre já ?
+1: Não não, eu não quero barrar porque. Eu queria que esses 2 gigas aparecessem lá, porque é assim se eu estou a paga-los  eu quero aquilo e quero um controlo, percebe ? É a mesma coisa que ..
+0: mas vai tendo pelas mensagens
+1: pois mas eu não queria assim, vamos lá falar a minha maneira de ver as coisas. Um cartão de credito
+0: Sim, sim eu percebo
+1: ele diz o saldo que você já gastou desse cartão de crédito, só diz quando acaba, está a perceber? Não é justo, não é correto, tem de haver uma gestão , é assim é fazerem o que querem do cliente, não sei é que me faço entender, percebe
+0: Sim
+1: E eu quero que de alguma forma que esse plafond apareça ali.
+0: Mas tente desligar e voltar a ligar o telemóvel. Neste momento tem os 5 gigas ativos
+1: Certo . Pronto, OK. Eu não estou a duvidar do seu trabalho. Mas caso esses 2 gigas adicionais não apareça eu posso fazer alguma coisa para que ele apareça ali em consulta de saldo
+0: não, não
+1: não posso fazer nada
+0: não
+1: Ai isto funciona tão mal !
+0: Mas é informado , vai ver que é informado quando gasta o plafond. Primeiro com uma mensagem a dizer que gastou, atingiu o plafond a 80%  e depois que esgotous
+1: E quanto é que é 80% de 2gigas, são 200 megabytes ?
+0: Olhe que não sei precisar, mas por exemplo quando chegar ais aos 1400 mais ou menos é avisado ,  1700 , 1400
+1: Mas 1400 ainda é 1 giga de internet
+0: Mas sempre que receber essa sms poderá, não tem área de cliente senhor Bruno Mendes?
+1: Eu julgo que não, que nunca usei
+0: Nós podemos adicionar. Tem email ?
+1: Tenho sim
+0: Porque pode fazer a área de cliente. A área de cliente é gratuita, é só eu fazer aqui o registo através do seu número de contribuinte e do seu email e o senhor poderá consultar tudo isso, a nível de plafonds de internet dos 5 gigas, quanto é que tem de Internet, poderá consultar por ai. Quer fazer ?
+1: Sim sim, se calhar é melhor
+0: Então é melhor, porque se calhar tem mais acessibilidade dessa  situação, Uma vez que é cuidadoso , e percebo porquê, porque precisa de saber também quanto é que já gastou, é lógico , é conveniente ter sempre a área de cliente, mesmo para outras situações, pin e puk, a nível de ultimas 5 faturações poderá também verificar esta situação a nível de plafond de internet , diga-me o seu email por favor senhor NOME
+1: É brunomendes
+0: Tudo pegado?
+1: Agora em numerário... 20
+0: 20
+1: Um tracinho a meio, um hífen
+0: Sim
+1: @
+0: @
+1: hotmail.com
+0: hotmail.com
+1: E diga-me uma coisa, existe alguma app para isso? Para a área do cliente
+0: é através, vou-lhe mandar um link. Diga-me o seu número de contribuinte. É o 93352770 ?
+1: correto
+0: Ok, Só um momento então. Ora é brunomendes20 traço. É traço ou underscore?
+1: Underscore
+0: underscore, correto?
+1: correto
+0: É que ele não me esta a deixar registar pelo email.
+1: Tudo pegado, letras minúsculas, brunomendes20 hífen @hotmail.com, esta correto !
+0: brunomendes20-@hotmail.com. Só um momento por favor. Senhor Bruno , terá de me confirmar mesmo o email. Deu-me brunomendes20-@hotmail.com
+1: Correto
+0: É que os sistema não me esta a reconhecer o email .
+1: Mas é o único email que tenho é esse
+0: É o único email ?
+1: Sim, mas eu julgo que eu recebia a faturação
+0: A faturação o vai nesse email ?
+1: Sim, deixe-me ver, deixe-me ver aqui alguma coisa
+0: Deixe-me verificar qual é o email que eu tenho aqui , porque ele não me esta a aceitar esse
+1: Sim olhe, quando foi para contratação deste tipo de tarifário, a meo mandou-me um mail, tenho aqui
+0: Só um momento então, por favor
+1: Não sei se consegue ter acesso a este mail, foi no dia 15 de novembro de 2018.
+0: sim só um momento por favor. é só mais um momento por favor
+Obrigada por ter aguardado.
+Eu neste momento verifiquei que não, é como lhe digo, não estou a conseguir introduzir o email, mas eu vou fazer uma, vou reencaminhar a situação para os colegas para que eles possam verificar a situação, esta bem ? que é para ficar registado
+1:  OK. Tenho de aguardar quanto
+0: Quanto ficar registado aparecerá no seu email o link,
+1: OK
+0: e através desse link pode fazer, esta bem ?
+1: OK, agradeço

@@ -1,0 +1,37 @@
+0: em que posso ajudar?
+1: Bom dia. Eu só queria ativar o meu tarifário
+0: queria...? peço desculpa
+1: queria ativar o meu tarifário porque já esgotou
+0: estou a falar com...?
+1: Cláudia Aguiar
+0: cláudia aguiar e qual é o número que pretende, qual é o tarifário que pretende ativar, é neste número?
+1: é sim
+0: e qual é o tarifário?
+1: Tarifário
+0: Neste momento o cartão está com o TOP total de 3 Gigas
+Clt.É isso que eu quero, sim
+0: mas este cartão já esta com este tarifário, senhora cláudia aguiar
+1: diga?
+0: este cartão já está com este tarifário, top total de 3 gigas
+Clt. Sim mas eu quero renovar. Já acabou certo ?
+0: deixe-me só verificar
+1: recebi uma mensagem que já acabou e que teria que renovar
+0: estive a verificar, portanto, o Tarifário ele está ativo. A semanada foi retirada no dia de hoje de 4 euros
+1: Já retiraram?
+0: sim, ela já foi retirada. Portanto, ela sempre aos domingos, para o próximo domingo será retirada outra vez, portanto, os 4 euros. em termos de Plafonds, são renovados a dia 1, esta bém?
+1: ah, ok
+0: temos aqui um de cada mês, mesmo que seja retirada a semanada, portanto, por semana, não é, neste caso o valor por semana. Estes tarifarios, tanto os minutos e plafond de internet só é renovado a dia 1. Se esgotar, por exemplo,  a dia 16, só vai renovar a dia 1 do proximo mês, esses plafonds
+1: Ah, mas então, desculpe, não percebi.
+0: o tarifário que tens é o top total 3 gigas, tens 500 minutos de comunicação com mensagens para outras redes, para todas as redes, mais 3 gigas de internet, portanto neste momento o que estou a verificar é que, em termos dos minutos, ainda tens portanto todos os minutos disponíveis.
+1: sim
+0: em termos de internet, tens 2 gigas e... 2 gigas e 600 megas ainda disponíveis... já não tens os 3 gigas na totalidade. Se esgotares, imagina que o plafond de internet esgota, termina a dia 16, por exemplo, este plafond de três dias só vai renovar a dia 1 de janeiro. até lá poderá fazer uma compra de internet, um exta de internet ou utilizares a tarifa diária, mas portanto, eles só renovam sempre a dia 1, tal e qual como os minutos de comunicações, está bem? É assim que eles funcionam
+1: então porque é que eles tiram os 4 euros?
+0: é para garantir que tens as condições do tarifário. porque imagina, não tens internet mas tens minutos disponíveis, tem que ser cobrado esse valore para continuares a utilizar esses plafonds
+1: ok. E eu ainda tenho quantos, quantos gigas?
+0: neste momento, 2 gigas e 600 megas. podes verificar, portanto, no saldo do visor, ou seja, marcando *#123#, consegues verificar o que é que ainda tens disponível, está bem? Tal e qual como os minutos
+1: ok, está bem então. obrigada
+0: existe mais alguma questão?
+1: não, não, não, obrigada
+0: antes de desligar a chamada permite-me apenas uma questão para este número do qual estás a contactar, nós temos um tarifário de fatura mensal, não sei se estás interessada...
+1: não estou interesssada, não não
+0: com certeza, vou pedir então a sua breve colaboração muito rápida para duas questões sobre o meu atendimento. espero que tenha ficado esclarecida. um resto de bom domingo, uma ótima semana

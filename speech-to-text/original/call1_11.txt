@@ -1,0 +1,51 @@
+0: Olá boa noite, o meu nome é Susana, em que posso ajudar?
+1: Boa noite minha senhora. Minha senhora é o seguinte. Eu acabei portanto agora de ser-me carregado o tarifário com que tenho no telemóvel. Acontece que ele estava com 500 mega bytes , 4000 chamadas, minutos de chamadas, 4000  minutos de mensagens e aderia uma promoção de 2 gigas de internet por mais 1 euro e 99 , salvo erro. Agora que me foi feito o carregamento há coisa de 10 min e verifico que puseram-me só 500 Mega bytes e eu queria saber o porque ?
+0: É deste o número do qual me contacta, correto?
+1: Exatamente, exatamente
+0: Dê-me um breve momento, por favor
+1: Obrigada
+0: Obriga pelo tempo que aguardou, peço desculpa
+1: De nada, de nada. Não faz mal
+0: Então é o seguinte.
+1: Diga
+0: Relativamente aqui ao tarifário, a senhora antes desse tarifário, tinha outro, correto ? fez aqui uma alteração recentemente, correto ?
+1: Tinha outro? Não, o que eu tinha era exatamente este que eram 500 megabytes
+0: certo, certo
+1: 4000 min de chamada não é? E 4000 min de mensagens.
+0: Sim
+1: Depois há uns meses fui contactada por uma mensagem se eu quisesse aderir a uma promoção de 2 gigas de internet pagaria mais 1 euro e 99
+0: Certo
+1: Pronto e eu aderi
+0: O que acontece é que neste, isto que esta a acontecer é normal, isto é, o tarifário
+1: Quer dizer é normal
+0: Eu vou-lhe explicar
+1: Diga
+0: É que o tarifário é carregado realmente a meia noite do dia 1, ou seja do último dia do mês para dia 1.
+1: Sim, sim
+0: O que acontece é que neste momento nós estamos com uma atualização de sistema. O tarifário vai ficar carregado como a senhora aderiu e como a senhora escolheu, vai ficar ativo durante o dia de hoje, durante esta madrugada. O que eu a aconselho a fazer é mais daqui a bocado, desligar e voltar a ligar o telemóvel de forma a assumir o plafond correto da internet, esta bem ?
+1: Portanto, tenho os 500  megabytes mais vai-me ser acreditado os 2 gigas ?
+0: Vai, vai ficar com o plafond disponível para utilizar
+1: OK. Para o mês que vem então, é que eu já tenho o outro tarifário que é com 3 Gigas não é ?
+0: Não, não, neste momento, este mês já, o mês de Dezembro vai ficar com os 3 Gigas disponíveis
+1: Ah, já vou ficar com os 3 gigas
+0: Exatamente
+1: Ah OK, está bom, está bom
+0: Só que como tinha o tal plafond dos 500 megas
+1: Já entendi exato
+0: Ele atualizou os 500 megas so agora durante a madrugara é que vai atualizar os 3 giga esta bem ?
+1: OK, pronto, é que agora fiquei assim então como é que é ? Então mudei o tarifário para ter 2 gigas e agora nem um nem outro ?
+0: Não, mas vai ficar, pode ficar descansada. É só mesmo uma atualização de sistema, está bem?
+1: Tá bom, tá bom, tá bom, tá bom
+0: Existe mais alguma outra questão em que posso ajudar?
+1: Não, era só. Muito obrigada
+0: Obrigada eu
+1: Obrigada, muito obrigada, boa noite, obrigada
+0: Ia-lhe pedir um último favor, se não se importar
+1: Diga
+0: Era só o de não desligar a chamada para responder a duas rápidas questões sobre o atendimento
+1: Com certeza
+0: E recomendar o serviço da MEO com base neste atendimento, é muito importante para o meu trabalho e avaliação
+1: Claro que sim, claro que sim
+0: Obrigada, um resto de boa noite e um bom fim de semana
+1: Muito obrigada, obrigada, igualmente
+0: Obrigaa, com licença

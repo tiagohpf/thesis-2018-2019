@@ -1,0 +1,52 @@
+0: Muito Bom dia, fala Carla Melo, verifiquei que a sua chamada vem transferida
+1: É sim. Bom dia, era para me dar o tarifário do telemóvel
+0: O colega colocou aqui que o senhor pretende um top 96, é isso
+1: sim, eu acho que é isso. Recorde-me só quais são as condições desse
+0: Mas o senhor já tem um top 96. É para este número que me esta a ligar
+1: sim, sim é para este
+0: Repete o 966 492 288
+1: sim, sim que é o da minha esposa, sim
+0: Mas neste momento que é já é o top 96
+1: Quantas mensagens é que são para
+0: Tem 1000 minutos ou sms para rede meo e 100 min para outras redes
+1: E internet ?
+0: 200 megas
+1: Ah ok, então não é este. E qual é o valor semanal
+0: são 2 euros e 80
+1: Ah ok então, então, o que eu queria mudar , que é o que eu tenho no meu telemóvel é um que tem acho que são 3 gigas
+0: Sim, mas existem 2 tipos de tarifários pré-pagos . Diga-me só o seu nome, peço desculpa
+1: Hugo Mateus
+0: Senhor Hugo Mateus existem 2 tipos de tarifários pré-pagos com internet. Existe este que a sua esposa tem que é um tariario em que o senhor tem este plafond de chamadas 1000 min ou sms para redes meo ou rede fixa e 100 min para outras redes e tem 3 plafonds de internet 200MG para 2 euros e 80 , 1 giga para 3 e 30 e  3 giga para 4 euros
+1: ok, É esse de 4 euros que eu tenho também no meu
+0: Mas é o de 100 minutos para a rede meo e 100 minutos para outras redes ? É esse que pretende senhor Hugo Mateus
+1: sim, sim extamente,
+0: Então vou fazer a alteração esta bem
+1: São 4 euros por semana
+0: 4 euros por semana
+1: OK, é o que eu pago então,
+0: Então é isso o que o senhor prentede, certo ?
+1: exatamante, exatamante
+0: Já agora se não se importar diga-me o seu numero para confirmar se é o mesmo tarifario , por favor senhor Hugo Mateus
+1: O menu número é o 96 649 2307
+0: repete 6 649 2307, é isso
+1: sim, exatemente, por acaso mudei a semana p0:ada
+0: O senhor tem o TOp TOTAL 3 Gigas. São 500 minutos ou sms para todas as redes e 3 gigas de internet. Eu peço desculpa, o senhor  pode bloquear o ecrã do telemóvel? É que está a falar comigo e só ouço o barulho das teclas
+1: Ah ok, Peço desculpa, Peço desculpa, Peço desculpa. Tem razão, agora tenho esse mas anteriormente tinha outro, tinha esse de
+0: O Toque 96 ?
+1: tinha esse dos 1000 minutos. Se puder também fazer a mudança no meu também, para ficar os dois
+0: Eu posso fazer alteração no seu, só que o senhor não tem saldo suficiente para fazer a mudança. Vai ficar com saldo negativo e não vai conseguir utilizar o serviço
+1: então, Mas, sendo que tiraram hoje e voltam a tirar hoje ? ele foi renovado hoje ?
+0: Se eu fizer a alteração hoje é retirado novamente d o saldo 4 euros
+1: Ah, mas o da minha esposa também foi hoje ? não foi ?
+0: Deixe-me só verificar o da sua esposa, só um momento. É 0:im, O da sua esposa também tem 35 cêntimos, se eu fizer a alteração neste momento são descontado logo os 4 euros  e fica com saldo negativo
+1: Ah OK .
+0: Foi retirado o valor hoje efetivamente
+1: A mim também. Então se calhar faz mais sentido esperear mais uma semana
+0: Senão via ficar com saldo negativo neste momento e sem usufruir
+1: Está bem, então eu espero 1 semana
+0: Pode fazer depois a alteração de forma automática e sem pagar chamada através da linha 12045 , está bem ?
+1: Está bem, 12045, está bem então
+0: Posso ajudar-lhe então numa outra situação?
+1: era só isso, obrigadíssimo
+0: agradeço o seu contacto
+

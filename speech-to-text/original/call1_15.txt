@@ -1,0 +1,25 @@
+0: Boa noite, fala João Antunes, em que posso ajudar?
+1: Boa noite, sou o António Jardim , Creio que fiquei sem internet, mas também já estamos no primeiro de Dezembro,  Já deveria ter a internet no saldo pode ver o que se p0:a
+0: Mas com certeza. Senhor António o número em questão é este de onde está a ligar ?
+1: Exatamente, sim sim
+0: Aguarde então o momento por favor, vamos aguardar a situação
+1: muito obrigado
+0: senhor antónio
+1: sim sim, diga diga
+0: A indicação que temos é que os plafonds já renovaram . Peço por favor é que desligue e volte a ligar o telefone para acelerar o processo
+1: Ah é, Ah está bem então
+0: A nível de cartão pelo que conseguimos ver aqui já esta tudo renovado
+1: Já está? Está bem, pronto
+0: Se desligar e voltar a ligar o telefone, mas facilmente, mais rapidamente a informação será atualizada
+1: É reiniciar, não é ?
+0: sim
+1: ok
+0: Sim, isso . Se reiniciar fica logo atualizada a informação no cartão. Pode ficar descansado. Há mais alguma questão em que posso ajudar?
+1: Não, é tudo, é tudo. obrigado pela simpatia.
+0: antes de desligar, seria só possível responder a um breve inquérito sobre o meu atendimento?
+1: com certeza
+0: muito obrigado
+1: obrigado
+0: eu agradeço o tempo que dispensou e espero que tenha ficado tudo esclarecido e que recomende no inquérito. desejo-lhe também uma boa noite e um bom fim de semana
+1: obrigado, igualmente
+0: obrigado senhor antónio. Vou então passar a chamada para o inquérito

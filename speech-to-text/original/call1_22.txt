@@ -1,0 +1,20 @@
+0: muito boa noite, fala Miguel Almeida, em que posso ajudar?
+1: Sim boa noite, é porque, pronto. Eu antes da meia noite fiquei sem internet, para aí as 11, 11 e pouco, e depois liguei para um colega seu para saber e ele disse olhe a meia noite já você  vai voltar a ter o tarifário renovado
+0: E ele ainda não atualizou ?
+1: Não, já são 4 da manha e ainda não tenho cá nada
+0: estou a falar com o senhor César Almeida
+1: exatamente
+0: A chamada já está aqui identificada. o processo de atualização dos tarifários começa a meia noite mas termina por volta das 6 da manhã, não é feito o 100% dos clientes a meia noite porque senão o próprio servidor não aguentava, é gradualmente. Deixe-me só verificar se ele esta aqui pendente e se tenho maneira de o forçar senão terá mesmo de aguardar. Só um momento... Experimente reiniciar o telemóvel e retirar o cartão está bem, quando terminar esta chamada.
+1: Retirar o cartão não consigo
+0: Não consegue ?
+1: Não, não
+0: Aqui, à partida ele já vai entrar assim que terminar a chamada.
+1: É? Está bem
+0: Salvo erro são 30 Gigas, 31 Gigas que tem neste cartão  ?
+1: Sim sim, acho que sim
+0: OK. Então ele já esta aqui como atribuído. Deverá estar. Se não for agora será no reboot  das 4 e meia,  5 horas, mas à partida deverá conseguir neste momento. Reinicie o equipamento, está bem
+1: Sim, sim, está bem, muito obrigado
+0: O colega como tinha dito começa à meia-noite, mas não é tudo à meia noite, é tudo gradual, está bem?
+1: Está bem, está bem, portanto é desligar e ligar
+0: Exatamente. Faça isso, se não der é aguardar mais um momento mas ele já esta aqui atribuído, à partida a qualquer momento tem acesso, está bem?
+1: Está bem, está bem, obrigado

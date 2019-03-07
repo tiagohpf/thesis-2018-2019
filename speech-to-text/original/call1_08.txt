@@ -1,0 +1,30 @@
+0: Muito boa tarde, daqui fala André, em que posso ajudar?
+1: Boa tarde, é 0:im, este número que eu estou a ligar é da minha empresa que agora foi alterado o novo tarifário, queria saber qual o tarifário que está incluído neste número, se for possível, claro
+0: Ora este tem um serviço global connect pelo que eu estou a ver, certo ?
+1: Eu acho que sim, recebi uma mensagem que tinha alterado o tarifário que agora esta no pacote da empresas
+0: Global connect. Qual é o contribuinte da empresa ?  já agora
+1: Agora não sei
+0: Número de telemóvel se faz favor
+1: É este número mas não sei de cor, só um bocadinho. 961 368 797
+0: 961 368 797. E estou a falar com o senhor...?
+1: Rui
+0: Só um momento. Pronto, vou então colocá-lo aqui em linha com os meus colegas do Global Connect que é para explicar qual é que é o tarifário que tem, que esta ativo neste momento . Peço só para aguardar em linha
+1: Ok
+0: Só peço que aguarde em linha. Muito obrigado e boa tarde, com licença
+1: Obrigado
+0: Muito obrigado por aguardar Sr. Rui. Não foi possível fazer a transferência. Vou ver se consigo dar-lhe uma ideia do que tem. Pronto a nível de dados móveis o plafond que o senhor tem são 5Gigas,
+1: Partido ou...
+0: 5 gigas dados móveis, ou seja, no geral, basicamente. Depois a nível de minutos, deixe-me ver … só um momento que é mais complicado, só um momento. Tem um plafond de minutos 2000 minutos e que lhe permite fazer chamadas para qualquer rede, esta bem ?
+1: Está bem
+0: É esse o seu plafond, 5 gigas e 2000 minutos e que lhe permit fazer chamadas para qualquer rede
+1: OK obrigado. Só queria ter uma noção do que posso utilizar
+0: Mais em concreto vai ter de falar com a empresa, está bem, que eles têm os dados todos concreto do tarifário, esta bem ?
+1: OK. Já agora só mais uma questão  Como consigo gerir os 5 gigas de internet
+0: É 0:im, o senhor consegue consultar o trafego através do próprio telemóvel , tem lá o trafego de dados móveis consegue gerir a nível diário, semanal ou a nível mensal, mas para confirmar o saldo deixe-me ver  …. Pronto, basta mandar um sms para o 16206, com o texto em maiúsculas SALDO GPRS.
+1: GPR
+0: GPRS
+1: GPRS. Ok
+0: OK, mais alguma questão então senhor Sr. Rui?
+1: Não, era só isso então
+0: Pedia só um breve momento para responder as duas questões muito rápidas, está bem? Ok, obrigado, uma boa tarde, com licença
+1: Boa tarde

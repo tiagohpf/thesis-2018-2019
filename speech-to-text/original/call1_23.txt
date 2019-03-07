@@ -1,0 +1,29 @@
+0: Olá muito bom dia, o meu nome é Catarina, em que posso ajudar?
+1: Bom dia, é assim eu tinha perdido os benefícios do meu moche só que carreguei agora e ainda não os tive
+0: estou a falar com a dona...?
+1: Patrícia
+0: e qual é o número, por favor?
+1: o número é este do qual estou a ligar
+0: é o 963364692, sim. E benefícios de quê, dona Patrícia?
+1: Do tarifário do moche 5 Gigas
+0: Então e não os teve porque, diga-me
+1: Diga
+0: Está a dizer que não os teve?
+1: Não porque Só pude carregar hoje, carregue hoje , carreguei hoje e os benéficos do moche ainda não vieram por isso liguei ao apoio a cliente
+0: Mas carregou hoje a que horas,
+1: Foi mesmo agora
+0: Demora algum tempo a atualizar e peço por favor que desligue o telemóvel e volte a ligar, está bem?
+1: está bem, obrigada
+0: porque Possivelmente ainda não deu entrada do valor
+1: Não o valor já entrou, eu já recebi o carregamento
+0: Mas neste momento tem de desligar e voltar a ligar que é para atualizar e aguardar mais algum momento por favor Não costuma receber uma mensagem ?
+1: Sim, sim
+0: E já recebeu ?
+1: Não. Só recebi a do carregamento a dizer que foi efetuado o carregamento de 20 euros e que descontaram o que tinha negativo, mais nada
+0: pronto, tem que aguardar a que dê entrada, Mas aconselho-a sempre a desligar e voltar a ligar o telemóvel para ele atualizar
+1: OK muito obrigada
+0: Leva sempre algum tempo para que seja reposto novamente, está bem?
+1: ok, muito obrigada
+0: da minha parte, há mais algum esclarecimento ou dúvida?
+1: não senhora
+0: peço-lhe por favor então que avalie o meu atendimento com duas questões apenas. Foi um gosto atendê-la, uma boa sexta feira

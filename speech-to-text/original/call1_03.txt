@@ -1,0 +1,13 @@
+0: Olá muito bom dia, o meu nome é Catarina. Em que posso ajudar?
+1: Olá Catarina, bom dia, como está?
+0: Bem, obrigada. Em que posso ajudá-la?
+1: Olhe, é assim, eu agradeço que me ajude porque eu recebi uma... a minha fatura, a minha última fatura , não é, e vem lá a mencionar que, portanto, os preços foram alterados, não é. E se eu não aceitasse estas condições eu tinha de rescindir o meu contrato. Portanto, eu já vou entrar no segundo ano de fidelização, não é, e eu estou um pouco preocupada porque eu não queria que este valor que eu tenho, portanto, este valor médio que eu tenho comigo suba muito porque eu não tenho condição para isso
+0: São 50 cêntimos apenas
+1: Ah, está bem
+0: São 50 cêntimos apenas, está bem? Este tarifário se , mantém-se assim mas com o valor do acréscimo de esse valor.
+1: Está bem. Pronto, assim fiquei mais tranquila. A carga já é tão grande
+0: Claro que sim, claro que sim, mas devemos estar sempre informadas e então e é como lhe disse, sim senhora, esta lá a informação, o cliente tem todo o direito de procurar
+1: Claro. Muito obrigada, sim?
+0: Da minha parte, há mais algum esclarecimento ou dúvida?
+1: Não, muito obrigada. Que tenha um bom natal e um bom ano novo.
+0: Muito obrigada. Peço-lhe por favor então, só a convidá-la para duas questões apenas acerca do meu atendimento. É muito importante para mim, para a minha avaliação Dª Maria Azevedo. Da minha parte também desejo umas boas festas para si e para os seus. Obrigada

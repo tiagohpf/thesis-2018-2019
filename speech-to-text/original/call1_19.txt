@@ -1,0 +1,58 @@
+0: em que posso ajudar?
+1: Bom dia, tenho uma questão. Era porque, Eu tenho 2500 gigas de processamento
+0: De dados móveis, sim
+1: Sim, e na altura eu tinha passado para 500 e pagava 11 euros e não sei quê e depois diz que ia pagar 15 e 48. Só se, isto, parece exagero... 250
+0: é de este número de onde está a ligar, não é?
+1: sim sim
+0: ora bem, deixe ver aqui... 2,5 gigas
+1: sim, e pedi para aumentarem mais um bocado e não estavam
+0: e aumentavam, portanto, a senhora fez um pedido para aumentar este plafond,é isso?
+1: sim
+0: este plafond de 2,5 gigas e ele não foi... seria para aumentar todos os meses, é isso?
+1: sim sim
+0: pronto, essa situação...
+1: todos os meses e estou a pagar como tal, não é? porque eu só pagava 11 euros e tal
+0: portanto, eu tenho aqui a informação de, certo, de ter sido aqui adicionado o 2 gigabytes, portanto a senhora deveria de ter 500 megabytes
+1: sim
+0: de base e depois foi-lhe adicionado mais 2 gigabytes por mês. A informação que tenho aqui é essa. Mas pronto, se não corresponde na realidade àquilo que a senhora pediu, eu vou-lhe pedir para a senhora contactar esta linha, portanto, para onde está a ligar agora, mas a partir das sete da manhã para falar com os colegas da área comercial para eles verem a sua situação e, pronto, corrigir aquilo que houver
+1: porque eu estou a pagar como tal, com esse aumento de 2 gigas, não é?
+0: sim, deverá de estar em princípio, conforme é visível
+1: não, não entrou
+0: a senhora tem os 2,5 gigas, não é?
+1: sim
+0: pronto, e a senhora, de base, tem 500. A senhora fez o pedido para ser aumentado mais, em mais 2 gigas, todos os meses, o seu tarifário e eles estão aqui, os 2 gigas... 2,5 gigas
+1: no telemóvel não tinha que aparecer 500?
+0: não, vamos lá ver... 500 megabytes é um quinto, portanto, é a quinta parte de 2,5 gigas. Portanto, 500 megabytes é muito menos do que 2,5 gigabytes
+1: sim, sim, sim
+0: pronto, não sei se era essa a sua questão. Era isso?
+1: sim sim
+0: pronto, a senhora neste momento tem cinco vezes mais do que aquilo que tinha, ou seja, tinha 500, portanto,
+1: estou a pagar mais
+0: não
+1: estou a ter mais
+0: está a ter mais, ou seja, 2,5 gigas traduz-se em 2500 megabytes
+1: sim sim
+0: portanto, tinha 500, passou a ter 2500
+1: então está bem?
+0: então está bem, julgo que sim
+1: eu cliquei aqui numa tecla para falar e perguntou se eu queria um aumento extra
+0: quê?
+1: assim uma coisa qualquer
+0: se a senhora quer um aumento extra?
+1: estava a menina a falar se eu queria um amento extra
+0: um aumento de plafond extra, será isso?
+1: talvez, e eu cliquei numas teclas e disseram que iam ativar isso mas eu não quero nada disso, eu é que carreguei na tecla um
+0: eu não tenho aqui, na consulta que fiz, mas lá está, se foi mesmo agora que isso foi, que isso se sucedeu, se calhar ainda não tenho aqui a informação atualizada. Pelo menos, a informação que tenho aqui é aquela que mudei, pronto. A senhora tinha 500 mega, agora tem 2500, agora...
+1: eu não quero nada extra, que é para não pagar mais, não é?
+0: a senhora, a senhora se quiser, poderá contactar os colegas da linha comercial e ver se há lá algum pedido pendente de... portanto, ainda carregar mais internet, se houver, portanto, diga a eles para o cancelarem, mas... pelo menos aqui, do que esteja já ativado, não vejo aqui nada
+1: não faz mal, porque eles disseram que ia, que ia ficar... na gravação... mas não deu tempo, não é?
+0: poderá não ter dado, se foi mesmo agora que a senhora fez essa, fez essa, carregou sem querer nessa tecla
+1: pois foi
+0: poderá não ter dado ainda tem de, de atualizar o sistema e de ativar o que quer que seja
+1: sim, sim
+0: portanto, poderá deixar passar algum tempo e telefonar então ou passar numa loja, se quiser, para confirmar essa informação, ou então poderá aguardar, pronto, e quando vier a próxima fatura, se vier lá alguma coisa debitada, depois então fazer, portanto, pedir o cancelamento desse extra
+1: sim senhor
+0: está bem?
+1: está bem
+0: sim senhora. Mais alguma questão?
+1: mais nada

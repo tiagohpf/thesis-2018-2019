@@ -1,0 +1,46 @@
+0: Olá. bom dia, o meu nome é Roxana. Em que tenho o gosto de poder ajudar?
+1: Bom dia, olhe eu queria saber se vocês conseguem ver o registo das chamadas deste telefone
+0: Diga-me antes de mais como é que o senhor se chama, por favor.
+1: Paulo
+0: Senhor Paulo, permita-me uma questão, é deste numero que me esta a ligar, correto? do 9261 81 993? É assim, nós não temos acesso ao número na totalidade, senhor... Eu Peço desculpa, não consegui peceber o seu nome. Reita-me por favor
+1: Diga, diga
+0: Senhor...
+1: Paulo
+0: Senhor Paulo... estou a ouvi-lo mal
+1: Paulo
+0: Senhor Paulo, portanto, nós conseguimos, de facto, portanto ter acesso apenas a parte da informação. O cliente é que consegue na área de cliente ter acesso na totalidade aos números para onde faz as comunicações
+1: Eu vejo aqui nos registos das chamadas, não me aparecem todos os números, então eu queria saber na segunda feira da semana passada houve um número que me ligou logo pela manhã ,deviam ser por volta das 8 horas
+0: Nós não temos acesso a essa informação
+1: Eu consigo tirar essa informação através de mim ?
+0: Na área de cliente o senhor apenas consegue ter acesso aos números para onde o senhor ligou, não que lhe ligaram
+1: Que ligou, ah ok, também liguei . Então e através do acesso do telefone? não é
+0: Sim. Se o senhor ligou para esse número essa chamada está registada na sua área de cliente o senhor vai fazer a pesquisa e consegue encontrar o número na totalidade. Agora os números que lhe ligaram para si, não
+1: OK, então, nessa área, nessa zona consigo ir registar os números
+0: Sim, consegue , está bem ?
+1: OK, ok
+0: E já agora Sr. Paulo, também é nosso cliente em casa, em serviços de televisão
+1: Não estou bem servido, obrigado, mas já sou vosso cliente
+0: Pronto
+1: E já esta também registado na área de cliente
+1: Então pronto, é que eu estou com pressa
+0: Pronto, Estava-lhe a pergunta se estava registado na área de cliente que era também para o ajudar nesse sentido
+1: OK, na área de cliente, ok . Tenho de ir então à área de cliente
+0: Exatamente
+1: E ver os registos de chamada efetuadas
+0: Sim, exatamente . Está bem.  Faz, restringe a pesquisa
+1: Ok, ok, está
+0: Para o período em que pretende ter acesso À informação
+1: E consigo ver sem ter internet ?
+0: Como ?
+1: Consigo ver isso sem ter internet ?
+0: Sem ter internet  não, o senhor tem de ter internet para poder aceder à área de cliente, à nossa página da MEO www.meo.pt e depois entra pelo MyMEO . Agora o que eu lhe estava a perguntar
+1: Insiro o número
+0: Sr Paulo, tem de me ouvir por favor. Estava-lhe a perguntar se já esta registado na área de cliente . Sem ter esse registo feito
+1: Não
+0: Então tem de se registar ou tem de me dar o seu e-mail ou contribuinte para eu o poder ajudar no registo
+1: Tenho que fazer um registo e depois do registo já consigo acessar
+0: Exatamente
+1: e pesquisar os números
+0: Exatamente, o senhor vai a área de cliente, faz o seu registo, na página do my, na parte que diz respeito ao MyMeo em que vai ter um login que é o seu e-mail e a password que o senhor vai definir .  E faz adicionar produto, que é o seu número de telemóvel e vai inclusivamente receber no seu número de telemóvel um código para validar essa mesma adesão depois tem de colocar na área de cliente , e depois na parte , vai aos consumos , tem uma agenda e define o período ao qual quer ter acesso aos, às comunicações  Está bem ?
+1: OK. Está bom, está bem
+0: Da minha parte, há mais alguma outra questão que lhe consiga então ajudar, Sr. Paulo? Espero então que corra tudo pelo melhor, votos de uma boa semana para si e para os seus. peço apenas que antes de desligar responda as duas questões, numa em que irá avaliar o meu atendimento e outra sobre os serviços da MEO. Muito obrigada

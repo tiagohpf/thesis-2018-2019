@@ -1,0 +1,35 @@
+0: Muito boa noite, está a falar com o João Campos, em que posso ajudar?
+1: boa noite, o meu nome é Carlos Cunha, estou a ligar derivado a um problema, portanto da minha enteada. Disseram-me que a partir do dia um iria ter chamadas gratuitas neste cartão e não fui fazer um carregamento porque disseram para esperar até ao dia 1 que voltavam a reativar os serviços... a internet, chamadas e sms. Por acaso, o que é que se está a passar?
+0: Qual é o serviço em questão? É este de onde o senhor está a ligar agora?
+1: sim sim
+0: 96 461 0270?
+1: sim
+0: só um momento, por favor... Os plafonds foram carregados e, estão carregados, o que se passa é que o telemóvel está com saldo negativo e ao estar com saldo negativo, automaticamente o serviço fica barrado. Os serviços pré-pagos funcionam desta forma. Portanto, os plafonds estão carregados mas o cartão, o serviço não está utilizável porque tem o saldo negativo, mas basta fazer um carregamento para repor o saldo positivo e fica com todos os plafonds disponíveis
+1: está com 7 euros e meio para ficar com o plafond
+0: está com o saldo negativo de 4 euros e 63 no momento, não é?
+1: 4 euros e 63?
+0: para passar o saldo a positivo terá que faze um carregamento, neste caso, o mínimo no multibanco é de 7 euros e meio. Para... para repor o saldo a positivo e logo que esteja reposto a positivo, fica, fica desponível o plafond
+1: então e depois dá para mudar de tarifário?
+0: sim, poderá, poderá efetuar alteração de tarifário. Não sei quando é que alterou este tarifário
+1: O tarifário quando veio, veio assim
+0: sim sim sim sim. Sim, será possível alterar depois o tarifário sem qualquer problema. Será necessário realmente ter o saldo positivo para fazer alteração, mas poderá contactar esta mesma linha entre as sete da manhã e a uma da madrugada e a equipa comercial que o irá atender conseguirá fazer a alteração de tarifário
+1: agora, agora a gente foi ver se ela tinha internet por causa de falar com o pai e assim de manhã e ela não tem internet, não tem nada. O pai está em frança
+0: sim sim sim
+1: né? E a gente resolveu confirmar porque não nos disseram nada disso. Porque se nos tivessem dito que, para a gente fazer um carregamento, né? a gente já tinha feito o carregamento, né? e tinha sempre o saldo positivo. Agora, eu chego, eu chego agora de manhã e vou a olhar para o telemóvel e nada. Nem internet nem nada
+0: está com saldo negativo e o serviço fica automaticamente...
+1: sim, mas os seus colegas podiam ter-me dito, não é? Evitava de estar armado em parvo porque, é assim, o que eles disseram-me é que a partir do dia um já iria ter chamadas, mensagens e internet, foi o que me disseram, não me disseram mais nada.
+0: terá que ter sempre o saldo positivo, não é?
+1: pois, mas não me disseram isso. Não é a primeira vez que a miúda está a usar esta rede da Moche e não me disseram isso
+0: é suposto realmente os telemóveis terem saldo positivo, não negativo
+1: sim
+0: com um carregamento, ficará com o saldo positivo e a situação será ultrapassada
+1: está bem, ok ok, é isso
+0: poderei ajudar em mais alguma questão?
+1: não, eu peço desculpa por ligar a esta hora da madrugada
+0: disponha sempre, nós estamos cá 24 horas, com todo o gosto
+1: está bem, mas estava a descansar um bocadinho enquanto não houver chatos para o chatear
+0: não, não, há movimento, não temos paragens basicamente. queria desejar um bom fim de semana
+1: igualmente
+0: muito obrigado
+1: obrigado eu
+

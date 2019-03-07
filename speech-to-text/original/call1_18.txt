@@ -1,0 +1,21 @@
+0: olá, Boa noite, fala Bianca, em que posso ajudar?
+1: Boa noite, é o seguinte. Eu Tenho aqui um cartão o qual eu não utilizo a algum tempo, penso que está desativado, gostaria de saber se era possível ativa-lo
+0: Certo, Já agora estou a falar com... ?
+1: Nélson Cruz
+0: Em qual é que é o número do cartão?
+1: 96 52 95 984
+0: Vou já verificar a informação, só um momento por favor. Está bem ?
+1: OK
+0: Muito obrigada por ter aguardado. O serviço ele , deste cartão esta ativo até ao dia 7 de janeiro de 2019 . Para poder utilizar basta fazer um carregamento
+1: OK. Posso fazer através do número então ?
+0: Sim
+1: E já agora qual o tarifário que este cartão tem ?
+0: Tem o tarifário link fallback. Na verdade não é nenhum tarifário especifico, porque como ficou realmente muito tempo sem utilizar, ele fica nesse tarifário, ele  volta para este tarifário descontinuado. Esse tarifário ele tem as condições de que as chamadas não tem carregamento obrigatório. As chamadas para qualquer rede tem um custo de 40 cêntimos por minuto e as sms 20 cêntimos por sms
+1: OK. Então se eu fizer um carregamento ele volta a ativar, não é ?
+0: Exatamente, se fizer um carregamento ele volta a ficar ativo e aí depois de fazer o carregamento pode alterar o tarifário se pretender também
+1: OK, está bem
+0: deseja mais alguma coisa?
+1: muito obrigado
+0: posso ajudar?
+1: não, era só, obrigada
+0:

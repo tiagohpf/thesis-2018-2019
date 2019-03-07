@@ -1,0 +1,2 @@
+0: 'Olá boa noite Meu nome é Susana Em que posso ajudar estou assim'
+0: 'Só Mais Um breve momento favor'

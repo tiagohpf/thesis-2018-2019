@@ -1,0 +1,28 @@
+0: Muito boa noite, fala Bruno Madureira, em que posso ajudar?
+1: Boa noite é o seguinte, eu gostava de transferir saldo que eu tenho neste cartão para um outro número
+0: Neste cartão senhora ? Estou a falar com a senhor Ana Duarte?
+1: Sim, sim.
+0: Senhora Ana Duarte entre cartões de faturação nós não conseguirmos fazer traspassarem de valores. O que eu , a única coisa que eu consigo fazer aqui se tiver saldo, como era antigamente carregado, senhor *NOME* é passar esse saldo para a sua fatura
+1: Como assim ?
+0: Por exemplo. Deixe-me aqui ver quanto é que a senhora tem? Ora a senhora Ana tem  17 euros e 29, este valor é sempre sem IVA, portanto isto da mais .. Dá 21 euros e 26 cêntimos aqui estes valor de saldo como estes tipos de tarifários são por fatura , senhora dona *NOME* a única forma que temos é eu consigo traspassar este valor pra fatura , ou seja a fatura neste caso de *MÊS* que iria receber iria então com um montante de menos 21 euros e 26 cêntimos  de credito
+1: Então e se eu puser um tarifário que eu consiga transferir o saldo, não dá ?
+0: Diga?
+1: Se você me puser um tarifário que eu consiga transferir
+0: Mas a senhora tem um tarifário com fidelização, eu não consigo alterar o tarifário assim
+1: Sim, mas e se eu cancelar a fidelização?
+0: Sim senhora Ana. Se a senhora quiser cancelar, pode cancelar, mas eu não consigo alterar no imediato, terá de falar com o departamento dos contratos sempre
+1: Sabe que eu mudei de número e... e pronto
+0: A senhora mudou de número
+1: Sim, sim
+0: Mas este saldo não vamos conseguir passar para outro número senhora. Este saldo no máximo consigo passar para a sua fatura
+1: Então e por exemplo, imagine que eu me tinha enganado e que queria carregar o outro número . você não consegue tirar o saldo
+0: Tirar o saldo de outro número se for pre-pago , de carregamentos a senhora conseguir passar de um para outro
+1: Não, não não. Retirar o saldo deste novamente ficar a zero  .. Tirar o que eu carreguei
+0: Sim senhora Ana, mas eu só lhe consigo enviar para fatura é isso o que eu lhe estou a dizer . Posso-lhe tirar dali aquele saldo , mas o que vai acontecer é que aqueles 21 eros e 29 vão ser descontados na fatura do mês seguinte. É a única forma que temos
+1: Pois, mas eu queria mesmo pô-lo para outro número,
+0:: Pois para outro número não conseguimos senhora Ana, só conseguimos para a própria fatura deste número
+1: Pronto, OK
+0: Há uma outra questão em que lhe possa ajudar, senhora Ana Duarte?
+1: Não, não, obrigado
+0: Resta-me desejar-lhe o resto de uma ótima noite. Obrigado pelo seu contacto, com licença
+1: Obrigada

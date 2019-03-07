@@ -1,0 +1,22 @@
+0: Bom dia, o meu nome é Alexandra. Em que posso ajudar?
+1: Bom dia, estou a ligar porque foi desativado o meu, o meu tarifário.
+0: Eu peço para por favor falar um pouco mais alto, é que eu não estou a conseguir ouvi-lo, desculpe . Foi desativado o ?
+1: Agora sim, já se ouve ?
+0: Estou a ouvi-lo mais ou menos . Mas diga-me por favor foi desativado
+1: Foi desativado o meu MEO legendário, uma coisa assim
+0: O moche legend foi desativado ?
+1: Sim , sim tem 5
+0: gigas ?
+1: De internet por semana e 5000 minutos de chamadas, foi desativado não sei porque ? Fiz agora o carregamento
+0: É para este numero que esta a ligar agora ?
+1: Sim. Deixe-me confirmar, só um momento por favor
+0: O senhor tem o Moche Legend 5 Gigas, sim. Não foi desativado, este esta ativo. O tarifário esta ativo. Deixe-me só consultar só os plafonds , só um momento por favor. O senhor neste momento tem de internet base 5 gigas, tem 15 gigas para gastar por tanto nas apps. Tem tudo ativo neste momento, tem tudo ativo
+1: Ah, é que não estava a dar
+0: Mas já reiniciou o telemóvel ?
+1: Não, não, ainda não
+0: Não ? então faça isso. Porque neste momento tem tudo ativo, não há nada que não esteja , que tenha feito o gasto a nível dos plafonds
+1: Ah esta
+0: Mas tinha saldo anteriormente a negativo, era isso ?
+1: É pá, não sei
+0: Então deixe-me confirmar, já agora, só para ver se…. Porque pode ter sido a falta de saldo que realmente que …. Deixe-me só confirmar. Pronto, tinha saldo negativo de 75 cêntimos . Pronto o senhor entretanto fez o carregamento portanto agora já pode.  Mas peço que desligue o telemóvel e volte a ligar só para ele atualizar esta bem
+1: Está bem, está bem

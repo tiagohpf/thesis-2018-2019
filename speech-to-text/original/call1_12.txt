@@ -1,0 +1,49 @@
+0: Olá boa noite, o meu nome é Susana, em que posso ajudar?
+1: Estou sim, Boa noite, está a falar com o Francisco José
+0: Em que posso ajudar, senhor Francisco José?
+1: É o seguinte, eu fiz um contrato com este mesmo cartão no qual estamos a falar, deste número e que depois ele já atingiu os tais 2 anos então foi reativado manualmente o outro contrato. Eu supostamente dia 1 recebi os meus 4000 minutos de chamadas e 4000 minutos de sms mas entretanto era supostamente eu ter direito a 5G de internet  só o facto outra vez 500 M por isso é que eu estou a ligar no sentido de saber o se esta a p0:ar
+0: Mas o senhor já tentou desligar e ligar o telemóvel?
+1: Não, ainda não fiz isso . Só sei que consultei agora o saldo e tem 4000 minutos de chamadas 4000 minutos de mensagens e os 500 Mega que é o que eu aqui tinha direito antes ou seja o que é que acontece. Depois de eu ter desfeito, ou seja após o 1º contrato ter vencido, os 2 anos então depois liguei para o apoio de cliente e entretanto eu pronto mostrou descontentamento no que diz respeito a internet porque era somente os 500 G, ou seja 500 Mega e eu queria tanto que fosse ao menos 5G  e supostamente esta ativo agora, né.
+0: Dê-me só um breve momento que vou já verificar o que é que aconteceu, está bem?
+1: Está bem
+0: Só um momento, obrigada
+1: ok
+0: Senhora Francisco José, obrigada pelo tempo que acordou. O senhor consegue só confirmar o valor que acordou com os colegas?
+1: 12,90, o meu valor 12 euros e 90 ou seja antes pagava 12,99 agora como me é atribuído agora os 5G, ficou por 14 euros e 88, acho eu
+0: Seriam mais 3 Gigas por mais 2 Gigas por mais 1,99, é isso?
+1: Certo, certo
+0: Então é o seguinte. Relativamente aqui à internet senhor Francisco José, eu consigo-lhe ativar de imediato os 2 Gigas, está bem
+1: 2 gigas?
+0: Sim, agora os outros 3, o Sr durante esta madrugada vão ser carregados, foi mesmo uma atualização de sistema que fez com que só lhe aparecessem os 500 Mega, esta bem ? Mas o tarifário vai ficar disponível ainda hoje
+1: Mas fica disponível os 5 Gigas ainda hoje?
+0: Durante esta manhã, está bem, de sábedo.
+1: Está bem, está bem, está bem
+0: Eu Vou-lhe só  ativar os 2 Gigas, dê-me só um breve momento
+1: Obrigado
+0: só mais um breve momento por favor
+1: está bem, está bem
+0: Obrigada pelo tempo que aguardou senhor Francisco José, peço desculpa o tempo que lhe tomei. Então é o seguinte. Relativamente aqui aos 2G de internet pode demorar algum tempo a ficar disponível no seu saldo, está bem.
+1: Está bem
+0: Ou seja Vou-lhe pedir para o senhor aguardar até de manhã . Voltar a desligar e ligar o telemóvel de forma a 0:umir todos os plafonds esta bem ?  Mas pode ficar descansado que vai ficar com os 5G
+1: Então nesse caso da parte da manhã, eu consultando outra vez o saldo e não tiver lá os 5 Gigas, tenho que desligar e voltar a ligar
+0: Desligar e voltar a ligar o telemóvel, Exatamente
+1: A minha fatura vai ser todos os meses de 14 e 88, certo
+0: Ora bem, Exatamente.
+1: Acho que são 14 e 98 se não estou em erro, acho eu
+0: São 14 e 98
+1: É isso mesmo, é isso
+0: Sim, Mas sim vai nesse valor, está bem ?
+1: Está bem, está bem, está bem
+0: Existe mais alguma outra questão em que possa ajudar, ou esclarecer?
+1: Não, era só isso. Então neste caso, já foram retirados os tais 500 megas
+0: Os 500 megas ainda estão disponíveis no saldo, está bem? Vai-lhe aparecer porque é mesmo uma atualização do sistema
+1: Está bem, está bem, está bem
+0: No entanto, durante a manhã, durante a madrugada o sistema vai atualizar novamente e vai ter o plafond disponível, está bem?
+1: Está bem, ok, muito obrigado pela atenção
+0: Existe mais alguma outra questão em que possa ajudar, ou esclarecer?
+1: Era só mesmo isso, obrigado mais uma vez pela atenção
+0: Sendo 0:im, eu queria-lhe apenas pedir um último favor, se não se importar. Era o de não desligar a chamada só para responder a duas rápidas questões sobre o atendimento e recomendar o serviço do meo, é muito importante para o meu trabalho e para a minha avaliação
+1: Está bem, está bem, está bem
+0: Obrigada então, resto de uma boa noite e bom fim de semana
+1: Obrigado, igualmente
+0: Obrigada

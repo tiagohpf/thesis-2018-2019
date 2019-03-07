@@ -1,0 +1,25 @@
+0: Olá, muito boa noite, daqui fala Telmo. Em que posso ajudar?
+1: Boa noite o meu nome é Rui Silva e eu tenho uma ativação agendada para dia 1 unlimited L e eu queria saber porque ainda não esta, visto que ainda esta
+0: É do número que me está a ligar?
+1: É sim
+0: Pode-me só confirmar o contribuinte, por favor?
+1: vou só buscar, ok?
+0: esteja à vontade
+1: Ora então é 22 42 84 258
+0: Certíssimo. Deixe-me só verificar por favor, só um momento
+1: ok
+0: Senhor Rui, muito obrigado pelo tempo que esteve a aguardar. É assim em termos de tarifário já está ativo, a única coisa é que ainda não tem os dados moveis , que 1º o sistema renova os plafonds
+1: Mas eu venho aqui ao teclado e meto *#123 e supostamente ele devia dizer que eu tenho 4000 mensagens , 4000 minutos
+0: O senhor Rui não me deixou terminar
+1: Ah, peço desculpa, peço desculpa
+0: Então o que eu estava a tentar dizer, então o sistema a meia noite renova primeiro os plafonds e agora durante a noite é que vai , vai o senhor imagine amanhã de manhã quando for ver já tem os 3 gigas de internet . 1º é renovado tudo automaticamente a todos os clientes e a seguir quem tiver alteração de tarifário será efetuado  também automaticamente. Pode demorar mais um pouco, pode gastar os 500 mg que esta ativo neste momento que é o que o senhor tem, mas durante a noite será automaticamente posto os 3 gigas de internet
+1: Ah, ok, e as 4000 mensagens e tudo isso
+0: sim, em termos dos minutos o senhor já tem , os 4000 minutos e as 4000 mensagens  isso já se encontra ativo
+1: Para MEO
+0: Neste momento já tem Para todas as redes
+1: Não aqui diz: Minutos MEO 4000, SMS MEO 4000 e minutos e SMS outras redes 247
+0: Mas no nosso sistema em termos dos minutos já me aparece atualizado. A única coisa que não me aparece atualizado é mesmo os dados moveis, mas isso irá tudo acontecer durante esta noite automaticamente, não se tem de preocupar sr *NOME*
+1: OK, ok, obrigado
+0: Senhor rui, da minha parte, mais alguma dúvida, mais alguma questão em que posso ajudá-lo
+1: é só, é só, muito obrigado
+0: obrigado eu. Pedia-lhe um grande favor, se não se importasse, era só para avaliar a qualidade do meu atendimento, isso é muito importante para o meu posto de trabalho e também recomende o serviço meo, de resto, desejo um bom fim de semana

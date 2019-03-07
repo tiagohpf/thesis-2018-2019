@@ -1,0 +1,39 @@
+0: Bom dia, fala Vera, em que posso ajudar?
+1: Estou sim bom dia
+0: Bom dia
+1: Eu estou-lhe a ligar porque há duas semanas atrás quiseram falar comigo dali da MEO por causa de uma promoção que estavam a fazer em chamadas e que pagava 10 e 99, se não estou em erro, e que a partir do dia 1 esse tarifário já estava disponível. E hoje é dia 3 e eu não tenho dinheiro no telemóvel. Não sei como é que é, se esse tarifário esta válido, se tenho de carregar o telemóvel, é só por isso
+0: Vamos só verificar está bem? Estou a falar com a senhora...?
+1: Alzira Pereira
+0: Alzira Pereira, obrigada. Sr. Alzira Pereira, é do número ao qual está a contactar?
+1: sim, sim
+0: Este tarifário que a senhora tem não é preciso carregar, é de fatura
+1: Então, mas eu não tenho dinheiro nenhum, como é que então. Hoje começou o mês já não tenho dinheiro
+0: Dinheiro como assim ? Se a senhora tem um número de fatura não precisa de dinheiro . Porque ? porque a senhora recebe a fatura no mês a seguir .  Mas eu digo-lhe já, vamos ver. Foi no dia 1 que ele entrou. Ele inclusive até entrou no 26 do mês passado
+1: Então, mas eu não tenho dinheiro nenhum . Quero fazer uma chamada e não consigo
+0: Que tipo de chamada é que a senhora esta a tentar fazer ?
+1: Ligar para outro número
+0: Sim, mas que tipo de número? É um número normal, é um número 800, é um número 700, é um número 900
+1: Não é o numero da, da...  ou da NOS ou da MEO
+0: Ora vamos verificar. A senhora já desligou o seu telemóvel e voltou a ligar ?
+1: Não, se calhar é isso que tenho que fazer, né?
+0: Exatamente.
+1: Ok
+0: A senhora tem 4000 minutos para ligar para todas as redes , esta bem ?
+1: ok, está bom, está bom
+0: Fiz-lhe a pergunta se ra para outro tipo de número porque esses números não são comtemplados nos minutos do seu tarifário
+1: OK
+0: Por isso é que eu fiz essa questão. Agora desde que a senhora recebeu a mensagem de Boas vindas ainda não desligou o telefone , correto ?
+1: Não, não, não não
+0: Então o que é que falta ? É realmente desligar o seu telefone
+1: Não é preciso tirar cartão nem nada, pois não. Basta delisgar
+0: Não, não, é só como se tivesse ficado sem bateria. Desligar o cartão, e depois voltar a ligar o cartão, esta bem ? Basta fazer isso
+1: Está bom, eu vou tentar então. Está bom
+0: De nada, ora essa. Da minha parte...
+1: É tudo, é tudo. Não não, é tudo então
+0: Com certeza
+1: Obrigadinha então, adeus com licença, obrigada, adeus
+0: Ia-lhe só pedir se pudesse que respondesse a duas breves questões sobre o meu atendimento, posso contar consigo?
+1: Sim sim, diga diga
+0: Obrigada e vou então transferi-la. Tenha então um bom dia, boa semana e um bom natal
+1: Obrigada, igualmente, obrigada
+0: Vou-lhe passar, obrigada

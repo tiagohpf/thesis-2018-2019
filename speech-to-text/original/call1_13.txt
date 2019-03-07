@@ -1,0 +1,44 @@
+0: Fala a Carlo Melo, verifiquei que a sua chamada vem transferida
+1: É sim senhor. É para fazer a ativação de um cartão, se fosse possível que eu comprei hoje.
+0: Com certeza. Estou a falar com a senhora dona...?
+1: Mónica Alves
+0: Senhora dona Mónica Alves, qual é o telefone em questão, Senhora dona Mónica Alves?
+1: O telefone, ou seja, o número, é isso?
+0: sim sim, por favor
+1: É o 92 423 30 80
+0: Disse 92 423 30 80, é isso?
+1: Exatamente
+0: A senhora pode-me confirmar o pin original do cartão, senhora Mónica Alves, por favor?
+1: Posso sim. 2962
+0: Obrigada, só um momento por favor
+1: Ok
+0: Senhora Mónica Alves este cartão ficará, para que este cartão fique ativado a senhora só precisará de fazer uma chamada
+1: Eu já tentei fazer, pus no telemóvel que tem dois SIM, dá para por 2 cartões e estou a tentar fazer a chamada e ele não me dá. Diz sem serviço
+0: O cartão neste momento não tem saldo. Tem o saldo a zero
+1: eu tenho de fazer um carregamento, é isso ?
+0: exatamente, por favor
+1: Ah ok
+0: Deverá fazer um carregamento para que o cartão fique ativo, para que o cartão fique com saldo, e depois  a partir dai poder fazer uma chamada, e a chamada que a senhora faz a partir desse cartão é que faz com que ele fique ativo
+1: OK. Já agora podia-me dizer qual é que é o tarifário que este cartão tem, por favor
+0: Este cartão tem um tarifário TOP Total 3 Gigas em que a senhora tem 500 min ou SMS para todas as redes, 3 Gigas de internet e paga semanalmente 4 euros
+1: Depois para alterar o que é que eu tenho que fazer ?
+0: Assim para já não lhe consigo alterar, tem que ser ativo
+1: Sim depois de carregar, posso contactar a linha, é isso?
+0: Sim depois de carregar pode contactar a linha ou fazer a alteração de forma automática na linha 12045 que é uma chamada gratuita do seu telefone e onde a senhora poderá fazer a alteração que a senhora pretender, esta bem ?
+1: Ou seja 12045, correto ?
+0: exatamente
+1: 12045. Sim senhor
+0: Mais alguma questão em que posos ajudar senhora Mónica Alves
+1: Sim queria saber qual o mínimo que eu tenho de carregar
+0: Se a senhora fizer o carregamento pelo multibanco o valor mínimo que aceita são 7 euros e meio
+1: 7 e meio ok
+0: Se fizer numa loja MEO pode fazer um carregamento de 5 euros
+1: Está bem, 7 e meio, Está bom, muito obrigada, sim.
+0: Há mais alguma questão em que posso ajudá-la?
+1: é só
+0: posso só pedir para a senhora classificar o meu atendimento, por favor, senhora mónica alves? A senhora não se importa?
+1: não senhor
+0: vou transferi-la então para o inquérito
+1: está, obrigada
+0: continuação de um bom domingo para si, muito gosto em atendê-la
+1: obrigada, igualmente, Com licença
