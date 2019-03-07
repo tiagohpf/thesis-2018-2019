@@ -1,0 +1,11 @@
+[
+  {"name": "problemas no telemóvel", "subject": "apoio técnico", "subsubject": "telemóvel"},
+  {"name": "avarias no telemóvel", "subject": "apoio técnico", "subsubject": "telemóvel"},
+  {"name": "não consigo ligar o telemóvel", "subject": "apoio técnico", "subsubject": "telemóvel"},
+  {"name": "não consigo fazer chamadas do telemóvel", "subject": "apoio técnico", "subsubject": "telemóvel"},
+  {"name": "não consigo fazer chamadas no meu telemóvel", "subject": "apoio técnico", "subsubject": "telemóvel"},
+  {"name": "avarias no móvel", "subject": "apoio técnico", "subsubject": "telemóvel"},
+  {"name": "uma avaria no móvel", "subject": "apoio técnico", "subsubject": "telemóvel"},
+  {"name": "não consigo ligar o meu móvel", "subject": "apoio técnico", "subsubject": "telemóvel"},
+  {"name": "não consigo fazer chamadas do meu móvel", "subject": "apoio técnico", "subsubject": "telemóvel"}
+]

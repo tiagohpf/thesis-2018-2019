@@ -1,0 +1,11 @@
+[
+  {"name": "estou com problemas", "subject": "apoio técnico"},
+  {"name": "tenho avarias", "subject": "apoio técnico"},
+  {"name": "tenho uma avaria", "subject": "apoio técnico"},
+  {"name": "apoio técnico", "subject": "apoio técnico"},
+  {"name": "ajuda técnica", "subject": "apoio técnico"},
+  {"name": "ajuda de um tećnico", "subject": "apoio técnico"},
+  {"name": "serviço não está a trabalhar corretamente", "subject": "apoio técnico"},
+  {"name": "serviço liga e desliga", "subject": "apoio técnico"},
+  {"name": "serviço indisponível", "subject": "apoio técnico"}
+]

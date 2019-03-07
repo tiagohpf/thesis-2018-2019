@@ -1,0 +1,13 @@
+[
+  {"name": "problemas no telefone", "subject": "apoio técnico", "subsubject": "telefone fixo"},
+  {"name": "problema no meu telefone", "subject": "apoio técnico", "subsubject": "telefone fixo"},
+  {"name": "avarias no telefone", "subject": "apoio técnico", "subsubject": "telefone fixo"},
+  {"name": "não consigo ligar do meu telefone", "subject": "apoio técnico", "subsubject": "telefone fixo"},
+  {"name": "não consigo fazer chamadas do meu telefone", "subject": "apoio técnico", "subsubject": "telefone fixo"},
+  {"name": "não consigo fazer chamadas do telefone", "subject": "apoio técnico", "subsubject": "telefone fixo"},
+  {"name": "problemas no telefone fixo", "subject": "apoio técnico", "subsubject": "telefone fixo"},
+  {"name": "avaria no telefone fixo", "subject": "apoio técnico", "subsubject": "telefone fixo"},
+  {"name": "não consigo ligar do meu telefone fixo", "subject": "apoio técnico", "subsubject": "telefone fixo"},
+  {"name": "não consigo fazer chamadas do meu telefone fixo", "subject": "apoio técnico", "subsubject": "telefone fixo"},
+  {"name": "não consigo fazer chamadas do telefone fixo", "subject": "apoio técnico", "subsubject": "telefone fixo"}
+]

@@ -1,0 +1,7 @@
+[
+  {"name": "fatura eletrónica", "subject": "faturação", "subsubject": "fatura eletrónica"},
+  {"name": "faturas no meu e-mail", "subject": "faturação", "subsubject": "fatura eletrónica"},
+  {"name": "faturas por e-mail", "subject": "faturação", "subsubject": "fatura eletrónica"},
+  {"name": "pagamento por e-mail", "subject": "faturação", "subsubject": "fatura eletrónica"},
+  {"name": "fatura no computador", "subject": "faturação", "subsubject": "fatura eletrónica"}
+]

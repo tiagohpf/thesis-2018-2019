@@ -1,0 +1,4 @@
+{
+  "intent": "faturação - débito direto",
+  "entities": ["débito direto"]
+}

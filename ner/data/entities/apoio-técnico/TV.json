@@ -1,0 +1,11 @@
+[
+  {"name": "tv não dá", "subject": "apoio técnico", "subsubject": "TV"},
+  {"name": "estou com problemas na tv", "subject": "apoio técnico", "subsubject": "TV"},
+  {"name": "avarias na tv", "subject": "apoio técnico", "subsubject": "TV"},
+  {"name": "tv avariada", "subject": "apoio técnico", "subsubject": "TV"},
+  {"name": "televisão avariada", "subject": "apoio técnico", "subsubject": "TV"},
+  {"name": "problemas na televisão", "subject": "apoio técnico", "subsubject": "TV"},
+  {"name": "problema na minha televisão", "subject": "apoio técnico", "subsubject": "TV"},
+  {"name": "avaria na minha televisão", "subject": "apoio técnico", "subsubject": "TV"},
+  {"name": "televisão não dá nada", "subject": "apoio técnico", "subsubject": "TV"}
+]

@@ -1,0 +1,4 @@
+{
+  "intent": "faturação - segunda via de fatura",
+  "entities": ["segunda via de fatura", "faturação", "dataperiod"]
+}

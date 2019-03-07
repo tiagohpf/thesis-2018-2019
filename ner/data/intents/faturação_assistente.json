@@ -1,0 +1,4 @@
+{
+  "intent": "faturação - assistente",
+  "entities": ["assistente"]
+}

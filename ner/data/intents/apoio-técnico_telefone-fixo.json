@@ -1,0 +1,4 @@
+{
+  "intent": "apoio técnico - telefone fixo",
+  "entities": ["telefone fixo"]
+}

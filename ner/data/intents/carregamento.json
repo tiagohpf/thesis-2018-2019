@@ -1,0 +1,4 @@
+{
+  "intent": "carregamento",
+  "entities": ["carregamento"]
+}

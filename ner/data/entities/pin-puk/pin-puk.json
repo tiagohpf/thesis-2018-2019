@@ -1,0 +1,10 @@
+[
+  {"name":"telemóvel bloqueado","subject":"pin-puk"},
+  {"name":"o meu código","subject":"pin-puk"},
+  {"name":"pin","subject":"pin-puk"},
+  {"name":"puk","subject":"pin-puk"},
+  {"name":"pin e puk","subject":"pin-puk"},
+  {"name":"pin-puk","subject":"pin-puk"},
+  {"name":"pin/puk","subject":"pin-puk"},
+  {"name":"pino","subject":"pin-puk"}
+]
