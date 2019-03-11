@@ -52,7 +52,7 @@ public class EntityManager implements EntityService {
     }
 
     @Override
-    public Map<String, String> searchEntities(String sentence) {
+    public JsonArray searchEntities(String sentence) {
         Searcher searcher = new Searcher(entities, stopWords);
         searcher.search(sentence);
         return searcher.getEntities_found();

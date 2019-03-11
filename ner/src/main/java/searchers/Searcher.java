@@ -1,5 +1,6 @@
 package searchers;
 
+import com.google.gson.*;
 import entities.Entity;
 import filters.StopWords;
 
@@ -46,8 +47,15 @@ public class Searcher {
     }
 
 
-    public Map<String, String> getEntities_found() {
-        return entities_found;
+    public JsonArray getEntities_found() {
+        JsonArray jsonArray = new JsonArray();
+        for (Map.Entry<String, String> entity : entities_found.entrySet()) {
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("_id", entity.getValue());
+            jsonObject.addProperty("value", entity.getKey());
+            jsonArray.add(jsonObject);
+        }
+        return jsonArray;
     }
 
     private void searchInContext(String sentence) {

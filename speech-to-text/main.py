@@ -48,7 +48,7 @@ def main(argv):
 
         dialogue = Dialogue(file_id, audio_export.name, duration, volume, speed, transcription)
         transcriptions_request = TranscriptionRequest()
-        transcriptions_request.post(dialogue.get_json())
+        transcriptions_request.post_dialogues(dialogue.get_json())
 
         """print("Original: {}; Transcription: {}".format(original_file, transcription_file))
         similarity = SimilarityMeasures(original_file, transcription_file)
