@@ -65,7 +65,7 @@ public class CapitalsParser implements Parser {
             areas.add(area);
         } else if (!countryInList(country) && !countryInArea(country, area)) {
             for (Area a : areas) {
-                if (a.getName().equals(area.getName())) {
+                if (a.getId().equals(area.getId())) {
                     capitals.add(capital);
                     a.addCountry(country);
                     countries.add(country);
@@ -77,7 +77,7 @@ public class CapitalsParser implements Parser {
 
     private boolean countryInList(Country country) {
         for (Country c : countries) {
-            if (c.getName().equals(country.getName()))
+            if (c.getId().equals(country.getId()))
                 return true;
         }
         return false;
@@ -85,7 +85,7 @@ public class CapitalsParser implements Parser {
 
     private boolean areaInList(Area area) {
         for (Area a : areas) {
-            if (a.getName().equals(area.getName()))
+            if (a.getId().equals(area.getId()))
                 return true;
         }
         return false;
@@ -93,7 +93,7 @@ public class CapitalsParser implements Parser {
 
     private boolean countryInArea(Country country, Area area) {
         for (Country c : area.getCountries()) {
-            if (c.getName().equals(country.getName()))
+            if (c.getId().equals(country.getId()))
                 return true;
         }
         return false;

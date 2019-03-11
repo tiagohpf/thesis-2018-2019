@@ -1,0 +1,25 @@
+{
+  "_id": "faturação",
+  "category": "faturação",
+  "subcategory": "geral",
+  "values": [
+    "faturação",
+    "fatura",
+    "carta",
+    "plano",
+    "pagamento",
+    "pagar",
+    "falta de pagamento",
+    "débito",
+    "valor a pagar",
+    "paguei",
+    "pago",
+    "cêntimos",
+    "euros",
+    "efetuar pagamento",
+    "dívida",
+    "nota de crédito",
+    "conta",
+    "dinheiro"
+  ]
+}

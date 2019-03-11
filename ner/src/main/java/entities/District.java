@@ -21,8 +21,8 @@ public class District extends Local{
     @Override
     public String toString() {
         return "Country {" +
-                "name='" + super.getName() + '\'' + ", " +
-                "category='" + super.getSubject() + '\'' + ", " +
+                "name='" + super.getId() + '\'' + ", " +
+                "category='" + super.getCategory() + '\'' + ", " +
                 "no. counties='" + counties.size() + '\'' +
                 '}';
     }

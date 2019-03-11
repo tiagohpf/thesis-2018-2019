@@ -1,6 +1,0 @@
-{
-  "intent": "faturação",
-  "entities": ["houve", "engano", "faturação", "pagar", "esclarecimento", "dinheiro", "semfatura", "tempo", "atraso",
-  "nada", "pagamentofeito", "dever", "débito", "referência", "reativar", "semserviço", "superior", "notificação",
-  "comunicação", "introdução", "dataperiod", "saudação"]
-}

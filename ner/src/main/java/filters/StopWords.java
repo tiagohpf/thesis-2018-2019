@@ -19,16 +19,12 @@ public class StopWords {
         StringBuilder sb = new StringBuilder();
         String[] words = sentence.split("\\s");
         if (words.length > 0) {
-            for (int i = 0; i < words.length; i++) {
-                if (!stopwords.contains(words[i].toLowerCase())) {
-                    if (i == words.length - 1)
-                        sb.append(words[i]);
-                    else
-                        sb.append(words[i]).append(" ");
-                }
+            for (String word : words) {
+                if (!stopwords.contains(word.toLowerCase()))
+                    sb.append(word).append(" ");
             }
         }
-        return sb.toString();
+        return sb.toString().trim();
     }
 
     private void loadStopWords() {

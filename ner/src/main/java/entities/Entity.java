@@ -1,47 +1,72 @@
 package entities;
 
+import java.util.ArrayList;
+
 public class Entity {
-    private String name;
-    private String subject;
-    private String subsubject;
+    private String id;
+    private String category;
+    private String subcategory;
+    private ArrayList<String> values;
 
 
     public Entity() { }
 
-    public Entity(String name, String subject) {
-        this.name = name;
-        this.subject = subject;
+    public Entity(String id, String category, ArrayList<String> values) {
+        this.id = id;
+        this.category = category;
+        this.values = values;
     }
 
-    public Entity(String name, String subject, String subsubject) {
-        this.name = name;
-        this.subject = subject;
-        this.subsubject = subsubject;
+
+    public Entity(String id, String category, String subcategory, ArrayList<String> values) {
+        this.id = id;
+        this.category = category;
+        this.subcategory = subcategory;
+        this.values = values;
     }
 
-    public String getName() {
-        return name;
+    public Entity(String id, String category) {
+        this.id = id;
+        this.category = category;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getId() {
+        return id;
     }
 
-    public String getSubsubject() { return subsubject; }
-
-    public void setName(String name) {
-        this.name = name;
+    public String getCategory() {
+        return category;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public String getSubcategory() { return subcategory; }
+
+    public ArrayList<String> getValues() {
+        return values;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setSubcategory(String subcategory) {
+        this.subcategory = subcategory;
+    }
+
+    public void setValues(ArrayList<String> values) {
+        this.values = values;
     }
 
     @Override
     public String toString() {
-        return "{name='" + name + '\'' +
-                ", subject='" + subject + '\'' +
-                ", subsubject='" + subsubject + '\'' +
+        return "Entity{" +
+                "id='" + id + '\'' +
+                ", category='" + category + '\'' +
+                ", subcategory='" + subcategory + '\'' +
+                ", values=" + values +
                 '}';
     }
 }

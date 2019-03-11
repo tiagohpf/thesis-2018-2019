@@ -1,5 +1,10 @@
 package parsers;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.stream.JsonReader;
 import entities.Entity;
 import entities.Intent;
 import filters.StopWords;
@@ -7,7 +12,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,24 +30,43 @@ public class JsonParser implements Parser {
         intents = new ArrayList<>();
     }
 
+    public void parse() {
+        try {
+            FileReader reader = new FileReader(filename);
+            JsonObject jsonObject = new Gson().fromJson(reader, JsonObject.class);
+            String id = removeStopWords(jsonObject.get("_id").getAsString());
+            String category = removeStopWords(jsonObject.get("category").getAsString());
+            String subcategory = removeStopWords(jsonObject.get("subcategory").getAsString());
+            JsonArray jsonArray = jsonObject.get("values").getAsJsonArray();
+            ArrayList<String> values = new ArrayList<>();
+            for (JsonElement value : jsonArray)
+                values.add(value.getAsString());
+            entities.add(new Entity(id, category, subcategory, values));
+        } catch (FileNotFoundException e) {
+            System.err.println(filename + " not found");
+        }
+    }
+
     public void parseEntities() {
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse(new FileReader(filename));
             JSONArray jsonArray = (JSONArray) obj;
             for (JSONObject jsonObject : (Iterable<JSONObject>) jsonArray) {
-                String name = (String) jsonObject.get("name");
-                name = stopWords.removeStopWords(name).trim();
+                String id = (String) jsonObject.get("name");
+                id = stopWords.removeStopWords(id).trim();
                 String subject = (String) jsonObject.get("subject");
                 subject = stopWords.removeStopWords(subject).trim();
                 String subsubject = (String) jsonObject.get("subsubject");
                 Entity entity;
                 if (subsubject != null) {
                     subsubject = stopWords.removeStopWords(subsubject).trim();
-                    entity = new Entity(name, subject, subsubject);
+                    //entity = new Entity(name, subject, subsubject);
+                    entity = new Entity(id, subject, subsubject, new ArrayList<>());
                 } else
-                    entity = new Entity(name, subject);
-                if (name.length() > 0 && subject.length() > 0 && !objInEntities(entity))
+                    entity = new Entity(id, subject, new ArrayList<>());
+                    //entity = new Entity(name, subject);
+                if (id.length() > 0 && subject.length() > 0 && !objInEntities(entity))
                     entities.add(entity);
             }
         } catch (ParseException | IOException e) {
@@ -75,12 +99,17 @@ public class JsonParser implements Parser {
         return entities;
     }
 
+
     public ArrayList<Intent> getIntents() { return intents; }
+
+    private String removeStopWords(String sentence) {
+        return stopWords.removeStopWords(sentence.toLowerCase()).trim();
+    }
 
     private boolean objInEntities(Entity entity) {
         boolean exists = false;
         for (Entity e : entities) {
-            if (e.getName().equals(entity.getName()) && e.getSubject().equals(entity.getSubject())) {
+            if (e.getId().equals(entity.getId()) && e.getCategory().equals(entity.getCategory())) {
                 exists = true;
                 break;
             }

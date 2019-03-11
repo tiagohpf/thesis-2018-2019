@@ -46,14 +46,15 @@ public class GeneralInfoParser implements Parser {
     private ArrayList<Entity> removeLongEntities() {
         ArrayList<Entity> new_entities = new ArrayList<>();
         for (Entity entity : entities) {
-            String category = entity.getSubject();
-            String[] words = entity.getName().split("\\s");
+            String category = entity.getCategory();
+            String[] words = entity.getId().split("\\s");
             // Remove null sentences
             // Remove terms with more than 4 words (Order 3)
             // The name of the Book should stay intact
-            if (entity.getName() != null && entity.getSubject() != null) {
+            if (entity.getId() != null && entity.getCategory() != null) {
                 if (words.length <= 4 || category.equalsIgnoreCase("OBRA"))
-                    new_entities.add(new Entity(entity.getName(), category));
+                    new_entities.add(new Entity(entity.getId(), category, new ArrayList<>()));
+                    //new_entities.add(new Entity(entity.getId(), category));
             }
         }
         return new_entities;
@@ -64,7 +65,7 @@ public class GeneralInfoParser implements Parser {
         Set<String> set = new HashSet<>();
         for (Entity entity : entities) {
             // Combination of name and category
-            if (set.add(entity.getName() + entity.getSubject()))
+            if (set.add(entity.getId() + entity.getCategory()))
                 new_entities.add(entity);
         }
         return new_entities;
@@ -74,10 +75,11 @@ public class GeneralInfoParser implements Parser {
     private ArrayList<Entity> splitCategories() {
         ArrayList<Entity> new_entities = new ArrayList<>();
         for (Entity entity : entities) {
-            String name = entity.getName();
-            String[] categories = entity.getSubject().split("\\|");
+            String name = entity.getId();
+            String[] categories = entity.getCategory().split("\\|");
             for (String category : categories) {
-                new_entities.add(new Entity(name.toLowerCase(), category.toLowerCase()));
+                new_entities.add(new Entity(name.toLowerCase(), category.toLowerCase(), new ArrayList<>()));
+                //new_entities.add(new Entity(name.toLowerCase(), category.toLowerCase()));
             }
         }
         return new_entities;

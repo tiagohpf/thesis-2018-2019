@@ -15,7 +15,7 @@ public class EntitiesReducer {
     private static boolean entityExists(ArrayList<Entity> original, Entity entity) {
         boolean exists = false;
         for (Entity e : original) {
-            if (e.getName().equals(entity.getName())) {
+            if (e.getId().equals(entity.getId())) {
                 exists = true;
                 break;
             }

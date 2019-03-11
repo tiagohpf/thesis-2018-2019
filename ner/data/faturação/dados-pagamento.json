@@ -1,0 +1,14 @@
+{
+  "_id": "faturação - dados pagamento",
+  "category": "faturação",
+  "subcategory": "dados pagamento",
+  "values": [
+    "dados pagamento",
+    "dados para fazer pagamento",
+    "mensagem dos dados",
+    "mensagem do valor a pagar",
+    "referências de pagamento",
+    "entidade e referência",
+    "referência multibanco"
+  ]
+}

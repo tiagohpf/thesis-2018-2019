@@ -9,8 +9,8 @@ public class Countie extends Local {
     @Override
     public String toString() {
         return "Countie {" +
-                "name='" + super.getName() + '\'' +
-                "category='" + super.getSubject() + '\'' + ", " +
+                "name='" + super.getId() + '\'' +
+                "category='" + super.getCategory() + '\'' + ", " +
                 '}';
     }
 }

@@ -23,7 +23,7 @@ public class GeneralHandler extends DefaultHandler {
         if (qName.equals("EM")) {
             entity = new Entity();
             String category = attributes.getValue("CATEG");
-            entity.setSubject(category);
+            entity.setCategory(category);
             bEM = true;
         }
     }
@@ -40,7 +40,7 @@ public class GeneralHandler extends DefaultHandler {
     public void characters(char ch[], int start, int length) throws SAXException {
         if (bEM) {
             String name = filterName(new String(ch, start, length));
-            entity.setName(name);
+            entity.setId(name);
         }
     }
 
@@ -51,7 +51,7 @@ public class GeneralHandler extends DefaultHandler {
     private String filterName(String name) {
         StringBuilder sb = new StringBuilder();
         // The name of the Book should stay intact
-        if (name.length() > 0 && entity.getSubject() != "OBRA") {
+        if (name.length() > 0 && entity.getCategory() != "OBRA") {
             String new_name = stopWords.removeStopWords(name);
             sb.append(new_name);
         }

@@ -1,4 +1,0 @@
-{
-  "intent": "faturação - fatura eletrónica",
-  "entities": ["fatura eletrónica", "faturação", "notificação"]
-}

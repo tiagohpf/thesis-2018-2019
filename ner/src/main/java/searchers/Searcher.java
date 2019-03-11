@@ -1,236 +1,85 @@
 package searchers;
 
-import entities.*;
+import entities.Entity;
 import filters.StopWords;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Searcher {
     private ArrayList<Entity> entities;
-    private ArrayList<Intent> intents;
     private StopWords stopWords;
-    private Map<String, Pair<String, String>> locals;
-    private Map<String, Pair<String, String>> elements;
-    private Map<String, Set<String>> categories;
+    private Map<String, String> entities_found;
 
-    public Searcher(ArrayList<Entity> entities, ArrayList<Intent> intents, StopWords stopWords) {
+    public Searcher(ArrayList<Entity> entities, StopWords stopWords) {
         this.entities = entities;
-        this.intents = intents;
         this.stopWords = stopWords;
-        locals = new HashMap<>();
-        elements = new HashMap<>();
-        categories = new HashMap<>();
+        entities_found = new HashMap<>();
     }
 
-    public String search(String sentence) {
-        locals.clear();
-        elements.clear();
-        categories.clear();
+    public void search(String sentence) {
+        entities_found.clear();
         String new_sentence = stopWords.removeStopWords(sentence.toLowerCase());
         String[] words = new_sentence.split("\\s");
-        searchInOrder(words, 0);
-        searchInOrder(words, 1);
-        searchInOrder(words, 2);
-        searchInOrder(words, 3);
-        elements = removeAmbiguities();
-        getIntentsCovered();
-        String get_entities = getEntities();
-        String get_intents = getIntents();
-        StringBuilder out = new StringBuilder();
-        if (get_entities.replaceAll("\\[]", "").length() > 0)
-            out.append(get_entities).append("\n");
-        if (get_intents.replaceAll("\\[]", "").length() > 0)
-            out.append(get_intents);
-        return out.toString();
-    }
-
-    private void searchInOrder(String[] words, int order) {
-        for (int i = 0; i < words.length - order; i++) {
-            boolean found = false, found_number = false;
-            for (Entity entity : entities) {
-                String number_searcher = NumbersSearcher.searchWithNumbers(words[i]);
-                String name = "";
-                String subject = entity.getSubject();
-                String subsubject = entity.getSubsubject();
-                if (number_searcher.length() > 0) {
-                    name = words[i];
-                    subject = number_searcher;
-                    found_number = true;
-                } else if (order == 0) {
-                    if (entity.getName().equals(words[i])) {
-                        name = words[i];
-                        found = true;
-                    }
-                } else if (order == 1) {
-                    if (entity.getName().equals(words[i] + " " + words[i + 1])) {
-                        name = words[i] + " " + words[i + 1];
-                        found = true;
-                    }
-                } else if (order == 2) {
-                    if (entity.getName().equals(words[i] + " " + words[i + 1] + " " + words[i + 2])) {
-                        name = words[i] + " " + words[i + 1] + " " + words[i + 2];
-                        found = true;
-                    }
-                } else if (order == 3) {
-                    if (entity.getName().equals(words[i] + " " + words[i + 1] + " " + words[i + 2] + " " + words[i + 3])) {
-                        name = words[i] + " " + words[i + 1] + " " + words[i + 2] + " " + words[i + 3];
-                        found = true;
-                    }
-                }
-                if (name.length() > 0 && subject.length() > 0) {
-                    if (found_number)
-                        elements.put(name, new Pair<>(subject, null));
-                    else if (found) {
-                        String childs_category = "";
-                        String childs = "";
-                        if (entity instanceof Area) {
-                            childs = getListCountries(((Area) entity).getCountries());
-                            childs_category = "countries";
-                        } else if (entity instanceof Country) {
-                            childs = ((Country) entity).getCapital().getName();
-                            childs_category = "capital";
-                        } else if (entity instanceof District) {
-                            childs = getListCounties(((District) entity).getCounties());
-                            childs_category = "counties";
-                        }
-                        if (childs.length() > 0)
-                            locals.put(name, new Pair<>(childs_category, childs));
-                        else {
-                            if (subsubject != null)
-                                elements.put(name, new Pair<>(subject, subsubject));
-                            else
-                                elements.put(name, new Pair<>(subject, null));
-                        }
-                    }
+        for (int i = 0; i < words.length; i++) {
+            int DEFAULT_ORDER = 3;
+            for (int order = 0; order <= DEFAULT_ORDER; order++) {
+                int size = Arrays.copyOfRange(words, i + 1, words.length).length;
+                if (order <= size) {
+                    // Concatenate word + order
+                    new_sentence = getSentenceInOrder(Arrays.copyOfRange(words, i, i + order + 1));
+                    searchInContext(new_sentence);
                 }
             }
         }
+        fixAmbiguities();
     }
 
-    private void getIntentsCovered() {
-        for (Map.Entry<String, Pair<String, String>> pair : elements.entrySet()) {
-            String subject;
-            if (pair.getValue().getSecond() != null)
-                subject = pair.getValue().getSecond();
-            else
-                subject = pair.getValue().getFirst();
-            for (Intent intent : intents) {
-                if (intent.getEntities().toString().contains(subject)) {
-                    if (categories.keySet().size() > 0 && categories.keySet().contains(intent.getName())) {
-                        Set<String> new_categories = categories.entrySet().stream()
-                                .filter(e -> e.getKey().equals(intent.getName())).findFirst().get().getValue();
-                        new_categories.add(subject);
-                        categories.put(intent.getName(), new_categories);
-                    }
-                    else
-                        categories.put(intent.getName(), new HashSet<>(Collections.singletonList(subject)));
-                }
-            }
-        }
-    }
-
-    private Map<String, Pair<String, String>> removeAmbiguities() {
-        Map<String, Pair<String, String>> clone = new HashMap<>(elements);
-        for (Map.Entry<String, Pair<String, String>> obj : elements.entrySet()) {
-            String obj_name = obj.getKey();
-            String obj_subsubject = obj.getValue().getSecond();
-            for (Map.Entry<String, Pair<String, String>> new_obj : elements.entrySet()) {
-                String new_obj_name = new_obj.getKey();
-                String new_obj_subsubject = new_obj.getValue().getSecond();
-                // Compare different objects
-                if (!obj_name.equals(new_obj_name)) {
-                    Set<String> obj_set = new HashSet<>(Arrays.asList(obj_name.split("\\s+")));
-                    Set<String> new_obj_set = new HashSet<>(Arrays.asList(new_obj_name.split("\\s+")));
-                    Set<String> intersection = new HashSet<>(obj_set);
-                    intersection.retainAll(new_obj_set);
-                    // Check if exists intersection
-                    if (intersection.size() > 0) {
-                        // Remove sentence with shortest set
-                        if (obj_set.size() > new_obj_set.size())
-                            clone.remove(new_obj_name);
-                        else if (obj_set.size() < new_obj_set.size())
-                            clone.remove(obj_name);
-                        // In case of same size of the set, remove the sentence with null subsubject
-                        else {
-                            if (obj_subsubject == null && new_obj_subsubject != null)
-                                clone.remove(obj_name);
-                            else
-                                clone.remove(new_obj_name);
-                        }
-                    }
-                }
-            }
-        }
-        return clone;
-    }
-
-    private String getListCountries(ArrayList<Country> elements) {
+    private String getSentenceInOrder(String[] words) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < elements.size(); i++) {
-            if (i != elements.size() - 1)
-                sb.append(elements.get(i).getName()).append(", ");
-        }
-        return sb.toString();
+        for (String word : words)
+            sb.append(word).append(" ");
+        return sb.toString().trim();
     }
 
-    private String getListCounties(ArrayList<Countie> elements) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < elements.size(); i++) {
-            if (i != elements.size() - 1)
-                sb.append(elements.get(i).getName()).append(", ");
-        }
-        return sb.toString();
+
+    public Map<String, String> getEntities_found() {
+        return entities_found;
     }
 
-    private String getEntities() {
-        JSONArray array = new JSONArray();
-        for (Map.Entry<String, Pair<String, String>> instance : elements.entrySet()) {
-            JSONObject obj = new JSONObject();
-            obj.put("name", instance.getKey());
-            obj.put("subcategory", instance.getValue().getFirst());
-            if (instance.getValue().getSecond() != null)
-                obj.put("subsubcategory", instance.getValue().getSecond());
-            array.add(obj);
-        }
-        for (Map.Entry<String, Pair<String, String>> local : locals.entrySet()) {
-            JSONObject obj = new JSONObject();
-            obj.put("name", local.getKey());
-            obj.put("subcategory", "local");
-            String childs_category = local.getValue().getFirst();
-            if (!childs_category.equals("capital")) {
-                JSONArray locals = new JSONArray();
-                String[] childs = local.getValue().getSecond().split(", ");
-                for (String child : childs)
-                    locals.add(child);
-                obj.put(childs_category, locals);
+    private void searchInContext(String sentence) {
+        for (Entity entity : entities) {
+            for (String value : entity.getValues()) {
+                String new_value = stopWords.removeStopWords(value);
+                if (new_value.equals(sentence)) {
+                    entities_found.put(value, entity.getId());
+                    break;
+                }
             }
-            else
-                obj.put(childs_category, local.getValue().getSecond());
-            array.add(obj);
         }
-        return array.toJSONString();
     }
 
-    private String getIntents() {
-        JSONArray array = new JSONArray();
-        for(Map.Entry<String, Set<String>> intent : categories.entrySet()) {
-            JSONObject obj = new JSONObject();
-            obj.put("intent", intent.getKey());
-            obj.put("entities", intent.getValue());
-            if (intentHasConfidence(intent.getKey(), 0.5))
-                array.add(obj);
-        }
-        return array.toJSONString();
-    }
+    private void fixAmbiguities() {
+        Map<String, String> clone = new HashMap<>(entities_found);
+        for (Map.Entry<String, String> element : clone.entrySet()) {
+            String value = element.getKey();
+            String category = element.getValue();
 
-    private boolean intentHasConfidence(String intent_name, double threshold) {
-        Intent intent = intents.stream().filter(e -> e.getName().equals(intent_name)).findFirst().get();
-        Set<String> new_categories = categories.entrySet().stream()
-                .filter(e -> e.getKey().equals(intent_name)).findFirst().get().getValue();
-        double coverage = (double) new_categories.size() / intent.getEntities().size();
-        return coverage >= threshold;
+            // Filter instances that contains same value
+            Map<String, String> same_value = clone.entrySet().stream()
+                    .filter(x -> x.getKey().contains(value) && !x.getValue().equals(category))
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+            // Filter instances that contains same category
+            Map<String, String> same_category = clone.entrySet().stream()
+                    .filter(x -> x.getValue().equals(category) && x.getKey().length() > value.length())
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+            if (same_value.size() > 0 || same_category.size() > 0)
+                entities_found.remove(value, category);
+        }
     }
 }
-

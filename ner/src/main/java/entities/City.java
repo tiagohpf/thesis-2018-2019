@@ -9,8 +9,8 @@ public class City extends Local {
     @Override
     public String toString() {
         return "City {" +
-                "name='" + super.getName() + '\'' + ", " +
-                "category='" + super.getSubject() + '\'' + ", " +
+                "name='" + super.getId() + '\'' + ", " +
+                "category='" + super.getCategory() + '\'' + ", " +
                 '}';
     }
 }

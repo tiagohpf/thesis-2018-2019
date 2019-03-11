@@ -60,7 +60,7 @@ public class CountiesParser implements Parser {
             districts.add(district);
         } else if (!countieInList(countie) && !countieInDistrict(countie, district)) {
             for (District d : districts) {
-                if (d.getName().equals(district.getName())) {
+                if (d.getId().equals(district.getId())) {
                     d.addCountie(countie);
                     counties.add(countie);
                 }
@@ -70,7 +70,7 @@ public class CountiesParser implements Parser {
 
     private boolean districtInList(District district) {
         for (District d : districts) {
-            if (d.getName().equals(district.getName()))
+            if (d.getId().equals(district.getId()))
                 return true;
         }
         return false;
@@ -78,7 +78,7 @@ public class CountiesParser implements Parser {
 
     private boolean countieInList(Countie countie) {
         for (Countie c : counties) {
-            if (c.getName().equals(countie.getName()))
+            if (c.getId().equals(countie.getId()))
                 return true;
         }
         return false;
@@ -86,7 +86,7 @@ public class CountiesParser implements Parser {
 
     private boolean countieInDistrict(Countie countie, District district) {
         for (Countie c : district.getCounties()) {
-            if (c.getName().equals(countie.getName()))
+            if (c.getId().equals(countie.getId()))
                 return true;
         }
         return false;

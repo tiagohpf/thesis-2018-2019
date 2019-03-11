@@ -18,9 +18,9 @@ public class Country extends Local{
     @Override
     public String toString() {
         return "Country {" +
-                "name='" + super.getName() + '\'' + ", " +
-                "category='" + super.getSubject() + '\'' + ", " +
-                "capital='" + capital.getName() + '\'' +
+                "name='" + super.getId() + '\'' + ", " +
+                "category='" + super.getCategory() + '\'' + ", " +
+                "capital='" + capital.getId() + '\'' +
                 '}';
     }
 }
