@@ -8,26 +8,11 @@ public class Entity {
     private String subcategory;
     private ArrayList<String> values;
 
-
-    public Entity() { }
-
-    public Entity(String id, String category, ArrayList<String> values) {
-        this.id = id;
-        this.category = category;
-        this.values = values;
-    }
-
-
     public Entity(String id, String category, String subcategory, ArrayList<String> values) {
         this.id = id;
         this.category = category;
         this.subcategory = subcategory;
         this.values = values;
-    }
-
-    public Entity(String id, String category) {
-        this.id = id;
-        this.category = category;
     }
 
     public String getId() {
@@ -42,22 +27,6 @@ public class Entity {
 
     public ArrayList<String> getValues() {
         return values;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public void setSubcategory(String subcategory) {
-        this.subcategory = subcategory;
-    }
-
-    public void setValues(ArrayList<String> values) {
-        this.values = values;
     }
 
     @Override

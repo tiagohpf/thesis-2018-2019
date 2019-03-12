@@ -1,3 +1,5 @@
+package managers;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -5,21 +7,21 @@ import com.google.gson.JsonObject;
 import com.mongodb.*;
 import entities.Entity;
 import filters.FilesAggregator;
-import filters.StopWords;
 import parsers.JsonParser;
 import searchers.Searcher;
+import services.EntityService;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class EntityManager implements EntityService {
-    private DBCollection collection;
+    private DBCollection entities_collection;
     private ArrayList<Entity> entities;
-    private StopWords stopWords;
+    private StopWordsManager stopWordsManager;
 
-    EntityManager(DB database) {
-        collection = database.getCollection("entities");
-        stopWords = new StopWords("data/stopwords.txt");
+    public EntityManager(DB database) {
+        entities_collection = database.getCollection("entities");
+        stopWordsManager = new StopWordsManager(database);
+        stopWordsManager.loadStopWords();
         parseEntities();
     }
 
@@ -30,10 +32,10 @@ public class EntityManager implements EntityService {
         ArrayList<DBObject> entities_persist = new ArrayList<>();
         JsonParser parser;
         for (String file : entities_files) {
-            parser = new JsonParser(file, stopWords);
+            parser = new JsonParser(file);
             parser.parse();
             for (Entity entity : parser.getEntities()) {
-                if (getDocsById(entity.getId()).size() == 0) {
+                if (getEntitiesById(entity.getId()).size() == 0) {
                     entities_persist.add(new BasicDBObject("_id", entity.getId())
                             .append("category", entity.getCategory())
                             .append("subcategory", entity.getSubcategory())
@@ -44,16 +46,16 @@ public class EntityManager implements EntityService {
             }
         }
         try {
-            collection.insert(entities_persist);
+            entities_collection.insert(entities_persist);
         } catch (CommandFailureException ex) {
-            System.out.println("Data not inserted");
+            System.err.println("ERROR: Entities not uploaded.");
         }
         return res;
     }
 
     @Override
     public JsonArray searchEntities(String sentence) {
-        Searcher searcher = new Searcher(entities, stopWords);
+        Searcher searcher = new Searcher(entities, stopWordsManager);
         searcher.search(sentence);
         return searcher.getEntities_found();
     }
@@ -63,15 +65,14 @@ public class EntityManager implements EntityService {
         return entities;
     }
 
-
-    private DBCursor getDocsById(String id) {
+    private DBCursor getEntitiesById(String id) {
         BasicDBObject obj = new BasicDBObject("_id", id);
-        return collection.find(obj);
+        return entities_collection.find(obj);
     }
 
     private void parseEntities() {
         entities = new ArrayList<>();
-        DBCursor cursor = collection.find();
+        DBCursor cursor = entities_collection.find();
         for (DBObject obj : cursor) {
             Gson gson = new Gson();
             JsonElement jsonElement = gson.fromJson(obj.toString(), JsonElement.class);

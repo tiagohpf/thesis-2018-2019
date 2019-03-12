@@ -2,7 +2,7 @@ package searchers;
 
 import com.google.gson.*;
 import entities.Entity;
-import filters.StopWords;
+import managers.StopWordsManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,18 +12,18 @@ import java.util.stream.Collectors;
 
 public class Searcher {
     private ArrayList<Entity> entities;
-    private StopWords stopWords;
+    private StopWordsManager stopWordsManager;
     private Map<String, String> entities_found;
 
-    public Searcher(ArrayList<Entity> entities, StopWords stopWords) {
+    public Searcher(ArrayList<Entity> entities, StopWordsManager stopWordsManager) {
         this.entities = entities;
-        this.stopWords = stopWords;
+        this.stopWordsManager = stopWordsManager;
         entities_found = new HashMap<>();
     }
 
     public void search(String sentence) {
         entities_found.clear();
-        String new_sentence = stopWords.removeStopWords(sentence.toLowerCase());
+        String new_sentence = stopWordsManager.removeStopWords(sentence);
         String[] words = new_sentence.split("\\s");
         for (int i = 0; i < words.length; i++) {
             int DEFAULT_ORDER = 3;
@@ -61,7 +61,7 @@ public class Searcher {
     private void searchInContext(String sentence) {
         for (Entity entity : entities) {
             for (String value : entity.getValues()) {
-                String new_value = stopWords.removeStopWords(value);
+                String new_value = stopWordsManager.removeStopWords(value);
                 if (new_value.equals(sentence)) {
                     entities_found.put(value, entity.getId());
                     break;
