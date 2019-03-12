@@ -1,5 +1,7 @@
 package parsers;
 
+import java.io.IOException;
+
 public interface Parser {
-    void parse();
+    void parse() throws IOException;
 }

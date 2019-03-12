@@ -2,11 +2,14 @@ package filters;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class FilesAggregator {
 
-    public static ArrayList<String> getAllJSONFiles(String path) {
+    private FilesAggregator() {}
+
+    public static List<String> getAllJSONFiles(String path) {
         ArrayList<String> files = new ArrayList<>();
         File data = new File(path);
         if (data.exists()) {

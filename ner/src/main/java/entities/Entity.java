@@ -1,14 +1,14 @@
 package entities;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Entity {
     private String id;
     private String category;
     private String subcategory;
-    private ArrayList<String> values;
+    private List<String> values;
 
-    public Entity(String id, String category, String subcategory, ArrayList<String> values) {
+    public Entity(String id, String category, String subcategory, List<String> values) {
         this.id = id;
         this.category = category;
         this.subcategory = subcategory;
@@ -25,7 +25,7 @@ public class Entity {
 
     public String getSubcategory() { return subcategory; }
 
-    public ArrayList<String> getValues() {
+    public List<String> getValues() {
         return values;
     }
 

@@ -4,35 +4,32 @@ import com.google.gson.*;
 import entities.Entity;
 import managers.StopWordsManager;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Searcher {
-    private ArrayList<Entity> entities;
+    private List<Entity> entities;
     private StopWordsManager stopWordsManager;
-    private Map<String, String> entities_found;
+    private Map<String, String> entitiesFound;
 
-    public Searcher(ArrayList<Entity> entities, StopWordsManager stopWordsManager) {
+    public Searcher(List<Entity> entities, StopWordsManager stopWordsManager) {
         this.entities = entities;
         this.stopWordsManager = stopWordsManager;
-        entities_found = new HashMap<>();
+        entitiesFound = new HashMap<>();
     }
 
     public void search(String sentence) {
-        entities_found.clear();
-        String new_sentence = stopWordsManager.removeStopWords(sentence);
-        String[] words = new_sentence.split("\\s");
+        entitiesFound.clear();
+        String newSentence = stopWordsManager.removeStopWords(sentence);
+        String[] words = newSentence.split("\\s");
         for (int i = 0; i < words.length; i++) {
-            int DEFAULT_ORDER = 3;
-            for (int order = 0; order <= DEFAULT_ORDER; order++) {
+            int defaultOrder = 3;
+            for (int order = 0; order <= defaultOrder; order++) {
                 int size = Arrays.copyOfRange(words, i + 1, words.length).length;
                 if (order <= size) {
                     // Concatenate word + order
-                    new_sentence = getSentenceInOrder(Arrays.copyOfRange(words, i, i + order + 1));
-                    searchInContext(new_sentence);
+                    newSentence = getSentenceInOrder(Arrays.copyOfRange(words, i, i + order + 1));
+                    searchInContext(newSentence);
                 }
             }
         }
@@ -47,9 +44,9 @@ public class Searcher {
     }
 
 
-    public JsonArray getEntities_found() {
+    public JsonArray getEntitiesFound() {
         JsonArray jsonArray = new JsonArray();
-        for (Map.Entry<String, String> entity : entities_found.entrySet()) {
+        for (Map.Entry<String, String> entity : entitiesFound.entrySet()) {
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("_id", entity.getValue());
             jsonObject.addProperty("value", entity.getKey());
@@ -61,9 +58,9 @@ public class Searcher {
     private void searchInContext(String sentence) {
         for (Entity entity : entities) {
             for (String value : entity.getValues()) {
-                String new_value = stopWordsManager.removeStopWords(value);
-                if (new_value.equals(sentence)) {
-                    entities_found.put(value, entity.getId());
+                String newValue = stopWordsManager.removeStopWords(value);
+                if (newValue.equals(sentence)) {
+                    entitiesFound.put(value, entity.getId());
                     break;
                 }
             }
@@ -71,23 +68,23 @@ public class Searcher {
     }
 
     private void fixAmbiguities() {
-        Map<String, String> clone = new HashMap<>(entities_found);
+        Map<String, String> clone = new HashMap<>(entitiesFound);
         for (Map.Entry<String, String> element : clone.entrySet()) {
             String value = element.getKey();
             String category = element.getValue();
 
             // Filter instances that contains same value
-            Map<String, String> same_value = clone.entrySet().stream()
+            Map<String, String> sameValue = clone.entrySet().stream()
                     .filter(x -> x.getKey().contains(value) && !x.getValue().equals(category))
                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
             // Filter instances that contains same category
-            Map<String, String> same_category = clone.entrySet().stream()
+            Map<String, String> sameCategory = clone.entrySet().stream()
                     .filter(x -> x.getValue().equals(category) && x.getKey().length() > value.length())
                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-            if (same_value.size() > 0 || same_category.size() > 0)
-                entities_found.remove(value, category);
+            if (sameValue.size() > 0 || sameCategory.size() > 0)
+                entitiesFound.remove(value, category);
         }
     }
 }

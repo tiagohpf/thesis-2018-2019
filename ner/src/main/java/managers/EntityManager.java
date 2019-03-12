@@ -7,36 +7,41 @@ import com.google.gson.JsonObject;
 import com.mongodb.*;
 import entities.Entity;
 import filters.FilesAggregator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import parsers.JsonParser;
 import searchers.Searcher;
 import services.EntityService;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class EntityManager implements EntityService {
-    private DBCollection entities_collection;
+    private DBCollection entitiesCollection;
     private ArrayList<Entity> entities;
     private StopWordsManager stopWordsManager;
+    private static final Logger logger = LoggerFactory.getLogger(EntityManager.class);
 
     public EntityManager(DB database) {
-        entities_collection = database.getCollection("entities");
+        entitiesCollection = database.getCollection("entities");
         stopWordsManager = new StopWordsManager(database);
         stopWordsManager.loadStopWords();
         parseEntities();
     }
 
     @Override
-    public ArrayList<Entity> createEntities() {
-        ArrayList<String> entities_files = FilesAggregator.getAllJSONFiles("data/");
+    public ArrayList<Entity> createEntities() throws IOException {
+        List<String> entitiesFiles = FilesAggregator.getAllJSONFiles("data/");
         ArrayList<Entity> res = new ArrayList<>();
-        ArrayList<DBObject> entities_persist = new ArrayList<>();
+        ArrayList<DBObject> entitiesPersist = new ArrayList<>();
         JsonParser parser;
-        for (String file : entities_files) {
+        for (String file : entitiesFiles) {
             parser = new JsonParser(file);
             parser.parse();
             for (Entity entity : parser.getEntities()) {
                 if (getEntitiesById(entity.getId()).size() == 0) {
-                    entities_persist.add(new BasicDBObject("_id", entity.getId())
+                    entitiesPersist.add(new BasicDBObject("_id", entity.getId())
                             .append("category", entity.getCategory())
                             .append("subcategory", entity.getSubcategory())
                             .append("values", entity.getValues()));
@@ -46,9 +51,9 @@ public class EntityManager implements EntityService {
             }
         }
         try {
-            entities_collection.insert(entities_persist);
+            entitiesCollection.insert(entitiesPersist);
         } catch (CommandFailureException ex) {
-            System.err.println("ERROR: Entities not uploaded.");
+            logger.error("ERROR: Entities not uploaded.");
         }
         return res;
     }
@@ -57,7 +62,7 @@ public class EntityManager implements EntityService {
     public JsonArray searchEntities(String sentence) {
         Searcher searcher = new Searcher(entities, stopWordsManager);
         searcher.search(sentence);
-        return searcher.getEntities_found();
+        return searcher.getEntitiesFound();
     }
 
     @Override
@@ -67,12 +72,12 @@ public class EntityManager implements EntityService {
 
     private DBCursor getEntitiesById(String id) {
         BasicDBObject obj = new BasicDBObject("_id", id);
-        return entities_collection.find(obj);
+        return entitiesCollection.find(obj);
     }
 
     private void parseEntities() {
         entities = new ArrayList<>();
-        DBCursor cursor = entities_collection.find();
+        DBCursor cursor = entitiesCollection.find();
         for (DBObject obj : cursor) {
             Gson gson = new Gson();
             JsonElement jsonElement = gson.fromJson(obj.toString(), JsonElement.class);
