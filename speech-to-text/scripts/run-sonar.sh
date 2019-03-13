@@ -1,0 +1,1 @@
+bash /opt/sonar-scanner-3.3.0.1492/bin/sonar-scanner   -Dsonar.projectKey=speech-to-text   -Dsonar.sources=.   -Dsonar.host.url=http://localhost:9000   -Dsonar.login=4c863e1add7763656be52a05b8dde1a1eb3d11db -Dsonar.scm.provider=git

@@ -2,6 +2,11 @@
 # Created by https://www.gitignore.io/api/node,java,maven,gradle,python,pycharm+all,intellij+all,webstorm+all
 # Edit at https://www.gitignore.io/?templates=node,java,maven,gradle,python,pycharm+all,intellij+all,webstorm+all
 
+
+# Custom ignores
+speech-to-text/scripts/
+
+
 ### Intellij+all ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
@@ -438,5 +443,21 @@ gradle-app.setting
 
 ### Gradle Patch ###
 **/build/
+
+### Sonar ###
+#Sonar generated dir
+/.sonar/
+
+### SonarQube ###
+# SonarQube ignore files.
+#
+# https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner
+# Sonar Scanner working directories
+.sonar/
+.scannerwork/
+
+# http://www.sonarlint.org/commandline/
+# SonarLint working directories, configuration files (including credentials)
+.sonarlint/
 
 # End of https://www.gitignore.io/api/node,java,maven,gradle,python,pycharm+all,intellij+all,webstorm+all
