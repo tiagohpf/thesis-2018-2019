@@ -18,13 +18,12 @@ import java.net.UnknownHostException;
 import static spark.Spark.get;
 
 public class EntitiesService {
-    private static final Logger logger = LoggerFactory.getLogger(EntitiesService.class);
-
     public static void main(String[] args) {
+        Logger logger = LoggerFactory.getLogger(EntitiesService.class);
         try {
             String responseType = "application/json";
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            MongoClient client = new MongoClient(new MongoClientURI("mongodb://10.113.141.31:27017"));
+            MongoClient client = new MongoClient(new MongoClientURI("mongodb://10.113.141.31:27017/"));
             DB database = client.getDB("transcriptions");
             EntityManager entityManager = new EntityManager(database);
             StopWordsManager stopWordsManager = new StopWordsManager(database);
