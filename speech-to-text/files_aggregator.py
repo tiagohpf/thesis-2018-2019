@@ -1,7 +1,7 @@
 import os
 
 
-class ArgsParser:
+class FilesAggregator:
     def __init__(self):
         self.input_files = []
 

@@ -1,10 +1,10 @@
 from flask import Flask, request
 
-from args_parser import ArgsParser
+from files_aggregator import FilesAggregator
 from dialogue import Dialogue
 from pyAudioAnalysis import audioAnalysis as audioAnalysis
 from recognizer import Recognizer
-from requests import TranscriptionRequest
+from transcription_requests import TranscriptionRequest
 from splitter import Splitter
 from audio_transformer import AudioTransformer
 
@@ -21,7 +21,7 @@ def transcription(subpath):
     if request.args.get('speed'):
         speed = float(request.args.get('speed'))
 
-    args_parser = ArgsParser(subpath)
+    args_parser = FilesAggregator()
     input_files = args_parser.collect_input_files(subpath)
     if not input_files:
         return "File or dir not found"
@@ -46,10 +46,10 @@ def transcription(subpath):
 
             if '/' in file:
                 dirs = file.split("/")
-                transcription_file = str("transcriptions/" + dirs[len(dirs) - 1]).replace(".wav", ".txt")
+                transcription_file = str("data/transcriptions/automatic/" + dirs[len(dirs) - 1]).replace(".wav", ".txt")
                 file_id = dirs[-1].replace('.wav', '')
             else:
-                transcription_file = str("transcriptions/" + file)
+                transcription_file = str("data/transcriptions/automatic/" + file)
                 file_id = file.replace('.wav', '')
 
             recognizer = Recognizer()

@@ -1,5 +1,5 @@
 import json
-from transcription_request import TranscriptionRequest
+from transcription_requests import TranscriptionRequest
 
 
 class Dialogue:
