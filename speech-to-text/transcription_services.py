@@ -8,6 +8,8 @@ from transcription_requests import TranscriptionRequest
 from splitter import Splitter
 from audio_transformer import AudioTransformer
 
+import os
+
 app = Flask(__name__)
 
 
@@ -42,6 +44,7 @@ def transcription(subpath):
             splitter = Splitter(associations)
             splitter.split_audio(audio_segment, audio_export.name)
             splitted_files = splitter.get_splitted_files()
+            edited_files += splitted_files
             speakers = splitter.get_speakers()
 
             if '/' in file:
@@ -60,4 +63,6 @@ def transcription(subpath):
             transcriptions_request = TranscriptionRequest()
             transcriptions_request.post_dialogues(dialogue.get_json())
 
+        for file in edited_files:
+            os.remove(file)
         return "Transcription done"
