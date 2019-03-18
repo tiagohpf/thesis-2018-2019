@@ -1,3 +1,7 @@
+import copy
+
+import numpy as np
+
 class Splitter:
     def __init__(self, associations):
         self.associations = self.reduce_associations(associations)
@@ -55,10 +59,11 @@ class Splitter:
 
     def get_speakers(self):
         size = len(list(set(self.speakers)))
+        self.speakers = np.array(self.speakers, dtype=int).tolist()
         if size >= 2:
             first_value = self.speakers[0]
             min_value = min(self.speakers)
             if first_value != min_value:
-                self.speakers = [min_value - 1 for x in self.speakers if x == first_value]
-                self.speakers = [int(x + 1) for x in self.speakers]
+                self.speakers = list(map(lambda x: min_value -1 if x == first_value else x, self.speakers))
+                self.speakers = [x + 1 for x in self.speakers]
         return self.speakers
