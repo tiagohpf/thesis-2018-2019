@@ -1,16 +1,25 @@
-from flask import Flask, request
-
-from files_aggregator import FilesAggregator
-from dialogue import Dialogue
-from pyAudioAnalysis import audioAnalysis as audioAnalysis
-from recognizer import Recognizer
-from transcription_requests import TranscriptionRequest
-from splitter import Splitter
-from audio_transformer import AudioTransformer
-
 import os
 
+from flask import Flask, request, Response
+
+from audio_transformer import AudioTransformer
+from dialogue import Dialogue
+from files_aggregator import FilesAggregator
+from pyAudioAnalysis import audioAnalysis as audioAnalysis
+from recognizer import Recognizer
+from splitter import Splitter
+from transcription_requests import TranscriptionRequest
+
 app = Flask(__name__)
+
+
+@app.route('/test')
+def test():
+    def gen():
+        for i in 'hello':
+            yield i
+
+    return Response(gen())
 
 
 @app.route('/transcript/<path:subpath>')
@@ -18,6 +27,7 @@ def transcription(subpath):
     volume = 0
     speed = 1.0
     n_speakers = 2
+    dialogues = []
     if request.args.get('volume'):
         volume = int(request.args.get('volume'))
     if request.args.get('speed'):
@@ -62,7 +72,7 @@ def transcription(subpath):
             dialogue = Dialogue(file_id, file, duration, volume, speed, transcription)
             transcriptions_request = TranscriptionRequest()
             transcriptions_request.post_dialogues(dialogue.get_json())
-
+            dialogues = dialogue.get_json()
         for file in edited_files:
             os.remove(file)
-        return "Transcription done"
+        return dialogues

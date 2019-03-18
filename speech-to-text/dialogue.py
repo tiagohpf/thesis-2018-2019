@@ -31,7 +31,7 @@ class Dialogue:
                            "entities": self.entities,
                            "language": "pt-PT",
                            "dialogues": self.get_json_dialogues()},
-                          ensure_ascii=False).encode("utf-8")
+                          ensure_ascii=False, indent=4, sort_keys=True).encode("utf-8")
 
     def get_json_dialogues(self):
         json_dialogues = []

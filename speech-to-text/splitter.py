@@ -55,8 +55,10 @@ class Splitter:
 
     def get_speakers(self):
         size = len(list(set(self.speakers)))
-        self.speakers = [x + size for x in self.speakers]
-        for i in range(0, size):
-            actual_value = self.speakers[i]
-            self.speakers = [i if x == actual_value else x for x in self.speakers]
+        if size >= 2:
+            first_value = self.speakers[0]
+            min_value = min(self.speakers)
+            if first_value != min_value:
+                self.speakers = [min_value - 1 for x in self.speakers if x == first_value]
+                self.speakers = [int(x + 1) for x in self.speakers]
         return self.speakers

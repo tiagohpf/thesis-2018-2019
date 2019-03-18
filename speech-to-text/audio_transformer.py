@@ -1,4 +1,3 @@
-from pyAudioAnalysis import audioAnalysis as audioAnalysis
 from pydub import AudioSegment
 
 
