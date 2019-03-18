@@ -16,10 +16,11 @@ class Recognizer:
                 audio = r.record(source)
                 try:
                     text = r.recognize_google(audio, language="pt-PT")
-                    out = "{}: {}".format(speakers[i], text)
-                    self.transcription.append(out)
-                    print(out)
-                    res_file.write(str(speakers[i]) + ": " + text + "\n")
+                    if i < len(speakers):
+                        out = "{}: {}".format(speakers[i], text)
+                        self.transcription.append(out)
+                        print(out)
+                        res_file.write(str(speakers[i]) + ": " + text + "\n")
                 except sr.UnknownValueError:
                     print("Google Speech Recognition could not understand audio")
                 except sr.RequestError as e:
