@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, request, Response
+from flask import Flask, request
 
 from audio_transformer import AudioTransformer
 from dialogue import Dialogue
@@ -11,15 +11,6 @@ from splitter import Splitter
 from transcription_requests import TranscriptionRequest
 
 app = Flask(__name__)
-
-
-@app.route('/test')
-def test():
-    def gen():
-        for i in 'hello':
-            yield i
-
-    return Response(gen())
 
 
 @app.route('/transcript/<path:subpath>')
