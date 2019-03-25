@@ -461,4 +461,15 @@ gradle-app.setting
 # SonarLint working directories, configuration files (including credentials)
 .sonarlint/
 
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
 # End of https://www.gitignore.io/api/node,java,maven,gradle,python,pycharm+all,intellij+all,webstorm+all

@@ -17,7 +17,7 @@ class Recognizer:
                 try:
                     text = r.recognize_google(audio, language="pt-PT")
                     out = "{}: {}".format(speakers[i], text)
-                    self.transcription.append(out)
+                    self.transcription.append(str(out).lower())
                     print(out)
                     res_file.write(str(speakers[i]) + ": " + text + "\n")
                 except sr.UnknownValueError:

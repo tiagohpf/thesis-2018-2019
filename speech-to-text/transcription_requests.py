@@ -18,4 +18,6 @@ class TranscriptionRequest:
 
     def get_entities(self, sentence):
         r = requests.get(self.entities_url + str(sentence), headers=self.headers)
-        return json.loads(r.text.encode('utf-8'))
+        if r:
+            return json.loads(r.text.encode('utf-8'))
+        return json.loads(json.dumps({"data": []}).encode('utf-8'))
