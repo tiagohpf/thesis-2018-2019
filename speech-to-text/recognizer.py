@@ -1,30 +1,25 @@
-import speech_recognition as sr
+from recognizer_thread import RecognizerThread
 
 
 class Recognizer:
-    def __init__(self):
+    def __init__(self, filename, files, speakers):
+        self.filename = filename.replace('.wav', '.txt')
+        self.files = files
+        self.speakers = speakers
         self.transcription = []
+        self.threads = []
+        self.start_threads(len(self.files))
 
-    def recognize(self, filename, files, speakers):
-        filename = filename.replace('.wav', '.txt')
-        res_file = open(filename, 'w')
-        res_file.write("\n")
-        for i in range(0, len(files)):
-            r = sr.Recognizer()
-            with sr.AudioFile(files[i]) as source:
-                r.adjust_for_ambient_noise(source)
-                audio = r.record(source)
-                try:
-                    text = r.recognize_google(audio, language="pt-PT")
-                    out = "{}: {}".format(speakers[i], text)
-                    self.transcription.append(str(out).lower())
-                    print(out)
-                    res_file.write(str(speakers[i]) + ": " + text + "\n")
-                except sr.UnknownValueError:
-                    print("Google Speech Recognition could not understand audio")
-                except sr.RequestError as e:
-                    print("Could not request results from Google Speech Recognition; {}".format(e))
-        res_file.close()
+    def start_threads(self, size):
+        for i in range(0, size):
+            thread = RecognizerThread(i, str("thread " + str(i)), i, self.files[i], self.speakers[i])
+            self.threads.append(thread)
+            thread.start()
+        self.join_threads()
+
+    def join_threads(self):
+        for i in self.threads:
+            self.transcription.append(i.join())
 
     def get_transcription(self):
         return self.transcription
