@@ -58,7 +58,7 @@ app.get("/transcript", (req, res) => {
     let file_id = createFileId(path, volume, speed);
 
     if (path)
-        path = AUDIO_FILES_DIR + path;
+        path = AUDIO_FILES_DIR + path + '.wav';
     else
         res.send("You must use path param");
 
@@ -129,7 +129,7 @@ app.get("/generateTranscription", (req, res) => {
     let file_id = createFileId(path, volume, speed);
 
     if (path)
-        path = AUDIO_FILES_DIR + path;
+        path = AUDIO_FILES_DIR + path + '.wav';
     else
         res.send("You must use path param");
 
@@ -282,5 +282,5 @@ function getIntent(sentence) {
 }
 
 function createFileId(path, volume, speed) {
-    return path.replace('.wav', '') + "_" + volume + "_" + speed;
+    return path + "_" + volume + "_" + speed;
 }
