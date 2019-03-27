@@ -12,6 +12,7 @@ let DB_ENTITIES = DB_PREFIX + 'entities';
 let ENTITIES_SERVICE = "http://10.113.134.43:4567/getEntities/";
 let INTENTS_SERVICE = 'http://10.113.141.31:8900/sofia/question';
 let TRANSCRIPT_SERVICE = 'http://10.113.155.13:5500/';
+let PY_SERVER_DOWNLOAD = 'http://10.113.155.13:5400/';
 
 let app = express();
 
@@ -48,6 +49,7 @@ app.get("/getTranscription/:id", (req, res) => {
 app.get("/transcript", (req, res) => {
     let query = url.parse(req.url, true).query;
     let path = query['path'];
+    let transcript_path = null;
     let volume = parseInt(query['volume']);
     let speed = parseFloat(query['speed']);
 
@@ -57,8 +59,10 @@ app.get("/transcript", (req, res) => {
         speed = 1.0;
     let file_id = createFileId(path, volume, speed);
 
-    if (path)
+    if (path) {
+        transcript_path = path + '.trs';
         path = AUDIO_FILES_DIR + path + '.wav';
+    }
     else
         res.send("You must use path param");
 
@@ -76,7 +80,7 @@ app.get("/transcript", (req, res) => {
             });
         }
         else
-            res.send(response);
+            res.send("File in " + PY_SERVER_DOWNLOAD + transcript_path);
     }) .catch( error => {
         res.send(error);
     });
@@ -118,9 +122,9 @@ app.get("/getIntent/:sentence", (req, res) => {
 app.get("/generateTranscription", (req, res) => {
     let query = url.parse(req.url, true).query;
     let path = query['path'];
+    let transcript_path = null;
     let volume = parseInt(query['volume']);
     let speed = parseFloat(query['speed']);
-    let id = createFileId(path, volume, speed);
 
     if (!volume)
         volume = 0;
@@ -128,8 +132,10 @@ app.get("/generateTranscription", (req, res) => {
         speed = 1.0;
     let file_id = createFileId(path, volume, speed);
 
-    if (path)
+    if (path) {
+        transcript_path = path + '.trs';
         path = AUDIO_FILES_DIR + path + '.wav';
+    }
     else
         res.send("You must use path param");
 
@@ -147,7 +153,7 @@ app.get("/generateTranscription", (req, res) => {
             });
         }
         else
-            res.send(response);
+            res.send("File in " + PY_SERVER_DOWNLOAD + transcript_path);
     }) .catch( error => {
         res.send(error);
     });

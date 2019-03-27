@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 
 def transcript_dialogues(path, n_speakers, volume, speed, file_id, func_name):
-    dialogues = []
+   #dialogues = []
     args_parser = FilesAggregator()
     input_files = args_parser.collect_input_files(path)
     if not input_files:
@@ -42,20 +42,26 @@ def transcript_dialogues(path, n_speakers, volume, speed, file_id, func_name):
 
             if '/' in file:
                 dirs = file.split("/")
-                transcription_file = str("data/transcriptions/automatic/" + dirs[len(dirs) - 1]).replace(".wav", ".txt")
+                transcription_file = str("data/transcriptions/automatic/" + dirs[len(dirs) - 1]).replace(".wav", ".trs")
             else:
                 transcription_file = str("data/transcriptions/automatic/" + file)
 
             recognizer = Recognizer(transcription_file, splitted_files, speakers)
             transcription = recognizer.get_transcription()
+            print(transcription)
             if func_name == 'generate_all':
                 dialogue = Dialogue(file_id, file, duration, volume, speed, transcription)
             else:
                 dialogue = Talk(file_id, file, duration, volume, speed, transcription)
             transcriptions_request = TranscriptionRequest()
             transcriptions_request.post_dialogues(dialogue.get_json())
-            dialogues = dialogue.get_json()
-        return dialogues
+            #dialogues = dialogue.get_json()
+            out_file = open(transcription_file, 'w')
+            for line in transcription:
+                if line:
+                    out_file.write(line + "\n")
+            out_file.close()
+        return "Transcription in " + transcription_file
 
 
 @app.route('/transcript/')
