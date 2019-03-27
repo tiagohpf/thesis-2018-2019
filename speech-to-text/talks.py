@@ -36,9 +36,10 @@ class Talk:
     def get_json_dialogues(self):
         json_dialogues = []
         for i in range(0, len(self.dialogues)):
-            split = self.dialogues[i].split(': ')
-            json_dialogues.append({
-                "index": i,
-                "speaker": split[0],
-                "text": split[1]})
+            if self.dialogues[i]:
+                split = self.dialogues[i].split(': ')
+                json_dialogues.append({
+                    "index": i,
+                    "speaker": split[0],
+                    "text": split[1]})
         return json_dialogues

@@ -1,0 +1,1 @@
+node app.js > ms.log 2>&1 &

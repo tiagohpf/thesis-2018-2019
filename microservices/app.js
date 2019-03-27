@@ -11,8 +11,7 @@ let DB_DIALOGUES = DB_PREFIX + 'dialogues';
 let DB_ENTITIES = DB_PREFIX + 'entities';
 let ENTITIES_SERVICE = "http://10.113.134.43:4567/getEntities/";
 let INTENTS_SERVICE = 'http://10.113.141.31:8900/sofia/question';
-//let TRANSCRIPT_SERVICE = 'http://10.113.155.13:5500/';
-let TRANSCRIPT_SERVICE = 'http://localhost:5000/';
+let TRANSCRIPT_SERVICE = 'http://10.113.155.13:5500/';
 
 let app = express();
 
@@ -52,24 +51,36 @@ app.get("/transcript", (req, res) => {
     let volume = parseInt(query['volume']);
     let speed = parseFloat(query['speed']);
 
-    if (path)
-        path = AUDIO_FILES_DIR + path;
-    else
-        res.send("You must use path param");
     if (!volume)
         volume = 0;
     if (!speed)
         speed = 1.0;
+    let file_id = createFileId(path, volume, speed);
+
+    if (path)
+        path = AUDIO_FILES_DIR + path;
+    else
+        res.send("You must use path param");
 
     let params = {
         path: path,
         volume: volume,
-        speed: speed
+        speed: speed,
+        file_id: file_id
     };
 
-    request({url: TRANSCRIPT_SERVICE + 'transcript/', qs: params}, function (err, response, body) {
-        res.send(body);
+    getTranscription(file_id).then( response => {
+        if (response.length === 0) {
+            request({url: TRANSCRIPT_SERVICE + 'transcript/', qs: params}, function (err, response, body) {
+                res.send(body);
+            });
+        }
+        else
+            res.send(response);
+    }) .catch( error => {
+        res.send(error);
     });
+
 });
 
 app.get("/getEntities", (req, res) => {
@@ -109,24 +120,36 @@ app.get("/generateTranscription", (req, res) => {
     let path = query['path'];
     let volume = parseInt(query['volume']);
     let speed = parseFloat(query['speed']);
+    let id = createFileId(path, volume, speed);
+
+    if (!volume)
+        volume = 0;
+    if (!speed)
+        speed = 1.0;
+    let file_id = createFileId(path, volume, speed);
 
     if (path)
         path = AUDIO_FILES_DIR + path;
     else
         res.send("You must use path param");
-    if (!volume)
-        volume = 0;
-    if (!speed)
-        speed = 1.0;
 
     let params = {
         path: path,
         volume: volume,
-        speed: speed
+        speed: speed,
+        file_id: file_id
     };
 
-    request({url: TRANSCRIPT_SERVICE + 'generateTranscription/', qs: params}, function (err, response, body) {
-        res.send(body);
+    getTranscription(file_id).then( response => {
+        if (response.length === 0) {
+            request({url: TRANSCRIPT_SERVICE + 'transcript/', qs: params}, function (err, response, body) {
+                res.send(body);
+            });
+        }
+        else
+            res.send(response);
+    }) .catch( error => {
+        res.send(error);
     });
 });
 
@@ -136,7 +159,7 @@ app.get("/generateEntities/:file_id", (req, res) => {
     let dialogues = [];
     let entities = [];
 
-    axios.get(DB_DIALOGUES + "/" + id).then( response => {
+    axios.get(DB_DIALOGUES + "/" + id).then(response => {
         let data = response.data;
 
         data.dialogues.forEach(dialogue => {
@@ -153,7 +176,7 @@ app.get("/generateEntities/:file_id", (req, res) => {
 
                 entities.push.apply(entities, result.data);
                 dialogues.push(json_obj);
-                return { entities, dialogues };
+                return {entities, dialogues};
             });
             promises.push(p)
         });
@@ -194,7 +217,7 @@ app.get("/generateIntents/:file_id", (req, res) => {
                     json_obj.entities = dialogue.entities;
                 intents.push(result);
                 dialogues.push(json_obj);
-                return { intents, dialogues };
+                return {intents, dialogues};
             });
             promises.push(p);
         });
@@ -215,12 +238,24 @@ app.get("/generateIntents/:file_id", (req, res) => {
 });
 
 
-function getEntities(sentence) {
-    return axios.get(encodeURI(ENTITIES_SERVICE + sentence)).then( response => {
+function getTranscription(id) {
+    return axios.get(DB_DIALOGUES + "/" + id)
+        .then(response => {
             return response.data;
-        }).catch(error => {
+        })
+        .catch(error => {
+            if (error.response.status === 404)
+                return [];
             throw error;
         });
+}
+
+function getEntities(sentence) {
+    return axios.get(encodeURI(ENTITIES_SERVICE + sentence)).then(response => {
+        return response.data;
+    }).catch(error => {
+        throw error;
+    });
 }
 
 function getIntent(sentence) {
@@ -244,4 +279,8 @@ function getIntent(sentence) {
         }).catch(error => {
             throw error;
         });
+}
+
+function createFileId(path, volume, speed) {
+    return path.replace('.wav', '') + "_" + volume + "_" + speed;
 }

@@ -14,8 +14,7 @@ from transcription_requests import TranscriptionRequest
 app = Flask(__name__)
 
 
-def transcript_dialogues(path, n_speakers, volume, speed, func_name):
-    print(func_name)
+def transcript_dialogues(path, n_speakers, volume, speed, file_id, func_name):
     dialogues = []
     args_parser = FilesAggregator()
     input_files = args_parser.collect_input_files(path)
@@ -44,10 +43,8 @@ def transcript_dialogues(path, n_speakers, volume, speed, func_name):
             if '/' in file:
                 dirs = file.split("/")
                 transcription_file = str("data/transcriptions/automatic/" + dirs[len(dirs) - 1]).replace(".wav", ".txt")
-                file_id = dirs[-1].replace('.wav', '')
             else:
                 transcription_file = str("data/transcriptions/automatic/" + file)
-                file_id = file.replace('.wav', '')
 
             recognizer = Recognizer(transcription_file, splitted_files, speakers)
             transcription = recognizer.get_transcription()
@@ -67,7 +64,8 @@ def generate_all():
     n_speakers = 2
     volume = int(request.args.get('volume'))
     speed = float(request.args.get('speed'))
-    return transcript_dialogues(path, n_speakers, volume, speed, generate_all.__name__)
+    file_id = request.args.get('file_id')
+    return transcript_dialogues(path, n_speakers, volume, speed, file_id, generate_all.__name__)
 
 
 @app.route('/generateTranscription/')
@@ -76,4 +74,5 @@ def generate_just_transcription():
     n_speakers = 2
     volume = int(request.args.get('volume'))
     speed = float(request.args.get('speed'))
-    return transcript_dialogues(path, n_speakers, volume, speed, generate_just_transcription.__name__)
+    file_id = request.args.get('file_id')
+    return transcript_dialogues(path, n_speakers, volume, speed, file_id, generate_just_transcription.__name__)
