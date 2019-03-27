@@ -1,5 +1,5 @@
 import json
-
+import time
 from transcription_requests import TranscriptionRequest
 
 
@@ -29,7 +29,8 @@ class Talk:
                            "volume": self.volume,
                            "speed": self.speed,
                            "language": "pt-PT",
-                           "dialogues": self.get_json_dialogues()},
+                           "dialogues": self.get_json_dialogues(),
+                           "last_update": time.ctime()},
                           ensure_ascii=False, indent=4, sort_keys=True).encode("utf-8")
 
     def get_json_dialogues(self):

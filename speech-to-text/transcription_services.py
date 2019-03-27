@@ -15,6 +15,7 @@ app = Flask(__name__)
 
 
 def transcript_dialogues(path, n_speakers, volume, speed, func_name):
+    print(func_name)
     dialogues = []
     args_parser = FilesAggregator()
     input_files = args_parser.collect_input_files(path)
