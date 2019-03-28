@@ -80,7 +80,7 @@ app.get("/transcript", (req, res) => {
             });
         }
         else
-            res.send("File in " + PY_SERVER_DOWNLOAD + transcript_path);
+            res.send(PY_SERVER_DOWNLOAD + transcript_path);
     }) .catch( error => {
         res.send(error);
     });
@@ -153,7 +153,7 @@ app.get("/generateTranscription", (req, res) => {
             });
         }
         else
-            res.send("File in " + PY_SERVER_DOWNLOAD + transcript_path);
+            res.send(PY_SERVER_DOWNLOAD + transcript_path);
     }) .catch( error => {
         res.send(error);
     });
