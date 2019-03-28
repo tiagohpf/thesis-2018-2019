@@ -14,7 +14,7 @@ from transcription_requests import TranscriptionRequest
 app = Flask(__name__)
 
 
-def transcript_dialogues(path, n_speakers, volume, speed, file_id, func_name):
+def transcript_dialogues(path, n_speakers, volume, speed, file_id, download_path, func_name):
    #dialogues = []
     args_parser = FilesAggregator()
     input_files = args_parser.collect_input_files(path)
@@ -61,7 +61,7 @@ def transcript_dialogues(path, n_speakers, volume, speed, file_id, func_name):
                 if line:
                     out_file.write(line + "\n")
             out_file.close()
-        return "Transcription in " + transcription_file
+        return download_path
 
 
 @app.route('/transcript/')
@@ -71,7 +71,9 @@ def generate_all():
     volume = int(request.args.get('volume'))
     speed = float(request.args.get('speed'))
     file_id = request.args.get('file_id')
-    return transcript_dialogues(path, n_speakers, volume, speed, file_id, generate_all.__name__)
+    download_pah = request.args.get('download_path')
+    return transcript_dialogues(path, n_speakers, volume, speed, file_id,
+                                download_pah, generate_all.__name__)
 
 
 @app.route('/generateTranscription/')
@@ -81,4 +83,6 @@ def generate_just_transcription():
     volume = int(request.args.get('volume'))
     speed = float(request.args.get('speed'))
     file_id = request.args.get('file_id')
-    return transcript_dialogues(path, n_speakers, volume, speed, file_id, generate_just_transcription.__name__)
+    download_pah = request.args.get('download_path')
+    return transcript_dialogues(path, n_speakers, volume, speed, file_id,
+                                download_pah, generate_just_transcription.__name__)

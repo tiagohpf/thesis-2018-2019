@@ -11,7 +11,8 @@ let DB_DIALOGUES = DB_PREFIX + 'dialogues';
 let DB_ENTITIES = DB_PREFIX + 'entities';
 let ENTITIES_SERVICE = "http://10.113.134.43:4567/getEntities/";
 let INTENTS_SERVICE = 'http://10.113.141.31:8900/sofia/question';
-let TRANSCRIPT_SERVICE = 'http://10.113.155.13:5500/';
+//let TRANSCRIPT_SERVICE = 'http://10.113.155.13:5500/';
+let TRANSCRIPT_SERVICE = 'http://127.0.0.1:5000/';
 let PY_SERVER_DOWNLOAD = 'http://10.113.155.13:5400/';
 
 let app = express();
@@ -36,7 +37,7 @@ app.get("/getTranscriptions", (req, res) => {
 });
 
 app.get("/getTranscription/:id", (req, res) => {
-    let id = req.params['id'];
+    let id = req.params.id;
     axios.get(DB_DIALOGUES + "/" + id)
         .then(response => {
             res.send(response.data);
@@ -47,11 +48,10 @@ app.get("/getTranscription/:id", (req, res) => {
 });
 
 app.get("/transcript", (req, res) => {
-    let query = url.parse(req.url, true).query;
-    let path = query['path'];
+    let path = req.query.path;
     let transcript_path = null;
-    let volume = parseInt(query['volume']);
-    let speed = parseFloat(query['speed']);
+    let volume = parseInt(req.query.volume);
+    let speed = parseFloat(req.query.speed);
 
     if (!volume)
         volume = 0;
@@ -70,7 +70,8 @@ app.get("/transcript", (req, res) => {
         path: path,
         volume: volume,
         speed: speed,
-        file_id: file_id
+        file_id: file_id,
+        download_path: PY_SERVER_DOWNLOAD + transcript_path
     };
 
     getTranscription(file_id).then( response => {
@@ -98,7 +99,7 @@ app.get("/getEntities", (req, res) => {
 });
 
 app.get("/getEntities/:sentence", (req, res) => {
-    let sentence = req.params['sentence'];
+    let sentence = req.params.sentence;
     getEntities(sentence)
         .then(response => {
             res.send(response.data);
@@ -109,7 +110,12 @@ app.get("/getEntities/:sentence", (req, res) => {
 });
 
 app.get("/getIntent/:sentence", (req, res) => {
-    let sentence = req.params['sentence'];
+    let sentence = req.params.sentence;
+    let student = req.query.student;
+
+    if(!student)
+
+
     getIntent(sentence)
         .then(response => {
             res.send(response);
@@ -120,11 +126,10 @@ app.get("/getIntent/:sentence", (req, res) => {
 });
 
 app.get("/generateTranscription", (req, res) => {
-    let query = url.parse(req.url, true).query;
-    let path = query['path'];
+    let path = req.query.path;
     let transcript_path = null;
-    let volume = parseInt(query['volume']);
-    let speed = parseFloat(query['speed']);
+    let volume = parseInt(req.query.volume);
+    let speed = parseFloat(req.query.speed);
 
     if (!volume)
         volume = 0;
@@ -143,7 +148,8 @@ app.get("/generateTranscription", (req, res) => {
         path: path,
         volume: volume,
         speed: speed,
-        file_id: file_id
+        file_id: file_id,
+        download_path: PY_SERVER_DOWNLOAD + transcript_path
     };
 
     getTranscription(file_id).then( response => {
@@ -160,7 +166,7 @@ app.get("/generateTranscription", (req, res) => {
 });
 
 app.get("/generateEntities/:file_id", (req, res) => {
-    let id = req.params['file_id'];
+    let id = req.params.file_id;
     let promises = [];
     let dialogues = [];
     let entities = [];
@@ -182,7 +188,7 @@ app.get("/generateEntities/:file_id", (req, res) => {
 
                 entities.push.apply(entities, result.data);
                 dialogues.push(json_obj);
-                return {entities, dialogues};
+                return { entities, dialogues };
             });
             promises.push(p)
         });
@@ -203,7 +209,7 @@ app.get("/generateEntities/:file_id", (req, res) => {
 });
 
 app.get("/generateIntents/:file_id", (req, res) => {
-    let id = req.params['file_id'];
+    let id = req.params.file_id;
     let promises = [];
     let dialogues = [];
     let intents = [];
@@ -223,7 +229,7 @@ app.get("/generateIntents/:file_id", (req, res) => {
                     json_obj.entities = dialogue.entities;
                 intents.push(result);
                 dialogues.push(json_obj);
-                return {intents, dialogues};
+                return { intents, dialogues };
             });
             promises.push(p);
         });
