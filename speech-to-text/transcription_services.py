@@ -13,7 +13,6 @@ app = Flask(__name__)
 
 
 def transcript_dialogues(path, n_speakers, volume, speed, file_id, download_path, func_name):
-   #dialogues = []
     args_parser = FilesAggregator()
     input_files = args_parser.collect_input_files(path)
     if not input_files:
@@ -47,11 +46,14 @@ def transcript_dialogues(path, n_speakers, volume, speed, file_id, download_path
                 dialogue = Talk(file_id, file, duration, volume, speed, transcription, splitted_times)
             transcriptions_request = TranscriptionRequest()
             transcriptions_request.post_dialogues(dialogue.get_json())
-            #dialogues = dialogue.get_json()
+
+            i = 0
             out_file = open(transcription_file, 'w')
             for line in transcription:
                 if line:
-                    out_file.write(line + "\n")
+                    inital_time, final_time = splitted_times[i]
+                    out_file.write("\t\t\t\t\t\t\t\t [{}, {}]\n {}\n".format(str(round(inital_time, 2)), str(round(final_time, 2)), line))
+                    i +=1
             out_file.close()
         return download_path
 

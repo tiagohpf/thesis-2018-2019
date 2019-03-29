@@ -44,7 +44,7 @@ class Splitter:
                     self.splitted_files.append(name)
                     n += 1
                 cut_audio = audio_segment[1000 * association:]
-                self.splitted_times[n] = (last_timestamp, self.duration)
+                self.splitted_times[n] = (association, self.duration)
                 export = True
             else:
                 cut_audio = audio_segment[1000 * last_timestamp: 1000 * association]
