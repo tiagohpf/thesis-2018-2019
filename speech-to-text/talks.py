@@ -4,13 +4,14 @@ from transcription_requests import TranscriptionRequest
 
 
 class Talk:
-    def __init__(self, id, filename, duration, volume, speed, dialogues):
+    def __init__(self, id, filename, duration, volume, speed, dialogues, splitted_times):
         self.id = id
         self.filename = filename
         self.duration = duration
         self.volume = volume
         self.speed = speed
         self.dialogues = dialogues
+        self.splitted_times = splitted_times
         self.transcription_request = TranscriptionRequest()
 
     def get_filename(self):
@@ -38,8 +39,11 @@ class Talk:
         for i in range(0, len(self.dialogues)):
             if self.dialogues[i]:
                 split = self.dialogues[i].split(': ')
+                initial_time, final_time = self.splitted_times[i]
                 json_dialogues.append({
                     "index": i,
                     "speaker": split[0],
-                    "text": split[1]})
+                    "text": split[1],
+                    "initial_time": initial_time,
+                    "final_time": final_time})
         return json_dialogues

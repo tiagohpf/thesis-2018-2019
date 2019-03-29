@@ -4,7 +4,7 @@ from transcription_requests import TranscriptionRequest
 
 
 class Dialogue:
-    def __init__(self, id, filename, duration, volume, speed, dialogues):
+    def __init__(self, id, filename, duration, volume, speed, dialogues, splitted_times):
         self.id = id
         self.filename = filename
         self.duration = duration
@@ -13,6 +13,7 @@ class Dialogue:
         self.entities = []
         self.intents = []
         self.dialogues = dialogues
+        self.splitted_times = splitted_times
         self.transcription_request = TranscriptionRequest()
 
     def get_filename(self):
@@ -44,6 +45,7 @@ class Dialogue:
                 split = self.dialogues[i].split(': ')
                 new_entities = self.transcription_request.get_entities(split[1])["data"]
                 new_intent = self.transcription_request.get_intent(split[1])
+                initial_time, final_time = self.splitted_times[i]
                 if new_entities:
                     self.entities += new_entities
                 if new_intent:
@@ -53,5 +55,7 @@ class Dialogue:
                     "speaker": split[0],
                     "text": split[1],
                     "entities": new_entities,
-                    "intent": new_intent})
+                    "intent": new_intent,
+                    "initial_time": initial_time,
+                    "final_time": final_time})
         return json_dialogues

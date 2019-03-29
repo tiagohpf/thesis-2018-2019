@@ -1,14 +1,12 @@
-import os
-
 from flask import Flask, request
 
 from audio_transformer import AudioTransformer
 from dialogue import Dialogue
 from files_aggregator import FilesAggregator
 from pyAudioAnalysis import audioAnalysis as audioAnalysis
+from recognizer import Recognizer
 from splitter import Splitter
 from talks import Talk
-from recognizer import Recognizer
 from transcription_requests import TranscriptionRequest
 
 app = Flask(__name__)
@@ -34,25 +32,19 @@ def transcript_dialogues(path, n_speakers, volume, speed, file_id, download_path
             audio_export = audio_segment.export(filename_to_export, format="wav")
             edited_files.append(filename_to_export)
             associations = audioAnalysis.speakerDiarizationWrapper(audio_export.name, n_speakers, False)
-            splitter = Splitter(associations)
+            splitter = Splitter(associations, duration)
             splitter.split_audio(audio_segment, audio_export.name)
             splitted_files = splitter.get_splitted_files()
+            splitted_times = splitter.get_splitted_times()
             edited_files += splitted_files
             speakers = splitter.get_speakers()
-
-            if '/' in file:
-                dirs = file.split("/")
-                transcription_file = str("data/transcriptions/automatic/" + dirs[len(dirs) - 1]).replace(".wav", ".trs")
-            else:
-                transcription_file = str("data/transcriptions/automatic/" + file)
-
+            transcription_file = str("data/transcriptions/automatic/" + file_id + '.trs')
             recognizer = Recognizer(transcription_file, splitted_files, speakers)
             transcription = recognizer.get_transcription()
-            print(transcription)
             if func_name == 'generate_all':
-                dialogue = Dialogue(file_id, file, duration, volume, speed, transcription)
+                dialogue = Dialogue(file_id, file, duration, volume, speed, transcription, splitted_times)
             else:
-                dialogue = Talk(file_id, file, duration, volume, speed, transcription)
+                dialogue = Talk(file_id, file, duration, volume, speed, transcription, splitted_times)
             transcriptions_request = TranscriptionRequest()
             transcriptions_request.post_dialogues(dialogue.get_json())
             #dialogues = dialogue.get_json()
