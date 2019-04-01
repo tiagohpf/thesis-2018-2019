@@ -139,7 +139,8 @@ app.get("/generateTranscription", (req, res) => {
         transcript_path = `${file_id}.trs`;
         path = `${AUDIO_FILES_DIR + path}.wav`;
     }
-    else res.send("You must use path param");
+    else 
+        res.send("You must use path param");
 
     let params = {
         path: path,
@@ -169,7 +170,6 @@ app.get("/generateEntities/:file_id", (req, res) => {
     let entities = [];
 
     axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
-        
         response.data.dialogues.forEach(dialogue => {
             let p = getEntities(dialogue.text).then(result => {
                 let json_obj = {
@@ -216,9 +216,7 @@ app.get("/generateIntents/:file_id", (req, res) => {
         student = 'Telco';
 
     axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
-        let data = response.data;
-
-        data.dialogues.forEach(dialogue => {
+        response.data.dialogues.forEach(dialogue => {
             let p = getIntent(dialogue.text, student).then(result => {
                 let json_obj = {
                     index: dialogue.index,
