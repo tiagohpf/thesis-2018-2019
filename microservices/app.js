@@ -1,7 +1,6 @@
 let express = require('express');
 let axios = require('axios');
 let bodyParser = require('body-parser');
-let url = require('url');
 let Promise = require('es6-promise').Promise;
 let request = require('request');
 
@@ -27,10 +26,9 @@ let server = app.listen(3500, function () {
 server.setTimeout(300000);
 
 app.get("/getTranscriptions", (req, res) => {
-    axios.get(DB_DIALOGUES)
-        .then(response => {
-            res.send(response.data._embedded);
-        })
+    axios.get(DB_DIALOGUES).then(response => {
+        res.send(response.data._embedded);
+    })
         .catch(error => {
             res.send(error);
         });
@@ -38,10 +36,9 @@ app.get("/getTranscriptions", (req, res) => {
 
 app.get("/getTranscription/:id", (req, res) => {
     let id = req.params.id;
-    axios.get(`${DB_DIALOGUES}/${id}`)
-        .then(response => {
-            res.send(response.data);
-        })
+    axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
+        res.send(response.data);
+    })
         .catch(error => {
             res.send(error);
         });
@@ -63,7 +60,7 @@ app.get("/transcript", (req, res) => {
     let file_id = createFileId(path, volume, speed);
 
     if (!path)
-        res.send("You must use path param");
+        res.send("You must use path parameter");
     else {
         transcript_path = `${file_id}.trs`;
         path = `${AUDIO_FILES_DIR + path}.wav`;
@@ -74,29 +71,28 @@ app.get("/transcript", (req, res) => {
         volume: volume,
         speed: speed,
         file_id: file_id,
-        download_path: PY_SERVER_DOWNLOAD + transcript_path, 
+        download_path: PY_SERVER_DOWNLOAD + transcript_path,
         student: student
     };
 
-    getTranscription(file_id).then( response => {
+    getTranscription(file_id).then(response => {
         if (response.length !== 0)
             res.send(PY_SERVER_DOWNLOAD + transcript_path);
         else {
-            request({url: `${TRANSCRIPT_SERVICE}transcript/`, qs: params}, function (err, response, body) {
+            request({ url: `${TRANSCRIPT_SERVICE}transcript/`, qs: params }, function (err, response, body) {
                 res.send(body);
             });
         }
-    }) .catch( error => {
+    }).catch(error => {
         res.send(error);
     });
 
 });
 
 app.get("/getEntities", (req, res) => {
-    axios.get(DB_ENTITIES)
-        .then(response => {
-            res.send(response.data._embedded);
-        })
+    axios.get(DB_ENTITIES).then(response => {
+        res.send(response.data._embedded);
+    })
         .catch(error => {
             res.send(error);
         })
@@ -104,10 +100,9 @@ app.get("/getEntities", (req, res) => {
 
 app.get("/getEntities/:sentence", (req, res) => {
     let sentence = req.params.sentence;
-    getEntities(sentence)
-        .then(response => {
-            res.send(response.data);
-        })
+    getEntities(sentence).then(response => {
+        res.send(response.data);
+    })
         .catch(error => {
             res.send(error);
         })
@@ -120,10 +115,9 @@ app.get("/getIntent/:sentence", (req, res) => {
     if (!student)
         student = 'Telco';
 
-    getIntent(sentence, student)
-        .then(response => {
-            res.send(response);
-        })
+    getIntent(sentence, student).then(response => {
+        res.send(response);
+    })
         .catch(error => {
             res.send(error);
         })
@@ -155,15 +149,15 @@ app.get("/generateTranscription", (req, res) => {
         download_path: PY_SERVER_DOWNLOAD + transcript_path
     };
 
-    getTranscription(file_id).then( response => {
+    getTranscription(file_id).then(response => {
         if (response.length === 0) {
-            request({url: `${TRANSCRIPT_SERVICE}generateTranscription/`, qs: params}, function (err, response, body) {
+            request({ url: `${TRANSCRIPT_SERVICE}generateTranscription/`, qs: params }, function (err, response, body) {
                 res.send(body);
             });
         }
         else
             res.send(PY_SERVER_DOWNLOAD + transcript_path);
-    }) .catch( error => {
+    }).catch(error => {
         res.send(error);
     });
 });
@@ -175,9 +169,8 @@ app.get("/generateEntities/:file_id", (req, res) => {
     let entities = [];
 
     axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
-        let data = response.data;
-
-        data.dialogues.forEach(dialogue => {
+        
+        response.data.dialogues.forEach(dialogue => {
             let p = getEntities(dialogue.text).then(result => {
                 let json_obj = {
                     index: dialogue.index,
@@ -260,10 +253,9 @@ app.get("/generateIntents/:file_id", (req, res) => {
 });
 
 function getTranscription(id) {
-    return axios.get(`${DB_DIALOGUES}/${id}`)
-        .then(response => {
-            return response.data;
-        })
+    return axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
+        return response.data;
+    })
         .catch(error => {
             if (error.response.status === 404)
                 return [];
