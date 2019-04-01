@@ -4,7 +4,7 @@ from transcription_requests import TranscriptionRequest
 
 
 class Dialogue:
-    def __init__(self, id, filename, duration, volume, speed, dialogues, splitted_times):
+    def __init__(self, id, filename, duration, volume, speed, dialogues, splitted_times, student):
         self.id = id
         self.filename = filename
         self.duration = duration
@@ -14,6 +14,7 @@ class Dialogue:
         self.intents = []
         self.dialogues = dialogues
         self.splitted_times = splitted_times
+        self.student = student
         self.transcription_request = TranscriptionRequest()
 
     def get_filename(self):
@@ -35,7 +36,8 @@ class Dialogue:
                            "intents": self.intents,
                            "language": "pt-PT",
                            "dialogues": self.get_json_dialogues(),
-                           "last_update": str(datetime.datetime.now())},
+                           "last_update": str(datetime.datetime.now()),
+                           "student": self.student},
                           ensure_ascii=False, indent=4, sort_keys=True).encode('utf-8')
 
     def get_json_dialogues(self):

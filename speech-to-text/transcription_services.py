@@ -12,7 +12,7 @@ from transcription_requests import TranscriptionRequest
 app = Flask(__name__)
 
 
-def transcript_dialogues(path, n_speakers, volume, speed, file_id, download_path, func_name):
+def transcript_dialogues(path, n_speakers, volume, speed, file_id, download_path, func_name, student=None):
     args_parser = FilesAggregator()
     input_files = args_parser.collect_input_files(path)
     if not input_files:
@@ -41,7 +41,8 @@ def transcript_dialogues(path, n_speakers, volume, speed, file_id, download_path
             recognizer = Recognizer(transcription_file, splitted_files, speakers)
             transcription = recognizer.get_transcription()
             if func_name == 'generate_all':
-                dialogue = Dialogue(file_id, file, duration, volume, speed, transcription, splitted_times)
+                dialogue = Dialogue(file_id, file, duration, volume,
+                                    speed, transcription, splitted_times, student)
             else:
                 dialogue = Talk(file_id, file, duration, volume, speed, transcription, splitted_times)
             transcriptions_request = TranscriptionRequest()
@@ -66,8 +67,9 @@ def generate_all():
     speed = float(request.args.get('speed'))
     file_id = request.args.get('file_id')
     download_pah = request.args.get('download_path')
+    student = request.args.get('student')
     return transcript_dialogues(path, n_speakers, volume, speed, file_id,
-                                download_pah, generate_all.__name__)
+                                download_pah, generate_all.__name__, student=student)
 
 
 @app.route('/generateTranscription/')

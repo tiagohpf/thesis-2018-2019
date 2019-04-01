@@ -52,11 +52,14 @@ app.get("/transcript", (req, res) => {
     let transcript_path = null;
     let volume = parseInt(req.query.volume);
     let speed = parseFloat(req.query.speed);
+    let student = req.query.student;
 
     if (!volume)
         volume = 0;
     if (!speed)
         speed = 1.0;
+    if (!student)
+        student = 'Telco';
     let file_id = createFileId(path, volume, speed);
 
     if (!path)
@@ -71,7 +74,8 @@ app.get("/transcript", (req, res) => {
         volume: volume,
         speed: speed,
         file_id: file_id,
-        download_path: PY_SERVER_DOWNLOAD + transcript_path
+        download_path: PY_SERVER_DOWNLOAD + transcript_path, 
+        student: student
     };
 
     getTranscription(file_id).then( response => {
@@ -227,7 +231,8 @@ app.get("/generateIntents/:file_id", (req, res) => {
                     index: dialogue.index,
                     speaker: dialogue.speaker,
                     text: dialogue.text,
-                    intent: result
+                    intent: result,
+                    student: student
                 };
                 if (dialogue.entities)
                     json_obj.entities = dialogue.entities;
