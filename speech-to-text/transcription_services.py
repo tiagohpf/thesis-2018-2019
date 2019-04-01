@@ -12,7 +12,8 @@ from transcription_requests import TranscriptionRequest
 app = Flask(__name__)
 
 
-def transcript_dialogues(path, n_speakers, volume, speed, file_id, download_path, func_name, student=None):
+def transcript_dialogues(path, n_speakers, volume, speed, file_id, download_path, func_name,
+                         source_name=None, source_type=None):
     args_parser = FilesAggregator()
     input_files = args_parser.collect_input_files(path)
     if not input_files:
@@ -42,7 +43,7 @@ def transcript_dialogues(path, n_speakers, volume, speed, file_id, download_path
             transcription = recognizer.get_transcription()
             if func_name == 'generate_all':
                 dialogue = Dialogue(file_id, file, duration, volume,
-                                    speed, transcription, splitted_times, student)
+                                    speed, transcription, splitted_times, source_name, source_type)
             else:
                 dialogue = Talk(file_id, file, duration, volume, speed, transcription, splitted_times)
             transcriptions_request = TranscriptionRequest()
@@ -65,11 +66,12 @@ def generate_all():
     n_speakers = 2
     volume = int(request.args.get('volume'))
     speed = float(request.args.get('speed'))
-    file_id = request.args.get('file_id')
-    download_pah = request.args.get('download_path')
-    student = request.args.get('student')
+    file_id = request.args.get('fileId')
+    download_pah = request.args.get('downloadPath')
+    source_name = request.args.get('sourceName')
+    source_type = request.args.get('sourceType')
     return transcript_dialogues(path, n_speakers, volume, speed, file_id,
-                                download_pah, generate_all.__name__, student=student)
+                                download_pah, generate_all.__name__, source_name, source_type)
 
 
 @app.route('/generateTranscription/')
@@ -78,7 +80,7 @@ def generate_just_transcription():
     n_speakers = 2
     volume = int(request.args.get('volume'))
     speed = float(request.args.get('speed'))
-    file_id = request.args.get('file_id')
-    download_pah = request.args.get('download_path')
+    file_id = request.args.get('fileId')
+    download_pah = request.args.get('downloadPath')
     return transcript_dialogues(path, n_speakers, volume, speed, file_id,
                                 download_pah, generate_just_transcription.__name__)
