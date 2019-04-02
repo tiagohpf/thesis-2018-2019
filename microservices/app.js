@@ -26,20 +26,16 @@ let server = app.listen(3500, function () {
 server.setTimeout(300000);
 
 app.get("/getTranscriptions", (req, res) => {
-    axios.get(DB_DIALOGUES).then(response => {
-        res.send(response.data._embedded);
-    }).catch(error => {
-        res.send(error);
-    });
+    axios.get(DB_DIALOGUES)
+        .then(response => res.send(response.data._embedded))
+        .catch(error => res.send(error))
 });
 
 app.get("/getTranscription/:id", (req, res) => {
     let id = req.params.id;
-    axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
-        res.send(response.data);
-    }).catch(error => {
-        res.send(error);
-    });
+    axios.get(`${DB_DIALOGUES}/${id}`)
+        .then(response => res.send(response.data))
+        .catch(error => res.send(error));
 });
 
 app.get("/transcript", (req, res) => {
@@ -80,37 +76,28 @@ app.get("/transcript", (req, res) => {
                 res.send(body);
             });
         }
-    }).catch(error => {
-        res.send(error);
-    });
+    }).catch(error => res.send(error));
 });
 
 app.get("/getEntities", (req, res) => {
-    axios.get(DB_ENTITIES).then(response => {
-        res.send(response.data._embedded);
-    }).catch(error => {
-        res.send(error);
-    })
+    axios.get(DB_ENTITIES)
+        .then(response => res.send(response.data._embedded))
+        .catch(error => res.send(error))
 });
 
 app.get("/getEntities/:sentence", (req, res) => {
     let sentence = req.params.sentence;
-    getEntities(sentence).then(response => {
-        res.send(response.data);
-    }).catch(error => {
-        res.send(error);
-    })
+    getEntities(sentence)
+        .then(response => res.send(response.data))
+        .catch(error => res.send(error))
 });
 
 app.get("/getIntent/:sentence", (req, res) => {
     let sentence = req.params.sentence;
     let sourceData = getSourceTypeAndName(req.query.program, req.query.student);
-
-    getIntent(sentence, sourceData).then(response => {
-        res.send(response);
-    }).catch(error => {
-        res.send(error);
-    })
+    getIntent(sentence, sourceData)
+        .then(response => res.send(response))
+        .catch(error => res.send(error))
 });
 
 app.get("/generateTranscription", (req, res) => {
@@ -148,9 +135,7 @@ app.get("/generateTranscription", (req, res) => {
         }
         else
             res.send(PY_SERVER_DOWNLOAD + transcriptPath);
-    }).catch(error => {
-        res.send(error);
-    });
+    }).catch(error => res.send(error));
 });
 
 app.get("/generateEntities/:fileId", (req, res) => {
@@ -186,13 +171,9 @@ app.get("/generateEntities/:fileId", (req, res) => {
                 lastUpdate: new Date().toISOString(),
                 entities: obj.entities,
                 dialogues: obj.dialogues
-            }).then(r => {
-                res.send(JSON.stringify(r.data));
-            });
+            }).then(r => res.send(JSON.stringify(r.data)));
         });
-    }).catch(error => {
-        throw error;
-    });
+    })
 });
 
 app.get("/generateIntents/:fileId", (req, res) => {
@@ -231,31 +212,24 @@ app.get("/generateIntents/:fileId", (req, res) => {
                 dialogues: obj.dialogues,
                 sourceName: sourceData.sourceName,
                 sourceType: sourceData.sourceType
-            }).then(r => {
-                res.send(JSON.stringify(r.data));
-            });
+            }).then(r => res.send(JSON.stringify(r.data)));
         });
-    }).catch(error => {
-        throw error;
-    });
+    })
 });
 
 function getTranscription(id) {
-    return axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
-        return response.data;
-    }).catch(error => {
-        if (error.response.status === 404)
-            return [];
-        throw error;
+    return axios.get(`${DB_DIALOGUES}/${id}`)
+        .then(response => response.data)
+        .catch(error => {
+            if (error.response.status === 404)
+                return [];
+            throw error;
     });
 }
 
 function getEntities(sentence) {
-    return axios.get(encodeURI(ENTITIES_SERVICE + sentence)).then(response => {
-        return response.data;
-    }).catch(error => {
-        throw error;
-    });
+    return axios.get(encodeURI(ENTITIES_SERVICE + sentence))
+        .then(response => response.data)
 }
 
 function getIntent(sentence, sourceData) {
@@ -276,16 +250,10 @@ function getIntent(sentence, sourceData) {
             },
             isTest: true
         }
-    }).then(response => {
-        return response.data.nlpResponse.intent;
-    }).catch(error => {
-        throw error;
-    });
+    }).then(response => response.data.nlpResponse.intent);
 }
 
-function createFileId(path, volume, speed) {
-    return `${path}_${volume}_${speed}`;
-}
+const createFileId = (path, volume, speed) => `${path}_${volume}_${speed}`;
 
 function getSourceTypeAndName(program, student) {
     let sourceName, sourceType;
@@ -297,8 +265,8 @@ function getSourceTypeAndName(program, student) {
         sourceName = student;
         sourceType = 'STUDENT';
     } else {
-        sourceName = 'Pin_Puk_Transcriptor_Talker';
-        sourceType = 'STUDENT';
+        sourceName = 'pin_puk_Transcriptor';
+        sourceType = 'PROGRAM';
     }
 
     return {
