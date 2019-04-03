@@ -87,6 +87,7 @@ app.get("/getEntities", (req, res) => {
 
 app.get("/getEntities/:sentence", (req, res) => {
     let sentence = req.params.sentence;
+    
     getEntities(sentence)
         .then(response => res.send(response.data))
         .catch(error => res.send(error))
@@ -95,6 +96,7 @@ app.get("/getEntities/:sentence", (req, res) => {
 app.get("/getIntent/:sentence", (req, res) => {
     let sentence = req.params.sentence;
     let sourceData = getSourceTypeAndName(req.query.program, req.query.student);
+    
     getIntent(sentence, sourceData)
         .then(response => res.send(response))
         .catch(error => res.send(error))
@@ -256,21 +258,10 @@ function getIntent(sentence, sourceData) {
 const createFileId = (path, volume, speed) => `${path}_${volume}_${speed}`;
 
 function getSourceTypeAndName(program, student) {
-    let sourceName, sourceType;
-
-    if (program) {
-        sourceName = program;
-        sourceType = 'PROGRAM';
-    } else if (student) {
-        sourceName = student;
-        sourceType = 'STUDENT';
-    } else {
-        sourceName = 'pin_puk_Transcriptor';
-        sourceType = 'PROGRAM';
-    }
-
-    return {
-        sourceName: sourceName,
-        sourceType: sourceType
-    };
+    if (program)
+        return { sourceName: program, sourceType: 'PROGRAM' };
+    else if (student)
+        return { sourceName: student, sourceType: 'STUDENT' };
+    else 
+        return { sourceName:'pin_puk_Transcriptor', sourceType: 'PROGRAM' };
 }
