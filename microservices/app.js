@@ -87,7 +87,6 @@ app.get("/getEntities", (req, res) => {
 
 app.get("/getEntities/:sentence", (req, res) => {
     let sentence = req.params.sentence;
-    
     getEntities(sentence)
         .then(response => res.send(response.data))
         .catch(error => res.send(error))
@@ -96,8 +95,9 @@ app.get("/getEntities/:sentence", (req, res) => {
 app.get("/getIntent/:sentence", (req, res) => {
     let sentence = req.params.sentence;
     let sourceData = getSourceTypeAndName(req.query.program, req.query.student);
-    
-    getIntent(sentence, sourceData)
+    let sessionId = generateSessionId();
+
+    getIntent(sentence, sourceData, sessionId)
         .then(response => res.send(response))
         .catch(error => res.send(error))
 });
@@ -167,7 +167,7 @@ app.get("/generateEntities/:fileId", (req, res) => {
 
         return Promise.all(promises).then(response => {
             let obj = response[0];
-            
+
             return axios.patch(`${DB_DIALOGUES}/${id}`, {
                 _id: obj.id,
                 lastUpdate: new Date().toISOString(),
@@ -180,43 +180,23 @@ app.get("/generateEntities/:fileId", (req, res) => {
 
 app.get("/generateIntents/:fileId", (req, res) => {
     let id = req.params.fileId;
-    let sourceData = getSourceTypeAndName(req.query.program, req.query.student);
-    let promises = [];
-    let dialogues = [];
-    let intents = [];
-
     axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
-        response.data.dialogues.forEach(dialogue => {
-            let p = getIntent(dialogue.text, sourceData).then(result => {
-                let jsonObj = {
-                    index: dialogue.index,
-                    speaker: dialogue.speaker,
-                    text: dialogue.text,
-                    intent: result,
-                };
+        let dialogues = sortDialoguesByIndex(response.data.dialogues);
+        let sourceData = getSourceTypeAndName(req.query.program, req.query.student);
+        let clientDialogues = filterBySpeaker(dialogues, 1);
+        let sessionId = generateSessionId();
 
-                if (dialogue.entities)
-                    jsonObj.entities = dialogue.entities;
-                intents.push(result);
-                dialogues.push(jsonObj);
-                return { intents, dialogues };
-            });
-            promises.push(p);
+        getIntentsFromDialogues(clientDialogues, sourceData, sessionId).then(() => {
+            let operatorDialogues = filterBySpeaker(dialogues, 0);
+            dialogues = sortDialoguesByIndex(clientDialogues.concat(operatorDialogues));
+            return axios.patch(`${DB_DIALOGUES}/${id}`,
+                {
+                    _id: response.id,
+                    lastUpdate: new Date().toISOString(),
+                    dialogues: dialogues
+                }).then(() => res.send(JSON.stringify(dialogues)));
         });
-
-        return Promise.all(promises).then(response => {
-            let obj = response[0];
-            
-            return axios.patch(`${DB_DIALOGUES}/${id}`, {
-                _id: obj.id,
-                lastUpdate: new Date().toISOString(),
-                intents: obj.intents,
-                dialogues: obj.dialogues,
-                sourceName: sourceData.sourceName,
-                sourceType: sourceData.sourceType
-            }).then(r => res.send(JSON.stringify(r.data)));
-        });
-    })
+    });
 });
 
 function getTranscription(id) {
@@ -226,7 +206,7 @@ function getTranscription(id) {
             if (error.response.status === 404)
                 return [];
             throw error;
-    });
+        });
 }
 
 function getEntities(sentence) {
@@ -234,22 +214,42 @@ function getEntities(sentence) {
         .then(response => response.data)
 }
 
-function getIntent(sentence, sourceData) {
+function getIntentsFromDialogues(dialogues, sourceData, sessionId) {
+    let requests = dialogues.map(dialogue => {
+        return {
+            question: dialogue.text,
+            sessionId,
+            VA: { id: sourceData.sourceName, type: sourceData.sourceType },
+            isTest: true
+        };
+    });
+
+    return requests.slice(0).reduce((promise, request, i) => {
+        return promise.then(() => {
+            return axios({
+                method: 'post',
+                url: INTENTS_SERVICE,
+                data: request
+            }).then(response => {
+                Object.assign(
+                    dialogues[i],
+                    { intent: response.data.nlpResponse.intent });
+            })
+        })
+    }, Promise.resolve()).catch(error => {
+        console.log("Error in getting intents", error);
+        throw error;
+    })
+}
+
+function getIntent(sentence, sourceData, sessionId) {
     return axios({
         method: 'post',
         url: INTENTS_SERVICE,
-        headers: {
-            'cache-control': 'no-cache',
-            'content-type': 'application/json',
-            'postman-token': 'f66f3311-d2ad-5ea5-5f83-7ad26df1d1d9',
-        },
         data: {
             question: sentence,
-            sessionId: `SessionID_${Math.random().toString(36).substring(7)}`,
-            VA: {
-                id: sourceData.sourceName,
-                type: sourceData.sourceType
-            },
+            sessionId,
+            VA: { id: sourceData.sourceName, type: sourceData.sourceType },
             isTest: true
         }
     }).then(response => response.data.nlpResponse.intent);
@@ -257,11 +257,23 @@ function getIntent(sentence, sourceData) {
 
 const createFileId = (path, volume, speed) => `${path}_${volume}_${speed}`;
 
+const generateSessionId = () => `SessionID_${Math.random().toString(36).substring(7)}`;
+
+const sortDialoguesByIndex = (dialogues) => {
+    return dialogues.sort((before, next) => {
+        return parseInt(before.index) < parseInt(next.index) ? -1 : 1;
+    })
+}
+
+const filterBySpeaker = (dialogues, speaker) => {
+    return dialogues.filter(dialogue => parseInt(dialogue.speaker) === speaker);
+}
+
 function getSourceTypeAndName(program, student) {
     if (program)
         return { sourceName: program, sourceType: 'PROGRAM' };
     else if (student)
         return { sourceName: student, sourceType: 'STUDENT' };
-    else 
-        return { sourceName:'pin_puk_Transcriptor', sourceType: 'PROGRAM' };
+    else
+        return { sourceName: 'pin_puk_Transcriptor', sourceType: 'PROGRAM' };
 }

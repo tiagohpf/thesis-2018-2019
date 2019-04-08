@@ -31,7 +31,7 @@ class Talk:
                            "speed": self.speed,
                            "language": "pt-PT",
                            "dialogues": self.get_json_dialogues(),
-                           "last_update": str(datetime.datetime.now())},
+                           "lastUpdate": str(datetime.datetime.now())},
                           ensure_ascii=False, indent=4, sort_keys=True).encode("utf-8")
 
     def get_json_dialogues(self):
@@ -44,6 +44,6 @@ class Talk:
                     "index": i,
                     "speaker": split[0],
                     "text": split[1],
-                    "initial_time": initial_time,
-                    "final_time": final_time})
+                    "initialTime": initial_time,
+                    "finalTime": final_time})
         return json_dialogues
