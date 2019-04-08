@@ -2,17 +2,18 @@ from recognizer_thread import RecognizerThread
 
 
 class Recognizer:
-    def __init__(self, filename, files, speakers):
+    def __init__(self, filename, files, speakers, splitted_times):
         self.filename = filename.replace('.wav', '.txt')
         self.files = files
         self.speakers = speakers
+        self.splitted_times = splitted_times
         self.transcription = []
         self.threads = []
         self.start_threads(len(self.files))
 
     def start_threads(self, size):
         for i in range(0, size):
-            thread = RecognizerThread(i, str("thread " + str(i)), i, self.files[i], self.speakers[i])
+            thread = RecognizerThread(i, str("thread " + str(i)), i, self.files[i], self.speakers[i], self.splitted_times[i])
             self.threads.append(thread)
             thread.start()
         self.join_threads()

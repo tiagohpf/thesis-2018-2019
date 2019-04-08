@@ -1,5 +1,6 @@
 import json
 import datetime
+import re
 from transcription_requests import TranscriptionRequest
 
 
@@ -40,10 +41,11 @@ class Talk:
             if self.dialogues[i]:
                 split = self.dialogues[i].split(': ')
                 initial_time, final_time = self.splitted_times[i]
-                json_dialogues.append({
-                    "index": i,
-                    "speaker": split[0],
-                    "text": split[1],
-                    "initialTime": initial_time,
-                    "finalTime": final_time})
+                if not re.match('X+', split[1]):
+                    json_dialogues.append({
+                        "index": i,
+                        "speaker": split[0],
+                        "text": split[1],
+                        "initialTime": initial_time,
+                        "finalTime": final_time})
         return json_dialogues

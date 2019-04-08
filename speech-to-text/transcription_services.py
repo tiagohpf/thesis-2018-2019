@@ -39,7 +39,7 @@ def transcript_dialogues(path, n_speakers, volume, speed, file_id, download_path
             edited_files += splitted_files
             speakers = splitter.get_speakers()
             transcription_file = str("data/transcriptions/automatic/" + file_id + '.trs')
-            recognizer = Recognizer(transcription_file, splitted_files, speakers)
+            recognizer = Recognizer(transcription_file, splitted_files, speakers, splitted_times)
             transcription = recognizer.get_transcription()
             if func_name == 'generate_all':
                 dialogue = Dialogue(file_id, file, duration, volume,
@@ -53,8 +53,8 @@ def transcript_dialogues(path, n_speakers, volume, speed, file_id, download_path
             out_file = open(transcription_file, 'w')
             for line in transcription:
                 if line:
-                    inital_time, final_time = splitted_times[i]
-                    out_file.write("\t\t\t\t\t\t\t\t [{}, {}]\n {}\n".format(str(round(inital_time, 2)), str(round(final_time, 2)), line))
+                    out_file.write("[{}, {}]\n".format(splitted_times[i][0], splitted_times[i][1]))
+                    out_file.write(str(line) + "\n\n")
                     i +=1
             out_file.close()
         return download_path
