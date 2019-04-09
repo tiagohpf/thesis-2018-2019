@@ -1,0 +1,41 @@
+{
+    "_id": "test2_pin_puk",
+    "dialogues": [
+        {
+            "index": 0,
+            "speaker": 1,
+            "text": "bom dia"
+        },
+        {
+            "index": 1,
+            "speaker": 1,
+            "text": "estou em angola e fiquei com o telemóvel bloqueado. qual é o códigozinho?"
+        },
+        {
+            "index": 2,
+            "speaker": 1,
+            "text": "960000001"
+        },
+        {
+            "index": 3,
+            "speaker": 1,
+            "text": "confirmo"
+        },
+        {
+            "index": 4,
+            "speaker": 1,
+            "text": "264249445"
+        },
+        {
+            "index": 5,
+            "speaker": 1,
+            "text": "sim"
+        },
+        {
+            "index": 6,
+            "speaker": 1,
+            "text": "não"
+        }
+    ],
+    "language": "pt-PT"
+}

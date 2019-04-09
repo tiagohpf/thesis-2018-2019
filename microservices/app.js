@@ -8,7 +8,8 @@ let AUDIO_FILES_DIR = 'data/audio_files/';
 let DB_PREFIX = 'http://10.113.141.31:8080/transcriptions/';
 let DB_DIALOGUES = DB_PREFIX + 'dialogues';
 let DB_ENTITIES = DB_PREFIX + 'entities';
-let ENTITIES_SERVICE = "http://10.113.134.43:4567/getEntities/";
+//let ENTITIES_SERVICE = "http://10.113.134.43:4567/getEntities/";
+let ENTITIES_SERVICE = "http://0.0.0.0:4567/getEntities/";
 let INTENTS_SERVICE = 'http://10.113.141.31:8900/sofia/question';
 //let TRANSCRIPT_SERVICE = 'http://10.113.155.13:5500/';
 let TRANSCRIPT_SERVICE = 'http://127.0.0.1:5000/';
@@ -119,7 +120,7 @@ app.get("/generateTranscription", (req, res) => {
         path = `${AUDIO_FILES_DIR + path}.wav`;
     }
     else
-        res.send("You must use path parameter");
+       return res.send("You must use path parameter");
 
     let params = {
         path: path,
@@ -132,11 +133,11 @@ app.get("/generateTranscription", (req, res) => {
     getTranscription(fileId).then(response => {
         if (response.length === 0) {
             request({ url: `${TRANSCRIPT_SERVICE}generateTranscription/`, qs: params }, function (err, response, body) {
-                res.send(body);
+                return res.send(body);
             });
         }
         else
-            res.send(PY_SERVER_DOWNLOAD + transcriptPath);
+            return res.send(PY_SERVER_DOWNLOAD + transcriptPath);
     }).catch(error => res.send(error));
 });
 
@@ -144,7 +145,6 @@ app.get("/generateEntities/:fileId", (req, res) => {
     let id = req.params.fileId;
     let promises = [];
     let dialogues = [];
-    let entities = [];
 
     axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
         response.data.dialogues.forEach(dialogue => {
@@ -153,14 +153,12 @@ app.get("/generateEntities/:fileId", (req, res) => {
                     index: dialogue.index,
                     speaker: dialogue.speaker,
                     text: dialogue.text,
-                    entities: result.data
+                    candidateIntents: result.data
                 };
-
                 if (dialogue.intents)
                     jsonObj.intents = dialogue.intents;
-                entities.push.apply(entities, result.data);
                 dialogues.push(jsonObj);
-                return { entities, dialogues };
+                return { dialogues };
             });
             promises.push(p)
         });
@@ -173,7 +171,7 @@ app.get("/generateEntities/:fileId", (req, res) => {
                 lastUpdate: new Date().toISOString(),
                 entities: obj.entities,
                 dialogues: obj.dialogues
-            }).then(r => res.send(JSON.stringify(r.data)));
+            }).then(r => res.send(JSON.stringify(dialogues)));
         });
     })
 });
