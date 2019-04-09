@@ -27,7 +27,7 @@ public class EntityManager implements EntityService {
         entitiesCollection = database.getCollection("entities");
         stopWordsManager = new StopWordsManager(database);
         stopWordsManager.loadStopWords();
-        parseEntities();
+        getEntitiesCollection();
     }
 
     @Override
@@ -60,6 +60,7 @@ public class EntityManager implements EntityService {
 
     @Override
     public JsonArray searchEntities(String sentence) {
+        getEntitiesCollection();
         Searcher searcher = new Searcher(entities, stopWordsManager);
         searcher.search(sentence);
         return searcher.getEntitiesFound();
@@ -67,6 +68,7 @@ public class EntityManager implements EntityService {
 
     @Override
     public ArrayList<Entity> getEntities() {
+        getEntitiesCollection();
         return entities;
     }
 
@@ -75,7 +77,7 @@ public class EntityManager implements EntityService {
         return entitiesCollection.find(obj);
     }
 
-    private void parseEntities() {
+    private void getEntitiesCollection() {
         entities = new ArrayList<>();
         DBCursor cursor = entitiesCollection.find();
         for (DBObject obj : cursor) {
