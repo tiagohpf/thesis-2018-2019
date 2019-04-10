@@ -2,7 +2,6 @@ let express = require('express');
 let axios = require('axios');
 let bodyParser = require('body-parser');
 let Promise = require('es6-promise').Promise;
-let request = require('request');
 
 let AUDIO_FILES_DIR = 'data/audio_files/';
 let DB_PREFIX = 'http://10.113.141.31:8080/transcriptions/';
@@ -33,120 +32,83 @@ app.get("/getTranscriptions", (req, res) => {
 });
 
 app.get("/getTranscription/:id", (req, res) => {
-    let id = req.params.id;
-    axios.get(`${DB_DIALOGUES}/${id}`)
-        .then(response => res.send(response.data))
+    getTranscription(req.params.id)
+        .then(response => res.send(response))
         .catch(error => res.send(error));
 });
 
 app.get("/transcript", (req, res) => {
-    let path = req.query.path;
-    let transcriptPath = null;
-    let volume = parseInt(req.query.volume);
-    let speed = parseFloat(req.query.speed);
-    let sourceData = getSourceTypeAndName(req.query.program, req.query.student);
-
-    if (!volume)
-        volume = 0;
-    if (!speed)
-        speed = 1.0;
-    let fileId = createFileId(path, volume, speed);
-
-    if (!path)
-        res.send("You must use path parameter");
-    else {
-        transcriptPath = `${fileId}.trs`;
-        path = `${AUDIO_FILES_DIR + path}.wav`;
-    }
-
-    let params = {
-        path: path,
-        volume: volume,
-        speed: speed,
-        fileId: fileId,
-        downloadPath: PY_SERVER_DOWNLOAD + transcriptPath,
-        sourceName: sourceData.sourceName,
-        sourceType: sourceData.sourceType
-    }
-
-    getTranscription(fileId).then(response => {
-        if (response.length !== 0)
-            res.send(PY_SERVER_DOWNLOAD + transcriptPath);
-        else {
-            request({ url: `${TRANSCRIPT_SERVICE}transcript/`, qs: params }, function (err, response, body) {
-                res.send(body);
-            });
-        }
+    let params = createRequestParams(req);
+    if (!params.path)
+        return res.send("You must define path parameter");
+    
+    return generateTranscription(req, res).then(response => {
+        return generateIntents(req, res, params.fileId).then(() => {
+            return generateEntities(params.fileId).then(() => res.send(response))
+        })
     }).catch(error => res.send(error));
 });
 
 app.get("/getEntities", (req, res) => {
     axios.get(DB_ENTITIES)
         .then(response => res.send(response.data._embedded))
-        .catch(error => res.send(error))
+        .catch(error => res.send(error));
 });
 
 app.get("/getEntities/:sentence", (req, res) => {
-    let sentence = req.params.sentence;
-    getEntities(sentence)
+    getEntities(req.params.sentence)
         .then(response => res.send(response.data))
         .catch(error => res.send(error))
 });
 
 app.get("/getIntent/:sentence", (req, res) => {
-    let sentence = req.params.sentence;
     let sourceData = getSourceTypeAndName(req.query.program, req.query.student);
-    let sessionId = generateSessionId();
+    let sessionId = createSessionId();
 
-    getIntent(sentence, sourceData, sessionId)
+    getIntent(req.params.sentence, sourceData, sessionId)
         .then(response => res.send(response))
         .catch(error => res.send(error))
 });
 
 app.get("/generateTranscription", (req, res) => {
-    let path = req.query.path;
-    let transcriptPath = null;
-    let volume = parseInt(req.query.volume);
-    let speed = parseFloat(req.query.speed);
-
-    if (!volume)
-        volume = 0;
-    if (!speed)
-        speed = 1.0;
-    let fileId = createFileId(path, volume, speed);
-
-    if (path) {
-        transcriptPath = `${fileId}.trs`;
-        path = `${AUDIO_FILES_DIR + path}.wav`;
-    }
-    else
-       return res.send("You must use path parameter");
-
-    let params = {
-        path: path,
-        volume: volume,
-        speed: speed,
-        fileId: fileId,
-        downloadPath: PY_SERVER_DOWNLOAD + transcriptPath
-    };
-
-    getTranscription(fileId).then(response => {
-        if (response.length === 0) {
-            request({ url: `${TRANSCRIPT_SERVICE}generateTranscription/`, qs: params }, function (err, response, body) {
-                return res.send(body);
-            });
-        }
-        else
-            return res.send(PY_SERVER_DOWNLOAD + transcriptPath);
-    }).catch(error => res.send(error));
+    generateTranscription(req)
+        .then(response => res.send(response))
+        .catch(error => res.send(error));
 });
 
 app.get("/generateEntities/:fileId", (req, res) => {
-    let id = req.params.fileId;
+    generateEntities(req.params.fileId)
+        .then(response => res.send(response))
+        .catch(error => res.send(error));
+});
+
+app.get("/generateIntents/:fileId", (req, res) => {
+    generateIntents(req.params.fileId);
+});
+
+function generateTranscription(req) {
+    let params = createRequestParams(req);
+    if (!params.path)  
+        return Promise.reject("You must define path parameter")
+    return getTranscription(params.fileId).then(response => {
+        if (response.length === 0) {
+            let axiosConfig = {
+                method: 'get',
+                url: `${TRANSCRIPT_SERVICE}generateTranscription/`,
+                params
+            }
+            return axios(axiosConfig)
+                    .then(response => response.data)
+        }
+        else
+            throw params.downloadPath;
+    });
+}
+
+function generateEntities(id) {
     let promises = [];
     let dialogues = [];
-
-    axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
+    return axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
         response.data.dialogues.forEach(dialogue => {
             let p = getEntities(dialogue.text).then(result => {
                 let jsonObj = {
@@ -169,33 +131,37 @@ app.get("/generateEntities/:fileId", (req, res) => {
             return axios.patch(`${DB_DIALOGUES}/${id}`, {
                 _id: obj.id,
                 lastUpdate: new Date().toISOString(),
-                entities: obj.entities,
                 dialogues: obj.dialogues
-            }).then(r => res.send(JSON.stringify(dialogues)));
+            }).then(() => dialogues);
         });
+    }).catch(error => {
+        if (error.response.status === 404)
+            return [];
+        throw error;
     })
-});
+}
 
-app.get("/generateIntents/:fileId", (req, res) => {
-    let id = req.params.fileId;
-    axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
+function generateIntents(req, res, id) {
+    return axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
         let dialogues = sortDialoguesByIndex(response.data.dialogues);
         let sourceData = getSourceTypeAndName(req.query.program, req.query.student);
         let clientDialogues = filterBySpeaker(dialogues, 1);
-        let sessionId = generateSessionId();
+        let sessionId = createSessionId();
 
-        getIntentsFromDialogues(clientDialogues, sourceData, sessionId).then(() => {
+        return getIntentsFromDialogues(clientDialogues, sourceData, sessionId).then(() => {
             let operatorDialogues = filterBySpeaker(dialogues, 0);
             dialogues = sortDialoguesByIndex(clientDialogues.concat(operatorDialogues));
             return axios.patch(`${DB_DIALOGUES}/${id}`,
                 {
                     _id: response.id,
                     lastUpdate: new Date().toISOString(),
-                    dialogues: dialogues
-                }).then(() => res.send(JSON.stringify(dialogues)));
-        });
+                    dialogues: dialogues,
+                    sourceType: sourceData.sourceType,
+                    sourceName: sourceData.sourceName
+                });
+        }).then(() => dialogues);
     });
-});
+}
 
 function getTranscription(id) {
     return axios.get(`${DB_DIALOGUES}/${id}`)
@@ -210,6 +176,7 @@ function getTranscription(id) {
 function getEntities(sentence) {
     return axios.get(encodeURI(ENTITIES_SERVICE + sentence))
         .then(response => response.data)
+        .catch(error => error);
 }
 
 function getIntentsFromDialogues(dialogues, sourceData, sessionId) {
@@ -255,7 +222,35 @@ function getIntent(sentence, sourceData, sessionId) {
 
 const createFileId = (path, volume, speed) => `${path}_${volume}_${speed}`;
 
-const generateSessionId = () => `SessionID_${Math.random().toString(36).substring(7)}`;
+const createSessionId = () => `SessionID_${Math.random().toString(36).substring(7)}`;
+
+const createRequestParams = (req) => {
+    let path = req.query.path;
+    let transcriptPath = null;
+    let volume = parseInt(req.query.volume);
+    let speed = parseFloat(req.query.speed);
+
+    if (!volume)
+        volume = 0;
+    if (!speed)
+        speed = 1.0;
+    let fileId = createFileId(path, volume, speed);
+
+    if (path) {
+        transcriptPath = `${fileId}.trs`;
+        path = `${AUDIO_FILES_DIR + path}.wav`;
+    }
+    else
+       return {}
+
+    return {
+        path: path,
+        volume: volume,
+        speed: speed,
+        fileId: fileId,
+        downloadPath: PY_SERVER_DOWNLOAD + transcriptPath
+    };
+}
 
 const sortDialoguesByIndex = (dialogues) => {
     return dialogues.sort((before, next) => {
@@ -263,11 +258,9 @@ const sortDialoguesByIndex = (dialogues) => {
     })
 }
 
-const filterBySpeaker = (dialogues, speaker) => {
-    return dialogues.filter(dialogue => parseInt(dialogue.speaker) === speaker);
-}
+const filterBySpeaker = (dialogues, speaker) => dialogues.filter(dialogue => parseInt(dialogue.speaker) === speaker);
 
-function getSourceTypeAndName(program, student) {
+const getSourceTypeAndName = (program, student)  => {
     if (program)
         return { sourceName: program, sourceType: 'PROGRAM' };
     else if (student)
