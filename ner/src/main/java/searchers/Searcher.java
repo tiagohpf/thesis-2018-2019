@@ -1,39 +1,56 @@
 package searchers;
 
-import com.google.gson.*;
-import entities.Entity;
-import managers.StopWordsManager;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import models.Stopword;
+import models.Subject;
+import org.mongodb.morphia.Datastore;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Searcher {
-    private List<Entity> entities;
-    private StopWordsManager stopWordsManager;
-    private Map<String, String> entitiesFound;
+    private Datastore datastore;
+    private final static int defaultOrder = 3;
 
-    public Searcher(List<Entity> entities, StopWordsManager stopWordsManager) {
-        this.entities = entities;
-        this.stopWordsManager = stopWordsManager;
-        entitiesFound = new HashMap<>();
+    public Searcher(Datastore datastore) {
+        this.datastore = datastore;
     }
 
-    public void search(String sentence) {
-        entitiesFound.clear();
-        String newSentence = stopWordsManager.removeStopWords(sentence);
-        String[] words = newSentence.split("\\s");
+    public JsonArray searchForEntities(String sentence) {
+        Map<String, String> entities = new HashMap<>();
+        Map<String, String> entitiesFound;
+        String newSentence = removeStopWordsFromSentence(sentence);
+        String[] words = newSentence.split("\\s+");
         for (int i = 0; i < words.length; i++) {
-            int defaultOrder = 3;
             for (int order = 0; order <= defaultOrder; order++) {
-                int size = Arrays.copyOfRange(words, i + 1, words.length).length;
-                if (order <= size) {
-                    // Concatenate word + order
+                int orderMax = Arrays.copyOfRange(words, i +1, words.length).length;
+                if (order <= orderMax) {
+                    // Concat order + word
                     newSentence = getSentenceInOrder(Arrays.copyOfRange(words, i, i + order + 1));
-                    searchInContext(newSentence);
+                    entities.putAll(searchInContext(newSentence));
                 }
             }
         }
-        fixAmbiguities();
+        entitiesFound = fixAmbiguities(entities);
+        return getEntitiesFound(entitiesFound);
+    }
+
+    private String removeStopWordsFromSentence(String sentence) {
+        StringBuilder sb = new StringBuilder();
+        String[] words = sentence.split("\\s+");
+        List<String> stopwords = datastore.find(Stopword.class).asList()
+                                    .stream().map(Stopword::getId).collect(Collectors.toList());
+        if (words.length > 0) {
+            for (String word : words) {
+                if (!stopwords.contains(word.toLowerCase().trim()))
+                    sb.append(word).append(" ");
+            }
+        }
+        return sb.toString().trim();
     }
 
     private String getSentenceInOrder(String[] words) {
@@ -43,32 +60,24 @@ public class Searcher {
         return sb.toString().trim();
     }
 
-
-    public JsonArray getEntitiesFound() {
-        JsonArray jsonArray = new JsonArray();
-        for (Map.Entry<String, String> entity : entitiesFound.entrySet()) {
-            JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("_id", entity.getValue());
-            jsonObject.addProperty("value", entity.getKey());
-            jsonArray.add(jsonObject);
-        }
-        return jsonArray;
-    }
-
-    private void searchInContext(String sentence) {
-        for (Entity entity : entities) {
+    private Map<String, String> searchInContext(String sentence) {
+        List<Subject> entities = datastore.find(Subject.class).asList();
+        Map<String, String> found = new HashMap<>();
+        for (Subject entity : entities) {
             for (String value : entity.getValues()) {
-                String newValue = stopWordsManager.removeStopWords(value);
+                String newValue = removeStopWordsFromSentence(value);
                 if (newValue.equals(sentence)) {
-                    entitiesFound.put(value, entity.getId());
+                    found.put(value, entity.getId());
                     break;
                 }
             }
         }
+        return found;
     }
 
-    private void fixAmbiguities() {
-        Map<String, String> clone = new HashMap<>(entitiesFound);
+    private Map<String, String> fixAmbiguities(Map<String, String> found) {
+        Map<String, String> clone = new HashMap<>(found);
+
         for (Map.Entry<String, String> element : clone.entrySet()) {
             String value = element.getKey();
             String category = element.getValue();
@@ -83,8 +92,21 @@ public class Searcher {
                     .filter(x -> x.getValue().equals(category) && x.getKey().length() > value.length())
                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
+            // If sentence is shorter and similar to something, remove it
             if (sameValue.size() > 0 || sameCategory.size() > 0)
-                entitiesFound.remove(value, category);
+                found.remove(value, category);
         }
+        return found;
+    }
+
+    private JsonArray getEntitiesFound(Map<String, String> found) {
+        JsonArray jsonArray = new JsonArray();
+        for (Map.Entry<String, String> entity : found.entrySet()) {
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("_id", entity.getValue());
+            jsonObject.addProperty("value", entity.getKey());
+            jsonArray.add(jsonObject);
+        }
+        return jsonArray;
     }
 }

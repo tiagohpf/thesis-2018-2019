@@ -1,14 +1,21 @@
-package entities;
+package models;
+
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Entity;
 
 import java.util.List;
 
-public class Entity {
+@Entity(value = "entities", noClassnameStored = true)
+public class Subject {
+    @Id
     private String id;
     private String category;
     private String subcategory;
     private List<String> values;
 
-    public Entity(String id, String category, String subcategory, List<String> values) {
+    public Subject() { }
+
+    public Subject(String id, String category, String subcategory, List<String> values) {
         this.id = id;
         this.category = category;
         this.subcategory = subcategory;
@@ -23,7 +30,9 @@ public class Entity {
         return category;
     }
 
-    public String getSubcategory() { return subcategory; }
+    public String getSubcategory() {
+        return subcategory;
+    }
 
     public List<String> getValues() {
         return values;
@@ -31,7 +40,7 @@ public class Entity {
 
     @Override
     public String toString() {
-        return "Entity{" +
+        return "Subject{" +
                 "id='" + id + '\'' +
                 ", category='" + category + '\'' +
                 ", subcategory='" + subcategory + '\'' +

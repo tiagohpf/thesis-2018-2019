@@ -1,5 +1,5 @@
 {
-  "_id": "agendamento",
+  "id": "agendamento",
   "category": "agendamento",
   "subcategory": "geral",
   "values": [

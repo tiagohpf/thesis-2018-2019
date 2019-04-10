@@ -20,7 +20,6 @@ class RecognizerThread(threading.Thread):
         with sr.AudioFile(self.file) as source:
             r.adjust_for_ambient_noise(source)
             audio = r.record(source)
-            #out = "[{}, {}]\n".format(self.initial_time, self.final_time)
             try:
                 text = r.recognize_google(audio, language="pt-PT")
                 out = "{}: {}".format(self.speaker, SentenceManager.replace_special_characters(text))

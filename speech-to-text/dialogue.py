@@ -1,11 +1,11 @@
 import json
+import re
 import datetime
 from transcription_requests import TranscriptionRequest
 
 
 class Dialogue:
-    def __init__(self, id, filename, duration, volume, speed, dialogues,
-                 splitted_times, source_name, source_type):
+    def __init__(self, id, filename, duration, volume, speed, dialogues, splitted_times):
         self.id = id
         self.filename = filename
         self.duration = duration
@@ -15,8 +15,6 @@ class Dialogue:
         self.intents = []
         self.dialogues = dialogues
         self.splitted_times = splitted_times
-        self.source_name = source_name
-        self.source_type = source_type
         self.transcription_request = TranscriptionRequest()
 
     def get_filename(self):
@@ -34,13 +32,9 @@ class Dialogue:
                            "duration": self.duration,
                            "volume": self.volume,
                            "speed": self.speed,
-                           "entities": self.entities,
-                           "intents": self.intents,
                            "language": "pt-PT",
                            "dialogues": self.get_json_dialogues(),
-                           "lastUpdate": str(datetime.datetime.now()),
-                           "sourceName": self.source_name,
-                           "sourceType": self.source_type},
+                           "lastUpdate": str(datetime.datetime.now())},
                           ensure_ascii=False, indent=4, sort_keys=True).encode('utf-8')
 
     def get_json_dialogues(self):
@@ -55,12 +49,11 @@ class Dialogue:
                     self.entities += new_entities
                 if new_intent:
                     self.intents.append(new_intent)
-                json_dialogues.append({
-                    "index": i,
-                    "speaker": split[0],
-                    "text": split[1],
-                    "entities": new_entities,
-                    "intent": new_intent,
-                    "initialTime": initial_time,
-                    "finalTime": final_time})
+                if not re.match('X+', split[1]):
+                    json_dialogues.append({
+                        "index": i,
+                        "speaker": split[0],
+                        "text": split[1],
+                        "initialTime": initial_time,
+                        "finalTime": final_time})
         return json_dialogues
