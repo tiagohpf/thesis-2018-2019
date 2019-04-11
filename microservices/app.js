@@ -8,10 +8,8 @@ let DB_PREFIX = 'http://10.113.141.31:8080/transcriptions/';
 let DB_DIALOGUES = DB_PREFIX + 'dialogues';
 let DB_ENTITIES = DB_PREFIX + 'entities';
 let ENTITIES_SERVICE = "http://10.113.134.43:4567/getEntities/";
-//let ENTITIES_SERVICE = "http://0.0.0.0:4567/getEntities/";
 let INTENTS_SERVICE = 'http://10.113.141.31:8900/sofia/question';
-//let TRANSCRIPT_SERVICE = 'http://10.113.155.13:5500/';
-let TRANSCRIPT_SERVICE = 'http://127.0.0.1:5000/';
+let TRANSCRIPT_SERVICE = 'http://10.113.155.13:5500/';
 let PY_SERVER_DOWNLOAD = 'http://10.113.155.13:5400/';
 
 let app = express();
