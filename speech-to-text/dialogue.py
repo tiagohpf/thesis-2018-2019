@@ -42,13 +42,7 @@ class Dialogue:
         for i in range(0, len(self.dialogues)):
             if self.dialogues[i]:
                 split = self.dialogues[i].split(': ')
-                new_entities = self.transcription_request.get_entities(split[1])["data"]
-                new_intent = self.transcription_request.get_intent(split[1])
                 initial_time, final_time = self.splitted_times[i]
-                if new_entities:
-                    self.entities += new_entities
-                if new_intent:
-                    self.intents.append(new_intent)
                 if not re.match('X+', split[1]):
                     json_dialogues.append({
                         "index": i,
