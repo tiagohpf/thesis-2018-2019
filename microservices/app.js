@@ -28,20 +28,20 @@ server.setTimeout(300000);
 app.get("/getTranscriptions", (req, res) => {
     axios.get(DB_DIALOGUES)
         .then(response => res.send(response.data._embedded))
-        .catch(error => res.send(error))
+        .catch(error => res.send(getAxiosErrorMessage(error)));
 });
 
 app.get("/getTranscription/:id", (req, res) => {
     getTranscription(req.params.id)
         .then(response => res.send(response))
-        .catch(error => res.send(error));
+        .catch(error => res.send(getAxiosErrorMessage(error)));
 });
 
 app.get("/transcript", (req, res) => {
     let params = createRequestParams(req);
     if (!params.path)
         return res.send("You must define path parameter");
-    
+
     return generateTranscription(req, res).then(response => {
         console.log("Transcription done");
         return generateIntents(req, res, params.fileId).then(() => {
@@ -51,22 +51,19 @@ app.get("/transcript", (req, res) => {
                 res.send(response);
             })
         })
-    }).catch(error => {
-        console.log(error);
-        res.send(error);
-    });
+    }).catch(error => res.send(getAxiosErrorMessage(error)));
 });
 
 app.get("/getEntities", (req, res) => {
     axios.get(DB_ENTITIES)
         .then(response => res.send(response.data._embedded))
-        .catch(error => res.send(error));
+        .catch(error => res.send(getAxiosErrorMessage(error)));
 });
 
 app.get("/getEntities/:sentence", (req, res) => {
     getEntities(req.params.sentence)
         .then(response => res.send(response.data))
-        .catch(error => res.send(error))
+        .catch(error => res.send(getAxiosErrorMessage(error)));
 });
 
 app.get("/getIntent/:sentence", (req, res) => {
@@ -75,19 +72,19 @@ app.get("/getIntent/:sentence", (req, res) => {
 
     getIntent(req.params.sentence, sourceData, sessionId)
         .then(response => res.send(response))
-        .catch(error => res.send(error))
+        .catch(error => res.send(getAxiosErrorMessage(error)));
 });
 
 app.get("/generateTranscription", (req, res) => {
     generateTranscription(req)
         .then(response => res.send(response))
-        .catch(error => res.send(error));
+        .catch(error => res.send(getAxiosErrorMessage(error)));
 });
 
 app.get("/generateEntities/:fileId", (req, res) => {
     generateEntities(req.params.fileId)
         .then(response => res.send(response))
-        .catch(error => res.send(error));
+        .catch(error => res.send(getAxiosErrorMessage(error)));
 });
 
 app.get("/generateIntents/:fileId", (req, res) => {
@@ -96,7 +93,7 @@ app.get("/generateIntents/:fileId", (req, res) => {
 
 function generateTranscription(req) {
     let params = createRequestParams(req);
-    if (!params.path)  
+    if (!params.path)
         return Promise.reject("You must define path parameter")
     return getTranscription(params.fileId).then(response => {
         if (response.length === 0) {
@@ -107,7 +104,7 @@ function generateTranscription(req) {
                 params
             }
             return axios(axiosConfig)
-                    .then(response => response.data)
+                .then(response => response.data)
         }
         else
             throw params.downloadPath;
@@ -120,19 +117,22 @@ function generateEntities(id) {
     return axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
         console.log("Start Entities...");
         response.data.dialogues.forEach(dialogue => {
-            let p = getEntities(dialogue.text).then(result => {
-                let jsonObj = {
-                    index: dialogue.index,
-                    speaker: dialogue.speaker,
-                    text: dialogue.text,
-                    candidateIntents: result.data
-                };
-                if (dialogue.intent)
-                    jsonObj.intent = dialogue.intent;
-                dialogues.push(jsonObj);
-                return { dialogues };
-            });
-            promises.push(p)
+            if (parseInt(dialogue.speaker) === 1) {
+                let p = getEntities(dialogue.text).then(result => {
+                    let jsonObj = {
+                        index: dialogue.index,
+                        speaker: dialogue.speaker,
+                        text: dialogue.text,
+                        candidateIntents: result.data
+                    };
+                    if (dialogue.intent)
+                        jsonObj.intent = dialogue.intent;
+                    dialogues.push(jsonObj);
+                    return { dialogues };
+                });
+                promises.push(p)
+            } else
+                dialogues.push(dialogue);
         });
 
         return Promise.all(promises).then(response => {
@@ -187,7 +187,7 @@ function getTranscription(id) {
 function getEntities(sentence) {
     return axios.get(encodeURI(ENTITIES_SERVICE + sentence))
         .then(response => response.data)
-        .catch(error => error);
+        .catch(error => res.send(getAxiosErrorMessage(error)));;
 }
 
 function getIntentsFromDialogues(dialogues, sourceData, sessionId) {
@@ -252,7 +252,7 @@ const createRequestParams = (req) => {
         path = `${AUDIO_FILES_DIR + path}.wav`;
     }
     else
-       return {}
+        return {}
 
     return {
         path: path,
@@ -271,7 +271,7 @@ const sortDialoguesByIndex = (dialogues) => {
 
 const filterBySpeaker = (dialogues, speaker) => dialogues.filter(dialogue => parseInt(dialogue.speaker) === speaker);
 
-const getSourceTypeAndName = (program, student)  => {
+const getSourceTypeAndName = (program, student) => {
     if (program)
         return { sourceName: program, sourceType: 'PROGRAM' };
     else if (student)
@@ -282,8 +282,11 @@ const getSourceTypeAndName = (program, student)  => {
 
 const getAxiosErrorMessage = (e) => {
     let error = e;
-    if (e.response) error.data = e.response.data;
-    else if (e.request) error.message = 'No response from server.';
-    if(e.message) error.message = e.message;
+    if (e.response) 
+        error.data = e.response.data;
+    else if (e.request) 
+        error.message = 'No response from server.';
+    if (e.message) 
+        error.message = e.message;
     return error;
 };
