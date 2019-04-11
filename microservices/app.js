@@ -7,8 +7,8 @@ let AUDIO_FILES_DIR = 'data/audio_files/';
 let DB_PREFIX = 'http://10.113.141.31:8080/transcriptions/';
 let DB_DIALOGUES = DB_PREFIX + 'dialogues';
 let DB_ENTITIES = DB_PREFIX + 'entities';
-//let ENTITIES_SERVICE = "http://10.113.134.43:4567/getEntities/";
-let ENTITIES_SERVICE = "http://0.0.0.0:4567/getEntities/";
+let ENTITIES_SERVICE = "http://10.113.134.43:4567/getEntities/";
+//let ENTITIES_SERVICE = "http://0.0.0.0:4567/getEntities/";
 let INTENTS_SERVICE = 'http://10.113.141.31:8900/sofia/question';
 //let TRANSCRIPT_SERVICE = 'http://10.113.155.13:5500/';
 let TRANSCRIPT_SERVICE = 'http://127.0.0.1:5000/';
@@ -43,10 +43,18 @@ app.get("/transcript", (req, res) => {
         return res.send("You must define path parameter");
     
     return generateTranscription(req, res).then(response => {
+        console.log("Transcription done");
         return generateIntents(req, res, params.fileId).then(() => {
-            return generateEntities(params.fileId).then(() => res.send(response))
+            console.log("Intents done");
+            return generateEntities(params.fileId).then(() => {
+                console.log("Entities done");
+                res.send(response);
+            })
         })
-    }).catch(error => res.send(error));
+    }).catch(error => {
+        console.log(error);
+        res.send(error);
+    });
 });
 
 app.get("/getEntities", (req, res) => {
@@ -92,6 +100,7 @@ function generateTranscription(req) {
         return Promise.reject("You must define path parameter")
     return getTranscription(params.fileId).then(response => {
         if (response.length === 0) {
+            console.log("Start Transcription...");
             let axiosConfig = {
                 method: 'get',
                 url: `${TRANSCRIPT_SERVICE}generateTranscription/`,
@@ -109,6 +118,7 @@ function generateEntities(id) {
     let promises = [];
     let dialogues = [];
     return axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
+        console.log("Start Entities...");
         response.data.dialogues.forEach(dialogue => {
             let p = getEntities(dialogue.text).then(result => {
                 let jsonObj = {
@@ -117,8 +127,8 @@ function generateEntities(id) {
                     text: dialogue.text,
                     candidateIntents: result.data
                 };
-                if (dialogue.intents)
-                    jsonObj.intents = dialogue.intents;
+                if (dialogue.intent)
+                    jsonObj.intent = dialogue.intent;
                 dialogues.push(jsonObj);
                 return { dialogues };
             });
@@ -143,6 +153,7 @@ function generateEntities(id) {
 
 function generateIntents(req, res, id) {
     return axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
+        console.log("Start Intents...");
         let dialogues = sortDialoguesByIndex(response.data.dialogues);
         let sourceData = getSourceTypeAndName(req.query.program, req.query.student);
         let clientDialogues = filterBySpeaker(dialogues, 1);
@@ -268,3 +279,11 @@ const getSourceTypeAndName = (program, student)  => {
     else
         return { sourceName: 'pin_puk_Transcriptor', sourceType: 'PROGRAM' };
 }
+
+const getAxiosErrorMessage = (e) => {
+    let error = e;
+    if (e.response) error.data = e.response.data;
+    else if (e.request) error.message = 'No response from server.';
+    if(e.message) error.message = e.message;
+    return error;
+};
