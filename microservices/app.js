@@ -40,14 +40,14 @@ app.get("/transcript", (req, res) => {
     if (!params.path)
         return res.send("You must define path parameter");
 
-    return generateTranscription(req, res).then(response => {
+    generateTranscription(req, res).then(response => {
         console.log("Transcription done");
         return generateIntents(req, res, params.fileId).then(() => {
             console.log("Intents done");
             return generateEntities(params.fileId).then(() => {
                 console.log("Entities done");
-                res.send(response);
-            })
+                res.send(response)
+            });
         })
     }).catch(error => res.send(getAxiosErrorMessage(error)));
 });
@@ -67,7 +67,6 @@ app.get("/getEntities/:sentence", (req, res) => {
 app.get("/getIntent/:sentence", (req, res) => {
     let sourceData = getSourceTypeAndName(req.query.program, req.query.student);
     let sessionId = createSessionId();
-
     getIntent(req.params.sentence, sourceData, sessionId)
         .then(response => res.send(response))
         .catch(error => res.send(getAxiosErrorMessage(error)));
@@ -86,16 +85,18 @@ app.get("/generateEntities/:fileId", (req, res) => {
 });
 
 app.get("/generateIntents/:fileId", (req, res) => {
-    generateIntents(req.params.fileId);
+    generateIntents(req, res, req.params.fileId)
+        .then(response => res.send(response))
+        .catch(error => res.send(getAxiosErrorMessage(error)));
 });
 
 function generateTranscription(req) {
     let params = createRequestParams(req);
     if (!params.path)
         return Promise.reject("You must define path parameter")
-    return getTranscription(params.fileId).then(response => {
+        return getTranscription(params.fileId).then(response => {
         if (response.length === 0) {
-            console.log("Start Transcription...");
+            console.log("Start Transcription");
             let axiosConfig = {
                 method: 'get',
                 url: `${TRANSCRIPT_SERVICE}generateTranscription/`,
@@ -112,8 +113,8 @@ function generateTranscription(req) {
 function generateEntities(id) {
     let promises = [];
     let dialogues = [];
+    console.log("Start Entities");
     return axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
-        console.log("Start Entities...");
         response.data.dialogues.forEach(dialogue => {
             if (parseInt(dialogue.speaker) === 1) {
                 let p = getEntities(dialogue.text).then(result => {
@@ -150,8 +151,8 @@ function generateEntities(id) {
 }
 
 function generateIntents(req, res, id) {
+    console.log("Start Intents");
     return axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
-        console.log("Start Intents...");
         let dialogues = sortDialoguesByIndex(response.data.dialogues);
         let sourceData = getSourceTypeAndName(req.query.program, req.query.student);
         let clientDialogues = filterBySpeaker(dialogues, 1);
