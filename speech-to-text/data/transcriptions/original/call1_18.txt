@@ -18,4 +18,3 @@
 1: muito obrigado
 0: posso ajudar?
 1: não, era só, obrigada
-0:

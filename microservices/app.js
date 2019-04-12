@@ -47,7 +47,7 @@ app.get("/transcript", (req, res) => {
             return generateEntities(params.fileId).then(() => {
                 console.log("Entities done");
                 res.send(response)
-            });
+            })
         })
     }).catch(error => res.send(getAxiosErrorMessage(error)));
 });

@@ -6,7 +6,6 @@ import models.Stopword;
 import models.Subject;
 import org.mongodb.morphia.Datastore;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +13,6 @@ import java.util.stream.Collectors;
 
 public class Searcher {
     private Datastore datastore;
-    private final static int defaultOrder = 3;
 
     public Searcher(Datastore datastore) {
         this.datastore = datastore;
@@ -25,16 +23,8 @@ public class Searcher {
         Map<String, String> entitiesFound;
         String newSentence = removeStopWordsFromSentence(sentence);
         String[] words = newSentence.split("\\s+");
-        for (int i = 0; i < words.length; i++) {
-            for (int order = 0; order <= defaultOrder; order++) {
-                int orderMax = Arrays.copyOfRange(words, i +1, words.length).length;
-                if (order <= orderMax) {
-                    // Concat order + word
-                    newSentence = getSentenceInOrder(Arrays.copyOfRange(words, i, i + order + 1));
-                    entities.putAll(searchInContext(newSentence));
-                }
-            }
-        }
+        for (int i = 0; i < words.length; i++)
+            entities.putAll(searchInContext(newSentence));
         entitiesFound = fixAmbiguities(entities);
         return getEntitiesFound(entitiesFound);
     }
@@ -53,22 +43,16 @@ public class Searcher {
         return sb.toString().trim();
     }
 
-    private String getSentenceInOrder(String[] words) {
-        StringBuilder sb = new StringBuilder();
-        for (String word : words)
-            sb.append(word).append(" ");
-        return sb.toString().trim();
-    }
-
     private Map<String, String> searchInContext(String sentence) {
         List<Subject> entities = datastore.find(Subject.class).asList();
         Map<String, String> found = new HashMap<>();
         for (Subject entity : entities) {
             for (String value : entity.getValues()) {
                 String newValue = removeStopWordsFromSentence(value);
-                if (newValue.equals(sentence)) {
-                    found.put(value, entity.getId());
-                    break;
+                if (newValue.length() > 0) {
+                    String pattern = "(.*)" + newValue + "(.*)";
+                    if (sentence.matches(pattern))
+                        found.put(value, entity.getId());
                 }
             }
         }
