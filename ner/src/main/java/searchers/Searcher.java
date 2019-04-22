@@ -2,6 +2,7 @@ package searchers;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import managers.SentenceManager;
 import models.Stopword;
 import models.Subject;
 import org.mongodb.morphia.Datastore;
@@ -21,7 +22,7 @@ public class Searcher {
     public JsonArray searchForEntities(String sentence) {
         Map<String, String> entities = new HashMap<>();
         Map<String, String> entitiesFound;
-        String newSentence = removeStopWordsFromSentence(sentence);
+        String newSentence = SentenceManager.removeStopWordsFromSentence(sentence, datastore);
         String[] words = newSentence.split("\\s+");
         for (int i = 0; i < words.length; i++)
             entities.putAll(searchInContext(newSentence));
@@ -29,26 +30,12 @@ public class Searcher {
         return getEntitiesFound(entitiesFound);
     }
 
-    private String removeStopWordsFromSentence(String sentence) {
-        StringBuilder sb = new StringBuilder();
-        String[] words = sentence.split("\\s+");
-        List<String> stopwords = datastore.find(Stopword.class).asList()
-                                    .stream().map(Stopword::getId).collect(Collectors.toList());
-        if (words.length > 0) {
-            for (String word : words) {
-                if (!stopwords.contains(word.toLowerCase().trim()))
-                    sb.append(word).append(" ");
-            }
-        }
-        return sb.toString().trim();
-    }
-
     private Map<String, String> searchInContext(String sentence) {
         List<Subject> entities = datastore.find(Subject.class).asList();
         Map<String, String> found = new HashMap<>();
         for (Subject entity : entities) {
             for (String value : entity.getValues()) {
-                String newValue = removeStopWordsFromSentence(value);
+                String newValue = SentenceManager.removeStopWordsFromSentence(value, datastore);
                 if (newValue.length() > 0) {
                     String pattern = "(.*)" + newValue + "(.*)";
                     if (sentence.matches(pattern))
