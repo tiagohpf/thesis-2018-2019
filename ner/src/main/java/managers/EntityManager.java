@@ -3,7 +3,8 @@ package managers;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
-import filters.FileAggregator;
+import parsers.LocationsParser;
+import parsers.JSONAggregator;
 import models.Subject;
 import org.mongodb.morphia.Datastore;
 import org.slf4j.Logger;
@@ -29,7 +30,7 @@ public class EntityManager {
 
     public List<Subject> uploadEntities() {
         List<Subject> entities = new ArrayList<>();
-        List<String> jsonFiles = FileAggregator.getJSONFiles("data/");
+        List<String> jsonFiles = JSONAggregator.getJSONFiles("data/");
         for (String filename : jsonFiles) {
             Gson gson = new GsonBuilder().create();
             try {
@@ -40,6 +41,9 @@ public class EntityManager {
                 logger.error(String.format("ERROR: %s not found", filename));
             }
         }
+        Subject locations = LocationsParser.getLocations();
+        datastore.save(locations);
+        entities.add(locations);
         return entities;
     }
 
