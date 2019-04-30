@@ -14,7 +14,7 @@ public class LocationsParser {
         Logger logger = LoggerFactory.getLogger(LocationsParser.class);
         List<String> locations = new ArrayList<>(parseCountries(logger));
         locations.addAll(parseCounties(logger));
-        return new Subject("location", "location", "general", locations);
+        return new Subject("location", "location", "geral", locations);
     }
 
     private static Set<String> parseCountries(Logger logger) {

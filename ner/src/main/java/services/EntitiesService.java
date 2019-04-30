@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.mongodb.MongoClient;
 import managers.EntityManager;
+import managers.SentenceManager;
 import managers.StopwordManager;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
@@ -69,6 +70,17 @@ public class EntitiesService {
                 return gson.toJson(new StandardResponse(StatusResponse.SUCCESS, data));
             } catch (Exception ex) {
                 logger.error("ERROR: Cannot upload entities");
+                return gson.toJson(new StandardResponse(StatusResponse.ERROR));
+            }
+        });
+
+        get("/removeStopwords/:sentence", (req, resp) -> {
+            resp.type(responseType);
+            try {
+                JsonElement data = gson.toJsonTree(SentenceManager.removeStopWordsFromSentence(req.params(":sentence"), datastore));
+                return gson.toJson(new StandardResponse(StatusResponse.SUCCESS, data));
+            } catch (Exception ex) {
+                logger.error("ERROR: Cannot remove Stopwords");
                 return gson.toJson(new StandardResponse(StatusResponse.ERROR));
             }
         });
