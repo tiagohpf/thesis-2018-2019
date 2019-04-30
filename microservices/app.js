@@ -10,7 +10,7 @@ let DB_TRANSCRIPT = DB_PREFIX + 'transcriptions/';
 let DB_DIALOGUES = DB_TRANSCRIPT + 'dialogues';
 let DB_ENTITIES = DB_TRANSCRIPT + 'entities';
 let DB_AACONFIG = DB_PREFIX + 'alticeAssistantConfig/';
-let DB_AACORE = DB_PREFIX + 'alticeAssistantCore/';
+//let DB_AACORE = DB_PREFIX + 'alticeAssistantCore/';
 let DB_STUDENTS = DB_AACONFIG + 'students';
 //let DB_DIALOGUE_HIST = `${DB_AACONFIG}/analytics`
 let DB_DIALOGUE_HIST = 'http://10.113.134.43:8090/analytics/DialogueHistory';
@@ -102,16 +102,15 @@ app.get("/generateIntents/:fileId", (req, res) => {
 });
 
 function suggestWithGeneralFallback(studentPrograms, entitiesResponse, text) {
-// Foreach in all Programs
-    return Promise.all(studentPrograms.map(studentProgram => {
-        // Get Program's info
-        return getProgram("5cb5bd2d339bdccd5d171d59")
-        //return getProgram(studentProgram.programId)
-            .then(programResponse => {
+    return parseEntities(entitiesResponse.data).then((NER) => {
+        // Foreach in all Programs
+        return Promise.all(studentPrograms.map(studentProgram => {
+            // Get Program's info
+            return getProgram(studentProgram.programId).then(programResponse => {
+            //return getProgram("5cb5bd2d339bdccd5d171d59").then(programResponse => {
                 // Get entities and synonyms
                 let program = programResponse[0];
                 let entities = getEntitiesOfProgram(program);
-
                 return getMatchOfEntities(entitiesResponse.data, entities).then((entitiesMatch) => {
                     let code = program.code;
                     // Foreach Intent on runtimeConfig
@@ -124,19 +123,19 @@ function suggestWithGeneralFallback(studentPrograms, entitiesResponse, text) {
                                         .filter(entity => entity === parameter.displayName)
                                         .map(entity => ({
                                             message: text,
-                                            programId: "5cb5bd2d339bdccd5d171d59",
-                                            // programId: studentProgram.programId,
+                                            //programId: "5cb5bd2d339bdccd5d171d59",
+                                            programId: studentProgram.programId,
                                             intent: dataIntent.displayName,
-                                            NER: entity
-                                        }
-                                        ));
+                                            entity: entity,
+                                            NER: NER
+                                        }));
                                 });
                             }
-                            if (intentMatchesEntities(displayName, entitiesResponse.data)) {
+                            else if (intentMatchesEntities(displayName, entitiesResponse.data)) {
                                 return {
                                     message: text,
-                                    programId: "5cb5bd2d339bdccd5d171d59",
-                                    // programId: studentProgram.programId,
+                                    //programId: "5cb5bd2d339bdccd5d171d59",
+                                    programId: studentProgram.programId,
                                     intent: dataIntent.displayName,
                                 }
                             }
@@ -145,12 +144,11 @@ function suggestWithGeneralFallback(studentPrograms, entitiesResponse, text) {
                         });
                 });
             });
-    })).then((result) => {
-        return flattenArray(result);
-    }).catch(error => {
-        console.error(error)
-        return getAxiosErrorMessage(error);
-    });
+        })).then((result) => {
+            return flattenArray(result);
+        }).catch(error =>  getAxiosErrorMessage(error));
+    })
+
 }
 
 app.get("/suggestIntents/:studentName", (req, res) => {
@@ -189,7 +187,7 @@ app.get("/suggestIntents/:studentName", (req, res) => {
             result = flattenArray(result).map(instance => JSON.stringify(instance));
             res.send(Array.from(new Set(result)).map((string) => JSON.parse(string)));
         })
-        .catch(error => res.status(500).send(error));
+        .catch(error => res.send(error));
 });
 
 function generateTranscription(req) {
@@ -229,7 +227,7 @@ function generateEntities(id) {
                     if (dialogue.intent)
                         jsonObj.intent = dialogue.intent;
                     dialogues.push(jsonObj);
-                    return {dialogues};
+                    return { dialogues };
                 });
                 promises.push(p)
             } else
@@ -297,7 +295,7 @@ function getIntentsFromDialogues(dialogues, sourceData, sessionId) {
         return {
             question: dialogue.text,
             sessionId,
-            VA: {id: sourceData.sourceName, type: sourceData.sourceType},
+            VA: { id: sourceData.sourceName, type: sourceData.sourceType },
             isTest: true
         };
     });
@@ -311,7 +309,7 @@ function getIntentsFromDialogues(dialogues, sourceData, sessionId) {
             }).then(response => {
                 Object.assign(
                     dialogues[i],
-                    {intent: response.data.nlpResponse.intent});
+                    { intent: response.data.nlpResponse.intent });
             })
         })
     }, Promise.resolve()).catch(error => {
@@ -327,7 +325,7 @@ function getIntent(sentence, sourceData, sessionId) {
         data: {
             question: sentence,
             sessionId,
-            VA: {id: sourceData.sourceName, type: sourceData.sourceType},
+            VA: { id: sourceData.sourceName, type: sourceData.sourceType },
             isTest: true
         }
     }).then(response => response.data.nlpResponse.intent);
@@ -364,12 +362,12 @@ function getEntitiesOfProgram(program) {
                 values: Array.from(new Set(synonyms))
             };
         });
-        entities.push({displayName: displayName, values: entitiesFound});
+        entities.push({ displayName: displayName, values: entitiesFound });
     });
     return entities;
 }
 const parseNerEntities = (nerEntities) => {
-   return Promise.all(nerEntities.map(nerEntity => manageSentence(nerEntity._id)))
+    return Promise.all(nerEntities.map(nerEntity => manageSentence(nerEntity._id)))
 };
 
 const parseProgramEntities = (programEntities) => {
@@ -392,31 +390,28 @@ function getMatchOfEntities(nerEntities, programEntities) {
         parseNerEntities(nerEntities),
         parseProgramEntities(programEntities)
     ]).then((response) => {
-        let parsedNer = response[0], parsedEntities = flattenArray(response[1]);   
+        let parsedNer = response[0], parsedEntities = flattenArray(response[1]);
         let entityMatches = [];
         parsedNer.forEach(nerEntity => {
             parsedEntities.filter(entity => entity.values.includes(nerEntity))
-                        .map(entity => entityMatches.push(entity.entity));
+                .map(entity => entityMatches.push(entity.entity));
         })
         return entityMatches;
     })
 }
 
-function getSuggestionsOfIntent(collectionData) {
-    let suggestions = [];
-    if (collectionData.parameters.length > 0) {
-        let customParameters = getCustomParameters(collectionData.parameters);
-        console.log("Compare parameters");
-    }
-    else
-        console.log("Compare to intent");
-    return suggestions;
+function parseEntities(entities) {
+    return Promise.all(entities.map(entity => getValuesOfEntity(entity._id)
+        .then(parsedValues => ({
+            entity: parsedValues._id,
+            values: parsedValues.values
+        })))).then(response => response);
 }
 
-function getIntentsUsed(intentINFO, intents = []) {
-    if (intents.length > 0)
-        return intentINFO.collectionData.filter(intent => intents.includes(intent.displayName));
-    return intentINFO.collectionData;
+function getValuesOfEntity(entity) {
+    return axios.get(`${DB_ENTITIES}/${entity}`)
+        .then(response => response.data)
+        .catch(error => getAxiosErrorMessage(error));
 }
 
 function flattenArray(array) {
@@ -469,11 +464,11 @@ const filterBySpeaker = (dialogues, speaker) => dialogues.filter(dialogue => par
 
 const getSourceTypeAndName = (program, student) => {
     if (program)
-        return {sourceName: program, sourceType: 'PROGRAM'};
+        return { sourceName: program, sourceType: 'PROGRAM' };
     else if (student)
-        return {sourceName: student, sourceType: 'STUDENT'};
+        return { sourceName: student, sourceType: 'STUDENT' };
     else
-        return {sourceName: 'pin_puk_Transcriptor', sourceType: 'PROGRAM'};
+        return { sourceName: 'pin_puk_Transcriptor', sourceType: 'PROGRAM' };
 }
 
 const getAxiosErrorMessage = (e) => {
@@ -490,9 +485,6 @@ const getAxiosErrorMessage = (e) => {
 const manageSentence = (sentence) => {
     let newSentence = sentence.replace(/[-_,&]/, ' ').toLowerCase();
     return axios.get(encodeURI(`${SW_SERVICE}${newSentence}`))
-        .then(response => {
-            //console.log('Parsed:', response.data)
-            return response.data.data;
-        })
+        .then(response => response.data.data)
         .catch(error => getAxiosErrorMessage(error));
 }
