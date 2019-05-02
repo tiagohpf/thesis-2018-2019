@@ -158,6 +158,12 @@ app.get("/validateSuggestion/:id", (req, res) => {
         .catch(error => res.send(getAxiosErrorMessage(error)));
 });
 
+app.get("/ignoreSuggestion/:id", (req, res) => {
+    ignoreSuggestion(req.params.id)
+        .then(response => res.send(response))
+        .catch(error => res.send(getAxiosErrorMessage(error)));
+});
+
 app.get("/getProgramName/:id", (req, res) => {
     axios.get(`${DB_AACONFIG}programs/${req.params.id}`)
         .then(response => res.send(response.data.name))
@@ -187,15 +193,23 @@ function uploadSuggestions(suggestions) {
 }
 
 function updateSuggestionValidation(id) {
-    console.log(id);
     return getSuggestion(id)
         .then(response => {
             let validated = false;
             if (response.validated === false)
                 validated = true;
-            console.log(validated);
             return axios.patch(utf8.encode(`${DB_AACONFIG}intentsSuggestions/${id}`), {
                 validated,
+                lastUpdate: new Date().toISOString()})
+                .then(r => r);
+        }).catch(error => getAxiosErrorMessage(error))
+}
+
+function ignoreSuggestion(id) {
+    return getSuggestion(id)
+        .then(response => {
+            return axios.patch(utf8.encode(`${DB_AACONFIG}intentsSuggestions/${id}`), {
+                ignore: true,
                 lastUpdate: new Date().toISOString()})
                 .then(r => r);
         }).catch(error => getAxiosErrorMessage(error))
@@ -380,7 +394,8 @@ function suggestWithGeneralFallback(studentPrograms, entitiesResponse, text) {
                                             entity: entity,
                                             NER: NER,
                                             lastUpdate: new Date().toISOString(),
-                                            validated: false
+                                            validated: false,
+                                            ignore: false
                                         }));
                                 });
                             }
@@ -391,7 +406,8 @@ function suggestWithGeneralFallback(studentPrograms, entitiesResponse, text) {
                                     programId: studentProgram.programId,
                                     intent: dataIntent.displayName,
                                     lastUpdate: new Date().toISOString(),
-                                    validated: false
+                                    validated: false,
+                                    ignore: false
                                 }
                             }
                             console.log('No matches with parameters/entities');
