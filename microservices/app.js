@@ -2,6 +2,7 @@ let express = require('express');
 let axios = require('axios');
 let bodyParser = require('body-parser');
 let Promise = require('es6-promise').Promise;
+const utf8 = require('utf8');
 
 let AUDIO_FILES_DIR = 'data/audio_files/';
 //let DB_PREFIX = 'http://amalia-cluster-master.c.ptin.corppt.com:8091/';
@@ -101,55 +102,11 @@ app.get("/generateIntents/:fileId", (req, res) => {
         .catch(error => res.send(getAxiosErrorMessage(error)));
 });
 
-function suggestWithGeneralFallback(studentPrograms, entitiesResponse, text) {
-    return parseEntities(entitiesResponse.data).then((NER) => {
-        // Foreach in all Programs
-        return Promise.all(studentPrograms.map(studentProgram => {
-            // Get Program's info
-            return getProgram(studentProgram.programId).then(programResponse => {
-            //return getProgram("5cb5bd2d339bdccd5d171d59").then(programResponse => {
-                // Get entities and synonyms
-                let program = programResponse[0];
-                let entities = getEntitiesOfProgram(program);
-                return getMatchOfEntities(entitiesResponse.data, entities).then((entitiesMatch) => {
-                    let code = program.code;
-                    // Foreach Intent on runtimeConfig
-                    return program.runtimeConfig.intentINFO[0].collectionData
-                        .map(dataIntent => {
-                            let displayName = dataIntent.displayName.replace(`${code}_`, '');
-                            if (dataIntent.parameters.length > 0) {
-                                return dataIntent.parameters.map(parameter => {
-                                    return entitiesMatch
-                                        .filter(entity => entity === parameter.displayName)
-                                        .map(entity => ({
-                                            message: text,
-                                            //programId: "5cb5bd2d339bdccd5d171d59",
-                                            programId: studentProgram.programId,
-                                            intent: dataIntent.displayName,
-                                            entity: entity,
-                                            NER: NER
-                                        }));
-                                });
-                            }
-                            else if (intentMatchesEntities(displayName, entitiesResponse.data)) {
-                                return {
-                                    message: text,
-                                    //programId: "5cb5bd2d339bdccd5d171d59",
-                                    programId: studentProgram.programId,
-                                    intent: dataIntent.displayName,
-                                }
-                            }
-                            console.log('No matches with parameters/entities');
-                            return [];
-                        });
-                });
-            });
-        })).then((result) => {
-            return flattenArray(result);
-        }).catch(error =>  getAxiosErrorMessage(error));
-    })
-
-}
+app.get("/getSuggestionsOfIntents", (req, res) => {
+    axios.get(`${DB_AACONFIG}intentsSuggestions`)
+        .then(response => res.send(response.data._embedded))
+        .catch(error => res.send(getAxiosErrorMessage(error)));
+});
 
 app.get("/suggestIntents/:studentName", (req, res) => {
     let student;
@@ -174,6 +131,7 @@ app.get("/suggestIntents/:studentName", (req, res) => {
                         if (intent === "NO_INTENT" || intent === "fallbackIntent") {
                             console.log("General fallback");
                             return suggestWithGeneralFallback(student.programs, entitiesResponse, text)
+                            console.log(p);
                         } else {
                             console.log("Specific fallbacks");
                             return Promise.resolve('Specific Fallback');
@@ -185,10 +143,73 @@ app.get("/suggestIntents/:studentName", (req, res) => {
         .then(result => {
             console.log('Done Generating suggestions');
             result = flattenArray(result).map(instance => JSON.stringify(instance));
-            res.send(Array.from(new Set(result)).map((string) => JSON.parse(string)));
+            result = Array.from(new Set(result));
+            return uploadSuggestions(result)
+                .then(() => {
+                    res.send(result.map((string) => JSON.parse(string)))
+                });
         })
         .catch(error => res.send(error));
 });
+
+app.get("/validateSuggestion/:id", (req, res) => {
+    updateSuggestionValidation(req.params.id)
+        .then(response => res.send(response))
+        .catch(error => res.send(getAxiosErrorMessage(error)));
+});
+
+app.get("/getProgramName/:id", (req, res) => {
+    axios.get(`${DB_AACONFIG}programs/${req.params.id}`)
+        .then(response => res.send(response.data.name))
+        .catch(error => {
+            if (error.response.status === 404)
+                res.send([]);
+        });
+});
+
+function uploadSuggestions(suggestions) {
+    let promises = suggestions.map(suggestion => {
+        return getSuggestion(JSON.parse(suggestion)._id)
+                .then(response => {
+                    // Post just new instances
+                    if (response.length === 0) {
+                        return axios({
+                            method: 'post',
+                            url: `${DB_AACONFIG}intentsSuggestions`,
+                            headers: {"Content-Type": "application/json"},
+                            data: suggestion
+                        }).then(response => response);
+                    }
+                })
+                .catch(error => getAxiosErrorMessage(error))
+    })
+    return Promise.all(promises);
+}
+
+function updateSuggestionValidation(id) {
+    console.log(id);
+    return getSuggestion(id)
+        .then(response => {
+            let validated = false;
+            if (response.validated === false)
+                validated = true;
+            console.log(validated);
+            return axios.patch(utf8.encode(`${DB_AACONFIG}intentsSuggestions/${id}`), {
+                validated,
+                lastUpdate: new Date().toISOString()})
+                .then(r => r);
+        }).catch(error => getAxiosErrorMessage(error))
+}
+
+function getSuggestion(id) {
+    return axios.get(utf8.encode(`${DB_AACONFIG}intentsSuggestions/${id}`))
+        .then(response => response.data)
+        .catch(error => {
+            if (error.response.status === 404)
+                return [];
+            return error;
+        });
+}
 
 function generateTranscription(req) {
     let params = createRequestParams(req);
@@ -329,6 +350,60 @@ function getIntent(sentence, sourceData, sessionId) {
             isTest: true
         }
     }).then(response => response.data.nlpResponse.intent);
+}
+
+function suggestWithGeneralFallback(studentPrograms, entitiesResponse, text) {
+    return parseEntities(entitiesResponse.data).then((NER) => {
+        // Foreach in all Programs
+        return Promise.all(studentPrograms.map(studentProgram => {
+            // Get Program's info
+            return getProgram(studentProgram.programId).then(programResponse => {
+            //return getProgram("5cb5bd2d339bdccd5d171d59").then(programResponse => {
+                // Get entities and synonyms
+                let program = programResponse[0];
+                let entities = getEntitiesOfProgram(program);
+                return getMatchOfEntities(entitiesResponse.data, entities).then((entitiesMatch) => {
+                    let code = program.code;
+                    // Foreach Intent on runtimeConfig
+                    return program.runtimeConfig.intentINFO[0].collectionData
+                        .map(dataIntent => {
+                            let displayName = dataIntent.displayName.replace(`${code}_`, '');
+                            if (dataIntent.parameters.length > 0) {
+                                return dataIntent.parameters.map(parameter => {
+                                    return entitiesMatch
+                                        .filter(entity => entity === parameter.displayName)
+                                        .map(entity => ({
+                                            _id: `${text}_${studentProgram.programId}`,
+                                            message: text,
+                                            programId: studentProgram.programId,
+                                            intent: dataIntent.displayName,
+                                            entity: entity,
+                                            NER: NER,
+                                            lastUpdate: new Date().toISOString(),
+                                            validated: false
+                                        }));
+                                });
+                            }
+                            else if (intentMatchesEntities(displayName, entitiesResponse.data)) {
+                                return {
+                                    _id: `${text}_${studentProgram.programId}`,
+                                    message: text,
+                                    programId: studentProgram.programId,
+                                    intent: dataIntent.displayName,
+                                    lastUpdate: new Date().toISOString(),
+                                    validated: false
+                                }
+                            }
+                            console.log('No matches with parameters/entities');
+                            return [];
+                        });
+                });
+            });
+        })).then((result) => {
+            return flattenArray(result);
+        }).catch(error =>  getAxiosErrorMessage(error));
+    })
+
 }
 
 function getStudent(studentName) {
