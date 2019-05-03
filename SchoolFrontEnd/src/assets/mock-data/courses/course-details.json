@@ -1,0 +1,212 @@
+{
+  "type": "page",
+  "id": "pageCourseDetails",
+  "header": {
+    "id": "pageHeader",
+    "details": [
+      {
+        "type": "label",
+        "text": null,
+        "class": "col-sm-12 back",
+        "value": "<i class='icomoon icon-go' ></i> <span>{{@fv()@i18n('generic___operations___back')}}</span>",
+        "navigateTo": "/students/{{studentInfo___studentId}}",
+        "dynamicProps": {
+          "hidden": "'{{coursePreviousRoute}}' == 'course'"
+        }
+      },
+      {
+        "type": "label",
+        "text": null,
+        "class": "col-sm-12 back",
+        "value": "<i class='icomoon icon-go' ></i> <span>{{@fv()@i18n('generic___operations___back')}}</span>",
+        "navigateTo": "/knowledgecenter",
+        "dynamicProps": {
+          "hidden": "'{{coursePreviousRoute}}' == 'student'"
+        }
+      },
+      {
+        "type": "wrapper",
+        "id": "pageEntityDetails_wrapper",
+        "class": "col-sm-12",
+        "pathToValue": "",
+        "dynamicProps": {
+          "hidden": "'{{coursePreviousRoute}}' == 'course'"
+        },
+        "details": [
+          {
+            "type": "context",
+            "id": "studentInfo",
+            "dynamicProps": {
+              "value": "JSON.parse('{{studentData}}')"
+            }
+          },
+          {
+            "type": "wrapper",
+            "id": "imageLabel_navBar",
+            "class": "col-sm-12",
+            "pathToValue": [
+              "pageEntityDetails_wrapper"
+            ],
+            "dynamicProps": {
+              "hidden": "{{studentInfo}} != null"
+            },
+            "details": [
+              {
+                "type": "image",
+                "id": "courseStudentImage",
+                "class": "col-sm-4",
+                "pathToValue": [
+                  "'{{ImageService}}/students/'+ '{{studentInfo___studentId}}'"
+                ]
+              },
+              {
+                "type": "label",
+                "id": "coursStudentName",
+                "class": "coursStudentName",
+                "pathToValue": [
+                  "studentInfo",
+                  "studentName"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "urlResource": [
+    {
+      "key": "path",
+      "value": "{{AppAPIBotConfig}}/courses"
+    },
+    {
+      "key": "queryString",
+      "value": {
+        "filter": "{\"_id\": { \"$oid\":\"[[id]]\"}}"
+      }
+    },
+    {
+      "key": "pathToMainData",
+      "value": [
+        "_embedded",
+        "0"
+      ]
+    },
+    {
+      "key": "reload",
+      "value": false
+    },
+    {
+      "key": "headers",
+      "value": {
+        "Authorization": "Bearer {{token}}",
+        "IXS": "{{IXS_id}}"
+      }
+    }
+  ],
+  "_sidebar": [
+    {
+      "type": "filter",
+      "id": "courseProgramsFilter",
+      "mappingId": [
+        "courseProgramsMainCardList"
+      ],
+      "details": [
+        {
+          "type": "textbox",
+          "subType": "autocomplete",
+          "id": "nameFilter",
+          "apiFieldName": "name",
+          "text": "Name",
+          "pathToValueList": "_embedded",
+          "pathToValue": "name",
+          "validator": {
+            "autocomplete": [
+              {
+                "urlResource": [
+                  {
+                    "key": "path",
+                    "value": "{{SchoolBOT}}/programs"
+                  },
+                  {
+                    "key": "queryString",
+                    "value": {
+                      "keys": "{\"name\":1}",
+                      "filter": "{\"name\":{\"$regex\":\"(?i){{nameFilter}}.*\"}, \"IXS\" :\"{{IXS_id}}\" }"
+                    }
+                  },
+                  {
+                    "key": "headers",
+                    "value": {
+                      "Authorization": "Bearer {{token}}",
+                      "IXS": "{{IXS_id}}"
+                    }
+                  }
+                ]
+              },
+              "no records matched"
+            ]
+          }
+        },
+        {
+          "type": "input-checkbox",
+          "id": "statusFilter",
+          "apiFieldName": "status",
+          "text": "application___status",
+          "filterTemplate": "{\"$in\":\"{{statusFilter}}\"}",
+          "valueList": [
+            {
+              "key": 1,
+              "value": "&nbsp; <i class=\"fa fa-certificate fx-icon text-info\"></i>&nbsp;{{@fv()@i18n('program___status_types___new')}}"
+            },
+            {
+              "key": 3,
+              "value": "&nbsp;<i class=\"fa fa-check fx-icon text-success\"></i>&nbsp;{{@fv()@i18n('program___status_types___published')}}"
+            },
+            {
+              "key": 4,
+              "value": "&nbsp; <i class=\"fa fa-check fx-icon text-success\"></i>&nbsp;{{@fv()@i18n('program___status_types___published')}}&nbsp;&nbsp;<i class=\"fa fa-pencil-square-o\"></i>"
+            }
+          ]
+        },
+        {
+          "type": "dates-interval",
+          "id": "lastUpdate",
+          "text": "application___lastUpdate",
+          "valueList": [
+            {
+              "value": "last week",
+              "text": "generic___dateInterval___last7Days"
+            },
+            {
+              "value": "last month",
+              "text": "generic___dateInterval___lastMonth"
+            },
+            {
+              "value": "customInterval",
+              "text": "generic___dateInterval___rangePeriod"
+            }
+          ],
+          "_parameters": [
+            {
+              "key": "preSetPeriod",
+              "value": "last month"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tabs": [
+    {
+      "id": "courseDetailProperties",
+      "text": "generic___properties",
+      "components": [
+        {
+          "id": "courseDetailPropertiesTab",
+          "mockToLoad": "courses/course-props"
+        }
+      ]
+    }
+  ]
+}

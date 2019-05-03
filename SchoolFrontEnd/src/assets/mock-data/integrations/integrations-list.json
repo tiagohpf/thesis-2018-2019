@@ -1,0 +1,123 @@
+{
+    "type": "page",
+    "id": "pageEntityDetails",
+    "tabs": [
+        {
+            "id": "integrationsCenterMainContainer",
+            "components": [
+                {
+                    "type": "initParameters",
+                    "details": [
+                        {
+                            "type": "initCards",
+                            "id": "integrationsList",
+                            "icon": "fa fa-th-large",
+                            "_class": "col-sm-6 horizontal-form",
+                            "urlResource": [
+                                {
+                                    "key": "headers",
+                                    "value": {
+                                        "Content-Type": "application/json",
+                                        "Authorization": "Bearer {{token}}",
+                                        "IXS": "{{IXS_id}}"
+                                    }
+                                },
+                                {
+                                    "key": "reload",
+                                    "value": false
+                                },
+                                {
+                                    "key": "path",
+                                    "value": "{{SchoolBOT}}/integrations"
+                                },
+                                {
+                                    "key": "queryString",
+                                    "value": {
+                                        "sort_by": "order"
+                                    }
+                                }
+                            ],
+                            "pathToValueList": "_embedded",
+                            "operations": {},
+                            "details": [
+                                {
+                                    "type": "json",
+                                    "id": "imageName",
+                                    "hidden": true,
+                                    "pathToValue": "imageName"
+                                },
+                                
+                                {
+                                    "type": "image",
+                                    "id": "image",
+                                    "pathToValue": [
+                                        "'/assets/images/integrations/'+ $this['imageName']+'.png'"
+                                    ]
+                                },
+                                {
+                                    "type": "wrapper",
+                                    "text": null,
+                                    "pathToValue": "",
+                                    "details": [
+                                        {
+                                            "type": "label",
+                                            "id": "name",
+                                            "text": "application___name",
+                                            "pathToValue": "name",
+                                            "_navigateTo": "integrations/{{integrationsList___name}}"
+                                        },
+                                        {
+                                            "type": "label",
+                                            "id": "description",
+                                            "text": "application___description",
+                                            "pathToValue": "description"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "json",
+                                    "id": "lowercaseName",
+                                    "hidden": true,
+                                    "pathToValue": "imageName"
+                                },
+                                {
+                                    "type": "operations",
+                                    "id": "menuOperations",
+                                    "class": "col-md-12 button_Go",
+                                    "text": null,
+                                    "operations": {
+                                        "size": 1,
+                                        "parameters": [
+                                            {
+                                                "type": "openModal",
+                                                "dynamicProps": {
+                                                    "disabled": "'{{hasRefPlan}}' == 'true'",
+                                                    "mockToLoad": "'integrations/integration-{{lowercaseName}}'"
+                                                },
+                                                "id": "integrationsButton",
+                                                "_navigateTo": "integrations/{{integrationsList___name}}",
+                                                "class": "col-md-12 btn-default",
+                                                "text": "application___configure",
+                                                "size":"lg"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "WARNING": "necessario estar nesta posicao para poder avaliar os elementos dependentes no dynamicProps",
+                                    "type": "label",
+                                    "id": "hasRefPlan",
+                                    "hidden": true,
+                                    "pathToValue": [
+                                        "refPlans",
+                                        "$this.length == 0 ? 'true' : 'false'"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

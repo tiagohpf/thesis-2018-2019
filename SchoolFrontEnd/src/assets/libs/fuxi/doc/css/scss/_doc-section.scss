@@ -1,0 +1,65 @@
+﻿/*DOCS SECTION*/
+.fx-docs-section {
+    margin-bottom: 60px;
+    max-width: 1170px;
+
+    h2[id] {
+        background: $doc-section-heading-bg-color;
+        display: inline-block;
+        margin-top: 0;
+        max-width: 100%;
+        min-width: 150px;
+        position: relative;
+        padding: 15px 10px;
+
+        &:before,
+        &:after {
+            border-right: 40px solid transparent;
+            border-top: 54px solid $doc-section-heading-bg-color;
+            bottom: 0;
+            content:"";
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        &:before {
+            border-left: 40px solid transparent;
+            border-right: 0 solid transparent;
+            border-bottom: 54px solid $color-white;
+            border-top: none;
+        }
+    }
+
+    h3[id] {
+        margin-top: 40px;
+    }
+
+    h4 {
+        margin-top: 20px;
+    }
+
+    .fx-docs-section-title {
+        @include text-truncate();
+        display: block;
+        padding-right: 30px;
+    }
+}
+
+.fx-method-desc {
+    margin: 40px 0;
+}
+
+h4+.fx-method-desc {
+    margin-top: 0;
+}
+
+.fx-table-with-codemirror .fx-col-type {
+    width: 100px;
+}
+
+@media screen and (min-width: 768px) {
+    .fx-table-with-codemirror {
+        table-layout: fixed;
+    }
+}

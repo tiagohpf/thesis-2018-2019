@@ -1,0 +1,25 @@
+<div class="date-time-picker">
+    <input-select *ngIf="intervals" [inputParameters]="intervals"></input-select>
+    <div *ngIf="!intervals || intervals.value == 'customInterval'" class="range-period">
+        <div
+            class="group-date-picker"
+            [id]="props?.id ? 'wct-dateInterval-from-' + props.id : ''">
+            <span class="align2textbox">{{'generic___from' | myI18n}}</span><br>
+            <div class="input-group date date-picker" id="input-last-communication-from">
+                <app-wct-datepicker
+                    [inputParameters]="props"
+                    [valuePosition]="'$gte'"></app-wct-datepicker>
+            </div>
+        </div>
+        <div
+            class="group-date-picker"
+            [id]="props?.id ? 'wct-dateInterval-to-' + props.id : ''">
+            <span class="align2textbox">{{'generic___to' | myI18n}}</span><br>
+            <div class="input-group date date-picker" id="input-last-communication-to">
+                <app-wct-datepicker
+                    [inputParameters]="props"
+                    [valuePosition]="'$lt'"></app-wct-datepicker>
+            </div>
+        </div>
+    </div>
+</div>

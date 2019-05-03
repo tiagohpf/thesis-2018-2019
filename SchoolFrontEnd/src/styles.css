@@ -1,0 +1,99 @@
+/* You can add global styles to this file, and also import other style files */
+.circle-red {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    background: red;
+  }
+  
+  .circle-green {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    background: green;
+  }
+  
+  .circle-yellow {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    background: yellow;
+  }
+  
+  .test-description {
+    height: 20px;
+    padding-top: 2px;
+    padding-left: 5px;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .remove-max-width .form-control {
+    border-radius: 0;
+    background-clip: padding-box;
+    max-width: none !important;
+  }
+  
+  .force-pull-right {
+    float: right;
+  }
+  
+  .custom-csv-mandatory {
+    color: red;
+  }
+  
+  .fx-splitter-bar {
+    /* revogar esta regra quando o issue do splitter tiver resolvido */
+    display: none;
+  }
+  
+  #toast-container.toast-top-full-width > div, #toast-container.toast-bottom-full-width > div {
+    bottom: 0;
+    right: 0;
+    width: 60% !important;
+  }
+  
+  .remove-list-icon {
+    list-style-type: none;
+  }
+  
+  .full-width-alert-info .form-group .alert {
+    max-width: 100%;
+  }
+  
+  .table .fx-tag-m{
+    max-width: none!important; 
+  }
+
+.fx-tag, .fx-tag-m, .fx-tag-lg {
+  background: #ebebeb;
+  border: 1px solid #d6d6d6;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 4px 4px 0;
+  max-width: 300px;
+  padding: 1px 3px;
+  position: relative; }
+  .fx-tag .fx-tag-remove, .fx-tag-m .fx-tag-remove, .fx-tag-lg .fx-tag-remove {
+    cursor: pointer;
+    position: absolute;
+    top: 4px; }
+
+.fx-tag-m {
+  padding: 3px 5px; }
+  
+  .table .color-fx-tag-m .fx-tag-m{
+    background-color: white;
+  }
+  

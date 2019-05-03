@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge; text/html;" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0,  user-scalable=yes" />
+    <link rel="icon" href="/fuxi/common/html/css/images/favicon.ico" type="image/x-icon" />
+    <title>Template detalhe</title>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/fuxi/lib/select2/3.4/css/select2.css" rel="stylesheet">
+    <link href="/fuxi/lib/select2/3.4/css/select2-bootstrap.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.min.css" />
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+    <!-- Respond.js - IE8 support of media queries -->
+    <!--[if lt IE 9]>
+    <script src="/fuxi/lib/respond/1.4/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="fx-push-footer fx-full-height">
+        <header id="fx-header">
+            <nav class="fx-navbar" role="navigation">
+                <a class="fx-brand" href="#"><h1 class="fx-logo-brand">Fuxi</h1></a>
+            </nav>
+            <!-- breadcrumb -->
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#"><i class="fuxicons fuxicons-home"></i>Início</a>
+                </li>
+                <li>
+                    <a href="#">Link</a>
+                </li>
+                <li class="active">
+                    Ativo
+                </li>
+            </ul>
+        </header>
+        <div class="fx-prevent-content-behind-footer fx-full-height">
+
+            <div class="fx-main-content-wrapper">
+
+                <div class="fx-entity-header fx-fixed-position" data-fix-to="top" data-calc-height="true">
+                    <div class="fx-entity-header-inner">
+                        <div class="fx-entity-header-headings clearfix">
+                            <div class="pull-left fx-constraint">
+                                <h1><i class="glyphicon glyphicon-hdd"></i> Título</h1>
+                            </div>
+                            <div class="pull-right">
+                                <a class="btn btn-default btn-sm" title="editar" href="template-edit-equip-version.html"> <i class="glyphicon glyphicon-pencil"></i> </a>
+                                <button class="btn btn-default btn-sm" title="atualizar">
+                                    <i class="glyphicon glyphicon-refresh"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav nav-tabs fx-main-tabs">
+                        <li class="active">
+                            <a href="#tab-vertical-form" data-toggle="tab">Formulário Vertical</a>
+                        </li>
+                        <li>
+                            <a href="#tab-horizontal-form" data-toggle="tab">Formulário Horizontal</a>
+                        </li>
+                        <li>
+                            <a href="#tab-readonly-form" data-toggle="tab">Formulário em modo de leitura</a>
+                        </li>
+                        <li>
+                            <a href="#tab-form-with-groups" data-toggle="tab">Formulário com grupos</a>
+                        </li>
+                        <li>
+                            <a href="#tab-form-with-vertical-groups" data-toggle="tab">Formulário com grupos verticais</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tab-content fx-main-tab-content">
+                    <div class="tab-pane active" id="tab-vertical-form">
+                        <div class="fx-tab-pane-inner">
+                            <form>
+                                <div class="form-group">
+                                    <label class="control-label fx-required-field" for="form-vertical-username">Username</label>
+                                    <div>
+                                        <input id="form-vertical-username" type="text" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label fx-required-field" for="form-vertical-password">Password</label>
+                                    <div>
+                                        <input id="form-vertical-password" type="password" class="form-control" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="tab-horizontal-form">
+                        <div class="fx-tab-pane-inner">
+                            <div style="padding: 0 15px;">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2 fx-required-field" for="form-horizontal-username">
+                                            Username
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input id="form-horizontal-username" type="text" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2 fx-required-field" for="form-horizontal-password">
+                                            Password
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input id="form-horizontal-password" type="password" class="form-control" />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="tab-readonly-form">
+                        <div class="fx-tab-pane-inner">
+                            <div style="padding: 0 15px;">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2">
+                                            Username
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <p class="form-control-static">João Silva</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2">
+                                            Morada
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <p class="form-control-static">--</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="tab-form-with-groups">
+                        <div class="fx-form-content fx-expandable-form-blocks">
+                            <div class="form-horizontal">
+                                <div class="fx-form-block">
+                                    <div class="fx-form-block-help fx-first">
+                                        <h6><i class="caret"></i>Grupo 1</h6>
+                                        <p>
+                                            Breve descrição do grupo 1
+                                        </p>
+                                    </div>
+                                    <div class="fx-form-block-controls fx-first">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label fx-required-field" for="form-group-username">Nome</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="form-group-username">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="form-group-address" class="col-sm-2 control-label">Morada</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="form-group-address">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="fx-form-block">
+                                    <div class="fx-form-block-help">
+                                        <h6><i class="caret"></i>Grupo 2</h6>
+                                        <p>Breve descrição do grupo 2</p>
+                                    </div>
+                                    <div class="fx-form-block-controls">
+                                        <div class="form-group">
+                                            <label for="form-group-password" class="col-sm-2 control-label fx-required-field">Password</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="form-group-password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="form-group-confirm-password" class="col-sm-2 control-label fx-required-field">Confirme Password</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="form-group-confirm-password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="tab-form-with-vertical-groups">
+                        <div class="fx-form-content fx-expandable-form-blocks">
+                            <div class="form-horizontal fx-toggle-form-vertical">
+                                <div class="fx-form-block">
+                                    <div class="fx-form-block-help fx-first">
+                                        <h6><i class="caret"></i>Grupo 1</h6>
+                                        <p>
+                                            Breve descrição do grupo 1
+                                        </p>
+                                    </div>
+                                    <div class="fx-form-block-controls fx-first">
+                                        <div class="form-group">
+                                            <label for="form-group-username-alt" class="control-label fx-required-field">Nome</label>
+                                            <div>
+                                                <input type="text" id="form-group-username-alt" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="form-group-address-alt">Morada</label>
+                                            <div>
+                                                <input type="text" id="form-group-address-alt" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="fx-form-block">
+                                    <div class="fx-form-block-help">
+                                        <h6><i class="caret"></i>Grupo 2</h6>
+                                        <p>Breve descrição do grupo 2</p>
+                                    </div>
+                                    <div class="fx-form-block-controls">
+                                        <div class="form-group">
+                                            <label class="control-label fx-required-field" for="form-group-password-alt">Password</label>
+                                            <div>
+                                                <input type="password" id="form-group-password-alt" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label fx-required-field" for="form-group-confirm-password-alt">Confirme Password</label>
+                                            <div>
+                                                <input type="password" id="form-group-confirm-password-alt" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- FOOTER ABOUT -->
+        <!--# include file="/fuxi/partials/html/partial-footer-about.html" -->
+    </div>
+
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+    <script src="/fuxi/lib/select2/3.4/js/select2.min.js"></script>
+    <script src="/fuxi/lib/select2/3.4/js/select2_locale_pt-PT.js"></script>
+    <script src="/fuxi/common/exec/fuxi.min.js"></script>
+    <!--script src="/fuxi/wireframes/exec/template-detail.min.js"></script-->
+    <!-- RESOURCES EN / PT : include according culture-->
+    <!--<script src="/fuxi/resources/fuxi_en.js" language="javascript" type="text/javascript"></script>-->
+    <script src="/fuxi/resources/fuxi_pt.js" language="javascript" type="text/javascript"></script>
+    <script>
+        $(function () {
+            FUXI.Header.init();
+            FUXI.Splitter.init();
+            FUXI.ExpandableForm.init();
+            FUXI.FixedPositions.init();
+        });
+    </script>
+</body>
+</html>

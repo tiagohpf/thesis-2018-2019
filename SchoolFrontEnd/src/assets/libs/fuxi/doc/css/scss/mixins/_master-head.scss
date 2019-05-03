@@ -1,0 +1,16 @@
+﻿@mixin master-header-variant ($color, $background, $font-family, $heading-color) {
+    background: $background;
+    color: $color;
+    font-size: 18px;
+    margin-bottom: 35px;
+    padding: 48px 15px;
+
+    h1 {
+        color: $heading-color;
+        margin-top: 0;
+    }
+
+    p {
+        font-family: $font-family;
+    }
+}

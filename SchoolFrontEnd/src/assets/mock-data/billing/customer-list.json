@@ -1,0 +1,234 @@
+{
+    "type": "initParameters",
+    "id": "customerListPage",
+    "details": [
+        {
+            "type": "textbox",
+            "id": "selectedPlanId",
+            "pathToValue": ["'{{plan-id}}'"],
+            "hidden":false
+        },
+        
+      {
+        "type": "operations",
+        "id": "addCustomerButton",
+        "operations": [
+          {
+            "size": 1,
+            "parameters": [
+              {
+                "_type": "openModal",
+                "type": "updatePage",
+                "id": "buttonCreate",
+                "text": "New Customer",
+                "class": "btn-primary",
+                "_mockToLoad": "billing/add-customer",
+                "size": "lg",
+                "parameters": [
+                    {
+                        "key": "updatePageParameter",
+                        "value": {
+                            "newCustomer": {
+                                "hidden": false
+                            },
+
+                            "customerName"     :{"hidden": false},
+                            "email"            :{"hidden": false},
+                            "addressName"      :{"hidden": false},
+                            "city"             :{"hidden": false},
+                            "country"          :{"hidden": false},
+                            "customerVat"      :{"hidden": false},
+                            "phone"            :{"hidden": false},
+                            "spacer"           :{"hidden": false},
+                            "newCustomerButtons":{"hidden": false},
+                            "newCustomerCancel":{"hidden": false},
+                            "customerListCards": {
+                              "hidden":true
+                          },
+                            "addCustomerButton": {
+                                "hidden":true
+                            }
+                        }
+                    },
+                    {
+                        "key": "context",
+                        "value": [
+                        ]
+                    },
+                    {
+                        "key": "keepModal",
+                        "value": true
+                    }
+                ]
+  
+              }
+            ]
+          }
+        ]
+      },
+
+      {
+        "include": "billing/add-customer"
+      },
+
+      {
+        "type": "initCards",
+        "subType": "card-container-radio",
+        "lazyLoading": false,
+        "id": "customerListCards",
+        "icon": "fa fa-th-large",
+        "class": "col-sm-12 card-select-radio",
+        "urlResource": [
+          {
+            "key": "reload",
+            "value": false
+          },
+          {
+            "key": "path",
+            "value": "{{BillingService}}/customers?group={{IXS_id}}"
+          },
+          {
+            "key": "pathToMainData",
+            "value": ""
+          },
+          {
+            "key": "headers",
+            "value": {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer {{token}}"
+            }
+          }
+        ],
+        "pathToValueList": [
+          "response",
+          "items"
+        ],
+        "parameters": [
+          {
+            "key": "tableActions",
+            "value": {
+              "tableManager": false,
+              "export": false,
+              "search": false,
+              "paging": false
+            }
+          },
+          {
+            "key": "updatePageParameter",
+            "value": {
+              "stripe-card-list": {
+                "lazyLoading": false
+              }
+            }
+          },
+          {
+            "key": "identifier",
+            "id": "customerStripeId"
+          }
+        ],
+        "details": [
+          {
+            "type": "label",
+            "text": "billing___customer___name",
+            "class": "customerName",
+            "pathToValue": [
+              "customerName"
+            ]
+          },
+          {
+            "type": "label",
+            "id": "email",
+            "text": "billing___customer___email",
+            "pathToValue": [
+              "email"
+            ]
+          },
+
+
+
+
+
+          {
+            "type": "label",
+            "id": "customerVat",
+            "text": "billing___customer___vat",
+            "class": "col-sm-5 toggleVisible",
+            "pathToValue": ["customerVat"]
+          },
+      
+          {
+            "type": "label",
+            "id": "addressName",
+            "text": "billing___customer___address",
+            "class": "col-sm-7 toggleVisible",
+            "pathToValue": ["customerAddress"]
+          },
+          {
+            "type": "label",
+            "id": "phone",
+            "text": "billing___customer___phone",
+            "class": "col-sm-5 toggleVisible",
+            "pathToValue": ["phone"]
+          },
+          {
+            "type": "label",
+            "id": "city",
+            "text": "billing___customer___city",
+            "class": "col-sm-7 toggleVisible",
+            "pathToValue": ["city"]
+          },
+          {
+            "type": "label",
+            "id": "phone",
+            "text": " ",
+            "class": "col-sm-5 toggleVisible",
+            "value": " "
+          },
+          {
+            "type": "label",
+            "id": "country",
+            "text": "billing___customer___country",
+            "class": "col-sm-7 toggleVisible",
+            "pathToValue": ["country"]
+      
+          },
+
+
+
+
+
+
+
+
+          {
+            "type": "label",
+            "hidden": true,
+            "id": "customerStripeId",
+            "text": "customerStripeId",
+            "class":"hide-label plan-name",
+            "pathToValue": [
+              "customerStripeId"
+            ]
+          }
+
+          
+        ]
+      },
+      {
+        "type": "textbox",
+        "text": "",
+        "id": "selectedCustomerId",
+        "dynamicProps":{
+            "value": "'{{customerListCards___id}}'"
+        },
+        "validator": {
+            "required": [
+            true,
+            "warnings___fieldRequired"
+            ]
+        }
+      }
+  
+  
+    ]
+  }

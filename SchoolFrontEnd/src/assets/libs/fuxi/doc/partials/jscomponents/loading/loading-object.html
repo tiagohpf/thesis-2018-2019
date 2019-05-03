@@ -1,0 +1,60 @@
+<h3 id="docs-loading-object">Loading sobre um objeto</h3>
+<p>Este snippet demonstra como aplicar um bloco de loading a um objeto, no caso a uma <code>select</code>, mas pode ser aplicado a qualquer elemento presente no DOM.</p>
+<p>Os valores por defeito aplicados ao <strong>BlockUI</strong> são disponibilizados através da função <code>FUXI.BlockUiDefaults.init();</code>.</p>
+<div class="alert alert-info">
+    <p>Para efeitos de demo utilizamos um botão para fazer trigger ao loading sobre o objeto. Ao fim de 10 segundos o loading terminará.</p>
+</div>
+<div class="fx-docs-snippet-code">
+    <div>
+        <button class="btn btn-default" type="button" id="devguide-freeze-object">
+            aplicar loading ao objeto
+        </button>
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-2">
+                    Username
+                </label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">João Silva</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">
+                    Morada
+                </label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">Rua das Flores, nº10</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">
+                    Distrito
+                </label>
+                <div class="col-sm-10" id="devguide-freezed-object">
+                    <select class="form-control input-sm">
+                        <option>Aveiro</option>
+                        <option>Guarda</option>
+                        <option>Lisboa</option>
+                        <option>Porto</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<button class="btn btn-default" type="button" id="devguide-freeze-object">
+    aplicar loading ao objeto
+</button>
+
+<script type="text/javascript">
+    $('#devguide-freeze-object').click(function (e) {
+        $('#devguide-freezed-object').block({});
+        setTimeout(function () {
+            $('#devguide-freezed-object').unblock()
+        }, 10000);
+    });
+</script>
+        </textarea>
+    </form>
+</div>

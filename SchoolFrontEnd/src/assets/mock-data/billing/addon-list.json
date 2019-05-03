@@ -1,0 +1,149 @@
+{
+    "type": "initParameters",
+    "id": "planMain",
+  
+    "details": [
+      {
+        "type": "textbox",
+        "text": "student-id",
+        "_id": "selected-student",
+        "pathToValue" :["selected-student"],
+        "hidden": true
+      },
+  
+      {
+          "type": "textbox",
+          "text": "ixs-id",
+          "dynamicProps":{
+              "value": "'{{IXS_id}}'"
+          },
+          "hidden":true
+      },
+
+      {
+          "type": "textbox",
+          "text": "",
+          "id": "selectedAddonId",
+          "dynamicProps":{
+              "value": "'{{addonCardList___id}}'"
+          },
+          "validator": {
+              "required": [
+              true,
+              "warnings___fieldRequired"
+              ]
+          }
+      },
+
+      {
+        "type": "initCards",
+        "subType": "card-container-radio",
+        "lazyLoading": false,
+        "id": "addonCardList",
+        "icon": "fa fa-th-large",
+        "class": "card-select-radio",
+        "urlResource": [
+          {
+            "key": "reload",
+            "value": false
+          },
+          {
+            "key": "path",
+            "_value": "{{BillingService}}/products",
+            "value": "{{BillingService}}/products/prod_Ec0WfHz6oXX3SR/items"
+
+            
+          },
+          {
+            "key": "pathToMainData",
+            "value": ""
+          },
+          {
+            "key": "headers",
+            "value": {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer {{token}}"
+            }
+          }
+        ],
+        "pathToValueList": [
+          "response",
+          "items"
+        ],
+        "parameters": [
+          {
+            "key": "tableActions",
+            "value": {
+              "tableManager": false,
+              "export": false,
+              "search": false,
+              "paging": false
+            }
+          },
+          {
+            "key": "identifier",
+            "id": "id"
+          }
+        ],
+        "details": [
+          {
+            "type": "label",
+            "id": "name",
+            "text": "name",
+            "class":"hide-label plan-name",
+            "pathToValue": [
+              "name"
+            ]
+          },
+          {
+            "type": "label",
+            "id": "addon-id",
+            "class":"hide-label",
+            "hidden":true,
+            "pathToValue": [
+              "id"
+            ]
+          },
+          {
+            "type": "label",
+            "id": "price",
+            "_text": "amount",
+            "hidden":true,
+            "class":"hide-label plan-price",
+            "pathToValue": [
+              "price"
+            ]
+          },
+          {
+            "type": "label",
+            "id": "_price",
+            "text": "",
+            "hidden":false,
+            "class":"hide-label plan-price",
+            "pathToValue": [
+              "@getPlanPrice('{{price}}')"
+            ]
+          },
+          {
+            "type": "label",
+            "id": "interval",
+            "_text": "interval",
+            "class":"hide-label",
+            "hidden":true,
+            "pathToValue": [
+              "interval"
+            ]
+          },
+          {
+            "type": "label",
+            "id": "planDescription",
+            "hidden": false,
+            "class":"addon-details",
+            "pathToValue": [
+              "details", "description"
+            ]
+          }
+        ]
+      }
+    ]
+  }

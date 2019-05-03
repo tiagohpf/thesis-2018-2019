@@ -1,0 +1,76 @@
+﻿<h3 id="docs-chart-instance">Instanciação de um gráfico</h3>
+<p>Este snippet demonstra um gráfico de barras.</p>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <div id="chart"></div>
+    </div>
+
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!-- Ficheiros necessários a incluir no head-->
+<head>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/basepack/c3js/0.4/css/c3.min.css" rel="stylesheet">
+    <link href="/fuxi/common/html/css/fuxi.min.css" rel="stylesheet">
+</head>
+
+<!--Ficheiros a colocar antes de fechar a tag body-->
+<script src="/basepack/jquery/1.9/jquery.min.js"></script>
+<script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+<script src="/basepack/d3js/3.5/d3.min.js"></script>
+<script src="/basepack/c3js/0.4/js/c3.min.js"></script>
+<script src="/fuxi/common/exec/fuxi.min.js"></script>
+
+<!--Markup necessário-->
+<div id="chart"></div>
+
+<!--Instanciação do gráfico-->
+<script type="text/javascript">
+    var chart = c3.generate({
+        data: {
+            columns: [
+                ['data1', 30, 200, 100, 400, 150, 250, 77],
+                ['data2', 130, 100, 140, 200, 150, 50, 43]
+            ],
+            axes: {
+                sample1: 'data1',
+                sample2: 'data2'
+            },
+            type: 'bar'
+        },
+        bar: {
+            width: { ratio: 0.5 }
+        },
+        color: {
+            pattern: ['#6dbfd7', '#7bc57b']
+        },
+        axis: {
+            x: {
+                label: {
+                    text: 'X Label',
+                    position: 'outer-center'
+                }
+            },
+            y: {
+                label: {
+                    text: 'Y Label',
+                    position: 'outer-middle'
+                }
+            },
+            y2: {
+                show: true,
+                label: {
+                    text: 'Y2 Label',
+                    position: 'outer-middle'
+                }
+            }
+        },
+        grid: {
+            x: { show: true },
+            y: { show: true }
+        }
+    });
+</script></textarea>
+    </form>
+</div>

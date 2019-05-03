@@ -1,0 +1,91 @@
+div.cards-container {
+    width: 100%;
+    padding: 15px;
+    display: block;
+    text-align: -webkit-center;
+}
+
+div.card-item {
+    text-align: center;
+    width: 400px;
+    display: block;
+    float: left;
+    clear: both;
+    margin-bottom: 5px;
+}
+
+.card-details {
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+label.card-details span {
+    display: block;
+    float: left;
+    padding: 5px;
+}
+
+span.card-brand {
+    width: 50px;
+}
+
+span.card-number {
+    font-family: monospace;
+}
+
+
+
+
+
+/*
+ * New card button
+ */
+div.new-card input[type="button"] {
+    display: none;
+}
+
+div.new-card label{
+    text-align: center;
+}
+
+
+
+/*
+ * Custom Radio
+ */
+input[type="radio"] {
+    display: none;
+}
+  
+label {
+    display: block;
+    width: 100%;
+    
+    padding: 4px 11px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 7px;
+    border: 1px solid darkgray;
+    margin: 0;
+    
+}
+
+input[type="radio"]+label:hover {
+    color: #253aa5;
+    font-weight: bold;
+    box-shadow: 0px 0px 40px -9px rgba(0, 0, 0, 0.68);
+
+}
+
+input[type="radio"]:checked+label {
+    color: #253aa5;
+    font-weight: bold;
+    box-shadow: 0px 0px 40px -9px rgba(0, 0, 0, 0.68);
+    background-color: lightgray;
+}
+
+div.hideCard {
+    display: none;
+}
+

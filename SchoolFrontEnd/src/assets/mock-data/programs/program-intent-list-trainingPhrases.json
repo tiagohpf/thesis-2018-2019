@@ -1,0 +1,33 @@
+{
+    "type": "initTable",
+    "id": "trainingPhrases_Table",
+    "urlResource": [
+        {
+            "key": "pathToMainData",
+            "value": [
+                "trainingPhrasesExpand"
+            ]
+        }
+    ],
+    "columns": [
+        {
+            "type": "text",
+            "id": "trainingPhraseText",
+            "pathToValue": [
+                "@formatTrainingPhrase($this['parts'])"
+            ],
+            "text": "program___intent___userExpression"
+        }
+    ],
+    "rows": [],
+    "parameters": [
+        {
+            "key": "tableActions",
+            "value": {
+                "export": false,
+                "columnManager": false,
+                "search": false
+            }
+        }
+    ]
+}

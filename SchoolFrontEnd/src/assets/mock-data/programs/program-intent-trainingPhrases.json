@@ -1,0 +1,236 @@
+{
+    "type": "initParameters",
+    "id": "trainingPhrasesInitParams",
+    "header": {
+        "id": "trainingPhrasesTableHeader",
+        "_seo": {
+            "text": "program___intent___trainingPhrases"
+        },
+        "details": [
+            {
+                "id": "defaultAlert",
+                "type": "label",
+                "class": "default-connection-warning col-sm-11",
+                "text": null,
+                "dynamicProps": {
+                    "value": "{{programIntentTrainingPhrasesAPI___trainingPhrases}}.length < 2 ? \"<div class='alert alert-info'><i class='fa fa-info'> {{@fv()@i18n('program___intent___minNbrTrainingPhrases')}}</i></div>\" : ' '"
+                }
+            },
+            {
+                "id": "buttonsTrainingPhrases",
+                "type": "operations",
+                "class": "col-sm-1",
+                "operations": {
+                    "size": 3,
+                    "parameters": [
+                        {
+                            "type": "updatePage",
+                            "id": "trainingPhrasesEdit",
+                            "class": "editButton btn-default",
+                            "icon": "icomoon icon-edit",
+                            "parameters": [
+                                {
+                                    "key": "updatePageParameter",
+                                    "value": {
+                                        "trainingPhrasesTable": {
+                                            "lazyLoading": true,
+                                            "hidden": true
+                                        },
+                                        "trainingPhrases_Tuple": {
+                                            "lazyLoading": false,
+                                            "hidden": false
+                                        },
+                                        "trainingPhrasesEdit": {
+                                            "hidden": true
+                                        },
+                                        "btnClose": {
+                                            "hidden": true
+                                        },
+                                        "trainingPhrasesSave": {
+                                            "hidden": false
+                                        },
+                                        "trainingPhrasesCancel": {
+                                            "hidden": false
+                                        },
+                                        "intentNameEdit": {
+                                            "disabled": true,
+                                            "title": "warnings___alreadyEditing"
+                                        },
+                                        "intentDescriptionEdit": {
+                                            "disabled": true,
+                                            "title": "warnings___alreadyEditing"
+                                        },
+                                        "variableAdd": {
+                                            "disabled": true,
+                                            "title": "warnings___alreadyEditing"
+                                        },
+                                        "variableActions": {
+                                            "hidden": true
+                                        }
+                                    }
+                                },
+                                {
+                                    "key": "keepModal",
+                                    "value": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "details": [
+        {
+            "type": "initTable",
+            "id": "trainingPhrasesTable",
+            "urlResource": [
+                {
+                    "key": "id",
+                    "value": "programIntentTrainingPhrasesAPI"
+                },
+                {
+                    "key": "apiRecycle",
+                    "value": false
+                },
+                {
+                    "key": "reload",
+                    "value": false
+                },
+                {
+                    "key": "path",
+                    "value": "{{SchoolBE}}/programs/[[programID]]/intents/{{originalDisplayNameDtl}}"
+                },
+                {
+                    "key": "headers",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                },
+                {
+                    "key": "pathToMainData",
+                    "value": [
+                        "@objToTupleList($this['trainingPhrases'])"
+                    ]
+                }
+            ],
+            "columns": [
+                {
+                    "type": "context",
+                    "id": "trainingPhraseIdx",
+                    "text": "trainingPhraseIdx",
+                    "pathToValue": [
+                        "$this['key']+''"
+                    ]
+                },
+                {
+                    "type": "custom-mentions",
+                    "id": "trainingPhraseConsult",
+                    "text": null,
+                    "pathToValue": [
+                        "value",
+                        "@formatTrainingPhrase($this['parts'])"
+                    ],
+                    "dynamicProps": {
+                        "valueList": "{{myVariables}}"
+                    },
+                    "disabled": true
+                }
+            ],
+            "rows": [],
+            "parameters": [
+                {
+                    "key": "tableActions",
+                    "value": {
+                        "export": false,
+                        "columnManager": false,
+                        "search": false
+                    }
+                }
+            ]
+        },
+        {
+            "type": "json",
+            "id": "myVariables",
+            "urlResource": [
+                {
+                    "key": "id",
+                    "value": "programLessonsAPIResponse"
+                },
+                {
+                    "key": "apiRecycle",
+                    "value": false
+                },
+                {
+                    "key": "reload",
+                    "value": false
+                },
+                {
+                    "key": "path",
+                    "value": "{{SchoolBE}}/programs/[[programID]]/intents/{{originalDisplayNameDtl}}"
+                },
+                {
+                    "key": "headers",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                }
+            ],
+            "pathToValue": [
+                "$this['parameters'].map(obj => new Object({\"key\": obj.displayName + ' | ' + @getDisplayNameFormated(obj.entityTypeDisplayName,@replaceTagVars('programCodeDtl')+'_'), \"value\": obj.displayName + ' | ' + @getDisplayNameFormated(obj.entityTypeDisplayName,@replaceTagVars('programCodeDtl')+'_')}))"
+            ],
+            "hidden": true
+        },
+        {
+            "type": "wct-tuple-list",
+            "id": "trainingPhrases_Tuple",
+            "text": null,
+            "class": "hide-label",
+            "urlResource": [
+                {
+                    "key": "reload",
+                    "value": false
+                },
+                {
+                    "key": "path",
+                    "value": "{{SchoolBE}}/programs/[[programID]]/intents/{{originalDisplayNameDtl}}"
+                },
+                {
+                    "key": "headers",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                }
+            ],
+            "pathToValueList": [
+                "trainingPhrases"
+            ],
+            "_validator": {
+                "required": [
+                    true,
+                    "warnings___fieldRequired"
+                ]
+            },
+            "details": [
+                {
+                    "type": "custom-mentions",
+                    "id": "trainingPhrase",
+                    "placeholder": "program___intent___userExpression",
+                    "pathToValue": [
+                        "@formatTrainingPhrase($this['parts'])"
+                    ],
+                    "dynamicProps": {
+                        "valueList": "{{myVariables}}"
+                    }
+                }
+            ],
+            "dynamicProps": {
+                "lazyLoading": "!{{myVariables}}"
+            },
+            "hidden": true
+        }
+    ]
+}

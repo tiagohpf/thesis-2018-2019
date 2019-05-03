@@ -1,0 +1,90 @@
+#wct-content-createProgram {
+    position: relative;
+    @include max-width-screen;
+    margin: 0 auto;
+
+    #wct-page-header-createProgram {
+        app-wct-header {
+            display: flex;
+            flex-flow: row-reverse;
+        }
+    }
+
+    .each-parameter {
+        &.component-type-operations {
+            padding: 0 30px;
+        }
+
+        .wct-field-format-component {
+            .label-grouper {
+                p {
+                    font-size: 14px;
+                    color: #b5b5b5;
+                    font-weight: 400;
+                    line-height: 26px;
+                    padding-left: 15px;
+                }
+            }
+        }
+
+        &.component-type-header {
+            padding: 0 30px;
+
+            p {
+                color: $primary-header-text-color;
+                font-size: 18px;
+                font-weight: 400 !important;
+                text-transform: capitalize;
+            }
+        }
+
+        .form-group {
+            label {
+                padding-left: 0.75rem;
+                font-size: 16px;
+            }
+
+            padding: 0;
+        }
+
+        &#wct-each-parameter-createProgramDetails {
+            margin-top: 10px;
+
+            .card {
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
+                margin-bottom: 0;
+
+                .card-header {
+                    border: none;
+                    padding: 0;
+
+                    h5 {
+                        .btn {
+                            &.btn-link {
+                                box-shadow: none !important;
+                                background-color: white !important;
+                                color: $primary-header-text-color;
+                                font-size: 18px;
+                                font-weight: 400 !important; //text-transform: lowercase;
+                            }
+                        }
+                    }
+                }
+
+                .card-body {
+                    .each-parameter {
+                        .form-group {
+                            label {
+                                padding-left: 0.75rem;
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

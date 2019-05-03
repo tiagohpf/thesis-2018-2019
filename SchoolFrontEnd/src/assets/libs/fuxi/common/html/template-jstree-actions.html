@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge; text/html;" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0,  user-scalable=yes" />
+		<link rel="icon" href="/fuxi/common/html/css/images/favicon.ico" type="image/x-icon" />
+		<title>Template Splitter</title>
+		<link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/fuxi/lib/jstree/3.0/themes/fuxi/style.css" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.min.css" />
+		<script src="/basepack/modernizr/2.6/modernizr.js"></script>
+		<!-- Respond.js - IE8 support of media queries -->
+		<!--[if lt IE 9]>
+		<script src="/fuxi/lib/respond/1.4/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+<body>
+    <div class="fx-push-footer fx-full-height">
+        <header id="fx-header">
+            <nav class="fx-navbar" role="navigation">
+                <a class="fx-brand" href="#"><h1 class="fx-logo-brand">Fuxi</h1></a>
+            </nav>
+            <!-- breadcrumb -->
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#"><i class="fuxicons fuxicons-home"></i>Início</a>
+                </li>
+                <li>
+                    <a href="#">Link</a>
+                </li>
+                <li class="active">
+                    Ativo
+                </li>
+            </ul>
+        </header>
+        <div class="fx-prevent-content-behind-footer fx-full-height">
+            <div id="splitter-parent" class="fx-splitter-area">
+
+                <!-- splitter side bar form  -->
+				<form id="fx-sidebar" role="form" class="fx-splitter-sidebar with-buttons">
+					<div class="fx-visible-when-collapsed">
+						<i class="glyphicon glyphicon-filter fx-icon-represent-feature"></i>
+					</div>
+					<div class="fx-splitter-sidebar-content">
+						<header class="fx-sidebar-header fx-fixed-position" data-fix-to="top">
+							<div class="fx-sidebar-header-inner">
+								<p><i class="glyphicon glyphicon-filter"></i>Título</p>
+							</div>
+						</header>
+						<div id="jstreeActions_demo" class="fx-tree-clickable fx-tree-no-ellipsis fx-tree-actions">
+							<ul>
+								<li class="jstree-open" data-fx-actions='[{ "action": "view", "icon": "fuxicons fuxicons-eye" }]'>
+										<a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a>
+									<ul>
+										<li class="jstree-open"  data-fx-actions='[{ "action": "view", "icon": "fuxicons fuxicons-eye" }, { "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'>
+											<a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a>
+											<ul>
+												<li class="jstree-open"  data-fx-actions='[{ "action": "view", "icon": "fuxicons fuxicons-eye" }, { "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'>
+													<a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a>
+													<ul>
+														<li data-fx-actions='[{ "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'><a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a></li>
+														<li data-fx-actions='[{ "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'><a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a></li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+										<li class="jstree-open"  data-fx-actions='[{ "action": "view", "icon": "fuxicons fuxicons-eye" }, { "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'>
+											<a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a>
+											<ul>
+												<li class="jstree-open"  data-fx-actions='[{ "action": "view", "icon": "fuxicons fuxicons-eye" }, { "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'>
+													<a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a>
+													<ul>
+														<li data-fx-actions='[{ "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'><a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a></li>
+														<li data-fx-actions='[{ "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'><a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a></li>
+													</ul>
+												</li>
+												<li class="jstree-open"  data-fx-actions='[{ "action": "view", "icon": "fuxicons fuxicons-eye" }, { "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'>
+													<a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a>
+													<ul>
+														<li data-fx-actions='[{ "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'><a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a></li>
+														<li data-fx-actions='[{ "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'><a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a></li>
+													</ul>
+												</li>
+												<li class="jstree-open"  data-fx-actions='[{ "action": "view", "icon": "fuxicons fuxicons-eye" }, { "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'>
+													<a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a>
+													<ul>
+														<li data-fx-actions='[{ "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'><a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a></li>
+														<li data-fx-actions='[{ "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'><a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a></li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+										<li class="jstree-open"  data-fx-actions='[{ "action": "view", "icon": "fuxicons fuxicons-eye" }, { "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'>
+											<a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a>
+											<ul>
+												<li class="jstree-open"  data-fx-actions='[{ "action": "view", "icon": "fuxicons fuxicons-eye" }, { "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'>
+													<a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a>
+													<ul>
+														<li data-fx-actions='[{ "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'><a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a></li>
+														<li data-fx-actions='[{ "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'><a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a></li>
+													</ul>
+												</li>
+												<li class="jstree-open"  data-fx-actions='[{ "action": "view", "icon": "fuxicons fuxicons-eye" }, { "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'>
+													<a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a>
+													<ul>
+														<li data-fx-actions='[{ "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'><a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a></li>
+														<li data-fx-actions='[{ "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'><a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a></li>
+													</ul>
+												</li>
+												<li class="jstree-open"  data-fx-actions='[{ "action": "view", "icon": "fuxicons fuxicons-eye" }, { "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'>
+													<a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a>
+													<ul>
+														<li data-fx-actions='[{ "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'><a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a></li>
+														<li data-fx-actions='[{ "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'><a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a></li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+										<li class="jstree-open"  data-fx-actions='[{ "action": "view", "icon": "fuxicons fuxicons-eye" }, { "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'>
+											<a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a>
+											<ul>
+												<li class="jstree-open"  data-fx-actions='[{ "action": "view", "icon": "fuxicons fuxicons-eye" }, { "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'>
+													<a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a>
+													<ul>
+														<li data-fx-actions='[{ "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'><a href="#" title="JsTree actions demonstration"entIcon</a></li>
+														<li data-fx-actions='[{ "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'><a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a></li>
+													</ul>
+												</li>
+												<li class="jstree-open"  data-fx-actions='[{ "action": "view", "icon": "fuxicons fuxicons-eye" }, { "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'>
+													<a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a>
+													<ul>
+														<li data-fx-actions='[{ "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'><a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a></li>
+														<li data-fx-actions='[{ "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'><a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a></li>
+													</ul>
+												</li>
+												<li class="jstree-open"  data-fx-actions='[{ "action": "view", "icon": "fuxicons fuxicons-eye" }, { "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'>
+													<a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a>
+													<ul>
+														<li data-fx-actions='[{ "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'><a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a></li>
+														<li data-fx-actions='[{ "action": "edit", "icon": "glyphicon glyphicon-pencil" }, { "action": "remove", "icon": "glyphicon glyphicon-remove" } ]'><a href="#" title="JsTree actions demonstration">JsTree actions demonstration</a></li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+                    <div class="fx-splitter-sidebar-buttons">
+                        <div class="fx-splitter-sidebar-buttons-inner">
+                            <button class="btn btn-default btn-sm">limpar</button>
+                            <button type="submit" class="btn btn-primary btn-sm">pesquisar</button>
+                        </div>
+                    </div>
+                    <div id="fx-splitter-bar" class="fx-splitter-bar" data-toggle="splitter" data-splitter-position="left" data-splitter-parent="#splitter-parent" data-splitter-sidebar="#fx-sidebar" data-splitter-content="#fx-splitter-content"></div>
+                </form>
+                <!-- splitter side bar form  -->
+
+                <div id="fx-splitter-content" class="fx-splitter-content">
+                    <div class="fx-splitter-content-inner"></div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- FOOTER ABOUT -->
+        <!--# include file="/fuxi/partials/html/partial-footer-about.html" -->
+    </div>
+
+
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+    <script src="/fuxi/lib/jstree/3.0/jstree.min.js"></script>
+	<script src="/fuxi/lib/jstree/3.0/jstree-actions.js"></script>
+    <script src="/fuxi/common/exec/fuxi.min.js"></script>
+    <!-- RESOURCES EN / PT : include according culture-->
+    <!--<script src="/fuxi/resources/fuxi_en.js" language="javascript" type="text/javascript"></script>-->
+    <script src="/fuxi/resources/fuxi_pt.js" language="javascript" type="text/javascript"></script>
+    <script>
+        $(function () {
+            FUXI.Splitter.init();
+            FUXI.FixedPositions.init();
+
+
+		    $('#jstreeActions_demo').jstree({
+				'core' : {
+					'themes': {
+						'name': 'fuxi',
+						'icons': false
+					}
+				},
+				'plugins': [ 'fxactions' ]
+			}).on('jstree.fx-actions.view', function (e) {
+				//console.log('fx-actions.view');
+			}).on('jstree.fx-actions.edit', function (e) {
+				//console.log('fx-actions.edit');
+			}).on('jstree.fx-actions.remove', function (e) {
+				//console.log('fx-actions.remove');
+			}).on('select_node.jstree', function (node) {
+				//console.log('jstree node clicked');
+			});
+
+        });
+    </script>
+</body>
+</html>

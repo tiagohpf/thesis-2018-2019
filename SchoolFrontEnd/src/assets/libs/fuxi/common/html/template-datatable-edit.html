@@ -1,0 +1,598 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Datatable edit</title>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/fuxi/lib/select2/3.4/css/select2.css" rel="stylesheet">
+    <link href="/fuxi/lib/select2/3.4/css/select2-bootstrap.css" rel="stylesheet">
+    <link href="/fuxi/lib/jstree/3.0/themes/fuxi/style.css" rel="stylesheet" />
+    <link href="/fuxi/lib/bootstrap-datetimepicker/3.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="/basepack/datatables-pt/1.9/css/jquery.dataTables.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.css" />
+
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+</head>
+<body style="margin:50px">
+
+    <div>
+        <p>* No caso da tabela ter reorganização e visibilidade de colunas, o código do template utilizado na edição/ criação teria que ser ajustado de acordo com essa estrutura.</p>
+        <p>* Ao adicionar uma nova linha, dependendo da ordenação, o item pode ir para qualquer página, pelo que foi necessário utilizar um plugin (<i>fnAddDataAndDisplay</i>) que permita navegar para a página onde foi criado o novo registo.</p>
+    </div>
+    <div class="pull-right" style="margin: 10px 0">
+        <button class="btn btn-primary " type="button" id="bt-new-item">
+            <i class="glyphicon glyphicon-plus"></i> Add
+        </button>
+    </div>
+
+    <table id="dtTable" class="table" style="table-layout:fixed">
+        <thead>
+            <tr>
+                <th class="fx-th">
+                    <div class="fx-th-container">
+                        <div class="fx-th-label">Field 1</div>
+                    </div>
+                </th>
+
+                <th class="fx-th">
+                    <div class="fx-th-container">
+                        <div class="fx-th-label">Field 2</div>
+                    </div>
+                </th>
+
+                <th class="fx-th">
+                    <div class="fx-th-container">
+                        <div class="fx-th-label">Field 3</div>
+                    </div>
+                </th>
+
+                <th class="fx-th">
+                    <div class="fx-th-container">
+                        <div class="fx-th-label">Field 4</div>
+                    </div>
+                </th>
+
+                <th class="fx-th fx-table-actions">
+                    <div class="fx-th-container">
+                        <div class="fx-th-label">Actions</div>
+                    </div>
+                </th>
+            </tr>
+        </thead>
+    </table>
+
+    <!--MODAL DELETE TABLE RECORD-->
+    <div class="modal fade" id="deleteTableRecord" role="dialog" aria-labelledby="deleteTableRecordLabel" aria-hidden="true">
+        <div class="modal-dialog fx-modal-m">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="deleteTableRecordLabel">Eliminar</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="fx-confirm-wrapper">
+                        <div class="alert alert-warning">
+                            <div class="fx-alert-icon">
+                                <i class="fuxicons fuxicons-warning"></i>
+                            </div>
+                            <div class="fx-alert-desc">
+                                <p>
+                                    Deseja eliminar esta entidade?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="btDeleteTableRecord" type="button" class="btn btn-primary btn-sm">
+                        eliminar
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">
+                        cancelar
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script id="template-edit-item" type="text/template-edit-item">
+        <tr>
+            <td><input class="input-sm form-control full-width" id="txt-field1" type="text" value="" data-field-name="field1" /></td>
+            <td>
+                <select class="input-sm form-control full-width" id="ddb-field2" data-field-name="field2">
+                    <option>-- select one --</option>
+                    <option value="1">field n</option>
+                    <option value="2">field 2</option>
+                    <option value="3">field z</option>
+                </select>
+            </td>
+            <td>
+                <div class="input-group">
+                    <input type='text' id="txt-field3" class='input-sm form-control' value="" data-field-name="field3" style="max-width:100%">
+                    <div class="input-group-addon" style="text-align:left">
+                        <span class="caret fx-dropdown-toggle"></span>
+                        <div class="fx-dropdown">
+                            <div class="fx-dropdown-body edit-col-select">
+                                <ul>
+                                    <li class="jstree-checked" id="1">
+                                        <a>field 3 1</a>
+                                    </li>
+                                    <li class="jstree-checked" id="2">
+                                        <a>field 3 2</a>
+                                    </li>
+                                    <li class="jstree-checked" id="3">
+                                        <a>field 3 3</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <div class="input-group date" id="field4-container" data-field-name="field4">
+                    <input type='text' class="form-control input-sm" id="txt-field4" data-date-format="YYYY/MM/DD" value="" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span>
+                </div>
+            </td>
+
+            <td class="fx-table-actions">
+                <button type="button" id="bt-save" class="btn btn-primary btn-sm">
+                    <i class='glyphicon glyphicon-ok'></i>
+                </button>
+                <button type="button" id="bt-cancel" class="btn btn-default btn-sm">
+                    <i class='glyphicon glyphicon-remove'></i>
+                </button>
+                <input id="txt-item-id" type="hidden" value="{{id}}" />
+            </td>
+        </tr>
+    </script>
+
+    <script src="/basepack/datatables-pt/1.9/js/jquery.dataTables.min.js"></script>
+    <script src="/fuxi/lib/datatables-pt/1.9/js/inputPaging.min.js"></script>
+
+    <script src="/fuxi/lib/select2/3.4/js/select2.min.js"></script>
+    <script src="/fuxi/lib/select2/3.4/js/select2_locale_pt-PT.js"></script>
+
+    <script src="/fuxi/lib/moment/2.8/js/moment-with-locales.min.js"></script>
+    <script src="/fuxi/lib/bootstrap-datetimepicker/3.0/js/bootstrap-datetimepicker.min.js"></script>
+
+    <script src="/fuxi/lib/jstree/3.0/jstree.min.js"></script>
+
+    <script src="/fuxi/common/exec/fuxi.js"></script>
+
+
+    <script language="javascript" type="text/javascript">
+
+        $.fn.dataTableExt.oApi.fnAddDataAndDisplay = function ( oSettings, aData )
+        {
+            /* Add the data */
+            var iAdded = this.oApi._fnAddData( oSettings, aData );
+            var nAdded = oSettings.aoData[ iAdded ].nTr;
+
+            /* Need to re-filter and re-sort the table to get positioning correct, not perfect
+             * as this will actually redraw the table on screen, but the update should be so fast (and
+             * possibly not alter what is already on display) that the user will not notice
+             */
+            this.oApi._fnReDraw( oSettings );
+
+            /* Find it's position in the table */
+            var iPos = -1;
+            for( var i=0, iLen=oSettings.aiDisplay.length ; i<iLen ; i++ )
+            {
+                if( oSettings.aoData[ oSettings.aiDisplay[i] ].nTr == nAdded )
+                {
+                    iPos = i;
+                    break;
+                }
+            }
+
+            /* Get starting point, taking account of paging */
+            if( iPos >= 0 )
+            {
+                oSettings._iDisplayStart = ( Math.floor(i / oSettings._iDisplayLength) ) * oSettings._iDisplayLength;
+                this.oApi._fnCalculateEnd( oSettings );
+            }
+
+            this.oApi._fnDraw( oSettings );
+            return {
+                "nTr": nAdded,
+                "iPos": iAdded
+            };
+        };
+        $.fn.dataTableExt.oApi.fnAddTr = function ( oSettings, nTr, bRedraw ) {
+            if ( typeof bRedraw == 'undefined' )
+            {
+                bRedraw = true;
+            }
+
+            var nTds = nTr.getElementsByTagName('td');
+            if ( nTds.length != oSettings.aoColumns.length )
+            {
+                alert( 'Warning: not adding new TR - columns and TD elements must match' );
+                return;
+            }
+
+            var aData = [];
+            var aInvisible = [];
+            for ( var i=0 ; i<nTds.length ; i++ )
+            {
+                aData.push( nTds[i].innerHTML );
+                if (!oSettings.aoColumns[i].bVisible)
+                {
+                    aInvisible.push( i );
+                }
+            }
+
+            /* Add the data and then replace DataTable's generated TR with ours */
+            var iIndex = this.oApi._fnAddData( oSettings, aData );
+            nTr._DT_RowIndex = iIndex;
+            oSettings.aoData[ iIndex ].nTr = nTr;
+
+            oSettings.aiDisplay = oSettings.aiDisplayMaster.slice();
+
+            // Hidding invisible columns
+            for ( var i = (aInvisible.length - 1) ; i >= 0 ; i-- )
+            {
+                oSettings.aoData[iIndex]._anHidden[ i ] = nTds[aInvisible[i]];
+                nTr.removeChild( nTds[aInvisible[i]] );
+            }
+
+            // Redraw
+            if ( bRedraw )
+            {
+                this.oApi._fnReDraw( oSettings );
+            }
+        };
+        
+        $(function () {
+            FUXI.Utils.onReady();
+
+            var dtFormat = "YYYY/MM/DD";
+
+            $("#bt-new-item").on('click', addNewItem);
+
+            // inits ---
+            var init = function (container) {
+                $('#txt-field1', container).focus();
+
+                $('#ddb-field2', container).select2();
+                $('#field4-container', container).datetimepicker({
+                    pickTime: false,
+                    language: 'en'
+                });
+                $(".edit-col-select", container).jstree({
+                    "plugins": ["checkbox", "unique"],
+                    "core": {
+                        "themes": {
+                            'name': "fuxi",
+                            'icons': false
+                        }
+                    }
+                });
+
+                $("#bt-save", container).off('click').on('click', saveEdit);
+                $("#bt-cancel", container).off('click').on('click', cancelEdit);
+            };
+            // ---
+
+            var Resource = {
+                "common": {
+                    "ShowDetails": "Show details",
+                    "AddFavorite": "Add to favorites",
+                    "RemoveFavorite": "Remove from favorites",
+                    "Pin": "Pin",
+                    "Unpin": "Unpin",
+                    "EmptyInfo": "No data available"
+                },
+                "datatable": {
+                    "sEmptyTable": "No data available in table",
+                    "sProcessing": "Processing...",
+                    "sLengthMenu": "Show _MENU_ entries",
+                    "sZeroRecords": "No matching records found",
+                    "sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+                    "sInfoEmpty": "Showing 0 to 0 of 0 entries",
+                    "sInfoFiltered": "(filtered from _MAX_ total entries)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Loading...",
+                    "sSearch": "Search:",
+                    "oPaginate": {
+                        "sFirst": "First",
+                        "sLast": "Last",
+                        "sNext": "Next",
+                        "sPrevious": "Previous"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": activate to sort column ascending",
+                        "sSortDescending": ": activate to sort column descending"
+                    }
+                }
+            };
+
+            var tableDefaultSettings = {
+                'iDisplayLength': 10,
+                'sDom': 'rt<"dataTable-table-info"li><"dataTable-pagination-wrapper"p>',
+                'sPaginationType': 'input',
+                'bAutoWidth': false,
+                'bRetrieve': true,
+                'aaSorting': [],
+                'bSortCellsTop': false,
+                'oLanguage': {
+                    'sProcessing': Resource.datatable.sProcessing,
+                    'sLengthMenu': Resource.datatable.sLengthMenu,
+                    'sZeroRecords': Resource.datatable.sZeroRecords,
+                    'sInfo': Resource.datatable.sInfo,
+                    'sInfoEmpty': Resource.datatable.sInfoEmpty,
+                    'sInfoFiltered': Resource.datatable.sInfoFiltered,
+                    'sInfoPostFix': Resource.datatable.sInfoPostFix,
+                    "sInfoThousands": Resource.datatable.sInfoThousands,
+                    'sSearch': Resource.datatable.sSearch,
+                    'sUrl': '',
+                    'oPaginate': {
+                        'sFirst': '',
+                        'sPrevious': Resource.datatable.oPaginate.Previous,
+                        'sNext': Resource.datatable.oPaginate.Next,
+                        'sLast': ''
+                    }
+                }
+            };
+
+            var getTableSettings = function (ajaxUrl) {
+                var settings = {
+                    "fnInitComplete": function (oSettings, json) {
+                        // do something
+                    },
+                    "aoColumns": [
+                    {
+                        "bSortable": true,
+                        "mData": "field1"
+                    }, {
+                        "bSortable": true,
+                        "mData": "field2",
+                        "mRender": function (data, type, full) {
+                            return data.text;
+                        }
+                    }, {
+                        "bSortable": true,
+                        "mData": "field3",
+                        "mRender": function (data, type, full) {
+                            var res = '', sep = '';
+                            $.each(data, function (idx, d) {
+                                res += sep + d.text;
+                                sep = ', ';
+                            });
+                            return res;
+                        }
+                    }, {
+                        "bSortable": true,
+                        "mData": "field4"
+                    }, {
+                        "bSortable": false,
+                        "sClass": "fx-table-actions",
+                        "mData": "actions",
+                        "mRender": function (data, type, full) {
+                            var allowEdit = data.allowEdit;
+                            var allowDelete = data.allowDelete;
+
+                            var optView = '<a href="#id-' + data.id + '" class="btn btn-link btn-link-in-table" title="show details"><i class="glyphicon glyphicon-map-marker"></i></a>';
+                            var optEdit = (allowEdit) ? '<a title="edit" data-edit-row="' + data.id + '" class="btn btn-link btn-link-in-table"><i class="glyphicon glyphicon-pencil"></i></a>' : '';
+                            var optDelete = (allowDelete) ? '<a href="#id-' + data.id + '" class="btn btn-link btn-link-in-table" title="delete" data-target="#deleteTableRecord" data-toggle="modal"><i class="glyphicon glyphicon-remove"></i></a>' : '';
+
+                            return optView + optEdit + optDelete;
+                        }
+                    }],
+                }
+
+                var ajax = null;
+                if (ajaxUrl) {
+                    ajax = {
+                        "bServerSide": false,
+                        'bProcessing': true,
+                        'sAjaxSource': ajaxUrl,
+                        'fnServerData': function (sUrl, aoData, fnCallback, oSettings) {
+                            oSettings.jqXHR = $.ajax({
+                                "url": sUrl,
+                                "data": aoData,
+                                "success": fnCallback,
+                                "dataType": "json",// "jsonp"
+                                "cache": false
+                            });
+                        }
+                    }
+                }
+
+                return $.extend({}, tableDefaultSettings, settings, ajax);
+            }
+
+            var $table = $('#dtTable');
+            var oTable = undefined;
+            var loadTable = function () {
+                var sett = getTableSettings('../data-demo/dttable-items-list.json');
+                oTable = $table.dataTable(sett);
+            };
+            loadTable();
+
+            // edit click
+            $table.find('tbody').on("click", "[data-edit-row]", function () {
+                // get DOM tr
+                var $tr = $(this).closest("tr");
+                editRow($tr);
+
+            });
+
+            var editRow = function ($row) {
+
+                var d = oTable.fnGetData($row.get(0));
+
+                var rowEdit = getEditRowTemplate();
+
+                //
+                $row.data('item-view-html', $row.html());
+                $row.addClass("selected");
+
+                var r = $row.html($(rowEdit).html());
+
+                //init fields that need initialization
+                init(r);
+
+                // set values
+                setEditValues(r, d);
+            }
+            var setEditValues = function (row, d) {
+
+                // input text
+                $("#txt-field1", row).val(d.field1);
+                $("#txt-item-id", row).val(d.actions.id);
+
+                // select 2
+                $("#ddb-field2", row).select2('val', d.field2.id);
+
+                // jstree
+                var sep = '', its = '';
+                var etree = $(".edit-col-select", row);
+                $.each(d.field3, function (idx, d) {
+                    etree.jstree('select_node', d.id);
+
+                    its += sep + d.text;
+                    sep = ', ';
+                });
+                $("#txt-field3", row).val(its);
+
+                //date-time-picker
+                $('#field4-container', row).data("DateTimePicker").setDate(d.field4);
+
+            };
+
+            var getEditRowTemplate = function () {
+                var template = $.trim($("#template-edit-item").html());
+                return template;
+            };
+            
+            var saveEdit = function () {
+                // get DOM tr
+                var row = $(this).closest("tr").get(0);
+
+                // get values
+                var newValues = getValues($(row));
+
+                //set new values
+                if ( $(row).data("isaddmode") ){
+                    var res = oTable.fnAddDataAndDisplay(newValues);
+                    $(res.nTr).addClass('selected');
+                    setTimeout(function () { $(res.nTr).removeClass("selected"); }, 5000);
+                    //oTable.fnAddData(newValues, false);
+                }
+                else{
+                  oTable.fnUpdate(newValues, row, undefined, false, false); // Row
+                }
+
+                setTimeout(function () { $(row).removeClass("selected"); }, 5000);
+
+                $(row).data("isaddmode", false);
+                $(row).data('item-view-html', '');
+
+                toggleAddNewItem();
+            };
+            var cancelEdit = function () {
+                // get DOM tr
+                var $tr = $(this).closest("tr");
+
+                if ($tr.data("isaddmode")){
+                    oTable.fnDeleteRow($tr.get(0));
+                }else{
+                    var old = $tr.data('item-view-html');
+                    $tr.html(old);
+                    $tr.data('item-view-html', '');
+
+                    $tr.removeClass("selected");
+                }
+                
+                toggleAddNewItem();
+            };
+
+            var getValues = function ($row) {
+                // get data row
+                var dataRow = oTable.fnGetData($row.get(0));
+                console.log(dataRow);
+
+                var d = $("#ddb-field2", $row).select2('data');
+                var e = $('.edit-col-select', $row).jstree(true).get_selected(true);
+                var arr = [];
+                $.each(e, function (idx, o) {
+                    arr.push({ "id": o.id, "text": o.text });
+                });
+
+                if (!dataRow){
+                    dataRow = {
+                        "field1": "",
+                        "field2": {},
+                        "field3": [],
+                        "field4": "",
+                        "actions": { "id": 0, "allowEdit": true, "allowDelete": true }
+                    }
+                }
+
+                dataRow["field1"] = $("#txt-field1", $row).val(),
+                dataRow["field2"] = { "id": d.id, "text": d.text },
+                dataRow["field3"] = arr,
+                dataRow["field4"] = moment($('#field4-container', $row).data("DateTimePicker").getDate()._d).format(dtFormat),
+                dataRow["actions"] = $.extend({}, dataRow["actions"], { "id": $("#txt-item-id", $row).val() });
+
+                console.log(dataRow);
+                return dataRow;
+            };
+            
+            function addNewItem() {
+                var newItem = newEmptyRow();
+
+                var row = getEditRowTemplate();
+
+                var tr = $table.find("tbody").prepend(row).children('tr').eq(0).data("isaddmode", true).addClass('selected');
+
+                //init fields that need initialization
+                init(tr);
+
+                toggleAddNewItem();
+                return;
+
+                //var idx = oTable.fnAddData(newItem);
+                //var ret = oTable.fnAddDataAndDisplay(newItem[0]);
+                //console.log(ret);
+                // open for edit
+                //var $tr = $(ret.nTr); // $(oTable.fnGetNodes(idx));
+                //$tr.data("isaddmode", true);
+                //editRow($tr);
+
+            };
+            var newEmptyRow = function(){
+                var id =  Math.floor((Math.random() * 9999999) + 1);
+                var item = [{
+                    "field1": "",
+                    "field2": { "id": 0, "text": "" },
+                    "field3": [{ "id": 0, "text": "" }],
+                    "field4": "",
+                    "actions": { "id": id, "allowEdit": true, "allowDelete": true }
+                }];
+
+                return item;
+            };
+
+            function toggleAddNewItem() {
+                $("#bt-new-item").toggleClass("disabled");
+                   
+            }
+
+        });
+    </script>
+
+</body>
+</html>

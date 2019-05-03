@@ -1,0 +1,358 @@
+{
+  "type": "initParameters",
+  "id": "courseDetailPropertiesContent",
+  "details": [
+    {
+      "type": "initParameters",
+      "id": "courseDetailsGroup",
+      "details": [
+        {
+          "type": "wrapper",
+          "id": "courseDetails",
+          "class": "col-md-6 col-sm-12",
+          "details": [
+            {
+              "type": "header",
+              "class": "primary-header col-md-12",
+              "header": {
+                "seo": {
+                  "text": "course___courseDetails",
+                  "icon": "icomoon icon-knowledge_center"
+                }
+              }
+            },
+            {
+              "type": "image",
+              "id": "courseImage",
+              "class": "col-md-6 col-sm-6",
+              "_pathToValue": [
+                "'{{ImageService}}/students/'+ '{{studentInfo___studentId}}'"
+              ],
+              "value": "/assets/images/degree/default.png"
+            },
+            {
+              "type": "wrapper",
+              "id": "courseDetailsName",
+              "pathToValue": "",
+              "class": "col-md-6",
+              "details": [
+                {
+                  "type": "label",
+                  "id": "courseDetailName",
+                  "text": "course___name",
+                  "pathToValue": "name"
+                },
+                {
+                  "type": "context",
+                  "id": "courseId",
+                  "pathToValue": [
+                    "_id",
+                    "$oid"
+                  ]
+                },
+                {
+                  "type": "context",
+                  "id": "devAccessToken",
+                  "pathToValue": "devAccessToken"
+                },
+                {
+                  "type": "label",
+                  "id": "courseDetailLanguage",
+                  "text": "application___language",
+                  "pathToValue": "language",
+                  "html": {
+                    "es": "Spanish",
+                    "en": "English",
+                    "pt": "Portuguese",
+                    "fr": "French"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "wrapper",
+          "id": "courseActivity",
+          "class": "col-md-6 col-sm-12",
+          "details": [
+            {
+              "type": "header",
+              "class": "primary-header col-md-12",
+              "header": {
+                "seo": {
+                  "text": "application___activity",
+                  "icon": "icomoon icon-activity"
+                }
+              }
+            },
+            {
+              "type": "label",
+              "id": "studentCreationDate",
+              "text": "application___creationDate",
+              "class": "col-md-12",
+              "pathToValue": "{{@fv()@timestampToDateFormat($this['creationDate'])}}"
+            },
+            {
+              "type": "label",
+              "id": "studentLastUpdated",
+              "text": "application___lastUpdate",
+              "class": "col-md-12",
+              "pathToValue": "{{@fv()@timestampToDateFormat($this['lastUpdate'])}}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "initParameters",
+      "id": "coursecontentSummary",
+      "class": "col-md-6",
+      "details": [
+        {
+          "type": "header",
+          "class": "primary-header col-md-12",
+          "header": {
+            "seo": {
+              "text": "course___contentSummary",
+              "icon": "icomoon icon-summary"
+            }
+          }
+        },
+        {
+          "type": "label",
+          "id": "courseDetailDescription",
+          "class": "col-md-12",
+          "text": null,
+          "pathToValue": "description"
+        }
+      ]
+    },
+    {
+      "type": "initParameters",
+      "id": "coursePrograms",
+      "urlResource": [
+        {
+          "key": "path",
+          "value": "{{SchoolBOT}}/courses"
+        },
+        {
+          "key": "pathToMainData",
+          "value": [
+            "_embedded"
+          ]
+        },
+        {
+          "key": "queryString",
+          "value": {
+            "page": "((page))",
+            "pagesize": "((pagesize))",
+            "count": null,
+            "filter": "{\"_id\": { \"$oid\":\"[[id]]\"}}"
+          }
+        },
+        {
+          "key": "reload",
+          "value": false
+        },
+        {
+          "key": "headers",
+          "value": {
+            "Authorization": "Bearer {{token}}",
+            "IXS": "{{IXS_id}}"
+          }
+        }
+      ],
+      "details": [
+        {
+          "type": "header",
+          "class": "primary-header col-md-6",
+          "header": {
+            "id": "pageHeader",
+            "seo": {
+              "text": "application___programs",
+              "icon": "icomoon icon-programs"
+            }
+          }
+        },
+        {
+          "type": "operations",
+          "class": "col-md-6",
+          "id": "courseProgramsButtons",
+          "operations": [
+            {
+              "size": 2,
+              "parameters": [
+                {
+                  "type": "openModal",
+                  "id": "buttonProgramAssign",
+                  "text": "generic___operations___assignPrograms___name",
+                  "mockToLoad": "programs/program-assign",
+                  "icon": "icomoon icon-assign",
+                  "size": "xl",
+                  "parameters": [
+                    {
+                      "key": "context",
+                      "value": [
+                        "courseProgramsIds"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "openModal",
+                  "id": "buttonProgramCreate",
+                  "icon": "icomoon icon-add",
+                  "text": "generic___operations___createProgram",
+                  "mockToLoad": "programs/program-create",
+                  "size": "xl"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "context",
+          "id": "courseProgramsIds",
+          "pathToValue": [
+            "@getParameterByIDFilter($this['programs'])"
+          ]
+        },
+        {
+          "type": "initCards",
+          "_lazyLoading": true,
+          "id": "courseProgramsMainCardList",
+          "icon": "fa fa-th-large",
+          "class": "col-md-12 courseProgramsMainCardList",
+          "urlResource": [
+            {
+              "key": "path",
+              "value": "{{SchoolBOT}}/programs"
+            },
+            {
+              "key": "queryString",
+              "value": {
+                "page": "((page))",
+                "pagesize": "((pagesize))",
+                "count": null,
+                "keys": "{\"_id\":1,\"name\":1,\"image\":1,\"description\":1,\"status\":1,\"type\":1,\"lastUpdate\":1}",
+                "filter": "{\"_id\": { \"$in\": {{courseProgramsIds}} }}",
+                "np": null,
+                "rep": "pj"
+              }
+            },
+            {
+              "key": "reload",
+              "value": false
+            },
+            {
+              "key": "headers",
+              "value": {
+                "Authorization": "Bearer {{token}}",
+                "IXS": "{{IXS_id}}"
+              }
+            },
+            {
+              "key": "pathToMainData",
+              "value": [
+                "new Object({\"programs\": $this})"
+              ]
+            }
+          ],
+          "pathToValueList": [
+            "programs"
+          ],
+          "parameters": [
+            {
+              "key": "tableActions",
+              "value": {
+                "tableManager": false,
+                "export": false,
+                "search": false,
+                "paging": false
+              }
+            },
+            {
+              "key": "identifier",
+              "id": "name"
+            }
+          ],
+          "details": [
+            {
+              "type": "context",
+              "id": "ctxtId",
+              "pathToValue": [
+                "_id",
+                "$oid"
+              ]
+            },
+            {
+              "type": "image",
+              "id": "programImage",
+              "class": "programImage col-md-2",
+              "pathToValue": [
+                "_id",
+                "$oid",
+                "'{{ImageService}}/programs/'+ $this"
+              ],
+              "_value": "/assets/images/degree/default.svg"
+            },
+            {
+              "type": "context",
+              "id": "programID",
+              "pathToValue": [
+                "_id",
+                "$oid"
+              ]
+            },
+            {
+              "type": "label",
+              "id": "name",
+              "pathToValue": "name",
+              "class": "col-md-3",
+              "navigateTo": "knowledgecenter/programs/{{programID}}",
+              "text": "program___name"
+            },
+            {
+              "type": "label",
+              "id": "studentDescription",
+              "class": "col-md-3",
+              "pathToValue": [
+                "description"
+              ],
+              "text": "program___description"
+            },
+            {
+              "type": "label",
+              "class": "col-md-2",
+              "id": "studentCourseLastUpdate",
+              "text": "application___lastUpdate",
+              "pathToValue": "lastUpdate"
+            },
+            {
+              "type": "context",
+              "id": "studentProgramStatus_color",
+              "pathToValue": "status"
+            },
+            {
+              "type": "label",
+              "id": "studentProgramStatus",
+              "class": "col-md-2 programStatus",
+              "pathToValue": "status",
+              "dynamicProps": {
+                "class": "'col-md-2 programStatus status_{{studentProgramStatus_color}}'",
+                "log": "'{{studentProgramStatus_color}}'"
+              },
+              "text": null,
+              "html": {
+                "1": "<img alt='' title='' src='assets/images/platform/new2.svg'>&nbsp;<span class='statusText'>{{@fv()@i18n('program___status_types___new')}}</span>",
+                "3": "<img alt='' title='' src='assets/images/platform/published.svg'>&nbsp;<span class='statusText'>{{@fv()@i18n('program___status_types___published')}}</span>",
+                "4": "<img alt='' title='' src='assets/images/platform/edit.svg'>&nbsp;<span class='statusText'>{{@fv()@i18n('program___status_types___editing')}}</span>"
+            }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

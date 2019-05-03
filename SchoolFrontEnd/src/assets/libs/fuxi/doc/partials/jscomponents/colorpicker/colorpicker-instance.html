@@ -1,0 +1,40 @@
+﻿<h3 id="docs-colorpicker-instance">Instanciação de um colorpicker</h3>
+<p>Este snippet demonstra um colorpicker simples.</p>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <input type='text' id="colorpicker" />
+    </div>
+
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!-- Ficheiros necessários a incluir no head-->
+<head>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/fuxi/lib/spectrum/1.6/css/spectrum.min.css" rel="stylesheet" />
+    <link href="/fuxi/common/html/css/fuxi.min.css" rel="stylesheet">
+</head>
+
+<!--Ficheiros a colocar antes de fechar a tag body-->
+<script src="/basepack/jquery/1.9/jquery.min.js"></script>
+<script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+<script src="/fuxi/lib/spectrum/1.6/js/spectrum.min.js"></script>
+<script src="/fuxi/common/exec/fuxi.min.js"></script>
+
+<!--Markup necessário-->
+<input type='text' id="colorpicker" />
+
+<!--Instanciação do gráfico-->
+<script type="text/javascript">
+    $("#colorpicker").spectrum({
+        color: "#f00",
+        showAlpha: true,
+        showPalette: true,
+        palette: [
+            ['black', 'white', 'blanchedalmond'],
+            ['rgb(255, 128, 0);', 'hsv 100 70 50', 'lightyellow']
+        ]
+    });
+</script></textarea>
+    </form>
+</div>

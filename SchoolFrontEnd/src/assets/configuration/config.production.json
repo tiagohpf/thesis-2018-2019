@@ -1,0 +1,82 @@
+{
+    "default": {
+        "appName": "BCM - Bot Chat Management",
+        "language": "en-US",
+        "timezone": "Europe/Lisbon",
+        "_dateFormat": "DD/MM/YYYY HH:mm:ss",
+        "NLU": "RASA"
+    },
+    "endpoints": [
+        {
+            "key": "SchoolFE",
+            "protocol": "http",
+            "host": "localhost",
+            "port": 4200,
+            "path": null
+        },
+        {
+            "key": "ImageService",
+            "protocol": "https",
+            "host": "botschool.dev.alticelabs.com",
+            "port": null,
+            "path": "images"
+        },
+        {
+            "key": "AnalyticsAPI",
+            "protocol": "http",
+            "host": "10.17.43.115",
+            "port": 8080,
+            "path": "analytics"
+        },
+        {
+            "key": "AppAPIBotConfig",
+            "protocol": "http",
+            "host": "10.17.43.115",
+            "port": 8080,
+            "path": "alticeAssistantConfig"
+        },
+        {
+            "key": "SchoolBOT",
+            "protocol": "http",
+            "host": "10.17.43.115",
+            "port": 8080,
+            "path": "alticeAssistantConfig"
+        },
+        {
+            "key": "SchoolBE",
+            "protocol": "http",
+            "host": "10.17.43.111",
+            "port": 4300,
+            "path": ""
+        },
+        {
+            "key": "surveyService",
+            "protocol": "http",
+            "host": "10.17.43.111",
+            "port": 4300,
+            "path": ""
+        },
+        {
+            "key": "OICIpPort",
+            "description": "Login with Keycloak",
+            "protocol": "http",
+            "host": "10.17.43.111",
+            "port": "28080",
+            "path": "auth",
+            "entries": [
+                {
+                    "key": "OICRealmId",
+                    "value": "management"
+                },
+                {
+                    "key": "OICClientId",
+                    "value": "backoffice"
+                },
+                {
+                    "key": "OICSecretId",
+                    "value": ""
+                }
+            ]
+        }
+    ]
+}

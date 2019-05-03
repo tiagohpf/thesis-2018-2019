@@ -1,0 +1,277 @@
+{
+  "type": "page",
+  "id": "customersListPage",
+  "header": {
+    "id": "pageHeaderCustomers",
+    "operations": {
+      "id": "pageHeaderOperations",
+      "text": "generic___operations___operations",
+      "icon": "glyphicon glyphicon-cog",
+      "parameters": [
+        {
+          "type": "navigate",
+          "id": "subscription_xapi_Create",
+          "text": "generic___operations___create",
+          "navigateTo": "subscription_xapi/create",
+          "_role": "customer_create"
+        }
+      ]
+    }
+  },
+  "_sidebar": [
+    {
+      "type": "filter",
+      "id": "customersListFilter",
+      "mappingId": "customerConfigurationTable",
+      "details": [
+        {
+          "type": "textbox",
+          "id": "nameFilter",
+          "apiFieldName": "name",
+          "text": "landingPages___properties___landingPage",
+          "filterTemplate": "{{nameFilter}}",
+          "subType": "autocomplete",
+          "min": "1",
+          "pathToValueList": [
+            "_embedded",
+            "rh:doc"
+          ],
+          "pathToValue": [
+            "customerName"
+          ],
+          "validator": {
+            "autocomplete": [
+              {
+                "urlResource": [
+                  {
+                    "key": "path",
+                    "value": "{{AppIpPort}}/ASM/Customers"
+                  },
+                  {
+                    "key": "queryString",
+                    "value": {
+                      "currentPage": 1,
+                      "pageSize": 10,
+                      "sortCriterion": "name",
+                      "sortDirection": "ASC",
+                      "filter": "{\"customerName\": {\"$regex\":\"(?i){{nameFilter}}.*\"} }"
+                    }
+                  },
+                  {
+                    "key": "headers",
+                    "value": {
+                      "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                  }
+                ]
+              },
+              null
+            ]
+          }
+        },
+        {
+          "type": "textbox",
+          "id": "customerIdFilter",
+          "apiFieldName": "customerId",
+          "text": "customers___customerId",
+          "_value": "ALB-AT-CID-1525782476-57747a26-c296-49e7-94ba-fffa695a81c7",
+          "validator": {
+            "required": [
+              false,
+              "warnings___fieldRequired"
+            ],
+            "regex": [
+              "^[a-zA-Z0-9][a-zA-Z0-9_:.-]*$",
+              "warnings___specialCharacNotAllowed"
+            ]
+          },
+          "dynamicProps": {
+            "hidden": "'{{administrativeStatusFilter}}' == 'ACTIVE'"
+          }
+        },
+        {
+          "type": "input-radio",
+          "id": "administrativeStatusFilter",
+          "text": "customers___administrativeStatus",
+          "valueList": [
+            {
+              "key": "ACTIVE",
+              "value": "Active"
+            },
+            {
+              "key": "DEACTIVE",
+              "value": "Deactive"
+            },
+            {
+              "key": "CANCELED",
+              "value": "Canceled"
+            },
+            {
+              "key": "SUSPENDED",
+              "value": "Suspended"
+            }
+          ],
+          "filterTemplate": "{\"$in\": {{administrativeStatusFilter}} }"
+        }
+      ]
+    }
+  ],
+  "tabs": [
+    {
+      "id": "customerList",
+      "text": "customers___entityName",
+      "components": [
+        {
+          "type": "initTable",
+          "id": "customerConfigurationTable",
+          "parameters": [
+            {
+              "key": "tableActions",
+              "value": {
+                "search": {
+                  "beSearch": true,
+                  "placeholder": "Search by number or alias"
+                }
+              }
+            }
+          ],
+          "_header": {
+            "seo": {
+              "include": "customers-list-dynamic-seo"
+            },
+            "details": [
+              {
+                "type": "json",
+                "id": "testefield",
+                "text": "",
+                "dynamicProps": {
+                  "value": "[\"teste\"]"
+                }
+              }
+            ]
+          },
+          "operations": {
+            "id": "accountConfigurationOperations",
+            "text": "generic___operations___bulkOperations",
+            "icon": "glyphicon glyphicon-cog",
+            "size": 1,
+            "parameters": [
+              {
+                "type": "openModal",
+                "text": "Suspender",
+                "mockToLoad": "customers-list-bulk-suspend"
+              }
+            ]
+          },
+          "urlResource": [
+            {
+              "key": "path",
+              "value": "{{subscription_xapi_ms}}/services"
+            },
+            {
+              "key": "pathToMainData",
+              "value": [
+                "data"
+              ]
+            },
+            {
+              "key": "headers",
+              "value": {
+                "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+              }
+            }
+          ],
+          "columns": [
+            {
+              "type": "text",
+              "size": "sm",
+              "id": "id",
+              "pathToValue": "id",
+              "text": "api id",
+              "navigateTo": "subscription_xapi/detail/{{id}}",
+              "hidden": true
+            },
+            {
+              "type": "text",
+              "id": "name",
+              "pathToValue": "name",
+              "text": "api name",
+              "hidden": false,
+              "sort": true,
+              "navigateTo": "subscription_xapi/detail/{{id}}"
+            },
+            {
+              "type": "text",
+              "id": "description",
+              "pathToValue": "description",
+              "text": "::: Description :::",
+              "hidden": false
+            },
+            {
+              "type": "text",
+              "id": "endpoint",
+              "pathToValue": "endpoint",
+              "text": "endpoint",
+              "hidden": false
+            },
+            {
+              "type": "text",
+              "id": "host",
+              "pathToValue": "host",
+              "text": "host",
+              "hidden": true
+            },
+            {
+              "type": "text",
+              "id": "port",
+              "pathToValue": "port",
+              "text": "port",
+              "hidden": true
+            },
+            {
+              "type": "actions",
+              "id": "actions",
+              "size": 3,
+              "text": "generic___actions",
+              "operations": [
+                {
+                  "id": "viewService",
+                  "type": "navigate",
+                  "text": "generic___operations___viewDetails",
+                  "icon": "fuxicons fuxicons-eye",
+                  "navigateTo": "subscription_xapi/detail/{{id}}"
+                },
+                {
+                  "id": "viewService",
+                  "type": "navigate",
+                  "text": "generic___operations___edit",
+                  "icon": "icomoon icon-edit",
+                  "navigateTo": "subscription_xapi/edit/{{id}}"
+                },
+                {
+                  "id": "removeService",
+                  "type": "openModal",
+                  "text": "generic___operations___remove",
+                  "icon": "fa fa-times",
+                  "mockToLoad": "subscriptionApi/subscription_xapi-remove",
+                  "parameters": [
+                    {
+                      "key": "context",
+                      "value": [
+                        "id",
+                        "name"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "rows": []
+        }
+      ]
+    }
+  ]
+}

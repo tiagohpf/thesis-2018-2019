@@ -1,0 +1,82 @@
+<div class="wrapper-slider fixed-top slidingNavBar" [class.hiddeNav]="hasNav" [class.simpleNav]="!hasMockSibling">
+  <div class="col-sm-12">
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
+      [class.wct-prevent-side-menu]="hasSideMenu()"
+      [class.wct-is-loading]="!viewStructure"
+    >
+      <p *ngIf="!viewStructure; else mainMenu" class="loading-app-menu">
+        <app-wct-loading></app-wct-loading>
+      </p>
+      <ng-template #mainMenu>
+        <!-- APP LOGO -->
+        <a
+          *ngIf="logoParameter"
+          id="wct-app-logo"
+          class="navbar-brand"
+          href="#"
+          (mousedown)="navigateTo($event, logoParameter)"
+        >
+          <img
+            *ngIf="logoParameter.icon"
+            class="fx-app-logo"
+            alt="logo"
+            [src]="logoParameter.icon"
+          />
+          <ng-template [ngIf]="logoParameter.text">{{
+            logoParameter.text
+          }}</ng-template>
+        </a>
+        <!-- Toggler/collapsibe Button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapsibleNavbar"
+          id="wct-hamburger-button"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- APP MENU -->
+        <app-wct-navbar-menu
+          [viewStructure]="viewStructure"
+        ></app-wct-navbar-menu>
+
+        <div
+          *ngIf="
+            viewStructure?.groups?.operations?.parameters?.length > 0 ||
+            viewStructure?.groups?.details?.parameters?.length > 0
+          "
+          class="wct-navbar-details wct-prevent-paragraph-margins"
+        >
+          <div class="wct-navbar-align-buttons">
+            <app-wct-buttons
+              *ngIf="viewStructure?.groups?.operations?.parameters?.length > 0"
+              [operations]="viewStructure.groups.operations"
+              [btnSize]="'btn-sm'"
+              [btnPrimary]="false"
+              [btnMax]="
+                viewStructure.groups.operations.size >= 0
+                  ? viewStructure.groups.operations.size
+                  : 1
+              "
+            ></app-wct-buttons>
+          </div>
+          <app-wct-start-components
+            *ngIf="viewStructure?.groups?.details?.parameters?.length > 0"
+            [viewStructure]="viewStructure"
+            [inputParameters]="viewStructure.groups.details.parameters"
+            [parametersFormat]="false"
+          ></app-wct-start-components>
+        </div>
+      </ng-template>
+    </nav>
+  </div>
+  <div class="col-sm-12 optionalNavBlock" *ngIf="mockToLoad">
+    <app-wct-page
+      [allowReload]="false"
+      [inputMock]="mockToLoad"
+      [firstLevelLayer]="false"
+    ></app-wct-page>
+  </div>
+</div>

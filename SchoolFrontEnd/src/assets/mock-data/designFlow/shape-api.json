@@ -1,0 +1,211 @@
+{
+  "type": "initParameters",
+  "header": {
+    "seo": {
+      "text": "designerFlow___modalTitle___shapeApi",
+      "description": "designerFlow___modalTitle___shapeApiDescription"
+    }
+  },
+  "details": [
+    {
+      "include": "designFlow/includes/shape-common-params"
+    },
+    {
+      "type": "json",
+      "id": "responseFilterMapper",
+      "hidden": true,
+      "pathToValue": [
+        "responseFilterMapper"
+      ]
+    },
+    {
+      "type": "wct-tuple-list",
+      "id": "inputVariables",
+      "text": "designerFlow___shapes___inputValues",
+      "min": 0,
+      "pathToValueList": [
+        "parameters",
+        "@formatShapeApiInputVariables($this)"
+      ],
+      "details": [
+        {
+          "type": "label",
+          "id": "inputValue",
+          "text": null,
+          "class": "col-sm-4",
+          "pathToValue": [
+            "inputValue"
+          ]
+        },
+        {
+          "type": "custom-mentions",
+          "id": "variable",
+          "class": "col-sm-8",
+          "text": null,
+          "pathToValue": [
+            "variable"
+          ],
+          "pathToValueList": [
+            "config::designerFlowComponent",
+            "variables",
+            "@mentionsComponentFormat($this)"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "wct-tuple-list",
+      "id": "outputVariables",
+      "text": "designerFlow___setValues",
+      "min": 1,
+      "pathToValueList": [
+        "outputVariables",
+        "@findOutputVariables($this)"
+      ],
+      "details": [
+        {
+          "type": "wct-ng-select",
+          "id": "variableName",
+          "text": "designerFlow___variableName",
+          "class": "col-sm-4",
+          "pathToValueList": [
+            "config::designerFlowComponent",
+            "variables",
+            "@formatValueList($this,'displayName','displayName', {\"line1\": \"displayName\",\"line2\": \"description\"})",
+            "@formatValueListTwoLines($this)"
+          ],
+          "pathToValue": [
+            "variableName"
+          ]
+        },
+        {
+          "type": "custom-mentions",
+          "id": "path",
+          "class": "col-sm-5",
+          "text": "designerFlow___newValue",
+          "pathToValue": [
+            "path",
+            "$this.toString()"
+          ],
+          "pathToValueList": [
+            "@createApiPathOptions(@getJsonParam('responseFilterMapper').value,@getJsonParam('config::designerFlowComponent'))"
+          ],
+          "parameters": [
+            {
+              "key": "updatePageParameter",
+              "value": {
+                "pathType": {
+                  "value": "{{@fv()@getPathType(@replaceTagVars('path'))}}"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "input-select",
+          "id": "pathType",
+          "text": "designerFlow___valueType",
+          "class": "col-sm-3",
+          "placeholder": null,
+          "valueList": [
+            {
+                "key": "string",
+                "value": "designerFlow___valueTypeOptions___string"
+            },
+            {
+                "key": "number",
+                "value": "designerFlow___valueTypeOptions___number"
+            },
+            {
+                "key": "boolean",
+                "value": "designerFlow___valueTypeOptions___boolean"
+            },
+            {
+                "key": "reset",
+                "value": "designerFlow___valueTypeOptions___reset"
+            },
+            {
+                "key": "null",
+                "value": "designerFlow___valueTypeOptions___empty"
+            }
+          ],
+          "pathToValue": [
+            "@evaluatePathType($this['pathType'],$this['path'])"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "wct-tuple-list",
+      "id": "logicExpressions",
+      "text": "designerFlow___scriptsExecution",
+      "pathToValueList": [
+        "logicExpressions"
+      ],
+      "min": 0,
+      "details": [
+        {
+          "type": "custom-mentions",
+          "id": "expression",
+          "text": "designerFlow___scriptExpression",
+          "pathToValue": [
+            "expression"
+          ],
+          "pathToValueList": [
+            "config::designerFlowComponent",
+            "variables",
+            "@mentionsComponentFormat($this)"
+          ]
+        }
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "parameters": [
+        {
+          "id": "calcelFilter",
+          "text": "generic___operations___cancel",
+          "class": "btn-force-default btn-default"
+        },
+        {
+          "type": "updatePage",
+          "text": "generic___operations___save",
+          "class": "btn-primary btn-submit",
+          "dynamicProps": {
+            "disabled": "!{{canSubmitForm}}"
+          },
+          "parameters": [
+            {
+              "key": "updatePageParameter",
+              "value": {
+                "designerFlowComponent": {
+                  "sendEvent": [
+                    {
+                      "key": "saveShapeName",
+                      "value": {
+                        "shapeId": "{{shapeId}}",
+                        "name": "{{shapeName}}"
+                      }
+                    },
+                    {
+                      "key": "saveDataRecs",
+                      "value": {
+                        "shapeId": "{{shapeId}}",
+                        "dataRecs": {
+                          "parameters": "{{inputVariables}}",
+                          "outputVariables": "{{@fv()@mapOutputVariables(@getJsonParam('outputVariables').value)}}",
+                          "logicExpressions": "{{logicExpressions}}"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

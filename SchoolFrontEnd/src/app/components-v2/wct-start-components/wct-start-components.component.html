@@ -1,0 +1,286 @@
+<div class="row">
+  <div
+    *ngFor="let props of inputParameters; let pIndex = index; let last = last"
+    class="each-parameter {{ 'component-type-' + props.type }}"
+    [id]="getHtmlElementId(props, 'each-parameter')"
+    [hidden]="props.hidden || props.type == 'context'"
+    [ngClass]="props.class"
+    [class.col-sm-12]="
+      !props.class ||
+      props.class.indexOf('col-sm-12') >= 0 ||
+      props.class.indexOf('col-sm-') < 0
+    "
+    [class.group-parameters]="props.type == 'groupParameters'"
+    [class.init-new-parameters]="props.type == 'initParameters'"
+    [class.last-parameter]="last"
+    [class.hidden]="props.hidden"
+    [class.ignore-card-class]="
+      props.type === 'initCards' && props.subType?.match('card-container')
+    "
+  >
+    <!--Possibilidade de colocar informações que possam ser relevantes para o utilizador-->
+    <div
+      *ngIf="props.type == 'title'"
+      class="page-title"
+      [ngStyle]="props.style"
+    >
+      <div class="inner-padding remove-tops">
+        <h2>
+          <app-wct-label
+            [inputParameters]="props"
+            [inputValue]="props.text"
+          ></app-wct-label>
+        </h2>
+        <app-wct-label
+          *ngIf="props.description"
+          [inputParameters]="props"
+          [inputValue]="props.description"
+        ></app-wct-label>
+        <div *ngIf="props.parameters?.length > 0" class="extra-information">
+          <p
+            *ngFor="let propsParams of props.parameters"
+            [class]="propsParams.class"
+          >
+            <app-wct-label
+              [inputParameters]="propsParams"
+              [inputValue]="propsParams.text"
+            ></app-wct-label>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!--Agrupador de parâmetros-->
+
+    <div
+      *ngIf="props.type == 'groupParameters' && !props.lazyLoading"
+      class="wct-group-parameters accordion"
+      [id]="getHtmlElementId(props, 'group-parameters-' + pIndex)"
+      [hidden]="isGroupVisible(props)"
+      [ngStyle]="props.style"
+    >
+      <div
+        class="card"
+        [class.show]="
+          getGroupParamsStatus(
+            getHtmlElementId(props, 'group-parameters-colapse-' + pIndex)
+          )
+        "
+      >
+        <div
+          class="card-header"
+          [id]="getHtmlElementId(props, 'group-parameters-heading-' + pIndex)"
+        >
+          <h5 class="mb-0">
+            <button
+              class="btn btn-link"
+              type="button"
+              (mousedown)="
+                groupNavigate(
+                  $event,
+                  props.navigateTo,
+                  getHtmlElementId(props, 'group-parameters-colapse-' + pIndex)
+                )
+              "
+            >
+              {{ props.text | myI18n }}
+            </button>
+          </h5>
+        </div>
+        <div
+          class="wct-group-parameters-body"
+          [id]="getHtmlElementId(props, 'group-parameters-colapse-' + pIndex)"
+        >
+          <div class="card-body">
+            <app-wct-start-components
+              [viewStructure]="viewStructure"
+              [baseInfoForm]="baseInfoForm"
+              [componentIndex]="componentIndex"
+              [loadingFromModal]="loadingFromModal"
+              [dataRecs]="groupDataRecs[pIndex] || dataRecs"
+              [inputParameters]="props.parameters"
+            ></app-wct-start-components>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template [ngIf]="props.type == 'wrapper'">
+
+      <app-wct-start-components
+        *ngIf="!props.lazyLoading; else loadingWrapper"
+        [viewStructure]="viewStructure"
+        [baseInfoForm]="baseInfoForm"
+        [componentIndex]="componentIndex"
+        [loadingFromModal]="loadingFromModal"
+        [dataRecs]="props.value"
+        [inputParameters]="props.groups?.details?.parameters"
+        [hidden]="props.hidden"
+      ></app-wct-start-components>
+      <ng-template #loadingWrapper>
+        <app-wct-loading></app-wct-loading>
+      </ng-template>
+    </ng-template>
+
+    <ng-template
+      [ngIf]="
+        ['initParameters', 'initTable', 'initCards'].indexOf(props.type) >= 0
+      "
+    >
+      <app-wct-page
+        *ngIf="!props.lazyLoading"
+        [baseInfoForm]="baseInfoForm"
+        [inputMock]="props.mockToLoad || false"
+        [inputParameters]="!props.mockToLoad ? props : false"
+        [inputDataRecs]="dataRecs"
+        [firstLevelLayer]="false"
+        [componentIndex]="componentIndex"
+        [loadingFromModal]="loadingFromModal"
+        [origin]="'showParameters'"
+        (showComponentById)="showComponentByIdEmited($event, inputParameters)"
+      ></app-wct-page>
+    </ng-template>
+
+    <ng-template [ngIf]="props.type == 'initPageFromApi'">
+      <app-wct-page
+        *ngIf="props.value"
+        [baseInfoForm]="baseInfoForm"
+        [inputMockJson]="props.value"
+        [firstLevelLayer]="false"
+      ></app-wct-page>
+    </ng-template>
+
+    <!--Inicializa o componente de pesquisa global-->
+    <div
+      class="init-search fx-search-container"
+      *ngIf="props.type == 'initSearch'"
+    >
+      <app-search
+        [inputParameters]="props"
+        [name]="'msisdnGlobalSearch'"
+        [id]="'msisdnGlobalSearch'"
+        [placeholder]="props.text | myI18n"
+        [maxlen]="10"
+        [focus]="true"
+        [size]="props.size || 'sm'"
+        [validation-display-mode]="'inline'"
+        [(ngModel)]="msisdnModel"
+        ngDefaultControl
+      >
+      </app-search>
+    </div>
+
+    <!--Inicializa o componente Custom-->
+    <div
+      class="init-custom-component"
+      *ngIf="props.type == 'custom-component' && !props.lazyLoading"
+    >
+      <custom-bridge-component
+        [inputParameters]="props"
+        [inputParametersContext]="inputParametersContext"
+        [dataRecs]="dataRecs"
+        [inputDataRecs]="inputDataRecs"
+        [formModel]="baseInfoForm"
+      ></custom-bridge-component>
+    </div>
+
+    <div class="init-header-component" *ngIf="props.type == 'header'">
+      <app-wct-header
+        [viewStructure]="props.groups.header"
+        [inputParameters]="inputParameters"
+        [dataRecs]="dataRecs"
+      ></app-wct-header>
+    </div>
+
+    <!--Listagem de parâmetros-->
+    <app-wct-fields-format
+      *ngIf="
+        [
+          'initPageFromApi',
+          'initParameters',
+          'initTable',
+          'initCards',
+          'initSearch',
+          'groupParameters',
+          'title',
+          'custom-component',
+          'header',
+          'wrapper'
+        ].indexOf(props.type) < 0
+      "
+      [inputParameters]="props"
+      [dataRecs]="dataRecs"
+      [parametersFormat]="parametersFormat"
+      [loadingFromTable]="loadingFromTable"
+      [fixedSize]="true"
+      [labelText]="props.text"
+      [labelFor]="props.id"
+      [inputErrors]="getErrors(props.id)"
+      [formModel]="baseInfoForm"
+      [hidden]="props.hidden"
+      [required]="
+        props.validator && props.validator['required']
+          ? props.validator['required']['value']
+          : false
+      "
+    >
+      <!-- filtro -->
+      <div
+        *ngIf="
+          props.filter?.parameters?.length > 0 &&
+          props.groups.urlResource?.parameters?.length > 0
+        "
+        class="component-filter"
+      >
+        <div class="btn-group">
+          <button
+            type="button"
+            class="btn btn-default btn-sm"
+            data-toggle="collapse"
+            [id]="props.id ? 'wct-click-collapse-filter-' + props.id : ''"
+            [attr.data-target]="
+              props.id ? '#wct-panel-collapse-filter-' + props.id : ''
+            "
+          >
+            <i class="glyphicon glyphicon-filter"></i>
+          </button>
+        </div>
+        <div
+          class="horizontal-filter collapsed collapse"
+          [id]="'wct-panel-collapse-filter-' + props.id"
+        >
+          <div class="filter-content">
+            <table-filter-component
+              [inputFilters]="props.filter.parameters"
+              [horizontalFilter]="true"
+              (filter)="makeFilter(props, $event)"
+              class="fx-full-height"
+            ></table-filter-component>
+          </div>
+        </div>
+      </div>
+      <ng-template [ngIf]="props.lazyLoading">
+        <app-wct-loading></app-wct-loading>
+      </ng-template>
+      <ng-template [ngIf]="!props.lazyLoading">
+        <app-wct-external
+          [props]="props"
+          [viewStructure]="viewStructure"
+          [inputParameters]="inputParameters"
+          [inputParametersContext]="inputParametersContext"
+          [inputDataRecs]="inputDataRecs"
+          [baseInfoForm]="baseInfoForm"
+          [dataRecs]="dataRecs"
+          [filterDateInterval]="filterDateInterval"
+          [fromDefault]="fromDefault"
+          [toDefault]="toDefault"
+          [componentIndex]="componentIndex"
+          [loadingFromModal]="loadingFromModal"
+          [loadingFromTable]="loadingFromTable"
+          [rowIndex]="rowIndex"
+          [parametersFormat]="parametersFormat"
+        ></app-wct-external>
+      </ng-template>
+    </app-wct-fields-format>
+  </div>
+</div>

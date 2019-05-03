@@ -1,0 +1,55 @@
+{
+    "type": "page",
+    "id": "pageConfiguration",
+    "header": {
+        "id": "pageHeader",
+        "_seo": {
+            "text": "Surveys List",
+            "icon": "fa fa-cogs"
+        },
+        "details": [
+            {
+                "type": "label",
+                "hidden": true,
+                "id": "pageTitle",
+                "value": "student___studentDetails"
+              },
+              {
+                "type": "initParameters",
+                "class": "col-sm-4",
+                "mockToLoad": "students/student-header",
+                "parameters": [
+                  {
+                    "key": "context",
+                    "value": [
+                      "pageTitle"
+                    ]
+                  }
+                ]
+              }
+        ]
+    },
+    "navigation": [
+        {
+            "include": "students/student-detail-tabs"
+        }
+    ],
+    "tabs": [
+        {
+            "id": "studentsSurveysMainContainerTab",
+            "components": [
+                {
+                    "type": "initParameters",
+                    "details": [
+                        {
+                            "include": "surveys/student-list-noSurveys"
+                        },
+                        {
+                            "include": "surveys/student-list-hasSurveys"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

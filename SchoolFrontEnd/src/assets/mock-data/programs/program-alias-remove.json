@@ -1,0 +1,79 @@
+{
+    "type": "initParameters",
+    "id": "removeAliasPage",
+    "header": {
+        "id": "pageHeader",
+        "seo": {
+            "text": "program___alias___removeAlias",
+            "icon": "fa fa-credit-card"
+        }
+    },
+    "details": [
+        {
+            "type": "context",
+            "id": "displayName",
+            "pathToValue": [
+                "displayName"
+            ]
+        },
+        {
+            "type": "label",
+            "id": "pageBodyConfirm",
+            "value": "{{@fv()@i18n('program___alias___confirmRemove') + '   <strong>' + @replaceTagVars('displayName') + '</strong>?'}}"
+        }
+    ],
+    "buttons": [
+        {
+            "id": "aliasRemoveSubmitBtn",
+            "key": "submit",
+            "text": "generic___operations___remove",
+            "class": "btn-primary",
+            "parameters": [
+                {
+                    "key": "requestEndpoint",
+                    "value": "{{SchoolBE}}/programs/[[programID]]"
+                },
+                {
+                    "key": "requestHeaders",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                },
+                {
+                    "key": "requestType",
+                    "value": "PATCH"
+                },
+                {
+                    "key": "requestBody",
+                    "type": "json",
+                    "value": {
+                        "$pull": {
+                            "alias": {
+                                "word": "{{displayName}}"
+                            }
+                        }
+                    }
+                },
+                {
+                    "key": "successRouter",
+                    "value": "programs/[[programID]]"
+                },
+                {
+                    "key": "successText",
+                    "value": "Alias created successfully."
+                },
+                {
+                    "key": "errorText",
+                    "value": "ERROR!\n Could not create alias."
+                }
+            ]
+        },
+        {
+            "key": "cancel",
+            "id": "aliasRemoveCancelBtn",
+            "text": "generic___operations___cancel",
+            "class": "btn-default"
+        }
+    ]
+}

@@ -1,0 +1,57 @@
+<h3 id="docs-table-col-vis">Visibilidade das colunas</h3>
+<p>O DataTables possui um extra que disponibiliza uma forma de mostrar ou esconder colunas da tabela. Contudo a FUXI não empacota este extra pois tipicamente a opção de gerir a visibilidade das colunas é colocada numa toolbar com mais opções.</p>
+<p>Ainda assim, caso pretenda usar este extra, em <a class="fx-docs-btn-link" href="http://legacy.datatables.net/extras/colvis/" target="_blank">DataTables ColVis</a> pode encontrar informação detalhada.</p>
+<p>O exemplo abaixo demonstra a forma que a FUXI sugere para gerir a visibilidade das colunas. A codificação será responsabilidade das esquipas de produto.</p>
+<div class="alert alert-warning">
+    <p>O exemplo já demonstra o container onde esta funcionalidade deverá residir.</p>
+    <p>
+        Deverá fazer inclusão dos ficheiros necessários à instanciação de um objeto como DataTable, anteriormente referidos no ponto <a href="#docs-table-general-vision">tabela - overview</a>.
+    </p>
+</div>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <div class="fx-bulk-actions clearfix">
+            <div class="pull-right">
+                <!--# include file="/fuxi/doc/partials/jscomponents/table/partials/colvis-table.html" -->
+            </div>
+        </div>
+        <!--# include file="/fuxi/doc/partials/jscomponents/table/partials/simple-table.html" -->
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<div class="fx-bulk-actions clearfix">
+    <div class="pull-right">
+        <div class="btn-group">
+            <button data-toggle="dropdown" type="button" class="fx-dropdown-toggle dropdown-toggle btn btn-default btn-xs">
+                <i class="fa fa-cog"></i>
+                colunas <span class="caret"></span>
+            </button>
+            <div class="fx-dropdown fx-dropdown-open-to-left">
+                <div class="fx-dropdown-body">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="devguide-table-colvis-city" value="colvis-city" checked>
+                            Cidade
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="devguide-table-colvis-county" value="colvis-county" checked>
+                            Concelho
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="devguide-table-colvis-district" value="colvis-district" checked>
+                            Distrito
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </textarea>
+    </form>
+</div>

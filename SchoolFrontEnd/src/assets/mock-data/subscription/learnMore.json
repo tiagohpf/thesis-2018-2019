@@ -1,0 +1,295 @@
+{
+  "type": "page",
+  "id": "tutorialsPage",
+  "header": {
+    "id": "pageHeader",
+    "_seo": {
+      "text": "textm",
+      "icon": "fa fa-file-code-o"
+    },
+    "details": [
+      {
+          "type": "label",
+          "class": "titles",
+          "text": null,
+          "value": "<h1>{{@fv()@i18n('application___learnMore')}}</h1>"
+      }
+  ]
+  },
+  "navigation": [
+    {
+      "icon": "fa fa-cogs",
+      "type": "navigate",
+      "id": "defaultID",
+      "navigateTo": "/path"
+    }
+  ],
+  "tabs": [
+    {
+      "id": "tutorialsContainerTab",
+      "components": [
+        {
+          "type": "initParameters",
+          "details": [
+            {
+              "type": "wrapper",
+              "id": "wrapperStartModalVideos",
+              "class": "col-sm-12",
+              "details": [
+                {
+                  "type": "wrapper",
+                  "id": "firstVideo",
+                  "class": "col-md-4 col-sm-12 cardWrapper",
+                  "details": [
+                    {
+                      "type": "initCards",
+                      "id": "modalStudentVideo",
+                      "icon": "fa fa-th-large",
+                      "class": "col-sm-12",
+                      "details": [
+                        {
+                          "type": "operations",
+                          "text": null,
+                          "operations": {
+                            "size": 1,
+                            "parameters": [
+                              {
+                                "type": "updatePage",
+                                "id": "modalStudentplay",
+                                "class": "buttonPlay",
+                                "text": null,
+                                "icon": "fa fa-play",
+                                "parameters": [
+                                  {
+                                    "key": "updatePageParameter",
+                                    "value": {
+                                      "modalStudentVideo_Play": {
+                                        "hidden": false,
+                                        "lazyLoading": false
+                                      },
+                                      "modalStudentplay": {
+                                        "hidden": true
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "key": "keepModal",
+                                    "value": true
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "label",
+                          "id": "modalStudentDescription",
+                          "class": "description",
+                          "text": null,
+                          "value": "student___learnAboutStudents"
+                        },
+                        {
+                          "type": "customVideo",
+                          "id": "modalStudentVideo_Play",
+                          "class": "video",
+                          "value": "assets/videos/BotSchoolVideo.mp4",
+                          "parameters": [
+                            {
+                              "key": "configurations",
+                              "value": {
+                                "muted": false,
+                                "autoplay": true,
+                                "controls": true
+                              }
+                            }
+                          ],
+                          "hidden": true,
+                          "lazyLoading": true,
+                          "text": null
+                        }
+                      ]
+                    },
+                    {
+                      "type": "labelStartService",
+                      "id": "navigateStudentsCreate",
+                      "class": "col-sm-12 startModalButtons",
+                      "text": null,
+                      "value": "student___createStudent",
+                      "navigateTo": "students/create"
+                    }
+                  ]
+                },
+                {
+                  "type": "wrapper",
+                  "id": "secondVideo",
+                  "class": "col-md-4 col-sm-12 cardWrapper",
+                  "details": [
+                    {
+                      "type": "initCards",
+                      "id": "modalProgramsVideo",
+                      "icon": "fa fa-th-large",
+                      "class": "col-sm-12",
+                      "details": [
+                        {
+                          "type": "operations",
+                          "text": null,
+                          "operations": {
+                            "size": 1,
+                            "parameters": [
+                              {
+                                "type": "updatePage",
+                                "id": "modalProgramsplay",
+                                "class": "buttonPlay",
+                                "text": null,
+                                "icon": "fa fa-play",
+                                "parameters": [
+                                  {
+                                    "key": "updatePageParameter",
+                                    "value": {
+                                      "modalProgramsVideo_Play": {
+                                        "hidden": false,
+                                        "lazyLoading": false
+                                      },
+                                      "modalProgramsplay": {
+                                        "hidden": true
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "key": "keepModal",
+                                    "value": true
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "label",
+                          "id": "modalProgramsDescription",
+                          "class": "description",
+                          "text": null,
+                          "value": "student___howCreatePrograms"
+                        },
+                        {
+                          "type": "customVideo",
+                          "id": "modalProgramsVideo_Play",
+                          "class": "video",
+                          "value": "assets/videos/BotSchoolVideo.mp4",
+                          "parameters": [
+                            {
+                              "key": "configurations",
+                              "value": {
+                                "muted": false,
+                                "autoplay": true,
+                                "controls": true
+                              }
+                            }
+                          ],
+                          "hidden": true,
+                          "lazyLoading": true,
+                          "text": null
+                        }
+                      ]
+                    },
+                    {
+                      "type": "labelStartService",
+                      "id": "navigateProgramCreate",
+                      "class": "col-md-12 startModalButtons",
+                      "text": null,
+                      "value": "application___createProgram",
+                      "navigateTo": "students/create"
+                    }
+                  ]
+                },
+                {
+                  "type": "wrapper",
+                  "id": "thirdVideo",
+                  "class": "col-md-4 col-sm-12 cardWrapper",
+                  "details": [
+                    {
+                      "type": "initCards",
+                      "id": "modalAnalyticsVideo",
+                      "icon": "fa fa-th-large",
+                      "class": "col-sm-12",
+                      "details": [
+                        {
+                          "type": "operations",
+                          "text": null,
+                          "operations": {
+                            "size": 1,
+                            "parameters": [
+                              {
+                                "type": "updatePage",
+                                "id": "modalAnalyticsplay",
+                                "class": "buttonPlay",
+                                "text": null,
+                                "icon": "fa fa-play",
+                                "parameters": [
+                                  {
+                                    "key": "updatePageParameter",
+                                    "value": {
+                                      "modalAnalyticsVideo_Play": {
+                                        "hidden": false,
+                                        "lazyLoading": false
+                                      },
+                                      "modalAnalyticsplay": {
+                                        "hidden": true
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "key": "keepModal",
+                                    "value": true
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "label",
+                          "id": "modalAnalyticsDescription",
+                          "class": "description",
+                          "text": null,
+                          "value": "student___powerOfAnalytics"
+                        },
+                        {
+                          "type": "customVideo",
+                          "id": "modalAnalyticsVideo_Play",
+                          "class": "video",
+                          "value": "assets/videos/BotSchoolVideo.mp4",
+                          "parameters": [
+                            {
+                              "key": "configurations",
+                              "value": {
+                                "muted": false,
+                                "autoplay": true,
+                                "controls": true
+                              }
+                            }
+                          ],
+                          "hidden": true,
+                          "lazyLoading": true,
+                          "text": null
+                        }
+                      ]
+                    },
+                    {
+                      "type": "labelStartService",
+                      "id": "navigateAnalytics",
+                      "class": "col-md-12 startModalButtons",
+                      "text": null,
+                      "value": "application___goToAnalytics",
+                      "navigateTo": "students/create"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

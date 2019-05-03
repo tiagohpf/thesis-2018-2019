@@ -1,0 +1,780 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Selectbox Tree</title>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/fuxi/lib/jstree/3.0/themes/fuxi/style.css" rel="stylesheet" />
+
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.css" />
+
+    <link type="text/css" rel="stylesheet" href="/fuxi/lib/codemirror/5.1/css/codemirror.css" />
+
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+
+    <script src="/fuxi/lib/lodash/v3.0/lodash_3.0.1.min.js"></script>
+
+    <script src="/fuxi/lib/codemirror/5.1/js/codemirror.js"></script>
+    <script src="/fuxi/lib/codemirror/5.1/mode/xml/xml.js"></script>
+    <script src="/fuxi/lib/codemirror/5.1/addon/edit/matchbrackets.js"></script>
+    <script src="/fuxi/lib/codemirror/5.1/addon/comment/continuecomment.js"></script>
+    <script src="/fuxi/lib/codemirror/5.1/addon/comment/comment.js"></script>
+    <script src="/fuxi/lib/codemirror/5.1/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="/fuxi/lib/codemirror/5.1/mode/javascript/javascript.js"></script>
+
+    <style>
+        .CodeMirror {
+            height: auto;
+        }
+    </style>
+
+</head>
+<body class="container" style="overflow:auto">
+    <section class="well row">
+        <h1><strong>Selectbox Tree</strong></h1>
+        (<a target="_blank" href="/fuxi/components/selectboxtree/examples/demo.html">ver versão similar em AngularJS</a>)
+        <div class="row">
+            <div id="ws-doc">
+                <h3><i class="caret"></i> <strong>Opções</strong></h3>
+                <div style="padding: 0 20px" class="hidden">
+                    <div>
+                        <label><strong>required: </strong></label>
+                        <span>(true ou <strong>false</strong>) altera layout para indicar que o componente está inválido</span>
+                    </div>
+                    <div>
+                        <label><strong>multiple: </strong></label>
+                        <span>(<strong>true</strong> ou false) permite a escolha de vários nodos</span>
+                    </div>
+                    <div>
+                        <label><strong>disabled: </strong></label>
+                        <span>(<strong>true</strong> ou false) mostra o componente sem opção de selecionar nodos</span>
+                    </div>
+                    <div>
+                        <label><strong>showMode: </strong></label>
+                        <span>(<strong>tree</strong> ou grid) mostra o componente em grid ou tree</span>
+                    </div>
+                    <div>
+                        <label><strong>showSelectAll: </strong></label>
+                        <span>(<strong>false</strong> ou true) mostra a opção de selecionar todos os items</span>
+                    </div>
+                    <div>
+                        <label><strong>showSearch: </strong></label>
+                        <span>(<strong>true</strong> ou false) mostra a opção de pesquisar os items</span>
+                    </div>
+                    <div>
+                        <label><strong>numberDisplayed: </strong></label>
+                        <span>(<strong>0</strong>) numero até ao qual são mostrados os items. Após este número é apresentada uma tag com o numero de items selecionados seguido do texto definido em <i>nSelectedText</i></span>
+                    </div>
+                    <div>
+                        <label><strong>nSelectedText: </strong></label>
+                        <span>Texto a ser apresentado quando <i>numberDisplayed</i> está definido</span>
+                    </div>
+                    <div>
+                        <label><strong>allSelectedText: </strong></label>
+                        <span>Texto a ser apresentado quando se tem todos os items selecionados</span>
+                    </div>
+
+                    <div>
+                        <label><strong>fullWidth: </strong></label>
+                        <span>(<strong>true</strong> ou false) renderiza o componente ocupando 100%</span>
+                    </div>
+                    <div>
+                        <label><strong>searchPlaceholder: </strong></label>
+                        <span>mensagem reservada a mostrar na caixa de pesquisa</span>
+                    </div>
+                    <div>
+                        <label><strong>selectedPlaceholder: </strong></label>
+                        <span>mensagem reservada a mostrar na caixa de nodos seleccionados</span>
+                    </div>
+                    <div>
+                        <label><strong>selectableName: </strong></label>
+                        <span>
+                            Nome da propriedade no JSON utilizada para indicar se o nodo é um agrupador e não deve fazer parte da lista de items selecionados.<br />
+                            Ao ter um nodo da árvore definido a true nesta propriedade é utilizado o plugin <i>"changed"</i> que se encontra no ficheiro <i><a target="_blank" href="https://github.com/vakata/jstree/blob/master/src/misc.js#L25">jstree.misc.js</a></i>, pelo que deve estar incluído na página.
+                        </span>
+                    </div>
+                    <div>
+                        <label><strong>selectedIDsSpacer: </strong></label>
+                        <span>
+                            Separador utilizado na função <i><strong>getSelectedIDs()</strong></i>. Ao não indicar separador é utilizada a virgula como caracter de separação entre os diferentes IDs.
+                        </span>
+                    </div>
+                    <div>
+                        <label><strong>items: </strong></label>
+                        <span>items a carregar na árvore (ver formato JSON para carregamento de items na <a target="_blank" href="http://www.jstree.com/docs/json/">JSTREE</a>)</span>
+                    </div>
+                    <div>
+                        <label><strong>selectedItems: </strong></label>
+                        <span>array de objectos com os items pré-selecionados ([{"id": "ID-VALUE", "text": "TEXT-VALUE"}])</span>
+                    </div>
+                    <div>
+                        <label><strong>jstreePlugins: </strong></label>
+                        <span>array com os plugins utilizados pelo JSTREE (['checkbox', 'search'])</span>
+                    </div>
+                    <div>
+                        <label><strong>jstreePluginsConfiguration: </strong></label>
+                        <span>
+                            array com a configuração dos plugins utilizados pelo JSTREE ([{key: 'search',value: {show_only_matches: false}},{key: 'checkbox',value: {three_state: false}}])
+                        </span>
+                    </div>
+                    <div>
+                        <label><strong>jstreeCoreConfiguration: </strong></label>
+                        <span>
+                            array com a configuração base utilizada pelo JSTREE ([{key: 'themes',value: {name: 'fuxi',icons: false}}])
+                        </span>
+                    </div>
+                    <div>
+                        <label><strong>selectItemTemplate: </strong></label>
+                        <span>Template HTML para cada item seleccionado da lista</span>&nbsp;<a href="#" id="show-sel-template">template</a>
+                        <div id="item-sel-template-container" class="hidden">
+                            <!--<textarea id="item-sel-template" rows="10" style="width:100%" readonly="readonly"></textarea>-->
+                            <textarea id="item-sel-template" name="item-sel-template">
+                                <li class="fx-ms-search-choice">
+                                    <a class="fx-ms-search-choice-close" data-item-id="{{ID}}">
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                    </a>
+                                    <span>
+                                        {{TEXT}}
+                                    </span>
+                                </li>
+                            </textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <label><strong>gridItemTemplate: </strong></label>
+                        <span>Template HTML para cada item seleccionado da lista</span>&nbsp;<a href="#" id="show-sel-grid-template">template</a>
+                        <div id="item-sel-grid-template-container" class="hidden">
+                            <textarea id="item-sel-grid-template" name="item-sel-grid-template">
+                                <li class="fx-ms-grid-element checkbox">
+                                    <label data-multi-select>
+                                        <input type="checkbox" data-multi-select id="opt-item-{{ID}}" name="chk-item-selected" value="{{ID}}">
+                                        {{TEXT}}
+                                    </label>
+                                    <label data-uni-select>
+                                        <a data-uni-select id="opt-item-{{ID}}" value="{{ID}}" title="{{TEXT}}">
+                                            {{TEXT}}
+                                        </a>
+                                    </label>
+                                </li>
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <h3><i class="caret"></i> <strong>Eventos</strong></h3>
+                <div style="padding: 0 20px" class="hidden">
+                    <div>
+                        <label><strong>deselecteditem.fx.selectboxtree: </strong></label>
+                        <span>executado quando se remove um item selecionado</span>
+                    </div>
+                    <div>
+                        <label><strong>selecteditem.fx.selectboxtree: </strong></label>
+                        <span>executado quando se selecciona um item</span>
+                    </div>
+                </div>
+
+                <h3><i class="caret"></i> <strong>Métodos</strong></h3>
+                <div style="padding: 0 20px" class="hidden">
+                    <div>
+                        <label><strong>getSelectedValues(): </strong></label>
+                        <span>método que retorna lista de items selecionados</span>
+                    </div>
+                    <div>
+                        <label><strong>getSelectedIDs(): </strong></label>
+                        <span>método que retorna string com os IDs selecionados, separados pelo separador indicado nas opções (<i>selectedIDsSpacer</i>).</span>
+                    </div>
+                    <div>
+                        <label><strong>openDropdown(): </strong></label>
+                        <span>método que permite abrir o dropdown.</span>
+                    </div>
+                    <div>
+                        <label><strong>closeDropdown(): </strong></label>
+                        <span>método que permite fechar a dropdown.</span>
+                    </div>
+                    <div>
+                        <label><strong>triggerDropdown(): </strong></label>
+                        <span>método que permite executar o close ou open do dropdown, dependendo do estado em que se encontre.</span>
+                    </div>
+                    <div>
+                        <label><strong>resetSelectedItems(): </strong></label>
+                        <span>método que permite repor os items selecionados ao seu estado inicial.</span>
+                    </div>
+                    <div>
+                        <label><strong>clearAll(): </strong></label>
+                        <span>método que permite limpar todos os items selecionados.</span>
+                    </div>
+                </div>
+
+
+                <h3><i class="caret"></i> <strong>How To? Step by Step</strong></h3>
+                <div style="padding: 0 20px" class="hidden">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Verificar que tem incluído os seguintes ficheiros:
+                                    <ul>
+                                        <li>
+                                            <strong>CSS</strong>
+                                            <ul>
+                                                <li>Bootstrap (/basepack/bootstrap-pt/3.0/css/bootstrap.min.css)</li>
+                                                <li>jsTree (/fuxi/lib/jstree/3.0/themes/fuxi/style.css)</li>
+                                                <li>Fuxi (/fuxi/common/html/css/fuxi.css)</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>JS</strong>
+                                            <ul>
+                                                <li>Modernizr (/basepack/modernizr/2.6/modernizr.js)</li>
+                                                <li>jQuery (/basepack/jquery/1.9/jquery.min.js)</li>
+                                                <li>Bootstrap (/basepack/bootstrap-pt/3.0/js/bootstrap.min.js)</li>
+                                                <li>Lodash (/fuxi/lib/lodash/v3.0/lodash_3.0.1.min.js)</li>
+
+                                                <li>jsTree (/fuxi/lib/jstree/3.0/jstree.min.js)</li>
+                                                <li>jsTree miscellaneous (/fuxi/lib/jstree/3.0/jstree.misc.js) <strong>Caso defina que alguns nodos não devem ser colocados na lista de items selecionados, só os seus descendentes e pretenda utilizar o three-state ou o cascade do plugin checkbox...</strong></li>
+                                                <li>Fuxi (/fuxi/common/exec/fuxi.min.js) <strong>Para efeitos demonstrativos está a ser usado a versão não minificada.</strong></li>
+                                                <li>Selectboxtree (/fuxi/common/exec/common-selectboxtree.js)</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Como o "feel and look" pode variar entre sistemas, o markup deve estar na página. Na demo pode verificar o elemento DOM: <br />
+                                    <textarea id="code" name="code" data-codemirror-mode="xml" codemirror-html-mode="true" class="fx-codemirror">
+                                        <div class="fx-ms-wrapper" tabindex="1" id="ms1">...</div>
+                                    </textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Na secção de script criar uma variável com as opções para a inicialização do SelectboxTree, e outra para referência do SelectboxTree.<br />
+                                    <br />
+                                    <textarea id="code" name="code" data-codemirror-mode="javascript" class="fx-codemirror">
+                                        var options = {
+                                        items: [{ "id": "item_1" , "text": "Item 1" },{ "id": "item_2" , "text": "Item 2" }],
+                                        selectedItems: [{ "id": "item_1" , "text": "Item 1" }]
+                                        };
+                                        var ms = $("#ms1").selectBoxTree(options);
+                                    </textarea>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Para obter a lista de items seleccionados:
+                                    <br />
+                                    <textarea id="code2" name="code2" data-codemirror-mode="xml" class="fx-codemirror">
+                                        var items = ms.getSelectedValues();
+                                        console.table(items);
+                                    </textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3><i class="caret"></i> <strong style="color:red">Issues (não corrigidos: <span id="number-bugs"></span>)</strong></h3>
+                <div class="hidden">
+                    <ul id="bugs-list"></ul>
+                </div>
+                <h3><i class="caret"></i> <strong style="color:green">New Features (não implementadas: <span id="number-newfeatures"></span>)</strong></h3>
+                <div class="hidden">
+                    <ul id="newfeatures-list">
+                        <li>
+                            Implementar pesquisa remota (ver versão <a target="_blank" href="/fuxi/components/selectboxtree/examples/demo.html">AngularJS</a>)
+                        </li>
+                    </ul>
+                </div>
+
+                <h3><i class="caret"></i> <strong>Definir opções</strong></h3>
+                <div style="padding: 0 20px" class="">
+                    <form id="frm-options">
+                        <table class="table">
+                            <tr>
+                                <td><label><strong>required</strong></label></td>
+                                <td><label><strong>multiple</strong></label></td>
+                                <td><label><strong>disabled</strong></label></td>
+                                <td><label><strong>showSelectAll</strong></label></td>
+                                <td><label><strong>showSearch</strong></label></td>
+                                <td><label><strong>fullWidth</strong></label></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" id="required" checked="checked" /></td>
+                                <td><input type="checkbox" id="multiple" checked="checked" /></td>
+                                <td><input type="checkbox" id="disabled" /></td>
+                                <td><input type="checkbox" id="showSelectAll" /></td>
+                                <td><input type="checkbox" id="showSearch" checked="checked" /></td>
+                                <td><input type="checkbox" id="fullWidth" checked="checked" /></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><strong>showMode: </strong></label>
+                                </td>
+                                <td colspan="5">
+                                    <select id="showMode">
+                                        <option value="tree">tree</option>
+                                        <option value="grid">grid</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label><strong>numberDisplayed: </strong></label></td>
+                                <td colspan="5"><input type="number" min="0" size="10" value="0" id="numberDisplayed" /></td>
+                            </tr>
+                            <tr>
+                                <td><label><strong>nSelectedText: </strong></label></td>
+                                <td colspan="5"><input type="text" size="100" value="items selecionados" id="nSelectedText" /></td>
+                            </tr>
+                            <tr>
+                                <td><label><strong>allSelectedText: </strong></label></td>
+                                <td colspan="5"><input type="text" size="100" value="todos os items selecionados" id="allSelectedText" /></td>
+                            </tr>
+                            <tr>
+                                <td><label><strong>searchPlaceholder: </strong></label></td>
+                                <td colspan="5"><input type="text" size="100" value="pesquisar..." id="searchPlaceholder" /></td>
+                            </tr>
+                            <tr>
+                                <td><label><strong>selectedPlaceholder: </strong></label></td>
+                                <td colspan="5"><input type="text" size="100" value="selecione..." id="selectedPlaceholder" /></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><strong>selectItemTemplate: </strong></label>
+                                </td>
+                                <td colspan="5">
+                                    <textarea id="selectItemTemplate" name="selectItemTemplate">
+                                        <li class="fx-ms-search-choice">
+                                            <a class="fx-ms-search-choice-close" data-item-id="{{ID}}">
+                                                <i class="glyphicon glyphicon-remove"></i>
+                                            </a>
+                                            <span>
+                                                {{TEXT}}
+                                            </span>
+                                        </li>
+                                    </textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><strong>selectableName: </strong></label>
+                                </td>
+                                <td colspan="5"><input type="text" size="100" id="selectableName" value="agrupador" /></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><strong>selectedIDsSpacer: </strong></label>
+                                </td>
+                                <td colspan="5"><input type="text" size="100" id="selectedIDsSpacer" value="," /></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><strong>gridItemTemplate: </strong></label>
+                                </td>
+                                <td colspan="5">
+                                    <textarea id="gridItemTemplate" name="gridItemTemplate">
+                                        <li class="fx-ms-grid-element checkbox">
+                                            <label data-multi-select>
+                                                <input type="checkbox" data-multi-select id="opt-item-{{ID}}" name="chk-item-selected" value="{{ID}}">
+                                                {{TEXT}}
+                                            </label>
+                                            <label data-uni-select>
+                                                <a data-uni-select id="opt-item-{{ID}}" value="{{ID}}" title="{{TEXT}}">
+                                                    {{TEXT}}
+                                                </a>
+                                            </label>
+                                        </li>
+                                    </textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><strong>jstreePlugins: </strong></label>
+                                </td>
+                                <td colspan="5"><input type="text" size="100" readonly="readonly" value="'checkbox', 'search','fxsearchmatch', 'changed','selectopens'" id="jstreePlugins" /></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><strong>jstreePluginsConfiguration: </strong></label>
+                                </td>
+                                <td colspan="5"><input type="text" size="100" readonly="readonly" value="{key: 'search',value: {show_only_matches: false}},{key: 'checkbox',value: {three_state: false}}" id="jstreePluginsConfiguration" /></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><strong>jstreeCoreConfiguration: </strong></label>
+                                </td>
+                                <td colspan="5"><input type="text" size="100" readonly="readonly" value="{key: 'themes',value: {name: 'fuxi',icons: false}}" id="jstreeCoreConfiguration" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="6">&nbsp;</td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div style="background:white; padding:10px">
+            <div>
+                <p>
+                    <input type="button" id="bt-load" value="load with new options" />
+                </p>
+            </div>
+            <div id="resultContainer" class="hidden">
+                <p>
+                    <button id="dummy-getvalues">get selected values</button>&nbsp;
+                    <button id="dummy-getids">get selected IDs</button>&nbsp;
+                    <button id="dummy-resetselecteditems">reset selected items</button>&nbsp;
+                    <button id="dummy-clearall">clear All</button>&nbsp;
+                </p>
+                <div id="result"></div>
+            </div>
+            <label for="ms1">label demo</label>
+            <div class="fx-overflow" style="height:350px; border:1px solid red; overflow:auto">
+                <br />1<br />1
+                <br />2<br />2
+                <br />3<br />3
+                <br />4<br />4
+                <br />5<br />5
+                <br />6<br />6
+                <br />7<br />7
+                <div class="fx-ms-wrapper hidden" id="ms1">
+                    <input type="text" class="fx-ms-input-values sr-only" value="" />
+                    <div class="fx-ms-selection-container">
+                        <div class="fx-ms-selection">
+                            <ul class="fx-ms-choices"></ul>
+                        </div>
+                        <span class="fx-ms-expand-arrow">
+                            <i class="caret"></i>
+                        </span>
+                    </div>
+                    <div class="fx-ms-dropdown hidden">
+                        <div>
+                            <div class="form-group fx-ms-search-container fx-search-input">
+                                <div class="fx-pos-rel">
+                                    <button class="glyphicon glyphicon-search"></button>
+                                    <input type="text" class="form-control input-sm full-width fx-ms-search">
+                                </div>
+                            </div>
+                            <div class="form-group fx-ms-select-all-container">
+                                <div class="fx-pos-rel checkbox">
+                                    <label>
+                                        <input type="checkbox" class="fx-ms-select-all" /> <strong>Selecionar todos</strong>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="fx-ms-dropdown-tree">
+                                <!-- tree ??? -->
+                            </div>
+                            <div class="fx-ms-dropdown-grid hidden">
+                                <!-- grid ??? -->
+                                <ul class="list-unstyled"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />1<br />1
+                <br />2<br />2
+                <br />3<br />3
+                <br />4<br />4
+                <br />5<br />5
+                <br />6<br />6
+                <br />7<br />7
+                <div class="fx-ms-wrapper hidden" id="ms2">
+                    <input type="text" class="fx-ms-input-values sr-only" value="" />
+                    <div class="fx-ms-selection-container">
+                        <div class="fx-ms-selection">
+                            <ul class="fx-ms-choices"></ul>
+                        </div>
+                        <span class="fx-ms-expand-arrow">
+                            <i class="caret"></i>
+                        </span>
+                    </div>
+                    <div class="fx-ms-dropdown hidden">
+                        <div>
+                            <div class="form-group fx-ms-search-container fx-search-input">
+                                <div class="fx-pos-rel">
+                                    <button class="glyphicon glyphicon-search"></button>
+                                    <input type="text" class="form-control input-sm full-width fx-ms-search">
+                                </div>
+                            </div>
+                            <div class="form-group fx-ms-select-all-container">
+                                <div class="fx-pos-rel checkbox">
+                                    <label>
+                                        <input type="checkbox" class="fx-ms-select-all" /> <strong>Selecionar todos</strong>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="fx-ms-dropdown-tree">
+                                <!-- tree ??? -->
+                            </div>
+                            <div class="fx-ms-dropdown-grid hidden">
+                                <!-- grid ??? -->
+                                <ul class="list-unstyled"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="height:350px;"></div>
+    </section>
+    <script src="/fuxi/lib/jstree/3.0/jstree.min.js"></script>
+    <script src="/fuxi/lib/jstree/3.0/jstree.misc.js"></script>
+    <script src="/fuxi/lib/jstree/3.0/jstree-search-match.js"></script>
+
+    <script src="/fuxi/common/exec/fuxi.js"></script>
+    <script src="/fuxi/common/exec/common-selectboxtree.js"></script>
+    <script language="javascript" type="text/javascript">
+
+        function getItems(type) {
+            var items = [];
+            if (type === 'grid') {
+
+                for (var i = 1; i <= 15; i++) {
+                    items.push({ "id": "item_" + i, "text": "Item " + i });
+                }
+
+            } else {
+
+                items = [
+                       { "id": "demo_root_0", "parent": "#", "text": "Item 0", "agrupador": false },
+                       { "id": "demo_root_1", "parent": "demo_root_0", "text": "Item 0.1", "agrupador": false },
+                           { "id": "demo_child_1", "parent": "demo_root_1", "text": "Item 0.1.1", "icon": "fa fa-square" },
+                           { "id": "demo_child_2", "parent": "demo_root_1", "text": "Item 0.1.2", "icon": "fa fa-circle", "li_attr": { "data-showinfo": "true", "data-expression": "createNewestObject()", "data-drag": true }, "info": "A informação a mostrar no (i)!" },
+                           { "id": "demo_child_3", "parent": "demo_root_1", "text": "Item 0.1.3" },
+                           { "id": "demo_child_4", "parent": "demo_root_1", "text": "Item 0.1.4" },
+                           { "id": "demo_child_5", "parent": "demo_root_1", "text": "Item 0.1.5" },
+                           { "id": "demo_child_6", "parent": "demo_root_1", "text": "Item 0.1.6" },
+                           { "id": "demo_child_7", "parent": "demo_root_1", "text": "Item 0.1.7" },
+                           { "id": "demo_child_8", "parent": "demo_root_1", "text": "Item 0.1.8" },
+                           { "id": "demo_child_9", "parent": "demo_root_1", "text": "Item 0.1.9" },
+                           { "id": "demo_child_10", "parent": "demo_root_1", "text": "Item 0.1.10" },
+                           { "id": "demo_child_11", "parent": "demo_root_1", "text": "Item 0.1.11" },
+                           { "id": "demo_child_12", "parent": "demo_root_1", "text": "Item 0.1.12" },
+                           { "id": "demo_child_13", "parent": "demo_root_1", "text": "Item 0.1.13" },
+
+                       { "id": "demo_root_2", "parent": "#", "text": "Item 2 0.", "agrupador": true },
+                       { "id": "demo_child_17", "parent": "demo_root_2", "text": "Item 2.1 0." },
+                       { "id": "demo_child_18", "parent": "demo_root_2", "text": "Item 2.2 0." },
+                       { "id": "demo_child_19", "parent": "demo_root_2", "text": "Item 2.3 0." },
+                       { "id": "demo_child_20", "parent": "demo_root_2", "text": "Item 2.4 0." },
+                       { "id": "demo_root_3", "parent": "#", "text": "Item 3" },
+                       { "id": "demo_root_4", "parent": "#", "text": "Item 4" },
+                       { "id": "demo_root_5", "parent": "#", "text": "Item 5" }
+                       //{ "id": "demo_root_6", "parent": "#", "text": "Item 6" },
+                       //{ "id": "demo_root_7", "parent": "#", "text": "Item 7" },
+                       //{ "id": "demo_root_8", "parent": "#", "text": "Item 8" },
+                       //{ "id": "demo_root_9", "parent": "#", "text": "Item 9" },
+                       //{ "id": "demo_root_10", "parent": "#", "text": "Item 10" },
+                       //{ "id": "demo_root_11", "parent": "#", "text": "Item 11" },
+                       //{ "id": "demo_root_12", "parent": "#", "text": "Item 12" },
+                       //{ "id": "demo_root_13", "parent": "#", "text": "Item 13" },
+                       //{ "id": "demo_root_14", "parent": "#", "text": "Item 14" },
+                       //{ "id": "demo_root_15", "parent": "#", "text": "Item 15" },
+                       //{ "id": "demo_root_16", "parent": "#", "text": "Item 16" }
+                ];
+
+                //for (var i = 17; i <= 501; i++) {
+                //    items.push({ "id": "demo_root_" + i, "parent": "#", "text": "Item " + i });
+                //}
+
+            }
+            return items;
+        }
+        function getSelectedItems(type) {
+            var items = [];
+            if (type === 'grid') {
+
+                for (var i = 1; i <= 2; i++) {
+                    items.push({ "id": "item_" + i, "text": "Item " + i });
+                }
+
+            } else {
+                items = [
+                       { "id": "demo_child_1", "text": "Item 0.1.1" }
+                ];
+            }
+            return items;
+        }
+
+        $(document).ready(function () {
+
+            $("#number-bugs").text($("#bugs-list li").length);
+            $("#number-newfeatures").text($("#newfeatures-list li").length);
+
+            $("#ws-doc h3").css("cursor", "pointer").on('click', function () {
+                $(this).next().toggleClass("hidden");
+                refreshCodeMirrorObjs();
+            });
+
+            function refreshCodeMirrorObjs() {
+                $.each(codeMirrorObjs, function () {
+                    this.refresh();
+                });
+            }
+            var codeMirrorObjs = [];
+            $(".fx-codemirror").each(function () {
+                codeMirrorObjs.push(CodeMirror.fromTextArea(this, {
+                    mode: $(this).data("codemirror-mode"),
+                    htmlMode: $(this).data("codemirror-html-mode") || false,
+                    lineNumbers: true,
+                    readOnly: true
+                }));
+            });
+
+            var cmOptTmpl = {
+                mode: "xml",
+                htmlMode: true,
+                lineNumbers: false,
+                readOnly: true
+            };
+            var cmOpt = {
+                mode: "xml",
+                htmlMode: true,
+                lineNumbers: true,
+                readOnly: false
+            };
+
+            var cmItemTmpl = CodeMirror.fromTextArea(document.getElementById("item-sel-template"), cmOptTmpl);
+            var cmItem = CodeMirror.fromTextArea(document.getElementById("selectItemTemplate"), cmOpt);
+            $("#show-sel-template").on('click', function () {
+                $("#item-sel-template-container").toggleClass("hidden");
+                cmItemTmpl.refresh();
+            });
+
+            var cmItemGridTmpl = CodeMirror.fromTextArea(document.getElementById("item-sel-grid-template"), cmOptTmpl);
+            var cmItemGrid = CodeMirror.fromTextArea(document.getElementById("gridItemTemplate"), cmOpt);
+            $("#show-sel-grid-template").on('click', function () {
+                $("#item-sel-grid-template-container").toggleClass("hidden");
+                cmItemGridTmpl.refresh();
+            });
+
+            function getOptions() {
+                var options = {
+                    required: $("#required").is(":checked"),
+                    multiple: $("#multiple").is(":checked"),
+                    disabled: $("#disabled").is(":checked"),
+                    showMode: $("#showMode").val() || "tree",// grid or 'tree'
+                    showSelectAll: $("#showSelectAll").is(":checked"),
+                    showSearch: $("#showSearch").is(":checked"),
+                    numberDisplayed: $("#numberDisplayed").val() || 0, // number of items displayed on
+                    allSelectedText: $("#allSelectedText").val(), // text to show when select all
+                    nSelectedText: $("#nSelectedText").val(), // text to show when selected items is greather than numberDisplayed
+
+                    jstreePlugins: ['checkbox', 'search', 'changed', 'fxsearchmatch', 'selectopens'],
+                    jstreePluginsConfiguration: [
+                    {
+                        key: 'search',
+                        value: {
+                            show_only_matches: true
+                        }
+                    },
+                    {
+                        key: 'checkbox',
+                        value: {
+                            three_state: false,
+                            //keep_selected_style: true,
+                            //cascade: "down+up+undetermined",
+                        }
+                    }
+                    ],
+                    jstreeCoreConfiguration: [
+                    {
+                        key: 'themes',
+                        value: {
+                            name: 'fuxi',
+                            icons: false
+                        }
+                    }
+                    ],
+
+                    fullWidth: $("#fullWidth").is(":checked"),
+                    searchPlaceholder: $("#searchPlaceholder").val(),
+                    selectedPlaceholder: $("#selectedPlaceholder").val(),
+                    items: getItems($("#showMode").val()),
+                    selectedItems: getSelectedItems($("#showMode").val()),
+                    selectItemTemplate: $("#selectItemTemplate").val(),
+                    gridItemTemplate: $("#gridItemTemplate").val(),
+                    selectableName: $("#selectableName").val() || "isgroup",
+                    selectedIDsSpacer: $("#selectedIDsSpacer").val() // default is ,
+                };
+                return options;
+            }
+
+            var ms = null;
+            var ms2 = null;
+            $("#dummy-getvalues").on('click', function () {
+                if (!ms) return;
+                var items = ms.getSelectedValues();
+                $("#result").html(JSON.stringify(items));
+            });
+            $("#dummy-getids").on('click', function () {
+                if (!ms) return;
+                var ids = ms.getSelectedIDs();
+                $("#result").html(ids);
+            });
+            $("#dummy-resetselecteditems").on('click', function () {
+                if (!ms) return;
+                ms.resetSelectedItems();
+            });
+            $("#dummy-clearall").on('click', function () {
+                if (!ms) return;
+                ms.clearAll();
+            });
+
+            $("#bt-load").on('click', function () {
+                if (ms) ms.destroy();
+                if (ms2) ms2.destroy();
+                var options = getOptions();
+                $("#result").empty();
+                $("#resultContainer").removeClass("hidden");
+                ms = $("#ms1").removeClass("hidden").selectBoxTree(options);
+                ms2 = $("#ms2").removeClass("hidden").selectBoxTree(options);
+
+
+                // event fired ;
+                ms.$elem.off('selectall.fx.selectboxtree').on('selectall.fx.selectboxtree', function () {
+                    console.log("selectall event fired!!!", arguments);
+                });
+
+            });
+
+            // component
+            /*ms.push($(".fx-ms-wrapper").eq(0).selectBoxTree({
+                multiple: true,
+                disabled: false,
+                showMode: 'grid',
+                showSelectAll: true,
+                showSearch: true,
+                numberDisplayed: 2,
+                nSelectedText: 'items selecionados',
+                allSelectedText: 'todos os items selecionados',
+                selectedPlaceholder: 'select items...',
+                searchPlaceholder: 'search...',
+                items: getItems('grid'),
+                selectedItems: [{ "id": "item_2", "text": "item 2" }, { "id": "item_3", "text": "item 3" }]
+            }));
+            ms.push($(".fx-ms-wrapper").eq(1).selectBoxTree({ multiple: false, disabled: true, selectedPlaceholder: 'select items...', searchPlaceholder: 'search...', items: getItems(), selectedItems: [{ "id": "demo_root_2", "text": "Item 2" }] }));
+            ms.push($(".fx-ms-wrapper").eq(2).selectBoxTree({
+                multiple: true,
+                disabled: false,
+                showSelectAll: true,
+                showSearch: true,
+                numberDisplayed: 2,
+                nSelectedText: 'items selecionados',
+                allSelectedText: 'todos os items selecionados',
+                selectedPlaceholder: 'select items...',
+                searchPlaceholder: 'search...',
+                items: getItems(),
+                selectedItems: [{ "id": "demo_root_1", "text": "item 0.1" }]
+            }));*/
+        });
+    </script>
+
+</body>
+
+</html>

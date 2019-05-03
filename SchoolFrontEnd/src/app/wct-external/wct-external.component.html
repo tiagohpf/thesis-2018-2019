@@ -1,0 +1,333 @@
+<div class="wct-external-wrapper wct-component-type-{{props.type}}" [ngSwitch]="props.type">
+
+    <ng-template [ngSwitchCase]="'hello-component'">
+        <hello-component [inputParameters]="props" [dataRecs]="dataRecs" [globalVars]="globalVars"
+            (nameChanged)="setName($event)"></hello-component>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'student-chatElement-init'">
+        <app-bs-student-chat-element-init></app-bs-student-chat-element-init>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'designer-flow-component'">
+        <div class="designer-wrapper">
+            <app-drag-component [inputParameters]="props"></app-drag-component>
+        </div>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'wct-ng-select'">
+        <!-- <app-wct-ng-select [inputParameters]="props" [control]="baseInfoForm.controls[props.id]" (newRequest)="infiniteScroll(props)"></app-wct-ng-select> -->
+        <app-wct-ng-select [inputParameters]="props" [control]="baseInfoForm.controls[props.id]"></app-wct-ng-select>
+    </ng-template>
+
+    <!-- DEPRECATED ***** -->
+
+    <ng-template [ngSwitchCase]="'jsonlabel'">
+        <json-component [inputParameters]="props"></json-component>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'input-radio-offerBrowsing'">
+        <ng-template #hasNoOptions>
+            <div class="text-left alert alert-error" style="max-width:none;">
+                <div class="fx-alert-icon"><i class="fa fa-exclamation fx-status-error"></i></div>
+                <div class="fx-alert-desc">{{'warnings___noRecords' | myI18n}}</div>
+            </div>
+        </ng-template>
+        <div *ngIf="props.valueList?.length > 0; else hasNoOptions">
+            <input style="max-width:none;margin-bottom:10px;" type="text" class="form-control input-sm"
+                placeholder="{{'generic___search' | myI18n}}" (keyup)="searchOnList($event,props.valueList)" />
+            <div class="text-left col-md-6" style="padding:0;max-height:250px;overflow-y:auto;">
+                <input-radio [inputParameters]="props" [dataRecs]="dataRecs" [inputDataRecs]="inputDataRecs"
+                    [control]="baseInfoForm.controls[props.id]"></input-radio>
+            </div>
+            <div class="pull-right col-md-6 text-left">
+                <p><strong>{{'generic___description' | myI18n}}</strong></p>
+                <p>{{props.description}}</p>
+            </div>
+        </div>
+    </ng-template>
+
+    <!-- ***** DEPRECATED -->
+
+
+    <ng-template [ngSwitchCase]="'json'">
+        <json-component [inputParameters]="props"></json-component>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'image'">
+        <image-component [inputParameters]="props"></image-component>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'colorpicker'">
+        <colorpicker-component [inputParameters]="props"></colorpicker-component>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'btn-ip'">
+        <btn-ip-component [inputParameters]="props"></btn-ip-component>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'progressbar'">
+        <progressbar-component [inputParameters]="props"></progressbar-component>
+    </ng-template>
+
+
+    <ng-template [ngSwitchCase]="'operations'">
+        <app-wct-buttons *ngIf="props.groups.operations" [inputParameters]="props" [loadingFromModal]="loadingFromModal"
+            [inputParametersContext]="inputParameters" [operations]="props.groups.operations" [btnSize]="'btn-sm'"
+            [btnPrimary]="false" [dataRecs]="dataRecs" [componentIndex]="componentIndex"
+            [btnMax]="props.groups.operations.size >= 0 ? props.groups.operations.size : 1"></app-wct-buttons>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'button'">
+        <app-wct-buttons [inputParameters]="props" [loadingFromModal]="loadingFromModal"
+            [inputParametersContext]="inputParameters" [operations]="props" [btnslidize]="'btn-sm'" [btnPrimary]="false"
+            [dataRecs]="dataRecs" [btnMax]="1"></app-wct-buttons>
+    </ng-template>
+
+
+    <ng-template [ngSwitchCase]="'tree-view'">
+        <tree-view [inputParameters]="props" [inputDataRecs]="dataRecs" [control]="baseInfoForm.controls[props.id]">
+        </tree-view>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'slider'">
+        <slider-component [inputParameters]="props" [inputDataRecs]="dataRecs"
+            [control]="baseInfoForm.controls[props.id]">
+        </slider-component>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'label'">
+        <div class="keep-alignment-to-label">
+            <app-wct-label [inputParameters]="props" [inputDetails]="inputParameters" [textboxAlign]="parametersFormat"
+                [dataRecs]="dataRecs"></app-wct-label>
+        </div>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'textbox'">
+        <auto-complete-component *ngIf="props.subType === 'autocomplete'; else regularTextbox" [inputParameters]="props"
+            [control]="baseInfoForm.controls[props.id]"></auto-complete-component>
+        <ng-template #regularTextbox>
+            <textbox-unicity-validator *ngIf="props.validator?.unique; else noUnicityValidator"
+                [inputParameters]="props" [control]="baseInfoForm.controls[props.id]"></textbox-unicity-validator>
+            <ng-template #noUnicityValidator>
+                <input-textbox [inputParameters]="props" [control]="baseInfoForm.controls[props.id]"></input-textbox>
+            </ng-template>
+        </ng-template>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'text'">
+        <input-textbox [inputParameters]="props" [type]="props.subType" [control]="baseInfoForm.controls[props.id]">
+        </input-textbox>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'timespan'">
+        <input-textbox [inputParameters]="props" [control]="baseInfoForm.controls[props.id]"></input-textbox>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'password'">
+        <input-textbox [inputParameters]="props" [type]="'password'" [control]="baseInfoForm.controls[props.id]">
+        </input-textbox>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'number'">
+        <input-textbox [inputParameters]="props" [type]="'number'" [control]="baseInfoForm.controls[props.id]">
+        </input-textbox>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'auto-complete-details'">
+        <auto-complete-details [inputParameters]="props" [details]="inputParameters" [dataRecs]="dataRecs"
+            [(baseInfoForm)]="baseInfoForm" [componentIndex]="componentIndex" [loadingFromModal]="loadingFromModal">
+        </auto-complete-details>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'input-select'">
+        <input-select [inputParameters]="props" [dataRecs]="dataRecs" [inputDataRecs]="inputDataRecs"
+            [control]="baseInfoForm.controls[props.id]"></input-select>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'input-radio'">
+        <input-radio [inputParameters]="props" [dataRecs]="dataRecs" [inputDataRecs]="inputDataRecs"
+            [control]="baseInfoForm.controls[props.id]"></input-radio>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'input-checkbox'">
+        <input-checkbox [inputParameters]="props" [dataRecs]="dataRecs" [inputDataRecs]="inputDataRecs"
+            [control]="baseInfoForm.controls[props.id]"></input-checkbox>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'select-from-modal'">
+        <select-from-modal [inputParameters]="props" [control]="baseInfoForm.controls[props.id]"></select-from-modal>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'chart'">
+        <ngx-charts [inputParameters]="props" [inputDataRecs]="dataRecs" [dataRecsNoContent]="dataRecsNoContent">
+        </ngx-charts>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'map'">
+        <!--<map-component [inputParameters]="props" [inputDataRecs]="dataRecs"></map-component>-->
+        <assymetrik-leaflet-map [inputParameters]="props" [inputDataRecs]="dataRecs"></assymetrik-leaflet-map>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'tag'">
+        <app-wct-tags [inputParameters]="props" [dataRecs]="dataRecs" [inputDataRecs]="inputDataRecs"></app-wct-tags>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'captcha'">
+        <captcha-component [inputParameters]="props" [control]="baseInfoForm.controls[props.id]"></captcha-component>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'dropdown'">
+        <dropdown-component [inputParameters]="props" [control]="baseInfoForm.controls[props.id]"
+            [inputDataRecs]="dataRecs"></dropdown-component>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'date'">
+        <div class="date-time-picker">
+            <input-datetimepicker [inputParameters]="props" [control]="baseInfoForm.controls[props.id]">
+            </input-datetimepicker>
+        </div>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'dates-interval'">
+        <datetimepicker-interval [props]="props" [filterDateInterval]="filterDateInterval"></datetimepicker-interval>
+    </ng-template>
+
+    <div *ngSwitchCase="'upload'">
+        <upload-component [inputParameters]="props" [dataRecs]="dataRecs" [inputDataRecs]="inputDataRecs"
+            [control]="baseInfoForm.controls[props.id]"></upload-component>
+    </div>
+
+    <ng-template [ngSwitchCase]="'boolean'">
+        <input-checkbox [inputParameters]="props" [dataRecs]="dataRecs" [inputDataRecs]="inputDataRecs"
+            [control]="baseInfoForm.controls[props.id]"></input-checkbox>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'enum'">
+        <input-radio [inputParameters]="props" [control]="baseInfoForm.controls[props.id]"></input-radio>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'check_list'">
+        <input-checkbox [inputParameters]="props" [dataRecs]="dataRecs" [inputDataRecs]="inputDataRecs"
+            [control]="baseInfoForm.controls[props.id]"></input-checkbox>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'tuple'">
+        <tuplelist-component [props]="props" [propsContext]="inputParameters" [allowCreation]="false"
+            [control]="baseInfoForm.controls[props.id]"></tuplelist-component>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'tuple_list'">
+        <tuplelist-component [props]="props" [propsContext]="inputParameters"
+            [control]="baseInfoForm.controls[props.id]"></tuplelist-component>
+    </ng-template>
+    <!--OFFERBROWSING PARAMETERS TYPE-->
+
+
+    <ng-template [ngSwitchCase]="'roles_form'">
+        <roles-form [props]="props"></roles-form>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'selected-items-container'">
+        <selected-items-container [inputParameters]="props" [control]="baseInfoForm.controls[props.id]">
+        </selected-items-container>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'playground'">
+        <playground-component [inputParameters]="props" [dataRecs]="dataRecs" [inputDataRecs]="inputDataRecs"
+            [control]="baseInfoForm.controls[props.id]"></playground-component>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'menu'">
+        <app-wct-navbar-menu [viewStructure]="props"></app-wct-navbar-menu>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'customSideSubMenu'">
+        <app-custom-side-menu [inputParameters]="props" [dataRecs]="dataRecs"></app-custom-side-menu>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'customIxsServiceLogin'">
+        <app-ixs-login [inputParameters]="props" [dataRecs]="dataRecs"></app-ixs-login>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'customCheckIxsExistence'">
+        <app-check-ixs-existence></app-check-ixs-existence>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'tuple_list_custom'">
+        <tuplelist-custom-component [props]="props" [propsContext]="inputParameters"
+            [control]="baseInfoForm.controls[props.id]"></tuplelist-custom-component>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'customVideo'">
+        <app-video [inputParameters]="props" [dataRecs]="dataRecs"></app-video>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'customLogout'">
+        <custom-logout></custom-logout>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'labelStartService'">
+        <app-label-start [inputParameters]="props"></app-label-start>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'inline-image-component'">
+        <inline-image-component [inputParameters]="props" [inputDataRecs]="inputDataRecs" [dataRecs]="dataRecs">
+        </inline-image-component>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'sliding-nav-bar'">
+        <sliding-nav-bar [inputParameters]="props" [inputDataRecs]="inputDataRecs" [dataRecs]="dataRecs">
+        </sliding-nav-bar>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'inline-member-identification'">
+        <inline-member-identification [inputParameters]="props" [inputDataRecs]="inputDataRecs" [dataRecs]="dataRecs">
+        </inline-member-identification>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'inline-member-identification-component'">
+        <inline-member-identification-component [inputParameters]="props" [inputDataRecs]="inputDataRecs"
+            [dataRecs]="dataRecs"></inline-member-identification-component>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'uploadImages'">
+        <uploadImages [inputParameters]="props" [inputDataRecs]="inputDataRecs" [dataRecs]="dataRecs"></uploadImages>
+    </ng-template>
+
+
+
+    <ng-template [ngSwitchCase]="'wct-tuple-list'">
+        <app-wct-tuple-list [props]="props" [propsContext]="inputParameters" [allowCreation]="true"
+            [control]="baseInfoForm.controls[props.id]"></app-wct-tuple-list>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'stripe-card'">
+        <stripe-card [inputParameters]="props" [inputDataRecs]="inputDataRecs" [dataRecs]="dataRecs">
+        </stripe-card>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'stripe-card-list'">
+        <stripe-card-list [inputParameters]="props" [inputDataRecs]="inputDataRecs" [dataRecs]="dataRecs">
+        </stripe-card-list>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'print-button'">
+        <print-component [inputParameters]="props" [inputDataRecs]="inputDataRecs" [dataRecs]="dataRecs">
+        </print-component>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'bs-order-connections'">
+        <app-bs-order-connections [inputParameters]="props"></app-bs-order-connections>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'bs-va-answer'">
+        <app-bs-va-answer [inputParameters]="props"></app-bs-va-answer>
+    </ng-template>
+
+
+
+
+    <ng-template [ngSwitchCase]="'wct-datepicker'">
+            <app-wct-datepicker [inputParameters]="props" [control]="baseInfoForm.controls[props.id]"></app-wct-datepicker>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'wct-datepicker-interval'">
+        <app-wct-datepicker-interval [props]="props" [filterDateInterval]="filterDateInterval"></app-wct-datepicker-interval>
+    </ng-template>
+
+
+
+
+    <!-- TODO: Criar componente específico -->
+    <ng-template [ngSwitchCase]="'file-upload-input'">
+        <input type="file" />
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'custom-tag-input'">
+        <custom-tag-input [inputParameters]="props" [dataRecs]="dataRecs" [control]="formModel"></custom-tag-input>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'custom-mentions'">
+        <custom-mentions type="text" [inputParameters]="props" [inputDataRecs]="dataRecs" [control]="formModel">
+        </custom-mentions>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'copyclipboard'">
+        <copyclip-board [inputParameters]="props" [inputDataRecs]="dataRecs" [control]="formModel">
+        </copyclip-board>
+    </ng-template>
+</div>

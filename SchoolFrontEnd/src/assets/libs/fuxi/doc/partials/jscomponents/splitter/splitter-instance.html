@@ -1,0 +1,190 @@
+<h3 id="docs-splitter-instance">Instanciação de um splitter</h3>
+<p>O markup do splitter deverá ser explicitamente disponibilizado na página.</p>
+<p>O snippet de código abaixo ilustra os ficheiros necessários ao correto funcionamento do splitter. Demonstra ainda a instanciação dos diferentes elementos usados. Tenha por favor em atenção que para o splitter ser corretamente visualizado será necessário definir uma altura fixa para o parent do elemento com a class <code>.fx-uilayout-container</code>.</p>
+<p>A FUXI sugere que quando se colapsa uma sidebar seja feito o append do(s) ícone(s) representativo(s) da(s) funcionalidade(s) disponibilizada(s) na sidebar.</p>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <div style="height: 450px;">
+            <div id="devguide-splitter-layout-container" class="fx-uilayout-container fx-uilayout-container-bordered fx-uilayout-sidebared">
+                <!-- Outer Layout Container -->
+                <!--WILL BE SHOWN WHEN PANEL IS COLLAPSED-->
+                <div class="devguide-splitter-outer-west fx-sidebar">
+                    <header class="fx-sidebar-header">
+                        <div class="fx-sidebar-header-inner">
+                            <p>
+                                <span class="fx-info-icon">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </span>
+                                pesquisar
+                            </p>
+                        </div>
+                    </header>
+                    <div class="fx-sidebar-content">
+                        <div class="fx-sidebar-content-inner">
+                            <p>Área de conteúdo da splitter bar.</p>
+                            <p>Tipicamente é utilizada para pesquisas, mas pode conter qualquer tipo de conteúdo.</p>
+                            <p>A área de botões ao fundo poderá ou não existir.</p>
+                        </div>
+                    </div>
+                    <div class="fx-sidebar-footer">
+                        <div class="fx-sidebar-footer-inner">
+                            <button type="button" class="btn btn-primary btn-sm">pesquisar</button>
+                            <button type="button" class="btn btn-default btn-sm">limpar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="devguide-splitter-outer-center">
+                    <!-- Middle Layout Container -->
+                    <div class="devguide-splitter-middle-center">
+                        <!-- Inner-North Layout Container -->
+                        <div class="devguide-splitter-north-center">
+                            <div class="devguide-splitter-north-center-c fx-main-content">
+                                <h1>Splitter</h1>
+                                <p>A componente Splitter consiste num conjunto de paineis que podem ser colapsados ou arrastados. Podemos definir paineis à esquerda, direita ou abaixo. Nesta página de demo apresentamos o exemplo mais simples, que consiste numa sidebar e numa área de conteúdo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!-- Ficheiros necessários a incluir no head-->
+
+<head>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/fuxi/lib/uilayout/layout-default-latest.css" rel="stylesheet" />
+    <link href="/fuxi/common/html/css/fuxi.min.css" rel="stylesheet" />
+
+    <!--Estes scripts dentro da tag head devido ao UI Layout-->
+    <script src="/basepack/jquery/1.11/jquery.min.js"></script>
+    <script src="/fuxi/lib/jqueryui/1.11/js/jquery-ui.min.js"></script>
+    <script src="/fuxi/lib/uilayout/jquery.layout-latest.js"></script>
+</head>
+        </textarea>
+    </form>
+
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!--Ficheiros a colocar antes de fechar a tag body-->
+
+<script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+<script src="/fuxi/common/exec/fuxi.js"></script>
+        </textarea>
+    </form>
+
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!--Markup do exemplo-->
+<div style="height: 450px;">
+    <div id="devguide-splitter-layout-container" class="fx-uilayout-container fx-uilayout-container-bordered fx-uilayout-sidebared">
+        <!-- Outer Layout Container -->
+        <!--WILL BE SHOWN WHEN PANEL IS COLLAPSED-->
+        <div class="devguide-splitter-outer-west fx-sidebar">
+            <header class="fx-sidebar-header">
+                <div class="fx-sidebar-header-inner">
+                    <p>
+                        <span class="fx-info-icon">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </span>
+                        pesquisar
+                    </p>
+                </div>
+            </header>
+            <div class="fx-sidebar-content">
+                <div class="fx-sidebar-content-inner">
+                    <p>Área de conteúdo da splitter bar.</p>
+                    <p>Tipicamente é utilizada para pesquisas, mas pode conter qualquer tipo de conteúdo.</p>
+                    <p>A área de botões ao fundo poderá ou não existir.</p>
+                </div>
+            </div>
+            <div class="fx-sidebar-footer">
+                <div class="fx-sidebar-footer-inner">
+                    <button type="button" class="btn btn-primary btn-sm">pesquisar</button>
+                    <button type="button" class="btn btn-default btn-sm">limpar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="devguide-splitter-outer-center">
+            <!-- Middle Layout Container -->
+            <div class="devguide-splitter-middle-center">
+                <!-- Inner-North Layout Container -->
+                <div class="devguide-splitter-north-center">
+                    <div class="devguide-splitter-north-center-c fx-main-content">
+                        <h1>Splitter</h1>
+                        <p>A componente Splitter consiste num conjunto de paineis que podem ser colapsados ou arrastados. Podemos definir paineis à esquerda, direita ou abaixo. Nesta página de demo apresentamos o exemplo mais simples, que consiste numa sidebar e numa área de conteúdo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </textarea>
+    </form>
+
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!--Instanciação do splitter-->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var outerLayout, middleLayout;
+        function createLayouts() {
+            var defaults = {
+                resizable: true,
+                livePaneResizing: true,
+                slidable: false,
+                spacing_closed: 40,
+                spacing_open: 10
+            };
+
+            outerLayout = $('#devguide-splitter-layout-container').layout({
+                name: "outer"
+                , defaults: defaults
+                , center__paneSelector: ".devguide-splitter-outer-center"
+                , west: {
+                    size: 250
+                    , maxSize: 500
+                    , minSize: 200
+                    , paneSelector: ".devguide-splitter-outer-west"
+                    , contentSelector: '.fx-sidebar-content'
+                    , onopen: function () {
+                        outerLayout.resizers.west.find(".fx-info-icon").remove();
+                    }
+                    , onclose: function () {
+                        outerLayout.resizers.west.append('<span class="fx-info-icon"><i class="glyphicon glyphicon-search"></i></span> ');
+                    }
+                }
+            });
+            //add shadow on sidebar content once selector is scrolled
+            outerLayout.west.pane.find('.fx-sidebar-content').on('scroll', function () {
+                $this = $(this);
+                $prev = $this.prev();
+
+                if ($this.scrollTop() > 7 && !$this.hasClass("fx-sticky-shadow")) {
+                    $prev.addClass('fx-sticky-shadow');
+                } else if ($this.scrollTop() <= 7 && $prev.hasClass("fx-sticky-shadow")) {
+                    $prev.removeClass('fx-sticky-shadow');
+                }
+            });
+
+            middleLayout = $('div.devguide-splitter-outer-center').layout({
+                name: "middle"
+                , defaults: defaults
+                , center__paneSelector: ".devguide-splitter-middle-center"
+            });
+        };
+
+        createLayouts();
+    });
+</script>
+
+        </textarea>
+    </form>
+</div>

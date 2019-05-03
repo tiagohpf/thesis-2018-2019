@@ -1,0 +1,263 @@
+    {
+        "type": "initParameters",
+        "id": "trainingProgram",
+        "header": {
+            "id": "pageHeader",
+            "seo": {
+                "text": "program___modelTraining___title"
+            }
+        },
+        "details": [
+            {
+                "type": "operations",
+                "class": "hide-label editFieldButtons",
+                "operations": {
+                    "text": "generic___operations___operations",
+                    "icon": "glyphicon glyphicon-cog",
+                    "size": 3,
+                    "parameters": [
+                        {
+                            "type": "execute",
+                            "id": "startTraining",
+                            "class": "editButton btn-default",
+                            "text": "program___modelTraining___start",
+                            "parameters": [
+                                {
+                                    "key": "requestEndpoint",
+                                    "value": "{{AppAPIBotConfig}}/programs/[[programID]]"
+                                },
+                                {
+                                    "key": "requestHeaders",
+                                    "value": {
+                                        "Authorization": "Bearer {{token}}",
+                                        "IXS": "{{IXS_id}}"
+                                    }
+                                },
+                                {
+                                    "key": "requestType",
+                                    "value": "PATCH"
+                                },
+                                {
+                                    "key": "requestBody",
+                                    "type": "json",
+                                    "value": {
+                                        "$set": {
+                                            "model.rasaNLUpipeline": "{{trainPipeline}}"
+                                        }
+                                    }
+                                },
+                                {
+                                    "key": "errorText",
+                                    "value": "Error when saving algorithm."
+                                },
+                                {
+                                    "key": "onSuccess",
+                                    "value": {
+                                        "keepModal": true,
+                                        "request": [
+                                            {
+                                                "key": "requestEndpoint",
+                                                "value": "{{SchoolBE}}/programs/[[programID]]/learnDraft"
+                                            },
+                                            {
+                                                "key": "requestHeaders",
+                                                "value": {
+                                                    "Authorization": "Bearer {{token}}",
+                                                    "IXS": "{{IXS_id}}"
+                                                }
+                                            },
+                                            {
+                                                "key": "requestType",
+                                                "value": "POST"
+                                            },
+                                            {
+                                                "key": "requestBody",
+                                                "type": "json",
+                                                "value": {
+                                                    "requestedBy": "{{@fv()localStorage.getItem('logged-user')}}",
+                                                    "learn": true,
+                                                    "parse": false,
+                                                    "deploy": false
+                                                }
+                                            },
+                                            {
+                                                "key": "errorText",
+                                                "value": "Error when in training request."
+                                            },
+                                            {
+                                                "key": "onSuccess",
+                                                "value": {
+                                                    "keepModal": true,
+                                                    "request": [
+                                                        {
+                                                            "key": "updatePageParameter",
+                                                            "value": {
+                                                                "trainingProgramParams": {
+                                                                    "lazyLoading": false
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            "key": "successText",
+                                                            "value": false
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ],
+                            "dynamicProps": {
+                                "hidden": "'{{status}}' == 'training'"
+                            }
+                        },
+                        {
+                            "type": "updatePage",
+                            "id": "refresh",
+                            "class": "editButton btn-default",
+                            "icon": "fa fa-refresh",
+                            "parameters": [
+                                {
+                                    "key": "updatePageParameter",
+                                    "value": {
+                                        "trainingProgramParams": {
+                                            "lazyLoading": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "key": "keepModal",
+                                    "value": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "initParameters",
+                "id": "trainingProgramParams",
+                "urlResource": [
+                    {
+                        "key": "id",
+                        "value": "programTrainingModel"
+                    },
+                    {
+                        "key": "apiRecycle",
+                        "value": false
+                    },
+                    {
+                        "key": "path",
+                        "value": "{{SchoolBE}}/programs/[[programID]]"
+                    },
+                    {
+                        "key": "queryString",
+                        "value": {
+                            "keys": "{\"model\":1}"
+                        }
+                    },
+                    {
+                        "key": "headers",
+                        "value": {
+                            "Authorization": "Bearer {{token}}",
+                            "IXS": "{{IXS_id}}"
+                        }
+                    }
+                ],
+                "details": [
+                    {
+                        "type": "input-radio",
+                        "id": "trainPipeline",
+                        "class": "col-sm-6",
+                        "text": "program___modelTraining___pipeline",
+                        "pathToValue": [
+                            "programTrainingModel",
+                            "model",
+                            "rasaNLUpipeline"
+                        ],
+                        "valueList": [
+                            {
+                                "key": "tensorflow_embedding",
+                                "value": "program___modelTraining___pipelineFit"
+                            },
+                            {
+                                "key": "nlp_spacy",
+                                "value": "program___modelTraining___pipelinePreTrained"
+                            }
+                        ],
+                        "value": "tensorflow_embedding"
+                    },
+                    {
+                        "type": "label",
+                        "id": "status",
+                        "class": "col-sm-6",
+                        "pathToValue": [
+                            "programTrainingModel",
+                            "model",
+                            "status"
+                        ],
+                        "text": "program___modelTraining___status",
+                        "hidden": true
+                    },
+                    {
+                        "type": "label",
+                        "id": "statusShow",
+                        "class": "col-sm-6",
+                        "pathToValue": [
+                            "programTrainingModel",
+                            "model",
+                            "status"
+                        ],
+                        "text": "program___modelTraining___status",
+                        "html": {
+                            "new": "program___modelTraining___modelStatus___new",
+                            "active": "program___modelTraining___modelStatus___active",
+                            "deprecated": "program___modelTraining___modelStatus___deprecated",
+                            "error": "{{@fv()@i18n('program___modelTraining___modelStatus___error')}} <i class='fuxicons fuxicons-warning fx-status-warning' title='{{@fv()@replaceTagVars('programTrainingModel___model___errorDescription___error___msg')}}' ></i>"
+                        }
+                    },
+                    {
+                        "type": "label",
+                        "id": "trainStart",
+                        "class": "col-sm-6",
+                        "pathToValue": [
+                            "programTrainingModel",
+                            "model",
+                            "trainStart"
+                        ],
+                        "text": "program___modelTraining___trainStart"
+                    },
+                    {
+                        "type": "label",
+                        "id": "trainEnd",
+                        "class": "col-sm-6",
+                        "pathToValue": [
+                            "programTrainingModel",
+                            "model",
+                            "$this['trainEnd'] || '-'"
+                        ],
+                        "text": "program___modelTraining___trainEnd"
+                    },
+                    {
+                        "type": "label",
+                        "id": "requestedBy",
+                        "pathToValue": [
+                            "programTrainingModel",
+                            "model",
+                            "requestedBy"
+                        ],
+                        "text": "program___modelTraining___requestedBy"
+                    }
+                ]
+            }
+        ],
+        "buttons": [
+            {
+                "id": "btnCancelClose",
+                "key": "cancel",
+                "text": "generic___operations___close",
+                "class": "btn-default"
+            }
+        ]
+    }

@@ -1,0 +1,86 @@
+<h3 id="docs-wid-select-events">Eventos e Métodos</h3>
+<p>O widget select disponibiliza os eventos e métodos abaixo enumerados.</p>
+
+<h4>Eventos</h4>
+<div class="table-responsive">
+    <table class="table fx-table">
+        <thead>
+            <tr>
+                <th>Evento</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>shown.fx.widgetselect</td>
+                <td>Executado quando é mostrado o widget select.</td>
+            </tr>
+            <tr>
+                <td>addsave.fx.widgetselect</td>
+                <td>Executado quando é criado um novo item. O item deve ser criado neste evento e após ser criado com sucesso devem ser invocados os métodos <code>handleShowSelectView</code> e <code>drawItem</code>.</td>
+            </tr>
+            <tr>
+                <td>addcancel.fx.widgetselect</td>
+                <td>Executado quando é cancelada a criação de um novo item.</td>
+            </tr>
+            <tr>
+                <td>selectconfirm.fx.widgetselect</td>
+                <td>Executado quando são seleccionados os items. Retorna no argumento os items selecionados. Fecha a modal com o widget select.</td>
+            </tr>
+            <tr>
+                <td>selectcancel.fx.widgetselect</td>
+                <td>Executado quando é cancelada a selecção dos items. É feito o reset dos items que possam ter sido eliminados ou selecionados. Fecha a modal com o widget select.</td>
+            </tr>
+            <tr>
+                <td>showadd.fx.widgetselect</td>
+                <td>Executado quando é mostrada a view de inserção de novo item.</td>
+            </tr>
+            <tr>
+                <td>showselect.fx.widgetselect</td>
+                <td>Executado quando é mostrada a view de seleção.</td>
+            </tr>
+            <tr>
+                <td>itempreview.fx.widgetselect</td>
+                <td>Executado quando é mostrada a pré-visualização do item. É aqui que se deve ir buscar os dados de detalhe do item e depois de os carregar para o DOM deve ser invocado o método <code>layout.resizeAll()</code>.</td>
+            </tr>
+            <tr>
+                <td>itemremove.fx.widgetselect</td>
+                <td>Executado quando é removido um item.</td>
+            </tr>
+            <tr>
+                <td>removeall.fx.widgetselect</td>
+                <td>Executado quando são removidos todos os itens.</td>
+            </tr>
+            <tr>
+                <td>sortby.fx.widgetselect</td>
+                <td>Executado quando, em modo <code>grid</code>, se despoleta uma ordenação sobre uma das colunas da tabela.</td>
+            </tr>
+            <tr>
+                <td>search.fx.widgetselect</td>
+                <td>Executado quando se clica sobre a lupa para efetuar uma pesquisa.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<h4>Métodos</h4>
+<div class="fx-method-desc">
+    <h5><code>itemsList(itemsToShow, itemsCount)</code></h5>
+    <p>Método que recebe a lista de itens a serem mostrados. Necessita o número total de itens.</p>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>selectedItemsList(itemsSelected)</code></h5>
+    <p>Método que recebe a lista de itens pré-selecionados.</p>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>reset()</code></h5>
+    <p>Método que faz reset a tudo. Executa o método <code>resetList()</code>.</p>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>resetList()</code></h5>
+    <p>Método que limpa a lista dos elementos disponíveis.</p>
+</div>

@@ -1,0 +1,193 @@
+{
+  "type": "page",
+  "id": "pageConfiguration",
+  "tabs": [
+    {
+      "id": "courseDetails",
+      "components": [
+        {
+          "type": "initParameters",
+          "id": "courseProgramsID",
+          "urlResource": [
+            {
+              "key": "path",
+              "value": "{{SchoolBOT}}/courses"
+            },
+            {
+              "key": "pathToMainData",
+              "value": [
+                "_embedded"
+              ]
+            },
+            {
+              "key": "queryString",
+              "value": {
+                "page": "((page))",
+                "pagesize": "((pagesize))",
+                "count": null,
+                "filter": "{\"_id\": { \"$oid\":\"[[id]]\"}}"
+              }
+            },
+            {
+              "key": "reload",
+              "value": false
+            },
+            {
+              "key": "headers",
+              "value": {
+                "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+              }
+            }
+          ],
+          "details": [
+            {
+              "type": "context",
+              "id": "courseProgramsIds",
+              "pathToValue": [
+                "@getParameterByIDFilter($this['programs'])"
+              ]
+            },
+            {
+              "type": "initCards",
+              "subType": "card-container-checkBox",
+              "_lazyLoading": true,
+              "id": "subscriptionProgramsMainCardList",
+              "icon": "fa fa-th-large",
+              "class": "col-md-3",
+              "urlResource": [
+                {
+                  "key": "path",
+                  "value": "{{SchoolBOT}}/programs"
+                },
+                {
+                  "key": "queryString",
+                  "value": {
+                    "page": "((page))",
+                    "pagesize": "((pagesize))",
+                    "count": null,
+                    "filter": "{\"_id\": { \"$in\": {{courseProgramsIds}} }}",
+                    "np": null,
+                    "rep": "pj"
+                  }
+                },
+                {
+                  "key": "reload",
+                  "value": false
+                },
+                {
+                  "key": "headers",
+                  "value": {
+                    "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                  }
+                }
+              ],
+              "pathToValueList": "",
+              "parameters": [
+                {
+                  "key": "tableActions",
+                  "value": {
+                    "tableManager": false,
+                    "export": false,
+                    "search": false,
+                    "paging": false
+                  }
+                },
+                {
+                  "key": "identifier",
+                  "id": "name"
+                }
+              ],
+              "details": [
+                {
+                  "type": "image",
+                  "class": "image_cards_StudentCreate",
+                  "pathToValue": [
+                    "image"
+                  ],
+                  "style": {
+                    "max-width": "100%"
+                  }
+                },
+                {
+                  "type": "header",
+                  "class": "card_ProgramName",
+                  "header": {
+                    "id": "pageHeader",
+                    "seo": {
+                      "icon": "fa fa-unlock-alt",
+                      "text": "{{name}}"
+                    }
+                  }
+                },
+                {
+                  "type": "context",
+                  "id": "programID",
+                  "pathToValue": [
+                    "_id",
+                    "$oid"
+                  ]
+                },
+                {
+                  "type": "context",
+                  "id": "name",
+                  "pathToValue": "name",
+                  "navigateTo": "knowledgecenter/programs/{{programID}}",
+                  "text": "student___name"
+                },
+                {
+                  "type": "label",
+                  "id": "studentProgramStatus",
+                  "pathToValue": "status",
+                  "class": "col-md-6",
+                  "text": "program___status",
+                  "html": {
+                    "1": "<i class=\"fa fa-certificate fx-icon text-info\"></i>&nbsp;{{@fv()@i18n('program___status_types___new')}}",
+                    "3": "<i class=\"fa fa-check fx-icon text-success\"></i>&nbsp;{{@fv()@i18n('program___status_types___published')}}",
+                    "4": "<i class=\"fa fa-check fx-icon text-success\"></i>&nbsp;{{@fv()@i18n('program___status_types___published')}}&nbsp;&nbsp;<i class=\"fa fa-pencil-square-o\"></i>"
+                  }
+                },
+                {
+                  "type": "label",
+                  "id": "description",
+                  "pathToValue": [
+                    "description"
+                  ],
+                  "text": "program___description",
+                  "class": "col-md-12"
+                },
+                {
+                  "type": "label",
+                  "id": "studentCourseLastPublishedDate",
+                  "text": "program___lastPublishedDate",
+                  "class": "col-md-6",
+                  "pathToValue": "lastPublishDate"
+                },
+                {
+                  "type": "operations",
+                  "id": "menuOperations",
+                  "_role": "customer_create",
+                  "class": "col-sm-12 hide-label",
+                  "operations": {
+                    "id": "menuOperations",
+                    "icon": "glyphicon glyphicon-cog",
+                    "size": 3,
+                    "parameters": [
+                      {
+                        "type": "navigate",
+                        "id": "subscriptionProgramDetail",
+                        "navigateTo": "knowledgecenter/programs/{{programID}}",
+                        "text": "generic___seeDetails"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

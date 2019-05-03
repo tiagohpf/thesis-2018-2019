@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Offscreen Menu</title>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.css" />
+
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+
+    <script src="/fuxi/lib/jqueryui/1.10/jquery-ui-1.10.4.custom.min.js"></script>
+    
+</head>
+<body>
+
+    <div class="fx-push-footer fx-full-height">
+        <!-- header -->
+        <header id="fx-header">
+            <nav class="fx-navbar" role="navigation">
+                <ul class="fx-nav">
+                    <li><a class="fx-brand" href="#"><h1 class="fx-logo-brand">FUXI</h1></a></li>
+                    <li>
+                        <a class="collapsed" data-toggle="collapse" data-target="#menu">Menu<i class="fa fa-angle-down"></i></a>
+                        <ul id="menu" class="fx-menu collapse">
+                            <li><a href="#"><i class="fuxicons fuxicons-indicators"></i>Opção 1</a></li>
+                            <li><a href="#"><i class="fuxicons fuxicons-attributes-library"></i>Opção 2</a></li>
+                            <li><a href="#"><i class="fuxicons fuxicons-help"></i>Opção 3</a></li>
+                            <li><a href="#">Opção 4</a></li>
+                            <li><a href="#">Opção 5</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <!-- breadcrumb -->
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#"><i class="fuxicons fuxicons-home"></i>Home</a>
+                </li>
+                <li>
+                    <a href="#">Library</a>
+                </li>
+                <li class="active">
+                    Data
+                </li>
+            </ul>
+        </header>
+        <div class="fx-prevent-content-behind-footer fx-full-height">
+
+            <div class="fx-main-content">
+
+                ola mundo
+
+
+                <!--dock bar content-->
+                <div class="fx-offscreen tab-content" data-menu="offscreen-menu">
+                    <!-- Buttons -->
+                    <div class="fx-offscreen-menu-drag">
+                        <i class="fx-om-drag fx-om-drag-up"></i>
+                        <ul class="fx-offscreen-menu">
+                            <li><a href="#" data-target="#offscreen-tab-1"><i class="fa fa-history"></i></a></li>
+                            <li><a href="#" data-target="#offscreen-tab-2"><i class="fa fa-list"></i></a></li>
+                        </ul>
+                        <i class="fx-om-drag fx-om-drag-down"></i>
+                    </div>
+                    <!-- Actions -->
+                    <ul class="fx-offscreen-options">
+                        <li><button title="Destacar painel" data-menu="detach" class="btn btn-link"><i class="fuxicons fuxicons-open-in-window"></i></button></li>
+                        <li><button title="Fixar painel" data-menu="reattach" class="btn btn-link hidden"><i class="fuxicons fuxicons-restore-from-window"></i></button></li>
+                    </ul>
+                    <!-- Tabs -->
+                    <!-- tab 1: histórico de navegação-->
+                    <div id="offscreen-tab-1" class="tab-pane fx-offscreen-tab">
+                        <h3 class="fx-offscreen-dock-title"><i class="fx-om-drag fx-om-drag-white"></i><span class="fx-info-icon"><i class="fa fa-history"></i></span>histórico de navegação</h3>
+                        <div class="fx-offscreen-container with-padding">
+                            <div id="fx-offscreen-container-top" class="fx-offscreen-container-top fx-fixed-position" data-render-shadow="false" data-fix-to="top">
+                                <div style="left:0; padding-right: 10px;">
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                                        </span>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" value=""> mostrar apenas elementos disponíveis</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="fx-offscreen-container-center" class="fx-offscreen-container-center with-padding">
+                                <ul id="offscreen-history-items" class="list-unstyled">
+                                    <!-- FILLED WITH TEMPLATE -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab 2: entidades assinaladas-->
+                    <div id="offscreen-tab-2" class="tab-pane fx-offscreen-tab">
+                        <h3 class="fx-offscreen-dock-title"><i class="fx-om-drag fx-om-drag-white"></i><span class="fx-info-icon"><i class="fa fa-thumb-tack"></i></span>entidades assinaladas</h3>
+
+                        <div class="fx-offscreen-container">
+                            <ul class="nav nav-tabs nav-stacked nav-tabs-stacked-left pull-left">
+                                <li class="active"><a href="#offscreen-tab-resources" class="fx-tab" data-toggle="tab"><i class="fuxicons fuxicons-resource"></i></a></li>
+                                <li><a href="#offscreen-tab-services" class="fx-tab" data-toggle="tab"><i class="fa fa-cogs"></i></a></li>
+                                <li><a href="#offscreen-tab-topologies" class="fx-tab" data-toggle="tab"><i class="fuxicons fuxicons-topology"></i></a></li>
+                            </ul>
+                            <div class="tab-content nav-tabs-stacked-left-content">
+                                <div id="offscreen-tab-resources" class="fx-offscreen-tab tab-pane active clearfix">
+                                    <div class="fx-offscreen-container-top fx-fixed-position" data-render-shadow="false" data-fix-to="top">
+                                        <h4 class="fx-offscreen-heading">Recursos</h4>
+                                        <div class="fx-bulk-actions">
+                                            <div class="btn-group btn-group-sm">
+                                                <button id="toggle-offscreen-resources-favs" title="Favoritos" class="btn btn-default active">Favoritos</button>
+                                                <button id="toggle-offscreen-resources-marked" title="Marcados" class="btn btn-default">Marcados</button>
+                                                <button id="toggle-offscreen-resources-all" title="Todos" class="btn btn-default">Todos</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fx-offscreen-container-center">
+                                        <div id="offscreen-resources-favs">
+                                            <a class="fx-expand" data-toggle="collapse" data-target="#offscreen-resources-favs-equ"> <i class="caret"></i> Equipamentos</a>
+                                            <ul id="offscreen-resources-favs-equ" class="list-unstyled collapse in">
+                                                <!-- FILLED WITH TEMPLATE -->
+                                            </ul>
+                                            <a class="fx-expand" data-toggle="collapse" data-target="#offscreen-resources-favs-enc"> <i class="caret"></i> Encaminhamentos</a>
+                                            <ul id="offscreen-resources-favs-enc" class="list-unstyled collapse in">
+                                                <!-- FILLED WITH TEMPLATE -->
+                                            </ul>
+                                            <a class="fx-expand" data-toggle="collapse" data-target="#offscreen-resources-favs-ter"> <i class="caret"></i> Terminações</a>
+                                            <ul id="offscreen-resources-favs-ter" class="list-unstyled collapse in">
+                                                <!-- FILLED WITH TEMPLATE -->
+                                            </ul>
+                                        </div>
+                                        <div id="offscreen-resources-marked" class="hidden">
+                                            marcados TODO
+                                        </div>
+                                        <div id="offscreen-resources-all" class="hidden">
+                                            todos TODO
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="fx-offscreen-tab tab-pane" id="offscreen-tab-services">
+                                    <h4 class="fx-offscreen-heading">Serviços</h4>
+                                </div>
+                                <div class="fx-offscreen-tab tab-pane" id="offscreen-tab-topologies">
+                                    <h4 class="fx-offscreen-heading">Topologias</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--END: dock bar content-->
+            </div>            
+        </div>
+        
+		<!-- FOOTER ABOUT -->
+		<!--# include file="/fuxi/partials/html/partial-footer-about.html" -->
+			
+    </div>
+
+    <!--DEMO: ITEMS TEMPLATE -->
+    <script id="template-ul-li-items" type="text/template-ul-li-items">
+        <li class="fx-draggable-entity" data-drag-kind="equip">
+            <div style="table-layout:fixed; display:table; width:100%;">
+                <div style="display:table-cell; width:30px">
+                    <i class="fx-om-drag"></i><span class="fx-info-icon"><i class="glyphicon glyphicon-hdd"></i></span>
+                </div>
+                <div style="display:table-cell; padding:0 5px;">
+                    <div style="display:block; overflow:hidden; vertical-align:middle; text-overflow:ellipsis; white-space:nowrap;">{{text}}</div>
+                </div>
+                <div style="display:table-cell; width:50px;">
+                    <button title="Consultar" class="btn btn-link btn-link-in-table"><i class="fuxicons fuxicons-eye"></i></button>
+                    <button title="TODO" class="btn btn-link btn-link-in-table"><i class="fa fa-check-square-o"></i></button>
+                    <button title="TODO" class="btn btn-link btn-link-in-table fx-icon-toggle-on" data-fx-icon><i class="fa fa-star"></i></button>                    
+                </div>
+            </div>
+        </li>
+    </script>
+
+    <script src="/fuxi/common/exec/fuxi.js"></script>
+
+    <script language="javascript" type="text/javascript">
+
+        $(function () {
+            
+            // templating items DEMO --------------
+            var items = [];
+            var template = $.trim($("#template-ul-li-items").html());;
+            for (var i = 1; i <= 100; i++) {
+                items.push(template.replace(/{{text}}/ig, (i % 2 > 0) ? i + " NOME DO ITEM " : i + " NOME DO ITEM NOME DO ITEM NOME DO ITEM NOME DO ITEM NOME DO ITEM"));
+            }
+            $("#offscreen-history-items").append(items);
+            $("#offscreen-resources-favs-equ").append(items.slice(0, 3).join(""));
+            $("#offscreen-resources-favs-enc").append(items.slice(0, 5).join(""));
+            $("#offscreen-resources-favs-ter").append(items.slice(0, 9).join(""));
+            //---------------------------------
+
+            FUXI.OffscreenMenu.init();
+            FUXI.FixedPositions.init(true, null, false);
+
+            $('div[data-menu="offscreen-menu"]').on('toggled.offscreenmenu.fuxi', function (event) {
+                //DO something
+            }).on('attach.offscreenmenu.fuxi', function (event) {
+                //DO something
+            });
+
+
+            $('#toggle-offscreen-resources-favs').on('click', function () {
+                $('#toggle-offscreen-resources-favs').addClass('active');
+                $('#toggle-offscreen-resources-marked, #toggle-offscreen-resources-all').removeClass('active');
+
+                $('#offscreen-resources-favs').removeClass('hidden');
+                $('#offscreen-resources-marked, #offscreen-resources-all').addClass('hidden');
+            });
+            $('#toggle-offscreen-resources-marked').on('click', function () {
+                $('#toggle-offscreen-resources-marked').addClass('active');
+                $('#toggle-offscreen-resources-favs, #toggle-offscreen-resources-all').removeClass('active');
+
+                $('#offscreen-resources-marked').removeClass('hidden');
+                $('#offscreen-resources-favs, #offscreen-resources-all').addClass('hidden');
+            });
+            $('#toggle-offscreen-resources-all').on('click', function () {
+                $('#toggle-offscreen-resources-all').addClass('active');
+                $('#toggle-offscreen-resources-favs, #toggle-offscreen-resources-marked').removeClass('active');
+
+                $('#offscreen-resources-all').removeClass('hidden');
+                $('#offscreen-resources-favs, #offscreen-resources-marked').addClass('hidden');
+            });
+
+            $('[data-drag-kind]').draggable({
+                'helper': 'clone',
+                'appendTo': 'body',
+                'delay': 150,
+                'zIndex': 1044,
+                'revert': 'invalid',
+                'revertDuration': 200
+            });
+
+
+        });
+    </script>
+
+</body>
+</html>

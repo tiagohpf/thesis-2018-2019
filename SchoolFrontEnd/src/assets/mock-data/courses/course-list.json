@@ -1,0 +1,352 @@
+{
+  "type": "page",
+  "id": "degreeMain",
+  "header": {
+    "id": "pageHeader",
+    "seo": {
+      "_text": "application___degree",
+      "_icon": "fuxicons fuxicons-dashboard-group"
+    },
+    "operations": {
+      "id": "pageHeaderOperations",
+      "parameters": [
+        {
+          "type": "navigate",
+          "hidden": true,
+          "role": "Execute",
+          "text": "generic___operations___create",
+          "placeholder": "generic___operations___create",
+          "navigateTo": "knowledgecenter/degree/create"
+        }
+      ]
+    },
+    "details": [
+      {
+        "_type": "label",
+        "class": "titles",
+        "text": null,
+        "value": "<h1>{{@fv()@i18n('application___degree')}}</h1>"
+      },
+      {
+        "type": "context",
+        "id": "coursePreviousRoute",
+        "value": "course",
+        "global": true
+      },
+      {
+        "type": "context",
+        "global": true,
+        "id": "studentData",
+        "value": []
+      }
+    ]
+  },
+  "urlResource": [
+    {
+      "key": "id",
+      "value": "studentsJson"
+    },
+    {
+      "key": "path",
+      "value": "{{AppAPIBotConfig}}/students"
+    },
+    {
+      "key": "queryString",
+      "value": {
+        "keys": "{\"_id\":1, \"name\":1 ,\"courses\":1 }",
+        "filter": "{\"IXS\":\"{{IXS_id}}\"}",
+        "np": null,
+        "rep": "pj"
+      }
+    },
+    {
+      "key": "reload",
+      "value": false
+    },
+    {
+      "key": "headers",
+      "value": {
+        "Authorization": "Bearer {{token}}",
+        "IXS": "{{IXS_id}}"
+      }
+    }
+  ],
+  "_sidebar": [
+    {
+      "type": "filter",
+      "id": "coursesMainCardsFilter",
+      "mappingId": [
+        "coursesMainCards"
+      ],
+      "details": [
+        {
+          "type": "textbox",
+          "subType": "autocomplete",
+          "id": "nameFilter",
+          "apiFieldName": "name",
+          "text": "course___name",
+          "pathToValueList": "_embedded",
+          "pathToValue": "name",
+          "validator": {
+            "autocomplete": [
+              {
+                "urlResource": [
+                  {
+                    "key": "path",
+                    "value": "{{AppAPIBotConfig}}/courses"
+                  },
+                  {
+                    "key": "queryString",
+                    "value": {
+                      "keys": "{\"name\":1}",
+                      "filter": "{\"IXS\":\"{{IXS_id}}\",\"name\":{\"$regex\":\"(?i){{nameFilter}}.*\"}}"
+                    }
+                  },
+                  {
+                    "key": "headers",
+                    "value": {
+                      "Authorization": "Bearer {{token}}",
+                      "IXS": "{{IXS_id}}"
+                    }
+                  }
+                ]
+              },
+              "no records matched"
+            ]
+          }
+        },
+        {
+          "type": "input-checkbox",
+          "id": "languageFilter",
+          "apiFieldName": "language",
+          "text": "application___language",
+          "filterTemplate": "{\"$in\":\"{{languageFilter}}\"}",
+          "valueList": [
+            {
+              "key": "pt",
+              "value": "Portuguese"
+            },
+            {
+              "key": "en",
+              "value": "English"
+            },
+            {
+              "key": "es",
+              "value": "Spanish"
+            },
+            {
+              "key": "fr",
+              "value": "French"
+            }
+          ]
+        },
+        {
+          "type": "input-select",
+          "id": "courseStudents",
+          "text": "application___students",
+          "placeholder": "application___selectStudent",
+          "apiFieldName": "_id",
+          "urlResource": [
+            {
+              "key": "path",
+              "value": "{{SchoolBOT}}/students"
+            },
+            {
+              "key": "queryString",
+              "value": {
+                "keys": "{\"name\":1,\"image\":1, \"courses\":1}",
+                "filter": "{\"IXS\" :\"{{IXS_id}}\" }"
+              }
+            },
+            {
+              "key": "headers",
+              "value": {
+                "Authorization": "Bearer {{token}}",
+                "IXS": "{{IXS_id}}"
+              }
+            }
+          ],
+          "pathToValueList": [
+            "_embedded"
+          ],
+          "templateOfValueList": "{\"key\":\"{{courses}}\",\"value\":\"{{name}}\"}",
+          "filterTemplate": "{\"$in\":{{@fv()@generateInObjectIdFilter(@replaceTagVars('courseStudents'))}}}"
+        }
+      ]
+    }
+  ],
+  "tabs": [
+    {
+      "id": "degreeMainContainer",
+      "components": [
+        {
+          "type": "initParameters",
+          "details": [
+            {
+              "type": "initCards",
+              "id": "degreeMainCards",
+              "icon": "fa fa-th-large",
+              "class": "class",
+              "urlResource": [
+                {
+                  "key": "path",
+                  "value": "{{AppAPIBotConfig}}/courses"
+                },
+                {
+                  "key": "queryString",
+                  "value": {
+                    "keys": "{\"_id\":1, \"name\":1,\"language\":1,\"createdBy\":1}",
+                    "_filter": "{\"IXS\":\"{{IXS_id}}\"}",
+                    "filter": "{\"IXS\":\"{{IXS_id}}\",\"name\":{ \"$regex\": \"{{degreeFind}}\"}}"
+                  }
+                },
+                {
+                  "_key": "pathToMainData",
+                  "value": [
+                    "_embedded"
+                  ]
+                },
+                {
+                  "key": "reload",
+                  "value": false
+                },
+                {
+                  "key": "headers",
+                  "value": {
+                    "Authorization": "Bearer {{token}}",
+                    "IXS": "{{IXS_id}}"
+                  }
+                }
+              ],
+              "pathToValueList": [
+                "_embedded",
+                "@courseStudentJoin({{studentsJson}}, $this)"
+              ],
+              "parameters": [
+                {
+                  "key": "tableActions",
+                  "value": {
+                    "tableManager": false,
+                    "export": false,
+                    "search": true,
+                    "paging": false
+                  }
+                },
+                {
+                  "key": "identifier",
+                  "id": "name"
+                }
+              ],
+              "details": [
+                {
+                  "type": "context",
+                  "id": "degreeID",
+                  "pathToValue": [
+                    "_id",
+                    "$oid"
+                  ]
+                },
+                {
+                  "type": "context",
+                  "id": "ctxtId",
+                  "pathToValue": [
+                    "_id",
+                    "$oid"
+                  ]
+                },
+                {
+                  "type": "context",
+                  "id": "ctxtAlias",
+                  "pathToValue": "name"
+                },
+                {
+                  "type": "context",
+                  "id": "ctxtImageUri",
+                  "value": "/assets/images/degree/default.png"
+                },
+                {
+                  "type": "context",
+                  "id": "ctxtImageShape",
+                  "value": "rectangle"
+                },
+                {
+                  "type": "context",
+                  "id": "ctxtNavigateTo",
+                  "pathToValue": [
+                    "_id",
+                    "'knowledgecenter/courses/' + $this['$oid']"
+                  ]
+                },
+                {
+                  "id": "colPicture",
+                  "type": "inline-image-component",
+                  "class": "degreeImage",
+                  "viewDetails": true
+                },
+                {
+                  "type": "image",
+                  "id": "degreeStudentsImage",
+                  "class": "col-md-12 degreeStudent",
+                  "text": null,
+                  "_navigateTo": "students/{{degreeStudentId}}",
+                  "pathToValue": [
+                    "'{{ImageService}}/students/'+$this['BO_studentInfo']['_id']['$oid']"
+                  ]
+                },
+                {
+                  "type": "label",
+                  "id": "degreeName",
+                  "class": "col-md-12 degreeName",
+                  "text": null,
+                  "_navigateTo": "knowledgecenter/courses/{{courseID}}",
+                  "pathToValue": [
+                    "name"
+                  ]
+                },
+                {
+                  "type": "wrapper",
+                  "id": "details",
+                  "class": "col-sm-12 details",
+                  "pathToValue": "",
+                  "details": [
+                    {
+                      "type": "label",
+                      "id": "language",
+                      "pathToValue": "language",
+                      "class": "col-md-6",
+                      "text": null,
+                      "html": {
+                        "es": "<span class='atributeName'>{{@fv()@i18n('application___language')}}: </span> <span class='atributeValue'>{{@fv()@i18n('generic___language___es')}} </span>",
+                        "en": "<span class='atributeName'>{{@fv()@i18n('application___language')}}: </span> <span class='atributeValue'>{{@fv()@i18n('generic___language___en')}} </span>",
+                        "pt": "<span class='atributeName'>{{@fv()@i18n('application___language')}}: </span> <span class='atributeValue'>{{@fv()@i18n('generic___language___pt')}} </span>",
+                        "fr": "<span class='atributeName'>{{@fv()@i18n('application___language')}}: </span> <span class='atributeValue'>{{@fv()@i18n('generic___language___fr')}} </span>"
+                      }
+                    },
+                    {
+                      "_type": "label",
+                      "id": "studentName",
+                      "class": "col-md-6",
+                      "pathToValue": [
+                        "$this['BO_studentInfo']['name']",
+                        "'<span class=\"atributeName\"> ' + @i18n(\"application___botStudent\")+ ' : </span> <span class=\"atributeValue\">' + $this + ' </span>'"
+                      ],
+                      "text": null
+                    }
+                  ]
+                },
+                {
+                  "type": "context",
+                  "id": "degreeStudentId",
+                  "hidden": true,
+                  "pathToValue": [
+                    "this['BO_studentInfo']['_id']['$oid']"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

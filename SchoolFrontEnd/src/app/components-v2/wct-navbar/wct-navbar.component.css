@@ -1,0 +1,9 @@
+.loading-app-menu{ text-align: center; width: 100%; margin: 0; padding: .5rem 1rem; }
+
+.navbar.wct-prevent-side-menu{ padding-left: 40px; }
+
+.navbar .wct-navbar-details{ display: flex; margin-left: auto; }
+.navbar .wct-navbar-details .wct-navbar-align-buttons,
+.navbar .wct-navbar-details app-wct-start-components{ display: flex; }
+
+.navbar .wct-navbar-details .wct-navbar-align-buttons{ align-items: center; margin: 0 .2rem; }

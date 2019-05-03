@@ -1,0 +1,14 @@
+.custom-survey-chart {
+  display: flex;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.custom-survey-chart .elem {
+  height: 15px;
+  opacity: 0.95;
+  transition: opacity 0.2s;
+}
+.custom-survey-chart .elem:hover {
+  opacity: 1;
+  transition: opacity 0.2s;
+}

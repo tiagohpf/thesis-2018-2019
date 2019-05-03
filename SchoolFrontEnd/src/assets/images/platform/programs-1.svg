@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="no"?>
+<svg version="1.2" overflow="visible" preserveAspectRatio="none" viewBox="0 0 32 32" xml:space="preserve" y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" id="Camada_1_1548264693382" width="40" height="40"><g transform="translate(1, 1)"><style type="text/css">
+	.st0{fill:#BF4CE5;}
+	.st1{fill:#953ABA;}
+	.st2{fill:#9A8DF7;}
+	.st3{fill:#7958ED;}
+	.st4{fill:#FFFFFF;}
+	.st5{fill:#F8F8F8;}
+	.st6{fill:#5B3CCE;}
+</style><g>
+	<path d="M5.3,20.3V18l-0.5-0.3v2.5C4,20.4,3.5,21,3.5,21.8c0,0.8,0.7,1.5,1.5,1.5s1.5-0.7,1.5-1.5C6.5,21,6,20.4,5.3,20.3z" vector-effect="non-scaling-stroke" style="fill: rgb(255, 255, 255);"/>
+	<path d="M28.4,15L15,6.7L1.6,15l7.3,3.7v-4.3c0-1,2.8-1.8,6.2-1.8c3.4,0,6.2,0.8,6.2,1.8v4.3L28.4,15z" vector-effect="non-scaling-stroke" style="fill: rgb(255, 255, 255);"/>
+	<ellipse ry="1.3" rx="4.4" cy="22" cx="15" vector-effect="non-scaling-stroke" style="fill: rgb(255, 255, 255);"/>
+	<path d="M15,13.4c-2.9,0-5.2,0.7-5.2,1.5v6.5c0-0.8,2.3-1.5,5.2-1.5c2.9,0,5.2,0.7,5.2,1.5V15C20.2,14.1,17.9,13.4,15,13.4z" vector-effect="non-scaling-stroke" style="fill: rgb(255, 255, 255);"/>
+</g></g></svg>

@@ -1,0 +1,85 @@
+<h3 id="docs-tree-plugin-quickview">Tree com plugin quickview</h3>
+<p>Este snippet demonstra uma tree em que se utiliza um plugin para abrir um quickview.</p>
+<p>O componente em si apenas garante a colocação do elemento que permite abrir o quickview através da inclusão do plugin <code>caretmark</code>. A declaração do quickview e o seu conteúdo é responsabilidade de cada equipa.</p>
+<div class="fx-docs-snippet-code">
+    <div>
+        <div id="devguide-tree-plugin-quickview"></div>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!-- Ficheiros necessários a incluir no head-->
+<head>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/fuxi/lib/jstree/3.0/themes/fuxi/style.css" rel="stylesheet" />
+    <link href="/fuxi/common/html/css/fuxi.min.css" rel="stylesheet" />
+</head>
+
+<!--Ficheiros a colocar antes de fechar a tag body-->
+<script src="/basepack/jquery/1.11/jquery.min.js"></script>
+<script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+<script src="/fuxi/lib/jstree/3.0/jstree.min.js"></script>
+<script src="/fuxi/lib/jstree/3.0/jstree.plugin.caretmark.js"></script>
+<script src="/fuxi/common/exec/fuxi.js"></script>
+
+<!--Markup necessário-->
+<div id="devguide-tree-plugin-quickview"></div>
+
+<!--Instanciação da tree-->
+<script type="text/javascript">
+    //tree with quickview plugin
+    setNodePopover = function () {
+        $("i.fx-jstree-caretmark").popover({
+            html: true,
+            container: 'body',
+            placement: 'right',
+            trigger: 'manual',
+            template: '<div class="popover fx-popover-s"><div class="arrow"></div><div class="popover-content no-padding"></div></div>',
+            content: function () {
+                return $(this).next('.popover-node-info').html();
+            }
+        });
+    }
+
+    $('#devguide-tree-plugin-quickview').on('ready.jstree', function () {
+        setNodePopover();
+    }).jstree({
+        'core': {
+            'data': [
+            { "id": "root-plugin-quickview-1", "parent": "#", "text": "Root 1", "li_attr": { "showinfo": "true" } },
+            { "id": "root-plugin-quickview-2", "parent": "#", "text": "Root 2", "state": { "opened": true } },
+            { "id": "root-plugin-quickview-2-child-1", "parent": "root-plugin-quickview-2", "text": "Child 1", "state": { "selected": true } },
+            { "id": "root-plugin-quickview-2-child-2", "parent": "root-plugin-quickview-2", "text": "Child 2", },
+            ],
+            themes: {
+                name: 'fuxi',
+                icons: false
+            },
+        },
+        'plugins': ["caretmark"],
+        'caretmark': function (node) {
+            // node info content (popover)
+            var $elem = $("#caretinfo_" + node.id);
+            // remove info
+            $elem.next(".popover-node-info").remove();
+            // attach new info
+            $elem.after(formatInfoTemplate(node.original));
+            // toggle popover
+            $elem.popover('toggle');
+        },
+    }).bind('open_node.jstree', function (node) {
+        setNodePopover();
+    });
+
+    // format info text on tree-node
+    function formatInfoTemplate(data) {
+        var html = "<div class='popover-node-info hide'>" +
+                        "<div class='fx-popover-main-content'>" +
+                            "<div class='fx-popover-inner clearfix'>Informação a disponibilizar dentro do quickview.</div>" +
+                        "</div>" +
+                    "<div>";
+        return html;
+    }
+</script>
+        </textarea>
+    </form>
+</div>

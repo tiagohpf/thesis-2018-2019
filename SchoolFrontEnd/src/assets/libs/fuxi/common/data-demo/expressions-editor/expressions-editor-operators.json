@@ -1,0 +1,71 @@
+﻿{
+    "actions": [
+        {
+            "name": "operations",
+            "cssname": "fx-exp-edit-operations-wrapper",
+            "maxitems": 3,
+            "items": [
+                {
+                    "text": "not",
+                    "action": "not"
+                },
+                {
+                    "text": "or",
+                    "action": "or"
+                },
+                {
+                    "text": "and",
+                    "action": "and"
+                },
+                {
+                    "text": "Mod",
+                    "action": "Mod"
+                }
+            ]
+        },
+        {
+            "name": "operators",
+            "cssname": "fx-exp-edit-operators-wrapper",
+            "maxitems": 5,
+            "items": [
+                {
+                    "text": "+",
+                    "action": "sum"
+                },
+                {
+                    "text": "-",
+                    "action": "subtract"
+                },
+                {
+                    "text": "*",
+                    "action": "multiply"
+                },
+                {
+                    "text": "/",
+                    "action": "divide"
+                },
+                {
+                    "text": "=",
+                    "action": "equals",
+                    "weight": "10"
+                },
+                {
+                    "text": ">",
+                    "action": "greater"
+                },
+                {
+                    "text": "<",
+                    "action": "less"
+                },
+                {
+                    "text": ">=",
+                    "action": "greater-equal"
+                },
+                {
+                    "text": "<=",
+                    "action": "less-equal"
+                }
+            ]
+        }
+    ]
+}

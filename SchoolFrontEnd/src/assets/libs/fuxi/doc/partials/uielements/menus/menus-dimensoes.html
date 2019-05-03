@@ -1,0 +1,62 @@
+<h3 id="docs-menus-dimensoes">Menus com dimensões</h3>
+<p>O snippet abaixo demonstra como estilizar um menu de dimensões (ou áreas).</p>
+<p>As áreas dentro do menu são criadas através do uso de <code>div</code> com a class <code>fx-dimension</code>.</p>
+
+<div class="fx-docs-snippet-code">
+    <header class="fx-devguide-header">
+        <nav class="fx-navbar" role="navigation">
+            <ul class="fx-nav">
+                <li><a class="fx-brand" href="javascript:void(0)"><h1 class="fx-logo-brand">FUXI</h1></a></li>
+                <li>
+                    <a class="collapsed" data-toggle="collapse" data-target="#menu-dimensions">Menu com dimensões<i class="fa fa-angle-down"></i></a>
+                    <nav id="menu-dimensions" class="fx-menu collapse devguide-keep-open devguide-manage-menu-vis">
+                        <div class="fx-dimension">
+                            <h3>Dimensão 1</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="javascript:void(0)">Menu Item 1</a></li>
+                                <li><a href="javascript:void(0)">Menu Item 2</a></li>
+                            </ul>
+                        </div>
+                        <div class="fx-dimension">
+                            <h3>Dimensão 2</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="javascript:void(0)">Menu Item 1</a></li>
+                                <li><a href="javascript:void(0)">Menu Item 2</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<header id="fx-header">
+    <nav class="fx-navbar" role="navigation">
+        <ul class="fx-nav">
+            <li><a class="fx-brand" href="#"><h1 class="fx-logo-brand">FUXI</h1></a></li>
+            <li>
+                <a class="collapsed" data-toggle="collapse" data-target="#menu-dimensions">Menu com dimensões<i class="fa fa-angle-down"></i></a>
+                <nav id="menu-dimensions" class="fx-menu collapse">
+                    <div class="fx-dimension">
+                        <h3>Dimensão 1</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Menu Item 1</a></li>
+                            <li><a href="#">Menu Item 2</a></li>
+                        </ul>
+                    </div>
+                    <div class="fx-dimension">
+                        <h3>Dimensão 2</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Menu Item 1</a></li>
+                            <li><a href="#">Menu Item 2</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </li>
+        </ul>
+    </nav>
+</header>
+        </textarea>
+    </form>
+</div>

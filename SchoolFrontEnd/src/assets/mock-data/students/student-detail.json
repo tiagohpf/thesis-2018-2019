@@ -1,0 +1,994 @@
+{
+  "type": "page",
+  "id": "pageEntityDetails",
+  "urlResource": [
+    {
+      "key": "path",
+      "value": "{{SchoolBOT}}/students/[[id]]"
+    },
+    {
+      "key": "pathToMainData",
+      "value": [
+        ""
+      ]
+    },
+    {
+      "key": "reload",
+      "value": false
+    },
+    {
+      "key": "headers",
+      "value": {
+        "Authorization": "Bearer {{token}}",
+        "IXS": "{{IXS_id}}"
+      }
+    }
+  ],
+  "header": {
+    "id": "pageHeader",
+    "details": [
+      {
+        "type": "label",
+        "text": null,
+        "class": "col-md-12 back",
+        "value": "<i class='icomoon icon-go' ></i> <span>{{@fv()@i18n('generic___operations___back')}}</span>",
+        "navigateTo": "{{wct-previous-route}}"
+      },
+      {
+        "type": "context",
+        "id": "studentID",
+        "pathToValue": [
+          "_id",
+          "$oid"
+        ]
+      },
+      {
+        "type": "context",
+        "id": "studentCoursesList",
+        "pathToValue": [
+          "@getParameterByIDFilter($this['courses'])"
+        ]
+      },
+      {
+        "type": "context",
+        "id": "studentLanguage",
+        "text": "application___language",
+        "pathToValue": [
+          "language"
+        ]
+      },
+      {
+        "type": "context",
+        "id": "studentGender",
+        "text": "student___gender",
+        "pathToValue": [
+          "gender"
+        ]
+      },
+      {
+        "type": "context",
+        "id": "studentCourse",
+        "text": "studentCourse",
+        "pathToValue": [
+          "course"
+        ]
+      },
+      {
+        "type": "context",
+        "id": "studentDescription",
+        "text": "student___description",
+        "class": "col-md-12",
+        "pathToValue": [
+          "description"
+        ]
+      },
+      {
+        "type": "wrapper",
+        "id": "imageLabel",
+        "pathToValue": "",
+        "details": [
+          {
+            "id": "entityInfoHeader",
+            "type": "uploadImages",
+            "class": "col-md-12",
+            "pathToValue": [
+              "@createStudentObj(@replaceTagVars('studentID'),@replaceTagVars('studentName'),@replaceTagVars('studentStatus'),@replaceTagVars('studentGender'),@replaceTagVars('studentLanguage'),@replaceTagVars('studentCourse'),'{{ImageService}}/students/{{studentID}}')"
+            ],
+            "readonly": false
+          },
+          {
+            "type": "label",
+            "id": "studentStatus_aux",
+            "pathToValue": "status",
+            "hidden": true
+          },
+          {
+            "type": "label",
+            "text": null,
+            "dynamicProps": {
+              "class": "'col-md-12 entityStatus {{studentStatus_aux}}'"
+            },
+            "pathToValue": [
+              "imageLabel",
+              "status"
+            ],
+            "html": {
+              "pre-live": "{{@fv()@i18n('student___status___gettingReady')}}",
+              "live": " {{@fv()@i18n('student___status___live')}}",
+              "blocked": "{{@fv()@i18n('student___status___blocked')}}",
+              "suspended": "{{@fv()@i18n('student___status___suspended')}}"
+            }
+          }
+        ]
+      },
+      {
+        "type": "label",
+        "text": null,
+        "class": "col-md-12 entityName",
+        "pathToValue": [
+          "name"
+        ]
+      },
+      {
+        "type": "label",
+        "text": null,
+        "class": "col-sm-12 entityCourse",
+        "urlResource": [
+          {
+            "key": "path",
+            "value": "{{SchoolBOT}}/courses"
+          },
+          {
+            "key": "pathToMainData",
+            "value": [
+              "_embedded"
+            ]
+          },
+          {
+            "key": "queryString",
+            "value": {
+              "filter": "{ \"_id\":{\"$in\":{{studentCoursesList}} }}"
+            }
+          },
+          {
+            "key": "reload",
+            "value": false
+          },
+          {
+            "key": "headers",
+            "value": {
+              "Authorization": "Bearer {{token}}",
+              "IXS": "{{IXS_id}}"
+            }
+          }
+        ],
+        "pathToValue": [
+          "name"
+        ]
+      },
+      {
+        "type": "context",
+        "text": null,
+        "id": "courseID",
+        "class": "col-md-12",
+        "pathToValue": [
+          "$this['courses'][0]"
+        ]
+      },
+      {
+        "type": "context",
+        "global": true,
+        "id": "studentData",
+        "pathToValue": [
+          "new Object({\"studentId\":$this['_id']['$oid'], \"studentName\": $this['name']})"
+        ]
+      },
+      {
+        "type": "operations",
+        "id": "courseButton",
+        "class": "col-md-12 courseButton",
+        "text": null,
+        "operations": [
+          {
+            "size": 10,
+            "parameters": [
+              {
+                "type": "navigate",
+                "id": "studentCourses",
+                "navigateTo": "knowledgecenter/courses/{{courseID}}",
+                "text": "application___degree",
+                "parameters": [
+                  {
+                    "key": "context",
+                    "value": [
+                      "studentID",
+                      "studentName"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "operations",
+        "id": "entityInfoButtonAreas",
+        "class": "tabsButtons",
+        "text": null,
+        "operations": [
+          {
+            "size": 10,
+            "parameters": [
+              {
+                "type": "updatePage",
+                "id": "entityInfoButtonAreasCover",
+                "text": "application___details",
+                "class": "active entityInfoButton",
+                "parameters": [
+                  {
+                    "key": "updatePageParameter",
+                    "value": {
+                      "entityInfoButtonAreasCover": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStudy": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasFallbacks": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasDialogs": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasSuggestions": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStatistics": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasCover_navBar": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStudy_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasFallbacks_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasDialogs_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasSuggestions_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStatistics_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasAccount": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasAccount_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasIntegrations_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasIntegrations": {
+                        "class": "entityInfoButton"
+                      },
+                      "studentPropertiesViewTabCover": {
+                        "sendEvent": "selectTab"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "updatePage",
+                "id": "entityInfoButtonAreasStudy",
+                "text": "student___programs",
+                "class": "entityInfoButton",
+                "parameters": [
+                  {
+                    "key": "updatePageParameter",
+                    "value": {
+                      "entityInfoButtonAreasCover": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStudy": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasFallbacks": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasDialogs": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasSuggestions": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStatistics": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasCover_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStudy_navBar": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasFallbacks_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasDialogs_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasSuggestions_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStatistics_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasAccount": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasAccount_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasIntegrations_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasIntegrations": {
+                        "class": "entityInfoButton"
+                      },
+                      "studentPropertiesViewTabStudy": {
+                        "sendEvent": "selectTab"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "updatePage",
+                "id": "entityInfoButtonAreasAccount",
+                "text": "student___account",
+                "class": "entityInfoButton",
+                "parameters": [
+                  {
+                    "key": "updatePageParameter",
+                    "value": {
+                      "entityInfoButtonAreasCover": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStudy": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasFallbacks": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasDialogs": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasSuggestions": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStatistics": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasCover_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStudy_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasFallbacks_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasDialogs_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasSuggestions_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStatistics_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasAccount": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonAreasAccount_navBar": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonAreasIntegrations_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasIntegrations": {
+                        "class": "entityInfoButton"
+                      },
+                      "studentPropertiesViewTabAccount": {
+                        "sendEvent": "selectTab"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "updatePage",
+                "id": "entityInfoButtonAreasExercises",
+                "text": "student___exercises",
+                "class": "entityInfoButton",
+                "parameters": [
+                  {
+                    "key": "updatePageParameter",
+                    "value": {
+                      "entityInfoButtonAreasCover": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStudy": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonAreasFallbacks": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasDialogs": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasSuggestions": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStatistics": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasCover_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStudy_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises_navBar": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonAreasFallbacks_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasDialogs_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasSuggestions_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStatistics_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasAccount": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasAccount_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasIntegrations_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasIntegrations": {
+                        "class": "entityInfoButton"
+                      },
+                      "studentPropertiesViewTabExercises": {
+                        "sendEvent": "selectTab"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "updatePage",
+                "id": "entityInfoButtonAreasFallbacks",
+                "text": "student___fallbacks",
+                "class": "entityInfoButton",
+                "parameters": [
+                  {
+                    "key": "updatePageParameter",
+                    "value": {
+                      "entityInfoButtonAreasCover": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStudy": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasFallbacks": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonAreasDialogs": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasSuggestions": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStatistics": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasCover_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStudy_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasFallbacks_navBar": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonAreasDialogs_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasSuggestions_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStatistics_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasAccount": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasAccount_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasIntegrations_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasIntegrations": {
+                        "class": "entityInfoButton"
+                      },
+                      "studentPropertiesViewTabFallbacks": {
+                        "sendEvent": "selectTab"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "updatePage",
+                "id": "entityInfoButtonAreasDialogs",
+                "text": "student___dialogs",
+                "class": "entityInfoButton",
+                "parameters": [
+                  {
+                    "key": "updatePageParameter",
+                    "value": {
+                      "entityInfoButtonAreasCover": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStudy": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasFallbacks": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasDialogs": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonAreasSuggestions": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStatistics": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasCover_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStudy_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasFallbacks_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasDialogs_navBar": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonAreasSuggestions_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStatistics_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasAccount": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasAccount_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasIntegrations_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasIntegrations": {
+                        "class": "entityInfoButton"
+                      },
+                      "studentPropertiesViewTabDialogs": {
+                        "sendEvent": "selectTab"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "updatePage",
+                "id": "entityInfoButtonAreasSuggestions",
+                "text": "student___suggestions",
+                "class": "entityInfoButton",
+                "parameters": [
+                  {
+                    "key": "updatePageParameter",
+                    "value": {
+                      "entityInfoButtonAreasCover": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStudy": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasFallbacks": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasDialogs": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasSuggestions": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStatistics": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasCover_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStudy_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasFallbacks_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasDialogs_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasSuggestions_navBar": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStatistics_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasAccount": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasAccount_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasIntegrations_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasIntegrations": {
+                        "class": "entityInfoButton"
+                      },
+                      "studentPropertiesViewTabSuggestions": {
+                        "sendEvent": "selectTab"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "updatePage",
+                "id": "entityInfoButtonAreasStatistics",
+                "text": "student___statistics",
+                "class": "entityInfoButton",
+                "parameters": [
+                  {
+                    "key": "updatePageParameter",
+                    "value": {
+                      "entityInfoButtonAreasCover": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStudy": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasFallbacks": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasDialogs": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasSuggestions": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStatistics": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonAreasCover_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStudy_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasFallbacks_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasDialogs_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasSuggestions_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStatistics_navBar": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonAreasAccount": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasAccount_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasIntegrations_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasIntegrations": {
+                        "class": "entityInfoButton"
+                      },
+                      "studentPropertiesViewTabStatistics": {
+                        "sendEvent": "selectTab"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "updatePage",
+                "id": "entityInfoButtonAreasIntegrations",
+                "text": "application___integrations",
+                "class": "entityInfoButton",
+                "parameters": [
+                  {
+                    "key": "updatePageParameter",
+                    "value": {
+                      "entityInfoButtonAreasCover": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStudy": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasFallbacks": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasDialogs": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasSuggestions": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStatistics": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasCover_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStudy_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasFallbacks_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasDialogs_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasSuggestions_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasStatistics_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasAccount": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasAccount_navBar": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasIntegrations_navBar": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonAreasIntegrations": {
+                        "class": "active entityInfoButton"
+                      },
+                      "studentPropertiesViewTabIntegrations": {
+                        "sendEvent": "selectTab"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "student-chatElement-init",
+        "text": null,
+        "hidden": false
+      },
+      {
+          "id": "designerFlowComponent",
+          "text": null,
+          "type": "designer-flow-component",
+          "subType": "student",
+          "hidden": true,
+          "readonly": true,
+          "pathToValue": [
+              ""
+          ]
+      }
+    ]
+  },
+  "tabs": [
+    {
+      "id": "studentPropertiesViewTabCover",
+      "class": "studentProgramsTabs",
+      "text": "student___details",
+      "lazyLoading": false,
+      "_lazyLoading": "@fv()'{{activeTab}}' ? ('{{activeTab}}' === 'studentPropertiesViewTabCover' ? false : true) : false",
+      "components": [
+        {
+          "id": "studentPropertiesViewTabCoverContent",
+          "mockToLoad": "students/student-props"
+        }
+      ]
+    },
+    {
+      "id": "studentPropertiesViewTabStudy",
+      "class": "studentProgramsTabs",
+      "text": "student___programs",
+      "lazyLoading": true,
+      "_lazyLoading": "@fv()'{{activeTab}}' ? ('{{activeTab}}' === 'studentPropertiesViewTabStudy' ? false : true) : false",
+      "components": [
+        {
+          "id": "studentPropertiesViewTabStudyContent",
+          "mockToLoad": "students/student-program-list"
+        }
+      ]
+    },
+    {
+      "id": "studentPropertiesViewTabExercises",
+      "class": "studentProgramsTabs",
+      "text": "student___exercises",
+      "lazyLoading": true,
+      "_lazyLoading": "@fv()'{{activeTab}}' ? ('{{activeTab}}' === 'studentPropertiesViewTabExercises' ? false : true) : false",
+      "components": [
+        {
+          "id": "studentPropertiesViewTabExercisesContent",
+          "mockToLoad": "students/student-testSets-main"
+        }
+      ]
+    },
+    {
+      "id": "studentPropertiesViewTabFallbacks",
+      "class": "studentProgramsTabs",
+      "text": "student___fallbacks",
+      "lazyLoading": true,
+      "_lazyLoading": "@fv()'{{activeTab}}' ? ('{{activeTab}}' === 'studentPropertiesViewTabFallbacks' ? false : true) : false",
+      "components": [
+        {
+          "id": "studentPropertiesViewTabFallbacksContent",
+          "mockToLoad": "students/student-fallbacks"
+        }
+      ]
+    },
+    {
+      "id": "studentPropertiesViewTabDialogs",
+      "class": "studentProgramsTabs",
+      "text": "student___dialogs",
+      "lazyLoading": true,
+      "_lazyLoading": "@fv()'{{activeTab}}' ? ('{{activeTab}}' === 'studentPropertiesViewTabDialogs' ? false : true) : false",
+      "components": [
+        {
+          "id": "studentPropertiesViewTabDialogsContent",
+          "mockToLoad": "dialogs/students-dialogs"
+        }
+      ]
+    },
+    {
+      "id": "studentPropertiesViewTabSuggestions",
+      "class": "studentProgramsTabs",
+      "text": "student___suggestions",
+      "lazyLoading": true,
+      "_lazyLoading": "@fv()'{{activeTab}}' ? ('{{activeTab}}' === 'studentPropertiesViewTabDialogs' ? false : true) : false",
+      "components": [
+        {
+          "id": "studentPropertiesViewTabSuggestionsContent",
+          "mockToLoad": "students/student-suggestions"
+        }
+      ]
+    },
+    {
+      "id": "studentPropertiesViewTabStatistics",
+      "class": "studentProgramsTabs",
+      "text": "student___statistics",
+      "lazyLoading": true,
+      "_lazyLoading": "@fv()'{{activeTab}}' ? ('{{activeTab}}' === 'studentPropertiesViewTabStatistics' ? false : true) : false",
+      "components": [
+        {
+          "id": "studentPropertiesViewTabStatisticsContent",
+          "mockToLoad": "students/student-statistics"
+        }
+      ]
+    },
+    {
+      "id": "studentPropertiesViewTabAccount",
+      "class": "studentProgramsTabs",
+      "text": "student___account",
+      "lazyLoading": true,
+      "_lazyLoading": "@fv()'{{activeTab}}' ? ('{{activeTab}}' === 'studentPropertiesViewTabAccount' ? false : true) : false",
+      "components": [
+        {
+          "id": "studentPropertiesViewTabAccountContent",
+          "mockToLoad": "students/account/main"
+        }
+      ]
+    },
+    {
+      "id": "studentPropertiesViewTabIntegrations",
+      "class": "studentProgramsTabs",
+      "text": null,
+      "lazyLoading": true,
+      "_lazyLoading": "@fv()'{{activeTab}}' ? ('{{activeTab}}' === 'studentPropertiesViewTabIntegrations' ? false : true) : false",
+      "components": [
+        {
+          "id": "studentPropertiesViewTabIntegrationsContent",
+          "mockToLoad": "integrations/integrations-list"
+        }
+      ]
+    }
+  ]
+}

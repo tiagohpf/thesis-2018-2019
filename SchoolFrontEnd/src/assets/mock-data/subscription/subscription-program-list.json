@@ -1,0 +1,415 @@
+{
+    "type": "page",
+    "id": "programListConfiguration",
+    "header": {
+        "id": "pageHeader",
+        "_seo": {
+            "text": "application___programs",
+            "icon": "fa fa-book"
+        },
+        "_operations": [
+            {
+                "id": "create",
+                "size": 1,
+                "parameters": [
+                    {
+                        "id": "subscriptionCreateProgram",
+                        "type": "navigate",
+                        "text": "Create",
+                        "navigateTo": "knowledgecenter/programs/create"
+                    }
+                ]
+            }
+        ],
+        "details": [
+            {
+                "_type": "label",
+                "class": "titles",
+                "text": null,
+                "value": "<h1>{{@fv()@i18n('application___programs')}}</h1>"
+            }
+        ]
+    },
+    "_sidebar": [
+        {
+            "type": "filter",
+            "id": "subscriptionProgramsFilter",
+            "mappingId": [
+                "subscriptionProgramsMainCardList"
+            ],
+            "details": [
+                {
+                    "type": "textbox",
+                    "subType": "autocomplete",
+                    "id": "nameFilter",
+                    "apiFieldName": "name",
+                    "text": "Name",
+                    "pathToValueList": "_embedded",
+                    "pathToValue": "name",
+                    "validator": {
+                        "autocomplete": [
+                            {
+                                "urlResource": [
+                                    {
+                                        "key": "path",
+                                        "value": "{{SchoolBOT}}/programs"
+                                    },
+                                    {
+                                        "key": "queryString",
+                                        "value": {
+                                            "keys": "{\"name\":1}",
+                                            "filter": "{\"name\":{\"$regex\":\"(?i){{nameFilter}}.*\"}, \"IXS\" :\"{{IXS_id}}\" }"
+                                        }
+                                    },
+                                    {
+                                        "key": "headers",
+                                        "value": {
+                                            "Authorization": "Bearer {{token}}",
+                                            "IXS": "{{IXS_id}}"
+                                        }
+                                    }
+                                ]
+                            },
+                            "no records matched"
+                        ]
+                    }
+                },
+                {
+                    "type": "input-checkbox",
+                    "id": "statusFilter",
+                    "apiFieldName": "status",
+                    "text": "application___status",
+                    "filterTemplate": "{\"$in\":\"{{statusFilter}}\"}",
+                    "valueList": [
+                        {
+                            "key": 1,
+                            "value": "&nbsp; <i class=\"fa fa-certificate fx-icon text-info\"></i>&nbsp;{{@fv()@i18n('program___status_types___new')}}"
+                        },
+                        {
+                            "key": 3,
+                            "value": "&nbsp;<i class=\"fa fa-check fx-icon text-success\"></i>&nbsp;{{@fv()@i18n('program___status_types___published')}}"
+                        },
+                        {
+                            "key": 4,
+                            "value": "&nbsp; <i class=\"fa fa-check fx-icon text-success\"></i>&nbsp;{{@fv()@i18n('program___status_types___published')}}&nbsp;&nbsp;<i class=\"fa fa-pencil-square-o\"></i>"
+                        }
+                    ]
+                },
+                {
+                    "type": "json",
+                    "id": "queryStringKeyAccountsIds",
+                    "text": "queryStringKeyAccountsIds",
+                    "dynamicProps": {
+                        "value": "{{courseFilter}}"
+                    },
+                    "hidden": true
+                },
+                {
+                    "type": "input-checkbox",
+                    "id": "languageFilter",
+                    "apiFieldName": "language",
+                    "text": "application___language",
+                    "filterTemplate": "{\"$in\":\"{{languageFilter}}\"}",
+                    "valueList": [
+                        {
+                            "key": "es",
+                            "value": "Spanish"
+                        },
+                        {
+                            "key": "en",
+                            "value": "English"
+                        },
+                        {
+                            "key": "pt",
+                            "value": "Portuguese"
+                        },
+                        {
+                            "key": "fr",
+                            "value": "French"
+                        }
+                    ]
+                },
+                {
+                    "type": "input-select",
+                    "id": "coursePrograms",
+                    "text": "application___course",
+                    "placeholder": "select a course",
+                    "apiFieldName": "_id",
+                    "urlResource": [
+                        {
+                            "key": "path",
+                            "value": "{{SchoolBOT}}/courses"
+                        },
+                        {
+                            "key": "queryString",
+                            "value": {
+                                "keys": "{\"name\":1, \"programs\":1}",
+                                "filter": "{\"IXS\" :\"{{IXS_id}}\" }"
+                            }
+                        },
+                        {
+                            "key": "headers",
+                            "value": {
+                                "Authorization": "Bearer {{token}}",
+                                "IXS": "{{IXS_id}}"
+                            }
+                        }
+                    ],
+                    "pathToValueList": [
+                        "_embedded"
+                    ],
+                    "templateOfValueList": "{\"key\":\"{{programs}}\",\"value\":\"{{name}}\"}",
+                    "filterTemplate": "{\"$in\":{{@fv()@generateInObjectIdFilter(@replaceTagVars('coursePrograms'))}}}"
+                },
+                {
+                    "_type": "input-checkbox",
+                    "id": "public",
+                    "text": "program___mode",
+                    "valueList": [
+                        {
+                            "key": "true",
+                            "value": "program___public"
+                        },
+                        {
+                            "key": "false",
+                            "value": "program___private"
+                        }
+                    ],
+                    "filterTemplate": "{\"$in\":{{public}}}"
+                },
+                {
+                    "type": "dates-interval",
+                    "id": "lastUpdate",
+                    "text": "application___lastUpdate",
+                    "valueList": [
+                        {
+                            "value": "last week",
+                            "text": "generic___dateInterval___last7Days"
+                        },
+                        {
+                            "value": "last month",
+                            "text": "generic___dateInterval___lastMonth"
+                        },
+                        {
+                            "value": "customInterval",
+                            "text": "generic___dateInterval___rangePeriod"
+                        }
+                    ],
+                    "_parameters": [
+                        {
+                            "key": "preSetPeriod",
+                            "value": "last month"
+                        }
+                    ]
+                },
+                {
+                    "type": "input-select",
+                    "subType": "multiple",
+                    "id": "categoryProgram",
+                    "placeholder": "application___selectCategory",
+                    "text": "application___category",
+                    "class": "col-md-12",
+                    "apiFieldName": "categories",
+                    "filterTemplate": "{\"$in\":\"{{categoryProgram}}\"}",
+                    "pathToValueList": "",
+                    "templateOfValueList": "{\"key\":\"{{_id___$oid}}\",\"value\":\"{{label}}\"}",
+                    "urlResource": [
+                        {
+                            "key": "path",
+                            "value": "{{SchoolBOT}}/categories"
+                        },
+                        {
+                            "key": "queryString",
+                            "value": {
+                                "keys": "{\"_id\":1,\"label\":1}",
+                                "np": null,
+                                "rep": "pj"
+                            }
+                        },
+                        {
+                            "key": "headers",
+                            "value": {
+                                "Authorization": "Bearer {{token}}",
+                                "IXS": "{{IXS_id}}"
+                            }
+                        },
+                        {
+                            "key": "reload",
+                            "value": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "tabs": [
+        {
+            "id": "subscriptionProgramsMainContainerTab",
+            "components": [
+                {
+                    "type": "initParameters",
+                    "details": [
+                        {
+                            "type": "initCards",
+                            "_subType": "card-container-checkBox",
+                            "_lazyLoading": true,
+                            "id": "subscriptionProgramsMainCardList",
+                            "icon": "fa fa-th-large",
+                            "urlResource": [
+                                {
+                                    "key": "path",
+                                    "value": "{{SchoolBOT}}/programs"
+                                },
+                                {
+                                    "key": "queryString",
+                                    "value": {
+                                        "page": "((page))",
+                                        "pagesize": "1000",
+                                        "count": null,
+                                        "keys": "{\"image\":1, \"_id\":1, \"name\":1,\"language\":1 , \"status\":1, \"categories\":1}",
+                                        "filter": "{\"IXS\":\"{{IXS_id}}\",\"$or\":[{\"name\":{ \"$regex\": \"{{programFind}}\"}},{\"language\":{ \"$regex\": \"{{programFind}}\"}}]}",
+                                        "np": null,
+                                        "rep": "pj"
+                                    }
+                                },
+                                {
+                                    "key": "reload",
+                                    "value": false
+                                },
+                                {
+                                    "key": "headers",
+                                    "value": {
+                                        "Authorization": "Bearer {{token}}",
+                                        "IXS": "{{IXS_id}}"
+                                    }
+                                },
+                                {
+                                    "key": "pathToMainData",
+                                    "value": [
+                                        "new Object({\"programs\": $this})"
+                                    ]
+                                }
+                            ],
+                            "pathToValueList": "programs",
+                            "parameters": [
+                                {
+                                    "key": "tableActions",
+                                    "value": {
+                                        "tableManager": false,
+                                        "export": false,
+                                        "search": false,
+                                        "paging": false
+                                    }
+                                },
+                                {
+                                    "key": "identifier",
+                                    "id": "name"
+                                }
+                            ],
+                            "details": [
+                                {
+                                    "type": "context",
+                                    "id": "programID",
+                                    "pathToValue": [
+                                        "_id",
+                                        "$oid"
+                                    ]
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "ctxtId",
+                                    "pathToValue": [
+                                        "_id",
+                                        "$oid"
+                                    ]
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "ctxtAlias",
+                                    "pathToValue": "name"
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "ctxtImageUri",
+                                    "pathToValue": [
+                                        "_id",
+                                        "'{{ImageService}}/programs/'+$this['$oid']"
+                                    ],
+                                    "_value": "/assets/images/franck-v-740555-unsplash.jpg"
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "ctxtImageShape",
+                                    "value": "rectangle"
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "ctxtNavigateTo",
+                                    "pathToValue": [
+                                        "_id",
+                                        "'knowledgecenter/programs/' + $this['$oid']"
+                                    ]
+                                },
+                                {
+                                    "id": "colPicture",
+                                    "type": "inline-image-component",
+                                    "class": "programImage",
+                                    "viewDetails": true
+                                },
+                                {
+                                    "type": "label",
+                                    "id": "programStatus_aux",
+                                    "pathToValue": "status",
+                                    "hidden": true
+                                },
+                                {
+                                    "type": "label",
+                                    "id": "programStatus",
+                                    "text": null,
+                                    "dynamicProps": {
+                                        "class": "'col-md-12 programStatus status_{{programStatus_aux}}'"
+                                    },
+                                    "pathToValue": "status",
+                                    "html": {
+                                        "1": "<img alt='' title='' src='assets/images/platform/new2.svg'>&nbsp;<span class='statusText'>{{@fv()@i18n('program___status_types___new')}}</span>",
+                                        "3": "<img alt='' title='' src='assets/images/platform/published.svg'>&nbsp;<span class='statusText'>{{@fv()@i18n('program___status_types___published')}}</span>",
+                                        "4": "<img alt='' title='' src='assets/images/platform/edit.svg'>&nbsp;<span class='statusText'>{{@fv()@i18n('program___status_types___editing')}}</span>"
+                                    }
+                                },
+                                {
+                                    "type": "groupParameters",
+                                    "class": "col-sm-12 cardInfo_Wrapper",
+                                    "parameters": [
+                                        {
+                                            "type": "label",
+                                            "id": "name",
+                                            "class": "col-lg-10 col-md-10 col-sm-10 programName_escola",
+                                            "text": null,
+                                            "pathToValue": [
+                                                "name"
+                                            ],
+                                            "navigateTo": "knowledgecenter/programs/{{programID}}"
+                                        },
+                                        {
+                                            "type": "label",
+                                            "id": "language",
+                                            "pathToValue": "language",
+                                            "class": "col-lg-2 col-md-2 col-sm-2 p-0",
+                                            "html": {
+                                                "es": "<img src=\"{{ImageService}}/languages/Spanish.png\" alt=\"Spain\" class=\"replaced-svg\">",
+                                                "en": "<img src=\"{{ImageService}}/languages/English.png\" alt=\"English\" class=\"replaced-svg\">",
+                                                "pt": "<img src=\"{{ImageService}}/languages/Portuguese.png\" alt=\"Portuguese\" class=\"replaced-svg\">",
+                                                "fr": "<img src=\"{{ImageService}}/languages/French.png\" alt=\"French\" class=\"replaced-svg\">"
+                                            }
+                                        }
+                                        
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

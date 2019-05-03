@@ -1,0 +1,395 @@
+{
+    "type": "initParameters",
+    "dynamicProps": {
+        "lazyLoading": "'{{hasStudents}}' == 'false'"
+    },
+    "urlResource": [
+        {
+            "key": "id",
+            "value": "studentPlansApi"
+        },
+        {
+            "key": "path",
+            "value": "{{SchoolBOT}}/plans"
+        },
+        {
+            "key": "headers",
+            "value": {
+                "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+            }
+        }
+    ],
+    "details": [
+        {
+            "type": "context",
+            "id": "timeLine",
+            "value": "$day"
+        },
+        {
+            "type": "context",
+            "id": "aggName",
+            "value": "$botId"
+        },
+        {
+            "type": "dates-interval",
+            "id": "timeLimit",
+            "text": "Time period",
+            "hidden": true,
+            "valueList": [
+                {
+                    "value": "last month",
+                    "text": "generic___dateInterval___lastMonth"
+                },
+                {
+                    "value": "last quarter",
+                    "text": "generic___lastQuarter"
+                }
+            ],
+            "parameters": [
+                {
+                    "key": "preSetPeriod",
+                    "value": "last quarter"
+                }
+            ]
+        },
+        {
+            "type": "initParameters",
+            "id": "studentsFallbackSuccess",
+            "details": [
+                {
+                    "type": "json",
+                    "id": "fallbacksAux",
+                    "urlResource": [
+                        {
+                            "key": "path",
+                            "value": "{{AnalyticsAPI}}/Dialogue_Metrics/_aggrs/dialogue_metrics"
+                        },
+                        {
+                            "key": "queryString",
+                            "value": {
+                                "avars": "{\"key\":\"^{{IXS_id}}\\\\|(?=.*fallback).*$\",\"TimeLine\":\"{{timeLine}}\",\"aggName\":\"{{aggName}}\",\"startTime\":\"{{timeLimit___$gte}}\",\"endTime\":\"{{timeLimit___$lt}}\"}",
+                                "pagesize": "1000"
+                            }
+                        },
+                        {
+                            "key": "headers",
+                            "value": {
+                                "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                            }
+                        }
+                    ],
+                    "pathToValue": [
+                        "@renameDataSets($this,'_embedded','fallbacks')"
+                    ],
+                    "hidden": true
+                },
+                {
+                    "type": "json",
+                    "id": "successesAux",
+                    "urlResource": [
+                        {
+                            "key": "path",
+                            "value": "{{AnalyticsAPI}}/Dialogue_Metrics/_aggrs/dialogue_metrics"
+                        },
+                        {
+                            "key": "queryString",
+                            "value": {
+                                "avars": "{\"key\":\"^{{IXS_id}}\\\\|(?!.*fallback).*$\",\"TimeLine\":\"{{timeLine}}\",\"aggName\":\"{{aggName}}\",\"startTime\":\"{{timeLimit___$gte}}\",\"endTime\":\"{{timeLimit___$lt}}\"}",
+                                "pagesize": "1000"
+                            }
+                        },
+                        {
+                            "key": "headers",
+                            "value": {
+                                "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                            }
+                        }
+                    ],
+                    "pathToValue": [
+                        "@renameDataSets($this,'_embedded','successes')"
+                    ],
+                    "hidden": true
+                }
+            ]
+        },
+        {
+            "type": "json",
+            "id": "coursesIXS_label",
+            "hidden": true,
+            "urlResource": [
+                {
+                    "key": "id",
+                    "value": "coursesIXS"
+                },
+                {
+                    "key": "path",
+                    "value": "{{AppAPIBotConfig}}/courses"
+                },
+                {
+                    "key": "pathToMainData",
+                    "value": [
+                        "_embedded"
+                    ]
+                },
+                {
+                    "key": "queryString",
+                    "value": {
+                        "filter": "{ \"IXS\": '{{IXS_id}}' }"
+                    }
+                },
+                {
+                    "key": "headers",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                },
+                {
+                    "key": "reload",
+                    "value": false
+                }
+            ],
+            "pathToValue": [
+                "_embedded"
+            ]
+        },
+        {
+            "type": "initCards",
+            "subType": "card-container",
+            "id": "studentsMainCard",
+            "icon": "fa fa-th-large",
+            "class": "col-sm-12",
+            "urlResource": [
+                {
+                    "key": "id",
+                    "value": "studentApi"
+                },
+                {
+                    "key": "path",
+                    "value": "{{SchoolBOT}}/students"
+                },
+                {
+                    "key": "pathToMainData",
+                    "value": [
+                        "_embedded"
+                    ]
+                },
+                {
+                    "key": "apiRecycle",
+                    "value": false
+                },
+                {
+                    "key": "queryString",
+                    "value": {
+                        "filter": "{\"IXS\":\"{{IXS_id}}\"}",
+                        "keys": "{\"_id\":1,\"name\":1,\"status\":1,\"language\":1,\"courses\":1,\"gender\":1,\"lastUpdate\":1,\"plan\":1}"
+                    }
+                },
+                {
+                    "key": "headers",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                },
+                {
+                    "key": "reload",
+                    "value": false
+                }
+            ],
+            "pathToValueList": [
+                "@mergeResponse('{{studentApi}}', '{{coursesIXS}}', '{{studentPlansApi}}', '{{fallbacksAux}}', '{{successesAux}}')"
+            ],
+            "details": [
+                {
+                    "id": "statistics",
+                    "type": "json",
+                    "text": "Statistics",
+                    "hidden": true,
+                    "pathToValue": [
+                        "statistics"
+                    ]
+                },
+                {
+                    "type": "context",
+                    "id": "ctxtId_AUX",
+                    "pathToValue": [
+                        "_id",
+                        "$oid"
+                    ]
+                },
+                {
+                    "type": "context",
+                    "id": "ctxtImageShape_AUX",
+                    "value": "rectangle"
+                },
+                {
+                    "type": "context",
+                    "id": "ctxtAlias_AUX",
+                    "pathToValue": "name"
+                },
+                {
+                    "type": "image",
+                    "id": "ctxtImageUri_AUX",
+                    "_class": "studentImage",
+                    "class": "col-sm-2 studentImage",
+                    "pathToValue": [
+                        "_id",
+                        "'{{ImageService}}/students/'+$this['$oid']"
+                    ]
+                },
+                {
+                    "type": "context",
+                    "id": "ctxtNavigateTo_AUX",
+                    "pathToValue": [
+                        "_id",
+                        "'/students/'+$this['$oid']"
+                    ]
+                },
+                {
+                    "type": "groupParameters",
+                    "id": "studentsList_groupParameters",
+                    "class": "col-sm-4 cardInfo_Wrapper",
+                    "pathToValue": "",
+                    "parameters": [
+                        {
+                            "type": "context",
+                            "id": "studentID",
+                            "pathToValue": [
+                                "_id",
+                                "$oid"
+                            ]
+                        },
+                        {
+                            "type": "label",
+                            "id": "studentName",
+                            "pathToValue": "name",
+                            "navigateTo": "students/{{studentsMainCard____id___$oid}}",
+                            "class": "col-sm-4"
+                        },
+                        {
+                            "type": "label",
+                            "id": "studentStatus",
+                            "pathToValue": "status",
+                            "class": "col-sm-4",
+                            "html": {
+                                "pre-live": "<img alt='' title='' src='assets/images/platform/live.svg'> <span>{{@fv()@i18n('student___status___gettingReady')}}</span> ",
+                                "live": "<img alt='' title='' src='assets/images/platform/live.svg'> <span>{{@fv()@i18n('student___status___live')}}</span> ",
+                                "blocked": "<img alt='' title='' src='assets/images/platform/live.svg'> <span>{{@fv()@i18n('student___status___blocked')}}</span> ",
+                                "suspended": "<img alt='' title='' src='assets/images/platform/notlive.svg'><span> {{@fv()@i18n('student___status___suspended')}} </span>"                            }
+                        },
+                        {
+                            "_type": "label",
+                            "id": "language",
+                            "pathToValue": "language",
+                            "class": "col-sm-4",
+                            "html": {
+                                "es": "<img src=\"{{ImageService}}/languages/Spanish.png\" alt=\"Spain\" class=\"replaced-svg\"> Spanish",
+                                "en": "<img src=\"{{ImageService}}/languages/English.png\" alt=\"English\" class=\"replaced-svg\"> English",
+                                "pt": "<img src=\"{{ImageService}}/languages/Portuguese.png\" alt=\"Portuguese\" class=\"replaced-svg\"> Portuguese",
+                                "fr": "<img src=\"{{ImageService}}/languages/French.png\" alt=\"French\" class=\"replaced-svg\"> French"
+                            }
+                        },
+                        {
+                            "type": "label",
+                            "id": "courseStudents",
+                            "class": "col-sm-4",
+                            "pathToValue": [
+                                "$this['coursesInfo'].map(course => course['name']).join(' , ')"
+                            ]
+                        },
+                        {
+                            "type": "label",
+                            "id": "gender",
+                            "pathToValue": "gender",
+                            "class": "col-sm-4",
+                            "icon": {
+                                "male": "fa fa-male",
+                                "female": "fa fa-female"
+                            }
+                        },
+                        {
+                            "type": "context",
+                            "id": "planID",
+                            "pathToValue": [
+                                "planInfo",
+                                "_id",
+                                "$oid"
+                            ],
+                            "class": "col-sm-4",
+                            "text": "PlanID"
+                        },
+                        {
+                            "type": "context",
+                            "id": "studentPlanName",
+                            "class": "col-sm-6",
+                            "pathToValue": [
+                                {
+                                    "$filter": [
+                                        "$this['_id']['$oid']==='{{planID}}'"
+                                    ]
+                                },
+                                "name"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "initParameters",
+                    "id": "test",
+                    "class": "col-sm-6",
+                    "details": [
+                        {
+                            "type": "custom-component",
+                            "subType": "custom-pie-chart",
+                            "id": "totalsChart",
+                            "pathToValueList": [
+                                "statistics"
+                            ],
+                            "axis": [
+                                {
+                                    "type": "xAxis",
+                                    "id": "name",
+                                    "text": "Date",
+                                    "pathToValue": [
+                                        "name"
+                                    ]
+                                },
+                                {
+                                    "type": "yAxis",
+                                    "id": "numberCustomersActive",
+                                    "text": "Hits",
+                                    "description": "total hits",
+                                    "pathToValue": [
+                                        "value"
+                                    ]
+                                }
+                            ],
+                            "rows": [],
+                            "parameters": [
+                                {
+                                    "key": "colorScheme",
+                                    "value": [
+                                        "#de2c57",
+                                        "#a9c00c"
+                                    ]
+                                },
+                                {
+                                    "key": "showLegend",
+                                    "value": true
+                                },
+                                {
+                                    "key": "doughnut",
+                                    "value": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

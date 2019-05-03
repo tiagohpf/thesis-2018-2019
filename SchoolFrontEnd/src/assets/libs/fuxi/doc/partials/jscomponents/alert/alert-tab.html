@@ -1,0 +1,56 @@
+<h3 id="docs-alert-tab">Alertas em tabs</h3>
+<p>Este snippet demonstra os diferentes tipos de alertas que poderão ser associados a um tab: <strong>sucesso, informativo, aviso e erro</strong>. Naturalmente dentro do <code>tab-pane</code> deverá estar assinalado o campo no estado respetivo. </p>
+<p>O snippet de código abaixo exemplifica um alerta de erro. Substitua <code>error</code> por <code>success, info, ou warning</code> para instanciar cada um dos outros tipos.</p>
+<p>Tenha por favor em atenção que a class <code>fx-status</code> aplicada ao <code>li</code> deverá ser colocada dinamicamente.</p>
+<div class="fx-docs-snippet-code">
+    <div>
+        <ul class="nav nav-tabs fx-main-tabs">
+            <li class="active fx-status">
+                <a href="#alert-tab-success" data-toggle="tab">
+                    <span class="fx-tab-title">Tab estado Sucesso</span>
+                </a>
+                <span class="fx-status-tab" title="Title para o status sucesso">
+                    <i class="fuxicons fuxicons-success fx-status-success"></i>
+                </span>
+            </li>
+            <li class="fx-status">
+                <a href="#alert-tab-info" data-toggle="tab">
+                    <span class="fx-tab-title">Tab estado Informativo</span>
+                </a>
+                <span class="fx-status-tab" title="Title para o status informativo">
+                    <i class="fuxicons fuxicons-info fx-status-info"></i>
+                </span>
+            </li>
+            <li class="fx-status">
+                <a href="#alert-tab-warning" data-toggle="tab">
+                    <span class="fx-tab-title">Tab estado Aviso</span>
+                </a>
+                <span class="fx-status-tab" title="Title para o status aviso">
+                    <i class="fuxicons fuxicons-warning fx-status-warning"></i>
+                </span>
+            </li>
+            <li class="fx-status">
+                <a href="#alert-tab-error" data-toggle="tab">
+                    <span class="fx-tab-title">Tab estado Erro</span>
+                </a>
+                <span class="fx-status-tab" title="Title para o status erro">
+                    <i class="fuxicons fuxicons-error fx-status-error"></i>
+                </span>
+            </li>
+        </ul>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<ul class="nav nav-tabs fx-main-tabs">
+    <li class="fx-status">
+        <a href="#alert-tab-error" data-toggle="tab">
+            <span class="fx-tab-title">Tab estado Erro</span>
+        </a>
+        <span class="fx-status-tab" title="Title para o status erro">
+            <i class="fuxicons fuxicons-error fx-status-error"></i>
+        </span>
+    </li>
+</ul>
+        </textarea>
+    </form>
+</div>

@@ -1,0 +1,95 @@
+{
+    "type": "initParameters",
+    "id": "removeIntentPage",
+    "header": {
+        "id": "pageHeader",
+        "seo": {
+            "text": "program___intent___removeIntent",
+            "icon": "fa fa-reply"
+        }
+    },
+    "details": [
+        {
+            "type": "label",
+            "id": "originalDisplayName",
+            "pathToValue": [
+                "originalDisplayName"
+            ],
+            "hidden": true
+        },
+        {
+            "type": "label",
+            "id": "displayName",
+            "pathToValue": [
+                "displayName"
+            ],
+            "hidden": true
+        },
+        {
+            "type": "label",
+            "id": "pageBodyConfirm",
+            "value": "{{@fv()@i18n('program___intent___confirmRemove') + '   <strong>' + @replaceTagVars('displayName') + '</strong>?'}}"
+        }
+    ],
+    "buttons": [
+        {
+            "id": "intentRemoveSubmitBtn",
+            "key": "submit",
+            "text": "generic___operations___remove",
+            "class": "btn-primary",
+            "parameters": [
+                {
+                    "key": "requestEndpoint",
+                    "value": "{{SchoolBE}}/programs/[[programID]]/intents/{{originalDisplayName}}"
+                },
+                {
+                    "key": "requestHeaders",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                },
+                {
+                    "key": "requestType",
+                    "value": "DELETE"
+                },
+                {
+                    "key": "successText",
+                    "value": false
+                },
+                {
+                    "key": "errorText",
+                    "value": "errors___intentRemoveError"
+                },
+                {
+                    "key": "onSuccess",
+                    "value": {
+                        "request": [
+                            {
+                                "key": "updatePageParameter",
+                                "value": {
+                                    "programIntentsTable": {
+                                        "lazyLoading": false
+                                    },
+                                    "designerFlowComponent": {
+                                        "sendEvent": "loadIntents"
+                                    }
+                                }
+                            },
+                            {
+                                "key": "successText",
+                                "value": "success___intentRemoveSuccess"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "key": "cancel",
+            "id": "intentRemoveCancelBtn",
+            "text": "generic___operations___cancel",
+            "class": "btn-force-default btn-default"
+        }
+    ]
+}

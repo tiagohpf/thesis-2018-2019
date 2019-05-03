@@ -1,0 +1,75 @@
+<h3 id="docs-menus-outros-modulos">Menus com dimensões e outros módulos</h3>
+<p>O snippet abaixo demonstra como estilizar um menu de dimensões (ou áreas) com uma zona de "Outros módulos".</p>
+<p>As áreas dentro do menu são criadas através do uso de <code>div</code> com a class <code>fx-dimension</code>. A zona de "Outros módulos" é criada através do uso da class adicional <code>fx-others</code>.</p>
+
+<div class="fx-docs-snippet-code">
+    <header class="fx-devguide-header">
+        <nav class="fx-navbar" role="navigation">
+            <ul class="fx-nav">
+                <li><a class="fx-brand" href="javascript:void(0)"><h1 class="fx-logo-brand">FUXI</h1></a></li>
+                <li>
+                    <a data-toggle="collapse" data-target="#menu4">Menu com dimensões e outros módulos<i class="fa fa-angle-down"></i></a>
+                    <nav id="menu4" class="fx-menu collapse devguide-manage-menu-vis devguide-keep-open">
+                        <div class="fx-dimension-aggregator">
+                            <h3>Título agregador</h3>
+                            <div class="fx-dimension">
+                                <h4>Dimensão 1</h4>
+                                <ul class="list-unstyled">
+                                    <li><a href="javascript:void(0)">Menu Item 1</a></li>
+                                    <li><a href="javascript:void(0)">Menu Item 2</a></li>
+                                    <li><a href="javascript:void(0)">Menu Item 3</a></li>
+                                    <li><a href="javascript:void(0)">Menu Item 4</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="fx-dimension fx-others">
+                            <h3>Outros Módulos</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="javascript:void(0)"><i class="fuxicons fuxicons-meter"></i>Outro Módulo 1</a></li>
+                                <li><a href="javascript:void(0)"><i class="fuxicons fuxicons-resources"></i>Outro Módulo 2</a></li>
+                                <li><a href="javascript:void(0)"><i class="fuxicons fuxicons-router"></i>Outro Módulo 3</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <form class="fx-codemirror">
+<textarea class="fx-codemirror-textarea">
+<header id="fx-header">
+    <nav class="fx-navbar" role="navigation">
+        <ul class="fx-nav">
+            <li><a class="fx-brand" href="#"><h1 class="fx-logo-brand">FUXI</h1></a></li>
+            <li>
+                <a data-toggle="collapse" data-target="#menu4">Menu com dimensões e outros módulos<i class="fa fa-angle-down"></i></a>
+                <nav id="menu4" class="fx-menu in">
+                    <div class="fx-dimension-aggregator">
+                        <h3>Título agregador</h3>
+                        <div class="fx-dimension">
+                            <h4>Dimensão 1</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#">Menu Item 1</a></li>
+                                <li><a href="#">Menu Item 2</a></li>
+                                <li><a href="#">Menu Item 3</a></li>
+                                <li><a href="#">Menu Item 4</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="fx-dimension fx-others">
+                        <h3>Outros Módulos</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="#"><i class="fuxicons fuxicons-meter"></i>Outro Módulo 1</a></li>
+                            <li><a href="#"><i class="fuxicons fuxicons-resources"></i>Outro Módulo 2</a></li>
+                            <li><a href="#"><i class="fuxicons fuxicons-router"></i>Outro Módulo 3</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </li>
+        </ul>
+    </nav>
+</header></textarea>
+    </form>
+</div>

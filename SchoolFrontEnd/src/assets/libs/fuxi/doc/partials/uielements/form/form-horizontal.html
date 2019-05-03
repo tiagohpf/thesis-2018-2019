@@ -1,0 +1,59 @@
+<h3 id="docs-form-horizontal">Formulários horizontais</h3>
+<p>Este snippet demonstra como instanciar um formulário com label à esquerda do input.</p>
+<div class="alert alert-info">
+    <p>A largura da label depende da class do sistema de colunas que lhe é aplicada. Neste exemplo usa-se a class <code>col-sm-2</code>. Para melhor compreender o sistema de colunas aceda a <a class="fx-docs-btn-link" href="http://getbootstrap.com/css/#grid" target="_blank">bootstrap grid system</a></p>
+</div>
+<div class="fx-docs-snippet-code">
+    <div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="form-horizontal-username">
+                    Username
+                </label>
+                <div class="col-sm-10">
+                    <input id="form-horizontal-username" type="text" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="form-horizontal-password">
+                    Password
+                </label>
+                <div class="col-sm-10">
+                    <input id="form-horizontal-password" type="password" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">login</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="form-horizontal-username">
+            Username
+        </label>
+        <div class="col-sm-10">
+            <input id="form-horizontal-username" type="text" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="form-horizontal-password">
+            Password
+        </label>
+        <div class="col-sm-10">
+            <input id="form-horizontal-password" type="password" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">login</button>
+        </div>
+    </div>
+</form>
+        </textarea>
+    </form>
+</div>

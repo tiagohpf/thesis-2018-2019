@@ -1,0 +1,17 @@
+#wct-each-parameter-studentTestSetsComponent {
+    #wct-content-studentTestSetsComponent {
+        #wct-table-studentTestSetsComponent {
+            tbody {
+                tr {
+                    td {
+                        vertical-align: middle;
+
+                        &.studentTestSetsStatus {
+                            padding: 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

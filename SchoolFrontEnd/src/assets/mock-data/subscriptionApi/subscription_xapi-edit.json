@@ -1,0 +1,252 @@
+{
+  "type": "page",
+  "id": "pageConfiguration",
+  "header": {
+    "id": "pageHeader",
+    "seo": {
+      "text": "Edit Api",
+      "icon": "fa fa-briefcase"
+    },
+    "operations": {
+      "id": "pageHeaderOperations",
+      "text": "generic___operations___operations",
+      "icon": "glyphicon glyphicon-cog",
+      "parameters": [
+        {
+          "type": "submit",
+          "id": "customerEditSave",
+          "text": "generic___operations___save",
+          "class": "btn-primary",
+          "mappingId": [
+            "customerDateTime"
+          ],
+          "parameters": [
+            {
+              "key": "onSuccess",
+              "value": {
+                "navigateTo": {
+                  "route": "subscription_xapi"
+                }
+              }
+            },
+            {
+              "key": "successText",
+              "value": "success___requestSuccess"
+            },
+            {
+              "key": "errorText",
+              "value": "errors___requestError"
+            },
+            {
+              "key": "requestEndpoint",
+              "value": "{{subscription_xapi_ms}}/services/[[id]]"
+            },
+            {
+              "key": "requestType",
+              "value": "POST"
+            },
+            {
+              "key": "requestBody",
+              "type": "json",
+              "value": "{\"name\": \"{{name_edit}}\",\"description\": \"{{description_edit}}\",\"endpoint\": \"{{endpoint_edit}}\",\"httpMethod\": \"{{httpMethod_edit}}\",\"authorizationStatus\": \"{{authorizationStatus_edit}}\",\"authorizationType\": \"{{authorizationType_edit}}\",\"headers\": {{headers_edit}},\"body\": {{@fv()JSON.stringify(JSON.stringify(JSON.parse(@replaceTagVars('body_edit'))))}},\"responseFilterMapper\": {{responseFilterMapper_edit}}}"
+            },
+            {
+              "key": "requestHeaders",
+              "value": {
+                "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+              }
+            },
+            {
+              "key": "reload",
+              "value": false
+            }
+          ]
+        },
+        {
+          "type": "navigate",
+          "text": "generic___operations___cancel",
+          "navigateTo": "subscription_xapi"
+        }
+      ]
+    }
+  },
+  "urlResource": [
+    {
+      "key": "path",
+      "value": "{{subscription_xapi_ms}}/services/[[id]]"
+    },
+    {
+      "key": "pathToMainData",
+      "value": [
+        ""
+      ]
+    },
+    {
+      "key": "headers",
+      "value": {
+        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+      }
+    },
+    {
+      "key": "reload",
+      "value": false
+    }
+  ],
+  "tabs": [
+    {
+      "id": "accountsList",
+      "text": "customers___accounts",
+      "icon": "fx-ico-loading",
+      "components": [
+        {
+          "type": "initParameters",
+          "id": "customerMainInformation",
+          "details": [
+            {
+              "type": "textbox",
+              "id": "name_edit",
+              "text": "Name",
+              "validator": {
+                "required": [
+                  false,
+                  "warnings___fieldRequired"
+                ]
+              },
+              "pathToValue": [
+                "name"
+              ]
+            },
+            {
+              "type": "textbox",
+              "id": "description_edit",
+              "text": "Description",
+              "validator": {
+                "required": [
+                  false,
+                  "warnings___fieldRequired"
+                ]
+              },
+              "pathToValue": [
+                "description"
+              ]
+            },
+            {
+              "type": "textbox",
+              "id": "endpoint_edit",
+              "text": "endpoint",
+              "description": "http://api.test.pt/?var1=<code>${var1}</code>&var2=<code>${var2}</code>&id=1234",
+              "validator": {
+                "required": [
+                  false,
+                  "warnings___fieldRequired"
+                ]
+              },
+              "pathToValue": [
+                "endpoint"
+              ]
+            },
+            {
+              "type": "input-select",
+              "id": "httpMethod_edit",
+              "text": "Method",
+              "valueList": [
+                {
+                  "key": "post",
+                  "value": "post"
+                },
+                {
+                  "key": "get",
+                  "value": "get"
+                }
+              ],
+              "value": "get",
+              "pathToValue": [
+                "httpMethod"
+              ]
+            },
+            {
+              "type": "boolean",
+              "id": "authorizationStatus_edit",
+              "text": "Authorization Status",
+              "pathToValue": [
+                "authorizationStatus"
+              ]
+            },
+            {
+              "type": "input-select",
+              "id": "authorizationType_edit",
+              "text": "Authorization Type",
+              "valueList": [
+                {
+                  "key": "BearerToken",
+                  "value": "BearerToken"
+                },
+                {
+                  "key": "BasicAuth",
+                  "value": "BasicAuth"
+                },
+                {
+                  "key": "None",
+                  "value": "None"
+                }
+              ],
+              "pathToValue": [
+                "authorizationType"
+              ]
+            },
+            {
+              "type": "textbox",
+              "subType": "textarea",
+              "id": "headers_edit",
+              "text": "Headers",
+              "description": "{ \"header\" : \"value\" , \"header2\" : \"<code>${dynvalue}</code>\" }",
+              "validator": {
+                "required": [
+                  false,
+                  "warnings___fieldRequired"
+                ]
+              },
+              "pathToValue": [
+                "$this['headers'] ? JSON.stringify($this['headers']) : $this['headers']"
+              ]
+            },
+            {
+              "type": "textbox",
+              "subType": "textarea",
+              "id": "body_edit",
+              "text": "Body",
+              "description": "{\"city\":\"<code>${city}</code>\", \"date\":\"<code>${date}</code>\"}",
+              "validator": {
+                "required": [
+                  false,
+                  "warnings___fieldRequired"
+                ]
+              },
+              "pathToValue": [
+                "body"
+              ]
+            },
+            {
+              "type": "textbox",
+              "subType": "textarea",
+              "id": "responseFilterMapper_edit",
+              "text": "Fullfilment answer variables",
+              "description": "{ \"data\" : \"<code>$.data</code>\"  , \"element\" : \"<code>$data.array[0].element</code>\" }",
+              "validator": {
+                "required": [
+                  false,
+                  "warnings___fieldRequired"
+                ]
+              },
+              "pathToValue": [
+                "responseFilterMapper"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

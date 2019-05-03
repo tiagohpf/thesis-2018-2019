@@ -1,0 +1,7 @@
+<div
+    class="tab-content wct-main-content-colored h-100"
+    [id]="eachtab?.id ? 'wct-page-tabsContent-' + eachtab.id : ''"
+    [hidden]="eachtab.hidden || eachtab.data.hideContent"
+    [class.prevent-tabs]="nTabs && nTabs > 1">
+        <ng-content></ng-content>
+</div>

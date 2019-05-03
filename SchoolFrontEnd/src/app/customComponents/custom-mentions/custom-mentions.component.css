@@ -1,0 +1,63 @@
+
+textarea.form-control{ height: calc(2.25rem + 2px); }
+
+
+.text-input-highlight-container {
+    position: relative; }
+    .text-input-highlight-container .text-input-element {
+      background: none;
+      position: relative;
+      z-index: 2; }
+    .text-input-highlight-container .text-highlight-element {
+      overflow: hidden !important;
+      white-space: pre-wrap;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      color: rgba(0, 0, 0, 0);
+      z-index: 1; }
+    .text-input-highlight-container .text-highlight-tag {
+      border-radius: 8px;
+      padding: 1px 3px;
+      margin: -1px -3px;
+      overflow-wrap: break-word; }
+
+      .bg-blue {
+        background-color: lightblue;
+      }
+      .bg-pink {
+        background-color: lightcoral;
+      }
+      .bg-lightCyan {
+        background-color: LightCyan;
+      }
+      .bg-LightGray {
+        background-color: LightGray;
+      }
+      .bg-lightGoldenRodYellow {
+        background-color: LightGoldenRodYellow;
+      }
+      .bg-lightGreen {
+        background-color: LightGreen;
+      }
+      .bg-lightPink {
+        background-color: LightPink;
+      }
+      .bg-lightSalmon {
+        background-color: LightSalmon;
+      }
+      .bg-lightSeaGreen {
+        background-color: LightSeaGreen;
+      }
+      .bg-lightSkyBlue {
+        background-color: LightSkyBlue;
+      }
+      .bg-lightSlateGray {
+        background-color: LightSlateGray;
+      }
+      .bg-lightSteelBlue {
+        background-color: LightSteelBlue;
+      }

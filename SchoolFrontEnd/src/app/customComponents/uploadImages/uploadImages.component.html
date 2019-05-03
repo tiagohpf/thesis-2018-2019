@@ -1,0 +1,27 @@
+<input
+  style="display: none"
+  type="file"
+  (change)="onFileChanged($event)"
+  #fileInput
+/>
+<svg
+  (mouseenter)="mouseEnter()"
+  (mouseleave)="mouseLeave()"
+  (click)="!readonly && fileInput.click()"
+  width="100px"
+  height="100px"
+  preserveAspectRatio="xMinYMin meet"
+  style="cursor: pointer;"
+>
+  <svg:g
+    profile-picture-component
+    borderWidth="0px"
+    [text]="name"
+    [fontSize]="3"
+    [id]="id"
+    [img]="imageUri"
+    [entity]="entity"
+    [shape]= '"rectangle"'
+    [applyUploadPhotoMask]="applyUploadPhotoMask"
+  />
+</svg>

@@ -1,0 +1,692 @@
+#wct-content-pageEntityDetails {
+    background: $primary-color;
+    padding: 0;
+
+    >.wct-tabs-wrapper {
+        overflow: unset;
+
+        .wct-main-content-colored {
+            border: none;
+            border-radius: unset;
+            height: 100% !important;
+
+            .wct-main-wrapper {
+                border: none !important;
+                border-radius: unset !important;
+                width: 100%;
+                @include max-width-screen;
+                margin: 0 auto;
+                position: relative;
+
+                .wct-components-wrapper {
+                    margin-top: -15px;
+                    padding-top: 20px;
+                    background: #fff;
+
+                    .title {
+                        .wct-header-info {
+                            .icon {
+                                font-size: 30px;
+                                color: $primary-color !important;
+                            }
+                        }
+
+                        .h2 {
+                            p {
+                                font-size: 18px;
+                                color: $primary-color;
+                                text-transform: lowercase;
+                            }
+                        }
+                    }
+
+                    .each-parameter {
+                        &.link {
+                            p {
+                                &:hover {
+                                    a {
+                                        color: $secundary-text-color;
+                                    }
+
+                                    &:after {
+                                        transition: all 0.2s linear;
+                                        color: $secundary-text-color;
+                                        margin-left: 10px;
+                                    }
+                                }
+
+                                &:after {
+                                    transition: all 0.2s linear;
+                                    font-size: 30px;
+                                    color: $primary-text-color;
+                                    font-family: "icomoon";
+                                    content: "\e903";
+                                    vertical-align: -30%;
+                                }
+
+                                a {
+                                    font-size: 30px;
+                                    color: $primary-text-color;
+                                }
+                            }
+                        }
+
+                        &.component-type-initParameters {
+                            padding: 17px;
+
+                            +.component-type-initParameters {
+                                border-top: 1px solid #d6d6d6;
+                            }
+                        }
+
+                        #wct-content-integrationsList {
+                            #wct-card-container-integrationsList {
+                                .card-wrapper {
+                                    width: 20%;
+                                    padding: 15px;
+
+                                    .card {
+                                        border: 1px solid #d2d2d2;
+                                        min-height: 390px;
+                                        border-radius: 0;
+                                        margin: 0;
+
+                                        .card-body {
+                                            padding: 0;
+
+                                            * {
+                                                padding: 0;
+                                            }
+
+                                            img {
+                                                width: 100%;
+                                                height: 160px;
+                                            }
+
+                                            .component-type-wrapper {
+                                                padding: 0 15px;
+                                                margin-bottom: 40px;
+
+                                                .label-grouper {
+                                                    display: initial;
+
+                                                    p {
+                                                        font-size: 20px;
+                                                    }
+
+                                                    a {
+                                                        font-size: 30px;
+                                                    }
+                                                }
+                                            }
+
+                                            .button_Go {
+                                                position: absolute;
+                                                bottom: 0px;
+
+                                                .wct-component-type-operations {
+                                                    .btn-group {
+                                                        width: 100%;
+
+                                                        .btn {
+                                                            margin: 15px !important;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        #wct-each-parameter-courseDetails {
+                            padding: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #wct-page-header-pageEntityDetails {
+        width: 100%;
+        @include max-width-screen;
+        margin: 0 auto;
+        padding: 15px 0;
+
+        app-wct-start-components {
+            .row {
+                position: relative;
+
+                .back {
+                    position: absolute;
+                    @include max-width-screen;
+                    left: 50%;
+                    transform: translateX(-50%);
+
+                    p {
+                        a {
+                            color: #ffffff;
+
+                            i {
+                                transform: rotate(180deg);
+                                display: inline-block;
+                                padding-right: 5px;
+                                font-size: 22px;
+                                vertical-align: -17%;
+                            }
+
+                            span {
+                                font-size: 18px;
+                                padding: 0px 5px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #wct-each-parameter-entityInfoHeader {
+            .form-group {
+                padding-left: 0;
+            }
+        }
+
+        #wct-each-parameter-imageLabel {
+            app-wct-start-components {
+                .row {
+                    margin-right: 0;
+                }
+            }
+
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            position: relative;
+            transform: translate(0, 0);
+            padding: 0;
+            flex: none;
+
+            .entityStatus {
+                position: absolute;
+
+                .label-grouper {
+                    position: absolute;
+                    right: 0;
+
+                    p {
+                        background-color: #00cfb6;
+                        font-size: 12px;
+                        padding: 0 5px;
+                        color: #ffffff;
+                    }
+                }
+
+                &.status_1 {
+                    .label-grouper {
+                        p {
+                            background-color: #4c69cf;
+                        }
+                    }
+                }
+
+                &.status_3 {
+                    .label-grouper {
+                        p {
+                            background-color: #00cfb6;
+                        }
+                    }
+                }
+
+                &.status_4 {
+                    .label-grouper {
+                        p {
+                            background-color: #000000;
+                        }
+                    }
+                }
+
+                &.pre-live {
+                    .label-grouper {
+                        p {
+                            background-color: #f0970a;
+                        }
+                    }
+                }
+
+                &.live {
+                    .label-grouper {
+                        p {
+                            background-color: #00cfb6;
+                        }
+                    }
+                }
+
+                &.blocked {
+                    .label-grouper {
+                        p {
+                            background-color: #cf4f00;
+                        }
+                    }
+                }
+
+                &.suspended {
+                    .label-grouper {
+                        p {
+                            background-color: #a3a3a3;
+                        }
+                    }
+                }
+            }
+        }
+
+        .entityName {
+            text-align: center;
+
+            p {
+                font-size: 32px;
+                color: #ffffff;
+                padding: 0;
+            }
+        }
+
+        .entityCourse {
+            text-align: center;
+            margin-top: -10px;
+
+            p {
+                font-size: 16px;
+                color: #ffffff;
+                padding: 0;
+            }
+        }
+
+        .courseButton {
+            text-align: center;
+            margin: 15px 0;
+
+            button {
+                width: 110px;
+                height: 32px;
+                border-radius: 3px;
+                background-image: linear-gradient(90deg, #7958ec 1%, #be4ce4 100%);
+                font-size: 14px;
+                color: #ffffff;
+                font-weight: 400;
+                box-shadow: 0px 7px 15px rgba(190, 76, 228, 0.5);
+                border: none;
+                transition: all 0.2s ease-in-out;
+                padding: 0 !important;
+                margin: 0 !important;
+
+                &:hover {
+                    border: none;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                }
+            }
+        }
+
+        .tabsButtons {
+            .wct-component-type-operations {
+                text-align: center;
+
+                button {
+                    &.entityInfoButton {
+                        background: none;
+                        border-bottom: 3px solid transparent;
+                        transition: 0.2s;
+                        width: 100px;
+                        height: 45px;
+                        font-size: 16px;
+                        text-align: center;
+                        padding: 0 !important;
+                        margin: 0 !important;
+                        border: 0;
+                        border-radius: 0 !important;
+
+                        &.active {
+                            background-image: linear-gradient(90deg, #9059f7 3%, #de6af7 100%);
+
+                            span {
+                                bottom: 0px;
+                                margin-bottom: 5px;
+                            }
+                        }
+
+                        &:not(.active):hover {
+                            transition: 0.3s;
+                        }
+
+                        >span {
+                            color: #ffffff;
+                            font-weight: 400;
+                            top: 0;
+                            background: $primary-color;
+                            width: 100%;
+                            left: 0;
+                            position: absolute;
+                            bottom: 5px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            text-transform: lowercase;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+.tabsButtonsAccount {
+    .wct-component-type-operations {
+        text-align: left;
+
+        button {
+            background: none;
+            border-bottom: 3px solid transparent;
+            transition: 0.2s;
+            width: 100px;
+            height: 45px;
+            font-size: 16px;
+            text-align: center;
+            padding: 0 !important;
+            margin: 0 !important;
+            border: 0;
+            &.active {
+                background-image: linear-gradient( 90deg, #9059f7 3%, #de6af7 100%);
+                span {
+                    bottom: 0px;
+                    margin-bottom: 5px;
+                }
+            }
+            &:not(.active):hover {
+                transition: 0.3s;
+            }
+            >span {
+                color: $secundary-text-color;
+                font-weight: 400;
+                top: 0;
+                background: white;
+                width: 100%;
+                left: 0;
+                position: absolute;
+                bottom: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-transform: lowercase;
+            }
+            .parametersCounter {
+                margin-bottom: 0 !important;
+                margin-left: 5px; //padding: 0px 5px !important;
+                background: #c7bfbf;
+                font-size: 14px !important;
+                border-radius: 25%;
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+}
+
+
+/** SLIDING BAR ENTITY DETAILS **/
+
+#wct-content-pageEntityDetails_navBar {
+    #wct-each-parameter-pageEntityDetails_wrapper {
+        height: 80px;
+        width: 100%;
+        @include max-width-screen;
+        margin: 0 auto;
+    }
+
+    >.wct-components-wrapper {
+        padding-bottom: 0;
+    }
+
+    .back {
+        position: absolute;
+        @include max-width-screen;
+        left: 50%;
+        transform: translateX(-50%);
+
+        p {
+            a {
+                color: #ffffff;
+
+                i {
+                    transform: rotate(180deg);
+                    display: inline-block;
+                    padding: 5px;
+                    font-size: 30px;
+                    vertical-align: -17%;
+                }
+
+                span {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    #wct-each-parameter-nameLabel_navBar {
+        margin-top: -15px;
+        padding: 3px 10px;
+    }
+
+    #wct-each-parameter-imageLabel_navBar {
+        width: 80px;
+        margin-left: 80px;
+        position: relative;
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0); //margin: 0 auto;
+        position: relative;
+        transform: translate(0, 0);
+        padding: 0;
+        flex: none;
+
+        app-wct-start-components {
+            .row {
+                margin-right: 0;
+
+                #wct-each-parameter-entityInfoHeader {
+                    width: 70px;
+                    flex: none;
+                    padding: 0;
+                    margin: 0 20px;
+                    height: 70px;
+
+                    .form-group {
+                        padding: 0;
+                        margin: 0;
+                    }
+
+                    svg {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+
+        .entityStatus {
+            position: absolute;
+
+            .label-grouper {
+                position: absolute;
+                right: -53px;
+
+                p {
+                    background-color: #00cfb6;
+                    font-size: 12px;
+                    padding: 0 5px;
+                    color: #ffffff;
+                }
+            }
+
+            &.status_1 {
+                .label-grouper {
+                    p {
+                        background-color: #4c69cf;
+                    }
+                }
+            }
+
+            &.status_3 {
+                .label-grouper {
+                    p {
+                        background-color: #00cfb6;
+                    }
+                }
+            }
+
+            &.status_4 {
+                .label-grouper {
+                    p {
+                        background-color: #000000;
+                    }
+                }
+            }
+
+            &.pre-live {
+                .label-grouper {
+                    p {
+                        background-color: #f0970a;
+                    }
+                }
+            }
+
+            &.live {
+                .label-grouper {
+                    p {
+                        background-color: #00cfb6;
+                    }
+                }
+            }
+
+            &.blocked {
+                .label-grouper {
+                    position: absolute;
+                    right: -53px;
+
+                    p {
+                        background-color: #cf4f00;
+                    }
+                }
+            }
+
+            &.suspended {
+                .label-grouper {
+                    p {
+                        background-color: #a3a3a3;
+                    }
+                }
+            }
+        }
+    }
+
+    .entityName,
+    .entityCourse {
+        p {
+            font-size: 32px;
+            color: #ffffff;
+            padding: 0;
+        }
+    }
+
+    .entityCourse {
+        p {
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: 400;
+            text-decoration: none solid rgb(255, 255, 255);
+        }
+    }
+
+    .courseButton {
+        margin-left: auto;
+        padding-right: 15px;
+        padding-top: 15px;
+        text-align: right;
+
+        button {
+            width: 110px;
+            height: 32px;
+            border-radius: 3px;
+            background-image: linear-gradient(90deg, #7958ec 1%, #be4ce4 100%);
+            font-size: 14px;
+            color: #ffffff;
+            font-weight: 400;
+            box-shadow: 0px 7px 15px rgba(190, 76, 228, 0.5);
+            border: none;
+            padding: 0 !important;
+            margin: 0 !important;
+
+            &:hover {
+                border: none;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+        }
+    }
+
+    #wct-each-parameter-entityInfoButtonAreas_navBar {
+        padding: 0;
+        border-top: 1px solid #ffffff2e;
+
+        &.tabsButtons {
+            text-align: center;
+
+            .wct-component-type-operations {
+
+                //text-align: center;
+                button {
+                    &.entityInfoButton {
+                        background: none;
+                        border-bottom: 3px solid transparent;
+                        transition: 0.2s;
+                        width: 100px;
+                        height: 40px;
+                        font-size: 16px; // text-align: center;
+                        padding: 0 !important;
+                        margin: 0 !important;
+                        border: 0;
+
+                        &.active {
+                            background-image: linear-gradient(90deg, #9059f7 3%, #de6af7 100%);
+
+                            span {
+                                bottom: 0px;
+                                margin-bottom: 5px;
+                            }
+                        }
+
+                        &:not(.active):hover {
+                            transition: 0.3s;
+                        }
+
+                        >span {
+                            color: #ffffff;
+                            font-weight: 400;
+                            top: 0;
+                            background: $primary-color;
+                            width: 100%;
+                            left: 0;
+                            position: absolute;
+                            bottom: 5px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            text-transform: lowercase;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

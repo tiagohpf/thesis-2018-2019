@@ -1,0 +1,9 @@
+<div
+  cdkDropList
+  class="example-list"
+  (cdkDropListDropped)="drop($event)">
+    <div cdkDrag class="example-box" *ngFor="let connection of inputParameters.value">
+      <i class="fa fa-ellipsis-v"></i>{{connectionName(connection)}}
+      <div class="is-default" [class.selected]="connection.dataRecs.isDefault" (click)="setDefault(connection)"></div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+
+// Aviso quando se altera a avaliação default
+.default-connection-warning{
+    .alert{ width: 100%; margin: 0; display: flex;
+        i{ width: auto; margin-right: 10px; font-size: 2em; }
+    }
+}

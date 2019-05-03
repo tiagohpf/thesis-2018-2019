@@ -1,0 +1,48 @@
+/* html,
+body {
+  height: 100%;
+  background: #f4fafa;
+}
+button.active {
+  background: #fff;
+  color: #009688;
+}
+button.active:hover {
+  color: #fff;
+}
+.fill {
+  flex: 1 1 auto;
+}
+.app-state {
+  margin: 15px;
+  flex: 1;
+}
+.home {
+  flex: 1;
+}
+md-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+footer {
+  flex: 0 0 60px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+} */
+
+.wct-container.set-blur {
+  filter: blur(20px);
+  background-color: rgb(10, 6, 23);
+  opacity: 0.8;
+}
+
+@media print {
+  .isPrinting > * { display: none; }
+  .isPrinting app-print-layout { display: block; }
+
+  bs-modal-backdrop { display: none; }
+}

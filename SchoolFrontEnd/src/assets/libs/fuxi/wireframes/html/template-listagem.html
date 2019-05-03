@@ -1,0 +1,416 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge; text/html;" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0,  user-scalable=yes" />
+    <link rel="icon" href="/fuxi/common/html/css/images/favicon.ico" type="image/x-icon" />
+    <title>Template Listagem</title>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/basepack/datatables-pt/1.9/css/jquery.dataTables.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.min.css" />
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+    <!-- Respond.js - IE8 support of media queries -->
+    <!--[if lt IE 9]>
+    <script src="/fuxi/lib/respond/1.4/js/respond.min.js"></script>
+    <![endif]-->
+
+
+</head>
+<body>
+    <div class="fx-push-footer fx-full-height">
+        <header id="fx-header">
+            <nav class="fx-navbar" role="navigation">
+                <a class="fx-brand" href="#"><h1 class="fx-logo-brand">Fuxi</h1></a>
+            </nav>
+            <!-- breadcrumb -->
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#"><i class="fuxicons fuxicons-home"></i>Início</a>
+                </li>
+                <li>
+                    <a href="#">Link</a>
+                </li>
+                <li class="active">
+                    Ativo
+                </li>
+            </ul>
+        </header>
+        <div class="fx-prevent-content-behind-footer fx-full-height">
+            <div class="fx-main-content-wrapper">
+                <div class="fx-entity-header fx-fixed-position" data-fix-to="top">
+                    <div class="fx-entity-header-inner">
+                        <div class="fx-entity-header-headings clearfix">
+                            <div class="pull-left">
+                                <h1><i class="fuxicons fuxicons-provision"></i> Título da página</h1>
+                            </div>
+
+                            <div class="pull-right">
+                                <a href="#" class="btn btn-primary fx-call-to-action"> <i class="glyphicon glyphicon-plus"></i> criar serviço </a>
+                            </div>
+                        </div>
+                        <div class="fx-bulk-actions clearfix">
+                            <div id="devguide-bulk-actions-row-ops" class="pull-left">
+                                <button class="btn btn-default btn-xs disabled">
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                    eliminar
+                                </button>
+                            </div>
+                            <div class="pull-right">
+                                <div class="form-group fx-search-input">
+                                    <div class="fx-pos-rel">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                        <input id="myInputTextField" type="search" placeholder="pesquisar..." class="form-control input-sm">
+                                    </div>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button data-toggle="dropdown" type="button" class="fx-dropdown-toggle dropdown-toggle btn btn-default btn-xs">
+                                        <i class="fuxicons fuxicons-manage-columns"></i> <span class="caret"></span>
+                                    </button>
+                                    <div class="fx-dropdown fx-dropdown-open-to-left">
+                                        <div class="fx-dropdown-body">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" checked>
+                                                    Cidade
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" checked>
+                                                    Concelho
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" checked>
+                                                    Distrito
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" checked>
+                                                    Estado do tempo
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button data-toggle="dropdown" type="button" class="btn btn-default btn-xs dropdown-toggle">
+                                        <i class="glyphicon glyphicon-export"></i> <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu fx-dropdown-open-to-left">
+                                        <li><a href="#">PDF</a></li>
+                                        <li><a href="#">XLS</a></li>
+                                        <li><a href="#">CSV</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="entity-content" class="fx-entity-info fx-dt-wrapper-fixed-cols">
+                    <table class="table" id="devguide-bulk-actions-table">
+                        <thead>
+                            <tr>
+                                <th class="fx-table-actions">
+                                    <input data-fx-check="all" data-fx-set="check-site" type="checkbox">
+                                </th>
+                                <th>#</th>
+                                <th>Cidade</th>
+                                <th>Concelho</th>
+                                <th>Distrito</th>
+                                <th>Estado do tempo</th>
+                                <th class="fx-table-actions">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="fx-table-actions">
+                                    <input type="checkbox" data-fx-check="" data-fx-set="check-site">
+                                </td>
+                                <td class="text-right">1</td>
+                                <td>Aveiro</td>
+                                <td>Aveiro</td>
+                                <td>Aveiro</td>
+                                <td class="text-center"><i class="fa fa-sun-o" title="sol"><span class="sr-only">sol</span></i></td>
+                                <td class="fx-table-actions">
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="pré-visualizar"> <i class="fuxicons fuxicons-eye"></i> </a>
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="editar"> <i class="glyphicon glyphicon-pencil"></i> </a>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" type="button" class="btn btn-link btn-link-in-table dropdown-toggle" title="outras operações">
+                                            <i class="fa fa-cog"></i>
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu fx-dropdown-open-to-left">
+                                            <li><a href="#"><i class="glyphicon glyphicon-remove"></i> eliminar</a></li>
+                                            <li><a href="#"><i class="fuxicons fuxicons-clone"></i> clonar</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fx-table-actions">
+                                    <input type="checkbox" data-fx-check="" data-fx-set="check-site">
+                                </td>
+                                <td class="text-right">1</td>
+                                <td>Coimbra</td>
+                                <td>Coimbra</td>
+                                <td>Coimbra</td>
+                                <td class="text-center"><i class="fa fa-tint" title="chuvoso"><span class="sr-only">chuva</span></i></td>
+                                <td class="fx-table-actions">
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="pré-visualizar"> <i class="fuxicons fuxicons-eye"></i> </a>
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="editar"> <i class="glyphicon glyphicon-pencil"></i> </a>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" type="button" class="btn btn-link btn-link-in-table dropdown-toggle" title="outras operações">
+                                            <i class="fa fa-cog"></i>
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu fx-dropdown-open-to-left">
+                                            <li><a href="#"><i class="glyphicon glyphicon-remove"></i> eliminar</a></li>
+                                            <li><a href="#"><i class="fuxicons fuxicons-clone"></i> clonar</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fx-table-actions">
+                                    <input type="checkbox" data-fx-check="" data-fx-set="check-site">
+                                </td>
+                                <td class="text-right">1</td>
+                                <td>Aveiro</td>
+                                <td>Aveiro</td>
+                                <td>Aveiro</td>
+                                <td class="text-center"><i class="fa fa-sun-o" title="sol"><span class="sr-only">sol</span></i></td>
+                                <td class="fx-table-actions">
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="pré-visualizar"> <i class="fuxicons fuxicons-eye"></i> </a>
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="editar"> <i class="glyphicon glyphicon-pencil"></i> </a>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" type="button" class="btn btn-link btn-link-in-table dropdown-toggle" title="outras operações">
+                                            <i class="fa fa-cog"></i>
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu fx-dropdown-open-to-left">
+                                            <li><a href="#"><i class="glyphicon glyphicon-remove"></i> eliminar</a></li>
+                                            <li><a href="#"><i class="fuxicons fuxicons-clone"></i> clonar</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fx-table-actions">
+                                    <input type="checkbox" data-fx-check="" data-fx-set="check-site">
+                                </td>
+                                <td class="text-right">1</td>
+                                <td>Coimbra</td>
+                                <td>Coimbra</td>
+                                <td>Coimbra</td>
+                                <td class="text-center"><i class="fa fa-tint" title="chuvoso"><span class="sr-only">chuva</span></i></td>
+                                <td class="fx-table-actions">
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="pré-visualizar"> <i class="fuxicons fuxicons-eye"></i> </a>
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="editar"> <i class="glyphicon glyphicon-pencil"></i> </a>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" type="button" class="btn btn-link btn-link-in-table dropdown-toggle" title="outras operações">
+                                            <i class="fa fa-cog"></i>
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu fx-dropdown-open-to-left">
+                                            <li><a href="#"><i class="glyphicon glyphicon-remove"></i> eliminar</a></li>
+                                            <li><a href="#"><i class="fuxicons fuxicons-clone"></i> clonar</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fx-table-actions">
+                                    <input type="checkbox" data-fx-check="" data-fx-set="check-site">
+                                </td>
+                                <td class="text-right">1</td>
+                                <td>Aveiro</td>
+                                <td>Aveiro</td>
+                                <td>Aveiro</td>
+                                <td class="text-center"><i class="fa fa-sun-o" title="sol"><span class="sr-only">sol</span></i></td>
+                                <td class="fx-table-actions">
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="pré-visualizar"> <i class="fuxicons fuxicons-eye"></i> </a>
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="editar"> <i class="glyphicon glyphicon-pencil"></i> </a>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" type="button" class="btn btn-link btn-link-in-table dropdown-toggle" title="outras operações">
+                                            <i class="fa fa-cog"></i>
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu fx-dropdown-open-to-left">
+                                            <li><a href="#"><i class="glyphicon glyphicon-remove"></i> eliminar</a></li>
+                                            <li><a href="#"><i class="fuxicons fuxicons-clone"></i> clonar</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fx-table-actions">
+                                    <input type="checkbox" data-fx-check="" data-fx-set="check-site">
+                                </td>
+                                <td class="text-right">1</td>
+                                <td>Coimbra</td>
+                                <td>Coimbra</td>
+                                <td>Coimbra</td>
+                                <td class="text-center"><i class="fa fa-tint" title="chuvoso"><span class="sr-only">chuva</span></i></td>
+                                <td class="fx-table-actions">
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="pré-visualizar"> <i class="fuxicons fuxicons-eye"></i> </a>
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="editar"> <i class="glyphicon glyphicon-pencil"></i> </a>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" type="button" class="btn btn-link btn-link-in-table dropdown-toggle" title="outras operações">
+                                            <i class="fa fa-cog"></i>
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu fx-dropdown-open-to-left">
+                                            <li><a href="#"><i class="glyphicon glyphicon-remove"></i> eliminar</a></li>
+                                            <li><a href="#"><i class="fuxicons fuxicons-clone"></i> clonar</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fx-table-actions">
+                                    <input type="checkbox" data-fx-check="" data-fx-set="check-site">
+                                </td>
+                                <td class="text-right">1</td>
+                                <td>Aveiro</td>
+                                <td>Aveiro</td>
+                                <td>Aveiro</td>
+                                <td class="text-center"><i class="fa fa-sun-o" title="sol"><span class="sr-only">sol</span></i></td>
+                                <td class="fx-table-actions">
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="pré-visualizar"> <i class="fuxicons fuxicons-eye"></i> </a>
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="editar"> <i class="glyphicon glyphicon-pencil"></i> </a>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" type="button" class="btn btn-link btn-link-in-table dropdown-toggle" title="outras operações">
+                                            <i class="fa fa-cog"></i>
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu fx-dropdown-open-to-left">
+                                            <li><a href="#"><i class="glyphicon glyphicon-remove"></i> eliminar</a></li>
+                                            <li><a href="#"><i class="fuxicons fuxicons-clone"></i> clonar</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fx-table-actions">
+                                    <input type="checkbox" data-fx-check="" data-fx-set="check-site">
+                                </td>
+                                <td class="text-right">1</td>
+                                <td>Coimbra</td>
+                                <td>Coimbra</td>
+                                <td>Coimbra</td>
+                                <td class="text-center"><i class="fa fa-tint" title="chuvoso"><span class="sr-only">chuva</span></i></td>
+                                <td class="fx-table-actions">
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="pré-visualizar"> <i class="fuxicons fuxicons-eye"></i> </a>
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="editar"> <i class="glyphicon glyphicon-pencil"></i> </a>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" type="button" class="btn btn-link btn-link-in-table dropdown-toggle" title="outras operações">
+                                            <i class="fa fa-cog"></i>
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu fx-dropdown-open-to-left">
+                                            <li><a href="#"><i class="glyphicon glyphicon-remove"></i> eliminar</a></li>
+                                            <li><a href="#"><i class="fuxicons fuxicons-clone"></i> clonar</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fx-table-actions">
+                                    <input type="checkbox" data-fx-check="" data-fx-set="check-site">
+                                </td>
+                                <td class="text-right">1</td>
+                                <td>Aveiro</td>
+                                <td>Aveiro</td>
+                                <td>Aveiro</td>
+                                <td class="text-center"><i class="fa fa-sun-o" title="sol"><span class="sr-only">sol</span></i></td>
+                                <td class="fx-table-actions">
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="pré-visualizar"> <i class="fuxicons fuxicons-eye"></i> </a>
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="editar"> <i class="glyphicon glyphicon-pencil"></i> </a>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" type="button" class="btn btn-link btn-link-in-table dropdown-toggle" title="outras operações">
+                                            <i class="fa fa-cog"></i>
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu fx-dropdown-open-to-left">
+                                            <li><a href="#"><i class="glyphicon glyphicon-remove"></i> eliminar</a></li>
+                                            <li><a href="#"><i class="fuxicons fuxicons-clone"></i> clonar</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fx-table-actions">
+                                    <input type="checkbox" data-fx-check="" data-fx-set="check-site">
+                                </td>
+                                <td class="text-right">1</td>
+                                <td>Coimbra</td>
+                                <td>Coimbra</td>
+                                <td>Coimbra</td>
+                                <td class="text-center"><i class="fa fa-tint" title="chuvoso"><span class="sr-only">chuva</span></i></td>
+                                <td class="fx-table-actions">
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="pré-visualizar"> <i class="fuxicons fuxicons-eye"></i> </a>
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="editar"> <i class="glyphicon glyphicon-pencil"></i> </a>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" type="button" class="btn btn-link btn-link-in-table dropdown-toggle" title="outras operações">
+                                            <i class="fa fa-cog"></i>
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu fx-dropdown-open-to-left">
+                                            <li><a href="#"><i class="glyphicon glyphicon-remove"></i> eliminar</a></li>
+                                            <li><a href="#"><i class="fuxicons fuxicons-clone"></i> clonar</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td class="fx-table-actions">
+                                    <input type="checkbox" data-fx-check="" data-fx-set="check-site">
+                                </td>
+                                <td class="text-right">1</td>
+                                <td>Coimbra</td>
+                                <td>Coimbra</td>
+                                <td>Coimbra</td>
+                                <td class="text-center"><i class="fa fa-tint" title="chuvoso"><span class="sr-only">chuva</span></i></td>
+                                <td class="fx-table-actions">
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="pré-visualizar"> <i class="fuxicons fuxicons-eye"></i> </a>
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="editar"> <i class="glyphicon glyphicon-pencil"></i> </a>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" type="button" class="btn btn-link btn-link-in-table dropdown-toggle" title="outras operações">
+                                            <i class="fa fa-cog"></i>
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu fx-dropdown-open-to-left">
+                                            <li><a href="#"><i class="glyphicon glyphicon-remove"></i> eliminar</a></li>
+                                            <li><a href="#"><i class="fuxicons fuxicons-clone"></i> clonar</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- FOOTER ABOUT -->
+        <!--# include file="/fuxi/partials/html/partial-footer-about.html" -->
+    </div>
+
+
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+    <script src="/basepack/datatables-pt/1.9/js/jquery.dataTables.min.js"></script>
+    <script src="/fuxi/lib/datatables-pt/1.9/js/inputPaging.min.js"></script>
+    <script src="/basepack/datatables-pt/1.9/js/FixedColumns.min.js"></script>
+    <script src="/fuxi/common/exec/fuxi.min.js"></script>
+    <script src="/fuxi/wireframes/exec/template-listagem.min.js"></script>
+    <!-- RESOURCES EN / PT : include according culture-->
+    <!--<script src="/fuxi/resources/fuxi_en.js" language="javascript" type="text/javascript"></script>-->
+    <script src="/fuxi/resources/fuxi_pt.js" language="javascript" type="text/javascript"></script>
+</body>
+</html>

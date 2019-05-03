@@ -1,0 +1,121 @@
+{
+    "type": "page",
+    "id": "studentExercicesTab",
+    "header": {
+        "id": "pageHeader",
+        "_seo": {
+            "text": "Student TestSets List",
+            "icon": "fuxicons fuxicons-tests"
+        },
+        "details": [
+            {
+                "type": "context",
+                "id": "hasTestSets",
+                "urlResource": [
+                    {
+                        "key": "path",
+                        "value": "{{SchoolBOT}}/testSets?filter={\"programId\": \"[[programID]]\"}"
+                    },
+                    {
+                        "key": "headers",
+                        "value": {
+                            "Authorization": "Bearer {{token}}",
+                            "IXS": "{{IXS_id}}"
+                        }
+                    }
+                ],
+                "pathToValue": [
+                    "_embedded",
+                    "@CheckHasDataToShow($this)"
+                ]
+            },
+            {
+                "type": "context",
+                "id": "testSetsGoogleshet",
+                "value": false,
+                "urlResource": [
+                    {
+                        "key": "path",
+                        "value": "{{SchoolBOT}}/testSets?filter={\"programId\": \"[[programID]]\"}"
+                    },
+                    {
+                        "key": "headers",
+                        "value": {
+                            "Authorization": "Bearer {{token}}",
+                            "IXS": "{{IXS_id}}"
+                        }
+                    }
+                ],
+                "pathToValue": [
+                    "_embedded",
+                    "0",
+                    "googleSheetsId"
+                ]
+            }
+        ],
+        "operations": [
+            {
+                "id": "studentTestSetsOperations",
+                "_icon": "fa fa-cog",
+                "size": 2,
+                "parameters": [
+                    {
+                        "type": "updatePage",
+                        "id": "create",
+                        "text": "generic___operations___create",
+                        "dynamicProps": {
+                            "hidden": "{{hasTestSets}}"
+                        },
+                        "parameters": [
+                            {
+                                "key": "updatePageParameter",
+                                "value": {
+                                    "programsTestSetCreate": {
+                                        "hidden": false
+                                    },
+                                    "menuOperations": {
+                                        "hidden": true
+                                    },
+                                    "descriptionNoTestSet": {
+                                        "hidden": true
+                                    },
+                                    "create": {
+                                        "hidden": true
+                                    }   
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "openModal",
+                        "_role": "Execute",
+                        "id": "import",
+                        "text": "generic___operations___import",
+                        "dynamicProps": {
+                            "hidden": "!{{hasTestSets}}"
+                        },
+                        "mockToLoad": "testSets/testset-import-from-google-docs"
+                    }
+                ]
+            }
+        ]
+    },
+    "tabs": [
+        {
+            "id": "studentsTestSetsMainContainerTab",
+            "components": [
+                {
+                    "type": "initParameters",
+                    "details": [
+                        {
+                            "include": "testSets/subscription-testSet-noRows"
+                        },
+                        {
+                            "include": "testSets/subscription-testSet-hasRows"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

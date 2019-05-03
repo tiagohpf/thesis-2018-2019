@@ -1,0 +1,1004 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Template pesquisa</title>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/fuxi/lib/select2/3.4/css/select2.css" rel="stylesheet">
+    <link href="/fuxi/lib/select2/3.4/css/select2-bootstrap.css" rel="stylesheet">
+    <link href="/basepack/datatables-pt/1.9/css/jquery.dataTables.css" rel="stylesheet">
+    <link href="/fuxi/lib/jstree/3.0/themes/fuxi/style.css" rel="stylesheet" />
+    <link href="/fuxi/lib/bootstrap-datetimepicker/3.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.min.css" />
+
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+</head>
+<body>
+    <div class="fx-push-footer fx-full-height">
+        <header id="fx-header">
+            <nav class="fx-navbar" role="navigation">
+                <a class="fx-brand" href="#"><h1 class="fx-logo-brand">Fuxi</h1></a>
+                <ul class="fx-nav pull-right">
+                    <li class="fx-main-search">
+                        <form class="fx-search collapsed" role="search">
+                            <input type="search" placeholder="search..." class="input-sm fx-input-search">
+                            <a title="pesquisa" class="fx-main-search-btn"><i class="glyphicon glyphicon-search"></i></a>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+            <!-- breadcrumb -->
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#"><i class="fuxicons fuxicons-home"></i>Home</a>
+                </li>
+                <li>
+                    <a href="#">Link</a>
+                </li>
+                <li class="active">
+                    Active
+                </li>
+            </ul>
+        </header>
+        <div class="fx-prevent-content-behind-footer fx-full-height">
+            <div class="fx-splitter-content-inner">
+                <div class="fx-entity-header fx-fixed-position" data-fix-to="top">
+                    <div class="fx-entity-header-inner" id="table-actions-container">
+                        <div class="fx-entity-header-headings clearfix">
+                            <div class="pull-left fx-constraint">
+                                <h1 class="pull-left">
+                                    <span class="fx-info-icon">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </span>
+                                    Search results
+                                </h1>
+                                <select id="working-context" class="fx-select-working-context form-control input-sm pull-left">
+                                    <option>Context 1</option>
+                                    <option>Context 2</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="table-search-container" class="fx-form-search collapse in">
+                            <div class="fx-wrapper-toggle-search-type">
+                                <a class="link-toggle" title="Advanced search" id="bt-toggle-adv-search">
+                                    Query Search
+                                </a>
+                                <a class="link-toggle hidden" title="Basic search" id="bt-toggle-simple-search">
+                                    Search
+                                </a>
+                            </div>
+                            <div id="table-simple-search" class="fx-simple-search">
+                                <div class="fx-simple-search-container">
+                                    <form class="form-group fx-search-input">
+                                        <div class="fx-simple-search-input">
+                                            <div class="form-inline fx-simple-search" role="form">
+                                                <div class="form-group fx-simple-search-form-group">
+                                                    <label for="txt-filter-term">Search term</label>
+                                                    <input type="search" id="txt-filter-term" class="form-control input-sm" />
+                                                </div>
+                                                <div class="form-group fx-simple-search-form-group">
+                                                    <label for="txt-filter-module">Module</label>
+                                                    <select id="txt-filter-module" class="form-control input-sm">
+                                                        <option>Module X</option>
+                                                        <option>Module P</option>
+                                                        <option>Module T</option>
+                                                        <option>Module O</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group fx-simple-search-form-group">
+                                                    <label for="txt-filter-grouping">Show results</label>
+                                                    <select id="txt-filter-grouping" class="form-control input-sm">
+                                                        <option value="module">grouped by module</option>
+                                                        <option value="none">ungrouped</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="fx-search-actions-container clearfix" id="simpleSearchActionsContainer">
+                                            <div class="pull-left">
+                                                <button id="trigger-filter-options" class="btn btn-default btn-sm" type="button">
+                                                    <i class="fa fa-cog"></i>
+                                                    manage fields
+                                                </button>
+                                                <button id="trigger-save-filter" class="btn btn-default btn-sm" type="button">
+                                                    <i class="fuxicons fuxicons-floppy-disk"></i>
+                                                    save filter
+                                                </button>
+                                            </div>
+                                            <div class="pull-right">
+                                                <button type="submit" class="btn btn-primary btn-sm" id="btSimpleSearchSubmit">
+                                                    search
+                                                </button>
+                                                <button type="reset" class="btn btn-default btn-sm" id="btSimpleSearchReset">
+                                                    clear
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div id="table-advanced-search" class="fx-advanced-search hidden">
+                                <div class="fx-advanced-search-container">
+                                    <div class="fx-advanced-search-title">
+                                        Type your query
+                                    </div>
+                                    <div class="fx-advanced-search-input">
+                                        <form class="form-group fx-search-input">
+                                            <div class="fx-pos-rel">
+                                                <button class="glyphicon glyphicon-search"></button>
+                                                <input type="search" placeholder="search..." class="fx-dropdown-search form-control input-sm full-width">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="fx-advanced-search-help">
+                                        <button class="fx-alert-button" id="bt-helper-query" rel="popover">
+                                            <i class="fuxicons fuxicons-help"></i>
+                                        </button>
+                                        <div class="query-popover-content hide clearfix">
+                                            <div class="fx-popover-main-content">
+                                                <div class="fx-popover-inner clearfix">
+                                                    <p>Advanced search allows you to execute <i>queries</i>.</p>
+                                                    <p>Type your <i>query</i> by using fields, operators and values or functions.</p>
+                                                    <p>E.G. <span class="fx-query-example">(services=All AND clients=Sara) OR operator=Oi</span></p>
+                                                </div>
+                                            </div>
+                                            <footer class="fx-popover-actions">
+                                                <a><i class="fa fa-life-ring"></i> Help on the syntax</a>
+                                            </footer>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fx-search-actions clearfix">
+                            <div class="pull-left">
+                                <h3 class="fx-results-title">4075 results for <strong class="fx-search-query"></strong>. Search for <a>OLT125</a> instead.</h3>
+                            </div>
+                            <div class="pull-right">
+                                <div class="checkbox-inline ">
+                                    <label class="fx-search-description">
+                                        <input id="fx-search-description" type="checkbox"> Show description
+                                    </label>
+                                </div>
+
+                                <label for="fx-search-sort"> Sort by </label>
+                                <select id="fx-search-sort" class="input-sm form-control fx-search-sort-by">
+                                    <option>creation date</option>
+                                    <option>last modified</option>
+                                    <option>alphabetical order</option>
+                                </select>
+                                <div class="btn-group">
+                                    <button id="fx-search-view-list" type="button" class="btn btn-default btn-xs active" title="list view"> <i class="fa fa-list"></i></button>
+                                    <button id="fx-search-view-table" type="button" class="btn btn-default btn-xs" title="table view"> <i class="fa fa-table"></i></button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" title="Exportar">
+                                        <i class="glyphicon glyphicon-export"></i> <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu fx-dropdown-open-to-left">
+                                        <li><a href="#">PDF</a></li>
+                                        <li><a href="#">XLS</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fx-entity-info">
+                    <div class="fx-search-content">
+                        <ul class="nav nav-tabs nav-stacked nav-tabs-stacked-left pull-left">
+                            <li class="active">
+                                <a data-show-tab="" href="#search_eqps" class="fx-tab" data-toggle="tab">Equipments<span class="badge pull-right">3.657</span></a>
+                            </li>
+                            <li>
+                                <a data-show-tab="" href="#search_prov" class="fx-tab" data-toggle="tab">Provision<span class="badge pull-right">350</span></a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content nav-tabs-stacked-left-content">
+
+                            <section id="search_eqps" class="tab-pane active">
+                                <ul class="fx-search-list list-unstyled">
+                                    <li class="fx-search-list-entry">
+                                        <div class="pull-left fx-search-list-icon">
+                                            <span class="fx-info-icon"><i class="glyphicon glyphicon-hdd"></i></span>
+                                        </div>
+                                        <div class="fx-search-list-entry-title-wrapper">
+                                            <h4 class="fx-search-list-entry-title">
+                                                <a>
+                                                    <strong class="fx-search-query"></strong>TuPTU N200
+                                                </a>
+                                                <button class="btn btn-link btn-link-in-table fx-search-quickview" rel="popover"><i class="caret fx-open-quickview"></i></button>
+                                            </h4>
+                                            <p>Lorem ipsim dolor sit amet, consectetur adispiscing elit da família dos <strong class="fx-search-query"></strong>5TuPTU. Sed et placerat sem pulvinar molestie.</p>
+                                        </div>
+                                        <div class="fx-search-list-info">
+                                            <div class="fx-search-list-entry-metadadata">
+                                                <span><i class="fa fa-history"></i> created 5 days ago | modified 12h32m ago</span>
+                                                <span><i class="glyphicon glyphicon-user"></i> created by André Damasco | modified by Sérgio Almeida</span>
+                                            </div>
+                                            <div class="fx-search-list-entry-actions">
+                                                <a class="btn btn-link btn-link-in-table"><i class="fuxicons fuxicons-eye"></i></a>
+                                                <a data-fx-icon class="fx-icon-toggle-off" title="Marcar"><i class="fuxicons fuxicons-thumb-tack-o"></i></a>
+                                                <a data-fx-icon class="fx-icon-toggle-off" title="Marcar como favorito"><i class="fa fa-star-o"></i></a>
+                                                <div class="btn-group">
+                                                    <button title="Mais ações" class="btn btn-link btn-link-in-table dropdown-toggle" data-toggle="dropdown">
+                                                        <i class="fa fa-cog"></i>
+                                                        <i class="caret"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu fx-dropdown-open-to-left" role="menu">
+                                                        <li>
+                                                            <a>Ação #1</a>
+                                                        </li>
+                                                        <li>
+                                                            <a>Ação #2</a>
+                                                        </li>
+                                                        <li>
+                                                            <a>Ação #3</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <div class="fx-search-table hidden">
+                                    <div class="fx-bulk-actions clearfix">
+                                        <div class="pull-left">
+                                            <button class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i> edit</button>
+                                            <button class="btn btn-default btn-xs"><i class="glyphicon glyphicon-remove"></i> delete</button>
+                                            <button class="btn btn-default btn-xs"><i class="fa fa-cog"></i> actions <i class="caret"></i></button>
+                                        </div>
+
+                                        <div class="pull-right">
+                                            <div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-default btn-xs active"><i class="fa fa-table"></i></button>
+                                                <button type="button" class="btn btn-default btn-xs"><i class="fuxicons fuxicons-line-chart"></i></button>
+                                                <button type="button" class="btn btn-default btn-xs"><i class="fuxicons fuxicons-bar-chart"></i></button>
+                                                <button type="button" class="btn btn-default btn-xs"><i class="fuxicons fuxicons-pie-chart"></i></button>
+                                                <button type="button" class="btn btn-default btn-xs"><i class="fuxicons fuxicons-resources"></i></button>
+                                            </div>
+
+                                            <div class="btn-group">
+                                                <button type="button" data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" title="Exportar">
+                                                    <i class="glyphicon glyphicon-export"></i> <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu fx-dropdown-open-to-left">
+                                                    <li><a href="#">PDF</a></li>
+                                                    <li><a href="#">XLS</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="btn-group">
+                                                <button type="button" title="Manage columns" class="fx-dropdown-toggle btn btn-default btn-xs">
+                                                    <i class="fuxicons fuxicons-manage-columns"></i> <span class="caret"></span>
+                                                </button>
+                                                <div class="fx-dropdown fx-dropdown-open-to-left">
+                                                    <div class="fx-dropdown-header">
+                                                        <form role="search">
+                                                            <div class="form-group fx-search-input">
+                                                                <div class="fx-pos-rel">
+                                                                    <button class="glyphicon glyphicon-search"></button>
+                                                                    <input type="text" class="form-control input-xs full-width" placeholder="search...">
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="fx-dropdown-body">
+                                                        <ul class="list-unstyled">
+                                                            <li class="checkbox"><label><input type="checkbox" checked="">Field 1</label></li>
+                                                            <li class="checkbox"><label><input type="checkbox" checked="">Field 2</label></li>
+                                                            <li class="checkbox"><label><input type="checkbox" checked="">Field 3</label></li>
+                                                        </ul>
+                                                    </div>
+                                                    <footer class="fx-dropdown-menu-actions">
+                                                        <button role="button" class="btn btn-primary btn-sm">
+                                                            apply
+                                                        </button>
+                                                        <button role="button" class="btn btn-default btn-sm">
+                                                            cancel
+                                                        </button>
+                                                    </footer>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table class="table" id="resTable">
+                                        <thead>
+                                            <tr>
+                                                <th class="fx-th">
+                                                    <div class="fx-th-container">
+                                                        <input data-fx-check="all" data-fx-set="check-search_res" type="checkbox">
+                                                        <a data-fx-icon="all" data-fx-set="fav-search_res" title="add to favorites" class="fx-icon-toggle-off"><i class="fa fa-star-o" data-fx-icon-on="fa fa-star" data-fx-icon-off="fa fa-star-o"></i></a>
+                                                        <a data-fx-icon="all" data-fx-set="pin-search_res" title="pin" class="fx-icon-toggle-off"><i class="fuxicons fuxicons-thumb-tack-o"></i></a>
+                                                        <div class="fx-th-btns btn-group">
+                                                            <button type="button" class="fx-dropdown-toggle btn btn-link btn-link-in-table">
+                                                                <i class="glyphicon glyphicon-filter"></i>
+                                                            </button>
+                                                            <div class="fx-dropdown">
+                                                                <div class="fx-dropdown-body filter-col-select">
+                                                                    <ul>
+                                                                        <li data-jstree='{"opened":true}'>
+                                                                            <a href="#">Select all</a>
+                                                                            <ul>
+                                                                                <li class="jstree-checked">
+                                                                                    <a>Selected</a>
+                                                                                </li>
+                                                                                <li class="jstree-checked">
+                                                                                    <a>Non-selected</a>
+                                                                                </li>
+                                                                                <li class="jstree-checked">
+                                                                                    <a>Favorite</a>
+                                                                                </li>
+                                                                                <li class="jstree-checked">
+                                                                                    <a>Non-favorite</a>
+                                                                                </li>
+                                                                                <li class="jstree-checked">
+                                                                                    <a>Pinned</a>
+                                                                                </li>
+                                                                                <li class="jstree-checked">
+                                                                                    <a>Non-pinned</a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="fx-dropdown-menu-actions">
+                                                                    <button role="button" class="btn btn-primary btn-sm">
+                                                                        apply
+                                                                    </button>
+                                                                    <button role="button" class="btn btn-default btn-sm">
+                                                                        cancel
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th class="fx-th">
+                                                    <div class="fx-th-container">
+                                                        <div class="fx-th-label">Type</div>
+                                                        <div class="fx-th-btns btn-group">
+                                                            <button type="button" class="fx-dropdown-toggle btn btn-link btn-link-in-table">
+                                                                <i class="glyphicon glyphicon-filter"></i>
+                                                            </button>
+                                                            <div class="fx-dropdown">
+                                                                <div class="fx-dropdown-header">
+                                                                    <form role="search">
+                                                                        <div class="form-group fx-search-input">
+                                                                            <div class="fx-pos-rel">
+                                                                                <button class="glyphicon glyphicon-search"></button>
+                                                                                <input type="text" class="fx-dropdown-search form-control input-sm full-width" placeholder="search...">
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="fx-dropdown-body filter-col-select">
+                                                                    <ul>
+                                                                        <li data-jstree='{"opened":true}'>
+                                                                            <a href="#">Select all </a>
+                                                                            <ul>
+                                                                                <li class="jstree-checked">
+                                                                                    <a>Record 1</a>
+                                                                                </li>
+                                                                                <li class="jstree-checked">
+                                                                                    <a>Record 2</a>
+                                                                                </li>
+                                                                                <li class="jstree-checked">
+                                                                                    <a>Record 3</a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="fx-dropdown-menu-actions">
+                                                                    <button role="button" class="btn btn-primary btn-sm">
+                                                                        apply
+                                                                    </button>
+                                                                    <button role="button" class="btn btn-default btn-sm">
+                                                                        cancel
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th class="fx-th">
+                                                    <div class="fx-th-container">
+                                                        <div class="fx-th-label">Name</div>
+                                                        <div class="fx-th-btns btn-group">
+                                                            <button type="button" class="fx-dropdown-toggle btn btn-link btn-link-in-table">
+                                                                <i class="glyphicon glyphicon-filter"></i>
+                                                            </button>
+                                                            <div class="fx-dropdown">
+                                                                <div class="fx-dropdown-header">
+                                                                    <form role="search">
+                                                                        <div class="form-group fx-search-input">
+                                                                            <div class="fx-pos-rel">
+                                                                                <button class="glyphicon glyphicon-search"></button>
+                                                                                <input type="text" class="fx-dropdown-search form-control input-sm full-width" placeholder="search...">
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="fx-dropdown-body filter-col-select">
+                                                                    <ul>
+                                                                        <li data-jstree='{"opened":true}'>
+                                                                            <a href="#">Select all </a>
+                                                                            <ul>
+                                                                                <li class="jstree-checked">
+                                                                                    <a>Record 1</a>
+                                                                                </li>
+                                                                                <li class="jstree-checked">
+                                                                                    <a>Record 2</a>
+                                                                                </li>
+                                                                                <li class="jstree-checked">
+                                                                                    <a>Record 3</a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="fx-dropdown-menu-actions">
+                                                                    <button role="button" class="btn btn-primary btn-sm">
+                                                                        apply
+                                                                    </button>
+                                                                    <button role="button" class="btn btn-default btn-sm">
+                                                                        cancel
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th class="fx-th">
+                                                    <div class="fx-th-container">
+                                                        <div class="fx-th-label">Description</div>
+                                                        <div class="fx-th-btns btn-group">
+                                                            <button type="button" class="fx-dropdown-toggle btn btn-link btn-link-in-table">
+                                                                <i class="glyphicon glyphicon-filter"></i>
+                                                            </button>
+                                                            <div class="fx-dropdown fx-dropdown-open-to-left">
+                                                                <div class="fx-dropdown-header">
+                                                                    <form role="search">
+                                                                        <div class="form-group fx-search-input">
+                                                                            <div class="fx-pos-rel">
+                                                                                <button class="glyphicon glyphicon-search"></button>
+                                                                                <input type="text" class="fx-dropdown-search form-control input-sm full-width" placeholder="search...">
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="fx-dropdown-body filter-col-select">
+                                                                    <ul>
+                                                                        <li data-jstree='{"opened":true}'>
+                                                                            <a href="#">Select all </a>
+                                                                            <ul>
+                                                                                <li class="jstree-checked">
+                                                                                    <a>Record 1</a>
+                                                                                </li>
+                                                                                <li class="jstree-checked">
+                                                                                    <a>Record 2</a>
+                                                                                </li>
+                                                                                <li class="jstree-checked">
+                                                                                    <a>Record 3</a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="fx-dropdown-menu-actions">
+                                                                    <button role="button" class="btn btn-primary btn-sm">
+                                                                        apply
+                                                                    </button>
+                                                                    <button role="button" class="btn btn-default btn-sm">
+                                                                        cancel
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th class="fx-th">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" data-fx-check="" data-fx-set="check-search_res">
+                                                    <a title="add to favorites" class="fx-icon-toggle-off" data-fx-icon="" data-fx-set="fav-search_res"><i class="fa fa-star-o"></i></a>
+                                                    <a title="pin" class="fx-icon-toggle-off" data-fx-icon="" data-fx-set="pin-search_res"><i class="fuxicons fuxicons-thumb-tack-o"></i></a>
+                                                </td>
+                                                <td>
+                                                    <span title="alarme" class="fx-info-icon"><i class="glyphicon glyphicon-hdd"></i></span> ONT
+                                                </td>
+                                                <td><a><strong class="fx-search-query"></strong>TuPTU N200</a><button class="btn btn-link btn-link-in-table fx-search-quickview" rel="popover"><i class="caret fx-open-quickview"></i></button></td>
+                                                <td>Lorem ipsum <strong class="fx-search-query"></strong>TuPTU N200 dolor sit amet.</td>
+
+                                                <td>
+                                                    <a href="#" data-toggle="modal" data-target="#modal_inits" class="btn btn-link btn-link-in-table" title="Consultar"><i class="fuxicons fuxicons-eye"></i></a>
+                                                    <div class="btn-group">
+                                                        <button title="Mais ações" class="btn btn-link btn-link-in-table dropdown-toggle" data-toggle="dropdown">
+                                                            <i class="fa fa-cog"></i>
+                                                            <i class="caret"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu fx-dropdown-open-to-left" role="menu">
+                                                            <li>
+                                                                <a>
+                                                                    <i class="glyphicon glyphicon-pencil"></i> Editar
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a>
+                                                                    <i class="fuxicons fuxicons-clone"></i> Clonar
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a data-toggle="modal" data-target="#deleteTableRecord">
+                                                                    <i class="glyphicon glyphicon-remove"></i> Eliminar
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- FOOTER ABOUT -->
+        <!--# include file="/fuxi/partials/html/partial-footer-about.html" -->
+    </div>
+
+
+    <div id="searchQuickview" class="hide">
+        <div class="fx-popover-inner">
+            <div class="fx-popover-entity-header clearfix">
+                <div class="pull-left fx-popover-entity-header-main-icon">
+                    <span class="fx-info-icon"><i class="fuxicons fuxicons-termination-point"></i></span>
+                </div>
+                <div class="pull-left">
+                    <h4>OLT-125TuPTU N200</h4>
+                    <p>General characteristics</p>
+                </div>
+            </div>
+        </div>
+        <div class="fx-popover-main-content">
+            <div class="fx-popover-inner">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            Field
+                        </label>
+                        <div class="col-md-9">
+                            <p class="form-control-static">
+                                Description
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            Field
+                        </label>
+                        <div class="col-md-9">
+                            <p class="form-control-static">
+                                Description
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <footer class="fx-popover-actions">
+            <a class="btn btn-link btn-sm"> <i class="fuxicons fuxicons-open-in-window"></i> open in a new page </a>
+        </footer>
+    </div>
+
+
+
+    <!--MODAL DELETE TABLE RECORD-->
+    <div class="modal fade" id="deleteTableRecord" role="dialog" aria-labelledby="deleteTableRecordLabel" aria-hidden="true">
+        <div class="modal-dialog fx-modal-m">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="deleteTableRecordLabel">Eliminar</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="fx-confirm-wrapper">
+                        <div class="alert alert-warning">
+                            <div class="fx-alert-icon">
+                                <i class="fuxicons fuxicons-warning"></i>
+                            </div>
+                            <div class="fx-alert-desc">
+                                <p>
+                                    Deseja eliminar esta entidade?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="btDeleteTableRecord" type="button" class="btn btn-primary btn-sm">
+                        eliminar
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">
+                        cancelar
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--MODAL MANAGE FILTER OPTIONS-->
+    <div class="modal fade" id="manageFilterOptions" tabindex="-1" role="dialog" aria-labelledby="manageFilterOptionsLabel" aria-hidden="true">
+        <div class="modal-dialog fx-modal-m">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="manageFilterOptionsLabel">Gerir opções</h4>
+                    <p>
+                        Selecione os campos que pretende visualizar na área de pesquisa e defina o seu posicionamento
+                    </p>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div class="form-group fx-search-input">
+                            <div class="fx-pos-rel">
+                                <button class="glyphicon glyphicon-search"></button>
+                                <input type="text" placeholder="pesquisar..." class="form-control input-sm full-width">
+                            </div>
+                        </div>
+                    </form>
+                    <div id="jsTreeManageFilterOptions">
+                        <ul>
+                            <li>
+                                <a>Opção 1</a>
+                            </li>
+                            <li>
+                                <a>Opção 2</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <label class="checkbox-inline">
+                        <input type="checkbox">
+                        guardar como pré-definido
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm">
+                        aplicar
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">
+                        cancelar
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--MODAL SAVE FILTER-->
+    <div class="modal fade" id="saveFilter" tabindex="-1" role="dialog" aria-labelledby="saveFilterLabel" aria-hidden="true">
+        <div class="modal-dialog fx-modal-m">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="saveFilterLabel">Guardar filtro</h4>
+                    <p>
+                        Confirme os dados para a criação do novo filtro pessoal
+                    </p>
+                </div>
+                <div class="modal-body">
+                    <form role="form" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="filterName">Nome do filtro</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-sm full-width" id="filterName">
+                            </div>
+                        </div>
+                        <div class="fx-expand">
+                            Opções do filtro
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="saveFilterType">Tipo</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-sm full-width" id="saveFilterType">
+                            </div>
+                        </div>
+
+                    </form>
+                    <div class="pull-right">
+                        <div class="btn-group fx-pos-static">
+                            <button type="button" class="fx-dropdown-toggle btn btn-default btn-sm dropdown-manage-filter-options">
+                                <i class="fa fa-cog"></i>
+                                gerir opções <span class="caret"></span>
+                            </button>
+                            <div class="fx-dropdown fx-dropdown-open-to-left">
+                                <div class="fx-dropdown-header">
+                                    <form role="search">
+                                        <div class="form-group fx-search-input">
+                                            <div class="fx-pos-rel">
+                                                <button class="glyphicon glyphicon-search"></button>
+                                                <input type="text" class="fx-dropdown-search form-control input-sm full-width" placeholder="pesquisar...">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="fx-dropdown-body" id="jsTreeSaveFilterOptions">
+                                    <ul>
+                                        <li>
+                                            <a>Tipo</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <footer class="fx-dropdown-menu-actions">
+                                    <button role="button" class="btn btn-primary btn-sm">
+                                        aplicar
+                                    </button>
+                                    <button role="button" class="btn btn-default btn-sm">
+                                        cancelar
+                                    </button>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm">
+                        guardar filtro
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">
+                        cancelar
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+    <script src="/fuxi/lib/select2/3.4/js/select2.min.js"></script>
+    <script src="/fuxi/lib/select2/3.4/js/select2_locale_pt-PT.js"></script>
+    <script src="/basepack/datatables-pt/1.9/js/jquery.dataTables.min.js"></script>
+    <script src="/fuxi/lib/datatables-pt/1.9/js/inputPaging.min.js"></script>
+    <script src="/fuxi/lib/jstree/3.0/jstree.min.js"></script>
+    <script src="/fuxi/lib/moment/2.8/js/moment-with-locales.min.js"></script>
+    <script src="/fuxi/lib/bootstrap-datetimepicker/3.0/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="/fuxi/common/exec/fuxi.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('#working-context, #txt-filter-module,#txt-filter-grouping').select2();
+
+            FUXI.Splitter.init();
+            FUXI.FixedPositions.init();
+            FUXI.IconToggler.init();
+            FUXI.CheckboxToggler.init();
+
+            $(window).on('resize', function () {
+                FUXI.FixedPositions.init();
+            });
+
+            // TOGGLE ADVANCED/BASIC SEARCH
+
+            var filterContainer = "#table-search-container",
+            simpleSearch = $("#table-simple-search", filterContainer),
+            advancedSearch = $("#table-advanced-search", filterContainer);
+
+            //toggles between simple and advanced search
+            $("#bt-toggle-adv-search", filterContainer).on('click', function () {
+                $(this).addClass("hidden");
+                advancedSearch.removeClass("hidden");
+                $("#bt-toggle-simple-search", filterContainer).removeClass("hidden");
+                simpleSearch.addClass("hidden");
+                $(".fx-advanced-search-input input:first").focus();
+                FUXI.FixedPositions.init(true);
+            });
+
+            $("#bt-toggle-simple-search", filterContainer).on('click', function () {
+                $(this).addClass("hidden");
+                simpleSearch.removeClass("hidden");
+                $("#bt-toggle-adv-search", filterContainer).removeClass("hidden");
+                advancedSearch.addClass("hidden");
+                $(".fx-simple-search-input input:first", filterContainer).focus();
+                FUXI.FixedPositions.init(true);
+            });
+
+            // TRIGGERS MODAL MANAGE FIELDS
+            $('#trigger-filter-options').on('click', function () {
+                $('#manageFilterOptions').modal('show');
+            });
+
+
+            $('#manageFilterOptions').on('shown.bs.modal', function (e) {
+                $(".fx-search-input input[type=text]").focus();
+            });
+
+            // TRIGGERS MODAL SAVE FILTER
+            $('#trigger-save-filter').on('click', function () {
+                $('#saveFilter').modal('show');
+            });
+
+
+            $('#saveFilter').on('shown.bs.modal', function (e) {
+                $("#filterName").focus();
+            });
+
+
+            //JSTREE FOR MANAGE COLUMNS AND FILTERS
+            var $bab = $("#bulk-action-buttons");
+            $("#jsTreeManageTableColumns", $bab).jstree({
+                "core": {
+                    "check_callback": true,
+                    "themes": {
+                        'name': "fuxi",
+                        'icons': false
+                    }
+                },
+                "plugins": ["checkbox", "dnd", "unique"]
+            });
+
+            $('#jsTreeManageFilterOptions, #jsTreeSaveFilterOptions').jstree({
+                "core": {
+                    "check_callback": true,
+                    "themes": {
+                        'name': "fuxi",
+                        'icons': false
+                    }
+                },
+                "plugins": ["checkbox", "dnd", "unique"]
+            });
+
+            //DATEPICKERS
+            $('#input-filter-cre-timespan-from, #input-filter-cre-timespan-to, #input-filter-mod-timespan-from, #input-filter-mod-timespan-to', filterContainer).datetimepicker({
+                pickTime: false,
+                language: 'en'
+            });
+
+            //POPOVER WITH HELP FOR QUERY EDITOR
+            $("#bt-helper-query").popover({
+                html: true,
+                placement: 'left',
+                template: '<div class="popover fx-popover-s">' +
+                '<div class="arrow"></div>' +
+                '<div class="popover-content no-padding"></div>' +
+                '</div>',
+                content: function () {
+                    return $(this).next('.query-popover-content').html();
+                }
+            });
+
+            var $table = $('#resTable');
+
+            //****************************
+            //JSTREE FOR TABLE COLUMN FILTERS
+            //****************************
+            $("div.filter-col-select", $table).jstree({
+                "plugins": ["checkbox", "unique"],
+                "core": {
+                    "themes": {
+                        'name': "fuxi",
+                        'icons': false
+                    }
+                }
+            });
+
+            var resTable = $.extend({}, FUXI.Presets.DataTables, {
+                'iDisplayLength': 20,
+                'bPaginate': true,
+                'bInfo': true,
+                'aoColumns': [{
+                    'bSortable': false
+                }, {
+                    'bSortable': true
+                }, {
+                    'bSortable': true
+                }, {
+                    'bSortable': true
+                }, {
+                    'bSortable': false
+                }]
+            });
+
+            $table.dataTable(resTable);
+
+
+            $(".fx-search-quickview").popover({
+                'content': $("#searchQuickview").html(),
+                'html': true,
+                'placement': 'right',
+                'container': 'body',
+                'template': '<div class="popover fx-search-quickview-wrapper"><div class="arrow"></div><div class="popover-content no-padding"></div></div>'
+            });
+
+            $('#txt-filter-grouping').on('change', function () {
+                if ($(this).val() === 'none') {
+                    $('.fx-search-content > .nav').hide();
+                } else if ($(this).val() === 'module') {
+                    $('.fx-search-content > .nav').show();
+                }
+            });
+
+            $('#fx-search-view-list').on('click', function () {
+                $('.fx-search-table').addClass('hidden');
+                $('.fx-search-list').removeClass('hidden');
+            });
+
+            $('#fx-search-view-table').on('click', function () {
+                $('.fx-search-list').addClass('hidden');
+                $('.fx-search-table').removeClass('hidden');
+            });
+
+            $('.btn-group > button').on('click', function () {
+                $(this).addClass('active').siblings().removeClass('active');
+            });
+
+            $('.fx-main-search').on('click', '.fx-main-search-btn', function () {
+                var $wrap = $(this).parent(),
+                    $sin = $wrap.find('.fx-input-search');
+
+                if ($wrap.hasClass('collapsed')) {
+                    $wrap.removeClass('collapsed');
+                    $sin.addClass('fx-toggle-search-input');
+                    $sin.focus();
+                } else {
+                    $wrap.addClass('collapsed');
+
+                    $sin.removeClass('fx-toggle-search-input');
+                }
+            }).on('keydown propertychange', 'input', function (e) {
+                var $this = $(this);
+
+                if ($this.val() != '' && e.keyCode === 13) {
+                    window.location.href = '#/search';
+
+                    var sQuery = $this.val();
+
+                    $('#txt-filter-term').attr('value', sQuery);
+                    $('.fx-search-query').text(sQuery);
+
+                    // FOR DEMO PURPOSES ONLY
+                    // DISPLAYS "NO RESULTS" SEARCH SCREEN
+
+                    if ($this.val() === '0') {
+                        $('.fx-search-actions').replaceWith('<h3>No results for <span class="fx-search-query">' + sQuery + '</span>. Search for <a>OLT125</a> instead.</h3><p class="fx-no-info">Please double check that all words are spelt correctly or try different keywords.</p>').hide();
+                        $('.fx-search-content').hide();
+                    }
+
+                    $this.val('').siblings('.fx-main-search-btn').trigger('click');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

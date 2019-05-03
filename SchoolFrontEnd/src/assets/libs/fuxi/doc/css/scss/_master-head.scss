@@ -1,0 +1,14 @@
+﻿//MASTER HEADER - A page highlight section
+.fx-mast-head {
+    @include master-header-variant ($master-header-txt-color, $master-header-bg-color, $master-header-txt-font, $master-header-title-txt-color);
+
+    .fx-btn-current-version {
+        margin: 20px 0; 
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .fx-mast-head {
+        padding: 20px 15px;
+    }
+}

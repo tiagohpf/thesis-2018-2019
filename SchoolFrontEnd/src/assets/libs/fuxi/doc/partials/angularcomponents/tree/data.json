@@ -1,0 +1,15 @@
+﻿{
+    "data": [
+        { "id": "1", "text": "[1] Root 1", "type": "root",
+          "children": [
+                    { "id": "111", "text": "Child 1" },
+                    { "id": "112", "text": "Child 2" },
+                    { "id": "113", "text": "Child 3" },
+                    { "id": "114", "text": "Child 4" }]
+        },
+        { "id": "2", "text": "[2] Root a2", "type": "root" },
+        { "id": "a3", "text": "[3] Root a3", "type": "root-error" },
+        { "id": "a4", "text": "[4] Root a4", "type": "root-error" },
+        { "id": "a5", "text": "[5] Root a5", "type": "root-danger" }
+    ]
+}

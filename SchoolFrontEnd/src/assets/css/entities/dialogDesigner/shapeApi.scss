@@ -1,0 +1,17 @@
+
+#wct-each-parameter-inputVariables{
+    .wct-add-new-line{ display: none; }
+}
+
+#wct-each-parameter-logicExpressions{
+    #wct-tuple-logicExpressions{
+        .component-type-textbox{ padding-left: calc(15px - .75rem); }
+    }
+}
+
+#wct-tuple-inputVariables,
+#wct-tuple-outputVariables,
+#wct-tuple-logicExpressions{
+    .form-group{ margin: 0; }
+}
+

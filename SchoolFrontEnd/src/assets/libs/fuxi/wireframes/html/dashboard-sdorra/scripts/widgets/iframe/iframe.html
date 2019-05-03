@@ -1,0 +1,9 @@
+<div class="iframe">
+    <div class="alert alert-info" ng-if="!src">
+        Please insert a source path in the widget configuration
+    </div>
+
+    <div ng-if="src">
+        <iframe class="" width="100%" height="{{data.height}} px" ng-src="{{src}}" frameborder="{{data.frameborder}}" />
+    </div>
+</div>

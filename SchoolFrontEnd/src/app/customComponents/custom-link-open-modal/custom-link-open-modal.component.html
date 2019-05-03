@@ -1,0 +1,6 @@
+<div *ngIf="componentReady" class="label-grouper">
+  <p class="form-control-static">
+      <a [id]="'wct-' + inputParameters.id + '-' + rowIndex" title="" (click)="btClick($event)">{{dataRecs[inputParameters.id]}}</a>
+  </p>
+</div>
+<div class="clear"></div>

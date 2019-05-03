@@ -1,0 +1,105 @@
+{
+    "type": "page",
+    "id": "buyAddonWiz",
+    "header": {
+        "id": "pageHeader",
+        "seo": {
+            "text": "billing___buyAddon"
+        }
+    },
+    "parameters":[
+        {
+            "type":"json",
+            "id": "selectedCustomerId",
+            "value": "{{current-customer-id}}"
+        }
+    ],
+    "wizard": [
+        {
+            "id": "addon-list-step",
+            "components" :[
+                {"include": "billing/addon-list"}
+            ]
+            
+        },
+
+        {
+            "id": "payment-step",
+            "lazyLoading": true,
+            "components" :[
+                {"include": "billing/stripe"}
+            ]
+            
+        }
+    ],
+    "buttons": [
+        {
+            "id": "submitSubscription",
+            "key": "submit",
+            "text": "billing___buy",
+            "class": "btn-primary",
+            "parameters": [
+                {
+                    "key": "requestEndpoint",
+                    "value": "{{BillingService}}/orders"
+                },
+                {
+                    "key": "requestHeaders",
+                    "value": {
+                        "Authorization": "Bearer {{token}}"
+                    }
+                },
+                {
+                    "key": "requestType",
+                    "value": "POST"
+                },
+                {
+                    "key": "requestBody",
+                    "type": "json",
+                    "value": 
+                    {
+                        "currency": "eur",
+                        "customer": "{{selectedCustomerId}}",
+                        "items": [
+                            {
+                                "type": "sku",
+                                "parent": "{{selectedAddonId}}",
+                                "entity": "{{selected-student-main}}"
+                            }
+                        ],
+                        "source": "{{stripe-selected-card}}"
+                   }
+                },
+                {
+                    "key": "errorText",
+                    "value": "ERROR!\n Subscription Error."
+                },
+                {
+                    "key": "onSuccess",
+                    "value": {
+                        "request": [
+                            {
+                                "key": "updatePageParameter",
+                                "value": {
+                                    "studentAccountPage": {
+                                        "lazyLoading": false
+                                    }
+                                }
+                            },
+                            {
+                                "key": "successText",
+                                "value": "Your request was successfully sent.\nThe operation may take a few minutes to process."
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "key": "cancel",
+            "text": "generic___operations___cancel",
+            "class": "btn-force-default btn-default"
+        }
+
+    ]
+}

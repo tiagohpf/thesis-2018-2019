@@ -1,0 +1,83 @@
+<h3 id="docs-modal-confirm">Modal de confirmação</h3>
+<p>Este snippet demonstra como instanciar uma janela modal de confirmação.</p>
+<p>Tipicamente uma modal de confirmação faz uso das class <code>.alert-warning</code> e <code>.fuxicons-warning</code>. No entanto poderão existir cenários em que seja necessário usar outros estilos. Para isso substitua <code>warning</code> por <code>success, info ou error</code>.</p>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#my-confirm-modal">
+            abrir janela de confirmação
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="my-confirm-modal" tabindex="-1" role="dialog" aria-labelledby="my-confirm-modal-label">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="my-confirm-modal-label">
+                           Eliminar
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="fx-confirm-wrapper">
+                            <div class="alert alert-warning">
+                                <div class="fx-alert-icon">
+                                    <i class="fuxicons fuxicons-warning"></i>
+                                </div>
+                                <div class="fx-alert-desc">
+                                    <p>
+                                        Deseja eliminar esta entidade?
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">eliminar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#my-confirm-modal">
+    abrir janela de confirmação
+</button>
+
+            
+<div class="modal fade" id="my-confirm-modal" tabindex="-1" role="dialog" aria-labelledby="my-confirm-modal-label">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="my-confirm-modal-label">
+                    Eliminar
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="fx-confirm-wrapper">
+                    <div class="alert alert-warning">
+                        <div class="fx-alert-icon">
+                            <i class="fuxicons fuxicons-warning"></i>
+                        </div>
+                        <div class="fx-alert-desc">
+                            <p>
+                                Deseja eliminar esta entidade?
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">eliminar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+        </textarea>
+    </form>
+</div>

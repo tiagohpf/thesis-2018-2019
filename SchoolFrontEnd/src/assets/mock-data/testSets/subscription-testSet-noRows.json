@@ -1,0 +1,341 @@
+{
+    "type": "initParameters",
+    "id": "studentTestSetsContainer",
+    "dynamicProps": {
+        "hidden": "{{hasTestSets}}"
+    },
+    "details": [
+        {
+            "type": "label",
+            "id": "descriptionNoTestSet",
+            "class": "col-sm-12",
+            "text": null,
+            "dynamicProps": {
+                "value": "'{{@fv()@i18n('warnings___noRecords')}}'"
+            }
+        },
+        {
+            "type": "initParameters",
+            "id": "programsTestSetCreate",
+            "hidden": true,
+            "details": [
+                {
+                    "type": "textbox",
+                    "id": "testSetName",
+                    "text": "program___name",
+                    "description": "Nº of charaters 0/20",
+                    "_pathToValueList": "_embedded",
+                    "_pathToValue": "name",
+                    "validator": {
+                        "required": [
+                            true,
+                            "warnings___fieldRequired"
+                        ],
+                        "regex": [
+                            "^[a-zA-Z0-9-_]*$",
+                            "Characters allowed: [a-z], [A-Z], [0-9], '-', '_'"
+                        ],
+                        "unique": [
+                            {
+                                "urlResource": [
+                                    {
+                                        "key": "path",
+                                        "value": "{{AppAPIBotConfig}}/testSets"
+                                    },
+                                    {
+                                        "key": "queryString",
+                                        "value": {
+                                            "filter": "{\"name\":{\"$regex\":\"^(?i){{testSetName}}$\"}}"
+                                        }
+                                    },
+                                    {
+                                        "key": "headers",
+                                        "value": {
+                                            "Authorization": "Bearer {{token}}",
+                                            "IXS": "{{IXS_id}}"
+                                        }
+                                    }
+                                ]
+                            },
+                            "Name allready exists!"
+                        ],
+                        "fn": [
+                            [
+                                "validateCharLimit20",
+                                "Nº of characters exceeded"
+                            ]
+                        ]
+                    }
+                },
+                {
+                    "type": "initParameters",
+                    "id": "coursecontainer",
+                    "hidden": true,
+                    "lazyLoading": true,
+                    "details": [
+                        {
+                            "type": "label",
+                            "id": "course",
+                            "text": "applications___course",
+                            "urlResource": [
+                                {
+                                    "key": "path",
+                                    "value": "{{AppAPIBotConfig}}/courses/[[courseId]]?keys={'name':1}"
+                                },
+                                {
+                                    "key": "headers",
+                                    "value": {
+                                        "Authorization": "Bearer {{token}}",
+                                        "IXS": "{{IXS_id}}"
+                                    }
+                                }
+                            ],
+                            "pathToValue": "name"
+                        }
+                    ],
+                    "dynamicProps": {
+                        "lazyLoading": "!'[[courseId]]'",
+                        "hidden": "!'[[courseId]]'"
+                    }
+                },
+                {
+                    "type": "textbox",
+                    "subType": "textarea",
+                    "id": "testsetDescription",
+                    "text": "application___description",
+                    "_pathToValue": "description",
+                    "validator": {
+                        "required": [
+                            true,
+                            "warnings___fieldRequired"
+                        ],
+                        "fn": [
+                            [
+                                "validateCharLimit200",
+                                "Nº of characters exceeded"
+                            ]
+                        ]
+                    }
+                },
+                {
+                    "type": "label",
+                    "id": "courseIdFinal",
+                    "hidden": true,
+                    "dynamicProps": {
+                        "value": "'[[courseId]]'?'[[courseToken]]':'{{courseSelect}}'"
+                    }
+                },
+                {
+                    "type": "input-select",
+                    "hidden": true,
+                    "id": "testseteaiConfiguration",
+                    "text": "program___defaultService",
+                    "placeholder": "select service",
+                    "urlResource": [
+                        {
+                            "key": "path",
+                            "value": "{{AppAPIBotConfig}}/eaiConfiguration"
+                        },
+                        {
+                            "key": "headers",
+                            "value": {
+                                "Authorization": "Bearer {{token}}",
+                                "IXS": "{{IXS_id}}"
+                            }
+                        }
+                    ],
+                    "pathToValueList": "_embedded",
+                    "templateOfValueList": "{\"key\":\"{{name}}\",\"value\":\"{{description}}\"}",
+                    "validator": {
+                        "required": [
+                            true,
+                            "warnings___fieldRequired"
+                        ]
+                    }
+                },
+                {
+                    "type": "textbox",
+                    "id": "testsetGoogleSheetsId",
+                    "text": "program___googleSheetsID",
+                    "_pathToValue": "googleSheetsId",
+                    "validator": {
+                        "required": [
+                            true,
+                            "warnings___fieldRequired"
+                        ]
+                    }
+                },
+                {
+                    "type": "operations",
+                    "class": "col-md-6 testSetOperations",
+                    "operations": {
+                        "size": 5,
+                        "parameters": [
+                            {
+                                "type": "updatePage",
+                                "id": "createTestSetCancel",
+                                "text": "generic___operations___cancel",
+                                "class": "btn-default",
+                                "parameters": [
+                                    {
+                                        "key": "updatePageParameter",
+                                        "value": {
+                                            "programsTestSetCreate": {
+                                                "hidden": true
+                                            },
+                                            "menuOperations": {
+                                                "hidden": false
+                                            },
+                                            "descriptionNoTestSet": {
+                                                "hidden": false
+                                            },
+                                            "create": {
+                                                "hidden": false
+                                            }
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "submit",
+                                "id": "testSetImportSave",
+                                "class": "btn-primary",
+                                "_role": "Execute",
+                                "text": "generic___operations___save",
+                                "parameters": [
+                                    {
+                                        "key": "requestId",
+                                        "value": "testSetsAPI"
+                                    },
+                                    {
+                                        "key": "errorText",
+                                        "value": "Error saving the test set."
+                                    },
+                                    {
+                                        "key": "requestEndpoint",
+                                        "value": "{{SchoolBOT}}/testSets"
+                                    },
+                                    {
+                                        "key": "requestHeaders",
+                                        "value": {
+                                            "Authorization": "Bearer {{token}}",
+                                            "IXS": "{{IXS_id}}"
+                                        }
+                                    },
+                                    {
+                                        "key": "requestType",
+                                        "value": "POST"
+                                    },
+                                    {
+                                        "key": "requestBody",
+                                        "type": "json",
+                                        "value": {
+                                            "name": "{{testSetName}}",
+                                            "description": "{{testsetDescription}}",
+                                            "createdBy": "{{logged-user}}",
+                                            "lastUpdate": "{{timestampWithTZ}}",
+                                            "IXS": "{{IXS_id}}",
+                                            "status": "1",
+                                            "creationDate": "{{timestampWithTZ}}",
+                                            "googleSheetsId": "{{testsetGoogleSheetsId}}",
+                                            "programId": "[[programID]]"
+                                        }
+                                    },
+                                    {
+                                        "key": "onSuccess",
+                                        "value": {
+                                            "request": [
+                                                {
+                                                    "key": "requestEndpoint",
+                                                    "value": "{{SchoolBE}}/testset/{{@fv()@replaceTagVars('headers::testSetsAPI___location').split('testSets').pop().substring(1)}}/importfromgooglesheets"
+                                                },
+                                                {
+                                                    "key": "requestHeaders",
+                                                    "value": {
+                                                        "Authorization": "Bearer {{token}}",
+                                                        "IXS": "{{IXS_id}}"
+                                                    }
+                                                },
+                                                {
+                                                    "key": "requestType",
+                                                    "value": "POST"
+                                                },
+                                                {
+                                                    "key": "requestBody",
+                                                    "type": "json",
+                                                    "value": {
+                                                        "requestedBy": "{{logged-user}}"
+                                                    }
+                                                },
+                                                {
+                                                    "key": "onSuccess",
+                                                    "value": {
+                                                        "request": [
+                                                            {
+                                                                "key": "updatePageParameter",
+                                                                "value": {
+                                                                    "studentTestSetsPage": {
+                                                                        "lazyLoading": false
+                                                                    },
+                                                                    "studentTestSetsOperations": {
+                                                                        "lazyLoading": false
+                                                                    }
+                                                                }
+                                                            },
+                                                            {
+                                                                "key": "successText",
+                                                                "value": "Import success."
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "key": "onError",
+                                                    "value": {
+                                                        "request": [
+                                                            {
+                                                                "key": "requestEndpoint",
+                                                                "value": "{{SchoolBOT}}/testSets/*?filter={\"programId\": \"[[programID]]\"}"
+                                                            },
+                                                            {
+                                                                "key": "requestHeaders",
+                                                                "value": {
+                                                                    "Authorization": "Bearer {{token}}",
+                                                                    "IXS": "{{IXS_id}}"
+                                                                }
+                                                            },
+                                                            {
+                                                                "key": "requestType",
+                                                                "value": "DELETE"
+                                                            },
+                                                            {
+                                                                "key": "errorText",
+                                                                "value": "errors___invalidTestSetName"
+                                                            },
+                                                            {
+                                                                "key": "onSuccess",
+                                                                "value": {
+                                                                    "notification": {
+                                                                        "type": "error",
+                                                                        "text": "errors___sheetInvalidTestSetName",
+                                                                        "limit": 1,
+                                                                        "timeout": 3000,
+                                                                        "position": "top-right"
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}

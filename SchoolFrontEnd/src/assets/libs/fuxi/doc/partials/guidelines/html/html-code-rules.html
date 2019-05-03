@@ -1,0 +1,363 @@
+<h3 id="docs-html-code-rules">Regras de codificação</h3>
+<p>Esta secção apresenta as regras de codificação que a equipa segue para a declaração de markup e estilos.</p>
+
+
+<!-- Inline styles -->
+<div>
+    <h4>Nunca usamos estilos inline</h4>
+    <p>Toda a estilização é feita através de classes CSS. Não misturamos o markup com o estilo.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+#some-element > p {
+    color: red;
+}
+
+<div class="some-element">
+    <p>texto a vermelho</p>
+</div>
+                    </textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-danger">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+<p style="color: red;">texto a vermelho</p>                      
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Document Structure -->
+<div>
+    <h4>Definimos corretamente a estrutura do documento</h4>
+    <p>Para manter o código HTML semanticamente correto e de acordo com os standards definidos respeitamos a estrutura do documento.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Hello World</title>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <p>This is a web page.</p>
+</body>
+</html>
+                    </textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-danger">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+<html>
+    <h1>Hello World</h1>
+    <p>This is a web page.</p>
+</html>
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Alternative Text Attribute on Images -->
+<div>
+    <h4>Usamos <code>alt</code> nas imagens</h4>
+    <p>Em todas as imagens colocamos o atributo <code>alt</code>, ainda que a vazio, de forma a que os <i>screen readers</i> consigam providenciar contexto a imagens.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+<img src="puppy.jpg" alt="A beautiful, two-year-old hound mix puppy">
+                </textarea>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="fx-docs-snippet-code alert alert-danger">
+            <h5 class="fx-danger-txt">
+                <i class="fa fa-times-circle"></i>
+                Não recomendado
+            </h5>
+            <form class="fx-codemirror">
+                <textarea class="fx-codemirror-textarea">
+<img src="imagem.jpg">
+            </textarea>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<!-- External CSS Files -->
+<div>
+    <h4>Referências para ficheiros css externos no head da página</h4>
+    <p>Colocamos todos os ficheiros externos de CSS dentro do elemento <code>head</code> do documento.</p>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+<head>
+    <title>Nome da página</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="path/to/file.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="path/to/anotherFile.css" />
+</head>
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Inline Javascript  -->
+<div>
+    <h4>Não usamos código JavaScript inline</h4>
+    <p>Não colocamos código JavaScript diretamente nos elementos HTML. </p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+<button id="element"></button>
+
+$('#element').on('click', function() {
+    alert('about the element');
+});
+                    </textarea>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-error">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+<button id="element" onclick="alert('about the element')"></button>
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--  Tags Name lowercase -->
+<div>
+    <h4>Tags em lowercase</h4>
+    <p>Escrevemos sempre as nossas tags em lowercase. </p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+<div>
+    <p>Texto parágrafo</p>
+</div>
+                    </textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-danger">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+<DIV>
+    <P>Texto parágrafo </P>
+</DIV>
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--   H1 - H6 Tags -->
+<div>
+    <h4>Usamos as tags <code>h1</code> a <code>h6</code> para definição dos títulos</h4>
+    <p>Por questões de SEO e de semântica, sempre que aplicável, usamos as tags de heading para os títulos.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+<h1>Titulo 1 </h1>
+<h6>Titulo 6 </h6>
+                    </textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-danger">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+<p class="main-title">Titulo 1 </p>
+                    </textarea>
+                </form>
+            </div>
+        </div>
+       
+    </div>
+</div>
+
+
+<!--  Navigation -->
+<div>
+    <h4>Navegação dentro da estrutura de lista</h4>
+    <p>Por razões semânticas, a navegação deve ser feita com recurso a lista não ordenada <code>ul</code>.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+<nav>
+    <ul id="nav">
+        <li><a href="#">Início</a></li>
+        <li><a href="#">Acerca</a></li>
+        <li><a href="#">Contacto</a></li>
+    </ul>
+</nav>
+                    </textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-danger">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+<div id="nav">
+    <a href="#">Início </a>
+    <a href="#">Acerca </a>
+    <a href="#">Contacto </a>
+</div>
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--  Divitis -->
+<div>
+    <h4>Uso desnecessário de divs para construção da estrutura</h4>
+    <p>De maneira a manter o markup limpo e reduzir o número de linhas de código, evitamos o uso de elementos supérfluos.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+<h1>Este é o título principal</h1>
+<p>Parágrafo com breve descrição</p>
+                    </textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-danger">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+<div class="main-title">
+    <h1>Este é o título principal</h1>
+</div>
+<p>Parágrafo com breve descrição</p>
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+
+

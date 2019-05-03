@@ -1,0 +1,14 @@
+<form #checkout="ngForm" (ngSubmit)="onSubmit(checkout)" class="checkout">
+  <div class="strip-card-form">
+    <div>   
+        <div>
+          <div id="card-info" #cardInfo></div>
+        </div>
+  
+      <div id="card-errors" role="alert" *ngIf="error">{{ error }}</div>
+    </div>
+  
+    <button type="cancel" (click)="onNewCardCancelCkicked()">Cancel</button>
+    <button type="submit">Add Card</button>
+  </div>
+</form>

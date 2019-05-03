@@ -1,0 +1,18 @@
+﻿[
+    { "id": "demo_root_1", "text": "Most used", "li_attr": { "data-showinfo": "false"}, "children": true, "icon": "fa fa-file" },
+    { "id": "demo_root_2", "text": "Customer account", "li_attr": {"data-showinfo": "false"}, "icon": "fa fa-file" },
+    { "id": "demo_root_3", "text": "QRE functions", "li_attr": {"data-showinfo": "false"}, "icon": "fa fa-file" },
+    { "id": "demo_root_4", "text": "QRE operators", "li_attr": {"data-showinfo": "false"}, "icon": "fa fa-file" },
+	{ "id": "demo_root_5", "text": "QRE operators", "li_attr": {"data-showinfo": "false"}, "icon": "fa fa-file" },
+	{ "id": "demo_root_6", "text": "QRE operators", "li_attr": {"data-showinfo": "false"}, "icon": "fa fa-file" },
+	{ "id": "demo_root_7", "text": "QRE operators", "li_attr": {"data-showinfo": "false"}, "icon": "fa fa-file" },
+	{ "id": "demo_root_8", "text": "QRE operators", "li_attr": {"data-showinfo": "false"}, "icon": "fa fa-file" },
+	{ "id": "demo_root_9", "text": "QRE operators", "li_attr": {"data-showinfo": "false"}, "icon": "fa fa-file" },
+	{ "id": "demo_root_10", "text": "QRE operators", "li_attr": {"data-showinfo": "false"}, "icon": "fa fa-file" },
+	{ "id": "demo_root_11", "text": "QRE operators", "li_attr": {"data-showinfo": "false"}, "icon": "fa fa-file" },
+	{ "id": "demo_root_12", "text": "QRE operators", "li_attr": {"data-showinfo": "false"}, "icon": "fa fa-file" },
+	{ "id": "demo_root_13", "text": "QRE operators", "li_attr": {"data-showinfo": "false"}, "icon": "fa fa-file" },
+	{ "id": "demo_root_14", "text": "QRE operators", "li_attr": {"data-showinfo": "false"}, "icon": "fa fa-file" },
+	{ "id": "demo_root_15", "text": "QRE operators", "li_attr": {"data-showinfo": "false"}, "icon": "fa fa-file" },
+	{ "id": "demo_root_16", "text": "QRE operators", "li_attr": {"data-showinfo": "false"}, "icon": "fa fa-file" }
+]

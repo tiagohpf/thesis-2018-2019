@@ -1,0 +1,258 @@
+{
+    "type": "initParameters",
+    "id": "createVariablePage",
+    "header": {
+        "id": "createVariablePageHeader",
+        "seo": {
+            "text": "program___variable___createNewVariable",
+            "icon": "fa fa-reply"
+        },
+        "details": [
+            {
+                "type": "context",
+                "text": "programCode",
+                "id": "programCode",
+                "pathToValue": [
+                    "programAPIResponse",
+                    "code"
+                ]
+            }
+        ]
+    },
+    "details": [
+        {
+            "type": "textbox",
+            "id": "displayName",
+            "text": "program___variable___variableName",
+            "class": "col-sm-6",
+            "pathToValueList": "_embedded",
+            "pathToValue": "name",
+            "validator": {
+                "required": [
+                    true,
+                    "warnings___fieldRequired"
+                ],
+                "unique": [
+                    {
+                        "urlResource": [
+                            {
+                                "key": "path",
+                                "value": "{{AppAPIBotConfig}}/programs"
+                            },
+                            {
+                                "key": "queryString",
+                                "value": {
+                                    "filter": "{\"_id\": { \"$oid\":\"[[programID]]\"},\"variables\":{\"$elemMatch\":{\"displayName\":\"{{displayName}}\"}}}",
+                                    "keys": "{\"_id\":1,\"name\":1,\"variables\":1}"
+                                }
+                            },
+                            {
+                                "key": "headers",
+                                "value": {
+                                    "Authorization": "Bearer {{token}}",
+                                    "IXS": "{{IXS_id}}"
+                                }
+                            }
+                        ]
+                    },
+                    "warnings___nameExists"
+                ]
+            }
+        },
+        {
+            "type": "textbox",
+            "id": "defaultValue",
+            "text": "program___variable___defaultValue",
+            "class": "col-sm-6"
+        },
+        {
+            "type": "textbox",
+            "id": "description",
+            "text": "program___variable___description"
+        },
+        {
+            "type": "boolean",
+            "id": "intentFulfilled",
+            "text": "program___variable___intentFulfilled",
+            "class": "col-sm-6"
+        },
+        {
+            "type": "input-radio",
+            "id": "nature",
+            "class": "col-sm-6",
+            "text": "program___variable___nature___name",
+            "valueList": [
+                {
+                    "key": "system",
+                    "value": "program___variable___nature___system"
+                },
+                {
+                    "key": "custom",
+                    "value": "program___variable___nature___custom"
+                }
+            ],
+            "validator": {
+                "required": [
+                    true,
+                    "warnings___fieldRequired"
+                ]
+            },
+            "value": "system",
+            "dynamicProps": {
+                "hidden": "'{{intentFulfilled}}' == 'false'"
+            }
+        },
+        {
+            "type": "input-select",
+            "id": "customEntity",
+            "text": "program___variable___entity",
+            "placeholder": null,
+            "validator": {
+                "required": [
+                    true,
+                    "warnings___fieldRequired"
+                ]
+            },
+            "urlResource": [
+                {
+                    "key": "path",
+                    "value": "{{SchoolBE}}/programs/[[programID]]"
+                },
+                {
+                    "key": "queryString",
+                    "value": {
+                        "keys": "{\"_id\":1,\"name\":1,\"code\":1,\"chapters\":1}"
+                    }
+                },
+                {
+                    "key": "headers",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                }
+            ],
+            "pathToValueList": [
+                "chapters"
+            ],
+            "templateOfValueList": "{\"key\":\"{{displayName}}\",\"value\":\"{{@fv()@getDisplayNameFormated($this['displayName'],@replaceTagVars('programCode')+'_')}}\"}",
+            "dynamicProps": {
+                "hidden": "'{{intentFulfilled}}' == 'false' || '{{nature}}' != 'custom'",
+                "required": "'{{intentFulfilled}}' != 'false' && '{{nature}}' == 'custom'"
+            }
+        },
+        {
+            "type": "input-select",
+            "id": "systemEntity",
+            "text": "program___variable___entity",
+            "placeholder": null,
+            "validator": {
+                "required": [
+                    true,
+                    "warnings___fieldRequired"
+                ]
+            },
+            "urlResource": [
+                {
+                    "key": "path",
+                    "value": "{{AppAPIBotConfig}}/RasaSystemEntities/RasaSystemEntities"
+                },
+                {
+                    "key": "headers",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                }
+            ],
+            "pathToValueList": [
+                "@valueEntriesFormat($this)",
+                "$this.filter(el=>el['key']!='_id')",
+                "$this.map(el=>{el['value']=el['key']; return el})"
+            ],
+            "dynamicProps": {
+                "hidden": "'{{intentFulfilled}}' == 'false' || '{{nature}}' != 'system'",
+                "required": "'{{intentFulfilled}}' != 'false' && '{{nature}}' == 'system'"
+            }
+        }
+    ],
+    "operations": {
+        "parameters": [
+            {
+                "id": "variableCreateCancelBtn",
+                "type": "updatePage",
+                "text": "generic___operations___cancel",
+                "class": "btn-force-default btn-default"
+            },
+            {
+                "type": "execute",
+                "id": "variableCreateSubmitBtn",
+                "text": "generic___operations___save",
+                "class": "btn-primary",
+                "mappingId": [
+                    "displayName",
+                    "customEntity",
+                    "systemEntity"
+                ],
+                "parameters": [
+                    {
+                        "key": "requestEndpoint",
+                        "value": "{{SchoolBE}}/programs/[[programID]]"
+                    },
+                    {
+                        "key": "requestHeaders",
+                        "value": {
+                            "Authorization": "Bearer {{token}}",
+                            "IXS": "{{IXS_id}}"
+                        }
+                    },
+                    {
+                        "key": "requestType",
+                        "value": "PATCH"
+                    },
+                    {
+                        "key": "requestBody",
+                        "type": "json",
+                        "value": {
+                            "$push": {
+                                "variables": {
+                                    "displayName": "{{displayName}}",
+                                    "description": "{{description}}",
+                                    "initialValue": "{{defaultValue}}",
+                                    "nature": "{{@fv()(@replaceTagVars('intentFulfilled')+''=='true')?@replaceTagVars('nature'):null}}",
+                                    "entity": "{{@fv()(@replaceTagVars('intentFulfilled')+''=='true')?(@replaceTagVars('nature')=='custom'?@replaceTagVars('customEntity'):'@sys.'+@replaceTagVars('systemEntity')):null}}"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "key": "errorText",
+                        "value": "ERROR!\n Could not create variable."
+                    },
+                    {
+                        "key": "onSuccess",
+                        "value": {
+                            "request": [
+                                {
+                                    "key": "updatePageParameter",
+                                    "value": {
+                                        "programVariablesTable": {
+                                            "lazyLoading": false
+                                        },
+                                        "designerFlowComponent": {
+                                            "sendEvent": "loadVariables"
+                                        }
+                                    }
+                                },
+                                {
+                                    "key": "successText",
+                                    "value": "Variable created successfully."
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

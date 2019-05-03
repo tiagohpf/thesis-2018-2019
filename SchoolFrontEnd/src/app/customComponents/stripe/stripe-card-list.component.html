@@ -1,0 +1,46 @@
+<ng-template [ngIf]="!cardsList || cardsList?.length == 0">
+    <p class="form-control-static"><i class="fx-text-disabled">{{'warnings___noRecords' | myI18n}}</i></p>
+</ng-template>
+
+
+  <div class="cards-container">
+    <div class="card-item"
+      *ngFor="let card of cardsList;let i=index;"
+      [hidden]="card.hidden" [ngClass]="{_hideCard: addCard}">
+      <input
+          type="radio"
+          [id]="elementId + '-' + card.id"
+          [name]="elementId + (inputParameters?.id || inputParameters?.text)"
+          [value]="card.id"
+          [(ngModel)]="inputParameters.value"
+          [disabled]="inputParameters.disabled || inputParameters.readonly || card.disabled"
+          (click)="updateParameters(card)" />
+      <label class="card-details" style="font-weight:normal" [attr.for]="elementId + '-' + card.id">
+          <span class="card-brand">{{card.brand}}</span>
+          <!-- <span class="card-founding">&nbsp;({{card.funding}})</span> -->
+          <span class="card-number">•••• •••• •••• {{card.last4}}</span>
+          <span class="card-validity">{{card.exp_month}}/{{card.exp_year}}</span>
+      </label>
+    </div>
+    <!-- add new card -->
+    <div class="new-card card-item">
+      <input
+          type="button"
+          [id]="elementId + '-newCard'"
+          [value]=""
+          (click)="addNewCard()" />
+      <label class="card-details" style="font-weight:normal" [attr.for]="elementId + '-newCard'" *ngIf="!addCard">
+        Add new card
+      </label>
+
+      <stripe-card *ngIf="addCard" (cancelCardCreation)="cancelCardCreation()" (cardCreated)="cardCreated($event)"></stripe-card>
+
+
+    </div>
+  </div>
+
+  <input type="hidden" [name]="inputParameters.id" [formControl]="control" [(ngModel)]="valueControl" />
+
+
+    
+

@@ -1,0 +1,631 @@
+{
+    "type": "page",
+    "id": "createStudent",
+    "header": {
+        "id": "pageHeader",
+        "_seo": {
+            "text": "Create Student",
+            "icon": "fa fa-graduation-cap"
+        }
+    },
+    "wizard": [
+        {
+            "id": "createProgramDetails",
+            "text": "Step 1",
+            "components": [
+                {
+                    "type": "initParameters",
+                    "class": "col-sm-12 ",
+                    "id": "createStudentDetails",
+                    "text": "student___studentDetails",
+                    "details": [
+                        {
+                            "type": "label",
+                            "class": "entityTitleCreate",
+                            "value": "Add Bot Student"
+                        },
+                        {
+                            "type": "label",
+                            "class": "entitySubtitleCreate",
+                            "value": "Define your Bot Student Settings"
+                        },
+                        {
+                            "type": "image",
+                            "id": "degreeStudentsImage",
+                            "class": "col-md-12",
+                            "text": null,
+                            "_navigateTo": "students/{{degreeStudentId}}",
+                            "pathToValue": [
+                                "'{{ImageService}}/students/123'"
+                            ]
+                        },
+                        {
+                            "type": "label",
+                            "class": "entityInfoMessage",
+                            "value": "You can change the Student Image of Bot Student later on the details page"
+                        },
+                        {
+                            "type": "label",
+                            "hidden": true,
+                            "id": "userName",
+                            "value": "{{logged-user}}"
+                        },
+                        {
+                            "type": "textbox",
+                            "id": "studentNameInput",
+                            "text": "student___name",
+                            "description": "Nº max of charaters 32",
+                            "pathToValueList": "_embedded",
+                            "pathToValue": "name",
+                            "class": "col-md-12",
+                            "validator": {
+                                "required": [
+                                    true,
+                                    "warnings___fieldRequired"
+                                ],
+                                "regex": [
+                                    "^[a-zA-Z0-9çÇ_-]*$",
+                                    "Characters allowed: [a-z], [A-Z], [0-9], '-', '_' , 'ç-Ç'"
+                                ],
+                                "maxlength": [
+                                    32,
+                                    "warnings___maxTextLength32"
+                                ],
+                                "unique": [
+                                    {
+                                        "urlResource": [
+                                            {
+                                                "key": "path",
+                                                "value": "{{SchoolBOT}}/students"
+                                            },
+                                            {
+                                                "key": "queryString",
+                                                "value": {
+                                                    "filter": "{\"IXS\":\"{{IXS_id}}\",\"name\":{\"$regex\":\"^(?i){{studentNameInput}}$\"}}"
+                                                }
+                                            },
+                                            {
+                                                "key": "headers",
+                                                "value": {
+                                                    "Authorization": "Bearer {{token}}",
+                                                    "IXS": "{{IXS_id}}"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "Name allready exists!"
+                                ],
+                                "fn": [
+                                    [
+                                        "validateCharLimit32",
+                                        "Nº of characters exceeded"
+                                    ]
+                                ]
+                            },
+                            "parameters": [
+                                {
+                                    "key": "inlineHelp",
+                                    "value": {
+                                        "text": "help___student___create___name"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "input-select",
+                            "id": "studentPersonality",
+                            "placeholder": "Select a Personality",
+                            "text": "application___personality",
+                            "class": "col-md-12 mb-3",
+                            "value": "0",
+                            "valueList": [
+                                {
+                                    "key": "0",
+                                    "value": "student___personality___custom"
+                                },
+                                {
+                                    "key": "10",
+                                    "value": "student___personality___jovem"
+                                },
+                                {
+                                    "key": "20",
+                                    "value": "student___personality___formal"
+                                }
+                            ],
+                            "parameters": [
+                                {
+                                    "key": "inlineHelp",
+                                    "value": {
+                                        "text": "help___student___create___personality"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "input-select",
+                            "id": "studentLanguage",
+                            "placeholder": "Select a language",
+                            "text": "application___language",
+                            "class": "col-md-12",
+                            "value": "en",
+                            "valueList": [
+                                {
+                                    "key": "pt",
+                                    "value": "generic___language___pt"
+                                },
+                                {
+                                    "key": "br",
+                                    "value": "generic___language___br"
+                                },
+                                {
+                                    "key": "en",
+                                    "value": "generic___language___en"
+                                },
+                                {
+                                    "key": "es",
+                                    "value": "generic___language___es"
+                                },
+                                {
+                                    "key": "fr",
+                                    "value": "generic___language___fr"
+                                },
+                                {
+                                    "key": "de",
+                                    "value": "generic___language___de"
+                                }
+                            ],
+                            "parameters": [
+                                {
+                                    "key": "updatePageParameter",
+                                    "value": {
+                                        "studentmdainCardCreate": {
+                                            "lazyLoading": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "key": "inlineHelp",
+                                    "value": {
+                                        "text": "help___student___create___language"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "label",
+                            "hidden": true,
+                            "id": "generatedCourseId",
+                            "value": "CRS-((randomId))",
+                            "_dynamicProps": {
+                                "value": "CRS-'((randomId))'"
+                            }
+                        },
+                        {
+                            "type": "label",
+                            "id": "studentGender",
+                            "class": "col-sm-6",
+                            "text": "student___gender",
+                            "value": "male"
+                        },
+                        {
+                            "type": "operations",
+                            "id": "genderButtonsWrapper",
+                            "class": "col-sm-6",
+                            "operations": {
+                                "size": 3,
+                                "parameters": [
+                                    {
+                                        "type": "updatePage",
+                                        "id": "maleButton",
+                                        "text": null,
+                                        "icon": "fa fa-male",
+                                        "dynamicProps": {
+                                            "class": "'{{studentGender}}' == 'male' ? 'btn-default buttonMale': 'notSelected btn-default buttonMale'"
+                                        },
+                                        "class": "btn-default buttonMale",
+                                        "parameters": [
+                                            {
+                                                "key": "updatePageParameter",
+                                                "value": {
+                                                    "studentGender": {
+                                                        "value": "male"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "key": "keepModal",
+                                                "value": true
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "updatePage",
+                                        "id": "femaleButton",
+                                        "text": null,
+                                        "icon": "fa fa-female",
+                                        "dynamicProps": {
+                                            "class": "'{{studentGender}}' == 'female' ? 'btn-default buttonFemale': 'notSelected btn-default buttonFemale'"
+                                        },
+                                        "class": "btn-default buttonFemale",
+                                        "parameters": [
+                                            {
+                                                "key": "updatePageParameter",
+                                                "value": {
+                                                    "studentGender": {
+                                                        "value": "female"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "key": "keepModal",
+                                                "value": true
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "json",
+                            "id": "planFree",
+                            "hidden": true,
+                            "pathToValue": [
+                                "_id"
+                            ],
+                            "urlResource": [
+                                {
+                                    "key": "path",
+                                    "value": "{{SchoolBOT}}/plans"
+                                },
+                                {
+                                    "key": "queryString",
+                                    "value": {
+                                        "count": null,
+                                        "filter": "{\"level\": \"0\"}",
+                                        "np": null,
+                                        "rep": "pj"
+                                    }
+                                },
+                                {
+                                    "key": "headers",
+                                    "value": {
+                                        "Authorization": "Bearer {{token}}",
+                                        "IXS": "{{IXS_id}}"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "createProgramDetails2",
+            "text": "Step 2",
+            "lazyLoading": true,
+            "components": [
+                {
+                    "type": "initParameters",
+                    "class": "col-sm-12 cardInfo_Wrapper",
+                    "details": [
+                        {
+                            "type": "label",
+                            "class": "entityTitleCreate",
+                            "value": "assign program"
+                        },
+                        {
+                            "type": "label",
+                            "class": "entitySubtitleCreate",
+                            "value": "choose the programs you want to add to your bot degree"
+                        },
+                        {
+                            "type": "wrapper",
+                            "class": "col-sm-6 offset-6 filterWrapper",
+                            "details": [
+                                {
+                                    "type": "textbox",
+                                    "id": "programFind",
+                                    "text": "",
+                                    "placeholder": "generic___operations___searchByName",
+                                    "class": "col-sm-11 find"
+                                },
+                                {
+                                    "type": "operations",
+                                    "class": "col-sm-1 findButtonOperations",
+                                    "operations": {
+                                        "_id": "menuOperationsFind",
+                                        "icon": "glyphicon glyphicon-cog",
+                                        "size": 3,
+                                        "parameters": [
+                                            {
+                                                "id": "findButtonProgram",
+                                                "type": "updatePage",
+                                                "class": "findButton",
+                                                "text": null,
+                                                "icon": "icomoon icon-go",
+                                                "parameters": [
+                                                    {
+                                                        "key": "updatePageParameter",
+                                                        "value": {
+                                                            "studentmdainCardCreate": {
+                                                                "lazyLoading": false
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "key": "keepModal",
+                                                        "value": true
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "initCards",
+                            "subType": "card-container-checkBox",
+                            "_lazyLoading": true,
+                            "id": "studentmdainCardCreate",
+                            "icon": "fa fa-th-large",
+                            "class": "col-md-12",
+                            "urlResource": [
+                                {
+                                    "key": "requestId",
+                                    "value": "programsListCreate"
+                                },
+                                {
+                                    "key": "path",
+                                    "value": "{{SchoolBOT}}/programs"
+                                },
+                                {
+                                    "key": "queryString",
+                                    "value": {
+                                        "page": "((page))",
+                                        "pagesize": "((pagesize))",
+                                        "count": null,
+                                        "filter": "{\"$and\":[{\"language\":\"{{studentLanguage}}\",\"lastPublishedVersion\":{\"$ne\":null},\"$or\":[{\"IXS\":\"{{IXS_id}}\"},{\"public\":true}]},{\"name\":{ \"$regex\": \"{{programFind}}\"}}]}",
+                                        "keys": "{\"_id\":1,\"name\":1,\"language\":1,\"status\":1}"
+                                    }
+                                },
+                                {
+                                    "key": "headers",
+                                    "value": {
+                                        "Authorization": "Bearer {{token}}",
+                                        "IXS": "{{IXS_id}}"
+                                    }
+                                },
+                                {
+                                    "key": "reload",
+                                    "value": false
+                                },
+                                {
+                                    "key": "apiRecycle",
+                                    "value": false
+                                }
+                            ],
+                            "pathToValueList": "_embedded",
+                            "_parameters": [
+                                {
+                                    "key": "tableActions",
+                                    "value": {
+                                        "tableManager": false,
+                                        "export": false,
+                                        "search": false,
+                                        "paging": false
+                                    }
+                                },
+                                {
+                                    "key": "identifier",
+                                    "id": "name"
+                                }
+                            ],
+                            "pathToValue": [
+                                "_embedded",
+                                "$this.find(obj => obj.welcomeProgram == true && obj.language == '{{studentLanguage}}')"
+                            ],
+                            "details": [
+                                {
+                                    "type": "label",
+                                    "id": "programStatus_aux",
+                                    "pathToValue": "status",
+                                    "hidden": true
+                                },
+                                {
+                                    "type": "label",
+                                    "id": "programStatus",
+                                    "text": null,
+                                    "dynamicProps": {
+                                        "class": "'col-md-12 programStatus status_{{programStatus_aux}}'"
+                                    },
+                                    "pathToValue": "status",
+                                    "html": {
+                                        "1": "<img alt='' title='' src='assets/images/platform/new2.svg'>&nbsp;<span class='statusText'>{{@fv()@i18n('program___status_types___new')}}</span>",
+                                        "3": "<img alt='' title='' src='assets/images/platform/published.svg'>&nbsp;<span class='statusText'>{{@fv()@i18n('program___status_types___published')}}</span>",
+                                        "4": "<img alt='' title='' src='assets/images/platform/edit.svg'>&nbsp;<span class='statusText'>{{@fv()@i18n('program___status_types___editing')}}</span>"
+                                    }
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "programID",
+                                    "pathToValue": [
+                                        "_id",
+                                        "$oid"
+                                    ]
+                                },
+                                {
+                                    "type": "image",
+                                    "id": "ctxtImageUri",
+                                    "class": "programImage studentCreate",
+                                    "pathToValue": [
+                                        "_id",
+                                        "'{{ImageService}}/programs/'+$this['$oid']"
+                                    ],
+                                    "_value": "/assets/images/franck-v-740555-unsplash.jpg"
+                                },
+                                {
+                                    "type": "wrapper",
+                                    "class": "col-sm-12 cardInfo_Wrapper",
+                                    "details": [
+                                        {
+                                            "TODO": "Validar se esta a instanciar o ID ao navegar para o detalhe",
+                                            "type": "label",
+                                            "id": "name",
+                                            "class": "col-lg-10 col-md-10 col-sm-10 programName_escola",
+                                            "text": null,
+                                            "pathToValue": [
+                                                "name"
+                                            ],
+                                            "_navigateTo": "programs/{{programID}}",
+                                            "_mockToLoad": "programs/program-details-preview"
+                                        },
+                                        {
+                                            "type": "label",
+                                            "id": "language",
+                                            "pathToValue": "language",
+                                            "class": "col-lg-2 col-md-2 col-sm-2 p-0",
+                                            "html": {
+                                                "es": "<img src=\"{{ImageService}}/languages/Spanish.png\" alt=\"Spain\" class=\"replaced-svg\">",
+                                                "en": "<img src=\"{{ImageService}}/languages/English.png\" alt=\"English\" class=\"replaced-svg\">",
+                                                "pt": "<img src=\"{{ImageService}}/languages/Portuguese.png\" alt=\"Portuguese\" class=\"replaced-svg\">",
+                                                "fr": "<img src=\"{{ImageService}}/languages/French.png\" alt=\"French\" class=\"replaced-svg\">"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "createProgramDetails3",
+            "text": "Step 3",
+            "components": [
+                {
+                    "type": "initParameters",
+                    "class": "col-sm-12",
+                    "details": [
+                        {
+                            "type": "label",
+                            "class": "entityTitleCreate",
+                            "value": "name your degree"
+                        },
+                        {
+                            "type": "label",
+                            "class": "entitySubtitleCreate",
+                            "value": "give a name to your bot degree that matches your selected programs"
+                        },
+                        {
+                            "type": "image",
+                            "id": "degreeStudentsImage",
+                            "class": "col-md-12",
+                            "value": "/assets/images/degree/default.png"
+                        },
+                        {
+                            "type": "label",
+                            "class": "entityInfoMessage",
+                            "value": "You can change the Degree Image later on the details page"
+                        },
+                        {
+                            "type": "textbox",
+                            "id": "studentCourseName",
+                            "text": "application___course",
+                            "class": "col-md-12",
+                            "dynamicProps": {
+                                "value": "'{{studentNameInput}}'"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "buttons": [
+        {
+            "key": "cancel",
+            "id": "createStudentCancel",
+            "text": "generic___operations___cancel",
+            "class": "btn-default",
+            "navigateTo": "students"
+        },
+        {
+            "key": "submit",
+            "id": "buttonSave",
+            "text": "generic___operations___save",
+            "class": "btn-primary",
+            "parameters": [
+                {
+                    "key": "requestId",
+                    "value": "studentAPI"
+                },
+                {
+                    "key": "requestEndpoint",
+                    "value": "{{SchoolBE}}/students"
+                },
+                {
+                    "key": "requestHeaders",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                },
+                {
+                    "key": "requestType",
+                    "value": "POST"
+                },
+                {
+                    "key": "requestBody",
+                    "type": "json",
+                    "value": {
+                        "courses": [
+                            {
+                                "name": "{{studentCourseName}}",
+                                "IXS": "{{IXS_id}}",
+                                "language": "{{studentLanguage}}",
+                                "programs": "{{@fv()@getIdsFromObjList(@replaceTagVars('studentmdainCardCreate'))}}",
+                                "creationDate": "{{timestampWithTZ}}",
+                                "lastUpdate": "{{timestampWithTZ}}",
+                                "description": "",
+                                "createdBy": "{{logged-user}}"
+                            }
+                        ],
+                        "name": "{{studentNameInput}}",
+                        "IXS": "{{IXS_id}}",
+                        "language": "{{studentLanguage}}",
+                        "gender": "{{studentGender}}",
+                        "fallbacks": {
+                            "maxConsecutiveFallbacks": "{{@fv()@getEntityProp(@replaceTagVars('enviroment::config'),'student','maxConsecutiveFallbacks')}}",
+                            "accuracyLevel": "{{@fv()@getEntityProp(@replaceTagVars('enviroment::config'),'student','accuracyLevel')}}",
+                            "forwardToHuman": false,
+                            "answers": [
+                                "{{@fv()@getEntityProp(@replaceTagVars('enviroment::config'),'student','defaultAnswers')[@replaceTagVars('studentLanguage')]}}"
+                            ]
+                        },
+                        "plan": "{{planFree}}",
+                        "createdBy": "{{logged-user}}",
+                        "creationDate": "{{timestampWithTZ}}",
+                        "goLiveBy": "{{logged-user}}",
+                        "goLiveDate": "{{timestampWithTZ}}",
+                        "lastUpdate": "{{timestampWithTZ}}",
+                        "blockedDate": "",
+                        "botAccessToken": "null",
+                        "programs": "{{@fv()@generateArrayStudentProgramsStructure(@replaceTagVars('studentmdainCardCreate'),@replaceTagVars('timestampWithTZ'),@replaceTagVars('userName'))}}",
+                        "NLU": "{{@fv()@replaceTagVars('enviroment::config___default___NLU')||'RASA'}}",
+                        "personality": "{{@fv()@replaceTagVars('studentPersonality')}}"
+                    }
+                },
+                {
+                    "key": "successText",
+                    "value": "success___studentCreateSuccess"
+                },
+                {
+                    "key": "errorText",
+                    "value": "errors___requestError"
+                }
+            ]
+        }
+    ]
+}

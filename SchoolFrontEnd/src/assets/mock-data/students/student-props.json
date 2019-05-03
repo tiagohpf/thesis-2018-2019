@@ -1,0 +1,491 @@
+{
+  "type": "initParameters",
+  "id": "studentPropsComponent",
+  "max": 88888,
+  "lazyLoading": "@fv()'[[fromProgram]]' ? true : false",
+  "urlResource": [
+    {
+      "key": "path",
+      "value": "{{SchoolBOT}}/students"
+    },
+    {
+      "key": "pathToMainData",
+      "value": [
+        "_embedded",
+        {
+          "$filter": [
+            "$this['_id']['$oid']==='[[id]]'"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "queryString",
+      "value": {
+        "page": "((page))",
+        "pagesize": "((pagesize))",
+        "count": null,
+        "filter": "{\"_id\": { \"$oid\":\"[[id]]\"}}"
+      }
+    },
+    {
+      "key": "reload",
+      "value": false
+    },
+    {
+      "key": "headers",
+      "value": {
+        "Authorization": "Bearer {{token}}",
+        "IXS": "{{IXS_id}}"
+      }
+    }
+  ],
+  "details": [
+    {
+      "type": "label",
+      "TODO": "Rever a invocacao da API",
+      "id": "courseNames",
+      "hidden": true,
+      "lazyLoading": true,
+      "urlResource": [
+        {
+          "key": "path",
+          "value": "{{SchoolBOT}}/courses?keys={'devAccessToken':1}&keys={'name':1}"
+        },
+        {
+          "key": "headers",
+          "value": {
+            "Authorization": "Bearer {{token}}",
+            "IXS": "{{IXS_id}}"
+          }
+        }
+      ],
+      "pathToValue": [
+        "_embedded",
+        "JSON.stringify($this)"
+      ]
+    },
+    {
+      "type": "initParameters",
+      "class": "col-sm-12",
+      "details": [
+        {
+          "type": "header",
+          "class": "col-sm-10 title",
+          "header": {
+            "seo": {
+              "text": "student___studentDetails",
+              "icon": "icomoon icon-Students"
+            }
+          }
+        },
+        {
+          "type": "context",
+          "id": "studentId",
+          "hidden": true,
+          "pathToValue": [
+            "$this['_id']['$oid']"
+          ]
+        },
+        {
+          "_type": "custom-component",
+          "subType": "custom-label-inline-edition",
+          "id": "studentNamec",
+          "pathToValue": [
+            "name"
+          ],
+          "parameters": [
+            {
+              "key": "operationConfig",
+              "value": [
+                {
+                  "key": "requestEndpoint",
+                  "value": "{{SchoolBOT}}/students/[[id]]"
+                },
+                {
+                  "key": "requestHeaders",
+                  "value": {
+                    "Authorization": "Bearer {{token}}",
+                    "IXS": "{{IXS_id}}"
+                  }
+                },
+                {
+                  "key": "requestType",
+                  "value": "PATCH"
+                },
+                {
+                  "key": "requestBody",
+                  "type": "json",
+                  "value": {
+                    "name": "{{studentNamec}}"
+                  }
+                }
+              ]
+            }
+          ],
+          "class": "col-sm-12"
+        },
+        {
+          "type": "label",
+          "id": "studentName",
+          "class": "col-sm-3",
+          "text": "Name",
+          "pathToValue": [
+            "$this['name']"
+          ],
+          "parameters":[
+            {
+              "key": "inlineHelp",
+              "value": {
+                  "text": "help___student___details___name"
+              }
+            }
+          ]
+        },
+        {
+          "type": "context",
+          "id": "coursePreviousRoute",
+          "value": "student",
+          "global": true
+        },
+        {
+          "type": "operations",
+          "id": "menuOperations",
+          "_role": "customer_create",
+          "text": null,
+          "class": "col-sm-3 hide-label editFieldButtons",
+          "style": {
+            "text-align": "left"
+          },
+          "operations": {
+            "text": "generic___operations___operations",
+            "icon": "glyphicon glyphicon-cog",
+            "size": 3,
+            "parameters": [
+              {
+                "type": "updatePage",
+                "id": "studentNameEdit",
+                "class": "editButton btn-default",
+                "icon": "icomoon icon-edit",
+                "parameters": [
+                  {
+                    "key": "updatePageParameter",
+                    "value": {
+                      "studentName": {
+                        "type": "textbox"
+                      },
+                      "studentNameEdit": {
+                        "hidden": true
+                      },
+                      "studentNameCancel": {
+                        "hidden": false
+                      },
+                      "studentNameSave": {
+                        "hidden": false
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "execute",
+                "id": "studentNameSave",
+                "class": "btn-primary",
+                "hidden": true,
+                "text": "generic___operations___save",
+                "parameters": [
+                  {
+                    "key": "requestEndpoint",
+                    "value": "{{SchoolBOT}}/students/[[id]]"
+                  },
+                  {
+                    "key": "requestHeaders",
+                    "value": {
+                      "Authorization": "Bearer {{token}}",
+                      "IXS": "{{IXS_id}}"
+                    }
+                  },
+                  {
+                    "key": "requestType",
+                    "value": "PATCH"
+                  },
+                  {
+                    "key": "requestBody",
+                    "type": "json",
+                    "value": {
+                      "name": "{{studentName}}"
+                    }
+                  },
+                  {
+                    "key": "errorText",
+                    "value": "errors___nameChange"
+                  },
+                  {
+                    "key": "onSuccess",
+                    "value": {
+                      "request": [
+                        {
+                          "key": "updatePageParameter",
+                          "value": {
+                            "studentName": {
+                              "originalValue": "{{studentName}}",
+                              "type": "label"
+                            },
+                            "studentNameEdit": {
+                              "hidden": false
+                            },
+                            "studentNameCancel": {
+                              "hidden": true
+                            },
+                            "studentNameSave": {
+                              "hidden": true
+                            }
+                          }
+                        },
+                        {
+                          "key": "successText",
+                          "value": "success___nameChange"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "updatePage",
+                "id": "studentNameCancel",
+                "class": "btn-default",
+                "hidden": true,
+                "text": "generic___operations___cancel",
+                "parameters": [
+                  {
+                    "key": "updatePageParameter",
+                    "value": {
+                      "studentName": {
+                        "value": "{{properties::studentName___originalValue}}",
+                        "type": "label"
+                      },
+                      "studentNameEdit": {
+                        "hidden": false
+                      },
+                      "studentNameCancel": {
+                        "hidden": true
+                      },
+                      "studentNameSave": {
+                        "hidden": true
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "context",
+          "id": "studentId",
+          "hidden": true,
+          "pathToValue": [
+            "$this['_id']['$oid']"
+          ]
+        },
+        {
+          "type": "label",
+          "id": "studentLanguage",
+          "text": "application___language",
+          "pathToValue": [
+            "$this['language']"
+          ],
+          "class": "col-sm-6",
+          "html": {
+            "es": "Spanish",
+            "en": "English",
+            "pt": "Portuguese",
+            "fr": "French"
+          },
+          "parameters": [
+            {
+              "key": "inlineHelp",
+              "value": {
+                  "text": "help___student___details___language"
+              }
+            }
+          ]
+        },
+        {
+          "type": "label",
+          "id": "status",
+          "class": "col-sm-6",
+          "text": "application___status",
+          "pathToValue": [
+            "$this['status']"
+          ],
+          "html": {
+            "pre-live": "{{@fv()@i18n('student___status___gettingReady')}}",
+            "live": " {{@fv()@i18n('student___status___live')}}",
+            "blocked": "{{@fv()@i18n('student___status___blocked')}}",
+            "suspended": "{{@fv()@i18n('student___status___suspended')}}"
+          },
+          "parameters": [
+            {
+              "key": "inlineHelp",
+              "value": {
+                  "text": "help___student___details___status"
+              }
+            }
+          ]
+        },
+        {
+          "type": "context",
+          "id": "studentCoursesList",
+          "pathToValue": [
+            "@getParameterByIDFilter($this['courses'])"
+          ]
+        },
+        {
+          "type": "context",
+          "id": "studentCoursesID",
+          "pathToValue": [
+            "$this['courses'][0]"
+          ]
+        },
+        {
+          "type": "label",
+          "id": "courseStudents",
+          "text": "application___course",
+          "class": "col-sm-6 link",
+          "urlResource": [
+            {
+              "key": "path",
+              "value": "{{SchoolBOT}}/courses"
+            },
+            {
+              "key": "pathToMainData",
+              "value": [
+                "_embedded"
+              ]
+            },
+            {
+              "key": "queryString",
+              "value": {
+                "filter": "{ \"_id\":{\"$in\":{{studentCoursesList}} }}"
+              }
+            },
+            {
+              "key": "reload",
+              "value": false
+            },
+            {
+              "key": "headers",
+              "value": {
+                "Authorization": "Bearer {{token}}",
+                "IXS": "{{IXS_id}}"
+              }
+            }
+          ],
+          "pathToValue": [
+            "name"
+          ],
+          "navigateTo": "knowledgecenter/courses/{{studentCoursesID}}"
+        },
+        {
+          "type": "label",
+          "id": "studentGender",
+          "text": "student___gender",
+          "pathToValue": [
+            "gender"
+          ],
+          "class": "col-sm-6",
+          "html": {
+            "male": "<span>{{@fv()@i18n('student___male')}}</span><span class=\"btn btn-default male\"><i class=\"fa fa-male\"></i></span>",
+            "female": "<span>{{@fv()@i18n('student___female')}}</span><span class=\"btn btn-default female\"><i class=\"fa fa-female\"></i></span>"
+          }
+        },
+        {
+          "type": "label",
+          "id": "personality",
+          "class": "col-sm-6",
+          "text": "application___personality",
+          "pathToValue": [
+            "$this['status']"
+          ],
+          "_navigateTo": "knowledgecenter/programs/{{personality}}",
+          "parameters": [
+            {
+              "key": "inlineHelp",
+              "value": {
+                  "text": "help___student___details___personality"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "initParameters",
+      "id": "studentAdditionalInfo",
+      "text": "application___additionalInformation",
+      "details": [
+        {
+          "type": "header",
+          "class": "col-sm-12 title",
+          "header": {
+            "seo": {
+              "text": "application___activity",
+              "icon": "icomoon icon-activity"
+            }
+          }
+        },
+        {
+          "type": "label",
+          "id": "studentCreatedBy",
+          "text": "application___createdBy",
+          "class": "col-sm-6",
+          "pathToValue": [
+            "createdBy"
+          ]
+        },
+        {
+          "type": "label",
+          "id": "studentCreationDate",
+          "text": "application___creationDate",
+          "class": "col-sm-6",
+          "pathToValue": "{{@fv()@timestampToDateFormat($this['creationDate'])}}"
+        },
+        {
+          "type": "label",
+          "id": "studentGoLiveDate",
+          "hidden": true,
+          "text": "student___studentGoLiveDate",
+          "class": "col-sm-6",
+          "pathToValue": "{{@fv()@timestampToDateFormat($this['goLiveDate'])}}"
+        },
+        {
+          "type": "label",
+          "id": "studentGoLiveBy",
+          "hidden": true,
+          "text": "student___studentGoLiveBy",
+          "class": "col-sm-6",
+          "pathToValue": [
+            "goLiveBy"
+          ]
+        },
+        {
+          "type": "label",
+          "id": "studentLastUpdated",
+          "text": "application___lastUpdate",
+          "class": "col-sm-6",
+          "pathToValue": "{{@fv()@timestampToDateFormat($this['lastUpdate'])}}"
+        },
+        {
+          "type": "label",
+          "id": "studentBlockedDate",
+          "hidden": true,
+          "text": "student___studentBlockedDate",
+          "class": "col-sm-6",
+          "pathToValue": "{{@fv()@timestampToDateFormat($this['blockedDate'])}}"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+
+.navbar-nav > .nav-item{ display: flex; border-right: 1px solid #e1e1e1; }
+.navbar-nav > .nav-item:last-child{ border: none; }
+
+.navbar-nav > .nav-item .nav-link{ white-space: nowrap; }
+.navbar-nav > .nav-item .nav-link.wct-split-link{ border-left: 1px solid #e1e1e1; padding-top: 0 !important; padding-bottom: 0 !important; margin-top: .5rem; margin-bottom: .5rem; }

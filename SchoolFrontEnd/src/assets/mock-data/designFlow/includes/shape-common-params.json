@@ -1,0 +1,46 @@
+[
+    {
+        "type": "label",
+        "id": "shapeId",
+        "text": "designerFlow___shapes___shapeId",
+        "hidden": true,
+        "pathToValue": [
+            "shape",
+            "id"
+        ]
+    },
+    {
+        "type": "json",
+        "key": "shapesNamesInUse",
+        "id": "shapesNamesInUse",
+        "hidden": true,
+        "pathToValue": [
+            "namesInUse"
+        ]
+    },
+    {
+        "type": "boolean",
+        "id": "canSubmitForm",
+        "hidden": true,
+        "dynamicProps": {
+            "value": "({{shapesNamesInUse}}).indexOf('{{shapeName}}') < 0"
+        }
+    },
+    {
+        "type": "textbox",
+        "id": "shapeName",
+        "text": "designerFlow___shapes___shapeName",
+        "pathToValue": [
+            "shape",
+            "text"
+        ],
+        "validator": {
+            "fn": [
+                [
+                    "preventShapeUniqName",
+                    "errors___shapeNameNotUnique"
+                ]
+            ]
+        }
+    }
+]

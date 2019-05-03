@@ -1,0 +1,140 @@
+<h3 id="docs-dockbar-instance">Instanciação de uma dockbar</h3>
+<p>O markup da dockbar deverá ser explicitamente disponibilizado na página.</p>
+<p>O snippet de código abaixo ilustra os ficheiros necessários ao correto funcionamento da dockbar. Demonstra ainda a instanciação dos diferentes elementos usados.</p>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <div class="fx-devguide-dockbar-container" >
+            <div class="fx-offscreen tab-content" data-menu="offscreen-menu" >
+                <!-- Buttons -->
+                <div class="fx-offscreen-menu-drag">
+                    <i class="fx-om-drag fx-om-drag-up"></i>
+                    <ul class="fx-offscreen-menu">
+                        <li>
+                            <a href="javascript:void(0)" data-target="#devguide-dockbar-tab-1">
+                                <i class="fa fa-history"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <i class="fx-om-drag fx-om-drag-down"></i>
+                </div>
+                <ul class="fx-offscreen-options">
+                    <li>
+                        <button title="Destacar painel" data-menu="detach" class="btn btn-link">
+                            <i class="fuxicons fuxicons-open-in-window"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button title="Fixar painel" data-menu="reattach" class="btn btn-link hidden">
+                            <i class="fuxicons fuxicons-restore-from-window"></i>
+                        </button>
+                    </li>
+                </ul>
+                <div id="devguide-dockbar-tab-1" class="tab-pane fx-offscreen-tab">
+                    <h3 class="fx-offscreen-dock-title">
+                        <i class="fx-om-drag fx-om-drag-white"></i>
+                        <span class="fx-info-icon">
+                            <i class="fa fa-history"></i>
+                        </span>
+                        Título da dockbar
+                    </h3>
+                    <div class="fx-offscreen-container with-padding">
+                        <div id="devguide-dockbar-container-top" class="fx-offscreen-container-top fx-fixed-position" data-render-shadow="false" data-fix-to="top">
+                            <div>
+                                <i>(Área fixa opcional)</i>
+                            </div>
+                        </div>
+                        <div id="devguide-dockbar-container-center" class="fx-offscreen-container-center with-padding">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mattis turpis vitae lacinia placerat. Donec accumsan felis id orci pharetra, vel volutpat lectus tempor. Phasellus eu lacinia neque, non egestas ante. Praesent porttitor viverra lacinia. Duis auctor, ligula nec malesuada facilisis, nunc massa consectetur quam, at accumsan arcu nibh vel libero. Duis non neque quis odio bibendum aliquam. Morbi lobortis venenatis augue, sed vehicula magna molestie eu. Vivamus dictum ex mi. Proin neque quam, finibus ac diam sit amet, tincidunt ultricies dui. Nullam nulla diam, porttitor non pellentesque eget, rhoncus nec erat. In laoreet dignissim laoreet.</p>
+                            <p>Ut rutrum lectus a lectus maximus vulputate. Vestibulum sem est, ornare et scelerisque sit amet, egestas ac erat. Integer non volutpat risus. Sed auctor ex a ex faucibus ornare. Vestibulum tempor, ligula ut auctor vulputate, ex lectus cursus odio, et dictum ex lacus vitae velit. Sed pretium vel leo ut consectetur. Maecenas nec nibh at odio tristique varius a at nulla. Vivamus sed tellus fringilla, placerat mauris bibendum, fringilla arcu. Donec id pulvinar nisi, et lobortis purus. Sed molestie molestie lacus eget pellentesque. Proin placerat dolor sem. Etiam tellus lorem, blandit sit amet finibus ut, maximus vitae orci.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h4>Includes</h4>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!-- Ficheiros necessários a incluir no head-->
+<head>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/fuxi/common/html/css/fuxi.min.css" rel="stylesheet" />
+</head>
+
+<!-- Ficheiros necessários a incluir antes de fechar a tag body-->
+<script src="/basepack/jquery/1.11/jquery.min.js"></script>
+<script src="/fuxi/lib/jqueryui/1.11/js/jquery-ui.min.js"></script>
+<script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+<script src="/fuxi/common/exec/fuxi.js"></script>
+        </textarea>
+    </form>
+
+    <h4>Markup</h4>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<div class="fx-offscreen tab-content" data-menu="offscreen-menu">
+    <!-- Buttons -->
+    <div class="fx-offscreen-menu-drag">
+        <i class="fx-om-drag fx-om-drag-up"></i>
+        <ul class="fx-offscreen-menu">
+            <li>
+                <a data-target="#devguide-dockbar-tab-1">
+                    <i class="fa fa-history"></i>
+                </a>
+            </li>
+        </ul>
+        <i class="fx-om-drag fx-om-drag-down"></i>
+    </div>
+    <ul class="fx-offscreen-options">
+        <li>
+            <button title="Destacar painel" data-menu="detach" class="btn btn-link">
+                <i class="fuxicons fuxicons-open-in-window"></i>
+            </button>
+        </li>
+        <li>
+            <button title="Fixar painel" data-menu="reattach" class="btn btn-link hidden">
+                <i class="fuxicons fuxicons-restore-from-window"></i>
+            </button>
+        </li>
+    </ul>
+    <div id="devguide-dockbar-tab-1" class="tab-pane fx-offscreen-tab">
+        <h3 class="fx-offscreen-dock-title">
+            <i class="fx-om-drag fx-om-drag-white"></i>
+            <span class="fx-info-icon">
+                <i class="fa fa-history"></i>
+            </span>
+            Título da dockbar
+        </h3>
+        <div class="fx-offscreen-container with-padding">
+            <div id="devguide-dockbar-container-top" class="fx-offscreen-container-top fx-fixed-position" data-render-shadow="false" data-fix-to="top">
+                <div>
+                    <i>(Área fixa opcional)</i>
+                </div>
+            </div>
+            <div id="devguide-dockbar-container-center" class="fx-offscreen-container-center with-padding">
+                <i>(Área de conteúdo)</i>
+            </div>
+        </div>
+    </div>
+</div>
+        </textarea>
+    </form>
+<h4>Scripting</h4>
+<div class="alert alert-info">
+    <p>Apenas necessita de invocar o método <code>FUXI.FixedPositions.init()</code> se pretender colocar a área fixa dentro da barra.</p>
+</div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<script type="text/javascript">
+    $(document).ready(function () {
+        FUXI.OffscreenMenu.init();
+        FUXI.FixedPositions.init();
+    });
+</script>
+        </textarea>
+    </form>
+</div>
+
+

@@ -1,0 +1,231 @@
+{
+  "type": "page",
+  "id": "knowledgeCenter",
+  "header": {
+    "details": [
+      {
+        "type": "label",
+        "class": "titles",
+        "text": null,
+        "value": "<h1>{{@fv()@i18n('application___knowledgeCenter___name')}}</h1>"
+      },
+      {
+        "type": "operations",
+        "id": "knowledgeCenterButtonAreas",
+        "class": "tabsButtons col-md-4",
+        "text": null,
+        "operations": [
+          {
+            "size": 10,
+            "parameters": [
+              {
+                "type": "updatePage",
+                "id": "entityInfoButtonPrograms",
+                "text": "application___programs",
+                "class": "active entityInfoButton",
+                "parameters": [
+                  {
+                    "key": "updatePageParameter",
+                    "value": {
+                      "entityInfoButtonPrograms": {
+                        "class": "active entityInfoButton"
+                      },
+                      "programButtons": {
+                        "hidden": false
+                      },
+                      "degreeButtons": {
+                        "hidden": true
+                      },
+                      "entityInfoButtonDegrees": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonProgramsTab": {
+                        "sendEvent": "selectTab"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "updatePage",
+                "id": "entityInfoButtonDegrees",
+                "text": "application___degrees",
+                "class": "entityInfoButton",
+                "parameters": [
+                  {
+                    "key": "updatePageParameter",
+                    "value": {
+                      "entityInfoButtonPrograms": {
+                        "class": "entityInfoButton"
+                      },
+                      "programButtons": {
+                        "hidden": true
+                      },
+                      "degreeButtons": {
+                        "hidden": false
+                      },
+                      "entityInfoButtonDegrees": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonDegreesTab": {
+                        "sendEvent": "selectTab"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "programButtons",
+        "type": "wrapper",
+        "class": "col-sm-8 menuOperations",
+        "details": [
+          {
+            "type": "textbox",
+            "id": "programFind",
+            "text": "",
+            "placeholder": "generic___operations___searchByName",
+            "class": "col-sm-8 find"
+          },
+          {
+            "type": "operations",
+            "class": "col-sm-1 findButtonOperations",
+            "operations": {
+              "_id": "menuOperationsFind",
+              "icon": "glyphicon glyphicon-cog",
+              "size": 3,
+              "parameters": [
+                {
+                  "id": "findButtonProgram",
+                  "type": "updatePage",
+                  "class": "findButton",
+                  "text": null,
+                  "icon": "icomoon icon-go",
+                  "parameters": [
+                    {
+                      "key": "updatePageParameter",
+                      "value": {
+                        "subscriptionProgramsMainCardList": {
+                          "lazyLoading": false
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "type": "operations",
+            "class": "col-sm-3 subscriptionCreateOperations",
+            "operations": {
+              "icon": "glyphicon glyphicon-cog",
+              "size": 3,
+              "parameters": [
+                {
+                  "id": "subscriptionCreateProgram",
+                  "type": "openModal",
+                  "text": "generic___operations___createProgram",
+                  "icon": "icomoon icon-add",
+                  "mockToLoad": "programs/program-create"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "degreeButtons",
+        "type": "wrapper",
+        "class": "col-sm-8 menuOperations",
+        "hidden": true,
+        "details": [
+          {
+            "type": "textbox",
+            "id": "degreeFind",
+            "text": "",
+            "placeholder": "generic___operations___searchByName",
+            "class": "col-sm-8 find"
+          },
+          {
+            "type": "operations",
+            "class": "col-sm-1 findButtonOperations",
+            "operations": {
+              "_id": "menuOperationsFind",
+              "icon": "glyphicon glyphicon-cog",
+              "size": 3,
+              "parameters": [
+                {
+                  "id": "findButtonDegree",
+                  "class": "findButton",
+                  "type": "updatePage",
+                  "text": null,
+                  "icon": "icomoon icon-go",
+                  "parameters": [
+                    {
+                      "key": "updatePageParameter",
+                      "value": {
+                        "degreeMainCards": {
+                          "sendEvent": "updateFilter"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "type": "operations",
+            "hidden": true,
+            "class": "col-sm-3 subscriptionCreateOperations",
+            "operations": {
+              "icon": "glyphicon glyphicon-cog",
+              "size": 3,
+              "parameters": [
+                {
+                  "id": "subscriptionCreateDegree",
+                  "type": "navigate",
+                  "text": "generic___operations___createDegree",
+                  "icon": "icomoon icon-add",
+                  "navigateTo": "knowledgecenter/programs/create"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "tabs": [
+    {
+      "id": "entityInfoButtonProgramsTab",
+      "class": "studentDegreeTabs",
+      "text": "application___programs",
+      "lazyLoading": false,
+      "_hidden": true,
+      "components": [
+        {
+          "id": "entityInfoButtonDegreesTabContent",
+          "mockToLoad": "subscription/subscription-program-list"
+        }
+      ]
+    },
+    {
+      "id": "entityInfoButtonDegreesTab",
+      "class": "studentProgramsTabs",
+      "text": "application___degrees",
+      "lazyLoading": true,
+      "_hidden": true,
+      "components": [
+        {
+          "id": "entityInfoButtonProgramsTabContent",
+          "mockToLoad": "courses/course-list"
+        }
+      ]
+    }
+  ]
+}

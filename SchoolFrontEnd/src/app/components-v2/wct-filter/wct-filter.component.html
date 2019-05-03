@@ -1,0 +1,43 @@
+<form
+  role="form"
+  class="wct-side-filter-form h-100 d-flex flex-column"
+  [id]="getHtmlId(sidebar,'side-filter-form')"
+  [formGroup]="form">
+    <div class="wct-side-filter-content container-fluid">
+
+        <h5 class="h5">
+            <i class="fa fa-filter text-primary"></i>
+            <app-wct-label
+                [inputValue]="viewStructure.groups.header?.groups?.seo?.text"
+                [dataRecs]="dataRecs"></app-wct-label>
+        </h5>
+
+      <!-- <header *ngIf="!horizontalFilter" class="fx-sidebar-header fx-fixed-position" data-fix-to="top">
+          <div class="fx-sidebar-header-inner">
+              <p>
+                  <span class="fx-info-icon"><i class="glyphicon glyphicon-filter"></i></span> {{'generic___filters' | myI18n}}
+              </p>
+          </div>
+      </header> -->
+          <app-wct-start-components
+            [viewStructure]="viewStructure"
+            [baseInfoForm]="form"
+            [inputParameters]="filterFields"
+            [fromDefault]="fromDefault"
+            [filterDateInterval]="filterDateInterval"
+            [toDefault]="toDefault"></app-wct-start-components>
+    </div>
+    <div class="wct-side-filter-buttons container-fluid">
+      <button
+        type="submit"
+        class="btn btn-primary btn-sm"
+        [id]="getHtmlId(sidebar,'side-filter-btn-submit')"
+        [disabled]="form?.status == 'INVALID'"
+        (click)="onSubmit()">{{'generic___search' | myI18n}}</button>
+      <button
+        type="button"
+        class="btn btn-default btn-sm"
+        [id]="getHtmlId(sidebar,'side-filter-btn-cancel')"
+        (click)="setDefaultFilters()">{{'generic___clean' | myI18n}}</button>
+    </div>
+</form>

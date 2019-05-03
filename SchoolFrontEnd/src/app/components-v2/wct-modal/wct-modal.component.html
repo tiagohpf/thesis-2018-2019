@@ -1,0 +1,68 @@
+<div
+  *ngIf="modalService.isModalShown && (!modalService.modalProps.subType || modalService.modalProps.subType !== 'draggable')"
+  [config]="{ show: true, backdrop: (modalService.allowModalClose ? true : 'static') }"
+  (onHidden)="modalService.isModalShown = false"
+  (onShow)="modalService.lgModal = lgModal"
+  bsModal
+  #lgModal="bs-modal"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  [id]="getHtmlId()"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+    <div id="modalComponent" class="modal-dialog {{modalService.modalSize}}">
+      <div class="modal-content">
+        <ng-template #loading>
+          <div class="modal-on-loading">
+            <div class="modal-header">
+              <button type="button" class="close" id="modalComponentClose" (click)="modalService.closeModal()">&times;</button>
+            </div>
+            <div class="modal-body"><wct-loading></wct-loading></div>
+          </div>
+        </ng-template>
+
+        <app-wct-page
+          *ngIf="modalService.mockToLoad;else loading"
+          #pageComponentOnModal
+          [allowReload]="false"
+          [inputDataRecs]="modalService.dataRecs"
+          [inputMock]="modalService.mockToLoad"
+          [firstLevelLayer]="true"
+          [loadingFromModal]="true"></app-wct-page>
+      </div>
+    </div>
+</div>
+
+<div #modalBounds [ngClass]="{ 'top-b': !edge?.top, 'bottom-b': !edge?.bottom, 'left-b': !edge?.left, 'right-b': !edge?.right }">
+  <div id="modalComponent" *ngIf="modalService.isModalShown && modalService.modalProps.subType === 'draggable'"
+    ngDraggable
+    [bounds]="rootNode"
+    (edge)="showEdge($event)"
+    (started)="onStart($event)"
+    (stopped)="onStop($event)"
+    [handle]="handleBar"
+    [inBounds]="inBounds"
+    class="modal-dialog ng-draggable {{modalService.modalSize}}">
+    <div class="handle-bar" #handleBar></div>
+    <div class="modal-content">
+      <ng-template #loading>
+        <div class="modal-on-loading">
+          <div class="modal-header">
+            <button type="button" class="close" id="modalComponentClose" (click)="modalService.isModalShown = false">&times;</button>
+          </div>
+          <div class="modal-body"><wct-loading></wct-loading></div>
+        </div>
+      </ng-template>
+
+      <app-wct-page
+        *ngIf="modalService.mockToLoad;else loading"
+        #pageComponentOnModal
+        [allowReload]="false"
+        [inputDataRecs]="modalService.dataRecs"
+        [inputMock]="modalService.mockToLoad"
+        [firstLevelLayer]="true"
+        [loadingFromModal]="true"></app-wct-page>
+    </div>
+  </div>
+</div>

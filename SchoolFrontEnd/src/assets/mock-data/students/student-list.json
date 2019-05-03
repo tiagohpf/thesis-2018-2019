@@ -1,0 +1,272 @@
+{
+    "type": "page",
+    "id": "studentsMain",
+    "_sidebar": [
+        {
+            "type": "filter",
+            "id": "studentsMainCardsFilter",
+            "dynamicProps": {
+                "hidden": "!{{hasStudents}} == true"
+            },
+            "mappingId": [
+                "studentsMainCard"
+            ],
+            "details": [
+                {
+                    "type": "textbox",
+                    "subType": "autocomplete",
+                    "id": "nameFilter",
+                    "apiFieldName": "name",
+                    "text": "student___name",
+                    "pathToValueList": "_embedded",
+                    "pathToValue": "name",
+                    "validator": {
+                        "autocomplete": [
+                            {
+                                "urlResource": [
+                                    {
+                                        "key": "path",
+                                        "value": "{{SchoolBOT}}/students"
+                                    },
+                                    {
+                                        "key": "queryString",
+                                        "value": {
+                                            "keys": "{\"name\":1}",
+                                            "filter": "{\"name\":{\"$regex\":\"(?i){{nameFilter}}.*\"},\"IXS\":\"{{IXS_id}}\"}"
+                                        }
+                                    },
+                                    {
+                                        "key": "headers",
+                                        "value": {
+                                            "Authorization": "Bearer {{token}}",
+                                            "IXS": "{{IXS_id}}"
+                                        }
+                                    }
+                                ]
+                            },
+                            "no records matched"
+                        ]
+                    }
+                },
+                {
+                    "type": "input-checkbox",
+                    "id": "languageFilter",
+                    "apiFieldName": "language",
+                    "text": "application___language",
+                    "filterTemplate": "{\"$in\":\"{{languageFilter}}\"}",
+                    "valueList": [
+                        {
+                            "key": "pt",
+                            "value": "generic___language___pt"
+                        },
+                        {
+                            "key": "en",
+                            "value": "generic___language___en"
+                        },
+                        {
+                            "key": "es",
+                            "value": "generic___language___es"
+                        },
+                        {
+                            "key": "fr",
+                            "value": "generic___language___fr"
+                        }
+                    ]
+                },
+                {
+                    "type": "input-select",
+                    "id": "courseFilter",
+                    "apiFieldName": "courses",
+                    "text": "application___course",
+                    "_pathToValue": "name",
+                    "urlResource": [
+                        {
+                            "key": "path",
+                            "value": "{{SchoolBOT}}/courses"
+                        },
+                        {
+                            "key": "queryString",
+                            "value": {
+                                "keys": "{\"name\":1}",
+                                "filter": "{\"IXS\":\"{{IXS_id}}\"}"
+                            }
+                        },
+                        {
+                            "key": "headers",
+                            "value": {
+                                "Authorization": "Bearer {{token}}",
+                                "IXS": "{{IXS_id}}"
+                            }
+                        }
+                    ],
+                    "pathToValueList": "_embedded",
+                    "templateOfValueList": "{\"key\":\"{{_id___$oid}}\",\"value\":\"{{name}}\"}"
+                },
+                {
+                    "type": "input-checkbox",
+                    "id": "statusFilter",
+                    "apiFieldName": "status",
+                    "text": "application___status",
+                    "filterTemplate": "{\"$in\":\"{{statusFilter}}\"}",
+                    "valueList": [
+                        {
+                            "key": "live",
+                            "value": "&nbsp; <i class=\"fa fa-check fx-icon text-success\"></i>&nbsp; <span>{{@fv()@i18n('student___status___live')}}</span>"
+                        },
+                        {
+                            "key": "suspended",
+                            "value": "&nbsp; <i class=\"fuxicons fuxicons-suspended fx-status-warning\"></i>&nbsp;<span>{{@fv()@i18n('student___status___suspended')}}</span>"
+                        },
+                        {
+                            "key": "needPayment",
+                            "value": "&nbsp; <i class=\"fa fa-dollar fx-status-error\"></i>&nbsp;<span>{{@fv()@i18n('student___status___needPayment')}}</span>"
+                        }
+                    ]
+                },
+                {
+                    "type": "input-checkbox",
+                    "id": "studentGender",
+                    "class": "col-md-12",
+                    "text": "student___gender",
+                    "apiFieldName": "gender",
+                    "placeholder": "application___gender",
+                    "filterTemplate": "{\"$in\":\"{{studentGender}}\"}",
+                    "valueList": [
+                        {
+                            "key": "male",
+                            "value": "&nbsp; <i class=\"fa fa-male\"></i>&nbsp;{{@fv()@i18n('student___male')}}"
+                        },
+                        {
+                            "key": "female",
+                            "value": "&nbsp; <i class=\"fa fa-female\"></i>&nbsp;{{@fv()@i18n('student___female')}}"
+                        }
+                    ]
+                },
+                {
+                    "type": "input-select",
+                    "hidden": true,
+                    "id": "planFilter",
+                    "apiFieldName": "plan",
+                    "filterTemplate": "{\"$oid\":\"{{planFilter}}\"}",
+                    "text": "application___plan",
+                    "_pathToValue": "name",
+                    "urlResource": [
+                        {
+                            "key": "path",
+                            "value": "{{SchoolBOT}}/plans"
+                        },
+                        {
+                            "key": "headers",
+                            "value": {
+                                "Authorization": "Bearer {{token}}",
+                                "IXS": "{{IXS_id}}"
+                            }
+                        }
+                    ],
+                    "pathToValueList": "_embedded",
+                    "templateOfValueList": "{\"key\":\"{{_id___$oid}}\",\"value\":\"{{name}}\"}"
+                },
+                {
+                    "type": "dates-interval",
+                    "hidden": true,
+                    "id": "lastUpdateFilter",
+                    "text": "student___lastUpdate",
+                    "apiFieldName": "lastUpdate",
+                    "placeholder": "requests___selectTimePeriod",
+                    "filterTemplate": "{{lastUpdateFilter}}",
+                    "valueList": [
+                        {
+                            "value": "last day",
+                            "text": "generic___dateInterval___last24h"
+                        },
+                        {
+                            "value": "last week",
+                            "text": "generic___dateInterval___last7Days"
+                        },
+                        {
+                            "value": "last month",
+                            "text": "generic___dateInterval___lastMonth"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "tabs": [
+        {
+            "id": "studentsMainContainerTab",
+            "components": [
+                {
+                    "type": "initParameters",
+                    "id": "studentsMainContainerInitParameters",
+                    "details": [
+                        {
+                            "type": "label",
+                            "class": "titles",
+                            "text": null,
+                            "value": "<h1>{{@fv()@i18n('student___myStudents')}}</h1>"
+                        },
+                        {
+                            "include": "students/student-list-operations"
+                        },
+                        {
+                            "type": "json",
+                            "id": "coursesIXS_label",
+                            "hidden": true,
+                            "urlResource": [
+                                {
+                                    "key": "id",
+                                    "value": "coursesIXS"
+                                },
+                                {
+                                    "key": "apiRecycle",
+                                    "value": false
+                                },
+                                {
+                                    "key": "path",
+                                    "value": "{{AppAPIBotConfig}}/courses"
+                                },
+                                {
+                                    "key": "pathToMainData",
+                                    "value": [
+                                        "_embedded"
+                                    ]
+                                },
+                                {
+                                    "key": "queryString",
+                                    "value": {
+                                        "filter": "{ \"IXS\": '{{IXS_id}}' }"
+                                    }
+                                },
+                                {
+                                    "key": "headers",
+                                    "value": {
+                                        "Authorization": "Bearer {{token}}",
+                                        "IXS": "{{IXS_id}}"
+                                    }
+                                },
+                                {
+                                    "key": "headers",
+                                    "value": {
+                                        "Authorization": "Bearer {{token}}",
+                                        "IXS": "{{IXS_id}}"
+                                    }
+                                },
+                                {
+                                    "key": "reload",
+                                    "value": false
+                                }
+                            ],
+                            "pathToValue": [
+                                "_embedded"
+                            ]
+                        },
+                        {
+                            "include": "students/student-list-cards"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+@import url('/basepack/datatables/1.9/css/ColReorder.css');
+
+body.alt div.DTCR_pointer {
+	background: url('../images/insert.png') no-repeat top left;
+}

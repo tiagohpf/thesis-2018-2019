@@ -1,0 +1,108 @@
+<h3 id="docs-menus-dimensoes-2-niveis">Menus de dimensões com 2 níveis</h3>
+<p>O snippet abaixo demonstra como estilizar um menu de dimensões (ou áreas) com 2 níveis.</p>
+<p>As áreas dentro do menu são criadas através do uso de <code>div</code> com a class <code>fx-dimension</code>.</p>
+
+<div class="fx-docs-snippet-code">
+    <header class="fx-header-devguide">
+        <nav class="fx-navbar" role="navigation">
+            <ul class="fx-nav">
+                <li><a class="fx-brand" href="javascript:void(0)"><h1 class="fx-logo-brand">FUXI</h1></a></li>
+                <li>
+                    <a class="collapsed" data-toggle="collapse" data-target="#menu3">Menu de dimensões com 2 níveis<i class="fa fa-angle-down"></i></a>
+                    <nav id="menu3" class="fx-menu collapse">
+                        <div class="fx-dimension">
+                            <h3>Dimensão 1</h3>
+                            <div id="dimension" class="carousel slide devguide-manage-menu-vis devguide-keep-open" data-interval="false">
+                                <!-- Carousel items -->
+                                <div class="carousel-inner">
+                                    <div class="item">
+                                        <ul class="list-unstyled">
+                                            <li><a data-slide-to="1" href="#dimension">Menu Item 1<i class="fa fa-angle-right fx-slide-indicator pull-right"></i></a></li>
+                                            <li><a data-slide-to="2" href="#dimension">Menu Item 2<i class="fa fa-angle-right fx-slide-indicator pull-right"></i></a></li>
+                                            <li><a href="javascript:void(0)">Menu Item 3</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="item">
+                                        <ul class="list-unstyled">
+                                            <li><a class="back" data-slide-to="0" href="#dimension"><i class="fa fa-angle-left fx-slide-indicator pull-left"></i>Menu Item 1</a></li>
+                                            <li><a href="javascript:void(0)">Menu Item 1.1</a></li>
+                                            <li><a href="javascript:void(0)">Menu Item 1.2</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="item active">
+                                        <ul class="list-unstyled">
+                                            <li><a class="back" data-slide-to="0" href="#dimension"><i class="fa fa-angle-left fx-slide-indicator pull-left"></i>Menu Item 2</a></li>
+                                            <li><a href="javascript:void(0)">Menu Item 2.1</a></li>
+                                            <li><a href="javascript:void(0)">Menu Item 2.2</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fx-dimension">
+                            <h3>Dimensão 2</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="#">Menu Item 1</a></li>
+                                <li><a href="#">Menu Item 2</a></li>
+                            </ul>
+                        </div>
+
+                    </nav>
+                </li>
+            </ul>
+        </nav>
+    </header>
+        <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<header id="fx-header">
+    <nav class="fx-navbar" role="navigation">
+        <ul class="fx-nav">
+            <li><a class="fx-brand" href="#"><h1 class="fx-logo-brand">FUXI</h1></a></li>
+            <li>
+                <a class="collapsed" data-toggle="collapse" data-target="#menu3">Menu<i class="fa fa-angle-down"></i></a>
+                <nav id="menu3" class="fx-menu collapse">
+                    <div class="fx-dimension">
+                        <h3>Dimensão 1</h3>
+                        <div id="dimension" class="carousel slide" data-interval="false">
+                            <!-- Carousel items -->
+                            <div class="carousel-inner">
+                                <div class="item">
+                                    <ul class="list-unstyled">
+                                        <li><a data-slide-to="1" href="#dimension">Menu Item 1<i class="fa fa-angle-right fx-slide-indicator pull-right"></i></a></li>
+                                        <li><a data-slide-to="2" href="#dimension">Menu Item 2<i class="fa fa-angle-right fx-slide-indicator pull-right"></i></a></li>
+                                        <li><a href="#">Menu Item 3</a></li>
+                                    </ul>
+                                </div>
+                                <div class="item">
+                                    <ul class="list-unstyled">
+                                        <li><a class="back" data-slide-to="0" href="#dimension"><i class="fa fa-angle-left fx-slide-indicator pull-left"></i>Menu Item 1</a></li>
+                                        <li><a href="#">Menu Item 1.1</a></li>
+                                        <li><a href="#">Menu Item 1.2</a></li>
+                                    </ul>
+                                </div>
+                                <div class="item active">
+                                    <ul class="list-unstyled">
+                                        <li><a class="back" data-slide-to="0" href="#dimension"><i class="fa fa-angle-left fx-slide-indicator pull-left"></i>Menu Item 2</a></li>
+                                        <li><a href="#">Menu Item 2.1</a></li>
+                                        <li><a href="#">Menu Item 2.2</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fx-dimension">
+                        <h3>Dimensão 2</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Menu Item 1</a></li>
+                            <li><a href="#">Menu Item 2</a></li>
+                        </ul>
+                    </div>
+
+                </nav>
+            </li>
+        </ul>
+    </nav>
+</header>
+        </textarea>
+    </form>
+</div>

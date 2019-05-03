@@ -1,0 +1,197 @@
+{
+    "type": "initTable",
+    "id": "programVariablesTable",
+    "hidden": true,
+    "header": {
+        "id": "pageHeader",
+        "_seo": {
+            "text": "program___variable___namePlural",
+            "icon": "fa fa-book"
+        },
+        "operations": {
+            "id": "pageHeaderOperations",
+            "text": "generic___operations___operations",
+            "icon": "glyphicon glyphicon-cog",
+            "parameters": [
+                {
+                    "id": "createEntitY",
+                    "type": "openModal",
+                    "icon": "fa fa-plus",
+                    "size": "lg",
+                    "mockToLoad": "programs/program-variable-create"
+                }
+            ]
+        }
+    },
+    "urlResource": [
+        {
+            "key": "id",
+            "value": "programAPIResponse"
+        },
+        {
+            "key": "apiRecycle",
+            "value": false
+        },
+        {
+            "key": "path",
+            "value": "{{SchoolBE}}/programs/[[programID]]"
+        },
+        {
+            "key": "queryString",
+            "value": {
+                "keys": "{\"_id\":1,\"name\":1,\"code\":1,\"version\":1,\"variables\":1,\"chapters\":1}"
+            }
+        },
+        {
+            "key": "headers",
+            "value": {
+                "Authorization": "Bearer {{token}}",
+                "IXS": "{{IXS_id}}"
+            }
+        },
+        {
+            "key": "pathToMainData",
+            "value": [
+                "@objToTupleList($this['variables'])"
+            ]
+        }
+    ],
+    "columns": [
+        {
+            "type": "expand",
+            "id": "synonymsExpand",
+            "mockToLoad": "programs/program-variable-synonyms",
+            "pathToValue": [
+                "value",
+                "variables"
+            ],
+            "class": "col-sm-1"
+        },
+        {
+            "type": "context",
+            "id": "programCode",
+            "pathToValue": [
+                "code"
+            ]
+        },
+        {
+            "type": "context",
+            "id": "chapters",
+            "text": "chapters",
+            "pathToValue": [
+                "programAPIResponse",
+                "chapters"
+            ]
+        },
+        {
+            "type": "context",
+            "size": "sm",
+            "id": "variableIdx",
+            "pathToValue": [
+                "key"
+            ]
+        },
+        {
+            "type": "json",
+            "id": "variableDetails",
+            "pathToValue": [
+                "value"
+            ],
+            "hidden": true
+        },
+        {
+            "type": "text",
+            "id": "displayName",
+            "pathToValue": [
+                "value",
+                "displayName"
+            ],
+            "text": "program___variable___variableName"
+        },
+        {
+            "type": "text",
+            "id": "description",
+            "pathToValue": [
+                "value",
+                "description"
+            ],
+            "text": "program___variable___description"
+        },
+        {
+            "type": "text",
+            "id": "nature",
+            "text": "program___variable___nature",
+            "pathToValue": [
+                "value",
+                "nature"
+            ],
+            "html": {
+                "system": "program___variable___nature___system",
+                "custom": "program___variable___nature___custom"
+            }
+        },
+        {
+            "type": "text",
+            "id": "entity",
+            "pathToValue": [
+                "value",
+                "@getDisplayNameFormated($this['nature']=='session'?$this['channel']:$this['entity'],@replaceTagVars('programAPIResponse___code')+'_')"
+            ],
+            "text": "program___variable___value"
+        },
+        {
+            "type": "actions",
+            "id": "actions",
+            "operations": [
+                {
+                    "id": "viewEntitY",
+                    "type": "openModal",
+                    "text": "generic___seeDetails",
+                    "icon": "fuxicons fuxicons-eye",
+                    "size": "lg",
+                    "mockToLoad": "programs/program-variable-details",
+                    "parameters": [
+                        {
+                            "key": "context",
+                            "value": [
+                                "programCode",
+                                "variableIdx",
+                                "variableDetails",
+                                "chapters"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "removeCourse",
+                    "type": "openModal",
+                    "text": "generic___remove",
+                    "icon": "fa fa-trash-o",
+                    "mockToLoad": "programs/program-variable-remove",
+                    "_role": "Programs.Variables.Operations.Remove",
+                    "parameters": [
+                        {
+                            "key": "context",
+                            "value": [
+                                "variableIdx",
+                                "variableName",
+                                "displayName"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "rows": [],
+    "parameters": [
+        {
+            "key": "tableActions",
+            "value": {
+                "export": false,
+                "columnManager": false,
+                "search": true
+            }
+        }
+    ]
+}

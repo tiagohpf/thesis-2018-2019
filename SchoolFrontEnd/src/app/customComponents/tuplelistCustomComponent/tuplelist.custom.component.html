@@ -1,0 +1,26 @@
+<div class="tuplelist-component">
+    <div  [id]="props?.id ? 'wct-tuple-' + props.id : ''">
+        <ng-template ngFor let-l [ngForOf]="list" let-i="index">
+            <div class="clear"></div>
+            <div class="pull-right" *ngIf="allowCreation && i == 0">
+                <button *ngIf="allowCreation" class="btn btn-primary btn-xs" (click)="addNewLine(false)">{{'Add'
+                    | myI18n}}</button>
+            </div>
+            <div class="clear"></div>
+            <!-- <span data-dummy="{{AddParameters()}}"></span> -->
+            <div [class]="props?.class ? props.class + ' card' : 'card'" [id]="props?.id ? 'wct-tupleList-' + props.id + '-' + i : ''" >
+                <show-parameters-by-type-component 
+                    *ngIf="tupleInfoForm[i]" 
+                    [viewStructure]="props" 
+                    [inputParameters]="l"
+                    [(baseInfoForm)]="tupleInfoForm[i]">
+                </show-parameters-by-type-component>
+                <div *ngIf="allowCreation" class="remove-card" (click)="removeLine(i)"><i class="fa fa-times"></i></div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </ng-template>
+        <div class="clear"></div>
+    </div>
+    <input type="hidden" [name]="props.id" [formControl]="control" [(ngModel)]="valueControl" [id]="props?.id ? 'wct-addTuple-btn-' + props.id : ''" />
+</div>

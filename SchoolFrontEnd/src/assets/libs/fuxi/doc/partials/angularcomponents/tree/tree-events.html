@@ -1,0 +1,104 @@
+<h3 id="docs-tree-events">Eventos e Métodos</h3>
+<p>A tree disponibiliza os eventos e métodos abaixo enumerados.</p>
+
+<h4>Eventos</h4>
+<div class="table-responsive">
+    <table class="table fx-table">
+        <thead>
+            <tr>
+                <th>Evento</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>treeCtrl.treeAfterLoad</td>
+                <td>Lançado quando a tree termina de ser carregada.</td>
+            </tr>
+            <tr>
+                <td>treeCtrl.treeElementClicked</td>
+                <td>Lançado quando um elemento da árvore é clicado.</td>
+            </tr>
+            <tr>
+                <td>treeCtrl.onRequestSuccess</td>
+                <td>Lançado quando ocorre um pedido com sucesso.</td>
+            </tr>
+            <tr>
+                <td>treeCtrl.onRequestError</td>
+                <td>Lançado quando ocorre um pedido sem sucesso.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h4>Métodos</h4>
+<p>O serviço <code>treeServices</code> exposto pela diretiva <code>fxTree</code> permite:</p>
+
+<div class="fx-method-desc">
+    <h5><code>prepareJSONData (data, additionalPlugins, additionalPluginConfigurations, additionalCoreConfigurations)</code></h5>
+    <p>Método que prepara um objecto com as configurações e dados necessários para o correcto carregamento da jsTree.</p>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>getTree (id)</code></h5>
+    <p>Método que retorna o objecto jsTree.</p>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>deleteTree (id)</code></h5>
+    <p>Método que destrói o objecto jstree.</p>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>storeNewTree (id, tree, treeInfo)</code></h5>
+    <p>Método que permite guardar a nova tree.</p>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>updateTree (id, tree, treeInfo)</code></h5>
+    <p>Método que atualiza os dados da tree.</p>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>existsTree (id)</code></h5>
+    <p>Método que verifica se a tree existe.</p>
+</div>
+
+<p>A diretiva apresenta 3 formas de inicialização:</p>
+
+<div class="fx-method-desc">
+    <h5><code>callInitializeTreeWithJSON(data, additionalPlugins, additionalPluginConfigurations, additionalCoreConfigurations)</code></h5>
+    <p>Método que carrega a tree utilizando os nodos passados como parâmetro no método.</p>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>callInitializeTreeWithRest(additionalPlugins, additionalPluginConfigurations, additionalCoreConfigurations)</code></h5>
+    <p>Usando o endereço definido em <code>data-tree-load-url</code>, este método carrega os dados usando o módulo <code>$http.get()</code> do AngularJS.</p>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>callInitializeTreeEmpty(additionalPlugins, additionalPluginConfigurations, additionalCoreConfigurations)</code></h5>
+    <p>Método que permite instanciar a tree sem nodos.</p>
+</div>
+
+<p>A diretiva permite ainda fazer override aos seguintes métodos:</p>
+
+<div class="fx-method-desc">
+    <h5><code>ref.treeElementClicked = function (ev, data) { };</code></h5>
+    <p>Método invocado quando um elemento da árvore é clicado.</p>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>ref.treeAfterLoad = function (tree) { };</code></h5>
+    <p>Método invocado após carregamento dos nodos da árvore.</p>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>ref.onRequestSuccess = function (tree, data) { };</code></h5>
+    <p>Método invocado quando ocorre um pedido com sucesso.</p>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>ref.onRequestError = function (data, status) { };</code></h5>
+    <p>Método invocado quando ocorre um pedido sem sucesso.</p>
+</div>

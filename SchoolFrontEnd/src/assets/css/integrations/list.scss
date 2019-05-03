@@ -1,0 +1,225 @@
+
+/** FULLFILMENTS **/
+
+#wct-content-fullfilmentMain {
+    background: $primary-color;
+    .wct-header-content {
+        position: relative;
+        @include max-width-screen;
+        margin: 0 auto;
+        padding: 15px;
+        h1 {
+            padding: 7px;
+        }
+        app-wct-header {
+            display: flex;
+            flex-flow: row-reverse;
+        }
+    }
+    .wct-tabs-wrapper {
+        @include max-width-screen;
+        margin: 0 auto;
+        width: 100%;
+        .wct-main-content-colored {
+            background: $primary-color;
+            border: none !important;
+            //margin-top: 35px;
+            .wct-main-wrapper {
+                border: none !important;
+                border-radius: unset !important;
+                width: 100%;
+                .wct-components-wrapper {
+                    background: $primary-color !important;
+                    margin-top: -15px; //padding: 0;
+                    padding-top: 20px;
+                    background: #fff;
+                    .title {
+                        .wct-header-info {
+                            .icon {
+                                font-size: 30px;
+                                color: $primary-color !important;
+                            }
+                        }
+                        .h2 {
+                            p {
+                                font-size: 18px;
+                                color: $primary-color;
+                                text-transform: lowercase;
+                            }
+                        }
+                    }
+                }
+                #wct-each-parameter-fullfilmentConfigurationTable {
+                    #wct-content-fullfilmentConfigurationTable {
+                        table {
+                            &#wct-table-fullfilmentConfigurationTable {
+                                // border-collapse: separate;
+                                // border-spacing: 0 15px;
+                                thead {
+                                    th {
+                                        color: white;
+                                        &#wct-table-fullfilmentConfigurationTable-thead-actions {
+                                            text-align: right;
+                                        }
+                                    }
+                                }
+                                tbody {
+                                    tr {
+                                        background: white;
+                                        td {
+                                            padding: 10px 15px;
+                                            padding-bottom: 10px;
+                                            text-align: left;
+                                            vertical-align: middle;
+                                            &.wct-table-column-actions {
+                                                text-align: right;
+                                            }
+                                            // button {
+                                            //     background-color: white !important;
+                                            //     box-shadow: none !important;
+                                            //     i {
+                                            //         color: $primary-color;
+                                            //     }
+                                            // }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+.title-create {
+    h2 {
+        font-family: FallingSkyBd;
+        font-size: 30px;
+        color: #ffffff;
+        font-weight: 400;
+        text-decoration: none solid rgb(255, 255, 255);
+        line-height: 46px;
+    }
+}
+
+
+
+
+
+/** ANALYTICS **/
+
+#wct-content-analyticsMain {
+    background: $primary-color;
+    .wct-header-content {
+        position: relative;
+        @include max-width-screen;
+        margin: 0 auto;
+        padding: 15px;
+        h1 {
+            padding: 7px;
+        }
+        app-wct-header {
+            display: flex;
+            flex-flow: row-reverse;
+        }
+    }
+    .wct-tabs-wrapper {
+        @include max-width-screen;
+        margin: 0 auto;
+        width: 100%;
+        .wct-main-content-colored {
+            background: $primary-color;
+            border: none !important;
+            //margin-top: 35px;
+            .wct-main-wrapper {
+                border: none !important;
+                border-radius: unset !important;
+                width: 100%;
+                .wct-components-wrapper {
+                    background: $primary-color !important;
+                    margin-top: -15px; //padding: 0;
+                    padding-top: 20px;
+                    background: #fff;
+                    .title {
+                        .wct-header-info {
+                            .icon {
+                                font-size: 30px;
+                                color: $primary-color !important;
+                            }
+                        }
+                        .h2 {
+                            p {
+                                font-size: 18px;
+                                color: $primary-color;
+                                text-transform: lowercase;
+                            }
+                        }
+                    }
+                }
+               
+            }
+        }
+
+        ngx-charts-advanced-pie-chart {
+            .advanced-pie-legend {
+                color: white;
+                .total-value {}
+                .total-label {
+                    opacity: 0.7;
+                }
+                
+                .legend-items-container .legend-items .legend-item {
+                    padding-top: 1px;
+                    &:hover{
+                        .item-color,
+                        .item-label,
+                        .item-percent {
+                            opacity: 1 !important;
+                        }
+                        
+                    }
+                    .item-color {}
+                    .item-value {}
+                    .item-label {}
+                    .item-percent {}
+                }
+            }
+        }
+
+        #wct-each-parameter-statisticsTable {
+            .wct-components-wrapper {
+                background: $primary-color !important;
+                margin-top: -15px; //padding: 0;
+                padding-top: 0px;
+                padding-bottom: 0px;
+                
+                background: #fff;
+            }
+
+            #wct-table-statisticsTable{
+                margin-bottom: 0px;
+            }
+            th {
+                background: #fff;
+            }
+            tr {
+                background: #fff;
+            }
+        }
+
+        #wct-component-filterContainer {
+            background-color: rgba(255,255,255,0.1) !important;
+           
+        }
+    }
+}
+
+#wct-content-statisticsMain {
+    #wct-component-filterContainer {
+        background-color: rgba(0,0,0,0.1) !important;
+    
+    }
+}

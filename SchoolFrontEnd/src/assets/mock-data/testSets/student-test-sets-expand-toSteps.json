@@ -1,0 +1,96 @@
+{
+    "type": "initTable",
+    "class": "students_testset_steps_tests",
+    "urlResource": [
+        {
+            "key": "pathToMainData",
+            "value": [
+                "steps_details_expand"
+            ]
+        }
+    ],
+    "parameters": [
+        {
+            "key": "tableActions",
+            "value": {
+                "columnManager": false,
+                "export": false,
+                "search": false,
+                "pagination": false
+            }
+        }
+    ],
+    "columns": [
+        {
+            "type": "text",
+            "text": "Saying",
+            "id": "saying",
+            "pathToValue": [
+                "saying"
+            ]
+        },
+        {
+            "type": "text",
+            "text": "Expected response",
+            "id": "expected_botResponse",
+            "pathToValue": [
+                "expectedResponse",
+                "botResponse"
+            ]
+        },
+        {
+            "type": "text",
+            "text": "Response",
+            "id": "botResponse",
+            "pathToValue": [
+                "botResponse"
+            ]
+        },
+        {
+            "type": "text",
+            "text": "Intent",
+            "_role": "Generic.Tests.Steps.MoreDetails",
+            "id": "intent",
+            "pathToValue": [
+                "$this['nlpResponseObj']",
+                "intent",
+                "displayName"
+            ]
+        },
+        {
+            "type": "text",
+            "text": "Accuracy",
+            "id": "accuracyLevel",
+            "_role": "Generic.Tests.Steps.MoreDetails",
+            "pathToValue": [
+                "$this['nlpResponseObj']",
+                "intentDetectionConfidence"
+            ]
+        },
+        {
+            "type": "json",
+            "text": "Parameters",
+            "id": "parameters",
+            "_role": "Generic.Tests.Steps.MoreDetails",
+            "pathToValue": [
+                "$this['nlpResponseObj']",
+                "parameters"
+            ]
+        },
+        {
+            "type": "text",
+            "text": "Status",
+            "class":"studentTestSetsStatus",
+            "id": "status_toStep",
+            "pathToValue": [
+                "state"
+            ],
+            "icon": {
+                "failed": "fa fa-circle fx-status-error",
+                "passed": "fa fa-circle fx-status-success",
+                "not executed": "fa fa-circle fx-status-warning"
+            }
+        }
+    ],
+    "rows": []
+}

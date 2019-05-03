@@ -1,0 +1,93 @@
+{
+  "type": "menu",
+  "id": "appMenu",
+  "_icon": "/assets/webct/img/logo-bcm.png",
+  "text": null,
+  "navigateTo": "",
+  "menus": [{}],
+  "details": [
+    {
+      "type": "input-select",
+      "id": "courseLanguage",
+      "hidden": true,
+      "placeholder": "application___selectLanguage",
+      "text": "application___language",
+      "valueList": [
+        {
+          "key": "pt",
+          "value": "generic___language___pt"
+        },
+        {
+          "key": "en",
+          "value": "generic___language___en"
+        },
+        {
+          "key": "es",
+          "value": "generic___language___es"
+        },
+        {
+          "key": "fr",
+          "value": "generic___language___fr"
+        }
+      ]
+    },
+    {
+      "type": "wrapper",
+      "id": "navUserWrapper",
+      "details": [
+        {
+          "type": "image",
+          "text": null,
+          "id": "userLogo",
+          "value": "/assets/images/platform/avatar.svg"
+        },
+        {
+          "type": "label",
+          "id": "userName",
+          "text": null,
+          "dynamicProps": {
+            "value": "'{{preferred-username}}'"
+          }
+        },
+        {
+          "type": "menu",
+          "menus": [
+            {
+              "id": "userInfo",
+              "_navigateTo": "/myaccount",
+              "_dynamicProps": {
+                "text": "'{{preferred-username}}'"
+              },
+              "menus": [
+                {
+                  "type": "updatePage",
+                  "text": "generic___operations___logout",
+                  "icon": "glyphicon glyphicon-off",
+                  "parameters": [
+                    {
+                      "key": "updatePageParameter",
+                      "value": {
+                        "customLogout": {
+                          "lazyLoading": false
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "customCheckIxsExistence"
+    },
+    {
+      "type": "customLogout",
+      "id": "customLogout",
+      "lazyLoading": true,
+      "hidden": true
+    }
+  ]
+}

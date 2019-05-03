@@ -1,0 +1,248 @@
+{
+    "type": "initTable",
+    "id": "programIntentsTable",
+    "lazyLoading": true,
+    "header": {
+        "id": "pageHeader",
+        "_seo": {
+            "text": "program___intent___namePlural",
+            "icon": "fa fa-book"
+        },
+        "operations": {
+            "id": "pageHeaderOperations",
+            "text": "generic___operations___operations",
+            "icon": "glyphicon glyphicon-cog",
+            "parameters": [
+                {
+                    "id": "intentTraining",
+                    "type": "openModal",
+                    "text": "program___modelTraining___operationLabel",
+                    "size": "lg",
+                    "mockToLoad": "programs/program-training"
+                },
+                {
+                    "id": "createIntent",
+                    "type": "openModal",
+                    "icon": "fa fa-plus",
+                    "size": "lg",
+                    "mockToLoad": "programs/program-intent-create"
+                }
+            ]
+        },
+        "details": [
+            {
+                "id": "defaultAlert",
+                "type": "label",
+                "class": "default-connection-warning",
+                "text": null,
+                "value": "<div class='alert alert-info'><i class='fa fa-info'> {{@fv()@i18n('program___intent___minNbrIntents')}}</i></div>",
+                "dynamicProps": {
+                    "hidden": "{{programIntentsAPI}}.length > 1"
+                }
+            },
+            {
+                "type": "initParameters",
+                "urlResource": [
+                    {
+                        "key": "id",
+                        "value": "programAPIResponse"
+                    },
+                    {
+                        "key": "apiRecycle",
+                        "value": false
+                    },
+                    {
+                        "key": "path",
+                        "value": "{{SchoolBE}}/programs/[[programID]]"
+                    },
+                    {
+                        "key": "queryString",
+                        "value": {
+                            "keys": "{\"_id\":1,\"name\":1,\"code\":1,\"version\":1}"
+                        }
+                    },
+                    {
+                        "key": "headers",
+                        "value": {
+                            "Authorization": "Bearer {{token}}",
+                            "IXS": "{{IXS_id}}"
+                        }
+                    }
+                ],
+                "details": [
+                    {
+                        "type": "label",
+                        "id": "programCode",
+                        "pathToValue": [
+                            "code"
+                        ]
+                    },
+                    {
+                        "type": "label",
+                        "id": "programName",
+                        "pathToValue": [
+                            "name"
+                        ]
+                    },
+                    {
+                        "type": "label",
+                        "id": "programVersion",
+                        "pathToValue": [
+                            "version"
+                        ]
+                    }
+                ],
+                "hidden": true
+            }
+        ]
+    },
+    "urlResource": [
+        {
+            "key": "id",
+            "value": "programIntentsAPI"
+        },
+        {
+            "key": "apiRecycle",
+            "value": false
+        },
+        {
+            "key": "path",
+            "value": "{{SchoolBE}}/programs/[[programID]]/intents"
+        },
+        {
+            "key": "headers",
+            "value": {
+                "Authorization": "Bearer {{token}}",
+                "IXS": "{{IXS_id}}"
+            }
+        }
+    ],
+    "columns": [
+        {
+            "type": "label",
+            "id": "intentIdx",
+            "pathToValue": [
+                "index",
+                "$this + ''"
+            ],
+            "text": "intentIdx",
+            "hidden": true
+        },
+        {
+            "type": "expand",
+            "id": "trainingPhrasesExpand",
+            "mockToLoad": "programs/program-intent-list-trainingPhrases",
+            "pathToValue": [
+                "trainingPhrases"
+            ],
+            "class": "col-sm-1"
+        },
+        {
+            "type": "label",
+            "id": "originalDisplayName",
+            "pathToValue": [
+                "displayName"
+            ],
+            "hidden": true
+        },
+        {
+            "type": "label",
+            "id": "displayName",
+            "pathToValue": [
+                "displayName",
+                "@getDisplayNameFormated($this,'_')"
+            ]
+        },
+        {
+            "type": "label",
+            "id": "displayNameWithState",
+            "text": "program___intent___intentName",
+            "pathToValue": [
+                "isUsed",
+                "$this ? 'yes' : 'no'"
+            ],
+            "html": {
+                "no": "{{@fv()@replaceTagVars('displayName') + '  <i class=\"fa fa-circle alert-notUsed\" title=\"' + @i18n('program___intent___notUsed') + '\"></i>'}}",
+                "yes": "{{@fv()@replaceTagVars('displayName')}}"
+            }
+        },
+        {
+            "type": "label",
+            "id": "intentDescription",
+            "text": "program___intent___description",
+            "pathToValue": [
+                "description"
+            ]
+        },
+        {
+            "type": "context",
+            "id": "usedFlagCtx",
+            "pathToValue": [
+                "$this['isUsed'] + ''"
+            ]
+        },
+        {
+            "type": "actions",
+            "id": "actions",
+            "operations": [
+                {
+                    "id": "viewIntent",
+                    "type": "openModal",
+                    "text": "generic___seeDetails",
+                    "icon": "fuxicons fuxicons-eye",
+                    "size": "lg",
+                    "mockToLoad": "programs/program-intent-details",
+                    "parameters": [
+                        {
+                            "key": "context",
+                            "value": [
+                                "programCode",
+                                "programName",
+                                "programVersion",
+                                "intentIdx",
+                                "intentDetails",
+                                "displayName",
+                                "originalDisplayName",
+                                "intentDescription"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "removeIntent",
+                    "type": "openModal",
+                    "text": "generic___operations___remove",
+                    "icon": "fa fa-trash-o",
+                    "mockToLoad": "programs/program-intent-remove",
+                    "_role": "Programs.Intents.Operations.Remove",
+                    "parameters": [
+                        {
+                            "key": "context",
+                            "value": [
+                                "programCode",
+                                "intentIdx",
+                                "originalDisplayName",
+                                "displayName"
+                            ]
+                        }
+                    ],
+                    "dynamicProps": {
+                        "disabled": "'{{usedFlagCtx}}' == 'true'"
+                    }
+                }
+            ]
+        }
+    ],
+    "rows": [],
+    "parameters": [
+        {
+            "key": "tableActions",
+            "value": {
+                "export": false,
+                "columnManager": false,
+                "search": true,
+                "pagination": false
+            }
+        }
+    ]
+}

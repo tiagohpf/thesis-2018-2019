@@ -1,0 +1,399 @@
+{
+    "type": "page",
+    "id": "pageEntityDetails",
+    "tabs": [
+        {
+            "id": "studentTestSetsMainContainerTab",
+            "components": [
+                {
+                    "type": "initParameters",
+                    "details": [
+                        {
+                            "type": "context",
+                            "id": "studentProgsLearnedIds",
+                            "urlResource": [
+                                {
+                                    "key": "id",
+                                    "value": "studentProgramsLearnedApi"
+                                },
+                                {
+                                    "key": "path",
+                                    "value": "{{SchoolBOT}}/students/[[id]]"
+                                },
+                                {
+                                    "key": "apiRecycle",
+                                    "value": false
+                                },
+                                {
+                                    "key": "headers",
+                                    "value": {
+                                        "Authorization": "Bearer {{token}}",
+                                        "IXS": "{{IXS_id}}"
+                                    }
+                                },
+                                {
+                                    "key": "queryString",
+                                    "value": {
+                                        "keys": "{\"_id\":1,\"programs\":1}"
+                                    }
+                                }
+                            ],
+                            "pathToValue": [
+                                "@getStudentProgramsByStatusWithoutId($this['programs'],'L','status')"
+                            ]
+                        },
+                        {
+                            "type": "initTable",
+                            "id": "studentTestSetsComponent",
+                            "dynamicProps": {
+                                "lazyLoading": "!'{{studentProgsLearnedIds}}'"
+                            },
+                            "icon": "fa fa-table",
+                            "header": {
+                                "id": "pageHeader",
+                                "seo": {
+                                    "_text": "application___testSets",
+                                    "_icon": "fuxicons fuxicons-tests"
+                                },
+                                "operations": {
+                                    "size": 2,
+                                    "text": "Operations",
+                                    "id": "OpenModalExplanation",
+                                    "icon": "fa fa-cog",
+                                    "parameters": []
+                                },
+                                "details": [
+                                    {
+                                        "type": "groupParameters",
+                                        "class": "col-sm-12 groupParameters_noHeader",
+                                        "parameters": []
+                                    }
+                                ]
+                            },
+                            "urlResource": [
+                                {
+                                    "key": "path",
+                                    "value": "{{AppAPIBotConfig}}/testSets"
+                                },
+                                {
+                                    "key": "queryString",
+                                    "value": {
+                                        "page": "((page))",
+                                        "pagesize": "((pagesize))",
+                                        "count": null,
+                                        "filter": "{\"programId\": { \"$in\": {{studentProgsLearnedIds}} }}",
+                                        "sort": "-lastUpdate",
+                                        "keys": "{\"name\":1,\"description\":1,\"belongsTo\":1,\"status\":1,\"lastUpdate\":1,\"version\":1, \"programId\":1}"
+                                    }
+                                },
+                                {
+                                    "key": "pathToMainData",
+                                    "value": [
+                                        "_embedded"
+                                    ]
+                                },
+                                {
+                                    "key": "apiRecycle",
+                                    "value": false
+                                },
+                                {
+                                    "key": "headers",
+                                    "value": {
+                                        "Authorization": "Bearer {{token}}",
+                                        "IXS": "{{IXS_id}}"
+                                    }
+                                }
+                            ],
+                            "parameters": [
+                                {
+                                    "key": "tableActions",
+                                    "value": {
+                                        "export": false,
+                                        "pagination": false,
+                                        "columnManager": false,
+                                        "search": false
+                                    }
+                                }
+                            ],
+                            "columns": [
+                                {
+                                    "type": "expand",
+                                    "id": "testsList",
+                                    "dynamicProps": {
+                                        "lazyLoading": "!{{test_data_api}}"
+                                    },
+                                    "mockToLoad": "testSets/student-test-sets-expand-toTests",
+                                    "pathToValue": [
+                                        {
+                                            "$filter": [
+                                                "$this['testSetId']==='{{tableTestSetId}}'"
+                                            ]
+                                        },
+                                        "tests",
+                                        "tests"
+                                    ],
+                                    "pathToValueList": [
+                                        "test_data_api",
+                                        "_embedded"
+                                    ]
+                                },
+                                {
+                                    "type": "json",
+                                    "hidden": true,
+                                    "id": "tableTestSetId",
+                                    "pathToValue": [
+                                        "_id",
+                                        "$oid"
+                                    ]
+                                },
+                                {
+                                    "type": "text",
+                                    "id": "tableName",
+                                    "pathToValue": "name",
+                                    "text": "Name",
+                                    "sort": true,
+                                    "fiter": true,
+                                    "sortTemplate": {
+                                        "sort": "{\"name\":{{@fv()@setSortDirection(@replaceTagVars('config::student_testsetMainTable'))}}}"
+                                    }
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "programId",
+                                    "pathToValue": [
+                                        "programId"
+                                    ]
+                                },
+                                {
+                                    "type": "text",
+                                    "id": "programName",
+                                    "text": "Programa",
+                                    "urlResource": [
+                                        {
+                                            "key": "path",
+                                            "value": "{{AppAPIBotConfig}}/programs"
+                                        },
+                                        {
+                                            "key": "queryString",
+                                            "value": {
+                                                "filter": "{\"_id\":{ \"$in\": {{@fv()@buildFilterByID(@replaceTagVars('columns::programId'))}} }}",
+                                                "keys": "{\"_id\":1,\"name\":1}"
+                                            }
+                                        },
+                                        {
+                                            "key": "headers",
+                                            "value": {
+                                                "Authorization": "Bearer {{token}}",
+                                                "IXS": "{{IXS_id}}"
+                                            }
+                                        }
+                                    ],
+                                    "pathToValueList": [
+                                        "_embedded"
+                                    ],
+                                    "pathToValue": [
+                                        {
+                                            "$filter": [
+                                                "_id",
+                                                "$this['$oid'] === '{{programId}}'"
+                                            ]
+                                        },
+                                        "name"
+                                    ]
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "tableDescription",
+                                    "pathToValue": "description",
+                                    "hidden": true
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "tableToken",
+                                    "hidden": true,
+                                    "pathToValue": [
+                                        "belongsTo",
+                                        "0"
+                                    ]
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "tableStatusContext",
+                                    "hidden": true,
+                                    "pathToValue": [
+                                        "status"
+                                    ]
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "tableCourseId",
+                                    "pathToValue": [
+                                        "@getCourseParam({{testsetNames}},$this['belongsTo']['0'],'id')"
+                                    ],
+                                    "hidden": true
+                                },
+                                {
+                                    "type": "text",
+                                    "id": "execution_at",
+                                    "pathToValue": [
+                                        {
+                                            "$filter": [
+                                                "$this['testSetId']==='{{tableTestSetId}}'"
+                                            ]
+                                        },
+                                        "tests",
+                                        "lastExecution"
+                                    ],
+                                    "pathToValueList": "_embedded",
+                                    "text": "Last Run date",
+                                    "urlResource": [
+                                        {
+                                            "key": "path",
+                                            "value": "{{SchoolBOT}}/tests"
+                                        },
+                                        {
+                                            "key": "id",
+                                            "value": "test_data_api"
+                                        },
+                                        {
+                                            "key": "queryString",
+                                            "value": {
+                                                "filter": "{\"testSetId\":{\"$in\": {{columns::tableTestSetId}} } , \"studentId\" : \"[[id]]\" }",
+                                                "keys": "{\"tests.tests.steps.nlpResponseObj\":0, \"tests.tests.steps.nlpResponse\":0}"
+                                            }
+                                        },
+                                        {
+                                            "key": "apiRecycle",
+                                            "value": false
+                                        },
+                                        {
+                                            "key": "headers",
+                                            "value": {
+                                                "Authorization": "Bearer {{token}}",
+                                                "IXS": "{{IXS_id}}"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "text",
+                                    "id": "status",
+                                    "class": "studentTestSetsStatus",
+                                    "pathToValue": [
+                                        {
+                                            "$filter": [
+                                                "$this['testSetId']==='{{tableTestSetId}}'"
+                                            ]
+                                        },
+                                        "tests",
+                                        "state"
+                                    ],
+                                    "pathToValueList": [
+                                        "test_data_api",
+                                        "_embedded"
+                                    ],
+                                    "text": "Status",
+                                    "icon": {
+                                        "failed": "fa fa-circle fx-status-error",
+                                        "passed": "fa fa-circle fx-status-success",
+                                        "not executed": "fa fa-circle fx-status-warning"
+                                    },
+                                    "dynamicProps": {
+                                        "lazyLoading": "!{{test_data_api}}"
+                                    }
+                                },
+                                {
+                                    "type": "custom-component",
+                                    "subType": "custom-survey-horiz-chart",
+                                    "text": "% Result Test",
+                                    "class": "vertical_middle_tableColumn",
+                                    "dynamicProps": {
+                                        "lazyLoading": "!{{test_data_api}}"
+                                    },
+                                    "size": "sm",
+                                    "id": "testsList_chart",
+                                    "pathToValueList": [
+                                        "test_data_api",
+                                        "$this['_embedded'].length > 0 ? $this['_embedded'] : [{},{}]"
+                                    ],
+                                    "pathToValue": [
+                                        "@FilterIf_Data_ArrayOrObj($this , '{{tableTestSetId}}')",
+                                        "@FormatData_ProgressBar_TestSets($this['tests'])"
+                                    ],
+                                    "parameters": [
+                                        {
+                                            "key": "chartSurveyColors",
+                                            "value": [
+                                                "#47b748",
+                                                "#e32e2e",
+                                                "#ffdf01"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "actions",
+                                    "id": "tableTestsetActions",
+                                    "operations": [
+                                        {
+                                            "size": 1,
+                                            "text": "General actions",
+                                            "icon": "fa fa-cog",
+                                            "parameters": [
+                                                {
+                                                    "type": "execute",
+                                                    "id": "executeTest",
+                                                    "icon": "fa fa-play",
+                                                    "class": "btn-primary vertical_middle_tableColumn",
+                                                    "text": "Run test",
+                                                    "parameters": [
+                                                        {
+                                                            "key": "requestEndpoint",
+                                                            "value": "{{SchoolBE}}/testset/{{tableTestSetId}}/execute/[[id]]",
+                                                            "_value": "{{SchoolBE}}/programs/{{programFilter}}/executetests/auto?number={{testSetIndex}}"
+                                                        },
+                                                        {
+                                                            "key": "requestHeaders",
+                                                            "value": {
+                                                                "Authorization": "Bearer {{token}}",
+                                                                "IXS": "{{IXS_id}}"
+                                                            }
+                                                        },
+                                                        {
+                                                            "key": "requestType",
+                                                            "value": "POST"
+                                                        },
+                                                        {
+                                                            "key": "successRoute",
+                                                            "value": "/students/[[id]]/testSets"
+                                                        },
+                                                        {
+                                                            "key": "requestBody",
+                                                            "type": "json",
+                                                            "value": {
+                                                                "requestedBy": "'{{logged-user}}'"
+                                                            }
+                                                        },
+                                                        {
+                                                            "key": "successText",
+                                                            "value": "{{@fv()@setMessageText('Tests executed.','studentTestsTab')}}"
+                                                        },
+                                                        {
+                                                            "key": "errorText",
+                                                            "value": "{{@fv()@setMessageText('ERROR!\nCould not execute tests.','studentTestsTab')}}"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "rows": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

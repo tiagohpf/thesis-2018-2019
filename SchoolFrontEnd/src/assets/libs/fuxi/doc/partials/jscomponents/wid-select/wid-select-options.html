@@ -1,0 +1,268 @@
+<h3 id="docs-wid-select-options">Opções</h3>
+<p>O widget select disponibiliza as opções abaixo enumeradas.</p>
+
+<div class="table-responsive">
+    <table class="table fx-table fx-table-with-codemirror">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th class="fx-col-type">Tipo</th>
+                <th>Default</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>openMode</td>
+                <td>string</td>
+                <td><code>modal</code></td>
+                <td>Define o modo de apresentação do widget select. <code>modal | inline</code></td>
+            </tr>
+            <tr>
+                <td>showMode</td>
+                <td>string</td>
+                <td><code>grid</code></td>
+                <td>Define o modo como a lista de elementos é apresentada. <code>grid | tree</code></td>
+            </tr>
+            <tr>
+                <td>layoutOptions</td>
+                <td>Objeto</td>
+                <td>
+                    <a class="fx-devguide-toggle-code-vis" role="button">
+                        <i class="fa fa-angle-down"></i>ver código
+                    </a>
+                    <div class="fx-devguide-toggled-code-vis hidden">
+                        <form class="fx-codemirror">
+                            <textarea class="fx-codemirror-textarea-hidden">
+                                layoutOptions: {
+                                defaults: {
+                                resizable: true,
+                                livePaneResizing: true,
+                                resizerTip: "Resize",
+                                spacing_closed: 10,
+                                spacing_open: 10
+                                },
+                                center: {
+                                contentSelector: '.fx-widget-select-choices-wrapper'
+                                },
+                                east: {
+                                size: 300,
+                                minSize: 100,
+                                maxSize: 450,
+                                contentSelector: '.fx-widget-select-preview-body'
+                                },
+                                south: {
+                                size: 100,
+                                minSize: 50,
+                                maxSize: 300,
+                                contentSelector: '.fx-widget-selected-items-container'
+                                },
+                                west: {
+                                size: 300,
+                                minSize: 100,
+                                maxSize: 450,
+                                contentSelector: '.fx-widget-select-preview-body'
+                                }
+                                }
+                            </textarea>
+                        </form>
+                    </div>
+                </td>
+                <td>
+                    Opções do jQuery UI Layout.
+                </td>
+            </tr>
+            <tr>
+                <td>showAddView</td>
+                <td>booleano</td>
+                <td><code>true</code></td>
+                <td>Controla a visibilidade da opção de criar.</td>
+            </tr>
+            <tr>
+                <td>showPreviewView</td>
+                <td>booleano</td>
+                <td><code>true</code></td>
+                <td>Controla a visibilidade da opção de prévisualização.</td>
+            </tr>
+            <tr>
+                <td>selectItemMandatory</td>
+                <td>booleano</td>
+                <td><code>false</code></td>
+                <td>Controla a obrigatoriedade, ou não, da seleção de pelo menos um elemento.</td>
+            </tr>
+            <tr>
+                <td>selectItemMandatoryMessage</td>
+                <td>string</td>
+                <td><code>''</code></td>
+                <td>Permite disponibilizar uma mensagem no caso de não se selecionar nenhum elemento da lista.</td>
+            </tr>
+            <tr>
+                <td>multiSelection</td>
+                <td>booleano</td>
+                <td><code>true</code></td>
+                <td>Permite, ou não, selecionar mais do que um elemento.</td>
+            </tr>
+            <tr>
+                <td>showPageOptionSelectAll</td>
+                <td>booleano</td>
+                <td><code>false</code></td>
+                <td>Controla a visibilidade da opção de selecionar todos os items da listagem que está a ser visualizada.</td>
+            </tr>
+            <tr>
+                <td>itemsPerPage</td>
+                <td>número</td>
+                <td><code>20</code></td>
+                <td>Define o número de elementos apresentados por página.</td>
+            </tr>
+            <tr>
+                <td>allowDrag</td>
+                <td>booleano</td>
+                <td><code>true</code></td>
+                <td>Permite arrastar, ou não, a modal.</td>
+            </tr>
+            <tr>
+                <td>returnSelectedItemsSorted</td>
+                <td>booleano</td>
+                <td><code>false</code></td>
+                <td>Permite que os items retornados sejam, ou não, ordenados.</td>
+            </tr>
+            <tr>
+                <td>returnSelectedItemsHtml</td>
+                <td>booleano</td>
+                <td><code>false</code></td>
+                <td>Permite, ou não, retornar os items em HTML.</td>
+            </tr>
+            <tr>
+                <td>itemsTemplate</td>
+                <td>HTML</td>
+                <td>
+                    <a class="fx-devguide-toggle-code-vis" role="button">
+                        <i class="fa fa-angle-down"></i>ver código
+                    </a>
+                    <div class="fx-devguide-toggled-code-vis hidden">
+                        <form class="fx-codemirror">
+                            <textarea class="fx-codemirror-textarea-hidden">
+<tr class="{{active}}" data-id="{{id}}" data-text="{{text}}" data-show-preview="true">
+    <td class="fx-option-select">
+        <input type="checkbox" data-multi-select name="chk-item-selected" value="{{id}}" {{checked}}>
+        <input type="radio" data-uni-select name="rd-item-selected" value="{{id}}" {{checked}}>
+    </td>
+    <td>
+        <span class="fx-truncate-table-cell">{{name}}</span>
+    </td>
+    <td>
+        <span class="fx-truncate-table-cell">{{description}}</span>
+    </td>
+    <td class="fx-widget-select-action-wrapper" title="pré-visualizar" data-ws-preview>
+        <i class="fuxicons fuxicons-eye fx-widget-select-tag-preview-icon"></i>
+    </td>
+</tr>
+                        </textarea>
+                    </form>
+                </div>
+            </td>
+            <td>
+                Template HTML para cada item da lista. Apenas aplicável quando o modo selecionado é <code>grid</code>.
+            </td>
+        </tr>
+        <tr>
+            <td>selectedItemTemplate</td>
+            <td>HTML</td>
+            <td>
+                <a class="fx-devguide-toggle-code-vis" role="button">
+                    <i class="fa fa-angle-down"></i>ver código
+                </a>
+                <div class="fx-devguide-toggled-code-vis hidden">
+                    <form class="fx-codemirror">
+                        <textarea class="fx-codemirror-textarea-hidden">
+<div class="fx-widget-select-tag" data-id="{{id}}" data-text="{{text}}" data-show-preview="true">
+    <div class="fx-widget-select-tag-remove" title="remover" data-ws-remove>
+        <i class="glyphicon glyphicon-remove"></i>
+    </div>
+    <div class="fx-widget-select-tag-preview" title="pré-visualizar" data-ws-preview>
+        <span class="fx-widget-select-tag-name">{{text}}</span>
+        <i class="fuxicons fuxicons-eye fx-widget-select-tag-preview-icon"></i>
+    </div>
+</div>
+                    </textarea>
+                    </form>
+                </div>
+            </td>
+            <td>
+                Template HTML para cada elemento selecionado da lista.
+            </td>
+        </tr>
+        <tr>
+            <td>selectedItemReturnTemplate</td>
+            <td>HTML</td>
+            <td>
+                <code>''</code>
+            </td>
+            <td>
+                Template HTML para cada elemento seleccionado retornado da lista.
+            </td>
+        </tr>
+        <tr>
+            <td>jstreePlugins</td>
+            <td>array</td>
+            <td>
+                <code>[]</code>
+            </td>
+            <td>
+                Quando em modo <code>tree</code> permite disponibilizar plugins à jsTree. Em <a class="fx-docs-btn-link" href="https://www.jstree.com/" target="_blank">jsTree - jQuery tree plugin</a> pode consultar documentação mais pormenorizada. 
+            </td>
+        </tr>
+        <tr>
+            <td>jstreePluginsConfiguration</td>
+            <td>array</td>
+            <td>
+                <code>[]</code>
+            </td>
+            <td>
+                Quando em modo <code>tree</code> permite passar dados de configuração aos plugins adicionados à jsTree.
+            </td>
+        </tr>
+        <tr>
+            <td>jstreeCoreConfiguration</td>
+            <td>array</td>
+            <td>
+                <code>[]</code>
+            </td>
+            <td>
+                Quando em modo <code>tree</code> permite passar dados de configuração à jsTree.
+            </td>
+        </tr>
+<tr>
+    <td>clientAddValidator</td>
+    <td>function</td>
+    <td>
+        <code>undefined</code>
+    </td>
+    <td>
+        Caso se disponibilize a opção de criar, o programador poderá criar uma função de validação para a informação a inserir.
+    </td>
+</tr>
+<tr>
+    <td>notificationCallback</td>
+    <td>function</td>
+    <td>
+        <code>undefined</code>
+    </td>
+    <td>
+        Caso se disponibilize a opção de criar, o programador poderá criar uma função para notificar o utilizador se o elemento foi criado, ou não, com sucesso.
+    </td>
+</tr>
+<tr>
+    <td>lazyLoadCallback</td>
+    <td>function</td>
+    <td>
+        <code>undefined</code>
+    </td>
+    <td>
+        Nome da função a chamar caso o programador decida implementar a técnica de lazy load para carregar os dados da listagem. Esta função é da responsabilidade do programador. Recebe o número da página actual.
+    </td>
+</tr>
+        </tbody>
+    </table>
+</div>
+

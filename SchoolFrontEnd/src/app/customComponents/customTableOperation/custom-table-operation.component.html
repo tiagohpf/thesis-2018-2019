@@ -1,0 +1,10 @@
+<div *ngIf="operation && !operation.hidden" style="display:inline-block;" [ngStyle]="inputParameters?.style">
+  <button
+    type="button"
+    class="btn btn-small {{operation.class}} btn-link btn-link-in-table"
+    [hidden]="operation.hidden"
+    (click)="click()">
+    <i class="{{operation.icon}}"></i>
+  </button>
+</div>
+

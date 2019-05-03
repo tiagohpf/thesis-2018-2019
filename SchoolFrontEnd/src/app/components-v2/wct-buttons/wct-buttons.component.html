@@ -1,0 +1,62 @@
+<ng-template ngFor let-operationsGroup [ngForOf]="operationsBlock">
+    <div
+      class="btn-group"
+      *ngIf="!operationsGroup.hidden && visibleOperations(operationsGroup).length > 0"
+      [class.btn-group-sm]="tableOperations"
+      [class.show]="getButtonDropdownStatus(operationsGroup)"
+      [ngStyle]="inputParameters?.style || operationsGroup.style">
+      
+      <ng-template ngFor let-operation [ngForOf]="visibleOperations(operationsGroup)" let-i="index">
+          
+          <button
+              *ngIf="i < (visibleOperations(operationsGroup).length > operationsGroup.size ? (operationsGroup.size - 1) : operationsGroup.size)"
+              type="button"
+              class="btn"
+              title="{{(operation.title || (tableOperations ? operation.text : operation.placeholder)) | myI18n}}"
+              [class.btn-link]="tableOperations"
+              [ngClass]="operation.class"
+              [id]="operation.id ? 'wct-operations-btn-' + operation.id : ''"
+              [disabled]="disabled || operation.disabled || disabledSubmitBtn(operation)"
+              [hidden]="operation.hidden"
+              (mousedown)="buttonClick($event, operation)">
+                  <i *ngIf="operation.icon" class="{{operation.icon}}"></i> <span *ngIf="!tableOperations" innerHTML="{{operation.text | myI18n}}"></span>
+          </button>
+
+      </ng-template>
+
+      <!--
+          NO CASO DE HAVER MAIS DO QUE DUAS OPERAÇÕES, AGRUPA TODAS (MENOS A PRIMEIRA) EM "MORE OPERATIONS"
+      -->
+      <div class="btn-group" *ngIf="visibleOperations(operationsGroup).length > operationsGroup.size && visibleOperations(operationsGroup).length > 0">
+            <button
+            type="button"
+            class="btn dropdown-toggle wct-toggle-submenu"
+            title="{{(tableOperations ? operationsGroup.text : '') | myI18n}}"
+            [class.btn-link]="tableOperations"
+            [ngClass]="operationsGroup.class"
+            [id]="operationsGroup?.id ? 'wct-operations-btn-group-' + operationsGroup.id : ''"
+            [disabled]="disabled"
+            (click)="toggleButtonDropdown(operationsGroup)">
+                <i *ngIf="operationsGroup.icon" class="wct-button-icon {{operationsGroup.icon}}"></i>
+                <ng-template [ngIf]="!tableOperations">{{operationsGroup.text | myI18n}}</ng-template>
+            </button>
+            <div
+                class="dropdown-menu wct-toggle-submenu"
+                [class.show]="getButtonDropdownStatus(operationsGroup)">
+                <ng-template ngFor let-operation [ngForOf]="visibleOperations(operationsGroup)" let-i="index">
+                <a
+                    *ngIf="i >= (operationsGroup.size - 1)"
+                    href="#"
+                    class="dropdown-item"
+                    [ngClass]="operation.class"
+                    [id]="operation.id ? 'wct-operations-btn-' + operation.id : ''"
+                    [hidden]="operation.hidden"
+                    (mousedown)="buttonClick($event, operation)">
+                    <i *ngIf="operation.icon" class="wct-button-icon {{operation.icon}}"></i>{{operation.text | myI18n}}
+                </a>
+                </ng-template>
+            </div>
+        </div>
+    
+    </div>
+</ng-template>

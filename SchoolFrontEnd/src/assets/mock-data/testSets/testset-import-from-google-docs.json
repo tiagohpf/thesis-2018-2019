@@ -1,0 +1,121 @@
+{
+    "type": "initParameters",
+    "id": "importTestsSetFromGoogleDocs",
+    "urlResource": [
+        {
+            "key": "path",
+            "value": "{{SchoolBOT}}/testSets?filter={\"programId\": \"[[programID]]\"}"
+        },
+        {
+            "key": "headers",
+            "value": {
+                "Authorization": "Bearer {{token}}",
+                "IXS": "{{IXS_id}}"
+            }
+        }
+    ],
+    "details": [
+        {
+            "type": "context",
+            "id": "testSetsName",
+            "pathToValue": [
+                "_embedded",
+                "0",
+                "name"
+            ]
+        },
+        {
+            "type": "context",
+            "id": "testSetsID",
+            "pathToValue": [
+                "_embedded",
+                "0",
+                "_id",
+                "$oid"
+            ]
+        },
+        {
+            "type": "label",
+            "id": "generateDescription",
+            "class": "hide-label",
+            "icon": "fa fa-file-o",
+            "value": "Import base questions"
+        },
+        {
+            "type": "label",
+            "id": "generateDescription",
+            "class": "hide-label",
+            "dynamicProps": {
+                "lazyLoading": "!'{{testSetsName}}'"
+            },
+            "value": "Are you sure you wish to import base questions for program {{testSetsName}}?"
+        }
+    ],
+    "operations": {
+        "parameters": [
+            {
+                "type": "execute",
+                "id": "importTestsSetGDocsSubmitBtn",
+                "class": "btn-secundary",
+                "text": "generic___operations___import",
+                "parameters": [
+                    {
+                        "key": "requestEndpoint",
+                        "value": "{{SchoolBE}}/testset/{{testSetsID}}/importfromgooglesheets"
+                    },
+                    {
+                        "key": "requestType",
+                        "value": "POST"
+                    },
+                    {
+                        "key": "requestBody",
+                        "type": "json",
+                        "value": {
+                            "requestedBy": "{{logged-user}}"
+                        }
+                    },
+                    {
+                        "key": "requestHeaders",
+                        "value": {
+                            "Authorization": "Bearer {{token}}",
+                            "IXS": "{{IXS_id}}"
+                        }
+                    },
+                    {
+                        "key": "successText",
+                        "value": "Import success."
+                    },
+                    {
+                        "key": "errorText",
+                        "value": "ERROR!\n Could not execute import."
+                    },
+                    {
+                        "key": "onSuccess",
+                        "value": {
+                            "request": [
+                                {
+                                    "key": "updatePageParameter",
+                                    "value": {
+                                        "studentTestSetsPage": {
+                                            "lazyLoading": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "key": "successText",
+                                    "value": "Import success."
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "importTestsSetGDocsCancelBtn",
+                "type": "updatePage",
+                "text": "generic___operations___cancel",
+                "class": "btn-default"
+            }
+        ]
+    }
+}

@@ -1,0 +1,293 @@
+[
+	{
+		"category": "template fuxi",
+		"id": "template-login",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-login.png",
+		"name": "Template Login",
+		"description": "Página do sistema onde é feita a autenticação dos utilizadores.",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-login.html",
+		"doc": "http://wiki.ptin.corppt.com/pages/viewpage.action?pageId=447710317"
+	}, {
+		"category": "template fuxi",
+		"id": "template-header-breadcrumb",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-header.png",
+		"name": "Template Header + Breadcrumb",
+		"description": "Apresentação e comportamento dos headers e breadcrumb a utilizar nos diversos sistemas e aplicações PT Inovação.",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-header.html",
+		"doc": "http://wiki.ptin.corppt.com/pages/viewpage.action?pageId=470582149"
+	}, {
+		"category": "template fuxi",
+		"id": "template-megamenu",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-megamenu.png",
+		"name": "Template Mega Menu",
+		"description": "Apresentação e comportamento dos menus a utilizar nos diversos sistemas e aplicações PT Inovação.",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-megamenu.html",
+		"doc": "http://wiki.ptin.corppt.com/pages/viewpage.action?pageId=470582149#Header+breadcrumb(designeusabilidade)-Mega-Menu"
+	}, {
+		"category": "template fuxi",
+		"id": "template-menu2niveis",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-menu-2niveis.png",
+		"name": "Template Menu 2 níveis",
+		"description": "Apresentação e comportamento dos menus a utilizar nos diversos sistemas e aplicações PT Inovação.",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-menu-2niveis.html",
+		"doc": "http://wiki.ptin.corppt.com/pages/viewpage.action?pageId=470582149#Header+breadcrumb(designeusabilidade)-Menucom2níveis"
+	}, {
+		"category": "template fuxi",
+		"id": "template-menu-dimensoes-2niveis",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-menu-dimensoes-2niveis.png",
+		"name": "Template Menu Dimensões 2 níveis",
+		"description": "Apresentação e comportamento dos menus a utilizar nos diversos sistemas e aplicações PT Inovação.",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-menu-dimensoes-2niveis.html",
+		"doc": "http://wiki.ptin.corppt.com/pages/viewpage.action?pageId=470582149"
+	}, {
+		"category": "template fuxi",
+		"id": "template-menu-dimensoes-outrosmodulos",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-menu-dimensoes-outrosmodulos.png",
+		"name": "Template Menu Dimensões Outros Módulos",
+		"description": "Apresentação e comportamento dos menus a utilizar nos diversos sistemas e aplicações PT Inovação.",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-menu-dimensoes-outrosmodulos.html",
+		"doc": "http://wiki.ptin.corppt.com/pages/viewpage.action?pageId=470582149"
+	}, {
+		"category": "template fuxi",
+		"id": "template-menu-dimensoes",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-menu-dimensoes.png",
+		"name": "Template Menu Dimensões",
+		"description": "Apresentação e comportamento dos menus a utilizar nos diversos sistemas e aplicações PT Inovação.",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-menu-dimensoes.html",
+		"doc": "http://wiki.ptin.corppt.com/pages/viewpage.action?pageId=470582149"
+	}, {
+		"category": "template fuxi",
+		"id": "template-menu",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-menu.png",
+		"name": "Template Menu",
+		"description": "Apresentação e comportamento dos menus a utilizar nos diversos sistemas e aplicações PT Inovação.",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-menu.html",
+		"doc": "http://wiki.ptin.corppt.com/pages/viewpage.action?pageId=470582149"
+	}, {
+		"category": "componente",
+		"id": "template-quick-view",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-quick-view.png",
+		"name": "Template QuickView",
+		"description": "Componente de pré-visualização de informação, a partir do qual se pretende que o utilizador consiga obter informação sumária sobre a entidade, antes de entrar na página de detalhe da mesma.",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-quickView.html",
+		"doc": "http://wiki.ptin.corppt.com/display/FUXI/Quickview"
+	}, {
+		"category": "componente",
+		"id": "template-alert",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-alert.png",
+		"name": "Template Alert",
+		"description": "As notificações (também conhecidas por mensagens de feedback) servem para dar ao utilizador o feedback necessário de forma a auxiliá-lo num determinado momento da interação  com o sistema, melhorando assim a compreensão de um determinado fluxo do sistema.",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-alert.html",
+		"doc": "http://wiki.ptin.corppt.com/pages/viewpage.action?pageId=444564025"
+	}, {
+		"category": "componente",
+		"id": "template-alert-fatal",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-alert-fatal.png",
+		"name": "Template Alert Fatal",
+		"description": "Notificação de Alerta Fatal.",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-alert-fatal.html",
+		"doc": "http://wiki.ptin.corppt.com/pages/viewpage.action?pageId=444564025"
+	}, {
+		"category": "componente",
+		"id": "template-tabela",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-tabela.png",
+		"name": "Template Tabela",
+		"description": "Tabelas que listam uma série de registos de um mesmo tipo.",
+		"demo": "http://10.112.69.116/fuxi/wireframes/html/template-listagem.html",
+		"doc": "http://wiki.ptin.corppt.com/pages/viewpage.action?pageId=455966806"
+	}, {
+		"category": "componente",
+		"id": "template-font",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-fuxicons.png",
+		"name": "Icon Font do FUXI que contém os ícones usados no desenvolvimento dos templates.",
+		"description": "Fuxicons - Icon Font FUXI",
+		"demo": "http://10.112.69.116/share/fuxicon/icons-reference.html",
+		"doc": "http://wiki.ptin.corppt.com/display/FUXI/Iconografia"
+	}
+	, {
+		"category": "componente",
+		"id": "template-modal",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-modal.png",
+		"name": "Template Modal",
+		"description": "Pop-up apresentado sempre que é requerida a intervenção do utilizador para a conclusão de uma ação; e é necessário apresentar informações complementares (informações vindas de outros contextos ou informações breves que não requerem a existência de página própria).",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-modal.html",
+		"doc": "http://wiki.ptin.corppt.com/display/FUXI/Janela+Modal"
+	}
+	, {
+		"category": "template fuxi",
+		"id": "template-detail",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-detail.png",
+		"name": "Template Detalhe Entidade",
+		"description": "Template que permite visualização de detalhes de uma entidade (em forma de tabela ou não).",
+		"demo": "http://10.112.69.116/fuxi/wireframes/html/template-detail.html",
+		"doc": "http://10.112.69.116/fuxi/wireframes/html/template-detail.html"
+	}, {		
+		"category": "template fuxi",
+		"id": "template-splitter",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-splitter.png",
+		"name": "Template Splitter",
+		"description": "Barra lateral existente em algumas páginas dos sistemas, que pode ter diferentes funcionalidades associadas.",
+		"demo": "http://10.112.69.116/fuxi/wireframes/html/template-splitter.html",
+		"doc": "http://wiki.ptin.corppt.com/display/FUXI/Sidebars"
+	}, {
+		"category": "template fuxi",
+		"id": "template-wireframe",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-wireframe.png",
+		"name": "Template Wireframe",
+		"description": "Header, Breadcrumb, Footer todos juntos",
+		"demo": "http://10.112.69.116/fuxi/wireframes/html/template-wireframe.html",
+		"doc": "http://wiki.ptin.corppt.com/pages/viewpage.action?pageId=470582149"
+	}, {
+		"category": "template fuxi",
+		"id": "template-splitter-w-sidebar",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-splitter-with-sidebar.png",
+		"name": "Template Splitter com Tabs Laterais",
+		"description": "Separadores que permitem dividir um módulo, secção ou página em várias zonas.",
+		"demo": "http://10.112.69.116/fuxi/wireframes/html/template-splitter-with-sidebar.html",
+		"doc": "http://wiki.ptin.corppt.com/display/FUXI/Tabs+Laterais"
+	}, {
+		"category": "componente",
+		"id": "template-wizard",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-wizard.jpg",
+		"name": "Template Wizard",
+		"description": "O wizard é um componente que constitui um assistente para configurações, sendo usado tipicamente para processos de criação de entidades que requerem o preenchimento de dados por várias etapas, especialmente se os dados a preencher numa dada etapa dependerem diretamente dos dados preenchidos numa etapa anterior.",
+		"demo": "http://10.112.69.116/fuxi/wireframes/html/template-detail.html",
+		"doc": "http://wiki.ptin.corppt.com/display/FUXI/Wizard"
+	}, {
+		"category": "template fuxi",
+		"id": "template-botoes",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-botoes.png",
+		"name": "Template Botões",
+		"description": "O template botões pretende ilustrar os diversos tipos de conceitos de botões, assim como tamanhos e funcionalidades associadas aos mesmos.",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-buttons.html",
+		"doc": "http://wiki.ptin.corppt.com/pages/viewpage.action?pageId=514162829"
+	}, {
+		"category": "template fuxi",
+		"id": "template-dd-menu",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-dropdown-menu.png",
+		"name": "Template Dropdown menu",
+		"description": "O template dropdown menu pretende ilustrar os tipos de uso disponibilizados para os dropdown menus.",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-dropdown-menus.html",
+		"doc": "http://wiki.ptin.corppt.com/pages/viewpage.action?pageId=515179015"
+	}, {
+		"category": "componente",
+		"id": "template-loading",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-loading.png",
+		"name": "Template Loading",
+		"description": "O template loading exemplifica o uso do componente BlockUI que permite \"bloquear\" uma página, componente ou elemento.",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-loading.html",
+		"doc": "http://wiki.ptin.corppt.com/pages/viewpage.action?pageId=485557146"
+	}, {
+		"category": "componente",
+		"id": "template-widget-select",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-widget-select.jpg",
+		"name": "Template Widget Select",
+		"description": "O widget select é um componente que permite efectuar a selecção de um ou mais elementos, consoante as suas propriedades.",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-widget-select.html",
+		"doc": "http://wiki.ptin.corppt.com/display/FUXI/Widget+Select"
+	}, {
+		"category": "componente",
+		"id": "template-wizard-dinamic",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-wizard-dinamic.png",
+		"name": "Template Wizard Dinamic Steps",
+		"description": "O wizard é um componente que constitui um assistente para configurações, sendo usado tipicamente para processos de criação de entidades que requerem o preenchimento de dados por várias etapas, especialmente se os dados a preencher numa dada etapa dependerem diretamente dos dados preenchidos numa etapa anterior.",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-wizard-dynamic-steps.html",
+		"doc": "http://wiki.ptin.corppt.com/display/FUXI/Wizard"
+	}, {
+		"category": "template fuxi",
+		"id": "template-change-password",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-change-password.png",
+		"name": "Template Change Password",
+		"description": "Página onde é feita a alteração de Password em caso de primeiro login",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-change-password.html",
+		"doc": "#"
+	}, {
+		"category": "template fuxi",
+		"id": "template-edit-in-place",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-edit-in-place.png",
+		"name": "Template Edit in Place",
+		"description": "Estudo comportamento edição inline.",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-edit-in-place.html",
+		"doc": "#"
+	}, {
+		"category": "componente",
+		"id": "dashboard-angular",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-dashboard-angular.png",
+		"name": "Dashboard Angular",
+		"description": "Estudo Dashboard Angular",
+		"demo": "http://10.112.69.116/fuxi/wireframes/html/dashboard-sdorra/template-dashboard-sdorra.html",
+		"doc": "#"
+	}, {
+		"category": "componente",
+		"id": "dashboard",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-dashboard-jquery.png",
+		"name": "Dashboard jQuery",
+		"description": "Estudo Dashboard jQuery",
+		"demo": "http://10.112.69.116/fuxi/wireframes/html/template-dashboard.html",
+		"doc": "#"
+	}, {
+		"category": "componente",
+		"id": "color-picker",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-color-picker.png",
+		"name": "Color Picker",
+		"description": "Estudo componente color picker",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-colorpicker.html",
+		"doc": "http://bgrins.github.io/spectrum/"
+	}, {
+		"category": "componente",
+		"id": "expression-editor",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-editor-expressoes.png",
+		"name": "Editor de Expressões",
+		"description": "Editor de expressões (versão inicial)",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-expressions-editor.html",
+		"doc": "#"
+	}, {
+		"category": "componente",
+		"id": "dockbar",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-dockbar.png",
+		"name": "Dockbar",
+		"description": "Template Dockbar (offscreen menu)",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-offscreen-menu.html",
+		"doc": "http://wiki.ptin.corppt.com/display/FUXI/Dockbar"
+	}, {
+		"category": "componente",
+		"id": "toastr",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-toastr.png",
+		"name": "Toastr",
+		"description": "Template mensagens não intrusivas",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-toastr-msgs.html",
+		"doc": "http://codeseven.github.io/toastr/demo.html"
+	}, {
+		"category": "componente",
+		"id": "selectboxtree",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/selectboxtree.png",
+		"name": "Selectboxtree",
+		"description": "Template selectboxtree",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-selectbox-tree.html",
+		"doc": "http://wiki.ptin.corppt.com/display/FUXI/SelectBox+Tree"
+	}, {
+		"category": "template",
+		"id": "error-pages",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-error.png",
+		"name": "Páginas de erro e manutenção",
+		"description": "Páginas de sistema que informam o utilizador sobre erros relacionados com o sistema e com a interação do utilizador com o sistema",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-4xx-Client-Error.html",		
+		"doc": "http://wiki.ptin.corppt.com/pages/viewpage.action?pageId=615416763"
+	}, {
+		"category": "template",
+		"id": "search-page",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/template-search.png",
+		"name": "Página de pesquisa transversal",
+		"description": "A página de Pesquisa e Resultados é mostrada em resultado de uma pesquisa realizada de forma transversal no sistema, no header da aplicação.",
+		"demo": "http://10.112.69.116/fuxi/common/html/template-search.html",		
+		"doc": "http://wiki.ptin.corppt.com/display/FUXI/Pesquisa+Transversal+e+Resultados"
+	}, {
+		"category": "componente",
+		"id": "scrollable-tabs-page",
+		"thumb": "http://mocho.ptin.corppt.com/units/FUXI/Showroom%20Thumbs/scrollabletabs.png",
+		"name": "Scrollable Tabs",
+		"description": "Sistema de tabs que nunca quebram de linha e quando não cabem no viewport geram navegação",
+		"demo": "http://10.112.69.116/fuxi/components/tab/examples/#/demo",		
+		"doc": "http://10.112.69.116/fuxi/components/tab/examples/#/demo"
+	}
+]

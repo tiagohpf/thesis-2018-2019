@@ -1,0 +1,1231 @@
+@import "variables";
+@import "mixins";
+
+// Styles --> IXS
+#wct-each-parameter-IXS_login {
+  .fa {
+    &.fa-exclamation-circle {
+      color: red;
+    }
+    &.fa-check-square {
+      color: #01bd01;
+    }
+  }
+}
+
+.wct-container {
+  .wct-side-menu-toggle {
+    display: none !important;
+  }
+  &.show-side-menu {
+    .wct-side-menu-toggle {
+      display: flex !important;
+    }
+  }
+}
+
+// Styles --> Students
+#wct-card-container-studentsMainCard {
+  margin: 10px;
+  margin-top: 0px;
+}
+
+.card_ProgramName {
+  .icon {
+    margin-left: 10px;
+  }
+}
+
+#wct-content-studentsMainCard {
+  .card {
+    box-shadow: none;
+    border: none;
+    .card-header {
+      display: none;
+    }
+  }
+
+  .student_image {
+    img {
+      max-width: 100%;
+      border-radius: 50%;
+      height: auto;
+      margin-top: 20px;
+    }
+  }
+}
+
+.wct-main-wrapper {
+  align-items: normal !important;
+}
+
+#wct-content-studentmdainCardCreate {
+  margin: 10px;
+  #wct-card-container-studentmdainCardCreate {
+    margin: 10px;
+  }
+  .card-wrapper {
+    width: 25%;
+    padding: 15px;
+  }
+  .image_cards_StudentCreate {
+    text-align: center;
+    padding-left: 0px;
+  }
+}
+
+#wct-page-header-studentProgramsComponent {
+  z-index: 1;
+}
+
+#wct-side-filter-studentProgramsComponent {
+  z-index: 2;
+}
+
+#wct-content-studentsProgramsMainCardList {
+  z-index: 0;
+  margin: 10px;
+  #wct-card-container-studentsProgramsMainCardList {
+    margin: 10px;
+    .student-deprecated-program {
+      background-color: yellow;
+      span {
+        font-family: FallingSky;
+        font-size: 18px;
+        color: #4f4f4f;
+        font-weight: 400;
+        text-decoration: none solid rgb(79, 79, 79);
+        line-height: 26px;
+      }
+    }
+  }
+  .card-wrapper {
+    width: 25%;
+    padding: 15px;
+  }
+  .image_cards_StudentCreate {
+    text-align: center;
+    padding-left: 0px;
+  }
+}
+
+/*****    PROGRAMS CARDS STYLE    *****/
+#wct-page-tabsContent-studentsProgramsMainContainerTab {
+  background-color: transparent;
+  border: none;
+
+  .container-fluid {
+    padding-top: 0;
+  }
+  .card-wrapper {
+    padding: 25px;
+
+    @media only screen and (min-width: 1201px) {
+      width: 20%;
+    }
+
+    @media only screen and (min-width: 980px) and(max-width : 1200px) {
+      width: 33.333%;
+    }
+
+    @media only screen and (min-width: 768px) and(max-width : 979px) {
+      width: 33.333%;
+    }
+
+    @media only screen and (min-width: 480px) and( max-width : 767px) {
+      width: 50%;
+    }
+
+    @media only screen and (min-width: 320px) and( max-width : 479px) {
+      width: 100%;
+    }
+
+    .card {
+      * {
+        word-break: break-all;
+      }
+      box-shadow: 0px 0px 40px -9px rgba(0, 0, 0, 0.68);
+      background-size: cover;
+      background-color: #ffffff;
+      width: 100%;
+      border-radius: 7px;
+      border: 0px;
+      padding: 0;
+      margin-bottom: 0;
+      .card-header {
+        display: none;
+      }
+      .card-body {
+        padding: 0;
+        * {
+          padding: 0;
+        }
+        .programImage {
+          .basic-style {
+            margin-top: 0;
+            border-top-left-radius: 7px;
+            border-top-right-radius: 7px;
+            width: 100%;
+            height: 100%;
+          }
+          &.studentCreate {
+            img {
+              max-width: 100%;
+              height: 175px;
+              border-top-left-radius: 7px;
+              border-top-right-radius: 7px;
+              width: 100%;
+            }
+          }
+        }
+        .replaced-svg {
+          width: 15px;
+          margin-top: 4px;
+        }
+        .programName_escola {
+          a {
+            font-size: 16px;
+            word-break: break-all;
+          }
+        }
+        .deprecated-program {
+          position: absolute;
+          margin-top: 20px;
+          margin-left: 2px;
+
+          .student-deprecated-program {
+            padding: 0 5px 0 5px;
+            border-radius: 5px;
+          }
+        }
+        .cardInfo_Wrapper {
+          padding: 0 1.25rem 1.25rem 1.25rem;
+          .card {
+            box-shadow: none;
+            .programName {
+              a {
+                word-break: break-all;
+                font-size: 18px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/*****    PROGRAMS CARDS STYLE    *****/
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.card-list-container {
+  margin: 0 !important;
+}
+
+#wct-content-courseProgramsMainCardList {
+  z-index: 0;
+  #wct-card-container-courseProgramsMainCardList {
+    margin: 10px;
+  }
+  .card-wrapper {
+    width: 100%;
+    //padding: 15px;
+  }
+}
+
+#wct-content-studentPlanCardCreate {
+  #wct-card-container-studentPlanCardCreate {
+    margin: 10px;
+  }
+  .planName {
+    border: solid 1px #c3c3c3;
+    background-color: #c3c3c3;
+    height: 60px;
+    margin: 10px;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .card-wrapper {
+    width: 33.333%;
+    padding: 15px;
+  }
+}
+
+/*Student Detail*/
+
+// #wct-content-studentPropsComponent {
+//     background-color: transparent;
+//     padding-top: 30px;
+//     .btn {
+//         box-shadow: none;
+//     }
+//     #wct-each-parameter-studentImage {
+//         margin-bottom: 45px;
+//         text-align: center;
+//         #wct-image-studentImage {
+//             width: 250px;
+//             height: 250px;
+//             border-radius: 50%;
+//             margin-top: 10%;
+//         }
+//     }
+// }
+
+/*Program Detail */
+
+#wct-content-detailsCoverContainer {
+  #wct-each-parameter-programImage {
+    margin-bottom: 45px;
+    text-align: center;
+    #wct-image-programImage {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      margin-top: 10%;
+    }
+  }
+}
+
+/*Remove Header*/
+
+.groupParameters_noHeader {
+  .card-header {
+    display: none;
+  }
+}
+
+.fx-tag,
+.fx-tag-m,
+.fx-tag-lg {
+  background: #ebebeb;
+  border: 1px solid #d6d6d6;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 4px 4px 0;
+  max-width: 300px;
+  padding: 1px 3px;
+  position: relative;
+}
+
+.fx-tag .fx-tag-remove,
+.fx-tag-m .fx-tag-remove,
+.fx-tag-lg .fx-tag-remove {
+  cursor: pointer;
+  position: absolute;
+  top: 4px;
+}
+
+.fx-tag-m {
+  padding: 3px 5px;
+}
+
+#wct-content-studentProgramsDetails {
+  ul {
+    display: inline-block;
+    position: absolute;
+    right: 26px;
+    margin-top: 3px;
+  }
+  .tab-content {
+    margin-right: 95px;
+  }
+  .nav-link {
+    &.active {
+      border: none;
+    }
+  }
+}
+
+#wct-each-parameter-courseSelect {
+  padding: 0;
+}
+
+#wct-content-studentsDetailProgramsMainCardList {
+  #wct-card-container-studentsDetailProgramsMainCardList {
+    margin: 10px;
+  }
+  .card-wrapper {
+    width: 33.333%;
+    padding: 15px;
+  }
+}
+
+.primary-header {
+  p {
+    color: #1962ef;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
+
+#wct-table-dialogsMain {
+  display: inherit;
+  border-collapse: separate;
+  border-spacing: 2px;
+  border-color: grey;
+}
+
+.tuplelist-component .card .remove-card {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  cursor: pointer;
+}
+
+#wct-table-dialogsMain {
+  display: table;
+}
+
+#wct-page-header-pageLearn {
+  padding: 0px 10px 0px;
+}
+
+#wct-each-parameter-languageProgramStudent {
+  .form-group {
+    padding-left: 0;
+  }
+}
+.operation-page-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 9999;
+}
+.operation-page-loading .abs-middle {
+  width: 100%;
+  text-align: center;
+}
+
+.bg-light {
+  background-color: #0099ab !important;
+}
+.navbar-light .navbar-brand {
+  color: white;
+}
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+}
+#wct-each-parameter-IXS_login {
+  padding-left: 3px;
+  .card-header {
+    border-bottom: 1px solid #0099ab !important;
+  }
+}
+.image-tags {
+  img {
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50%;
+  }
+}
+.component-type-tag {
+  .div-as-table {
+    margin-bottom: 0;
+  }
+  .each-parameter {
+    display: table-cell;
+  }
+}
+
+#wct-each-parameter-courseProgramsButtons {
+  button {
+    margin-right: 15px;
+  }
+}
+#wct-content-courseProgramsAssignMainCardList {
+  z-index: 0;
+  #wct-card-container-courseProgramsAssignMainCardList {
+    margin: 10px;
+  }
+  .card-wrapper {
+    width: 100%;
+    padding: 15px;
+  }
+}
+
+// -------- WIZARD --------
+.fx-wizard-wrapper {
+  nav {
+    width: 100%;
+    height: auto !important;
+    background: transparent;
+    .fx-nav-items {
+      // issue # AMALIA-562
+      display: none;
+      justify-content: center;
+      li {
+        position: relative;
+        display: flex;
+        align-items: center;
+        background: transparent !important;
+        border: 0;
+        margin: 0 15px;
+        &:not(:last-of-type):after {
+          position: absolute;
+          left: calc(100% - -5px);
+          width: 20px;
+          border-bottom: 2px solid #f5f5f5;
+        }
+        .inner-padding {
+          padding: 0;
+        }
+        .fx-wizardstep-number {
+          display: block;
+          margin: 0;
+          border-radius: 50%;
+        }
+        .fx-wizardstep-title {
+          display: none;
+        }
+        .fx-wizardstep-number {
+          background: #f5f5f5;
+        }
+        &.active .fx-wizardstep-number {
+          background: #c2c2c2;
+        }
+        &.visited .fx-wizardstep-number {
+          //background: #00ffb8 url('../img/check_white.svg') no-repeat center center;
+          background-size: 75% auto;
+          font-family: "icomoon" !important;
+          text-indent: -9999px;
+        }
+      }
+    }
+  }
+}
+
+//*****WIZARD ASSIGN PROGRAM SAVE IDS PROGRAMS , SE COLOCAR NO MOCK HIDDEN A VALIDAÇÂO DE OBRIGATORIEDADE FALHA
+#wct-each-parameter-assignProgramsIds,
+#wct-each-parameter-selectedPlanId,
+#wct-each-parameter-plan-id,
+#wct-each-parameter-selectedAddonId,
+#wct-each-parameter-selectedCustomerId,
+#wct-each-parameter-stripe-selected-card,
+#wct-each-parameter-selectedCustomerId {
+  display: none;
+}
+
+
+
+.btn{
+    background-color: #dddddd;
+}
+/**
+    SLIDER
+*/
+body .ui-slider .ui-slider-handle {
+  background-color: #0099ab !important;
+}
+body .ui-slider .ui-slider-range {
+  background-color: #0099ab !important;
+  opacity: 0.3 !important;
+}
+
+body .ui-slider {
+  background-color: #e6e6e6;
+  border-color: #e6e6e6;
+}
+
+body .ui-slider.ui-slider-horizontal .ui-slider-handle {
+  top: -0.2em;
+}
+
+body .ui-slider.ui-slider-vertical .ui-slider-handle {
+  left: -0.2em;
+}
+
+body .ui-slider .ui-slider-handle {
+  background-color: #0275d8;
+  transition: background-color 0.3s;
+  border-radius: 100%;
+}
+
+body .ui-slider.ui-slider-animate .ui-slider-handle {
+  transition: background-color 0.3s, left 0.3s;
+}
+
+body .ui-slider .ui-slider-handle:hover {
+  background-color: #0267bf;
+}
+
+body .ui-slider .ui-slider-range {
+  background: #43a7fd;
+}
+.hide-label {
+  margin-top: 23px;
+}
+
+.editFieldButtons {
+  * {
+    float: right;
+  }
+  .editButton {
+    background-color: white;
+  }
+}
+#wct-each-parameter-forwardToHuman {
+  // input-radio {
+  //     p{
+  //         label{
+  //             font-weight: bold;
+  //             font-size: 14px;
+  //             color: rgba(43, 61, 81, 0.8);
+  //         }
+  //     }
+  // }
+  margin-bottom: 5px;
+}
+.subMenus {
+  a {
+    display: block;
+    padding: 0rem 1rem;
+    color: #f8f9fa !important;
+  }
+}
+.side-nav-item-submenu {
+  a {
+    display: block;
+    padding: 0.3rem 1rem;
+    color: #f8f9fa !important;
+  }
+}
+.Menus {
+  margin-top: 20px;
+  margin-left: 5px;
+}
+
+#wct-content-studentHeaderComponent {
+  #wct-image-studentImage_Header {
+    width: 55px !important;
+    height: 55px !important;
+    border-radius: 50%;
+  }
+  a {
+    font-size: 16px;
+  }
+}
+
+// FAZ OVERRIDE AO BOOTSTRAP 4 QUE FAZ UPPERCASE
+.btn {
+  text-transform: capitalize;
+}
+.wct-side-menu {
+  a {
+    color: black;
+  }
+}
+
+#wct-page-tabsContent-studentsProgramsMainContainerTab {
+  border-radius: 0;
+  border: 0;
+}
+.studentNameHeader {
+  flex: none;
+  width: auto;
+}
+
+.wct-side-menu {
+  &.bg-light {
+    background-image: linear-gradient(45deg, #360033, #0b8793) !important;
+  }
+}
+
+.bg-light {
+  background-color: #253aa5 !important;
+}
+
+/******* Necessário Para aparecer o icon do subType dos cards sobre as imagens  *******/
+.card {
+  &.card-as-select {
+    &.card-selected:before {
+      z-index: 10;
+      color: black;
+    }
+  }
+}
+
+.wct-main-wrapper {
+  .modal-header {
+    display: block;
+  }
+}
+
+#wct-label-knowledgeCenterHeader {
+  padding-left: 15px !important;
+  font-size: 20px;
+  color: $primary-header-text-color;
+}
+.second-title {
+  padding-left: 30px !important;
+}
+
+#wct-page-tabsContent-knowledgeCenterMainContainer {
+  background-color: transparent;
+  border: none;
+
+  .container-fluid {
+    padding-top: 0;
+  }
+
+  .wct-header-info {
+    p {
+      font-size: 17px;
+      font-weight: bold;
+      padding-left: 15px;
+    }
+  }
+
+  .card-wrapper {
+    padding: 25px;
+
+    @media only screen and (min-width: 1201px) {
+      width: 16.66%;
+    }
+
+    @media only screen and (min-width: 980px) and(max-width : 1200px) {
+      width: 33.333%;
+    }
+
+    @media only screen and (min-width: 768px) and(max-width : 979px) {
+      width: 33.333%;
+    }
+
+    @media only screen and (min-width: 480px) and( max-width : 767px) {
+      width: 100%;
+    }
+
+    @media only screen and (max-width: 320px) and( max-width : 479px) {
+      width: 100%;
+    }
+
+    .card {
+      box-shadow: 0px 0px 40px -9px rgba(0, 0, 0, 0.68);
+      background-size: cover;
+      background-color: #ffffff;
+      width: 100%;
+      border-radius: 7px;
+      border: 0px;
+      margin-bottom: 0;
+      min-height: 570px;
+      .card-header {
+        display: none;
+      }
+      .card-body {
+        padding: 0;
+        height: 100%;
+        // * {
+        //   padding: 0;
+        // }
+        img {
+          display: block;
+          margin-top: 10px;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 100%;
+          height: 250px;
+        }
+        .image-label-alignment-center {
+          .keep-alignment-to-label {
+            text-align: center;
+          }
+        }
+        .cardInfo_Wrapper {
+          padding: 0 50px;
+          .form-group {
+            padding-left: 0px !important;
+            .btn {
+              background-color: $btn-primary-color !important;
+              box-shadow: $btn-primary-shadow-color 0px 7px 30px 0px !important;
+            }
+          }
+        }
+          .wct-field-format-component {
+            .label-grouper {
+              width: 100%;
+              p {
+                color: #595959 !important;
+                font-size: 20px;
+              padding-left: 0 !important;
+            }
+          }
+        }
+      }
+      }
+    }
+
+  .card-wrapper-video {
+    .card {
+      .card-body {
+        .form-group {
+          padding-left: 0 !important;
+        }
+      }
+    }
+
+    video {
+      max-width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.card-select-radio {
+  .toggleVisible {
+    display: none;
+  }  
+  .card-selected {
+    box-shadow: 0px 0px 40px -9px rgba(0, 0, 0, 0.68);
+    background-color:rgba(0, 207, 182, 0.1);
+    &::before {
+      display: none;
+    }
+    .toggleVisible {
+      display: block;
+    }
+  }
+
+}
+
+
+#wct-card-container-plansCardList .card-wrapper:last-child button{
+  pointer-events: none;
+}
+
+
+//*********** BILLING ***********//
+#wct-card-container-currentPlanCard .card-wrapper{
+    width: 100% !important;
+}
+
+#wct-card-container-currentPlanCard,
+#wct-card-container-addonCardList,
+#wct-card-container-plansCardList  {
+    justify-content: center;
+
+    .toggleVisible {
+      display: block;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s, opacity 0.2s linear;
+    }
+    .card-wrapper{
+        width: 240px;
+
+
+        
+        .card-body {
+          /* background-image: url(/assets/temporary/images/plan_card_bg.png);
+          background-position: center center;
+          background-position-x: center;
+          background-position-y: center;
+          background-size: cover; */
+          padding: 0px;
+          border-radius: 10px;
+
+          &:hover {
+            .toggleVisible {
+              visibility: visible;
+              opacity: 1;
+            }
+            .btn-subscribe-inline {
+/*               width: 300px !important;
+              height: 50px;
+              font-size: 25px;
+ */              font-weight: 700;
+              background-color: #00cfb6;
+              
+            }
+          }
+
+          .plan-name{
+            background-color: #253aa5;
+            margin-top: 0px;
+            border-top-right-radius: 5px;
+            border-top-left-radius: 5px;
+
+            p {
+              white-space: nowrap;
+              width: 100%;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              font-size: 20px;
+              font-weight: 700;
+              padding-top: 18px;
+              color: white !important;
+            }
+
+        }
+        .plan-price {
+            background: #FFFFFF;
+            color: #253aa5;
+            padding: 0px;
+            border-radius: 5px;
+            border: 1px;
+            margin-left: 10%;
+            width: 80%;
+            height: 36px;
+            text-align: center;
+            flex: none;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            p {
+              color: #253aa5 !important;
+              font-size: 20px;
+            }
+        }
+        .plan-description {
+            div {
+                display: block;
+                float: left;
+                clear: both;
+                font-size: 14px;
+            }
+        }
+
+        .plan-detail {
+          .form-group {
+            margin: 0px;
+            padding: 0px;
+          }
+          .wct-field-format-label {
+            float: left;
+            width: 50%;
+            padding: 0px;
+            margin: 0px;
+          }
+          .wct-field-format-component {
+            float: right;
+            width: 50%;
+            padding: 0px;
+            margin: 0px;
+            text-align: center;
+            .label-grouper p {
+              font-size: 13px;
+              padding: 0px;
+              margin: 0px;
+            }
+          }
+        }
+
+
+
+        .addon-details {
+          height: 55px;
+          .form-group {
+            margin: 0px;
+            padding: 0px;
+          }
+          .wct-field-format-label {
+            display: none;
+            float: left;
+            width: 50%;
+            padding: 0px;
+            margin: 0px;
+          }
+          .wct-field-format-component {
+            float: right;
+            width: 100%;
+            padding: 0px;
+            margin: 0px;
+            text-align: center;
+            .label-grouper p {
+              font-size: 13px;
+              padding: 0px;
+              margin: 0px;
+            }
+          }
+        }
+
+
+
+      }
+
+    }
+
+
+
+
+    .hide-label .wct-field-format-label {
+        display: none;
+    }
+}
+
+
+#wct-content-currentPlanCard > div {
+  padding-top: 0px !important;
+}
+
+#wct-each-parameter-planDetail {
+  padding-top: 0px !important;
+}
+
+#wct-each-parameter-currentPlanCard {
+  padding-top: 0px;
+}
+
+#wct-content-newCustomer{
+    .wct-main-content-colored{
+        border: 0px;
+    }
+}
+
+#wct-card-container-customerListCards{
+  justify-content: center;
+  .card-wrapper {
+    width: 80%;
+    .card{
+      margin-bottom: 0px;
+
+      .card-body {
+        .wct-field-format-label {
+          display: none;
+        }
+  
+        .form-group{
+          margin: 0px;
+        }
+        .customerName p {
+          font-size: 20px;
+          text-transform: uppercase;
+        }
+        p {
+          font-size: 15px;
+          padding: 0px;
+        }
+      }
+    }
+  }
+}
+
+.available-icon {
+  color:#00cfb6;
+}
+
+.not-available-icon {
+  color:#be4ce4;
+}
+
+.operations-subscribe {
+  text-align: center;
+
+  .btn-subscribe {
+    width: 300px !important;
+    height: 50px;
+    font-size: 25px;
+    font-weight: 700;
+    background-color: #00cfb6;
+    
+  }
+
+}
+
+
+
+ngx-charts {
+  .alert-info {
+    background-color: transparent;
+    text-align: center;
+    
+    .fx-alert-icon {
+      display: none;
+    }
+    .fx-alert-desc p{
+      font-style: italic;
+      font-size: 14.4px;
+      color: #595959;
+    }
+  }
+}
+
+
+//*********** INICIO DO TEMA ***********//
+
+.wct-main-wrapper{
+     .wct-header-content:not(.modal-header) {
+        //margin-left: 25px;
+        margin-top: 25px;
+    }
+}
+
+.btn-keep-alignment-to-label {
+  text-align: center;
+
+  .btn-group {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    .btn {
+      margin: 3px 0 0 0;
+      padding: 10px;
+      min-height: 25px;
+      min-width: 100px;
+    }
+  }
+}
+
+#wct-content-coursesMain {
+  background: $primary-color;
+  .wct-header-content {
+    position: relative;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 15px;
+    h1 {
+      padding: 7px;
+    }
+    app-wct-header{
+      display: flex;
+      flex-flow: row-reverse;
+    }
+    // .wct-header-buttons {
+    //   width: 80px;
+    //   position: absolute !important;
+    //   right: 0;
+    //   top: 10px;
+    // }
+  }
+  .wct-tabs-wrapper {
+    @include max-width-screen;
+    margin: 0 auto;
+    .wct-main-content-colored {
+      background: $primary-color;
+      border: none !important;
+      margin-top: 35px;
+      .wct-main-wrapper {
+        border: none !important;
+        border-radius: unset !important;
+        width: 100%;
+        .wct-components-wrapper {
+          background: $primary-color !important;
+          margin-top: -15px;
+          //padding: 0;
+          padding-top: 20px;
+          background: #fff;
+          .title {
+            .wct-header-info {
+              .icon {
+                font-size: 30px;
+                color: $primary-color !important;
+              }
+            }
+            .h2 {
+              p {
+                font-size: 18px;
+                color: $primary-color;
+                text-transform: lowercase;
+              }
+            }
+          }
+        }
+        .card-list-container {
+          .card-wrapper {
+            // margin-bottom: 8px;
+            padding: 15px;
+            > .card {
+              &:hover {
+                box-shadow: 0px 0px 20px 4px #252525cc;
+              }
+            }
+            .card {
+              padding: 0;
+              margin: 0;
+              background-color: #fff;
+              border: none;
+              border-radius: 0;
+              .card-body {
+                padding: 0;
+                padding: 0;
+                max-width: none;
+                flex: 1;
+                .each-parameter {
+                  .wct-field-format-component {
+                    .label-grouper {
+                      p {
+                        a {
+                          word-break: break-all;
+                        }
+                      }
+                    }
+                  }
+                  &.courseStudentName {
+                    .label-grouper {
+                      p {
+                        margin-top: 30px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#wct-content-createEntityPage {
+  #wct-page-header-createEntityPage {
+    padding: 5px 15px;
+    .wct-header-info {
+      p,
+      i {
+        color: $primary-header-text-color;
+      }
+    }
+  }
+  .form-group {
+    padding-left: 0;
+  }
+  #wct-each-parameter-entityName {
+    padding: 0 30px;
+    label {
+      font-size: 14px;
+    }
+    input {
+      padding: 0 30px;
+    }
+  }
+  .synonyms {
+    label {
+      margin-bottom: 0;
+    }
+    .ng2-tag-input {
+      padding: 0;
+    }
+  }
+  .tuplelist-component {
+    padding: 15px;
+    padding-top: 5px;
+    .card {
+      .remove-card {
+        top: 20px !important;
+      }
+    }
+  }
+}

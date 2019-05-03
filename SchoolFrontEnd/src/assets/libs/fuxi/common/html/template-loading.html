@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge; text/html;" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0,  user-scalable=yes" />
+    <link rel="icon" href="/fuxi/common/html/css/images/favicon.ico" type="image/x-icon" />
+    <title>Template loading</title>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/basepack/datatables-pt/1.9/css/jquery.dataTables.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.min.css" />
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+    <!-- Respond.js - IE8 support of media queries -->
+    <!--[if lt IE 9]>
+    <script src="/fuxi/lib/respond/1.4/js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        hr {
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body style="overflow: auto;">
+
+    <div class="fx-main-content">
+        <h1>Loading state to page</h1>
+        <button class="btn btn-default" type="button" id="freezePage">
+            apply loading state to page
+        </button>
+        <hr>
+
+        <h1>Loading state to element</h1>
+        <button class="btn btn-default" type="button" id="freezeTable">
+            apply loading state to element
+        </button>
+        <button class="btn btn-danger" type="button" id="unfreezeTable">
+            remove loading state from element
+        </button>
+        <hr>
+
+        <table class="table" id="exampleTable">
+            <thead>
+                <tr>
+                    <th> Tipo </th>
+                    <th>Nome do relatório</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="fx-info-icon" title="alarme"> <i class="glyphicon glyphicon-bell"></i><span class="hide">alarme</span> </span></td>
+                    <td>Relatório de serviços de televisão aprovisionados em 2013</td>
+                    <td>07/04/2014</td>
+
+                </tr>
+
+            </tbody>
+        </table>
+
+        <hr>
+        <h1>Apply loading state to button</h1>
+        <button type="button" id="loadingButton" data-loading-text="<span class='fx-ico-loading'></span><span class='fx-ico-loading-message'>a processar...</span>" class="btn btn-default">
+				aplly loading state to button
+			</button>
+
+        <button type="button" id="loadingButtonIcon" data-loading-text="<span class='fx-ico-loading'></span>" class="btn btn-default">
+				<i class="fa fa-cog"></i>
+			</button>
+
+        <hr>
+        <h1>Apply loading state to tab</h1>
+        <ul class="nav nav-tabs fx-main-tabs">
+            <li>
+                <a href="#tab1" class="fx-tab" data-toggle="tab"><span class='fx-ico-loading'></span>Tab 1</a>
+            </li>
+            <li class="active">
+                <a href="#tab2" class="fx-tab" data-toggle="tab">Tab 2</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content fx-main-tab-content with-padding">
+            <div class="tab-pane " id="tab1">
+                Conteúdo tab 1
+            </div>
+            <div class="tab-pane active" id="tab2">
+                Conteúdo tab 2
+            </div>
+        </div>
+
+    </div>
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+    <script src="/fuxi/common/exec/fuxi.min.js"></script>
+    <script src="/basepack/datatables-pt/1.9/js/jquery.dataTables.min.js"></script>
+    <script src="/fuxi/lib/datatables-pt/1.9/js/inputPaging.min.js"></script>
+    <script src="/fuxi/lib/blockui/2.66/jquery.blockUI.js"></script>
+    <script>FUXI.BlockUiDefaults.init();</script>
+
+    <script>
+        $(document).ready(function () {
+            var oTable = $('#exampleTable').dataTable({
+                "iDisplayLength": 10,
+                "sDom": 'rt<"dataTable-table-info"li><"dataTable-pagination-wrapper"p>',
+                "sPaginationType": "input",
+                "aoColumns": [{
+                    "bSortable": true
+                }, {
+                    "bSortable": true
+                }, {
+                    "bSortable": true
+                }],
+                "oLanguage": {
+                    "sProcessing": "A processar...",
+                    "sLengthMenu": "_MENU_ registos por página",
+                    "sZeroRecords": "Não foram encontrados resultados",
+                    "sInfo": "Total de registos <strong>_TOTAL_</strong>",
+                    "sInfoEmpty": "Apresentando de 0 até 0 de 0 registos",
+                    "sInfoFiltered": "(filtrado de _MAX_ registos no total)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Procurar:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "",
+                        "sPrevious": "Anterior",
+                        "sNext": "Seguinte",
+                        "sLast": ""
+                    }
+                }
+            });
+
+            $("#loadingButton").click(function () {
+                var $btn = $(this);
+                $btn.button('loading');
+                // simulating a timeout
+                setTimeout(function () {
+                    $btn.button('reset');
+                }, 10000);
+            });
+
+            $("#loadingButtonIcon").click(function () {
+                var $btn = $(this);
+                $btn.button('loading');
+                // simulating a timeout
+                setTimeout(function () {
+                    $btn.button('reset');
+                }, 10000);
+            });
+
+            $('#freezePage').click(function (e) {
+                $.blockUI({
+                    onOverlayClick: $.unblockUI,
+                    message: '<div class="modal">' +
+                             '    <div class="modal-header"></div>' +
+                             '    <div class="modal-body">' +
+                             '        <div class="fx-block-wrapper">' +
+                             '            <div class="fx-ico-loading fx-ico-loading-m"><span class="sr-only">Loading...</span></div>' +
+                             '            <div class="fx-ico-loading-message">' +
+                             '                <h4 class="modal-title">Nome da página</h4>' +
+                             '                <p>A carregar...aguarde, por favor.</p>' +
+                             '            </div>' +
+                             '        </div>' +
+                             '    </div><div class="modal-footer">' +
+                             '        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">cancelar</button>' +
+                             '    </div>' +
+                             '</div>',
+                    css: {
+                        opacity: 0.6,
+                        padding: '10px',
+                        margin: 0,
+                        width: '20%',
+                        top: '40%',
+                        left: '45%',
+                        textAlign: 'left',
+                        color: '#666',
+                        border: 'none',
+                        backgroundColor: '#fff',
+                        cursor: 'wait',
+                        '-webkit-border-radius': '0px',
+                        'border-radius': '6px',
+                        border: '1px solid #999;',
+                        outline: 'none',
+                        'box-shadow': '0 3px 7px rgba(0, 0, 0, 0.3)',
+                        'background-clip': 'padding-box'
+                    },
+
+                    // minimal style set used when themes are used
+                    themedCSS: {
+                        width: '30%',
+                        top: '40%',
+                        left: '35%'
+                    },
+
+                    // styles for the overlay
+                    overlayCSS: {
+                        backgroundColor: '#fff',
+                        opacity: 0.8,
+                        cursor: 'wait'
+                    },
+
+                    // style to replace wait cursor before unblocking to correct issue
+                    // of lingering wait cursor
+                    cursorReset: 'default',
+
+                    // styles applied when using $.growlUI
+                    growlCSS: {
+                        width: '350px',
+                        heght: '200px',
+                        top: '10px',
+                        left: '',
+                        right: '10px',
+                        border: 'none',
+                        padding: '5px',
+                        opacity: 0.6,
+                        cursor: null,
+                        color: '#666',
+                        backgroundColor: '#fff',
+                        '-webkit-border-radius': '10px',
+                        'border-radius': '10px'
+                    }
+                });
+                //setTimeout($.unblockUI, 2000);
+            });
+
+            $('#freezeTable').click(function (e) {
+                $('#exampleTable_wrapper').block({
+                    message: '<div class="fx-block-wrapper">' +
+                             '  <div class="fx-ico-loading fx-ico-loading-m"><span class="sr-only">Loading...</span></div>' +
+                             '  <div class="fx-ico-loading-message"' +
+                             '      <p>a carregar conteúdo...</p>' +
+                             '  </div>' +
+                             '</div>',
+                    css: {
+                        opacity: 1,
+                        padding: '10px',
+                        margin: 0,
+                        width: '20%',
+                        top: '40%',
+                        left: '45%',
+                        textAlign: 'center',
+                        color: '#666',
+                        border: 'none',
+                        backgroundColor: 'transparent'
+                    },
+                });
+            });
+
+            $('#unfreezeTable').click(function () {
+                $('#exampleTable_wrapper').unblock();
+            });
+        });
+    </script>
+</body>
+</html>

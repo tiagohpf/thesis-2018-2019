@@ -1,0 +1,18 @@
+{
+  "0": "0 ---> Minutos de plan no aplicados (if recurrent minutes failed to be applied in customer account (B2C))",
+  "1": "Minutos de plan no aplicados (if recurrent minutes failed to be applied in customer account (B2C))",
+  "2": "Minutos de plan no aplicados-ECN (if recurrent minutes failed to be applied (B2B))",
+  "3": "Transferencia de contrato por cambio de numero (failed in transfering contract)",
+  "4": "error de recarga *225/*258 (Failed refill using *225/*258)",
+  "5": "Balance desaparecido (Balance is gone but reason is not identified or found)",
+  "6": "Cambio de Card a Flex/Flex a Card (Product chage has failed)",
+  "7": "Credito por cortesia (Gift)",
+  "8": "PPC desactivo por error (Mistake in deactivation)",
+  "9": "SMS faturado y no enviado (SMS has been debited but no delivered)",
+  "10": "Llamadas internacionales (wrong tariff in international calls)",
+  "11": "Recarga no aplicada (Refill is done but never allocated)",
+  "12": "scratch card utilizada (Customer has a gotten a used scratch card)",
+  "13": "Paqueticos (Granting a Paquetico (Onnet, Offnet, Morning, illimited, Zone1, SMS))",
+  "14": "Otros (Other reasons)",
+  "15": "test (Test purposes)"
+}

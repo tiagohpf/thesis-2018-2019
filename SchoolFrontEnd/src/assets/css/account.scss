@@ -1,0 +1,51 @@
+#wct-content-studentAccountPage {
+
+    #wct-content-studentAccountConsumptionsTable > .wct-components-wrapper {
+        margin-top: 23px;
+    }
+
+    #wct-content-studentReceipts_Table > .wct-components-wrapper {
+        margin-top:0px
+    }
+
+}
+
+
+.inlineHelpIcon {
+    padding-left: 7px;
+}
+
+popover-container.popover-inlineHelp-tooltip.popover{
+    background-color: rgba(100, 100, 100, 1);
+
+    /* border-color: #FFFFFF; */
+    border-radius: 4px;
+    padding: 0px;
+
+/*     transition: opacity 0.3s;
+    color: rgb(89, 89, 89);
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none; */
+
+    max-width: 500px;
+
+    .popover-content{
+        color: #ffffff;
+        div > p{
+            padding-bottom: 10px;
+            color: #ffffff;
+        }
+    }
+}
+
+.popover-inlineHelp-tooltip> .popover-arrow.arrow {
+    display: none;
+}
+
+#wct-each-parameter-emptyLabel{
+    .wct-field-format-label{
+        height: 25px;
+    }
+}

@@ -1,0 +1,12 @@
+@import url('../../../bootstrap/2.3/css/bootstrap-responsive.css');
+
+.navbar-inverse .nav-collapse .nav > li > a,
+.navbar-inverse .nav-collapse .dropdown-menu a {
+  color: #FFF;
+}
+.navbar-inverse .nav-collapse .nav > li > a:hover,
+.navbar-inverse .nav-collapse .nav > li > a:focus,
+.navbar-inverse .nav-collapse .dropdown-menu a:hover,
+.navbar-inverse .nav-collapse .dropdown-menu a:focus {
+  background-color: #02707E;
+}

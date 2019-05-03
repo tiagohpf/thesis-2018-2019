@@ -1,0 +1,42 @@
+<h3 id="docs-wizard-options">Opções</h3>
+<p>O wizard disponibiliza as opções abaixo enumeradas.</p>
+
+<div class="table-responsive">
+    <table class="table fx-table fx-table-with-codemirror">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th class="fx-col-type">Tipo</th>
+                <th>Default</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>isAsync</td>
+                <td>booleano</td>
+                <td><code>false</code></td>
+                <td>Define se o comportamento é executado quando se instancia ou no evento window.load. <code>False</code> faz com que ocorra no window.load.</td>
+            </tr>
+            <tr>
+                <td>mode</td>
+                <td>string</td>
+                <td><code>FUXI.Wizard.modeEnum.INSERT</code></td>
+                <td>Define o modo como o wizard é disponibilizado ao utilizador. <code>INSERT | EDIT | VIEW</code>. Pode optar por passar o <code>data-attribute</code> em vez de declarar esta opção na zona de scripting. Consulte <a class="fx-docs-btn-link" href="#docs-wizard-view-modes">modos de ver um wizard</a> para perceber o que cada modo representa.</td>
+            </tr>
+            <tr>
+                <td>validateOnPrevious</td>
+                <td>booleano</td>
+                <td><code>false</code></td>
+                <td>Define se a validação deve ser disparada quando se retrocede no wizard. Pode optar por passar o <code>data-attribute</code> em vez de declarar esta opção na zona de scripting.</td>
+            </tr>
+            <tr>
+                <td>gotoStopOnError</td>
+                <td>booleano</td>
+                <td><code>false</code></td>
+                <td>Define se a validação deve apenas validar o passo atual ou todos os passos até ao passo de destino. </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

@@ -1,0 +1,50 @@
+<h3 id="docs-wizard-data-attr">Data attributes do wizard</h3>
+<p>Para que um wizard funcione corretamente é necessário definir uma série de data-attributes.</p>
+
+<div class="table-responsive">
+    <table class="table fx-table">
+        <thead>
+            <tr>
+                <th>Datta-attribute</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>data-wizard</code></td>
+                <td>Declarado no elemento que encapsula todo o wizard. Instancia o objeto como wizard.</td>
+            </tr>
+            <tr>
+                <td><code>data-wiz-mode</code></td>
+                <td>Declarado no elemento que encapsula todo o wizard. Define o modo do wizard. Aceita os valores <code>INSERT | EDIT | VIEW</code>.</td>
+            </tr>
+            <tr>
+                <td><code>data-validate-on-previous</code></td>
+                <td>Declarado no elemento que encapsula todo o wizard. Define se a validação deve ser disparada quando se retrocede no wizard. Aceita os valores <code>true | false</code>.</td>
+            </tr>
+            <tr>
+                <td><code>data-wiz-prev</code></td>
+                <td>Declarado no elemento que encapsula todo o wizard. Deve referir o botão de retroceder no wizard e aceita <code>ID</code> ou <code>CLASS</code>.</td>
+            </tr>
+            <tr>
+                <td><code>data-wiz-next</code></td>
+                <td>Declarado no elemento que encapsula todo o wizard. Deve referir o botão de avançar no wizard e aceita <code>ID</code> ou <code>CLASS</code>.</td>
+            </tr>
+            <tr>
+                <td><code>data-wiz-complete</code></td>
+                <td>Declarado no elemento que encapsula todo o wizard. Deve referir o botão de finalizar wizard e aceita <code>ID</code> ou <code>CLASS</code>.</td>
+            </tr>
+            <tr>
+                <td><code>data-step-opened</code></td>
+                <td>Declarado no elemento que encapsula todo o wizard. Refere-se ao step aberto por defeito. Apenas aceita inteiros a partir de 1.</td>
+            </tr>
+            <tr>
+                <td><code>data-client-validator</code></td>
+                <td>
+                    Declarado no elemento que encapsula todo o wizard ou ao nível do step. Função de validação no cliente. Aceita o nome da função que trata da validação. A definição desta função fica a cargo de cada equipa de desenvolvimento.
+Caso este data-attribute não se encontre definido ao nível do step, será utilizada a função definida no mesmo atributo que se encontra definido no elemento que encapsula o wizard.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

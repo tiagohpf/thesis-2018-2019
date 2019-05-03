@@ -1,0 +1,11 @@
+{
+  "type": "initParameters",
+  "class": "col-sm-12 groupParameters_noHeader",
+  "details": [
+    {
+      "type": "label",
+      "text": null,
+      "value": "3 - SYNONYMS"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+    "type": "initParameters",
+    "id":"topDashBoardWrapper",
+    "dynamicProps": {
+        "lazyLoading": "'{{hasStudents}}' == 'true'"
+    },
+    "details": [
+        {
+            "type": "label",
+            "hidden": true,
+            "class": "col-sm-6",
+            "value": "student___istEasyCreateStudent",
+            "text": null
+        },
+        {
+            "type": "operations",
+            "hidden": true,
+            "class": "col-sm-6",
+            "operations": {
+                "size": 1,
+                "parameters": [
+                    {
+                        "type": "navigate",
+                        "id": "studentCreate",
+                        "_role": "Execute",
+                        "text": "student___letsCreateStudent",
+                        "navigateTo": "students/create"
+                    }
+                ]
+            }
+        }, 
+        {
+            "include": "students/student-list-operations"
+        },
+        {
+            "_type": "customVideo"
+        }
+    ]
+}

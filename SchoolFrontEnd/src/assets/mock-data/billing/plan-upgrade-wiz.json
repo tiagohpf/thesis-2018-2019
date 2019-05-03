@@ -1,0 +1,118 @@
+{
+    "type": "page",
+    "id": "gotoProdWiz",
+    "header": {
+        "id": "pageHeader",
+        "seo": {
+            "text": "billing___planUpgrade"
+        }
+    },
+    "wizard": [
+        {
+            "id": "plan-list-step",
+            "components" :[
+                {"include": "billing/plan-list-for-upgrade"}
+            ]
+            
+        },
+        {
+            "id": "customer-list-step",
+            "lazyLoading": true,
+            "components" :[
+                {"include": "billing/customer-list"}
+            ]
+            
+        },
+        {
+            "id": "payment-step",
+            "lazyLoading": true,
+            "components" :[
+                {"include": "billing/stripe"}
+            ]
+            
+        }
+    ],
+    "buttons": [
+        {
+            "id": "submitSubscription",
+            "key": "submit",
+            "text": "billing___subscribe",
+            "class": "btn-primary",
+            "parameters": [
+                {
+                    "key": "requestEndpoint",
+                    "value": "{{BillingService}}/subscriptions"
+                },
+                {
+                    "key": "requestHeaders",
+                    "value": {
+                        "Authorization": "Bearer {{token}}"
+                    }
+                },
+                {
+                    "key": "requestType",
+                    "value": "POST"
+                },
+                {
+                    "key": "requestBody",
+                    "type": "json",
+                    "value": {
+                        "customerId": "{{selectedCustomerId}}",
+                        "planId": "{{selectedPlanId}}", 
+                        "entity": "{{selected-student}}",
+                        "defaultSource": "{{stripe-card-list}}"
+                    }
+                },
+                {
+                    "key": "errorText",
+                    "value": "ERROR!\n Subscription Error."
+                },
+                {
+                    "key": "onSuccess",
+                    "value": {
+                        "fn": "@updatePageParameterWithDelay(@getJsonParam('studentAccountPage'))",
+                        "notification": {
+                            "type": "success",
+                            "text": "Your request was successfully sent.\nThe operation may take a few minutes to process.",
+                            "limit": 1,
+                            "timeout": 3000,
+                            "position": "top-right"
+                        },
+                        "_request": [
+                            {
+                                "key": "updatePageParameter",
+                                "value": {
+                                    "studentAccountPage": {
+                                        "lazyLoading": false
+                                    }
+                                }
+                            },
+                            {
+                                "key": "successText",
+                                "value": "Your request was successfully sent.\nThe operation may take a few minutes to process."
+                            }
+                        ]
+                    }
+                },
+                {
+                    "key": "onError",
+                    "value": {
+                      "notification": {
+                        "type": "error",
+                        "text": "ERROR!\n Subscription Error.",
+                        "limit": 1,
+                        "timeout": 3000,
+                        "position": "top-right"
+                      }
+                    }
+                }
+            ]
+        },
+        {
+            "key": "cancel",
+            "text": "generic___operations___cancel",
+            "class": "btn-force-default btn-default"
+        }
+
+    ]
+}

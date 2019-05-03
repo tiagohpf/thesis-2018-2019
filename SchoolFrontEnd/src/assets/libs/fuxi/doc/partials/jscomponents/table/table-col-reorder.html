@@ -1,0 +1,81 @@
+<h3 id="docs-table-col-reorder">ColReorder</h3>
+<p>O DataTables possui um extra que disponibiliza uma forma de reordenar colunas da tabela. Em <a class="fx-docs-btn-link" href="http://legacy.datatables.net/extras/colreorder/" target="_blank">DataTables ColReorder</a> pode encontrar informação detalhada.</p>
+<p>O Basepack disponibiliza este extra. Para isso deverá incluir o ficheiro <code>ColReorder.min.js</code> disponível em <code>src="/basepack/datatables-pt/1.9/js/ColReorder.min.js"</code>.</p>
+<div class="alert alert-warning">
+    <p>
+        Deverá fazer inclusão dos ficheiros necessários à instanciação de um objeto como DataTable, anteriormente referidos no ponto <a href="#docs-table-general-vision">tabela - overview</a>.
+    </p>
+    <p>Optou-se por incluir um elemento do tipo <code>span</code> para albergar o ícone que indica que uma coluna é arrastável pois o DataTables, quando permite sorting da informação de uma coluna, aplica o ícone de sorting ao background do <code>th</code>.</p>
+</div>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <table class="table" id="devguide-colreorder-table">
+            <thead>
+                <tr>
+                    <th>
+                        <span class="fx-col-reorder-icon"></span>Cidade
+                    </th>
+                    <th>
+                        <span class="fx-col-reorder-icon"></span>Concelho
+                    </th>
+                    <th>
+                        <span class="fx-col-reorder-icon"></span>Distrito
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<table class="table" id="devguide-colreorder-table">
+    <thead>
+        <tr>
+            <th>
+                <span class="fx-col-reorder-icon"></span>Cidade
+            </th>
+            <th>
+                <span class="fx-col-reorder-icon"></span>Concelho
+            </th>
+            <th>
+                <span class="fx-col-reorder-icon"></span>Distrito
+            </th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script src="/basepack/datatables-pt/1.9/js/ColReorder.min.js"></script>
+
+<script type="text/javascript">
+    var tableColReorderConf = $.extend({}, FUXI.Presets.DataTables, {
+        'iDisplayLength': 10,
+        'aLengthMenu': [5, 10, 25, 50],
+        "aoColumns": [
+            { "bSortable": false },
+            { "bSortable": false },
+            { "bSortable": false },
+        ],
+        "aaData": [
+            ["Aveiro", "Aveiro", "Aveiro", ],
+            ["Cantanhede", "Cantanhede", "Coimbra", ],
+            ["Coimbra", "Coimbra", "Coimbra", ],
+            ["Faro", "Faro", "Faro", ],
+            ["Figueira da Foz", "Figueira da Foz", "Coimbra", ],
+            ["Gouveia", "Gouveia", "Guarda", ],
+            ["Guarda", "Guarda", "Guarda", ],
+            ["Ílhavo", "Ílhavo", "Aveiro"],
+            ["Lisboa", "Lisboa", "Lisboa", ],
+            ["Viseu", "Viseu", "Viseu", ],
+            ["Porto", "Porto", "Porto", ],
+        ],
+        'sDom': 'RT<"clear">rt<"dataTable-table-info"li><"dataTable-pagination-wrapper"p>',
+    });
+
+    $('#devguide-colreorder-table').on('init.dt', FUXI.Utils.SetDTPagination).dataTable(tableColReorderConf);
+</script>
+            
+        </textarea>
+    </form>
+</div>

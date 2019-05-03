@@ -1,0 +1,63 @@
+<ng-template [ngIf]="viewStructure?.groups?.menus?.parameters?.length > 0 || viewStructure?.groups?.details?.parameters?.length > 0">
+
+  <!-- <div
+    *ngIf="!isSideMenuFixed()"
+    class="wct-side-menu-curtain"
+    [ngClass]="{
+      'show': isSideMenuOpen(),
+      'hide': !isSideMenuOpen()}"></div> -->
+  <nav class="wct-side-menu" [ngClass]="{
+      'show': isSideMenuOpen(),
+      'hide': !isSideMenuOpen(),
+      'fixed': isSideMenuFixed()}">
+
+    <div class="wct-side-menu-toggle" (click)="toggleSideMenu()">
+      <!-- <i class="wct-close-side-menu fa fa-arrow-left text-light"></i> -->
+      <i class="wct-open-side-menu fa fa-arrow-right text-white"></i>
+    </div>
+
+    <div class="wct-opacity-control">
+
+      <div class="wct-side-menu-pin" (click)="toggleFixMenu()">
+        <i class="fa fa-thumb-tack" [ngClass]="{
+              'text-primary': isSideMenuFixed(),
+              'text-light': !isSideMenuFixed()}"></i>
+      </div>
+
+      <ul class="nav flex-column">
+
+        <li *ngIf="logoParameter" class="nav-item navbar-brand wct-side-nav-item-app-logo" title="{{'application___botschool' | myI18n}}">
+          <a class="nav-link text-light" href="#" (mousedown)="navigateTo($event,logoParameter)">
+            <img *ngIf="logoParameter.icon" class="fx-app-logo" alt="logo" [src]="logoParameter.icon" />
+            <ng-template [ngIf]="logoParameter.text">{{logoParameter.text}}</ng-template>
+          </a>
+        </li>
+
+        <ng-template ngFor let-menu [ngForOf]="viewStructure?.groups?.menus?.parameters">
+          <li class="nav-item wct-side-nav-item-menu" title="{{menu.title | myI18n}}">
+            <a class="nav-link text-light" href="#" [ngClass]="menu.class" [class.active]="checkActivatedRoute(menu)" (mousedown)="navigateTo($event,menu)">
+              <i class="wct-button-icon {{menu.icon}}"></i>
+              <span>{{menu.text | myI18n}}</span>
+            </a>
+          </li>
+
+          <li *ngFor="let sm of menu.groups?.menus?.parameters" class="nav-item wct-side-nav-item-submenu" title="{{sm.title | myI18n}}">
+            <a class="nav-link text-light" href="#" [ngClass]="sm.class" [class.active]="checkActivatedRoute(menu)" (mousedown)="navigateTo($event,sm)">
+              <i class="wct-button-icon {{sm.icon}}"></i>
+              <span>{{sm.text | myI18n}}</span>
+            </a>
+          </li>
+
+        </ng-template>
+
+      </ul>
+      <app-wct-start-components 
+        *ngIf="viewStructure?.groups?.details?.parameters?.length > 0" 
+        [viewStructure]="viewStructure"
+        [inputParameters]="viewStructure.groups.details.parameters" 
+        [parametersFormat]="false"></app-wct-start-components>
+    </div>
+
+  </nav>
+
+</ng-template>

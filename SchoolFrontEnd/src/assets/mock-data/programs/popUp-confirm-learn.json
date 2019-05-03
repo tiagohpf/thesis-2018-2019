@@ -1,0 +1,102 @@
+{
+    "type": "initParameters",
+    "id": "pageLearn",
+    "header": {
+        "id": "pageHeader",
+        "seo": {
+            "_text": "{{@fv()@i18n('student___programsLearn') + '   <strong>' + @replaceTagVars('studentsProgramsMainCardList___deprecated') + '</strong>.'}}",
+            "_icon": "fa fa-credit-card"
+        }
+    },
+    "details": [
+        {
+            "type": "label",
+            "id": "programID",
+            "pathToValue": [
+                "programID"
+            ],
+            "hidden": true
+        },
+        {
+            "type": "label",
+            "id": "pageBodyConfirm",
+            "value": "{{@fv()@i18n('student___confirmLearn') + '   <strong>' + @replaceTagVars('studentsProgramsMainCardList___name') + '</strong>?'}}"
+        },
+        {
+            "type": "label",
+            "id": "pageBodyinform",
+            "value": "{{@fv()@i18n('student___informLearn')}}"
+        },
+        {
+            "type": "label",
+            "id": "pageBodywarning",
+            "icon": "fa fa-warning",
+            "dynamicProps": {
+                "hidden": "!{{studentsProgramsMainCardList___deprecated}}"
+            },
+            "value": "{{@fv()@i18n('student___warningLearn')}}"
+        }
+    ],
+    "operations": {
+        "parameters": [
+            {
+                "type": "updatePage",
+                "text": "generic___operations___cancel",
+                "class": "btn-default"
+            },
+            {
+                "type": "execute",
+                "id": "executeLearn",
+                "text": "generic___operations___learn",
+                "class": "btn-primary",
+                "parameters": [
+                    {
+                        "key": "requestEndpoint",
+                        "value": "{{SchoolBE}}/availableProgram/{{programID}}/learn/[[id]]"
+                    },
+                    {
+                        "key": "requestHeaders",
+                        "value": {
+                            "Authorization": "Bearer {{token}}",
+                            "IXS": "{{IXS_id}}"
+                        }
+                    },
+                    {
+                        "key": "requestType",
+                        "value": "POST"
+                    },
+                    {
+                        "key": "requestBody",
+                        "type": "json",
+                        "value": {
+                            "requestedBy": "{{logged-user}}"
+                        }
+                    },
+                    {
+                        "key": "successText",
+                        "value": "Learned program successfully."
+                    },
+                    {
+                        "key": "errorText",
+                        "value": "ERROR!\n Could not execute program learn."
+                    },
+                    {
+                        "key": "onSuccess",
+                        "value": {
+                            "request": [
+                                {
+                                    "key": "updatePageParameter",
+                                    "value": {
+                                        "studentPropertiesViewTabStudyContent": {
+                                            "lazyLoading": false
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

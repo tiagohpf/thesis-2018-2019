@@ -1,0 +1,15 @@
+<ul
+    class="nav nav-tabs"
+    [class.hidden]="tabs?.length <= 1">
+    <ng-template ngFor let-tab [ngForOf]="tabs">
+        <li
+            [id]="tab.id ? 'wct-page-tabsList-' + tab.id : ''"
+            class="nav-item"
+            (click)="selectTab(tab)">
+              <a class="nav-link" [class.active]="!tab.data.hideContent">
+                <i *ngIf="!tab.lazyLoading && tab.icon" class="{{tab.icon}}"></i> {{tab.text | myI18n}}
+              </a>
+        </li>
+    </ng-template>
+</ul>
+<ng-content></ng-content>

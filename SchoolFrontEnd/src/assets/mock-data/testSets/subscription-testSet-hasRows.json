@@ -1,0 +1,85 @@
+{
+  "type": "initTable",
+  "id": "testSetTable",
+  "dynamicProps": {
+    "hidden": "!{{hasTestSets}}"
+  },
+  "icon": "fa fa-table",
+  "urlResource": [
+    {
+      "key": "path",
+      "value": "{{AppAPIBotConfig}}/testSets"
+    },
+    {
+      "key": "pathToMainData",
+      "value": [
+        "_embedded",
+        "testsCustom",
+        "tests"
+      ]
+    },
+    {
+      "key": "queryString",
+      "value": {
+        "page": "((page))",
+        "pagesize": "((pagesize))",
+        "count": null,
+        "filter": "{\"programId\":\"[[programID]]\"}"
+      }
+    },
+    {
+      "key": "reload",
+      "value": false
+    },
+    {
+      "key": "headers",
+      "value": {
+        "Authorization": "Bearer {{token}}",
+        "IXS": "{{IXS_id}}"
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "key": "tableActions",
+      "value": {
+        "columnManager": false,
+        "export": false,
+        "search": false,
+        "pagination": false
+      }
+    }
+  ],
+  "columns": [
+    {
+      "type": "expand",
+      "id": "steps",
+      "pathToValue": [
+        "steps"
+      ],
+      "mockToLoad": "testSets/testset-details-tabTests-table-expand"
+    },
+    {
+      "type": "label",
+      "id": "tableTestSetIndex",
+      "hidden": true,
+      "pathToValue": "index"
+    },
+    {
+      "type": "label",
+      "id": "tableTestSetName",
+      "pathToValue": "name",
+      "text": "program___name"
+    },
+    {
+      "type": "context",
+      "id": "tableTestSetStatusAux",
+      "class": "col-sm-6",
+      "hidden": true,
+      "pathToValue": [
+        "state"
+      ]
+    }
+  ],
+  "rows": []
+}

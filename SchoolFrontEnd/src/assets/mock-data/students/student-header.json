@@ -1,0 +1,77 @@
+{
+    "type": "initParameters",
+    "id": "studentHeaderComponent",
+    "urlResource": [
+        {
+            "key": "path",
+            "value": "{{SchoolBOT}}/students/[[id]]"
+        },
+        {
+            "key": "pathToMainData",
+            "value": [
+                ""
+            ]
+        },
+        {
+            "key": "reload",
+            "value": false
+        },
+        {
+            "key": "headers",
+            "value": {
+                "Authorization": "Bearer {{token}}",
+                "IXS": "{{IXS_id}}"
+            }
+        }
+    ],
+    "details": [
+        {
+            "type": "image",
+            "text": null,
+            "id": "studentImage_Header",
+            "value": "assets/images/franck-v-740555-unsplash.jpg",
+            "class": "col-sm-2"
+        },
+        {
+            "type": "wrapper",
+            "class": "col-sm-10",
+            "details": [
+                {
+                    "type": "label",
+                    "id": "studentName_Header",
+                    "navigateTo": "students/[[id]]",
+                    "class": "col-sm-10 studentNameHeader",
+                    "text": null,
+                    "pathToValue": [
+                        "name"
+                    ]
+                },
+                {
+                    "type": "label",
+                    "id": "studentStatus_Header",
+                    "class": "col-sm-2",
+                    "text": null,
+                    "pathToValue": [
+                        "status"
+                    ],
+                    "html": {
+                        "pre-live": "<img alt='' title='' src='assets/images/platform/gstarted.svg'> <span>{{@fv()@i18n('student___status___gettingReady')}}</span> ",
+                        "live": "<img alt='' title='' src='assets/images/platform/live.svg'> <span>{{@fv()@i18n('student___status___live')}}</span> ",
+                        "blocked": "<img alt='' title='' src='assets/images/platform/blocked.svg'> <span>{{@fv()@i18n('student___status___blocked')}}</span> ",
+                        "suspended": "<img alt='' title='' src='assets/images/platform/suspended.svg'><span> {{@fv()@i18n('student___status___suspended')}} </span>"
+                    }
+                },
+                {
+                    "type": "label",
+                    "id": "pageTitle_Header",
+                    "class": "col-sm-12",
+                    "dynamicProps": {
+                        "lazyLoading": "!'{{pageTitle}}'"
+                    },
+                    "text": null,
+                    "value": "{{pageTitle}}"
+                }
+            ]
+        }
+    ]
+}

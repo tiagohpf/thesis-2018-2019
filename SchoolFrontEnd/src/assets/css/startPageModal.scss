@@ -1,0 +1,314 @@
+#wct-modal-startModal {
+  @media (max-width: 768px) {
+    #modalComponent {
+      height: auto;
+    }
+  }
+  &.fade {
+    .modal-dialog {
+      transition: unset;
+    }
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: opacity(0.5);
+    filter: blur(20px);
+  }
+  .modal-start {
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 100%;
+    display: flex;
+    width: 60%;
+    align-items: center;
+    max-width: 100%;
+
+    .modal-content {
+      background-color: transparent;
+      border: none;
+
+      .wct-header-content {
+        display: none;
+      }
+      .wct-main-content-colored {
+        background-color: transparent;
+        border: none;
+        .modal-body {
+          max-height: 100% !important;
+        }
+      }
+    }
+    #wct-each-parameter-wrapperStartModalTitle {
+      text-align: center;
+      opacity: 0;
+      animation: 2s ease-out 0.2s 1 appear forwards;
+
+      #wct-each-parameter-title {
+        a {
+          text-decoration: none solid rgb(255, 255, 255);
+          color: #ffffff;
+          height: 46px;
+          font-family: FallingSky;
+          font-size: 44px;
+          font-weight: 400;
+          line-height: 46px;
+        }
+      }
+      #wct-each-parameter-subTitle {
+        a {
+          text-decoration: none solid rgb(255, 255, 255);
+          color: #ffffff;
+          height: 52px;
+          font-family: Lato;
+          font-size: 20px;
+          line-height: 26px;
+        }
+      }
+    }
+
+    #wct-each-parameter-wrapperStartModalVideos {
+      .cardWrapper {
+        overflow: hidden;
+        backface-visibility: hidden;
+        opacity: 0;
+        margin-top: 50px;
+        background: #0000000a;
+
+        &#wct-each-parameter-firstVideo {
+          animation: 1s ease-out 0s 1 slideUp forwards;
+        }
+        &#wct-each-parameter-secondVideo {
+          animation: 1s ease-out 0.2s 1 slideUp forwards;
+        }
+        &#wct-each-parameter-thirdVideo {
+          animation: 1s ease-out 0.4s 1 slideUp forwards;
+        }
+        #wct-each-parameter-modalStudentVideo,
+        #wct-each-parameter-modalProgramsVideo,
+        #wct-each-parameter-modalAnalyticsVideo {
+          padding: 0 30px !important;
+        }
+        .card {
+          position: relative;
+          transform: translate(0, 0);
+          background-repeat: no-repeat;
+          background-position: center right;
+          background-size: cover;
+          border-radius: unset;
+          box-shadow: none;
+          background-repeat: unset;
+
+          &#wct-component-modalStudentVideo {
+            background-image: url("../images/platform/video.svg");
+          }
+          &#wct-component-modalProgramsVideo {
+            background-image: url("../images/platform/graduation.svg");
+          }
+          &#wct-component-modalAnalyticsVideo {
+            background-image: url("../images/platform/analytics-2-1.svg");
+          }
+
+          .card-body {
+            background: #0000001f;
+
+            &::after {
+              content: "";
+              display: block;
+              padding-bottom: 100%;
+            }
+
+            app-wct-start-components {
+              > .row {
+                position: absolute !important;
+                bottom: 10px;
+                position: absolute;
+                padding: 5px;
+                left: 0;
+              }
+              .buttonPlay {
+                width: 45px !important;
+                height: 45px !important;
+                background-color: white !important;
+                border-radius: 50% !important;
+                box-shadow: none;
+                color: black !important;
+                transition: none;
+                padding: 0 !important;
+                margin: 0 !important;
+                &:hover {
+                  border: none;
+                  padding: 0 !important;
+                  margin: 0 !important;
+                }
+                i {
+                  font-size: 14px;
+                }
+              }
+              .description {
+                p {
+                  margin: 0;
+                  font-family: FallingSky;
+                  font-size: 26px;
+                  color: #ffffff;
+                  font-weight: 400;
+                  text-decoration: none solid rgb(255, 255, 255);
+                  line-height: 26px;
+                }
+              }
+              .video {
+                position: fixed;
+                top: 0;
+                left: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+
+                .wct-external-wrapper {
+                  height: 100%;
+
+                  video {
+                    background: #000;
+                    width: 100%;
+                    height: 100%;
+                  }
+                }
+              }
+            }
+          }
+        }
+        #wct-each-parameter-navigateStudentsCreate,
+        #wct-each-parameter-navigateProgramCreate,
+        #wct-each-parameter-navigateAnalytics {
+          text-align: center;
+          app-wct-external {
+            > .wct-external-wrapper {
+              padding-bottom: 15px;
+            }
+          }
+          a {
+            &:hover {
+              &.startModalButtons {
+                padding: 18px;
+              }
+            }
+            &.startModalButtons {
+              border-radius: 3px;
+              padding: 12px;
+              background-image: linear-gradient(
+                90deg,
+                #7958ec 1%,
+                #be4ce4 100%
+              );
+              box-shadow: 0px 2px 30px rgba(190, 76, 228, 0.5);
+            }
+          }
+          label {
+            width: 160px;
+            border-radius: 3px;
+            font-family: FallingSky;
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: 400;
+            text-decoration: none solid rgb(255, 255, 255);
+            text-align: center;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    #wct-each-parameter-wrapperStartModalFooter {
+      margin-top: 80px;
+
+      #wct-each-parameter-checkBox_show {
+        input {
+          display: none;
+        }
+        label {
+          padding-left: 35px;
+          width: 219px;
+          height: 26px;
+          font-family: Lato;
+          font-size: 16px;
+          color: #ffffff;
+          text-decoration: none solid rgb(255, 255, 255);
+          line-height: 26px;
+          text-align: center;
+          cursor: pointer;
+          &:hover {
+            &:before {
+              width: 32px;
+              height: 32px;
+              margin: -2px 2px 2px 19px;
+              transition: all 0.25s ease-in-out;
+            }
+            &:after {
+              left: 28px;
+              top: 7px;
+              transition: all 0.25s ease-in-out;
+            }
+          }
+          &:before {
+            left: 0;
+            width: 24px;
+            height: 24px;
+            margin: 2px 4px 4px 23px;
+            background: #f7f7f7;
+            box-shadow: 0 0 1px grey;
+            transition: all 0.25s ease-in-out;
+          }
+          &:after {
+            left: 28px;
+            top: 7px;
+            width: 14px;
+            height: 14px;
+            opacity: 0;
+            background: #0ec2b3;
+            transition: all 0.25s ease-in-out;
+            // -webkit-transform: translate3d(0, 0, 0);
+            // transform: translate3d(0, 0, 0);
+            // transition: opacity 0.25s ease-in-out;
+          }
+        }
+        label:before,
+        label:after {
+          content: "";
+          position: absolute;
+          // top: 50%;
+          // transform: translateY(-50%);
+          border-radius: 3px;
+        }
+        input[type="checkbox"]:checked + label:after {
+          transform: translate3d(0, 0, 0);
+          opacity: 1;
+        }
+      }
+      #wct-each-parameter-goToApplication {
+        .wct-component-type-labelStartService {
+          text-align: right;
+          #goToApplication {
+            cursor: pointer;
+            text-transform: lowercase;
+            position: initial;
+            width: 219px;
+            height: 26px;
+            font-family: FallingSky;
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: 400;
+            text-decoration: none solid rgb(255, 255, 255);
+            line-height: 26px;
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+<h3 id="docs-modal-trigger">Abrir modal</h3>
+<p>Este snippet demonstra como instanciar uma janela modal.</p>
+<p> Tipicamente uma janela modal é composta por três áreas <strong>header, content e footer</strong>. O trigger é feito normalmente a partir de um botão ou de um hyperlink.</p>
+<p>O snippet faz uso dos data-attributes mas pode-se chegar ao mesmo resultado instanciando o objeto em JavaScript.</p>
+
+<div class="alert alert-info">
+    Se nada for dito em contrário, a janela modal irá permitir o seu dismiss ao clicar na tecla ESC ou ao clicar fora dela. Para impedir esse comportamento deve ser declarado o seguinte<code>data-backdrop="static"</code> e <code>data-keyboard="false"</code>
+</div>
+
+<div class="alert alert-info">
+    <p>
+        O título da modal está definido como link para representar a possibilidade de abrir o conteúdo da modal em página. Caso não se pretenda implementar este racional bastará não fazer uso da tag para o hyperlink e disponibilizar o título da modal diretamente no heading.
+    </p>
+</div>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#my-default-modal">
+            abrir janela modal
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="my-default-modal" tabindex="-1" role="dialog" aria-labelledby="my-default-modal-label">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="my-default-modal-label">
+                            <a href="#">Título da janela modal <i class="fuxicons fuxicons-open-in-window"></i></a>
+                        </h4>
+                        <p>
+                            Breve descrição da modal.
+                        </p>
+                    </div>
+                    <div class="modal-body">
+                        ... conteúdo da modal ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">gravar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#my-default-modal">
+    abrir janela modal
+</button>
+<div class="modal fade" id="my-default-modal" tabindex="-1" role="dialog" aria-labelledby="my-default-modal-label">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><a href="#" target="_blank">Título da janela modal <i class="fuxicons fuxicons-open-in-window"></i></a></h4>
+                <p>
+                    Breve descrição da modal
+                </p>
+            </div>
+            <div class="modal-body">
+                ... conteúdo da modal ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">gravar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+        </textarea>
+    </form>
+</div>

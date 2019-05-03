@@ -1,0 +1,48 @@
+<h3 id="docs-table-general-vision">Tabela - overview</h3>
+<p>O exemplo abaixo apresenta o exemplo mais simples de uma tabela.</p>
+<p>Para instanciar uma tabela como a demonstrada abaixo deve fazer uso dos seguintes ficheiros: </p>
+<ul>
+    <li>Para a tabela propriamente dita: <code>jquery.dataTables.css</code> e <code>jquery.dataTables.min.js</code> que são disponibilizados via basepack.</li>
+    <li>Para a paginação: <code>inputPaging.min.js</code> disponibilizado pela FUXI.</li>
+    <li>Através das funções <code>FUXI.Presets.DataTables</code> e <code>FUXI.Utils.SetDTPagination</code> são garantidas algumas regras de base para as tabelas.</li>
+</ul>
+<div class="fx-docs-snippet-code">
+    <div>
+        <!--# include file="/fuxi/doc/partials/jscomponents/table/partials/simple-table.html" -->
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<link href="/basepack/datatables-pt/1.9/css/jquery.dataTables.css" rel="stylesheet">
+
+<script type="text/javascript">
+    var tableGeneralVisionConf = $.extend({}, FUXI.Presets.DataTables, {
+        'iDisplayLength': 10,
+        'aLengthMenu': [5, 10, 25, 50],
+        "aoColumns": [
+            { "bSortable": false },
+            { "bSortable": false },
+            { "bSortable": false },
+        ],
+        "aaData": [
+            ["Aveiro", "Aveiro", "Aveiro", ],
+            ["Cantanhede", "Cantanhede", "Coimbra", ],
+            ["Coimbra", "Coimbra", "Coimbra", ],
+            ["Faro", "Faro", "Faro", ],
+            ["Figueira da Foz", "Figueira da Foz", "Coimbra", ],
+            ["Gouveia", "Gouveia", "Guarda", ],
+            ["Guarda", "Guarda", "Guarda", ],
+            ["Ílhavo", "Ílhavo", "Aveiro"],
+            ["Lisboa", "Lisboa", "Lisboa", ],
+            ["Viseu", "Viseu", "Viseu", ],
+            ["Porto", "Porto", "Porto", ],
+        ]
+    });
+
+    $('.devguide-test-table').on('init.dt', FUXI.Utils.SetDTPagination).dataTable(tableGeneralVisionConf);
+</script>
+
+<script type="text/javascript" src="/basepack/datatables-pt/1.9/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/fuxi/lib/datatables-pt/1.9/js/inputPaging.min.js"></script>
+        </textarea>
+    </form>
+</div>

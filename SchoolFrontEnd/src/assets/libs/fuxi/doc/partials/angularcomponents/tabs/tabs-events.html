@@ -1,0 +1,55 @@
+<h3 id="docs-tabs-events">Eventos e Métodos</h3>
+<p>As tabs disponibilizam os eventos e métodos abaixo enumerados.</p>
+
+<h4>Eventos</h4>
+<div class="table-responsive">
+    <table class="table fx-table">
+        <thead>
+            <tr>
+                <th>Evento</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>fxtabAction::_action_</td>
+                <td>Executado quando o ocorre a <code>_action_</code> do menu de opções.</td>
+            </tr>   
+        </tbody>
+    </table>
+</div>
+
+<h4>Métodos</h4>
+<p>O serviço <code>fxtabService</code> exposto pela diretiva <code>fxtabs</code> permite:</p>
+
+<div class="fx-method-desc">
+    <h5><code>setCurrentLanguage (newCurrentLanguage)</code></h5>
+    <p>Método que permite definir a língua do componente.</p>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>getCurrentLanguage ()</code></h5>
+    <p>Método que permite obter a língua do componente.</p>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>loadCustomLocales (customLocales)</code></h5>
+    <p>Método que permite o carregamento de novas línguas. Estas devem respeitar a estrutura <code>{ 'lang' : { key: value, ...} }</code></p>
+    <p>As <code>keys</code> podem ser:</p>
+    <ul>
+        <li>PLACEHOLDER-SEARCH</li>
+        <li>LABEL-VIEW-CONTENT-LEFT</li>        
+        <li>LABEL-VIEW-CONTENT-RIGHT</li>
+        <li>LABEL-ALL-TABS</li>
+    </ul>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>setLabelByKey (key, text)</code></h5>
+    <p>Método que permite modificar uma <code>key</code> da língua definida.</p>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>getLocale (key, lng)</code></h5>
+    <p>Método que permite obter uma <code>key</code> de uma determinada língua.</p>
+</div>

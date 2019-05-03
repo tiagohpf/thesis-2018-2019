@@ -1,0 +1,53 @@
+<h3 id="docs-form-input-disabled">Inputs disabled</h3>
+<p>Para dar uma aparência de desabilitado aos diferentes inputs basta adicionar o atributo <code>disabled</code> ao input.</p>
+<p>Recomendamos usar o atributo <code>title</code> para indicar o motivo pelo qual determinado input está desabilitado.</p>
+<div class="alert alert-warning">
+    <p>Por vezes são utilizadas componentes de terceiros que também possuem estado de disabled. Esse aspeto é abordado em cada uma das componentes e não nesta área.</p>
+</div>
+<div class="fx-docs-snippet-code">
+    <div>
+        <div class="form-group">
+            <label class="control-label" for="input-disabled">
+                Input disabled
+            </label>
+            <div>
+                <input id="input-disabled" type="text" class="form-control" title="Razão porque campo está a disabled" disabled />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="select-disabled">
+                Select disabled
+            </label>
+            <div>
+                <select id="select-disabled" class="form-control" title="Razão porque campo está a disabled" disabled>
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                </select>
+            </div>
+        </div>
+        <div class="checkbox">
+            <label title="Razão porque campo está a disabled">
+                <input type="checkbox" disabled>
+                checkbox disabled
+            </label>
+        </div>
+        <div class="radio">
+            <label title="Razão porque campo está a disabled">
+                <input type="radio" disabled>
+                radio disabled
+            </label>
+        </div>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<div class="form-group">
+    <label class="control-label" for="input-disabled">
+        Input disabled
+    </label>
+    <div>
+        <input id="input-disabled" type="text" class="form-control" title="Razão porque campo está a disabled" disabled />
+    </div>
+</div>
+        </textarea>
+    </form>
+</div>

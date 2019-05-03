@@ -1,0 +1,50 @@
+[
+  {
+    "icon": "fa fa-cogs",
+    "type": "navigate",
+    "id": "studentDetails",
+    "navigateTo": "students/[[id]]"
+  },
+  {
+    "icon": "fa fa-book",
+    "type": "navigate",
+    "id": "studentPrograms",
+    "navigateTo": "students/[[id]]/programs"
+  },
+  {
+    "icon": "fuxicons fuxicons-tests",
+    "type": "navigate",
+    "id": "studentTestSets",
+    "navigateTo": "students/[[id]]/testSets"
+  },
+  {
+    "icon": "fa fa-reply",
+    "type": "navigate",
+    "id": "studentFallbacks",
+    "navigateTo": "students/[[id]]/fallbacks"
+  },
+  {
+    "icon": "fa fa-comments",
+    "type": "navigate",
+    "id": "studentDialog",
+    "navigateTo": "students/[[id]]/dialogs"
+  },
+  {
+    "icon": "fa fa-bar-chart",
+    "type": "navigate",
+    "id": "studentStatistics",
+    "navigateTo": "students/[[id]]/statistics"
+  },
+  {
+    "icon": "fa fa-bar-chart",
+    "type": "navigate",
+    "id": "studentPlan",
+    "navigateTo": "students/[[id]]/plan"
+  },
+  {
+    "_icon": "fuxicons fuxicons-checkboxes",
+    "_type": "navigate",
+    "_id": "studentSurveys",
+    "_navigateTo": "students/[[id]]/surveys"
+  }
+]

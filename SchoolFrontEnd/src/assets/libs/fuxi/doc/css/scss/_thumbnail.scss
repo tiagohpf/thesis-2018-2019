@@ -1,0 +1,12 @@
+﻿.thumbnail {
+    border-color: $thumbnail-border-color;
+    border-radius: 0;
+    margin: 10px 0;
+    padding: 10px;
+    transition: none;
+    -webkit-transition: none;
+
+    img+h3 {
+        margin-top: 20px;
+    }
+}

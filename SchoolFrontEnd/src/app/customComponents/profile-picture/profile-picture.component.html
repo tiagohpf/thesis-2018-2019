@@ -1,0 +1,149 @@
+<!--
+ShapeKind.circle
+-->
+<ng-template [ngIf]="shape == ShapeKind.circle">
+    <ng-template [ngIf]="!img && !text">
+        <svg:circle [attr.r]="r" [attr.cx]="cx" [attr.cy]="cy" [attr.fill]="defaultPictureColor" [attr.stroke-width]="borderWidth"
+            stroke="white" />
+        <svg:text text-anchor="middle" [attr.x]="x" [attr.y]="y" [style.font-size.rem]='iconFontSize' style="fill: #ffffff; font-family:'FontAwesome'"
+            dy="0.43em" innerHTML="{{iconCode}}"></svg:text>
+    </ng-template>
+
+    <ng-template [ngIf]="!img && text">
+        <svg:circle [attr.r]="r" [attr.cx]="cx" [attr.cy]="cy" [attr.fill]="inputColor" [attr.stroke-width]="borderWidth"
+            stroke="white" />
+        <svg:text text-anchor="middle" [attr.x]="x" [attr.y]="y" [style.font-size.rem]='fontSize' style="fill: #ffffff; stroke: none;"
+            dy="0.3em">{{acronym}}</svg:text>
+    </ng-template>
+
+    <!-- aplicar o hover da imagem de upload photo caso não se tenha uma imagem definida -->
+    <ng-container *ngIf="applyUploadPhotoMask">
+        <svg:circle fill="#253aa5" fill-opacity="0.8" [attr.r]="r" [attr.cx]="cx" [attr.cy]="cy" [attr.stroke-width]="borderWidth"
+            stroke="white" />
+        <svg:text text-anchor="middle" [attr.x]="x" [attr.y]="y" [style.font-size.rem]='iconFontSize' style="fill: #ffffff; font-family:'FontAwesome'"
+            dy="0.4em">&#xe911;</svg:text>
+        <svg:text text-anchor="middle" [attr.x]="x" [attr.y]="y" style="fill: #ffffff; font-family:'Montserrat'; font-weight: 700; font-size: 10px;"
+            dy="3.6em">Change</svg:text>
+    </ng-container>
+
+    <!-- aplicar o hover da imagem do view details caso não se tenha uma imagem definida -->
+    <ng-container *ngIf="applyViewDetailMask">
+        <svg:circle fill="#253aa5" fill-opacity="0.8" [attr.r]="r" [attr.cx]="cx" [attr.cy]="cy" [attr.stroke-width]="borderWidth"
+            stroke="white" />
+        <svg:text text-anchor="middle" [attr.x]="x" [attr.y]="y" [style.font-size.rem]='iconFontSize' style="fill: #ffffff; font-family:'FontAwesome'"
+            dy="0.4em">&#xe923;</svg:text>
+        <svg:text text-anchor="middle" [attr.x]="x" [attr.y]="y" style="fill: #ffffff; font-family:'Montserrat'; font-weight: 700; font-size: 10px;"
+            dy="3.6em">Change</svg:text>
+    </ng-container>
+
+
+    <ng-template [ngIf]="img">
+        --> {{isLocalImage}}
+        <svg:defs>
+            <svg:pattern id="{{imgId}}" height="100%" width="100%" patternContentUnits="objectBoundingBox" viewBox="0 0 1 1"
+                preserveAspectRatio="xMidYMid slice">
+                <svg:image height="1" width="1" preserveAspectRatio="xMidYMid slice" [attr.xlink:href]="isLocalImage ? img : baseUrl + img" />
+            </svg:pattern>
+        </svg:defs>
+        <svg:circle [attr.r]="r" [attr.cx]="cx" [attr.cy]="cy" [attr.fill]="'url(#' + imgId + ')'" [attr.stroke-width]="borderWidth"
+            stroke="white" />
+
+        <ng-container *ngIf="icon">
+            <svg:text text-anchor="middle" x="50%" y="50%" [style.font-size.rem]='iconFontSize' style="fill: #ffffff; font-family:'FontAwesome'"
+                dy="0.43em" innerHTML="{{iconCode}}"></svg:text>
+        </ng-container>
+
+        <ng-container *ngIf="applyUploadPhotoMask">
+            <svg:circle fill="#253aa5" fill-opacity="0.8" [attr.r]="r" [attr.cx]="cx" [attr.cy]="cy"
+                [attr.stroke-width]="borderWidth" stroke="white" />
+            <svg:text text-anchor="middle" [attr.x]="x" [attr.y]="y" [style.font-size.rem]='iconFontSize' style="fill: #ffffff; font-family:'FontAwesome'"
+                dy="0.4em">&#xf093;</svg:text>
+            <svg:text text-anchor="middle" [attr.x]="x" [attr.y]="y" style="fill: #ffffff; font-family:'Montserrat'; font-weight: 700; font-size: 10px;"
+                dy="3.6em"></svg:text>
+        </ng-container>
+
+        <ng-container *ngIf="applyViewDetailMask">
+            <svg:circle fill="#253aa5" fill-opacity="0.8" [attr.r]="r" [attr.cx]="cx" [attr.cy]="cy"
+                [attr.stroke-width]="borderWidth" stroke="white" />
+            <svg:text text-anchor="middle" [attr.x]="x" [attr.y]="y" [style.font-size.rem]='iconFontSize' style="fill: #ffffff; font-family:'FontAwesome'"
+                dy="0.4em">&#xf06e;</svg:text>
+            <svg:text text-anchor="middle" [attr.x]="x" [attr.y]="y" style="fill: #ffffff; font-family:'Montserrat'; font-weight: 700; font-size: 10px;"
+                dy="3.6em"></svg:text>
+        </ng-container>
+    </ng-template>
+</ng-template>
+
+<!--
+ShapeKind.rectangle
+-->
+<ng-template [ngIf]="shape == ShapeKind.rectangle">
+    {{ShapeKind.rectangle}}
+    <ng-template [ngIf]="!img && !text">
+        <svg:rect [attr.width]="width" [attr.height]="height" [attr.fill]="defaultPictureColor" [attr.stroke-width]="borderWidth"
+            stroke="white" />
+        <svg:text text-anchor="middle" [attr.x]="x" [attr.y]="y" [style.font-size.rem]='iconFontSize' style="fill: #ffffff; font-family:'FontAwesome'"
+            dy="0.43em" innerHTML="{{iconCode}}"></svg:text>
+    </ng-template>
+
+    <ng-template [ngIf]="!img && text">
+        <svg:rect [attr.width]="width" [attr.height]="height" [attr.fill]="inputColor" [attr.stroke-width]="borderWidth"
+            stroke="white" />
+        <svg:text text-anchor="middle" [attr.x]="x" [attr.y]="y" [style.font-size.rem]='fontSize' style="fill: #ffffff; stroke: none;"
+            dy="0.3em">{{acronym}}</svg:text>
+    </ng-template>
+
+    <!-- aplicar o hover da imagem de upload photo caso não se tenha uma imagem definida -->
+    <ng-container *ngIf="applyUploadPhotoMask">
+        <svg:rect fill="#253aa5" fill-opacity="0.8" [attr.width]="width" [attr.height]="height" [attr.stroke-width]="borderWidth"
+            stroke="white" />
+        <svg:text text-anchor="middle" [attr.x]="x" [attr.y]="y" [style.font-size.rem]='iconFontSize' style="fill: #ffffff; font-family:'Icomoon'"
+            dy="0.4em">&#xe908;</svg:text>
+        <svg:text text-anchor="middle" [attr.x]="x" [attr.y]="y" style="fill: #ffffff; font-family:'Montserrat'; font-weight: 700; font-size: 10px;"
+            dy="3.6em">Change</svg:text>
+    </ng-container>
+
+    <!-- aplicar o hover da imagem do view details caso não se tenha uma imagem definida -->
+    <ng-container *ngIf="applyViewDetailMask">
+        <svg:rect fill="#253aa5" fill-opacity="0.8" [attr.width]="width" [attr.height]="height" [attr.stroke-width]="borderWidth"
+            stroke="white" />
+        <svg:text text-anchor="middle" [attr.x]="x" [attr.y]="y" [style.font-size.rem]='iconFontSize' style="fill: #ffffff; font-family:'Icomoon'"
+            dy="0.4em">&#xe90f;</svg:text>
+        <svg:text text-anchor="middle" [attr.x]="x" [attr.y]="y" style="fill: #ffffff; font-family:'Montserrat'; font-weight: 700; font-size: 10px;"
+            dy="3.6em">Change</svg:text>
+    </ng-container>
+
+    <ng-template [ngIf]="img">
+        --> {{isLocalImage}}
+        <svg:defs>
+            <svg:pattern id="{{imgId}}" height="100%" width="100%" patternContentUnits="objectBoundingBox" viewBox="0 0 1 1"
+                preserveAspectRatio="xMidYMid slice">
+                <svg:image height="1" width="1" preserveAspectRatio="xMidYMid slice" [attr.xlink:href]="isLocalImage ? img : baseUrl + img" />
+            </svg:pattern>
+        </svg:defs>
+        <svg:rect [attr.width]="width" [attr.height]="height" [attr.fill]="'url(#' + imgId + ')'" [attr.stroke-width]="borderWidth"
+            stroke="white" />
+
+        <ng-container *ngIf="icon">
+            <svg:text text-anchor="middle" x="50%" y="50%" [style.font-size.rem]='iconFontSize' style="fill: #ffffff; font-family:'Icomoon'"
+                dy="0.43em" innerHTML="{{iconCode}}"></svg:text>
+        </ng-container>
+
+        <ng-container *ngIf="applyUploadPhotoMask">
+            <svg:rect fill="#253aa5" fill-opacity="0.8" [attr.width]="width" [attr.height]="height" [attr.stroke-width]="borderWidth"
+                stroke="white" />
+            <svg:text text-anchor="middle" [attr.x]="x" [attr.y]="y" [style.font-size.rem]='iconFontSize' style="fill: #ffffff; font-family:'Icomoon'"
+                dy="0.4em">&#xe908;</svg:text>
+            <svg:text text-anchor="middle" [attr.x]="x" [attr.y]="y" style="fill: #ffffff; font-family:'FallingSky'; font-weight: 400; font-size: 14px;"
+                dy="2.6em">{{'upload_image' | myI18n}}</svg:text>
+        </ng-container>
+
+        <ng-container *ngIf="applyViewDetailMask">
+            <svg:rect fill="#253aa5" fill-opacity="0.8" [attr.width]="width" [attr.height]="height" [attr.stroke-width]="borderWidth"
+                stroke="white" />
+            <svg:text text-anchor="middle" [attr.x]="x" [attr.y]="y" [style.font-size.rem]='iconFontSize' style="fill: #ffffff; font-family:'FontAwesome'"
+                dy="0.4em">&#xf06e;</svg:text>
+            <svg:text text-anchor="middle" [attr.x]="x" [attr.y]="y" style="fill: #ffffff; font-family:'Montserrat'; font-weight: 700; font-size: 10px;"
+                dy="3.6em"></svg:text>
+        </ng-container>
+    </ng-template>
+</ng-template>

@@ -1,0 +1,84 @@
+﻿html {
+    min-height: 100%;
+    position: relative;
+}
+
+body {
+    font-family: $app-main-regular-font;
+    overflow: auto;
+    padding-top: 31px;
+}
+
+.form-control { 
+    max-width: 100%;
+}
+
+.modal-title {
+    font-weight: normal;
+}
+
+.fx-docs-section {
+
+    #fx-header, //needed because position fixed is default
+    .fx-page-main-menu,  //needed because position absolute is default
+    .fx-main-footer { //needed because position absolute is default
+        position: relative;
+    }
+
+    .fx-main-footer { //needed because bottom 0 is default
+        bottom: auto;
+    }
+
+    .fx-wizardsteps-content h4 {
+        margin-top: 0;
+    }
+
+    .fx-menu h3 {
+        font-family: $fuxi-headings-font;
+    }
+    
+    h4.modal-title { //needed because of inheritance
+        font-weight: bold;
+        margin-top: 0;
+    }
+    
+    .fx-offscreen-dock-title { //needed because of inheritance
+        color: $color-white;
+    }
+    
+    .fx-menu h4,
+    h4.modal-title,
+    .fx-wizardsteps-content h4,
+    #toast-container {
+        font-family: $fuxi-main-font;
+    } 
+
+}
+
+.fx-devguide-dockbar-container { //needed because dockbar default values places this component according to the viewport
+    height: 350px;
+    margin: -10px;
+    overflow: hidden;
+    position: relative;
+
+    .fx-offscreen {
+        bottom: 10px;
+        position: absolute;
+        top: 10px;
+    }
+}
+
+HTML[class*="cssanimations"] .fx-ico-loading.inactive, //so the animations are only displayed on demand
+HTML[class*="cssanimations"] .fx-ico-loading-m.inactive,
+HTML[class*="cssanimations"] .fx-ico-loading-l.inactive,
+HTML[class*="cssanimations"] .fx-ico-loading-bars.inactive > div,
+HTML[class*="cssanimations"] .fx-ico-loading-bars-m.inactive > div,
+HTML[class*="cssanimations"] .fx-ico-loading-bars-l.inactive > div {
+	-webkit-animation: none;
+    animation: none;
+}
+
+#devguide-uibtn-section .fx-docs-snippet-code .btn, //only used on ui elements button snippets
+#devguide-uibtn-section .fx-docs-snippet-code .btn-group {
+    margin-bottom: 5px;
+}

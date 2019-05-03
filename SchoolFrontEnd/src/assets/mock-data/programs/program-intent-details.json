@@ -1,0 +1,595 @@
+{
+    "type": "initParameters",
+    "header": {
+        "id": "pageHeader",
+        "seo": {
+            "text": "program___intent___name",
+            "icon": "fa fa-reply"
+        }
+    },
+    "urlResource": [
+        {
+            "key": "pathToMainData",
+            "value": [
+                ""
+            ]
+        }
+    ],
+    "details": [
+        {
+            "type": "label",
+            "id": "intentIdx2",
+            "pathToValue": [
+                "$this['intentIdx'] || '0'"
+            ],
+            "hidden": true
+        },
+        {
+            "type": "label",
+            "id": "programCodeDtl",
+            "pathToValue": [
+                "programCode"
+            ],
+            "hidden": true
+        },
+        {
+            "type": "label",
+            "id": "programNameDtl",
+            "pathToValue": [
+                "programName"
+            ],
+            "hidden": true
+        },
+        {
+            "type": "label",
+            "id": "programVersionDtl",
+            "pathToValue": [
+                "programVersion"
+            ],
+            "hidden": true
+        },
+        {
+            "include": "programs/program-intent-identification"
+        },
+        {
+            "type": "operations",
+            "id": "initParametersIntentContents",
+            "class": "col-sm-6",
+            "text": null,
+            "operations": [
+                {
+                    "parameters": [
+                        {
+                            "type": "updatePage",
+                            "id": "intentsVariables",
+                            "text": "<span class='active-bar'></span>{{@fv()@i18n('program___variable___namePlural')}}",
+                            "parameters": [
+                                {
+                                    "key": "updatePageParameter",
+                                    "value": {
+                                        "intentsTrainingPhrases": {
+                                            "class": ""
+                                        },
+                                        "intentsVariables": {
+                                            "class": "active"
+                                        },
+                                        "trainingPhrasesInitParams": {
+                                            "hidden": true
+                                        },
+                                        "variables_Table": {
+                                            "hidden": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "key": "keepModal",
+                                    "value": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "parameters": [
+                        {
+                            "type": "updatePage",
+                            "id": "intentsTrainingPhrases",
+                            "text": "<span class='active-bar'></span>{{@fv()@i18n('program___intent___trainingPhrases')}}",
+                            "class": "active",
+                            "parameters": [
+                                {
+                                    "key": "updatePageParameter",
+                                    "value": {
+                                        "intentsTrainingPhrases": {
+                                            "class": "active"
+                                        },
+                                        "intentsVariables": {
+                                            "class": ""
+                                        },
+                                        "trainingPhrasesInitParams": {
+                                            "hidden": false
+                                        },
+                                        "variables_Table": {
+                                            "hidden": true
+                                        }
+                                    }
+                                },
+                                {
+                                    "key": "keepModal",
+                                    "value": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "include": "programs/program-intent-variables"
+        },
+        {
+            "include": "programs/program-intent-trainingPhrases"
+        }
+    ],
+    "operations": {
+        "size": 3,
+        "parameters": [
+            {
+                "id": "btnClose",
+                "type": "updatePage",
+                "text": "generic___operations___close",
+                "class": "btn-default"
+            },
+            {
+                "type": "updatePage",
+                "id": "trainingPhrasesCancel",
+                "text": "generic___operations___cancel",
+                "class": "btn-force-default btn-default",
+                "parameters": [
+                    {
+                        "key": "updatePageParameter",
+                        "value": {
+                            "trainingPhrasesTable": {
+                                "lazyLoading": false,
+                                "hidden": false
+                            },
+                            "trainingPhrases_Tuple": {
+                                "lazyLoading": true,
+                                "hidden": true
+                            },
+                            "trainingPhrasesEdit": {
+                                "hidden": false
+                            },
+                            "trainingPhrasesSave": {
+                                "hidden": true
+                            },
+                            "trainingPhrasesCancel": {
+                                "hidden": true
+                            },
+                            "btnClose": {
+                                "hidden": false
+                            },
+                            "intentNameEdit": {
+                                "disabled": false,
+                                "title": null
+                            },
+                            "intentDescriptionEdit": {
+                                "disabled": false,
+                                "title": null
+                            },
+                            "variableAdd": {
+                                "disabled": false,
+                                "title": null
+                            },
+                            "variableActions": {
+                                "hidden": false
+                            }
+                        }
+                    },
+                    {
+                        "key": "keepModal",
+                        "value": true
+                    }
+                ],
+                "hidden": true
+            },
+            {
+                "type": "execute",
+                "id": "trainingPhrasesSave",
+                "text": "generic___operations___save",
+                "class": "btn btn-primary",
+                "parameters": [
+                    {
+                        "key": "requestEndpoint",
+                        "value": "{{SchoolBE}}/programs/[[programID]]/intents/{{originalDisplayNameDtl}}"
+                    },
+                    {
+                        "key": "requestType",
+                        "value": "PATCH"
+                    },
+                    {
+                        "key": "requestBody",
+                        "type": "json",
+                        "value": {
+                            "$set": {
+                                "lessons.[intentIdx].trainingPhrases": "{{@fv()@generateTrainingPhrasesList(@replaceTagVars('trainingPhrases_Tuple'),@replaceTagVars('programCodeDtl'))}}"
+                            }
+                        }
+                    },
+                    {
+                        "key": "apiRecycle",
+                        "value": false
+                    },
+                    {
+                        "key": "requestHeaders",
+                        "value": {
+                            "Authorization": "Bearer {{token}}",
+                            "IXS": "{{IXS_id}}"
+                        }
+                    },
+                    {
+                        "key": "onSuccess",
+                        "value": {
+                            "keepModal": true,
+                            "request": [
+                                {
+                                    "key": "requestEndpoint",
+                                    "value": "{{SchoolBE}}/programs/[[programID]]"
+                                },
+                                {
+                                    "key": "requestType",
+                                    "value": "PATCH"
+                                },
+                                {
+                                    "key": "requestBody",
+                                    "type": "json",
+                                    "value": {
+                                        "$set": {
+                                            "model.status": "deprecated"
+                                        }
+                                    }
+                                },
+                                {
+                                    "key": "requestHeaders",
+                                    "value": {
+                                        "Authorization": "Bearer {{token}}",
+                                        "IXS": "{{IXS_id}}"
+                                    }
+                                },
+                                {
+                                    "key": "errorText",
+                                    "value": "ERROR!\n Could not update program modal."
+                                },
+                                {
+                                    "key": "successText",
+                                    "value": false
+                                },
+                                {
+                                    "key": "onSuccess",
+                                    "value": {
+                                        "keepModal": true,
+                                        "request": [
+                                            {
+                                                "key": "updatePageParameter",
+                                                "value": {
+                                                    "trainingPhrasesTable": {
+                                                        "lazyLoading": false,
+                                                        "hidden": false
+                                                    },
+                                                    "trainingPhrases_Tuple": {
+                                                        "hidden": true
+                                                    },
+                                                    "trainingPhrasesEdit": {
+                                                        "hidden": false
+                                                    },
+                                                    "trainingPhrasesSave": {
+                                                        "hidden": true
+                                                    },
+                                                    "trainingPhrasesCancel": {
+                                                        "hidden": true
+                                                    },
+                                                    "btnClose": {
+                                                        "hidden": false
+                                                    },
+                                                    "intentNameEdit": {
+                                                        "disabled": false,
+                                                        "title": null
+                                                    },
+                                                    "intentDescriptionEdit": {
+                                                        "disabled": false,
+                                                        "title": null
+                                                    },
+                                                    "variableAdd": {
+                                                        "disabled": false,
+                                                        "title": null
+                                                    },
+                                                    "variableActions": {
+                                                        "hidden": false
+                                                    },
+                                                    "programIntentsTable": {
+                                                        "lazyLoading": false
+                                                    },
+                                                    "learnDraft": {
+                                                        "key": "onSuccess"
+                                                    },
+                                                    "notLearnDraft": {
+                                                        "key": "_onSuccess"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "key": "successText",
+                                                "value": false
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "hidden": true
+            },
+            {
+                "type": "updatePage",
+                "id": "variableAddCancel",
+                "class": "btn-force-default btn-default",
+                "hidden": true,
+                "text": "generic___operations___cancel",
+                "parameters": [
+                    {
+                        "key": "updatePageParameter",
+                        "value": {
+                            "addVariableParams": {
+                                "hidden": true
+                            },
+                            "variableAdd": {
+                                "hidden": false
+                            },
+                            "variableAddCancel": {
+                                "hidden": true
+                            },
+                            "variableAddSave": {
+                                "hidden": true
+                            },
+                            "variableActions": {
+                                "hidden": false
+                            },
+                            "intentNameEdit": {
+                                "disabled": false,
+                                "title": null
+                            },
+                            "intentDescriptionEdit": {
+                                "disabled": false,
+                                "title": null
+                            },
+                            "trainingPhrasesEdit": {
+                                "disabled": false,
+                                "title": null
+                            },
+                            "btnClose": {
+                                "hidden": false
+                            }
+                        }
+                    },
+                    {
+                        "key": "keepModal",
+                        "value": true
+                    }
+                ]
+            },
+            {
+                "type": "execute",
+                "id": "variableAddSave",
+                "hidden": true,
+                "text": "generic___operations___save",
+                "class": "btn btn-primary",
+                "mappingId": [
+                    "addVariableParams"
+                ],
+                "parameters": [
+                    {
+                        "key": "requestEndpoint",
+                        "value": "{{SchoolBE}}/programs/[[programID]]"
+                    },
+                    {
+                        "key": "requestHeaders",
+                        "value": {
+                            "Authorization": "Bearer {{token}}",
+                            "IXS": "{{IXS_id}}"
+                        }
+                    },
+                    {
+                        "key": "requestType",
+                        "value": "PATCH"
+                    },
+                    {
+                        "key": "requestBody",
+                        "type": "json",
+                        "value": {
+                            "$push": {
+                                "lessons.{{intentIdx2}}.parameters": {
+                                    "isList": false,
+                                    "displayName": "{{variableDisplayNameNew}}",
+                                    "entityTypeDisplayName": "{{@fv()@replaceTagVars('variableNatureNew')=='custom'?'@'+@replaceTagVars('variableEntityNew'):@replaceTagVars('systemEntityNew')}}",
+                                    "value": "${{variableDisplayNameNew}}"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "key": "errorText",
+                        "value": "ERROR!\n Could not create variable."
+                    },
+                    {
+                        "key": "onSuccess",
+                        "value": {
+                            "keepModal": true,
+                            "request": [
+                                {
+                                    "key": "requestEndpoint",
+                                    "value": "{{SchoolBE}}/programs/[[programID]]"
+                                },
+                                {
+                                    "key": "requestHeaders",
+                                    "value": {
+                                        "Authorization": "Bearer {{token}}",
+                                        "IXS": "{{IXS_id}}"
+                                    }
+                                },
+                                {
+                                    "key": "requestType",
+                                    "value": "PATCH"
+                                },
+                                {
+                                    "key": "requestBody",
+                                    "type": "json",
+                                    "value": {
+                                        "$push": {
+                                            "variables": {
+                                                "displayName": "{{variableDisplayNameNew}}",
+                                                "description": "{{variableDisplayNameNew}}",
+                                                "initialValue": "{{variableDefaultValueNew}}",
+                                                "nature": "{{variableNatureNew}}",
+                                                "entity": "{{@fv()@replaceTagVars('variableNatureNew')=='custom'?@replaceTagVars('variableEntityNew'):@replaceTagVars('systemEntityNew')}}",
+                                                "channel": "{{@fv()@replaceTagVars('variableNatureNew')=='session'?@replaceTagVars('variableChannelNew'):null}}"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "key": "errorText",
+                                    "value": "ERROR!\n Could not create variable."
+                                },
+                                {
+                                    "key": "onSuccess",
+                                    "value": {
+                                        "keepModal": true,
+                                        "request": [
+                                            {
+                                                "key": "updatePageParameter",
+                                                "value": {
+                                                    "addVariableParams": {
+                                                        "hidden": true
+                                                    },
+                                                    "variableAdd": {
+                                                        "hidden": false
+                                                    },
+                                                    "variableAddCancel": {
+                                                        "hidden": true
+                                                    },
+                                                    "variableAddSave": {
+                                                        "hidden": true
+                                                    },
+                                                    "variableActions": {
+                                                        "hidden": false
+                                                    },
+                                                    "variables_Table": {
+                                                        "lazyLoading": false
+                                                    },
+                                                    "myVariables": {
+                                                        "lazyLoading": false
+                                                    },
+                                                    "trainingPhrases_Tuple": {
+                                                        "lazyLoading": false
+                                                    },
+                                                    "intentNameEdit": {
+                                                        "disabled": false,
+                                                        "title": null
+                                                    },
+                                                    "intentDescriptionEdit": {
+                                                        "disabled": false,
+                                                        "title": null
+                                                    },
+                                                    "trainingPhrasesEdit": {
+                                                        "disabled": false,
+                                                        "title": null
+                                                    },
+                                                    "programVariablesTable": {
+                                                        "lazyLoading": false
+                                                    },
+                                                    "btnClose": {
+                                                        "hidden": false
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "key": "successText",
+                                                "value": false
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        "dynamicProps": {
+                            "key": "'{{addNewExistent}}'=='new'?'onSuccess':'_onSuccess'"
+                        }
+                    },
+                    {
+                        "key": "onSuccess",
+                        "value": {
+                            "keepModal": true,
+                            "request": [
+                                {
+                                    "key": "updatePageParameter",
+                                    "value": {
+                                        "addVariableParams": {
+                                            "hidden": true
+                                        },
+                                        "variableAdd": {
+                                            "hidden": false
+                                        },
+                                        "variableAddCancel": {
+                                            "hidden": true
+                                        },
+                                        "variableAddSave": {
+                                            "hidden": true
+                                        },
+                                        "variableActions": {
+                                            "hidden": false
+                                        },
+                                        "variables_Table": {
+                                            "lazyLoading": false
+                                        },
+                                        "myVariables": {
+                                            "lazyLoading": false
+                                        },
+                                        "trainingPhrases_Tuple": {
+                                            "lazyLoading": false
+                                        },
+                                        "intentNameEdit": {
+                                            "disabled": false,
+                                            "title": null
+                                        },
+                                        "intentDescriptionEdit": {
+                                            "disabled": false,
+                                            "title": null
+                                        },
+                                        "trainingPhrasesEdit": {
+                                            "disabled": false,
+                                            "title": null
+                                        },
+                                        "programVariablesTable": {
+                                            "lazyLoading": false
+                                        },
+                                        "btnClose": {
+                                            "hidden": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "key": "successText",
+                                    "value": false
+                                }
+                            ]
+                        },
+                        "dynamicProps": {
+                            "key": "'{{addNewExistent}}'!='new'?'onSuccess':'_onSuccess'"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

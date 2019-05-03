@@ -1,0 +1,18 @@
+<nav id="wct-breadcrumb" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+      <li class="breadcrumb-item" id="wct-breadcrumb-home">
+        <i class="fa fa-home"></i>
+        <a href="#" routerLink="">{{'generic___pagination___home' | myI18n}}</a>
+      </li>
+      <li
+          *ngFor="let url of breadcrumbService.getBreadcrumb(); let last = last"
+          class="breadcrumb-item"
+          [id]="url.id ? 'wct-breadcrumb-' + url.id : ''">
+            <i *ngIf="url.icon" class="{{url.icon}}"></i>
+            <a *ngIf="url.route; else routeless" href="#" [routerLink]="[url.route]">{{url.name}}</a>
+            <ng-template #routeless>{{url.name}}</ng-template>
+      </li>
+    
+  </ol>
+</nav>

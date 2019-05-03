@@ -1,0 +1,101 @@
+{
+    "type": "initParameters",
+    "id": "importFromGoogleDocs",
+    "details": [
+        {
+            "type": "context",
+            "id": "programName",
+            "pathToValue": [
+                "_embedded",
+                "name"
+            ],
+            "urlResource": [
+                {
+                    "key": "path",
+                    "value": "{{AppAPIBotConfig}}/programs"
+                },
+                {
+                    "key": "queryString",
+                    "value": {
+                        "filter": "{\"_id\": { \"$oid\":\"[[programID]]\"}}",
+                        "keys": "{\"_id\":1,\"name\":1}"
+                    }
+                },
+                {
+                    "key": "headers",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "label",
+            "id": "generateDescription",
+            "class": "hide-label",
+            "icon": "fa fa-file-o",
+            "value": "Import base questions"
+        },
+        {
+            "type": "label",
+            "id": "generateDescription",
+            "class": "hide-label",
+            "dynamicProps": {
+                "lazyLoading": "!'{{programName}}'"
+            },
+            "value": "Are you sure you wish to import base questions for program {{programName}}?"
+        }
+    ],
+    "buttons": [
+        {
+            "key": "cancel",
+            "text": "generic___operations___cancel",
+            "class": "btn-force-default btn-default"
+        },
+        {
+            "key": "submit",
+            "_role": "Execute",
+            "text": "import",
+            "class": "btn-primary",
+            "parameters": [
+                {
+                    "key": "requestEndpoint",
+                    "value": "{{SchoolBE}}/programs/[[programID]]/importfromgooglesheets"
+                },
+                {
+                    "key": "requestType",
+                    "value": "POST"
+                },
+                {
+                    "key": "requestBody",
+                    "type": "json",
+                    "value": {}
+                },
+                {
+                    "key": "successText",
+                    "value": "{{@fv()@showRequestFinishMessage($this['msg'],null,'programPropertiesViewTab2')}}"
+                },
+                {
+                    "key": "errorText",
+                    "value": "{{@fv()@showRequestFinishMessage($this['msg'],$this['error'],'programPropertiesViewTab2')}}"
+                },
+                {
+                    "key": "errorTextTimeout",
+                    "value": -1
+                },
+                {
+                    "key": "errorTextPosition",
+                    "value": "top-full-width"
+                },
+                {
+                    "key": "requestHeaders",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,176 @@
+{
+  "type": "page",
+  "id": "pageConfiguration",
+  "header": {
+    "id": "pageHeader",
+    "seo": {
+      "text": "Create New Api",
+      "icon": "fa fa-briefcase"
+    },
+    "operations": {
+      "id": "pageHeaderOperations",
+      "text": "generic___operations___operations",
+      "icon": "glyphicon glyphicon-cog",
+      "parameters": [
+        {
+          "type": "submit",
+          "id": "customerCreateSave",
+          "text": "test invoke",
+          "class": "btn-primary",
+          "mappingId": [
+            "customerDateTime"
+          ],
+          "parameters": [
+            {
+              "key": "requestId",
+              "value": "response_id"
+            },
+            {
+              "key": "onSuccess",
+              "value": {
+                "updatePageParameters": {
+                  "response": {
+                    "value": "{{response_id}}"
+                  }
+                }
+              }
+            },
+            {
+              "key": "requestEndpoint",
+              "value": "{{subscription_xapi_ms}}/invoke/[[id]]"
+            },
+            {
+              "key": "requestHeaders",
+              "value": {
+                "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+              }
+            },
+            {
+              "key": "requestType",
+              "value": "",
+              "dynamicProps": {
+                "value": "'{{@fv()@replaceTagVars('httpMethod').toUpperCase()}}'"
+              }
+            },
+            {
+              "key": "requestBody",
+              "type": "json",
+              "value": {}
+            }
+          ]
+        },
+        {
+          "type": "navigate",
+          "text": "generic___operations___back",
+          "navigateTo": "subscription_xapi"
+        }
+      ]
+    }
+  },
+  "urlResource": [
+    {
+      "key": "path",
+      "value": "{{subscription_xapi_ms}}/services/[[id]]"
+    },
+    {
+      "key": "headers",
+      "value": {
+        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+      }
+    }
+  ],
+  "tabs": [
+    {
+      "id": "accountsList",
+      "text": "customers___accounts",
+      "icon": "fx-ico-loading",
+      "components": [
+        {
+          "type": "initParameters",
+          "id": "customerMainInformation",
+          "details": [
+            {
+              "type": "label",
+              "id": "name",
+              "text": "Api Name",
+              "pathToValue": [
+                "name"
+              ]
+            },
+            {
+              "type": "label",
+              "id": "description",
+              "text": "Description",
+              "pathToValue": [
+                "description"
+              ]
+            },
+            {
+              "type": "label",
+              "id": "endpoint",
+              "text": "endpoint",
+              "pathToValue": [
+                "endpoint"
+              ]
+            },
+            {
+              "type": "label",
+              "id": "httpMethod",
+              "text": "Method",
+              "pathToValue": [
+                "httpMethod"
+              ]
+            },
+            {
+              "type": "label",
+              "id": "authorization_Status",
+              "text": "Authorization Status",
+              "pathToValue": [
+                "authorization_Status"
+              ]
+            },
+            {
+              "type": "label",
+              "id": "authorizationType",
+              "text": "Authorization Type",
+              "pathToValue": [
+                "authorizationType"
+              ]
+            },
+            {
+              "type": "json",
+              "id": "headers",
+              "text": "Headers",
+              "pathToValue": [
+                "headers"
+              ]
+            },
+            {
+              "type": "label",
+              "id": "body",
+              "text": "Body",
+              "pathToValue": [
+                "body"
+              ]
+            },
+            {
+              "type": "label",
+              "id": "responseFilterMapper",
+              "text": "Fullfilment answer variables",
+              "pathToValue": [
+                "responseFilterMapper"
+              ]
+            },
+            {
+              "type": "json",
+              "id": "response",
+              "text": "response"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

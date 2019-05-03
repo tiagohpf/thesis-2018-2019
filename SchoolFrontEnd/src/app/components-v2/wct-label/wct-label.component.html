@@ -1,0 +1,49 @@
+<div
+    class="label-grouper"
+    [ngStyle]="inputParameters?.style">
+    <p
+        *ngIf="!inputParameters || !inputParameters?.navigateTo"
+        class="form-control-plaintext"
+        [id]="getHtmlId()"
+        [class.textbox-align]="textboxAlign"
+        [innerHtml]="inputParameters ? printValue() : showMyText"
+        [title]="myTitle | myI18n"
+        (click)="labelClick()"></p>
+    <p
+        *ngIf="inputParameters?.navigateTo"
+        class="form-control-plaintext"
+        [class.textbox-align]="textboxAlign">
+        <a
+            [id]="getHtmlId()"
+            [innerHtml]="printValue()"
+            [title]="myTitle | myI18n"
+            href
+            (mousedown)="navigate($event, inputParameters?.navigateTo)"></a>
+    </p>
+    <span
+        #openQuickView
+        *ngIf="inputParameters?.mockToLoad"
+        class="quickview"
+        [id]="componentQuickViewId + '-open'">
+        <span (click)="toggleTooltip($event)"><i class="caret fx-open-quickview"></i></span>
+        <div #quickviewPopupPositionSimulator class="quickview-popup-position-simulator">
+            <div
+            *ngIf="inputParameters?.mockToLoad && getTooltipStatus()"
+            class="popover fx-popover-s fx-dropdown-webct"
+            [class.to-right]="componentQuickViewOnRight"
+            [class.top]="componentQuickViewOnTop"
+            [class.bottom]="!componentQuickViewOnTop"
+            [id]="componentQuickViewId">
+                <div class="arrow"></div>
+                <div class="popover-content no-padding">
+                    <page-component
+                    #pageComponentOnQuickView
+                    [allowReload]="false"
+                    [inputDataRecs]="dataRecs"
+                    [inputMock]="inputParameters?.mockToLoad"
+                    [firstLevelLayer]="false"></page-component>
+                </div>
+            </div>
+        </div>
+    </span>
+</div>

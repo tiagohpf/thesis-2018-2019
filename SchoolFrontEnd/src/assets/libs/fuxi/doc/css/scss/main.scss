@@ -1,0 +1,47 @@
+﻿//Base structure file - Imports partials containing rules for the different components
+
+@import '_vars.scss';
+@import 'mixins/_buttons.scss';
+@import 'mixins/_clearfix.scss';
+@import 'mixins/_master-head.scss';
+@import 'mixins/_opacity.scss';
+@import 'mixins/_text-truncate.scss';
+@import '_typography.scss';
+@import '_structure.scss';
+@import '_doc-section.scss';
+@import '_nav.scss';
+@import '_button.scss';
+@import '_card.scss';
+@import '_thumbnail.scss';
+@import '_master-head.scss';
+@import '_disclaimer.scss';
+@import '_code-snippets.scss';
+@import '_fuxi-overrides.scss';
+
+
+//INTRO - UNCOMMENT ALL RULES BELOW IF INTRO PAGE GETS VISIBLE
+//.fx-docs-intro-msg-container {
+  //  margin-top: 20px;
+//}
+
+//@media screen and (min-width: 992px) {
+  //  .fx-docs-intro-msg {
+    //    padding-left: 40px;
+    //}
+//}
+
+//.fx-docs-intro-msg-pic img {
+  //  width: 100%;
+//}
+
+//@media screen and (max-width: 991px) {
+  //  .fx-docs-intro-msg-pic img {
+    //    margin: auto;
+      //  max-width: 300px;
+    //}
+//}
+
+//.fx-docs-intro-msg > p,
+//.fx-docs-intro-msg .alert {
+ //   margin: 20px 0;
+//}

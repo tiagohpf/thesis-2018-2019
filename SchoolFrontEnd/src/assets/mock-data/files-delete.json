@@ -1,0 +1,99 @@
+{
+    "type": "initParameters",
+    "id": "modalDeleteFile",
+    "header": {
+      "id": "pageHeader",
+      "seo": {
+        "text": "fileManagement___removeFileModal___header",
+        "title": "{{fileName}}",
+        "icon": "fa fa-copy"
+      }
+    },
+    "details": [
+      {
+        "type": "context",
+        "id": "modalFileId",
+        "pathToValue": "fileId",
+        "hidden": true
+      },
+      {
+        "type": "context",
+        "id": "modalFileName",
+        "pathToValue": "fileName",
+        "hidden": true
+      },
+      {
+        "type": "title",
+        "id": "titleRemoveFileMessage",
+        "text": "fileManagement___removeFileModal___confirmationMessage"
+      }
+    ],
+    "buttons": [
+      {
+        "key": "submit",
+        "text": "generic___operations___delete",
+        "class": "btn-primary",
+        "parameters": [
+          {
+            "key": "AOPConfigurationAAAAAAA",
+            "value": {
+              "requestAffectedEntity": "FILE_MANAGEMENT",
+              "requestOperation": "REMOVAL",
+              "requestChannel": "SELFCARE",
+              "entity": "{{modalFileName}}",
+              "requestUser": "preferred_username",
+              "requestToken": "token",
+              "errorStatus": "ERROR",
+              "successStatus": "PROCESSED"
+            }
+          },
+          {
+            "key": "successRouter",
+            "value": "/service-subscriptions/[[subscriptionId]]/file-management"
+          },
+          {
+            "key": "successText",
+            "value": "fileManagement___feedback___removeSuccess"
+          },
+          {
+            "key": "errorText",
+            "value": "fileManagement___feedback___removeError"
+          },
+          {
+            "key": "successTextPosition",
+            "value": "top-center"
+          },
+          {
+            "key": "errorTextPosition",
+            "value": "top-center"
+          },
+          {
+            "key": "requestEndpoint",
+            "value": "{{WIFIM_SMBE}}/file-management/service-subscriptions/[[subscriptionId]]/files/{{modalFileId}}"
+          },
+          {
+            "key": "requestType",
+            "value": "DELETE"
+          },
+          {
+            "key": "requestHeaders",
+            "value": {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+            }
+          },
+          {
+            "key": "requestBody",
+            "type": "json",
+            "value": {}
+          }
+        ]
+      },
+      {
+        "key": "cancel",
+        "text": "generic___operations___cancel",
+        "class": "btn-default"
+      }
+    ]
+  }

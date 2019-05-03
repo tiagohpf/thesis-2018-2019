@@ -1,0 +1,96 @@
+<h3 id="docs-table-rowgroup">Rowgroup</h3>
+<p>O DataTables possui um extra que disponibiliza uma forma de agrupar linhas. Para o utilizar deve incluir o ficheiro <code>jquery.dataTables.rowGrouping.min.js</code></p>
+<p>Em <a class="fx-docs-btn-link" href="https://legacy.datatables.net/release-datatables/examples/advanced_init/row_grouping.html" target="_blank">DataTables Row Grouping Example</a> pode encontrar informação útil para este plug-in.</p>
+<p>O exemplo abaixo demonstra o aspeto das linhas agrupadoras.</p>
+<div class="alert alert-warning">
+    <p><strong>Atenção:</strong> Este plug-in apesar de listado no site do DataTables não é um plugin oficial pelo que poderão ser necessários desenvolvimentos adicionais por parte das equipas de produto.</p>
+    <p>A FUXI apenas disponibiliza estilos para a linha agrupadora. O desenvolvimento deverá ser assegurado por parte das equipas de produto.</p>
+    <p>Deverá fazer inclusão dos ficheiros necessários à instanciação de um objeto como DataTable, anteriormente referidos no ponto <a href="#docs-table-general-vision">tabela - overview</a>.</p>
+</div>
+
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <table class="table" id="devguide-rowgroup-table">
+            <thead>
+                <tr>
+                    <th>Cidade</th>
+                    <th>Concelho</th>
+                    <th>Distrito</th>
+                </tr>
+            </thead>
+        </table>
+        
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<script src="/fuxi/lib/datatables-pt/1.9/js/jquery.dataTables.rowGrouping.min.js"></script>
+
+<table class="table" id="devguide-rowgroup-table">
+    <thead>
+        <tr>
+            <th>Cidade</th>
+            <th>Concelho</th>
+            <th>Distrito</th>
+        </tr>
+    </thead>
+</table>
+
+<script type="text/javascript">
+    var oTable,
+    tableRowgroupConf = $.extend({}, FUXI.Presets.DataTables, {
+        'iDisplayLength': 10,
+        'bPaginate': false,
+        'bInfo': false,
+        'aoColumns': [null, null, null],
+        'aaSorting': [],
+        "aaData": [
+            ["Aveiro", "Aveiro", "Aveiro", ],
+            ["Cantanhede", "Cantanhede", "Coimbra", ],
+            ["Coimbra", "Coimbra", "Coimbra", ],
+            ["Faro", "Faro", "Faro", ],
+            ["Figueira da Foz", "Figueira da Foz", "Coimbra", ],
+            ["Gouveia", "Gouveia", "Guarda", ],
+            ["Guarda", "Guarda", "Guarda", ],
+            ["Ílhavo", "Ílhavo", "Aveiro"],
+            ["Lisboa", "Lisboa", "Lisboa", ],
+            ["Viseu", "Viseu", "Viseu", ],
+            ["Porto", "Porto", "Porto", ],
+        ],
+        'oLanguage': {
+            'sProcessing': 'A processar...',
+            'sLengthMenu': '_MENU_ registos por página',
+            'sZeroRecords': 'Não foram encontrados resultados',
+            'sInfo': 'Total de registos <strong>_TOTAL_</strong>',
+            'sInfoEmpty': 'Apresentando de 0 até 0 de 0 registos',
+            'sInfoFiltered': '(filtrado de _MAX_ registos no total)',
+            'sInfoPostFix': '',
+            'sSearch': 'Procurar:',
+            'sUrl': '',
+            'oPaginate': {
+                'sFirst': '',
+                'sPrevious': 'anterior',
+                'sNext': 'seguinte',
+                'sLast': ''
+            }
+        },
+    },
+    initTable = function (colGroupingIndex) {
+        return oTable.dataTable(tableRowgroupConf)
+            .rowGrouping({
+                bExpandableGrouping: true,
+                bExpandSingleGroup: false,
+                bHideGroupingColumn: true,
+                iExpandGroupOffset: -1,
+                asExpandedGroups: [""],
+                'iGroupingColumnIndex': colGroupingIndex
+            });
+    });
+
+    oTable = $('#devguide-rowgroup-table').on('init.dt', FUXI.Utils.SetDTPagination);
+
+    oTable = initTable(2);
+</script>
+        </textarea>
+    </form>
+</div>

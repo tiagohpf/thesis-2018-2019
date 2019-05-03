@@ -1,0 +1,47 @@
+{
+    "type": "initParameters",
+    "id": "removeVariablePage",
+    "header": {
+        "id": "pageHeader",
+        "seo": {
+            "text": "designerFlow___title",
+            "icon": "fa fa-reply"
+        }
+    },
+    "details": [
+        {
+            "type": "label",
+            "id": "pageBodyConfirm",
+            "value": "warnings___saveDesignFlow"
+        }
+    ],
+    "operations": {
+        "size": 3,
+        "parameters": [
+            {
+                "id": "designFlowDiscardBtn",
+                "type": "navigate",
+                "text": "generic___operations___discard",
+                "class": "btn btn-default",
+                "navigateTo": "/knowledgecenter/programs/[[programID]]"
+            },
+            {
+                "id": "designFlowSaveBtn",
+                "type": "navigate",
+                "text": "generic___operations___save",
+                "class": "btn btn-default",
+                "navigateTo": "/knowledgecenter/programs/[[programID]]",
+                "parameters": [
+                    {
+                        "key": "updatePageParameter",
+                        "value": {
+                            "designerFlowComponent": {
+                                "sendEvent": "save"
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

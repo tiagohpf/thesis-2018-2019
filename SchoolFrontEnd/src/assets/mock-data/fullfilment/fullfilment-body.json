@@ -1,0 +1,138 @@
+{
+  "type": "wrapper",
+  "id": "body_Tab",
+  "hidden": true,
+  "pathToValue": "",
+  "details": [
+    {
+      "type": "input-radio",
+      "id": "body_format",
+      "class": "col-md-12",
+      "text": "application___format",
+      "apiFieldName": "",
+      "placeholder": "application___format",
+      "value":"raw",
+      "valueList": [
+        {
+          "key": "raw",
+          "value": "application___raw"
+        }
+      ],
+      "validator": {
+        "required": [
+          true,
+          "warnings___fieldRequired"
+        ]
+      }
+    },
+    {
+      "type": "wct-tuple-list",
+      "id": "body_formData_parameters",
+      "class": "col-sm-12",
+      "text": "application___parameters",
+      "min":1,
+      "dynamicProps": {
+        "hidden": "'{{body_format}}' != 'formData'"
+      },
+      "details": [
+        {
+          "type": "textbox",
+          "id": "key",
+          "text": "application___key",
+          "class": "col-sm-4"
+        },
+        {
+          "type": "textbox",
+          "id": "value",
+          "text": "application___value",
+          "class": "col-sm-4"
+        },
+        {
+          "type": "textbox",
+          "id": "Description",
+          "text": "application___description",
+          "class": "col-sm-4"
+        }
+      ]
+    },
+    {
+      "type": "wct-tuple-list",
+      "id": "body_raw_parameters",
+      "class": "col-sm-12",
+      "min":1,
+      "text": "application___parameters",
+      "dynamicProps": {
+        "hidden": "'{{body_format}}' != 'x-www-form-urlencoded'"
+      },
+      "details": [
+        {
+          "type": "textbox",
+          "id": "key",
+          "text": "application___key",
+          "class": "col-sm-4"
+        },
+        {
+          "type": "textbox",
+          "id": "value",
+          "text": "application___value",
+          "class": "col-sm-4"
+        },
+        {
+          "type": "textbox",
+          "id": "Description",
+          "text": "application___description",
+          "class": "col-sm-4"
+        }
+      ]
+    },
+    {
+      "type": "input-select",
+      "id": "body_raw_format",
+      "text": "application___format",
+      "class": "col-sm-4",
+      "dynamicProps": {
+        "hidden": "'{{body_format}}' != 'raw'"
+      },
+      "placeholder": "application___type",
+      "valueList": [
+        {
+          "key": "textPlain",
+          "value": "application___textPlain"
+        },
+        {
+          "key": "json",
+          "value": "application___json"
+        },
+        {
+          "key": "xml",
+          "value": "application___xml"
+        }
+      ],
+      "validator": {
+        "required": [
+          true,
+          "warnings___fieldRequired"
+        ]
+      }
+    },
+    {
+      "type": "textbox",
+      "subType": "textarea",
+      "id": "body_raw_body",
+      "text": "application___body",
+      "class": "col-sm-12",
+      "pathToValue": [
+        "body"
+      ],
+      "dynamicProps": {
+        "hidden": "'{{body_format}}' != 'raw'"
+      },
+      "_validator": {
+        "required": [
+          true,
+          "warnings___fieldRequired"
+        ]
+      }
+    }
+  ]
+}

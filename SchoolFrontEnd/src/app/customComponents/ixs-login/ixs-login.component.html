@@ -1,0 +1,44 @@
+<div *ngIf="showHtml">
+
+  <div class="row" *ngIf="hasDataToShow;else noData">
+    <div class="col-md-4" *ngFor="let item of inputParameters.valueList" [class.disabled]="isDisabled(item)">
+      <div class="card">
+
+        <div class="text-center">
+          <div class="card-header">
+            {{item.name}}
+          </div>
+        </div>
+
+
+        <div class="card-body ">
+
+          <div class="text-center">
+            <h5 class="card-title">{{'generic___status___'+item.status | myI18n}} <i class="{{insertStatus(item)}}"></i></h5>
+            <p class="card-text">{{item.creationDate}}</p>
+          </div>
+
+          <br>
+
+          <div class="text-center">
+            <div class="col-12">
+              <button class="btn btn-primary center" (click)="ixsClicked(item)" [disabled]="isDisabled(item)">{{'generic___operations___navigate'
+                | myI18n}}</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <div class="row">
+      <div class="col-md-12">
+        <h1>
+          {{'warnings___noIXS' | myI18n}}</h1>
+      </div>
+    </div>
+  </ng-template>
+
+</div>

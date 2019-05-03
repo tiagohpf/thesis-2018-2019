@@ -1,0 +1,64 @@
+<h3 id="docs-exp-editor-events">Eventos e Métodos</h3>
+<p>O editor de expressões disponibiliza os eventos e métodos abaixo enumerados.</p>
+
+<h4>Eventos</h4>
+<div class="table-responsive">
+    <table class="table fx-table">
+        <thead>
+            <tr>
+                <th>Evento</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>loaded.ee</td>
+                <td>Executado quando o editor de expressões é carregado.</td>
+            </tr>
+            <tr>
+                <td>confirmclick.ee</td>
+                <td>Executado quando o botão com a class <code>.fx-ee-confirm</code> é clicado. Este botão tipicamente tem a designação aplicar.</td>
+            </tr>
+            <tr>
+                <td>cancelclick.ee</td>
+                <td>Executado quando o botão com a class <code>.fx-ee-cancel</code> é clicado. Este botão tipicamente tem a designação cancelar.</td>
+            </tr>
+            <tr>
+                <td>addexpression.ee</td>
+                <td>Executado quando se adiciona uma regra a partir da árvore. A adição pode ser feita através de duplo clique ou arrastando o item para a textarea.</td>
+            </tr>
+            <tr>
+                <td>clearrule.ee</td>
+                <td>Executado quando o botão com a class <code>.fx-clear-rule</code> é clicado. Este botão tipicamente tem a designação limpar.</td>
+            </tr>
+            <tr>
+                <td>checksyntax.ee</td>
+                <td>
+                    Executado quando o botão com a class <code>.fx-check-syntax</code> é clicado. Este botão tipicamente tem a designação verificar sintaxe.
+                    <div class="alert alert-warning">
+                        <p>Para efeitos de demo, ao escrever uma regra e clicar no botão para verificar sintaxe, será gerado um número aleatório (par ou ímpar). Mediante esse número gerado será mostrado feedback de erro ou sucesso.</p>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>operatorclick.ee</td>
+                <td>Executado quando qualquer botão com a class <code>.fx-ee-btn-action</code> é clicado. Estes botões dizem respeito aos operadores disponibilizados.</td>
+            </tr>
+            <tr>
+                <td>searchexpressionclick.ee</td>
+                <td>Executado quando se efetua uma pesquisa na árvore que contém as expressões.</td>
+            </tr>
+            <tr>
+                <td>searchactionclick.ee</td>
+                <td>Executado quando se efetua uma pesquisa na lista dos operadores.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<h4>Métodos</h4>
+<div class="fx-method-desc">
+    <h5><code>destroy()</code></h5>
+    <p>Método que elimina a regra e todos os eventos associados ao elemento.</p>
+</div>

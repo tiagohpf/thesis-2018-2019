@@ -1,0 +1,72 @@
+{
+    "type": "initParameters",
+    "id": "studentPropsChannel_Web",
+    "header": {
+        "seo": {
+            "text": "generic___operations___clickPasteYourPage",
+            "icon": "fa fa-clipboard"
+        }
+    },
+   
+    "details": [
+        {
+            "type": "textbox",
+            "subType": "textarea",
+            "id": "studentChatTag",
+            "text": "student___pleaseUseCodeToUseBot",
+            "class": "col-sm-11",
+            "disabled": true,
+            "urlResource": [
+                {
+                    "key": "path",
+                    "value": "{{SchoolBOT}}/students/[[id]]"
+                },
+                {
+                    "key": "queryString",
+                    "value": {
+                        "keys": "{\"chatElement\":1}"
+                    }
+                },
+                {
+                    "key": "headers",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                },
+                {
+                    "key": "reload",
+                    "value": false
+                }
+            ],
+            "pathToValue": [
+                "chatElement"
+            ],
+            "validator": {
+                "required": [
+                    true,
+                    "warnings___fieldRequired"
+                ]
+            }
+        },
+        {
+            "type": "copyclipboard",
+            "id": "copy",
+            "class": "col-sm-1",
+            "icon": "fa fa-clipboard",
+            "_value": "generic___operations___getYourBotStudentTag",
+            "mappingId": "studentChatTag"
+        }
+    ],
+    "operations": [
+        {
+            "parameters": [
+                {
+                    "id": "cancelButton",
+                    "text": "generic___operations___close",
+                    "class": "btn-default"
+                }
+            ]
+        }
+    ]
+}

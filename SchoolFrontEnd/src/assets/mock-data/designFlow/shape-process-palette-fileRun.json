@@ -1,0 +1,137 @@
+{
+    "key": "rendering",
+    "type": "wrapper",
+    "details": [
+        {
+            "type": "input-radio",
+            "id": "fileRunInputType",
+            "text": "designerFlow___shapes___answer___fileRunForm___inputType",
+            "valueList": [
+                {
+                    "key": "url",
+                    "value": "designerFlow___shapes___answer___fileRunForm___url"
+                },
+                {
+                    "key": "file",
+                    "value": "designerFlow___shapes___answer___fileRunForm___file"
+                }
+            ]
+        },
+        {
+            "type": "label",
+            "text": null,
+            "class": "align-titles",
+            "hidden": true,
+            "dynamicProps": {
+                "hidden": "'{{fileRunInputType}}' != 'url'",
+                "value": "'<h4>{{@fv()@i18n('designerFlow___shapes___answer___fileRunForm___url')}}</h4>'"
+            }
+        },
+        {
+            "type": "custom-mentions",
+            "id": "fileRun_url_txt",
+            "text": "designerFlow___shapes___answer___fileRunForm___fileUrl",
+            "hidden": true,
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ],
+            "dynamicProps": {
+                "hidden": "'{{fileRunInputType}}' != 'url'"
+            }
+        },
+        {
+            "type": "label",
+            "text": null,
+            "class": "align-titles",
+            "hidden": true,
+            "dynamicProps": {
+                "hidden": "'{{fileRunInputType}}' != 'file'",
+                "value": "'<h4>{{@fv()@i18n('designerFlow___shapes___answer___fileRunForm___file')}}</h4>'"
+            }
+        },
+        {
+            "type": "custom-mentions",
+            "id": "fileRun_ipAddress_txt",
+            "text": "designerFlow___shapes___answer___fileRunForm___ipAddress",
+            "hidden": true,
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ],
+            "dynamicProps": {
+                "hidden": "'{{fileRunInputType}}' != 'file'"
+            }
+        },
+        {
+            "type": "custom-mentions",
+            "id": "fileRun_path_txt",
+            "text": "designerFlow___shapes___answer___fileRunForm___path",
+            "hidden": true,
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ],
+            "dynamicProps": {
+                "hidden": "'{{fileRunInputType}}' != 'file'"
+            }
+        },
+        {
+            "type": "custom-mentions",
+            "id": "fileRun_file_txt",
+            "text": "designerFlow___shapes___answer___fileRunForm___fileName",
+            "hidden": true,
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ],
+            "dynamicProps": {
+                "hidden": "'{{fileRunInputType}}' != 'file'"
+            }
+        },
+        {
+            "type": "label",
+            "text": null,
+            "class": "align-titles",
+            "hidden": true,
+            "dynamicProps": {
+                "hidden": "'{{fileRunInputType}}' != 'localFile'",
+                "value": "'<h4>{{@fv()@i18n('designerFlow___shapes___answer___fileRunForm___localFile')}}</h4>'"
+            }
+        },
+        {
+            "type": "file-upload-input",
+            "id": "fileRun_localFile_upload",
+            "class": "col-sm-12",
+            "text": null,
+            "hidden": true,
+            "dynamicProps": {
+                "hidden": "'{{fileRunInputType}}' != 'localFile'"
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "key": "chatAnswer",
+            "id": "chatAnswerFileRunUrl",
+            "type": "video",
+            "dynamicProps": {
+                "key": "'{{fileRunInputType}}' == 'url' ? 'chatAnswer' : 'chatAnswerFromUrl'",
+                "value": "'{{fileRun_url_txt}}'"
+            }
+        },
+        {
+            "key": "chatAnswer",
+            "id": "chatAnswerFileRun",
+            "type": "label",
+            "dynamicProps": {
+                "key": "'{{fileRunInputType}}' == 'file' ? 'chatAnswer' : 'chatAnswerFromFile'",
+                "value": "<a href='{{fileRun_ipAddress_txt}}/{{fileRun_path_txt}}/{{fileRun_file_txt}}'></a>"
+            }
+        }
+    ]
+}

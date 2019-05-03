@@ -1,0 +1,82 @@
+﻿@font-face {
+    font-family: $app-main-regular-font;
+    src: url('fonts/opensans_regular/OpenSans-Regular-webfont.eot');
+    src: url('fonts/opensans_regular/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/opensans_regular/OpenSans-Regular-webfont.woff') format('woff'),
+         url('fonts/opensans_regular/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('fonts/opensans_regular/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: $app-main-bold-font;
+    src: url('fonts/opensans_bold/OpenSans-Bold-webfont.eot');
+    src: url('fonts/opensans_bold/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/opensans_bold/OpenSans-Bold-webfont.woff') format('woff'),
+         url('fonts/opensans_bold/OpenSans-Bold-webfont.ttf') format('truetype'),
+         url('fonts/opensans_bold/OpenSans-Bold-webfont.svg#open_sansbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: $app-main-italic-font;
+    src: url('fonts/opensans_italic/OpenSans-Italic-webfont.eot');
+    src: url('fonts/opensans_italic/OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/opensans_italic/OpenSans-Italic-webfont.woff') format('woff'),
+         url('fonts/opensans_italic/OpenSans-Italic-webfont.ttf') format('truetype'),
+         url('fonts/opensans_italic/OpenSans-Italic-webfont.svg#open_sansitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $headings-txt-color;
+    font-family: $headings-font;
+}
+
+h1 {
+    font-size: 26px;
+}
+
+h2 {
+    font-size: 22px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+h5 {
+    font-size: 14px;
+}
+
+.fx-danger-txt {
+    color: $danger-txt-color!important;
+}
+
+.fx-success-txt {
+    color: $success-txt-color!important;
+}
+
+.fx-secundary-text {
+    color: $secondary-txt-color;
+}
+
+h1 .fx-secundary-text {
+    font-size: 16px;
+}
+
+strong {
+    font-family: open_sansbold;
+}

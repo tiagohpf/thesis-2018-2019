@@ -1,0 +1,191 @@
+{
+    "type": "initParameters",
+    "id": "studentCardsList",
+    "_dynamicProps": {
+        "lazyLoading": "'{{hasStudents}}' == 'false'"
+    },
+    "urlResource": [
+        {
+            "key": "id",
+            "value": "studentPlansApi"
+        },
+        {
+            "key": "path",
+            "value": "{{SchoolBOT}}/plans"
+        },
+        {
+            "key": "headers",
+            "value": {
+                "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+            }
+        }
+    ],
+    "details": [
+        {
+            "type": "initCards",
+            "subType": "card-container",
+            "id": "studentsMainCard",
+            "icon": "fa fa-th-large",
+            "class": "col-md-12",
+            "navigateTo": "students/{{_id___$oid}}",
+            "urlResource": [
+                {
+                    "key": "id",
+                    "value": "studentApi"
+                },
+                {
+                    "key": "path",
+                    "value": "{{SchoolBOT}}/students"
+                },
+                {
+                    "key": "pathToMainData",
+                    "value": [
+                        "_embedded"
+                    ]
+                },
+                {
+                    "key": "apiRecycle",
+                    "value": false
+                },
+                {
+                    "key": "queryString",
+                    "value": {
+                        "filter": "{\"IXS\":\"{{IXS_id}}\"}",
+                        "keys": "{\"_id\":1,\"name\":1,\"status\":1,\"language\":1,\"courses\":1,\"gender\":1,\"lastUpdate\":1,\"plan\":1}"
+                    }
+                },
+                {
+                    "key": "headers",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                },
+                {
+                    "key": "reload",
+                    "value": false
+                }
+            ],
+            "pathToValueList": [
+                "@mergeResponse('{{studentApi}}', '{{coursesIXS}}', '{{studentPlansApi}}', '{{fallbacksAux}}', '{{successesAux}}')"
+            ],
+            "details": [
+                {
+                    "type": "image",
+                    "id": "studentImage",
+                    "_class": "studentImage",
+                    "class": "col-lg-2 col-md-12 studentImage",
+                    "pathToValue": [
+                        "_id",
+                        "'{{ImageService}}/students/'+$this['$oid']"
+                    ]
+                },
+                {
+                    "type": "groupParameters",
+                    "id": "studentsList_groupParameters",
+                    "class": "col-lg-10 col-md-12 cardInfo_Wrapper",
+                    "pathToValue": "",
+                    "parameters": [
+                        {
+                            "type": "context",
+                            "id": "studentID",
+                            "pathToValue": [
+                                "_id",
+                                "$oid"
+                            ]
+                        },
+                        {
+                            "type": "label",
+                            "text": "student___studentName",
+                            "id": "studentName",
+                            "pathToValue": "name",
+                            "navigateTo": "students/{{studentsMainCard____id___$oid}}",
+                            "class": "col-md-6 studentName"
+                        },
+                        {
+                            "type": "label",
+                            "id": "studentStatus_aux",
+                            "pathToValue": "status",
+                            "hidden":true
+
+                            
+                        },
+                        {
+                            "type": "label",
+                            "id": "studentStatus",
+                            "pathToValue": "status",
+                            "dynamicProps": {
+                                "class": "'col-md-6 studentStatus {{studentStatus_aux}}'"
+                            },
+                            "html": {
+                                "pre-live": "<img alt='' title='' src='assets/images/platform/live.svg'> <span>{{@fv()@i18n('student___status___gettingReady')}}</span> ",
+                                "live": "<img alt='' title='' src='assets/images/platform/live.svg'> <span>{{@fv()@i18n('student___status___live')}}</span> ",
+                                "blocked": "<img alt='' title='' src='assets/images/platform/live.svg'> <span>{{@fv()@i18n('student___status___blocked')}}</span> ",
+                                "suspended": "<img alt='' title='' src='assets/images/platform/notlive.svg'><span> {{@fv()@i18n('student___status___suspended')}} </span>"                            }
+                        },
+                        {
+                            "type": "label",
+                            "id": "gender",
+                            "pathToValue": "gender",
+                            "text": null,
+                            "class": "col-md-12 studentGender"
+                        },
+                        {
+                            "type": "label",
+                            "id": "courseStudents",
+                            "text": "application___course",
+                            "class": "col-md-6 studentCourse",
+                            "pathToValue": [
+                                "$this['coursesInfo'].map(course => course['name']).join(' , ')"
+                            ]
+                        },
+                        {
+                            "type": "label",
+                            "id": "language",
+                            "pathToValue": "language",
+                            "text": "application___language",
+                            "class": "col-md-2 studentLanguage",
+                            "html": {
+                                "es": "<img src=\"{{ImageService}}/languages/Spanish.png\" alt=\"Spain\" class=\"replaced-svg\"> Spanish",
+                                "en": "<img src=\"{{ImageService}}/languages/English.png\" alt=\"English\" class=\"replaced-svg\"> English",
+                                "pt": "<img src=\"{{ImageService}}/languages/Portuguese.png\" alt=\"Portuguese\" class=\"replaced-svg\"> Portuguese",
+                                "fr": "<img src=\"{{ImageService}}/languages/French.png\" alt=\"French\" class=\"replaced-svg\"> French"
+                            }
+                        },
+                        {
+                            "type": "label",
+                            "id": "lastUpdate",
+                            "pathToValue": "lastUpdate",
+                            "text": "application___lastUpdate",
+                            "class": "col-md-4 studentLastUpdate"
+                        },
+                        {
+                            "type": "context",
+                            "id": "planID",
+                            "pathToValue": [
+                                "planInfo",
+                                "_id",
+                                "$oid"
+                            ],
+                            "class": "col-md-4",
+                            "text": "PlanID"
+                        },
+                        {
+                            "type": "context",
+                            "id": "studentPlanName",
+                            "pathToValue": [
+                                {
+                                    "$filter": [
+                                        "$this['_id']['$oid']==='{{planID}}'"
+                                    ]
+                                },
+                                "name"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

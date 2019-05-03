@@ -1,0 +1,7 @@
+
+.wct-header-info{ display: flex; }
+.wct-header-info .icon{ margin-right: 15px; font-size: 20px; }
+.wct-header-info .h2{ margin-bottom: 5px; }
+.wct-header-info .h5{ margin: 0; }
+
+.wct-btn-group + app-wct-buttons{ margin-right: 5px; }

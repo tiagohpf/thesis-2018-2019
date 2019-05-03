@@ -1,0 +1,591 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Widget - Select</title>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/fuxi/lib/jstree/3.0/themes/fuxi/style.css" rel="stylesheet" />
+
+    <link type="text/css" rel="stylesheet" href="/fuxi/lib/uilayout/layout-default-latest.css" />
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.css" />
+
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+
+    <script src="/fuxi/lib/jqueryui/1.10/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="/fuxi/lib/uilayout/jquery.layout-latest.js"></script>
+
+</head>
+<body class="container" style="overflow:auto">
+    <div class="row">
+        <div id="widget-select-modal-preview" class="col-md-6 fx-widget-select" style="width:550px">
+            <h2>Com Preview</h2>
+            <div class="fx-widget-select-top-nav clearfix">
+                <a class="btn btn-default btn-sm pull-right" data-ws-show-add>
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span> botão para criar</span>
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                </a>
+
+                <a id="btBackModelSelection" class="btn btn-default btn-sm pull-left hidden" data-ws-show-select>
+                    <i class="glyphicon glyphicon-chevron-left"></i>
+                    <span> botão para voltar à seleção</span>
+                </a>
+            </div>
+
+            <div class="fx-widget-select-content">
+                <!-- WE MUST SET HEIGHT TO THIS DIV BY SCRIPTING -->
+                <div class="clearfix fx-widget-select-items-container" style="height: 400px;">
+                    <div id="modal-step-select-model" class="fx-widget-select-item select-model-layout">
+                        <div class="ui-layout-center">
+                            <form role="search" class="fx-search-widget-select-items">
+                                <div class="form-group fx-search-input">
+                                    <div class="fx-pos-rel">
+                                        <input type="text" id="txt-search" class="fx-widget-select-search-text fx-dropdown-search form-control input-sm full-width" placeholder="pesquisar ...">
+                                        <button class="glyphicon glyphicon-search fx-widget-select-search-button" id="bt-search"></button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div class="fx-widget-select-choices-wrapper">
+                                <table class="table fx-table table-condensed fx-table-widget-select-choices">
+                                    <thead>
+                                        <tr>
+                                            <th class="fx-option-select">
+                                                <div class="fx-widget-select-choices-options">
+                                                    <input type="checkbox" class="fx-widget-select-choices-options-select" title="selecionar/ não selecionar todos os items da página" id="chk-choices-options-select">
+                                                </div>
+                                            </th>
+                                            <th>
+                                                nome
+                                                <span class="fx-widget-select-sort-column fx-sort-no" data-sort="0" data-column="name"></span>
+                                                <span class="fx-widget-select-sort-column fx-sort-asc hide" data-sort="1" data-column="name"></span>
+                                                <span class="fx-widget-select-sort-column fx-sort-desc hide" data-sort="-1" data-column="name"></span>
+                                            </th>
+                                            <th>
+                                                desc
+                                                <span class="fx-widget-select-sort-column fx-sort-no" data-sort="0" data-column="description"></span>
+                                                <span class="fx-widget-select-sort-column fx-sort-asc hide" data-sort="1" data-column="description"></span>
+                                                <span class="fx-widget-select-sort-column fx-sort-desc hide" data-sort="-1" data-column="description"></span>
+                                            </th>
+                                            <th class="fx-preview-action">&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="fx-active" data-id="1" data-text="Item 1" data-show-preview="true">
+                                            <td class="fx-option-select">
+                                                <input type="checkbox" data-multi-select name="chk-item-selected" value="1" checked="checked">
+                                            </td>
+                                            <td>
+                                                <span class="fx-truncate-table-cell">Item 1 bla bla</span>
+                                            </td>
+                                            <td>
+                                                <span class="fx-truncate-table-cell">Item 1 bla bla bla bla</span>
+                                            </td>
+                                            <td class="fx-widget-select-action-wrapper" title="pré-visualizar" data-ws-preview>
+                                                <i class="fuxicons fuxicons-eye fx-widget-select-tag-preview-icon"></i>
+                                            </td>
+                                        </tr>
+                                        <tr class="fx-active" data-id="2" data-text="Item 2" data-show-preview="true">
+                                            <td class="fx-option-select">
+                                                <input type="checkbox" data-multi-select name="chk-item-selected" value="2" checked="checked">
+                                            </td>
+                                            <td>
+                                                <span class="fx-truncate-table-cell">Item 2 bla bla</span>
+                                            </td>
+                                            <td>
+                                                <span class="fx-truncate-table-cell">Item 2 bla bla bla bla</span>
+                                            </td>
+                                            <td class="fx-widget-select-action-wrapper" title="pré-visualizar" data-ws-preview>
+                                                
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <div class="fx-widget-select-tree-container"></div>
+                            </div>
+                        </div>
+
+                        <div class="ui-layout-east">
+
+                            <div class="fx-widget-select-preview-aux-info">
+                                <p class="fx-widget-select-preview-aux-info-message">
+                                    Clique no olho <i class="fuxicons fuxicons-eye"></i> para pré-visualizar a informação de cada item
+                                </p>
+                            </div>
+
+                            <header class="fx-widget-select-preview-header hidden">
+                                <span class="fx-info-icon"><i class="fuxicons fuxicons-catalogue"></i></span>
+                                <span class="fx-widget-select-preview-title">Título da entidade</span>
+                            </header>
+
+                            <div class="fx-widget-select-preview-body hidden">
+                                <a data-target="#block01" data-toggle="collapse" class="fx-expand">
+                                    <i class="caret"></i>
+                                    Título do bloco
+                                </a>
+                                <div class="collapse in fx-indent" id="block01">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Nome do campo</label>
+                                            <div class="col-sm-8">
+                                                <p class="form-control-static">Descrição</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Nome do campo</label>
+                                            <div class="col-sm-8">
+                                                <p class="form-control-static">Descrição</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Nome do campo</label>
+                                            <div class="col-sm-8">
+                                                <p class="form-control-static">Descrição</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Nome do campo</label>
+                                            <div class="col-sm-8">
+                                                <p class="form-control-static">Descrição</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="ui-layout-south">
+                            <div class="fx-widget-select-tags-count">
+                                <span data-msg-items>
+                                    Tem <strong data-num-items-selected>2</strong> items selecionados de <span data-total-items>2</span>
+                                    <a data-remove-all class="pull-right">
+                                        <i class="glyphicon glyphicon-remove"></i>&nbsp;limpar
+                                    </a>
+                                </span>
+                                <span data-msg-no-items class="fx-text-disabled hide">Não existem items selecionados</span>
+                            </div>
+
+                            <div class="fx-widget-selected-items-container">
+                                <div class="fx-widget-select-tag" data-id="1" data-text="Item 1" data-show-preview="true">
+                                    <div class="fx-widget-select-tag-remove" title="remover" data-ws-remove>
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                    </div>
+                                    <div class="fx-widget-select-tag-preview" title="pré-visualizar" data-ws-preview>
+                                        <span class="fx-widget-select-tag-name">Item 1</span>
+                                        <i class="fuxicons fuxicons-eye fx-widget-select-tag-preview-icon"></i>
+                                    </div>
+                                </div>
+                                <div class="fx-widget-select-tag" data-id="2" data-text="Item 2" data-show-preview="true">
+                                    <div class="fx-widget-select-tag-remove" title="remover" data-ws-remove>
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                    </div>
+                                    <div class="fx-widget-select-tag-preview" title="pré-visualizar" data-ws-preview>
+                                        <span class="fx-widget-select-tag-name">Item 2</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="modalStepAddModel" class="fx-widget-select-item">
+                        <div class="fx-widget-select-add-wrapper">
+                            <form class="form-horizontal" role="form">
+                                <p class="fx-required-fields-message">campos obrigatórios</p>
+
+                                <div class="form-group">
+
+                                    <label for="input-item" class="col-sm-2 control-label">Nome do campo</label>
+                                    <div class="col-sm-10">
+
+                                        <input type="text" class="form-control" id="input-item" placeholder="item name">
+                                        <br />
+
+                                        <div class="text-left">
+                                            <button type="button" class="btn btn-primary btn-sm" data-ws-add-save>
+                                                salvar
+                                            </button>
+                                            <button type="button" class="btn btn-default btn-sm" data-ws-add-cancel>
+                                                cancelar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="widget-select-modal" class="col-md-6 fx-widget-select" style="width:550px">
+            <h2>Sem Preview</h2>
+            <div class="fx-widget-select-top-nav clearfix">
+                <a class="btn btn-default btn-sm pull-right" data-ws-show-add>
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span>botão para criar</span>
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                </a>
+
+                <a id="btBackModelSelection" class="btn btn-default btn-sm pull-left hidden" data-ws-show-select>
+                    <i class="glyphicon glyphicon-chevron-left"></i>
+                    <span>botão para voltar à seleção</span>
+                </a>
+            </div>
+
+            <div class="fx-widget-select-content">
+                <!-- WE MUST SET HEIGHT TO THIS DIV BY SCRIPTING -->
+                <div class="clearfix fx-widget-select-items-container" style="height: 400px;">
+                    <div id="modal-step-select-model" class="fx-widget-select-item select-model-layout">
+                        <div class="ui-layout-center">
+                            <form role="search" class="fx-search-widget-select-items">
+                                <div class="form-group fx-search-input">
+                                    <div class="fx-pos-rel">
+                                        <input type="text" id="txt-search" class="fx-widget-select-search-text fx-dropdown-search form-control input-sm full-width" placeholder="pesquisar ...">
+                                        <button class="glyphicon glyphicon-search fx-widget-select-search-button" id="bt-search"></button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div class="fx-widget-select-choices-wrapper">
+                                <table class="table fx-table table-condensed fx-table-widget-select-choices">
+                                    <thead>
+                                        <tr>
+                                            <th class="fx-option-select">
+                                                <div class="fx-widget-select-choices-options">
+                                                    <input type="checkbox" class="fx-widget-select-choices-options-select" title="selecionar/ não selecionar todos os items da página" id="chk-choices-options-select">
+                                                </div>
+                                            </th>
+                                            <th>
+                                                nome
+                                                <span class="fx-widget-select-sort-column fx-sort-no" data-sort="0" data-column="name"></span>
+                                                <span class="fx-widget-select-sort-column fx-sort-asc hide" data-sort="1" data-column="name"></span>
+                                                <span class="fx-widget-select-sort-column fx-sort-desc hide" data-sort="-1" data-column="name"></span>
+                                            </th>
+                                            <th>
+                                                desc
+                                                <span class="fx-widget-select-sort-column fx-sort-no" data-sort="0" data-column="description"></span>
+                                                <span class="fx-widget-select-sort-column fx-sort-asc hide" data-sort="1" data-column="description"></span>
+                                                <span class="fx-widget-select-sort-column fx-sort-desc hide" data-sort="-1" data-column="description"></span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-id="1" data-text="Item 1" data-show-preview="true">
+                                            <td class="fx-option-select">
+                                                <input type="checkbox" data-multi-select name="chk-item-selected" value="1" >
+                                            </td>
+                                            <td>
+                                                <span class="fx-truncate-table-cell">Item 1 bla bla</span>
+                                            </td>
+                                            <td>
+                                                <span class="fx-truncate-table-cell">Item 1 bla bla bla bla</span>
+                                            </td>
+                                        </tr>
+                                        <tr data-id="2" data-text="Item 2" data-show-preview="true">
+                                            <td class="fx-option-select">
+                                                <input type="checkbox" data-multi-select name="chk-item-selected" value="2" >
+                                            </td>
+                                            <td>
+                                                <span class="fx-truncate-table-cell">Item 2 bla bla</span>
+                                            </td>
+                                            <td>
+                                                <span class="fx-truncate-table-cell">Item 2 bla bla bla bla</span>
+                                            </td>
+                                        </tr>
+                                        <tr data-id="3" data-text="Item 3" data-show-preview="true">
+                                            <td class="fx-option-select">
+                                                <input type="checkbox" data-multi-select name="chk-item-selected" value="3">
+                                            </td>
+                                            <td>
+                                                <span class="fx-truncate-table-cell">Item 3 bla bla</span>
+                                            </td>
+                                            <td>
+                                                <span class="fx-truncate-table-cell">Item 3 bla bla bla bla</span>
+                                            </td>
+                                        </tr>
+                                        <tr data-id="4" data-text="Item 4" data-show-preview="true">
+                                            <td class="fx-option-select">
+                                                <input type="checkbox" data-multi-select name="chk-item-selected" value="4">
+                                            </td>
+                                            <td>
+                                                <span class="fx-truncate-table-cell">Item 4 bla bla</span>
+                                            </td>
+                                            <td>
+                                                <span class="fx-truncate-table-cell">Item 4 bla bla bla bla</span>
+                                            </td>
+                                        </tr>
+                                        <tr data-id="5" data-text="Item 5" data-show-preview="true">
+                                            <td class="fx-option-select">
+                                                <input type="checkbox" data-multi-select name="chk-item-selected" value="5">
+                                            </td>
+                                            <td>
+                                                <span class="fx-truncate-table-cell">Item 5 bla bla</span>
+                                            </td>
+                                            <td>
+                                                <span class="fx-truncate-table-cell">Item 5 bla bla bla bla</span>
+                                            </td>
+                                        </tr>
+                                        <tr data-id="6" data-text="Item 6" data-show-preview="true">
+                                            <td class="fx-option-select">
+                                                <input type="checkbox" data-multi-select name="chk-item-selected" value="6">
+                                            </td>
+                                            <td>
+                                                <span class="fx-truncate-table-cell">Item 6 bla bla</span>
+                                            </td>
+                                            <td>
+                                                <span class="fx-truncate-table-cell">Item 6 bla bla bla bla</span>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <div class="fx-widget-select-tree-container"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="ui-layout-south">
+                            <div class="fx-widget-select-tags-count">
+                                <span data-msg-items class="hide">
+                                    Tem <strong data-num-items-selected>0</strong> items selecionados de <span data-total-items>0</span>
+                                    <a data-remove-all class="pull-right">
+                                        <i class="glyphicon glyphicon-remove"></i>&nbsp;limpar
+                                    </a>
+                                </span>
+                                <span data-msg-no-items class="fx-text-disabled">Não existem items selecionados</span>
+                            </div>
+
+                            <div class="fx-widget-selected-items-container">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div id="modalStepAddModel" class="fx-widget-select-item">
+                        <div class="fx-widget-select-add-wrapper">
+                            <form class="form-horizontal" role="form">
+                                <p class="fx-required-fields-message">campos obrigatórios</p>
+
+                                <div class="form-group">
+
+                                    <label for="input-item" class="col-sm-2 control-label">Nome do campo</label>
+                                    <div class="col-sm-10">
+
+                                        <input type="text" class="form-control" id="input-item" placeholder="item name">
+                                        <br />
+
+                                        <div class="text-left">
+                                            <button type="button" class="btn btn-primary btn-sm" data-ws-add-save>
+                                                salvar
+                                            </button>
+                                            <button type="button" class="btn btn-default btn-sm" data-ws-add-cancel>
+                                                cancelar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script language="javascript" type="text/javascript">
+                
+        function wsWithPreview() {
+
+            var $elem = $("#widget-select-modal-preview");
+
+            var uilayout = $elem.find(".select-model-layout", $elem).layout({
+                defaults: {
+                    resizable: true,
+                    livePaneResizing: true,
+                    resizerTip: "Resize",
+                    spacing_closed: 10,
+                    spacing_open: 10
+                },
+                center: {
+                    //minSize: 100,
+                    contentSelector: '.fx-widget-select-choices-wrapper'
+                },
+                east: {
+                    size: 200,
+                    minSize: 100,
+                    maxSize: 450,
+                    contentSelector: '.fx-widget-select-preview-body'
+                },
+                south: {
+                    size: 100,
+                    minSize: 50,
+                    maxSize: 300,
+                    contentSelector: '.fx-widget-selected-items-container'
+                },
+                west: {
+                    size: 300,
+                    minSize: 100,
+                    maxSize: 450,
+                    contentSelector: '.fx-widget-select-preview-body'
+                }
+            });
+
+            var $btShowAdd = $($elem).find('[data-ws-show-add]');
+            var $btShowSelect = $($elem).find('[data-ws-show-select]');
+            var $widgetSelectItemsContainer = $('.fx-widget-select-items-container', $elem);
+            var $widgetSelectItemsWraper = $('.fx-widget-select-choices-wrapper', $widgetSelectItemsContainer);
+            var $widgetSelectTableItemsChoices = $(".fx-table-widget-select-choices", $widgetSelectItemsWraper);
+            var $widgetSelectTableItemsChoicesContainer = $("tbody", $widgetSelectTableItemsChoices);
+            var $widgetSelectItem = $('.fx-widget-select-item', $elem);
+            var $wrapperWidgetSelectContent = $(".fx-widget-select-content", $elem);
+
+            var $widgetSelectTableItemsChoicesOptions = $('.fx-widget-select-choices-options', $widgetSelectItem);
+            var $choiceSelectItems = $(".fx-widget-select-choices-options-select", $widgetSelectTableItemsChoicesOptions);
+
+            var $widgetBody = $('.fx-widget-select-content', $elem);
+            var widgetBodyWidth = $widgetBody.width();
+
+            var $btSelect = $($elem).find('[data-ws-select]');
+            var $btCancel = $($elem).find('[data-ws-cancel]');
+
+            $wrapperWidgetSelectContent.width(widgetBodyWidth);
+            $widgetSelectItem.width(widgetBodyWidth);
+
+            $widgetSelectTableItemsChoices.show();
+
+            $btShowAdd.off('click.fx.showadd').on('click.fx.showadd', $.proxy(showAdd, this));
+            $btShowSelect.off('click.fx.showselect').on('click.fx.showselect', $.proxy(showSelect, this));
+
+            // show/ hide and resize layout panels
+            handleUILayout();
+
+            function handleUILayout() {
+                uilayout.open("south");
+                uilayout.resizeAll();
+            }
+
+            function showAdd() {
+                var self = this;
+                $btShowAdd.addClass('hidden');
+                $btShowSelect.removeClass('hidden');
+
+                $btSelect.addClass('disabled');
+                $btCancel.addClass('disabled');
+
+                $widgetSelectItemsContainer.animate({
+                    left: "-=" + widgetBodyWidth
+                }, 300);
+            };
+            function showSelect() {
+                var self = this;
+                $btShowSelect.addClass('hidden');
+                $btShowAdd.removeClass('hidden');
+
+                $btSelect.removeClass('disabled');
+                $btCancel.removeClass('disabled');
+
+                $widgetSelectItemsContainer.animate({
+                    left: "+=" + widgetBodyWidth
+                }, 300);
+            }
+        }
+
+        function wsWithoutPreview() {
+
+            var $elem = $("#widget-select-modal");
+
+            var uilayout = $elem.find(".select-model-layout").layout({
+                defaults: {
+                    resizable: true,
+                    livePaneResizing: true,
+                    resizerTip: "Resize",
+                    spacing_closed: 10,
+                    spacing_open: 10
+                },
+                center: {
+                    //minSize: 100,
+                    contentSelector: '.fx-widget-select-choices-wrapper'
+                },                
+                south: {
+                    size: 100,
+                    minSize: 50,
+                    maxSize: 300,
+                    contentSelector: '.fx-widget-selected-items-container'
+                },
+                west: {
+                    size: 300,
+                    minSize: 100,
+                    maxSize: 450,
+                    contentSelector: '.fx-widget-select-preview-body'
+                }
+            });
+
+            var $btShowAdd = $($elem).find('[data-ws-show-add]');
+            var $btShowSelect = $($elem).find('[data-ws-show-select]');
+            var $widgetSelectItemsContainer = $('.fx-widget-select-items-container', $elem);
+            var $widgetSelectItemsWraper = $('.fx-widget-select-choices-wrapper', $widgetSelectItemsContainer);
+            var $widgetSelectTableItemsChoices = $(".fx-table-widget-select-choices", $widgetSelectItemsWraper);
+            var $widgetSelectTableItemsChoicesContainer = $("tbody", $widgetSelectTableItemsChoices);
+            var $widgetSelectItem = $('.fx-widget-select-item', $elem);
+            var $wrapperWidgetSelectContent = $(".fx-widget-select-content", $elem);
+
+            var $widgetSelectTableItemsChoicesOptions = $('.fx-widget-select-choices-options', $widgetSelectItem);
+            var $choiceSelectItems = $(".fx-widget-select-choices-options-select", $widgetSelectTableItemsChoicesOptions);
+
+            var $widgetBody = $('.fx-widget-select-content', $elem);
+            var widgetBodyWidth = $widgetBody.width();
+
+            var $btSelect = $($elem).find('[data-ws-select]');
+            var $btCancel = $($elem).find('[data-ws-cancel]');
+
+            $wrapperWidgetSelectContent.width(widgetBodyWidth);
+            $widgetSelectItem.width(widgetBodyWidth);
+
+            $widgetSelectTableItemsChoices.show();
+
+            $btShowAdd.off('click.fx.showadd').on('click.fx.showadd', $.proxy(showAdd, this));
+            $btShowSelect.off('click.fx.showselect').on('click.fx.showselect', $.proxy(showSelect, this));
+
+            // show/ hide and resize layout panels
+            handleUILayout();
+
+            function handleUILayout() {
+                uilayout.open("south");
+                uilayout.resizeAll();
+            }
+
+            function showAdd() {
+                var self = this;
+                $btShowAdd.addClass('hidden');
+                $btShowSelect.removeClass('hidden');
+
+                $btSelect.addClass('disabled');
+                $btCancel.addClass('disabled');
+
+                $widgetSelectItemsContainer.animate({
+                    left: "-=" + widgetBodyWidth
+                }, 300);
+            };
+            function showSelect() {
+                var self = this;
+                $btShowSelect.addClass('hidden');
+                $btShowAdd.removeClass('hidden');
+
+                $btSelect.removeClass('disabled');
+                $btCancel.removeClass('disabled');
+
+                $widgetSelectItemsContainer.animate({
+                    left: "+=" + widgetBodyWidth
+                }, 300);
+            }
+        }
+
+        wsWithPreview();
+        wsWithoutPreview();
+
+    </script>
+
+</body>
+
+</html>

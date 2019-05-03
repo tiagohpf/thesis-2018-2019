@@ -1,0 +1,36 @@
+{
+  "type": "initParameters",
+
+  "details": [
+  {
+  "type": "initParameters",
+
+  "details": [
+    {
+      "type": "header",
+      "class": "col-sm-12 title",
+      "header": {
+        "seo": {
+          "text": "Choose your subscription plan",
+          "icon": "icomoon icon-activity"
+        }
+      }
+    },
+    {
+      "type": "textbox",
+      "id": "selected-student",
+      "value": "[[id]]",
+      "hidden": true
+    },
+
+    
+    {
+      "include": "billing/plan-list"
+    }
+  ]
+}
+
+
+
+]
+}

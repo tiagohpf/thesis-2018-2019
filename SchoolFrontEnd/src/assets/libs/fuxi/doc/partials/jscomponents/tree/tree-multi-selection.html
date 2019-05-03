@@ -1,0 +1,47 @@
+<h3 id="docs-tree-multi-selection">Tree seleção múltipla</h3>
+<p>Este snippet demonstra uma tree em que é possível selecionar vários nós em simultâneo.</p>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <div id="devguide-tree-multi-selection"></div>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!-- Ficheiros necessários a incluir no head-->
+<head>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/fuxi/lib/jstree/3.0/themes/fuxi/style.css" rel="stylesheet" />
+    <link href="/fuxi/common/html/css/fuxi.min.css" rel="stylesheet" />
+</head>
+
+<!--Ficheiros a colocar antes de fechar a tag body-->
+<script src="/basepack/jquery/1.11/jquery.min.js"></script>
+<script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+<script src="/fuxi/lib/jstree/3.0/jstree.min.js"></script>
+<script src="/fuxi/common/exec/fuxi.js"></script>
+
+<!--Markup necessário-->
+<div id="devguide-tree-multi-selection"></div>
+
+<!--Instanciação da tree-->
+<script type="text/javascript">
+    $('#devguide-tree-multi-selection').jstree({
+        'core': {
+            'data': [
+               { "id": "root-multi-1", "parent": "#", "text": "Root 1" },
+               { "id": "root-multi-2", "parent": "#", "text": "Root 2", "state": { "opened": true } },
+               { "id": "root-multi-2-child-1", "parent": "root-multi-2", "text": "Child 1", "state": { "selected": true }, },
+               { "id": "root-multi-2-child-2", "parent": "root-multi-2", "text": "Child 2" },
+            ],
+            themes: {
+                name: 'fuxi',
+                icons: false
+            },
+        },
+        'plugins': ["checkbox"]
+    });
+</script>
+        </textarea>
+    </form>
+</div>
+

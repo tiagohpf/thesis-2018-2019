@@ -1,0 +1,412 @@
+<h3 id="docs-wid-select-instance">Instanciação de um Widget select</h3>
+<p>Um widget select pode ser disponibilizado em página ou em janela modal. O exemplo abaixo demonstra como instanciar em página. A instanciação em janela modal é idêntica à de em página mas deve ser executada no evento <code>shown</code> da janela modal.</p>
+<p>O markup do widget select deverá ser explicitamente disponibilizado na página.</p>
+<p>O snippet de código abaixo ilustra os ficheiros necessários ao correto funcionamento do widget select. Demonstra ainda a instanciação dos diferentes elementos usados. O markup necessário não está demonstrado para que esta secção não fique demasiado extensa. Por favor, inspecione a página e copie o markup necessário.</p>
+
+<div class="fx-docs-snippet-code">
+    <div>
+
+        <div id="devguide-widget-select-inline" class="fx-widget-select">
+            <div class="fx-ws-inline-content">
+                <div class="fx-ws-inline-header">
+                    <div class="fx-widget-select-top-nav clearfix">
+                        <a class="btn btn-link btn-sm pull-right" data-ws-show-add>
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <span>criar</span>
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </a>
+
+                        <a id="btBackModelSelection" class="btn btn-link btn-sm pull-left hidden" data-ws-show-select>
+                            <i class="glyphicon glyphicon-chevron-left"></i>
+                            <span>voltar</span>
+
+                        </a>
+                    </div>
+                </div>
+                <div class="fx-ws-inline-body">
+                    <div class="fx-widget-select-content">
+                        <!-- WE MUST SET HEIGHT TO THIS DIV BY SCRIPTING -->
+                        <div class="clearfix fx-widget-select-items-container" style="height: 400px;">
+                            <div id="modal-step-select-model" class="fx-widget-select-item select-model-layout">
+                                <div class="ui-layout-center">
+                                    <form role="search" class="fx-search-widget-select-items">
+                                        <div class="form-group fx-search-input">
+                                            <div class="fx-pos-rel">
+                                                <input type="text" id="txt-search" class="fx-widget-select-search-text fx-dropdown-search form-control input-sm full-width" placeholder="pesquisar ...">
+                                                <button class="glyphicon glyphicon-search fx-widget-select-search-button" id="bt-search"></button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <div class="fx-widget-select-choices-wrapper">
+                                        <table class="table fx-table table-condensed fx-table-widget-select-choices">
+                                            <thead>
+                                                <tr>
+                                                    <th class="fx-option-select">
+                                                        <div class="fx-widget-select-choices-options">
+                                                            <input type="checkbox" class="fx-widget-select-choices-options-select" title="selecionar/ não selecionar todos os items da página" id="chk-choices-options-select">
+                                                        </div>
+                                                    </th>
+                                                    <th>
+                                                        nome
+                                                        <span class="fx-widget-select-sort-column fx-sort-no" data-sort="0" data-column="name"></span>
+                                                        <span class="fx-widget-select-sort-column fx-sort-asc hide" data-sort="1" data-column="name"></span>
+                                                        <span class="fx-widget-select-sort-column fx-sort-desc hide" data-sort="-1" data-column="name"></span>
+                                                    </th>
+                                                    <th>
+                                                        desc
+                                                        <span class="fx-widget-select-sort-column fx-sort-no" data-sort="0" data-column="description"></span>
+                                                        <span class="fx-widget-select-sort-column fx-sort-asc hide" data-sort="1" data-column="description"></span>
+                                                        <span class="fx-widget-select-sort-column fx-sort-desc hide" data-sort="-1" data-column="description"></span>
+                                                    </th>
+                                                    <th class="fx-preview-action">&nbsp;</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <div class="fx-widget-select-tree-container"></div>
+                                    </div>
+
+                                    <!-- Paging -->
+                                    <div class="fx-widget-select-paging" style="display:table;width:100%">
+                                        <div style="display:table-cell"><button class="btn btn-link" data-paging-previous>« anterior</button></div>
+                                        <div style="display:table-cell"><span data-paging-num-current-page>0</span> de <span data-paging-total-pages>0</span></div>
+                                        <div style="display:table-cell"><button class="btn btn-link" data-paging-next>seguinte »</button></div>
+                                    </div>
+                                </div>
+
+                                <div class="ui-layout-east">
+
+                                    <div class="fx-widget-select-preview-aux-info">
+                                        <p class="fx-widget-select-preview-aux-info-message">
+                                            Clique no olho <i class="fuxicons fuxicons-eye"></i> para pré-visualizar a informação de cada item
+                                        </p>
+                                    </div>
+
+                                    <header class="fx-widget-select-preview-header hidden">
+                                        <span class="fx-info-icon"><i class="fuxicons fuxicons-catalogue"></i></span>
+                                        <span class="fx-widget-select-preview-title">Título da entidade</span>
+                                    </header>
+
+                                    <div class="fx-widget-select-preview-body hidden">
+                                        <a data-target="#devguide-ws-block-01" data-toggle="collapse" class="fx-expand">
+                                            <i class="caret"></i>
+                                            Título do bloco
+                                        </a>
+                                        <div class="collapse in fx-indent" id="devguide-ws-block-01">
+                                            <div class="form-horizontal">
+                                                <div class="form-group">
+                                                    <label class="col-sm-4 control-label">Nome do campo</label>
+                                                    <div class="col-sm-8">
+                                                        <p class="form-control-static">--</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="ui-layout-south">
+                                    <div class="fx-widget-select-tags-count">
+                                        <span data-msg-items>
+                                            Tem <strong data-num-items-selected>0</strong> items selecionados de <span data-total-items>0</span>
+                                            <a data-remove-all class="pull-right">
+                                                <i class="glyphicon glyphicon-remove"></i>&nbsp;limpar
+                                            </a>
+                                        </span>
+                                        <span data-msg-no-items class="fx-text-disabled">Não existem items selecionados</span>
+                                    </div>
+
+                                    <div class="fx-widget-selected-items-container">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="modalStepAddModel" class="fx-widget-select-item">
+                                <div class="fx-widget-select-add-wrapper">
+                                    <form class="form-horizontal" role="form">
+                                        <p class="fx-required-fields-message">campos obrigatórios</p>
+
+                                        <div class="form-group">
+
+                                            <label for="devguide-ws-add-input-item-name" class="col-sm-2 control-label">Nome do campo</label>
+                                            <div class="col-sm-10">
+
+                                                <input type="text" class="form-control" id="devguide-ws-add-input-item-name" placeholder="nome do elemento">
+                                                <br />
+
+                                                <div class="text-left">
+                                                    <button type="button" class="btn btn-primary btn-sm" data-ws-add-save>
+                                                        salvar
+                                                    </button>
+                                                    <button type="button" class="btn btn-default btn-sm" data-ws-add-cancel>
+                                                        cancelar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fx-ws-inline-footer">
+                    <!--<button type="button" id="btSaveSelectModel" class="btn btn-primary btn-sm" data-ws-select>
+                    selecionar
+                </button>-->
+                    <!--<button type="button" id="btCancelSelectModel" class="btn btn-default btn-sm" data-dismiss="modal" data-ws-cancel>
+                    cancelar
+                </button>-->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!-- Ficheiros necessários a incluir no head-->
+
+<head>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/fuxi/lib/jstree/3.0/themes/fuxi/style.css" rel="stylesheet" />
+    <link href="/fuxi/lib/uilayout/layout-default-latest.css" rel="stylesheet" />
+    <link href="/fuxi/common/html/css/fuxi.min.css" rel="stylesheet" />
+
+    <!--Estes scripts dentro da tag head devido ao UI Layout-->
+    <script src="/basepack/jquery/1.11/jquery.min.js"></script>
+    <script src="/fuxi/lib/jqueryui/1.11/js/jquery-ui.min.js"></script>
+    <script src="/fuxi/lib/uilayout/jquery.layout-latest.js"></script>
+</head>
+        </textarea>
+    </form>
+
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!-- Ficheiros necessários a incluir antes de fechar a tag body-->
+
+<script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+<script src="/fuxi/lib/jstree/3.0/jstree.min.js"></script>
+<script src="/fuxi/common/exec/fuxi.js"></script>
+        </textarea>
+    </form>
+
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!-- Instanciação do widget select -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        //needed for validate purposes
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "positionClass": "toast-top-center",
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut",
+        };
+
+        var options;
+
+        //self invoking function
+        (function setOptions() {
+            options = {
+                allowDrag: false,
+                showPageOptionSelectAll: false,
+                openMode: "inline",
+                notificationCallback: notification,
+                selectItemMandatory: true,
+                selectItemMandatoryMessage: "Verifique se selecionou os items pretendidos.",
+                clientAddValidator: validateAdd,
+                lazyLoadCallback: loadItems,
+            };
+        })();
+
+        loadWS("devguide-widget-select-inline", true);
+
+        // show
+        $ws.shownWidgetSelect();
+
+        var $ws;
+
+        function loadWS(wsID, destroy) {
+            if (destroy && $ws) $ws.destroy();
+
+            $ws = $("#" + wsID).widgetSelect(options);
+
+            // event fired after widget select is shown;
+            $ws.$elem.off('shown.fx.widgetselect').on('shown.fx.widgetselect', widgetSelectShow)
+
+            // event fired after save button clicked on add view
+            .off('addsave.fx.widgetselect').on('addsave.fx.widgetselect', saveNewItem)
+
+            // event fired after cancel button clicked on add view
+            .off('addcancel.fx.widgetselect').on('addcancel.fx.widgetselect', function (e) {
+                alert('evento do botão cancelar foi disparado');
+            })
+
+            // event fired after create model button clicked on select view
+            .off('showadd.fx.widgetselect').on('showadd.fx.widgetselect', showAddView)
+
+            // event fired after back to model selection button clicked on add view
+            .off('showselect.fx.widgetselect').on('showselect.fx.widgetselect', showSelectView)
+
+            // event fired after preview button clicked on select view
+            .off('itempreview.fx.widgetselect').on('itempreview.fx.widgetselect', itemPreview)
+
+            // event fired on sort by
+            .off('sortby.fx.widgetselect').on('sortby.fx.widgetselect', function (e) {
+                sortItems(e.column, e.desc);
+            })
+
+            // event fired on search
+            .off('search.fx.widgetselect').on('search.fx.widgetselect', function (e) {
+                searchItems(e.search);
+            });
+        }
+
+        var loaded = false,
+            items = undefined,
+            itemsSelected = undefined,
+            itemsPerPage = 20,
+            selDefault = undefined;
+
+        //function used for lazyload - demo purpose onlye
+        function loadItems(currentPage) {
+            var startPage = (currentPage - 1) * itemsPerPage;
+            var endPage = startPage + itemsPerPage;
+            var itemsToShow = items.slice(startPage, endPage);
+
+            $ws.itemsList(itemsToShow, items.length);
+        }
+
+        function widgetSelectShow(e) {
+            var value = 'widgetselect.options=' + JSON.stringify(e.widgetselect.options, null, 2);
+
+            getItems(function () {
+                $ws.reset();
+                $ws.selectedItemsList(itemsSelected);
+                loadItems(1);// first page
+            });
+        }
+
+        // sort items
+        function sortItems(column, desc) {
+
+            items = _.sortBy(items, function (i) {
+                var propVal = i[column];
+                if (typeof propVal !== 'string') {
+                    return propVal;
+                } else {
+                    return propVal.toLowerCase();
+                }
+            });
+
+            if (desc) items.reverse();
+
+            $ws.resetList();
+            loadItems(1);// first page
+        }
+
+        //search items
+        function searchItems(str) {
+            getItems(function () {
+                if (str !== "") {
+                    var result = _.filter(items,
+                                function (k) {
+                                    var res = false;
+                                    _.forOwn(k, function (val, key) {
+                                        res = FUXI.Utils.like(val, str);
+                                        if (res) return false;
+                                    });
+                                    return res;
+                                });
+                    items = result;
+                }
+                $ws.resetList();
+                loadItems(1);
+            });
+        }
+
+        //retrieves the data
+        function getItems(callback) {
+
+            $.getJSON("../doc/partials/jscomponents/wid-select/data-demo/widget-select-items.json", function (data) {
+
+                items = data.items;
+                itemsSelected = selDefault || data.itemsSelected;
+
+                if (callback) callback();
+
+            }).fail(function () {
+                alert("erro ao carregar dados.");
+            });
+        }
+
+        //Function to notify user if element was added to collection
+        function notification(type, message) {
+            toastr[type](message);
+        }
+
+
+        function validateAdd(e) {
+            return ({
+                'isValid': ($("#devguide-ws-add-input-item-name", $ws.$elem).val() !== '') ? true : false, 'message': 'Verifique se preencheu corretamente todos os campos.'
+            });
+        }
+
+        //function called after save button clicked on add view
+        function saveNewItem(e) {
+
+            // for demo purpose data of new item
+            var item = {
+                "id": Math.floor((Math.random() * 9999999) + 1),
+                "text": $("#devguide-ws-add-input-item-name", $ws.$elem).val(),
+                "name": $("#devguide-ws-add-input-item-name", $ws.$elem).val()
+            }
+
+            // insert succeed! show selectView
+            e.widgetselect.handleShowSelectView.call(e.widgetselect, function () {
+                e.widgetselect.showNotification('success', "Item criado com sucesso.");
+            });
+
+            e.widgetselect.drawItem(item, true);
+        }
+
+        //function called after create button clicked on select view
+        function showAddView(e) {
+            $("#devguide-ws-add-input-item-name").val('').focus();
+        }
+
+        //function called after back button clicked on select view
+        function showSelectView(e) {
+            $("#devguide-ws-add-input-item-name").val('');
+            $(".fx-search-input input[type=text]", e.widgetselect.$widgetBody).focus();
+        };
+
+        //function that loads item preview
+        function loadItemPreview(id) {
+            $('.fx-widget-select-preview-title').html('Titulo - ' + id);
+        };
+
+        function itemPreview(e) {
+            loadItemPreview(e.id);
+
+            // show preview content
+            $ws.showPreviewContent();
+        };
+    });
+</script>
+        </textarea>
+    </form>
+
+
+</div>

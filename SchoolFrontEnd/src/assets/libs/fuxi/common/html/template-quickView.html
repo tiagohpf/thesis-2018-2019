@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge; text/html;" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0,  user-scalable=yes" />
+		<link rel="icon" href="/fuxi/common/html/css/images/favicon.ico" type="image/x-icon" />
+		<title>Template quickview</title>
+
+		<!-- CSS -->
+		<link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.min.css" />
+		<script src="/basepack/modernizr/2.6/modernizr.js"></script>
+
+		<!-- Respond.js - IE8 support of media queries -->
+		<!--[if lt IE 9]>
+		<script src="/fuxi/lib/respond/1.4/js/respond.min.js"></script>
+		<![endif]-->
+
+		<!-- Only for explanation purposes. Don't remove this piece of styles from here-->
+		<style type="text/css">
+			.template-explanation {
+				background-color: #ddd;
+				padding: 20px;
+			}
+
+			.area-btn {
+				padding: 20px;
+			}
+
+			.buttons-wrapper {
+				margin: 30px 0;
+			}
+
+		</style>
+	</head>
+<body>
+
+    <div class="template-explanation">
+        <h4>Template QuickPreview</h4>
+        <p>
+            Este template serve para exemplificar a utilização de um popover complexo, integrando um sistema de tabs.
+            O seu tamanho pode ser personalizado aplicando uma combinação das classes abaixo listadas no template de construção do popover.
+            Caso não se pretenda fazer override do tamanho default do popover não é necessário definir o template.
+        </p>
+        <p>
+            O header do quickview está definido como link para representar a possibilidade de abrir o conteúdo do quickview em página. Caso não se pretenda implementar este racional bastará não fazer uso da tag para o hyperlink e disponibilizar o nome da entidade diretamente no heading.
+        </p>
+        <button class="btn btn-primary disabled">
+            .popover.fx-popover-xxs
+        </button>
+
+        <button class="btn btn-primary disabled">
+            .popover.fx-popover-xs
+        </button>
+
+        <button class="btn btn-primary disabled">
+            .popover.fx-popover-s
+        </button>
+
+        <button class="btn btn-primary disabled">
+            .popover.fx-popover-m
+        </button>
+
+        <button class="btn btn-primary disabled">
+            .popover.fx-popover-l
+        </button>
+
+    </div>
+    <div class="area-btn">
+        <!-- Área de botões-->
+        <div class="buttons-wrapper">
+            <button type="button" class="btn btn-default" id="quickview-xxs">
+                trigger xxs quickview
+            </button>
+            <button type="button" class="btn btn-default" id="quickview-xs">
+                trigger xs quickview
+            </button>
+            <button type="button" class="btn btn-default" id="quickview-s">
+                trigger s quickview
+            </button>
+            <button type="button" class="btn btn-default" id="quickview-m">
+                trigger m quickview
+            </button>
+            <button type="button" class="btn btn-default" id="quickview-l">
+                trigger l quickview
+            </button>
+            <!-- Área de Texto-->
+        </div>
+        <p>
+            "Lorem ipsum dolor sit amet, <a href="#" id="linkPopover">consectetur</a> adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+
+        <!-- Área das tabs dentro dos popover-->
+        
+    </div>
+
+    <div id="content-quickview-complex" class="hide">
+        <div class="fx-popover-header">
+            <div class="fx-entity-header">
+                <span class="fx-info-icon">
+                    <i class="fuxicons fuxicons-equipment-version"></i>
+                </span>
+                <div class="fx-entity-header-info">
+                    <h1 class="fx-entity-header-title"><a href="#">Título do quickview <i class="fuxicons fuxicons-open-in-window"></i></a></h1>
+                    <p class="fx-popover-entity-header-desc">
+                        Detalhes opcional do quickview
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="fx-popover-main-content">
+            <div class="fx-popover-inner">
+                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+            </div>
+        </div>
+        <div class="fx-popover-actions">
+            área destinada a ações ou outra informação relevante
+        </div>
+    </div>
+
+    <!-- BASEPACK-->
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+    <script src="/fuxi/common/exec/fuxi.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            //quickviews
+            $('#quickview-xxs').popover({
+                content: $('#content-quickview-complex').html(),
+                html: true,
+                placement: 'bottom',
+                template: '<div class="popover fx-popover-xxs"><div class="arrow"></div><div class="popover-content no-padding"></div></div>'
+            });
+
+            $('#quickview-xs').popover({
+                content: $('#content-quickview-complex').html(),
+                html: true,
+                placement: 'bottom',
+                template: '<div class="popover fx-popover-xs"><div class="arrow"></div><div class="popover-content no-padding"></div></div>'
+            });
+
+            $('#quickview-s').popover({
+                content: $('#content-quickview-complex').html(),
+                html: true,
+                placement: 'bottom',
+                template: '<div class="popover fx-popover-s"><div class="arrow"></div><div class="popover-content no-padding"></div></div>'
+            });            $('#quickview-m').popover({
+                content: $('#content-quickview-complex').html(),
+                html: true,
+                placement: 'bottom',
+                template: '<div class="popover fx-popover-m"><div class="arrow"></div><div class="popover-content no-padding"></div></div>'
+            });            $('#quickview-l').popover({
+                content: $('#content-quickview-complex').html(),
+                html: true,
+                placement: 'bottom',
+                template: '<div class="popover fx-popover-l"><div class="arrow"></div><div class="popover-content no-padding"></div></div>'
+            });
+
+            $('#linkPopover').popover({
+                content: $('#content-quickview-complex').html(),
+                html: true,
+                placement: 'bottom',
+                template: '<div class="popover fx-popover-s"><div class="arrow"></div><div class="popover-content"></div></div>'
+            });
+
+        });
+    </script>
+</body>
+</html>

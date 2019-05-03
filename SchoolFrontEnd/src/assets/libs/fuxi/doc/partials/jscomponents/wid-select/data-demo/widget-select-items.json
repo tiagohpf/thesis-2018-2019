@@ -1,0 +1,125 @@
+﻿{
+    "itemsSelected": [
+        { "id": 1, "text": "Item 1", "data": { "data1": "data1", "data2": "data2" }  },
+        { "id": 4, "text": "Item 4" },
+        { "id": 22, "text": "Item 22" }
+    ],
+
+    "items": [
+        { "id": 1, "text": "Item 1", "showPreview": false, "name": "Nome 1", "description": "Descrição 1", "data": { "data1": "data1", "data2": "data2" }  },
+        { "id": 2, "text": "Item 2", "showPreview": false, "showCheckbox": false, "name": "Nome 2", "description": "Descrição 2" },
+        { "id": 3, "text": "Item 3", "showPreview": false, "showCheckbox": false,  "name": "Nome 3", "description": "Descrição 3" },
+        { "id": 4, "text": "Item 4", "name": "Nome 4", "description": "Descrição 4" },
+        { "id": 5, "text": "Item 5", "name": "Nome 5", "description": "Descrição 5" },
+        { "id": 6, "text": "Item 6", "name": "Nome 6", "description": "Descrição 6" },
+        { "id": 7, "text": "Item 7", "name": "Nome 7", "description": "Descrição 7" },
+        { "id": 8, "text": "Item 8", "name": "Nome 8", "description": "Descrição 8" },
+        { "id": 9, "text": "Item 9", "name": "Nome 9", "description": "Descrição 9" },
+        { "id": 10, "text": "Item 10", "name": "Nome 10", "description": "Descrição 10" },
+        { "id": 11, "text": "Item 11", "name": "Nome 11", "description": "Descrição 11" },
+        { "id": 12, "text": "Item 12", "name": "Nome 12", "description": "Descrição 12" },
+        { "id": 13, "text": "Item 13", "name": "Nome 13", "description": "Descrição 13" },
+        { "id": 14, "text": "Item 14", "name": "Nome 14", "description": "Descrição 14" },
+        { "id": 15, "text": "Item 15", "name": "Nome 15", "description": "Descrição 15" },
+        { "id": 16, "text": "Item 16", "name": "Nome 16", "description": "Descrição 16" },
+        { "id": 17, "text": "Item 17", "name": "Nome 17", "description": "Descrição 17" },
+        { "id": 18, "text": "Item 18", "name": "Nome 18", "description": "Descrição 18" },
+        { "id": 19, "text": "Item 19", "name": "Nome 19", "description": "Descrição 19" },
+        { "id": 20, "text": "Item 20", "name": "Nome 20", "description": "Descrição 20" },
+        { "id": 21, "text": "Item 21", "name": "Nome 21", "description": "Descrição 21" },
+        { "id": 22, "text": "Item 22", "name": "Nome 22", "description": "Descrição 22" },
+        { "id": 23, "text": "Item 23", "name": "Nome 23", "description": "Descrição 23" },
+        { "id": 24, "text": "Item 24", "name": "Nome 24", "description": "Descrição 24" },
+        { "id": 25, "text": "Item 25", "name": "Nome 25", "description": "Descrição 25" },
+        { "id": 26, "text": "Item 26", "name": "Nome 26", "description": "Descrição 26" },
+        { "id": 27, "text": "Item 27", "name": "Nome 27", "description": "Descrição 27" },
+        { "id": 28, "text": "Item 28", "name": "Nome 28", "description": "Descrição 28" },
+        { "id": 29, "text": "Item 29", "name": "Nome 29", "description": "Descrição 29" },
+        { "id": 30, "text": "Item 30", "name": "Nome 30", "description": "Descrição 30" },
+        { "id": 31, "text": "Item 31", "name": "Nome 31", "description": "Descrição 31" },
+        { "id": 32, "text": "Item 32", "name": "Nome 32", "description": "Descrição 32" },
+        { "id": 33, "text": "Item 33", "name": "Nome 33", "description": "Descrição 33" },
+        { "id": 34, "text": "Item 34", "name": "Nome 34", "description": "Descrição 34" },
+        { "id": 35, "text": "Item 35", "name": "Nome 35", "description": "Descrição 35" },
+        { "id": 36, "text": "Item 36", "name": "Nome 36", "description": "Descrição 36" },
+        { "id": 37, "text": "Item 37", "name": "Nome 37", "description": "Descrição 37" },
+        { "id": 38, "text": "Item 38", "name": "Nome 38", "description": "Descrição 38" },
+        { "id": 39, "text": "Item 39", "name": "Nome 39", "description": "Descrição 39" },
+        { "id": 40, "text": "Item 40", "name": "Nome 40", "description": "Descrição 40" }
+    ],
+
+    "itemsSearch": [
+        { "id": 80, "text": "Item 80", "name": "Item 80 do nome", "description": "qq coisa aqui referente ao Item 80" },
+        { "id": 81, "text": "Item 81", "name": "Item 81 do nome", "description": "qq coisa aqui referente ao Item 81" },
+        { "id": 82, "text": "Item 82", "name": "Item 82 do nome", "description": "qq coisa aqui referente ao Item 82" },
+        { "id": 83, "text": "Item 83", "name": "Item 83 do nome", "description": "qq coisa aqui referente ao Item 83" },
+        { "id": 84, "text": "Item 84", "name": "Item 84 do nome", "description": "qq coisa aqui referente ao Item 84" },
+        { "id": 85, "text": "Item 85", "name": "Item 85 do nome", "description": "qq coisa aqui referente ao Item 85" },
+        { "id": 86, "text": "Item 86", "name": "Item 86 do nome", "description": "qq coisa aqui referente ao Item 86" },
+        { "id": 87, "text": "Item 87", "name": "Item 87 do nome", "description": "qq coisa aqui referente ao Item 87" },
+        { "id": 88, "text": "Item 88", "name": "Item 88 do nome", "description": "qq coisa aqui referente ao Item 88" },
+        { "id": 89, "text": "Item 89", "name": "Item 89 do nome", "description": "qq coisa aqui referente ao Item 89" },
+        { "id": 90, "text": "Item 90", "name": "Item 90 do nome", "description": "qq coisa aqui referente ao Item 90" },
+        { "id": 91, "text": "Item 91", "name": "Item 91 do nome", "description": "qq coisa aqui referente ao Item 91" },
+        { "id": 92, "text": "Item 92", "name": "Item 92 do nome", "description": "qq coisa aqui referente ao Item 92" },
+        { "id": 93, "text": "Item 93", "name": "Item 93 do nome", "description": "qq coisa aqui referente ao Item 93" },
+        { "id": 94, "text": "Item 94", "name": "Item 94 do nome", "description": "qq coisa aqui referente ao Item 94" },
+        { "id": 95, "text": "Item 95", "name": "Item 95 do nome", "description": "qq coisa aqui referente ao Item 95" },
+        { "id": 96, "text": "Item 96", "name": "Item 96 do nome", "description": "qq coisa aqui referente ao Item 96" },
+        { "id": 97, "text": "Item 97", "name": "Item 97 do nome", "description": "qq coisa aqui referente ao Item 97" },
+        { "id": 98, "text": "Item 98", "name": "Item 98 do nome", "description": "qq coisa aqui referente ao Item 98" },
+        { "id": 99, "text": "Item 99", "name": "Item 99 do nome", "description": "qq coisa aqui referente ao Item 99" },
+        { "id": 100, "text": "Item 100", "name": "Item 100 do nome", "description": "qq coisa aqui referente ao Item 100" },
+        { "id": 101, "text": "Item 101", "name": "Item 101 do nome", "description": "qq coisa aqui referente ao Item 101" },
+        { "id": 102, "text": "Item 102", "name": "Item 102 do nome", "description": "qq coisa aqui referente ao Item 102" },
+        { "id": 103, "text": "Item 103", "name": "Item 103 do nome", "description": "qq coisa aqui referente ao Item 103" },
+        { "id": 104, "text": "Item 104", "name": "Item 104 do nome", "description": "qq coisa aqui referente ao Item 104" },
+        { "id": 105, "text": "Item 105", "name": "Item 105 do nome", "description": "qq coisa aqui referente ao Item 105" },
+        { "id": 106, "text": "Item 106", "name": "Item 106 do nome", "description": "qq coisa aqui referente ao Item 106" },
+        { "id": 107, "text": "Item 107", "name": "Item 107 do nome", "description": "qq coisa aqui referente ao Item 107" },
+        { "id": 108, "text": "Item 108", "name": "Item 108 do nome", "description": "qq coisa aqui referente ao Item 108" },
+        { "id": 109, "text": "Item 109", "name": "Item 109 do nome", "description": "qq coisa aqui referente ao Item 109" },
+        { "id": 110, "text": "Item 110", "name": "Item 110 do nome", "description": "qq coisa aqui referente ao Item 110" }
+    ],
+
+    "itemsTreeSelected": [
+        { "id": 3, "text": "Item 1.2", "data": { "data1": "3 data1.2 1", "data2": "3 data1.2 2" } },
+        { "id": 4, "text": "Item 1.3", "data": { "data1": "4 data1.3 1", "data2": "4 data1.3 2" } }
+    ],
+    
+    "itemsTree": [
+        {
+            "id": 1,
+            "text": "Item 1",
+            "li_attr": { "showpreview": false, "showcheckbox": true },   
+            "children": [
+                {
+                    "id": 2,
+                    "text": "Item 1.1",
+                    "data": { "data1": "2 data1.1 1", "data2": "2 data1.1 2" }, 
+                    "children": [
+                        { "id": 20, "text": "Item 1.10" },
+                        { "id": 30, "text": "Item 1.20" },
+                        { "id": 40, "text": "Item 1.30" }
+                    ]
+                },
+                { "id": 3, "text": "Item 1.2" },
+                { "id": 4, "text": "Item 1.3" }
+            ]
+        },
+
+        {
+            "id": 5,
+            "text": "Item 2",
+            "li_attr": { "showpreview": false, "showcheckbox": false },
+            "children": [
+                { "id": 6, "text": "Item 2.1" },
+                { "id": 7, "text": "Item 2.2" },
+                { "id": 8, "text": "Item 2.3" }
+            ]
+        },
+
+        { "id": 9, "text": "Item 3", "li_attr": { "showpreview": false } }
+    ]
+
+}

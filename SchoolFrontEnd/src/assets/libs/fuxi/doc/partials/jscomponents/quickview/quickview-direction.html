@@ -1,0 +1,45 @@
+<h3 id="docs-quickview-direction">Orientação do quickview</h3>
+<p>Este snippet demonstra como instanciar um quickview simples nas quatro direções possíveis: <strong>cima, direita, baixo, esquerda.</strong></p>
+<p>O snippet faz uso dos data-attributes mas pode-se chegar ao mesmo resultado instanciando o objeto em JavaScript.</p>
+<div class="alert alert-info">
+    <p>Para além de definir o eixo para onde se pretende abrir o quickview é boa política atribuír também o valor <code>auto</code> de forma a garantir que se não houver espaço para a abertura do quickview no eixo definido ele inverte a direção da abertura.</p>
+</div>
+<div class="alert alert-warning">
+    <p>Na versão atual do bootstrap disponibilizada no basepack existe um erro com o <code>data-placement="bottom auto"</code>.</p>
+    <p>Usando este valor no atributo <code>data-placement</code> o quickview abre sempre para cima. Para abrir para baixo retirar o auto, tendo atenção às implicações desta alteração.</p>
+</div>
+<div class="fx-docs-snippet-code">
+    <div>
+        <button type="button" class="btn btn-default" data-toggle="popover" data-placement="top auto" data-content="Mensagem do quickview.">
+            abrir quickview para cima
+        </button>
+        <button type="button" class="btn btn-default" data-toggle="popover" data-placement="right auto" data-content="Mensagem do quickview.">
+            abrir quickview para a direita
+        </button>
+        <button type="button" class="btn btn-default" data-toggle="popover" data-placement="bottom" data-content="Mensagem do quickview.">
+            abrir quickview para baixo
+        </button>
+        <button type="button" class="btn btn-default"  data-toggle="popover" data-placement="left auto" data-content="Mensagem do quickview.">
+            abrir quickview para a esquerda
+        </button>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<button type="button" class="btn btn-default" data-toggle="popover" data-placement="top auto" data-content="Mensagem do quickview.">
+    abrir quickview para cima
+</button>
+
+<button type="button" class="btn btn-default" data-toggle="popover" data-placement="right auto" data-content="Mensagem do quickview.">
+    abrir quickview para a direita
+</button>
+
+<button type="button" class="btn btn-default" data-toggle="popover" data-placement="bottom auto" data-content="Mensagem do quickview.">
+    abrir quickview para baixo
+</button>
+
+<button type="button" class="btn btn-default" data-toggle="popover" data-placement="left auto" data-content="Mensagem do quickview.">
+    abrir quickview para a esquerda
+</button>
+        </textarea>
+    </form>
+</div>

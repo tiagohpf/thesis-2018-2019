@@ -1,0 +1,96 @@
+<h3 id="docs-table-export">Exportar tabela</h3>
+<p>O DataTables possui um extra que disponibiliza formas para exportar a informação de uma tabela. Contudo a FUXI não empacota este extra pois tipicamente as opções de exportação são colocadas numa toolbar com mais opções.</p>
+<p>Ainda assim, caso pretenda usar este extra, em <a class="fx-docs-btn-link" href="http://legacy.datatables.net/extras/tabletools/" target="_blank">DataTables Table Tools</a> pode encontrar informação detalhada.</p>
+<p>A FUXI sugere duas formas para exportar a informação da tabela, uma standard e outra avançada. A codificação será responsabilidade das equipas de produto. No exemplo abaixo estão demonstradas ambas as formas. Contudo, sobre a mesma tabela, apenas deverá existir uma.</p>
+<div class="alert alert-warning">
+    <p>
+        O exemplo já demonstra o container onde esta funcionalidade deverá residir.
+    </p>
+    <p>
+        Deverá fazer inclusão dos ficheiros necessários à instanciação de um objeto como DataTable, anteriormente referidos no ponto <a href="#docs-table-general-vision">tabela - overview</a>.
+    </p>
+</div>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <div class="fx-bulk-actions clearfix">
+            <div class="pull-right">
+                <!--# include file="/fuxi/doc/partials/jscomponents/table/partials/export-table-standard.html" -->
+                <!--# include file="/fuxi/doc/partials/jscomponents/table/partials/export-table-advanced.html" -->
+            </div>
+        </div>
+        <!--# include file="/fuxi/doc/partials/jscomponents/table/partials/simple-table.html" -->
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<div class="fx-bulk-actions clearfix">
+    <div class="pull-right">
+        <!--Exportação standard-->
+        <div class="btn-group">
+            <button data-toggle="dropdown" type="button" class="btn btn-default btn-sm dropdown-toggle">
+                <i class="glyphicon glyphicon-export"></i>
+                exportar<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu fx-dropdown-open-to-left">
+                <li><a href="#">PDF</a></li>
+                <li><a href="#">XLS</a></li>
+                <li><a href="#">CSV</a></li>
+            </ul>
+        </div>
+        <!--Exportação avançada-->
+        <div class="btn-group">
+            <button data-toggle="dropdown" type="button" class="fx-dropdown-toggle dropdown-toggle btn btn-default btn-sm">
+                <i class="glyphicon glyphicon-export"></i>
+                exportar <span class="caret"></span>
+            </button>
+            <div class="fx-dropdown fx-dropdown-open-to-left">
+                <div class="fx-dropdown-body">
+                    <p>
+                        <strong>Formato de exportação</strong>
+                    </p>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" id="devguide-table-export-pdf" value="pdf" name="devguide-table-export-radio" checked>
+                            PDF
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" id="devguide-table-export-xls" value="xls" name="devguide-table-export-radio">
+                            XLS
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" id="devguide-table-export-csv" value="csv" name="devguide-table-export-radio">
+                            CSV
+                        </label>
+                    </div>
+                    <p>
+                        <strong>Informação a exportar</strong>
+                    </p>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" id="devguide-table-export-current-page" value="page" name="devguide-table-export-selection-radio">
+                            Página atual
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" id="devguide-table-export-all-page" value="all" name="devguide-table-export-selection-radio" checked>
+                            Todas as páginas (11 recursos)
+                        </label>
+                    </div>
+                </div>
+                <footer class="fx-dropdown-menu-actions">
+                    <button role="button" class="btn btn-primary btn-sm">
+                        exportar
+                    </button>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+        </textarea>
+    </form>
+</div>

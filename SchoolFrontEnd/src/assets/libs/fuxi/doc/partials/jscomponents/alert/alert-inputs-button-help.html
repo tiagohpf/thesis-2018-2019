@@ -1,0 +1,78 @@
+<h3 id="docs-alert-inputs-help-button">Alertas em botão com mensagem de apoio</h3>
+<p>Este snippet demonstra os diferentes tipos de botões de apoio que podem ser associados a campos de formulário, tipicamente a inputs do tipo texto e selects.</p>
+<p>O snippet de código abaixo exemplifica um campo com botão de ajuda. Substitua <code>help</code> por <code>success, info, warning ou error</code> para instanciar cada um dos outros tipos.</p>
+<div class="fx-docs-snippet-code">
+    <div>
+        <div class="form-group has-success">
+            <label class="control-label" for="input-group-text-alert-success">Input no estado de sucesso</label>
+            <div class="fx-input-group">
+                <input class="form-control input-sm" type="text" id="input-group-text-alert-success">
+                <div class="fx-input-group-addon fx-input-group-feedback">
+                    <button class="fx-alert-button fx-alert-button-success" type="button" data-toggle="popover" data-placement="right auto" data-content="Mensagem de sucesso">
+                        <i class="fuxicons fuxicons-success"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group has-info">
+            <label class="control-label" for="input-group-text-alert-info">Input no estado informativo</label>
+            <div class="fx-input-group">
+                <input class="form-control input-sm" type="text" id="input-group-text-alert-info">
+                <div class="fx-input-group-addon fx-input-group-feedback">
+                    <button class="fx-alert-button fx-alert-button-info" type="button" data-toggle="popover" data-placement="right auto" data-content="Mensagem informativa">
+                        <i class="fuxicons fuxicons-info"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group has-warning">
+            <label class="control-label" for="input-group-text-alert-warning">Input no estado de aviso</label>
+            <div class="fx-input-group">
+                <input class="form-control input-sm" type="text" id="input-group-text-alert-warning">
+                <div class="fx-input-group-addon fx-input-group-feedback">
+                    <button class="fx-alert-button fx-alert-button-warning" type="button" data-toggle="popover" data-placement="right auto" data-content="Mensagem de aviso">
+                        <i class="fuxicons fuxicons-warning"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group has-error">
+            <label class="control-label" for="input-group-text-alert-error">Input no estado de erro</label>
+            <div class="fx-input-group">
+                <input class="form-control input-sm" type="text" id="input-group-text-alert-error">
+                <div class="fx-input-group-addon fx-input-group-feedback">
+                    <button class="fx-alert-button fx-alert-button-error" type="button" data-toggle="popover" data-placement="right auto" data-content="Mensagem de erro">
+                        <i class="fuxicons fuxicons-error"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group has-help">
+            <label class="control-label" for="input-group-text-alert-help">Input com ajuda</label>
+            <div class="fx-input-group">
+                <input class="form-control input-sm" type="text" id="input-group-text-alert-help">
+                <div class="fx-input-group-addon fx-input-group-feedback">
+                    <button class="fx-alert-button fx-alert-button-help" type="button" data-toggle="popover" data-placement="right auto" data-content="Mensagem de ajuda">
+                        <i class="fuxicons fuxicons-help"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<div class="form-group has-help">
+    <label class="control-label" for="input-group-text-alert-help">Input com ajuda</label>
+    <div class="fx-input-group">
+        <input class="form-control input-sm" type="text" id="input-group-text-alert-help">
+        <div class="fx-input-group-addon fx-input-group-feedback">
+            <button class="fx-alert-button fx-alert-button-help" type="button" data-toggle="popover" data-placement="right auto" data-content="Mensagem de ajuda">
+                <i class="fuxicons fuxicons-help"></i>
+            </button>
+        </div>
+    </div>
+</div>
+        </textarea>
+    </form>
+</div>
+

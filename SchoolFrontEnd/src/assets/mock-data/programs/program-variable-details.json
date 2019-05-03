@@ -1,0 +1,311 @@
+{
+    "type": "initParameters",
+    "header": {
+        "id": "variableDtlPageHeader",
+        "seo": {
+            "text": "program___variable___name",
+            "icon": "fa fa-reply"
+        }
+    },
+    "urlResource": [
+        {
+            "key": "pathToMainData",
+            "value": [
+                ""
+            ]
+        }
+    ],
+    "details": [
+        {
+            "type": "context",
+            "id": "programCode",
+            "pathToValue": [
+                "$this['programCode']"
+            ]
+        },
+        {
+            "type": "context",
+            "id": "variableDtlIdx",
+            "text": "variableDtlIdx",
+            "pathToValue": [
+                "$this['variableIdx'] || '0'"
+            ]
+        },
+        {
+            "type": "operations",
+            "_role": "customer_create",
+            "class": "hide-label editFieldButtons",
+            "operations": {
+                "text": "generic___operations___operations",
+                "icon": "glyphicon glyphicon-cog",
+                "size": 3,
+                "parameters": [
+                    {
+                        "type": "updatePage",
+                        "id": "variableEdit",
+                        "class": "editButton btn-default",
+                        "icon": "icomoon icon-edit",
+                        "parameters": [
+                            {
+                                "key": "updatePageParameter",
+                                "value": {
+                                    "variableDefaultValue": {
+                                        "type": "textbox"
+                                    },
+                                    "variableDescription": {
+                                        "type": "textbox"
+                                    },
+                                    "variableEdit": {
+                                        "hidden": true
+                                    },
+                                    "variableCancel": {
+                                        "hidden": false
+                                    },
+                                    "variableSave": {
+                                        "hidden": false
+                                    },
+                                    "synonymsEdit": {
+                                        "hidden": true
+                                    }
+                                }
+                            },
+                            {
+                                "key": "keepModal",
+                                "value": true
+                            }
+                        ]
+                    },
+                    {
+                        "type": "execute",
+                        "id": "variableSave",
+                        "hidden": true,
+                        "class": "btn-primary",
+                        "text": "generic___operations___save",
+                        "mappingId": [
+                            "variableDescription",
+                            "variableDefaultValue"
+                        ],
+                        "parameters": [
+                            {
+                                "key": "requestEndpoint",
+                                "value": "{{SchoolBE}}/programs/[[programID]]"
+                            },
+                            {
+                                "key": "requestType",
+                                "value": "PATCH"
+                            },
+                            {
+                                "key": "requestBody",
+                                "type": "json",
+                                "value": {
+                                    "$set": {
+                                        "variables.{{variableDtlIdx}}.description": "{{variableDescription}}",
+                                        "variables.{{variableDtlIdx}}.initialValue": "{{variableDefaultValue}}"
+                                    }
+                                }
+                            },
+                            {
+                                "key": "requestHeaders",
+                                "value": {
+                                    "Authorization": "Bearer {{token}}",
+                                    "IXS": "{{IXS_id}}"
+                                }
+                            },
+                            {
+                                "key": "errorText",
+                                "value": "ERROR!\n Could not change variable configuration."
+                            },
+                            {
+                                "key": "onSuccess",
+                                "value": {
+                                    "keepModal": true,
+                                    "request": [
+                                        {
+                                            "key": "updatePageParameter",
+                                            "value": {
+                                                "variableDefaultValue": {
+                                                    "type": "label"
+                                                },
+                                                "variableDescription": {
+                                                    "type": "label"
+                                                },
+                                                "variableEdit": {
+                                                    "hidden": false
+                                                },
+                                                "variableCancel": {
+                                                    "hidden": true
+                                                },
+                                                "variableSave": {
+                                                    "hidden": true
+                                                },
+                                                "synonymsEdit": {
+                                                    "hidden": false
+                                                },
+                                                "programVariablesTable": {
+                                                    "lazyLoading": false
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "key": "successText",
+                                            "value": false
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "updatePage",
+                        "id": "variableCancel",
+                        "hidden": true,
+                        "class": "btn-force-default btn-default",
+                        "text": "generic___operations___cancel",
+                        "parameters": [
+                            {
+                                "key": "updatePageParameter",
+                                "value": {
+                                    "variableDefaultValue": {
+                                        "type": "label"
+                                    },
+                                    "variableDescription": {
+                                        "type": "label"
+                                    },
+                                    "variableEdit": {
+                                        "hidden": false
+                                    },
+                                    "variableCancel": {
+                                        "hidden": true
+                                    },
+                                    "variableSave": {
+                                        "hidden": true
+                                    },
+                                    "synonymsEdit": {
+                                        "hidden": false
+                                    }
+                                }
+                            },
+                            {
+                                "key": "keepModal",
+                                "value": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "wrapper",
+            "id": "variableConsultWrapper",
+            "details": [
+                {
+                    "type": "label",
+                    "id": "variableName",
+                    "text": "program___variable___variableName",
+                    "class": "col-sm-6",
+                    "pathToValue": [
+                        "variableDetails",
+                        "displayName"
+                    ]
+                },
+                {
+                    "type": "label",
+                    "id": "variableDefaultValue",
+                    "text": "program___variable___defaultValue",
+                    "class": "col-sm-6",
+                    "pathToValue": [
+                        "variableDetails",
+                        "initialValue"
+                    ]
+                },
+                {
+                    "type": "label",
+                    "id": "variableDescription",
+                    "text": "program___variable___description",
+                    "pathToValue": [
+                        "variableDetails",
+                        "description"
+                    ]
+                },
+                {
+                    "type": "context",
+                    "id": "natureRaw",
+                    "text": "program___variable___nature___name",
+                    "pathToValue": [
+                        "variableDetails",
+                        "nature"
+                    ]
+                },
+                {
+                    "type": "boolean",
+                    "id": "intentFulfilled",
+                    "text": "Fulfilled on intents",
+                    "disabled": true,
+                    "dynamicProps": {
+                        "value": "'{{natureRaw}}'!=''"
+                    }
+                },
+                {
+                    "type": "label",
+                    "id": "variableNature",
+                    "text": "program___variable___nature___name",
+                    "class": "col-sm-6",
+                    "pathToValue": [
+                        "variableDetails",
+                        "nature"
+                    ],
+                    "html": {
+                        "system": "program___variable___nature___system",
+                        "custom": "program___variable___nature___custom"
+                    },
+                    "dynamicProps": {
+                        "hidden": "'{{natureRaw}}' != 'system' && '{{natureRaw}}' != 'custom'"
+                    }
+                },
+                {
+                    "type": "label",
+                    "id": "customEntityRaw",
+                    "pathToValue": [
+                        "variableDetails",
+                        "entity"
+                    ],
+                    "hidden": true
+                },
+                {
+                    "type": "label",
+                    "id": "customEntity",
+                    "text": "program___variable___entity",
+                    "class": "col-sm-6",
+                    "pathToValue": [
+                        "variableDetails",
+                        "@getDisplayNameFormated($this['entity'],@replaceTagVars('programCode')+'_')"
+                    ],
+                    "dynamicProps": {
+                        "hidden": "'{{natureRaw}}' != 'custom'"
+                    }
+                },
+                {
+                    "type": "label",
+                    "id": "systemEntity",
+                    "text": "program___variable___entity",
+                    "class": "col-sm-6",
+                    "pathToValue": [
+                        "variableDetails",
+                        "entity"
+                    ],
+                    "dynamicProps": {
+                        "hidden": "'{{natureRaw}}' != 'system'"
+                    }
+                }
+            ]
+        }
+    ],
+    "buttons": [
+        {
+            "id": "btnCancelClose",
+            "key": "cancel",
+            "text": "generic___operations___close",
+            "class": "btn-default"
+        }
+    ]
+}

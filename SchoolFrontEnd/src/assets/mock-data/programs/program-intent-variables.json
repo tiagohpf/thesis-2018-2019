@@ -1,0 +1,549 @@
+{
+    "type": "initTable",
+    "id": "variables_Table",
+    "hidden": true,
+    "header": {
+        "id": "variablesTableHeader",
+        "_seo": {
+            "text": "program___variable___namePlural"
+        },
+        "operations": {
+            "text": "generic___operations___operations",
+            "icon": "glyphicon glyphicon-cog",
+            "size": 3,
+            "id": "variablesButtons",
+            "parameters": [
+                {
+                    "type": "updatePage",
+                    "id": "variableAdd",
+                    "class": "editButton btn-default",
+                    "icon": "fa fa-plus",
+                    "parameters": [
+                        {
+                            "key": "updatePageParameter",
+                            "value": {
+                                "addVariableParams": {
+                                    "hidden": false
+                                },
+                                "variableAdd": {
+                                    "hidden": true
+                                },
+                                "variableAddCancel": {
+                                    "hidden": false
+                                },
+                                "variableAddSave": {
+                                    "hidden": false
+                                },
+                                "variableActions": {
+                                    "hidden": true
+                                },
+                                "intentNameEdit": {
+                                    "disabled": true,
+                                    "title": "warnings___alreadyEditing"
+                                },
+                                "intentDescriptionEdit": {
+                                    "disabled": true,
+                                    "title": "warnings___alreadyEditing"
+                                },
+                                "trainingPhrasesEdit": {
+                                    "disabled": true,
+                                    "title": "warnings___alreadyEditing"
+                                },
+                                "btnClose": {
+                                    "hidden": true
+                                }
+                            }
+                        },
+                        {
+                            "key": "keepModal",
+                            "value": true
+                        }
+                    ]
+                }
+            ]
+        },
+        "details": [
+            {
+                "type": "wrapper",
+                "id": "addVariableParams",
+                "details": [
+                    {
+                        "type": "input-radio",
+                        "id": "addNewExistent",
+                        "text": "program___variable___programVariable",
+                        "valueList": [
+                            {
+                                "key": "new",
+                                "value": "program___variable___programVariableNew"
+                            },
+                            {
+                                "key": "existent",
+                                "value": "program___variable___programVariableExistent"
+                            }
+                        ],
+                        "_validator": {
+                            "required": [
+                                true,
+                                "warnings___fieldRequired"
+                            ]
+                        },
+                        "value": "new",
+                        "class": "col-sm-3"
+                    },
+                    {
+                        "type": "input-select",
+                        "id": "selectExistentVariable",
+                        "text": "program___variable___selectVariable",
+                        "urlResource": [
+                            {
+                                "key": "path",
+                                "value": "{{SchoolBE}}/programs/[[programID]]"
+                            },
+                            {
+                                "key": "queryString",
+                                "value": {
+                                    "keys": "{\"_id\":1,\"name\":1,\"code\":1,\"variables\":1}"
+                                }
+                            },
+                            {
+                                "key": "headers",
+                                "value": {
+                                    "Authorization": "Bearer {{token}}",
+                                    "IXS": "{{IXS_id}}"
+                                }
+                            }
+                        ],
+                        "pathToValueList": [
+                            "variables",
+                            "$this.filter(el=>el['entity']!=null)",
+                            "$this.filter(el=>!(JSON.parse(@replaceTagVars('programLessonsAPIResponse'))['parameters']).map(param=>param['displayName']).includes(el['displayName']))"
+                        ],
+                        "templateOfValueList": "{\"key\":\"{{@fv()$this}}\",\"value\":\"{{@fv()@getDisplayNameFormated($this['displayName'],@replaceTagVars('programCodeDtl')+'_')}}\"}",
+                        "dynamicProps": {
+                            "hidden": "'{{addNewExistent}}' != 'existent'"
+                        },
+                        "class": "col-sm-3"
+                    },
+                    {
+                        "type": "wrapper",
+                        "id": "addVariableParamsNew",
+                        "details": [
+                            {
+                                "type": "textbox",
+                                "id": "variableDisplayNameNew",
+                                "text": "program___variable___variableName",
+                                "class": "col-sm-3",
+                                "pathToValueList": "_embedded",
+                                "pathToValue": "name",
+                                "_validator": {
+                                    "required": [
+                                        true,
+                                        "warnings___fieldRequired"
+                                    ],
+                                    "unique": [
+                                        {
+                                            "urlResource": [
+                                                {
+                                                    "key": "path",
+                                                    "value": "{{AppAPIBotConfig}}/programs"
+                                                },
+                                                {
+                                                    "key": "queryString",
+                                                    "value": {
+                                                        "filter": "{\"_id\": { \"$oid\":\"[[programID]]\"},\"variables\":{\"$elemMatch\":{\"displayName\":\"{{variableDisplayNameNew}}\"}}}",
+                                                        "keys": "{\"_id\":1,\"name\":1,\"variables\":1}"
+                                                    }
+                                                },
+                                                {
+                                                    "key": "headers",
+                                                    "value": {
+                                                        "Authorization": "Bearer {{token}}",
+                                                        "IXS": "{{IXS_id}}"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "warnings___nameExists"
+                                    ]
+                                },
+                                "dynamicProps": {
+                                    "disabled": "'{{addNewExistent}}' == 'existent'",
+                                    "value": "'{{selectExistentVariable___displayName}}'"
+                                }
+                            },
+                            {
+                                "type": "input-select",
+                                "id": "variableNatureNew",
+                                "text": "program___variable___nature___name",
+                                "valueList": [
+                                    {
+                                        "key": "system",
+                                        "value": "program___variable___nature___system"
+                                    },
+                                    {
+                                        "key": "custom",
+                                        "value": "program___variable___nature___custom"
+                                    }
+                                ],
+                                "class": "col-sm-3",
+                                "dynamicProps": {
+                                    "disabled": "'{{addNewExistent}}' == 'existent'",
+                                    "value": "'{{selectExistentVariable___nature}}'"
+                                }
+                            },
+                            {
+                                "type": "input-select",
+                                "id": "variableChannelNew",
+                                "text": "program___variable___channel___name",
+                                "valueList": [
+                                    {
+                                        "key": "web",
+                                        "value": "program___variable___channel___web"
+                                    },
+                                    {
+                                        "key": "ivr",
+                                        "value": "program___variable___channel___ivr"
+                                    },
+                                    {
+                                        "key": "whatsapp",
+                                        "value": "program___variable___channel___whatsApp"
+                                    }
+                                ],
+                                "_validator": {
+                                    "required": [
+                                        true,
+                                        "warnings___fieldRequired"
+                                    ]
+                                },
+                                "dynamicProps": {
+                                    "hidden": "'{{variableNatureNew}}' != 'session'",
+                                    "disabled": "'{{addNewExistent}}' == 'existent'",
+                                    "value": "'{{selectExistentVariable___channel}}'"
+                                },
+                                "class": "col-sm-3"
+                            },
+                            {
+                                "type": "input-select",
+                                "id": "variableEntityNew",
+                                "text": "program___variable___entity",
+                                "urlResource": [
+                                    {
+                                        "key": "path",
+                                        "value": "{{SchoolBE}}/programs/[[programID]]"
+                                    },
+                                    {
+                                        "key": "queryString",
+                                        "value": {
+                                            "keys": "{\"_id\":1,\"name\":1,\"code\":1,\"chapters\":1}"
+                                        }
+                                    },
+                                    {
+                                        "key": "headers",
+                                        "value": {
+                                            "Authorization": "Bearer {{token}}",
+                                            "IXS": "{{IXS_id}}"
+                                        }
+                                    }
+                                ],
+                                "pathToValueList": [
+                                    "chapters"
+                                ],
+                                "templateOfValueList": "{\"key\":\"{{displayName}}\",\"value\":\"{{@fv()@getDisplayNameFormated($this['displayName'],@replaceTagVars('programCodeDtl')+'_')}}\"}",
+                                "_validator": {
+                                    "required": [
+                                        true,
+                                        "warnings___fieldRequired"
+                                    ]
+                                },
+                                "dynamicProps": {
+                                    "hidden": "'{{variableNatureNew}}' != 'custom'",
+                                    "disabled": "'{{addNewExistent}}' == 'existent'",
+                                    "value": "'{{selectExistentVariable___entity}}'"
+                                },
+                                "class": "col-sm-3"
+                            },
+                            {
+                                "type": "input-select",
+                                "id": "systemEntityNew",
+                                "text": "program___variable___entity",
+                                "urlResource": [
+                                    {
+                                        "key": "path",
+                                        "value": "{{AppAPIBotConfig}}/RasaSystemEntities/RasaSystemEntities"
+                                    },
+                                    {
+                                        "key": "headers",
+                                        "value": {
+                                            "Authorization": "Bearer {{token}}",
+                                            "IXS": "{{IXS_id}}"
+                                        }
+                                    }
+                                ],
+                                "pathToValueList": [
+                                    "@valueEntriesFormat($this)",
+                                    "$this.filter(el=>el['key']!='_id')",
+                                    "$this.map(el=>{el['value']=el['key'];el['key']=el['key'].indexOf('@sys.')==0?el['key']:'@sys.'+el['key']; return el})"
+                                ],
+                                "dynamicProps": {
+                                    "hidden": "'{{variableNatureNew}}' != 'system'",
+                                    "disabled": "'{{addNewExistent}}' == 'existent'",
+                                    "value": "'{{selectExistentVariable___entity}}'"
+                                },
+                                "class": "col-sm-3"
+                            },
+                            {
+                                "type": "textbox",
+                                "id": "variableDefaultValueNew",
+                                "text": "program___variable___defaultValue",
+                                "class": "col-sm-3",
+                                "dynamicProps": {
+                                    "disabled": "'{{addNewExistent}}' == 'existent'",
+                                    "value": "'{{selectExistentVariable___initialValue}}'"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "hidden": true
+            }
+        ]
+    },
+    "urlResource": [
+        {
+            "key": "id",
+            "value": "programLessonsAPIResponse"
+        },
+        {
+            "key": "apiRecycle",
+            "value": false
+        },
+        {
+            "key": "reload",
+            "value": false
+        },
+        {
+            "key": "path",
+            "value": "{{SchoolBE}}/programs/[[programID]]/intents/{{originalDisplayNameDtl}}"
+        },
+        {
+            "key": "headers",
+            "value": {
+                "Authorization": "Bearer {{token}}",
+                "IXS": "{{IXS_id}}"
+            }
+        },
+        {
+            "key": "pathToMainData",
+            "value": [
+                "@objToTupleList($this['parameters'])"
+            ]
+        }
+    ],
+    "columns": [
+        {
+            "type": "context",
+            "size": "sm",
+            "id": "variableIdx",
+            "pathToValue": [
+                "key"
+            ]
+        },
+        {
+            "type": "text",
+            "id": "displayName",
+            "text": "program___variable___variableName",
+            "class": "col-sm-3",
+            "pathToValue": [
+                "value",
+                "displayName"
+            ]
+        },
+        {
+            "type": "text",
+            "id": "nature",
+            "text": "program___variable___nature",
+            "class": "col-sm-3",
+            "pathToValue": [
+                "value",
+                "$this['entityTypeDisplayName'].indexOf(@replaceTagVars('programCodeDtl'))!=-1?'custom':'system'"
+            ],
+            "html": {
+                "system": "program___variable___nature___system",
+                "custom": "program___variable___nature___custom"
+            }
+        },
+        {
+            "type": "text",
+            "id": "channelEntity",
+            "text": "program___variable___value",
+            "class": "col-sm-3",
+            "pathToValue": [
+                "value",
+                "@getDisplayNameFormated($this['entityTypeDisplayName'],@replaceTagVars('programCodeDtl')+'_')"
+            ]
+        },
+        {
+            "type": "actions",
+            "id": "variableActions",
+            "operations": [
+                {
+                    "id": "variableRemove",
+                    "type": "execute",
+                    "text": "generic___remove",
+                    "icon": "fa fa-trash-o",
+                    "parameters": [
+                        {
+                            "key": "requestEndpoint",
+                            "value": "{{SchoolBE}}/programs/[[programID]]"
+                        },
+                        {
+                            "key": "requestHeaders",
+                            "value": {
+                                "Authorization": "Bearer {{token}}",
+                                "IXS": "{{IXS_id}}"
+                            }
+                        },
+                        {
+                            "key": "requestType",
+                            "value": "PATCH"
+                        },
+                        {
+                            "key": "requestBody",
+                            "type": "json",
+                            "value": {
+                                "$pull": {
+                                    "lessons.{{intentIdx2}}.parameters": {
+                                        "displayName": "{{displayName}}"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "key": "errorText",
+                            "value": "ERROR!\n Could not remove variable from intent"
+                        },
+                        {
+                            "TODO": "Alteracao pendente de arranjar uma forma de identificar as variaveis globais ao programa que podem ser removidas",
+                            "key": "_onSuccess",
+                            "value": {
+                                "request": [
+                                    {
+                                        "key": "requestEndpoint",
+                                        "value": "{{SchoolBE}}/programs/[[programID]]"
+                                    },
+                                    {
+                                        "key": "requestHeaders",
+                                        "value": {
+                                            "Authorization": "Bearer {{token}}",
+                                            "IXS": "{{IXS_id}}"
+                                        }
+                                    },
+                                    {
+                                        "key": "requestType",
+                                        "value": "PATCH"
+                                    },
+                                    {
+                                        "key": "requestBody",
+                                        "type": "json",
+                                        "value": {
+                                            "$pull": {
+                                                "variables": {
+                                                    "displayName": "{{displayName}}"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "key": "errorText",
+                                        "value": "ERROR!\n Could not remove variable."
+                                    },
+                                    {
+                                        "key": "onSuccess",
+                                        "value": {
+                                            "keepModal": true,
+                                            "request": [
+                                                {
+                                                    "key": "updatePageParameter",
+                                                    "value": {
+                                                        "addVariableParams": {
+                                                            "hidden": true
+                                                        },
+                                                        "variableAdd": {
+                                                            "hidden": false
+                                                        },
+                                                        "variableAddCancel": {
+                                                            "hidden": true
+                                                        },
+                                                        "variableAddSave": {
+                                                            "hidden": true
+                                                        },
+                                                        "variables_Table": {
+                                                            "lazyLoading": false
+                                                        },
+                                                        "myVariables": {
+                                                            "lazyLoading": false
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "key": "successText",
+                                                    "value": false
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "key": "onSuccess",
+                            "value": {
+                                "keepModal": true,
+                                "request": [
+                                    {
+                                        "key": "updatePageParameter",
+                                        "value": {
+                                            "addVariableParams": {
+                                                "hidden": true
+                                            },
+                                            "variableAdd": {
+                                                "hidden": false
+                                            },
+                                            "variableAddCancel": {
+                                                "hidden": true
+                                            },
+                                            "variableAddSave": {
+                                                "hidden": true
+                                            },
+                                            "variables_Table": {
+                                                "lazyLoading": false
+                                            },
+                                            "myVariables": {
+                                                "lazyLoading": false
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "key": "successText",
+                                        "value": false
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "rows": [],
+    "parameters": [
+        {
+            "key": "tableActions",
+            "value": {
+                "export": false,
+                "columnManager": false,
+                "search": false
+            }
+        }
+    ]
+}

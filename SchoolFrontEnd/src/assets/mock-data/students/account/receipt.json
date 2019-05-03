@@ -1,0 +1,89 @@
+{
+    "type": "initParameters",
+    "details":[
+        {
+            "type": "label",
+            "text": "description",
+            "class": "col-md-12 title",
+            "pathToValue": ["chargeObj","description"]
+        },
+        {
+            "type": "label",
+            "text": "date",
+            "class": "col-md-12",
+            "pathToValue": ["chargeObj","date"]
+        },
+        {
+            "type": "label",
+            "text": "amount",
+            "class": "col-md-12",
+            "pathToValue": ["chargeObj","@getPlanPrice('{{amount}}')"]
+        },
+        {
+            "type": "label",
+            "id": "customerBSId",
+            "text": "customerBSId",
+            "hidden": true,
+            "class": "col-md-12",
+            "pathToValue": ["chargeObj","customerBSId"]
+        },
+
+
+        {
+            "type": "json",
+            "id": "customerObj",
+            "text": "customerObj",
+            "class": "col-md-12",
+            "hidden": true,
+            "urlResource": [
+                {
+                  "key": "reload",
+                  "value": false
+                },
+                {
+                  "key": "path",
+                  "value": "{{BillingService}}/customers/{{customerBSId}}"
+                },
+                {
+                  "key": "pathToMainData",
+                  "value": ""
+                },
+                {
+                  "key": "headers",
+                  "value": {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                  }
+                }
+            ],
+            "pathToValue":["response","item"]
+        },
+
+        {
+            "type": "print-button",
+            "text": "",
+            "class":"offset-sm-5 col-sm-2",
+            "pathToValue": "chargeObj",
+            "dynamicProps": {
+                "value":{"payment":"{{chargeObj}}","customer":"{{customerObj}}"}
+            }
+        },
+        {
+            "type": "json",
+            "pathToValue": "chargeObj",
+            "hidden": true
+        }
+
+        
+    ],
+    "buttons": [
+        {
+            "key": "cancel",
+            "text": "generic___operations___cancel",
+            "class": "btn-default"
+        }
+
+    ]
+
+}

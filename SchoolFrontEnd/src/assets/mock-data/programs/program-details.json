@@ -1,0 +1,632 @@
+{
+  "type": "page",
+  "id": "pageEntityDetails",
+  "header": {
+    "details": [
+      {
+        "type": "label",
+        "text": null,
+        "class": "col-md-12 back",
+        "value": "<i class='icomoon icon-go' ></i> <span>{{@fv()@i18n('generic___operations___back')}}</span>",
+        "navigateTo": "knowledgecenter"
+      },
+      {
+        "type": "context",
+        "role": "@fv()window.location.href.includes('students')",
+        "id": "programStatus",
+        "hidden": true,
+        "pathToValue": [
+          "status"
+        ],
+        "urlResource": [
+          {
+            "key": "path",
+            "value": "{{SchoolBE}}/programs/[[programID]]"
+          },
+          {
+            "key": "queryString",
+            "value": {
+              "keys": "{\"_id\":1,\"name\":1,\"status\":1}"
+            }
+          },
+          {
+            "key": "headers",
+            "value": {
+              "Authorization": "Bearer {{token}}",
+              "IXS": "{{IXS_id}}"
+            }
+          }
+        ]
+      },
+      {
+        "type": "context",
+        "id": "programID",
+        "pathToValue": [
+          "_id",
+          "$oid"
+        ]
+      },
+      {
+        "comment": "Aplicavel na consulta dum program de um student",
+        "type": "context",
+        "role": "@fv()window.location.href.includes('students')",
+        "id": "programID",
+        "hidden": true,
+        "pathToValue": [
+          "programId"
+        ]
+      },
+      {
+        "type": "context",
+        "id": "programName",
+        "class": "col-sm-12 hide-label",
+        "text": "program___name",
+        "pathToValue": [
+          "name"
+        ]
+      },
+      {
+        "type": "context",
+        "id": "programStatus",
+        "text": "program___name",
+        "pathToValue": [
+          "status"
+        ]
+      },
+      {
+        "type": "context",
+        "id": "programCategories",
+        "text": "programCategories",
+        "pathToValue": [
+          "categories"
+        ]
+      },
+      {
+        "type": "context",
+        "id": "programLanguage",
+        "text": "application___language",
+        "pathToValue": [
+          "language"
+        ]
+      },
+      {
+        "type": "context",
+        "id": "programDescription",
+        "text": "program___description",
+        "class": "col-md-12",
+        "pathToValue": [
+          "description"
+        ]
+      },
+      {
+        "type": "wrapper",
+        "id": "imageLabel",
+        "pathToValue": "",
+        "details": [
+          {
+            "id": "entityInfoHeader",
+            "type": "uploadImages",
+            "class": "col-md-12",
+            "pathToValue": [
+              "@createProgramObj(@replaceTagVars('programID'),@replaceTagVars('programName'),@replaceTagVars('programStatus'),@replaceTagVars('programLanguage'),@replaceTagVars('programCategories'),'{{ImageService}}/programs/{{programID}}')"
+            ],
+            "readonly": false
+          },
+          {
+            "type": "label",
+            "id": "programStatus_aux",
+            "pathToValue": "status",
+            "hidden": true
+          },
+          {
+            "type": "label",
+            "id": "programStatus",
+            "text": null,
+            "dynamicProps": {
+              "class": "'col-md-12 entityStatus status_{{programStatus_aux}}'"
+            },
+            "pathToValue": [
+              "status"
+            ],
+            "html": {
+              "1": "<span class='statusText'>{{@fv()@i18n('program___status_types___new')}}</span>",
+              "2": "<span class='statusText'>{{@fv()@i18n('program___status_types___new')}}</span>",
+              "3": "<span class='statusText'>{{@fv()@i18n('program___status_types___published')}}</span>",
+              "4": "<span class='statusText'>{{@fv()@i18n('program___status_types___editing')}}</span>"
+            }
+          }
+        ]
+      },
+      {
+        "type": "label",
+        "text": null,
+        "class": "col-md-12 entityName",
+        "pathToValue": [
+          "name"
+        ]
+      },
+      {
+        "type": "operations",
+        "class": "col-md-12 courseButton",
+        "text": null,
+        "operations": [
+          {
+            "parameters": [
+              {
+                "type": "navigate",
+                "navigateTo": "knowledgecenter/programs/{{programID}}/designFlow",
+                "text": "application___editContent"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "operations",
+        "id": "entityInfoButtonAreas",
+        "class": "tabsButtons",
+        "text": null,
+        "operations": [
+          {
+            "size": 10,
+            "parameters": [
+              {
+                "type": "updatePage",
+                "id": "entityInfoButtonAreasCover",
+                "text": "application___details",
+                "class": "active entityInfoButton",
+                "parameters": [
+                  {
+                    "key": "updatePageParameter",
+                    "value": {
+                      "entityInfoButtonAreasCover": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonAreasContents": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasContentsOld": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises": {
+                        "class": "entityInfoButton"
+                      },
+                      "programPropertiesViewTab1": {
+                        "sendEvent": "selectTab"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "NAO_MOSTRA_ELEMENTO",
+                "type": "updatePage",
+                "id": "entityInfoButtonAreasContents",
+                "text": "Contents",
+                "class": "active entityInfoButton",
+                "parameters": [
+                  {
+                    "key": "updatePageParameter",
+                    "value": {
+                      "entityInfoButtonAreasCover": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasContents": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonAreasContentsOld": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises": {
+                        "class": "entityInfoButton"
+                      },
+                      "programPropertiesViewTabDesignerFlow": {
+                        "sendEvent": "selectTab"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "updatePage",
+                "id": "entityInfoButtonAreasContentsOld",
+                "text": "Contents (Deprecated)",
+                "class": "entityInfoButton",
+                "parameters": [
+                  {
+                    "key": "updatePageParameter",
+                    "value": {
+                      "entityInfoButtonAreasCover": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasContents": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasContentsOld": {
+                        "class": "active entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises": {
+                        "class": "entityInfoButton"
+                      },
+                      "programPropertiesViewTab2": {
+                        "sendEvent": "selectTab"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "updatePage",
+                "id": "entityInfoButtonAreasExercises",
+                "text": "Exercises",
+                "class": "entityInfoButton",
+                "parameters": [
+                  {
+                    "key": "updatePageParameter",
+                    "value": {
+                      "entityInfoButtonAreasCover": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasContents": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasContentsOld": {
+                        "class": "entityInfoButton"
+                      },
+                      "entityInfoButtonAreasExercises": {
+                        "class": "active entityInfoButton"
+                      },
+                      "programPropertiesViewTab3": {
+                        "sendEvent": "selectTab"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "operations": [
+      {
+        "id": "programOperations",
+        "size": 2,
+        "role": "@fv()window.location.href.includes('programs')",
+        "parameters": [
+          {
+            "id": "subscriptionPublishProgram",
+            "type": "openModal",
+            "text": "Publish",
+            "class": "publish-button",
+            "size": "lg",
+            "mockToLoad": "programs/popUp-confirm-publish"
+          },
+          {
+            "id": "removeProgram",
+            "type": "openModal",
+            "icon": "fa fa-trash-o",
+            "mockToLoad": "programs/program-remove",
+            "_role": "Programs.Operations.Remove",
+            "parameters": [
+              {
+                "key": "context",
+                "value": [
+                  "programName"
+                ]
+              }
+            ],
+            "dynamicProps": {
+              "disabled": "'{{programStatus_aux}}' != '1' && '{{programStatus_aux}}' != '2'"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "urlResource": [
+    {
+      "key": "id",
+      "value": "programApiResponse"
+    },
+    {
+      "key": "apiRecycle",
+      "value": false
+    },
+    {
+      "key": "path",
+      "role": "@fv()window.location.href.includes('programs')",
+      "value": "{{SchoolBE}}/programs/[[programID]]"
+    },
+    {
+      "key": "path",
+      "value": "{{AppAPIBotConfig}}/availablePrograms",
+      "role": "@fv()window.location.href.includes('students')"
+    },
+    {
+      "key": "queryString",
+      "role": "@fv()window.location.href.includes('students')",
+      "value": {
+        "page": "((page))",
+        "pagesize": "((pagesize))",
+        "count": null,
+        "filter": "{\"programId\":\"[[programID]]\", \"deprecated\":false}",
+        "np": null,
+        "rep": "pj"
+      }
+    },
+    {
+      "key": "headers",
+      "value": {
+        "Authorization": "Bearer {{token}}",
+        "IXS": "{{IXS_id}}"
+      }
+    },
+    {
+      "key": "reload",
+      "value": false
+    }
+  ],
+  "details": [
+    {
+      "type": "json",
+      "id": "programJsonDetail",
+      "hidden": true,
+      "pathToValue": [
+        ""
+      ]
+    },
+    {
+      "type": "label",
+      "role": "@fv()window.location.href.includes('programs')",
+      "id": "programStatus",
+      "hidden": true,
+      "pathToValue": [
+        "status"
+      ]
+    },
+    {
+      "type": "custom-component",
+      "subType": "custom-tab-validator",
+      "parameters": [
+        {
+          "key": "keyName",
+          "value": "activeTab"
+        },
+        {
+          "key": "parent",
+          "value": "programPrpertiesView"
+        }
+      ]
+    },
+    {
+      "type": "operations",
+      "id": "entityInfoButtonAreas",
+      "class": "tabsButtons col-sm-12",
+      "text": null,
+      "operations": [
+        {
+          "size": 10,
+          "parameters": [
+            {
+              "type": "updatePage",
+              "id": "entityInfoButtonAreasCover",
+              "text": "application___details",
+              "class": "active entityInfoButton",
+              "parameters": [
+                {
+                  "key": "updatePageParameter",
+                  "value": {
+                    "entityInfoButtonAreasCover": {
+                      "class": "active entityInfoButton"
+                    },
+                    "entityInfoButtonAreasContents": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasContentsOld": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasExercises": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasCover_navBar": {
+                      "class": "active entityInfoButton"
+                    },
+                    "entityInfoButtonAreasContents_navBar": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasContentsOld_navBar": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasExercises_navBar": {
+                      "class": "entityInfoButton"
+                    },
+                    "programPropertiesViewTab1": {
+                      "sendEvent": "selectTab"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "role": "NAO_MOSTRA_ELEMENTO",
+              "type": "updatePage",
+              "id": "entityInfoButtonAreasContents",
+              "text": "Contents",
+              "class": "entityInfoButton",
+              "parameters": [
+                {
+                  "key": "updatePageParameter",
+                  "value": {
+                    "entityInfoButtonAreasCover": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasContents": {
+                      "class": "active entityInfoButton"
+                    },
+                    "entityInfoButtonAreasContentsOld": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasExercises": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasCover_navBar": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasContents_navBar": {
+                      "class": "active entityInfoButton"
+                    },
+                    "entityInfoButtonAreasContentsOld_navBar": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasExercises_navBar": {
+                      "class": "entityInfoButton"
+                    },
+                    "programPropertiesViewTabDesignerFlow": {
+                      "sendEvent": "selectTab"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "updatePage",
+              "id": "entityInfoButtonAreasContentsOld",
+              "text": "Contents (Deprecated)",
+              "class": "entityInfoButton",
+              "parameters": [
+                {
+                  "key": "updatePageParameter",
+                  "value": {
+                    "entityInfoButtonAreasCover": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasContents": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasContentsOld": {
+                      "class": "active entityInfoButton"
+                    },
+                    "entityInfoButtonAreasExercises": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasCover_navBar": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasContents_navBar": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasContentsOld_navBar": {
+                      "class": "active entityInfoButton"
+                    },
+                    "entityInfoButtonAreasExercises_navBar": {
+                      "class": "entityInfoButton"
+                    },
+                    "programPropertiesViewTab2": {
+                      "sendEvent": "selectTab"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "updatePage",
+              "id": "entityInfoButtonAreasExercises",
+              "text": "Exercises",
+              "class": "entityInfoButton",
+              "parameters": [
+                {
+                  "key": "updatePageParameter",
+                  "value": {
+                    "entityInfoButtonAreasCover": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasContents": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasContentsOld": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasExercises": {
+                      "class": "active entityInfoButton"
+                    },
+                    "entityInfoButtonAreasCover_navBar": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasContents_navBar": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasContentsOld_navBar": {
+                      "class": "entityInfoButton"
+                    },
+                    "entityInfoButtonAreasExercises_navBar": {
+                      "class": "active entityInfoButton"
+                    },
+                    "programPropertiesViewTab3": {
+                      "sendEvent": "selectTab"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tabs": [
+    {
+      "id": "programPropertiesViewTab1",
+      "class": "studentProgramsTabs",
+      "text": "Details",
+      "_lazyLoading": "@fv()'{{activeTab}}' ? ('{{activeTab}}' === 'programPropertiesViewTab1' ? false : true) : false",
+      "lazyLoading": false,
+      "components": [
+        {
+          "id": "programPropertiesViewTab1Content",
+          "mockToLoad": "programs/program-details-cover"
+        }
+      ]
+    },
+    {
+      "role": "NAO_MOSTRA_ELEMENTO",
+      "id": "programPropertiesViewTabDesignerFlow",
+      "class": "studentProgramsTabs",
+      "text": "Contents",
+      "lazyLoading": false,
+      "components": [
+        {
+          "id": "programPropertiesViewTab2ContentDesigner",
+          "mockToLoad": "programs/program-details-contentDesigner"
+        }
+      ]
+    },
+    {
+      "id": "programPropertiesViewTab2",
+      "class": "studentProgramsTabs",
+      "text": "Content",
+      "_lazyLoading": "@fv()'{{activeTab}}' ? ('{{activeTab}}' === 'programPropertiesViewTab2' ? false : true) : true",
+      "lazyLoading": true,
+      "components": [
+        {
+          "id": "programPropertiesViewTab2Content",
+          "mockToLoad": "programs/program-details-content"
+        }
+      ]
+    },
+    {
+      "id": "programPropertiesViewTab3",
+      "role": "@fv()window.location.href.includes('programs')",
+      "class": "studentProgramsTabs",
+      "text": "Exercises",
+      "_lazyLoading": "@fv()'{{activeTab}}' ? ('{{activeTab}}' === 'programPropertiesViewTab3' ? false : true) : true",
+      "lazyLoading": true,
+      "components": [
+        {
+          "id": "programPropertiesViewTab3Content",
+          "mockToLoad": "programs/program-details-exercises"
+        }
+      ]
+    }
+  ]
+}

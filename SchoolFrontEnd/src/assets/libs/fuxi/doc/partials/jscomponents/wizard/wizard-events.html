@@ -1,0 +1,57 @@
+<h3 id="docs-wizard-events">Eventos e Métodos</h3>
+<p>O wizard disponibiliza os eventos e métodos abaixo enumerados.</p>
+
+<h4>Eventos</h4>
+<p>Todos os eventos deverão receber o objeto wizard ao qual dizem respeito. Exemplo: <code>$(document).on('goto.wizard.fuxi', '#wizardID', function (e) {});</code>.</p>
+<div class="table-responsive">
+    <table class="table fx-table">
+        <thead>
+            <tr>
+                <th>Evento</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>goto.wizard.fuxi</td>
+                <td>Executado ao clicar numa das opções desbloqueadas na zona de listagem dos steps.</td>
+            </tr>
+            <tr>
+                <td>next.wizard.fuxi</td>
+                <td>Executado quando se avança no wizard através do botão seguinte.</td>
+            </tr>
+            <tr>
+                <td>prev.wizard.fuxi</td>
+                <td>Executado quando se retrocede no wizard através do botão anterior.</td>
+            </tr>
+            <tr>
+                <td>complete.wizard.fuxi</td>
+                <td>Executado quando se completa o wizard através do botão finalizar.</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+
+<h4>Métodos</h4>
+<div class="fx-method-desc">
+    <h5><code>FUXI.Wizard.init({options})</code></h5>
+    <p>Método que inicializa o wizard e no qual deverão ser passadas as opções pretendidas.</p>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>FUXI.Wizard.toggleDynamicSteps($this)</code></h5>
+    <p>Método que permite mostrar um step dinâmico.</p>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>FUXI.Wizard.rearrangeNumeration($this.closest("[data-wizard]"))</code></h5>
+    <p>Método que permite reordenar a numeração dos steps caso algum step dinâmico tenha sido despoletado.</p>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>e.Wizard.setSummary(e.currentStep, yourSummaryFunction[e.currentStep])</code></h5>
+    <p>Método que permite colocar um sumário das opções escolhidas num step..</p>
+</div>
+

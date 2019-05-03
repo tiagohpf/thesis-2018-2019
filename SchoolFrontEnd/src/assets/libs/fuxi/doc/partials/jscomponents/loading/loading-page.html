@@ -1,0 +1,51 @@
+<h3 id="docs-loading-page">Loading sobre a página</h3>
+<p>Este snippet demonstra como aplicar um bloco de loading à página.</p>
+<p>Os valores por defeito aplicados ao <strong>BlockUI</strong> são disponibilizados através da função <code>FUXI.BlockUiDefaults.init();</code>. No entanto, quando se trata de um loading aplicado à página são sobrepostos alguns desses valores.</p>
+<div class="alert alert-info">
+    <p>Para efeitos de demo utilizamos um botão para fazer trigger ao loading da página. Pode clicar em qualquer área do documento para remover o estado de loading.</p>
+</div>
+<div class="fx-docs-snippet-code">
+    <div>
+        <button class="btn btn-default" type="button" id="devguide-freeze-page">
+            aplicar loading à página
+        </button>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<button class="btn btn-default" type="button" id="devguide-freeze-page">
+    aplicar loading à página
+</button>
+
+<script type="text/javascript">
+    $('#devguide-freeze-page').click(function (e) {
+        $.blockUI({
+            message: '<div class="modal">' +
+                     '    <div class="modal-header"></div>' +
+                     '    <div class="modal-body">' +
+                     '        <div class="fx-block-wrapper">' +
+                     '            <div class="fx-ico-loading fx-ico-loading-m"><span class="sr-only">A carregar conteúdo...</span></div>' +
+                     '            <div class="fx-ico-loading-message">' +
+                     '                <p>A carregar página...aguarde, por favor.</p>' +
+                     '            </div>' +
+                     '        </div>' +
+                     '    </div><div class="modal-footer">' +
+                     '        <button id="devguide-unfreeze-page" type="button" class="btn btn-default btn-sm">cancelar</button>' +
+                     '    </div>' +
+                     '</div>',
+            css: {
+                backgroundColor: '#fff',
+                border: '1px solid #999;',
+                'box-shadow': '0 3px 7px rgba(0, 0, 0, 0.3)',
+                'background-clip': 'padding-box'
+            },
+            onBlock: function () {
+                $('#devguide-unfreeze-page').click(function () {
+                    $.unblockUI();
+                });
+            }
+        });
+    });
+</script>
+        </textarea>
+    </form>
+</div>

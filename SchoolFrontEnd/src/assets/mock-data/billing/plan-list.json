@@ -1,0 +1,309 @@
+{
+  "type": "initParameters",
+  "id": "planMain",
+  "details": [
+    {
+      "type": "textbox",
+      "text": "ixs-id",
+      "dynamicProps": {
+        "value": "'{{IXS_id}}'"
+      },
+      "hidden": true
+    },
+    {
+      "type": "initCards",
+      "_subType": "card-container-radio",
+      "lazyLoading": false,
+      "id": "plansCardList",
+      "icon": "fa fa-th-large",
+      "class": "card-select-radio",
+      "urlResource": [
+        {
+          "key": "reload",
+          "value": false
+        },
+        {
+          "key": "path",
+          "value": "{{BillingService}}/plans"
+        },
+        {
+          "key": "pathToMainData",
+          "value": [
+            "response",
+            "items"
+          ]
+        },
+        {
+          "key": "headers",
+          "value": {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer {{token}}"
+          }
+        }
+      ],
+      "pathToValueList": [
+        "@formatPlanList($this)"
+      ],
+      "parameters": [
+        {
+          "key": "tableActions",
+          "value": {
+            "tableManager": false,
+            "export": false,
+            "search": false,
+            "paging": false
+          }
+        }
+      ],
+      "details": [
+        {
+          "type": "label",
+          "id": "nickname",
+          "text": "nickname",
+          "class": "hide-label plan-name",
+          "pathToValue": [
+            "data",
+            "nickname"
+          ]
+        },
+        {
+          "type": "label",
+          "id": "plan-id",
+          "class": "hide-label",
+          "hidden": true,
+          "pathToValue": [
+            "data",
+            "id"
+          ]
+        },
+        {
+          "type": "label",
+          "id": "ctxFreeSubscription",
+          "hidden": true,
+          "pathToValue": [
+            "data",
+            "freeSubscription"
+          ]
+        },
+        {
+          "type": "label",
+          "id": "ctxPaySubscription",
+          "hidden": true,
+          "pathToValue": [
+            "data",
+            "paySubscription"
+          ]
+        },
+        {
+          "type": "label",
+          "id": "ctxCanSubscribe",
+          "hidden": true,
+          "pathToValue": [
+            "data",
+            "canSubscribe"
+          ]
+        },
+        {
+          "type": "label",
+          "id": "amount",
+          "_text": "amount",
+          "class": "hide-label plan-price",
+          "pathToValue": [
+            "data",
+            "price"
+          ]
+        },
+        {
+          "type": "label",
+          "text": "plans___units",
+          "id": "detailUnits",
+          "hidden": false,
+          "class": "plan-detail",
+          "pathToValue": [
+            "data",
+            "details",
+            "units"
+          ]
+        },
+        {
+          "type": "label",
+          "text": "plans___web",
+          "id": "detailWeb",
+          "hidden": false,
+          "class": "plan-detail",
+          "pathToValue": [
+            "data",
+            "details",
+            "web"
+          ],
+          "html": {
+            "true": "<i class=\"fa fa-check available-icon\"></i>",
+            "false": "<i class=\"fa fa-times not-available-icon\"></i>"
+          }
+        },
+        {
+          "type": "label",
+          "text": "plans___skype",
+          "id": "detailSkype",
+          "hidden": false,
+          "class": "plan-detail",
+          "pathToValue": [
+            "data",
+            "details",
+            "skype"
+          ],
+          "html": {
+            "true": "<i class=\"fa fa-check available-icon\"></i>",
+            "false": "<i class=\"fa fa-times not-available-icon\"></i>"
+          }
+        },
+        {
+          "type": "label",
+          "text": "plans___facebook",
+          "id": "detailFacebook",
+          "hidden": false,
+          "class": "plan-detail",
+          "pathToValue": [
+            "data",
+            "details",
+            "facebook"
+          ],
+          "html": {
+            "true": "<i class=\"fa fa-check available-icon\"></i>",
+            "false": "<i class=\"fa fa-times not-available-icon\"></i>"
+          }
+        },
+        {
+          "type": "label",
+          "text": "plans___whatsApp",
+          "id": "detailWhatsApp",
+          "hidden": false,
+          "class": "plan-detail",
+          "pathToValue": [
+            "data",
+            "details",
+            "whatsApp"
+          ],
+          "html": {
+            "true": "<i class=\"fa fa-check available-icon\"></i>",
+            "false": "<i class=\"fa fa-times not-available-icon\"></i>"
+          }
+        },
+        {
+          "type": "label",
+          "text": "plans___ivr",
+          "id": "detailIvr",
+          "hidden": false,
+          "class": "plan-detail",
+          "pathToValue": [
+            "data",
+            "details",
+            "IVR/Telephone"
+          ],
+          "html": {
+            "true": "<i class=\"fa fa-check available-icon\"></i>",
+            "false": "<i class=\"fa fa-times not-available-icon\"></i>"
+          }
+        },
+        {
+          "type": "textbox",
+          "id": "ctxBtnMockToLoad",
+          "hidden": true,
+          "pathToValue": [
+            "data",
+            "btnMockToLoad"
+          ]
+        },
+
+        {
+          "type": "operations",
+          "id": "gotoProdButtons-1",
+          "text": null,
+          "class": "operations-subscribe toggleVisible",
+          "operations": {
+            "size": 1,
+            "parameters": [
+              {
+                "type": "openModal",
+                "id": "go-to-prod-modal-1",
+                "text": "Go to production",
+                "mockToLoad": "billing/go-to-prod-free-wiz",
+                "class": "btn-subscribe-inline",
+                "parameters": [
+                  {
+                    "key": "context",
+                    "value": [
+                      "plan-id"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "dynamicProps": {
+            "hidden": "!{{ctxFreeSubscription}}"
+          }
+        },
+        {
+          "type": "operations",
+          "id": "gotoProdButtons-2",
+          "text": null,
+          "class": "operations-subscribe toggleVisible",
+          "operations": {
+            "size": 1,
+            "parameters": [
+              {
+                "type": "openModal",
+                "id": "go-to-prod-modal-2",
+                "text": "Go to production",
+                "mockToLoad": "billing/go-to-prod-wiz",
+                "class": "btn-subscribe-inline",
+                "parameters": [
+                  {
+                    "key": "context",
+                    "value": [
+                      "plan-id"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "dynamicProps": {
+            "hidden": "!{{ctxPaySubscription}}"
+          }
+        },
+        {
+          "type": "operations",
+          "id": "gotoProdButtons-3",
+          "text": null,
+          "class": "operations-subscribe toggleVisible",
+          "operations": {
+            "size": 1,
+            "parameters": [
+              {
+                "type": "openModal",
+                "id": "go-to-prod-modal-3",
+                "text": "Contact Us",
+                "disable": true,
+                "mockToLoad": "billing/go-to-prod-wiz",
+                "class": "btn-subscribe-inline",
+                "parameters": [
+                  {
+                    "key": "context",
+                    "value": [
+                      "plan-id"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "dynamicProps": {
+            "hidden": "{{ctxCanSubscribe}}"
+          }
+        }
+      ]
+    }
+  ]
+}

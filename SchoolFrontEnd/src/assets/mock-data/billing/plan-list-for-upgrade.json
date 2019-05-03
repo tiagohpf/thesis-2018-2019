@@ -1,0 +1,384 @@
+{
+  "type": "initParameters",
+  "id": "planMain",
+  "details": [
+    {
+      "type": "initParameters",
+      "id": "planDetail",
+      "urlResource": [
+        {
+          "key": "id",
+          "value": "currentPlan"
+        },
+        {
+          "key": "reload",
+          "value": false
+        },
+        {
+          "key": "apiRecycle",
+          "value": false
+        },
+        {
+          "key": "path",
+          "value": "{{BillingService}}/plans/{{current-plan-id}}"
+        },
+        {
+          "key": "pathToMainData",
+          "value": [
+            "response",
+            "item"
+          ]
+        },
+        {
+          "key": "headers",
+          "value": {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer {{token}}"
+          }
+        }
+      ],
+      "details": [
+        {
+          "type": "json",
+          "id": "current-plan-ctx",
+          "hidden": true,
+          "pathToValue": [
+            "currentPlan","response","item"
+          ]
+        },
+        {
+          "type": "json",
+          "text": "current-plan-rank",
+          "id": "current-plan-rank",
+          "hidden": true,
+          "pathToValue": [
+            "currentPlan","response","item", "details", "rank"
+          ]
+        },
+
+        {
+          "type": "textbox",
+          "text": "ixs-id",
+          "dynamicProps": {
+            "value": "'{{IXS_id}}'"
+          },
+          "hidden": true
+        },
+        {
+          "type": "textbox",
+          "text": "",
+          "id": "plan-id",
+          "dynamicProps": {
+            "value": "'{{plansCardList___id}}'"
+          },
+          "validator": {
+            "required": [
+              true,
+              "warnings___fieldRequired"
+            ]
+          }
+        },
+        {
+          "type": "json",
+          "hidden": "true",
+          "id": "selectedPlanObj1",
+          "dynamicProps": {
+            "value": "'{{plansCardList}}'"
+          }
+        },
+        {
+          "type": "label",
+          "id": "curr-plan-label",
+          "text": "",
+          "class": "hide-label",
+          "value": "Current plan"
+        }, 
+        {
+          "type": "initCards",
+          "lazyLoading": false,
+          "id": "currentPlanCard",
+          "icon": "fa fa-th-large",
+          "text": "current plan",
+          "class": "",
+          "pathToValue": [
+            "currentPlan","response","item"
+          ],
+
+          "details": [
+           
+            {
+              "type": "label",
+              "id": "nickname",
+              "text": "nickname",
+              "class": "hide-label plan-name",
+              "pathToValue": [
+                "nickname"
+              ]
+            },
+            {
+              "type": "label",
+              "_id": "plan-id",
+              "class": "hide-label",
+              "hidden": true,
+              "pathToValue": [
+                "id"
+              ]
+            },
+            {
+              "type": "label",
+              "id": "amount",
+              "_text": "amount",
+              "hidden": true,
+              "class": "hide-label plan-price",
+              "pathToValue": [
+                "amount"
+              ]
+            },
+            {
+              "type": "label",
+              "id": "price",
+              "text": "",
+              "class": "hide-label plan-price",
+              "pathToValue": [
+                "@getPlanPrice('{{amount}}', '{{interval}}')"
+              ]
+            },
+            {
+              "type": "label",
+              "id": "interval",
+              "_text": "interval",
+              "class": "hide-label",
+              "hidden": true,
+              "pathToValue": [
+                "interval"
+              ]
+            },
+
+            {
+              "type": "label",
+              "text":"plans___units",
+              "id": "detailUnits",
+              "hidden": false,
+              "class":"plan-detail",
+              "pathToValue": ["data", "details", "units" ]
+            },
+            {
+              "type": "label",
+              "text":"plans___web",
+              "id": "detailWeb",
+              "hidden": false,
+              "class":"plan-detail",
+              "pathToValue": ["data", "details", "web" ],
+              "html": {
+                "true": "<i class=\"fa fa-check available-icon\"></i>",
+                "false": "<i class=\"fa fa-times not-available-icon\"></i>"
+              }
+            },
+            {
+              "type": "label",
+              "text":"plans___skype",
+              "id": "detailSkype",
+              "hidden": false,
+              "class":"plan-detail",
+              "pathToValue": ["data", "details", "skype" ],
+              "html": {
+                "true": "<i class=\"fa fa-check available-icon\"></i>",
+                "false": "<i class=\"fa fa-times not-available-icon\"></i>"
+              }
+            },
+            {
+              "type": "label",
+              "text":"plans___facebook",
+              "id": "detailFacebook",
+              "hidden": false,
+              "class":"plan-detail",
+              "pathToValue": ["data", "details", "facebook" ],
+              "html": {
+                "true": "<i class=\"fa fa-check available-icon\"></i>",
+                "false": "<i class=\"fa fa-times not-available-icon\"></i>"
+              }
+            },
+            {
+              "type": "label",
+              "text":"plans___whatsApp",
+              "id": "detailWhatsApp",
+              "hidden": false,
+              "class":"plan-detail",
+              "pathToValue": ["data", "details", "whatsApp" ],
+              "html": {
+                "true": "<i class=\"fa fa-check available-icon\"></i>",
+                "false": "<i class=\"fa fa-times not-available-icon\"></i>"
+              }
+            },
+            {
+              "type": "label",
+              "text":"plans___ivr",
+              "id": "detailIvr",
+              "hidden": false,
+              "class":"plan-detail",
+              "pathToValue": ["data", "details", "IVR/Telephone" ],
+              "html": {
+                "true": "<i class=\"fa fa-check available-icon\"></i>",
+                "false": "<i class=\"fa fa-times not-available-icon\"></i>"
+              }
+            }
+          ]
+        },
+        {
+          "type": "label",
+          "id": "available-plan-label",
+          "text": "",
+          "class": "hide-label",
+          "value": "Available plans"
+        }, 
+        {
+          "type": "initCards",
+          "subType": "card-container-radio",
+          "lazyLoading": false,
+          "id": "plansCardList",
+          "icon": "fa fa-th-large",
+          "class": "card-select-radio",
+          "urlResource": [
+            {
+              "key": "reload",
+              "value": false
+            },
+            {
+              "key": "apiRecycle",
+              "value": false
+            },
+            {
+              "key": "path",
+              "_value": "{{BillingService}}/plans?rankFrom={{current-plan-rank}}",
+              "value": "{{BillingService}}/plans"
+            },
+            {
+              "key": "pathToMainData",
+              "value": ["response", "items"]
+            },
+            {
+              "key": "headers",
+              "value": {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer {{token}}"
+              }
+            }
+          ],
+          "pathToValueList": ["@formatPlanList($this, @getJsonParam('current-plan-ctx'))"],
+          "parameters": [
+            {
+              "key": "tableActions",
+              "value": {
+                "tableManager": false,
+                "export": false,
+                "search": false,
+                "paging": false
+              }
+            },
+            {
+              "key": "identifier",
+              "id": "id"
+            }
+          ],
+          "details": [
+            {
+              "type": "label",
+              "id": "nickname",
+              "text": "nickname",
+              "class":"hide-label plan-name",
+              "pathToValue": ["data","nickname"]
+            },
+            {
+              "type": "label",
+              "_id": "plan-id",
+              "class":"hide-label",
+              "hidden":true,
+              "pathToValue": ["data","id"]
+            },
+            {
+              "type": "label",
+              "id": "amount",
+              "_text": "amount",
+              "class":"hide-label plan-price",
+              "pathToValue": ["data","price"]
+            },
+            {
+              "type": "label",
+              "text":"plans___units",
+              "id": "detailUnits",
+              "hidden": false,
+              "class":"plan-detail",
+              "pathToValue": ["data", "details", "units" ]
+            },
+            {
+              "type": "label",
+              "text":"plans___web",
+              "id": "detailWeb",
+              "hidden": false,
+              "class":"plan-detail",
+              "pathToValue": ["data", "details", "web" ],
+              "html": {
+                "true": "<i class=\"fa fa-check available-icon\"></i>",
+                "false": "<i class=\"fa fa-times not-available-icon\"></i>"
+              }
+            },
+            {
+              "type": "label",
+              "text":"plans___skype",
+              "id": "detailSkype",
+              "hidden": false,
+              "class":"plan-detail",
+              "pathToValue": ["data", "details", "skype" ],
+              "html": {
+                "true": "<i class=\"fa fa-check available-icon\"></i>",
+                "false": "<i class=\"fa fa-times not-available-icon\"></i>"
+              }
+            },
+            {
+              "type": "label",
+              "text":"plans___facebook",
+              "id": "detailFacebook",
+              "hidden": false,
+              "class":"plan-detail",
+              "pathToValue": ["data", "details", "facebook" ],
+              "html": {
+                "true": "<i class=\"fa fa-check available-icon\"></i>",
+                "false": "<i class=\"fa fa-times not-available-icon\"></i>"
+              }
+            },
+            {
+              "type": "label",
+              "text":"plans___whatsApp",
+              "id": "detailWhatsApp",
+              "hidden": false,
+              "class":"plan-detail",
+              "pathToValue": ["data", "details", "whatsApp" ],
+              "html": {
+                "true": "<i class=\"fa fa-check available-icon\"></i>",
+                "false": "<i class=\"fa fa-times not-available-icon\"></i>"
+              }
+            },
+            {
+              "type": "label",
+              "text":"plans___ivr",
+              "id": "detailIvr",
+              "hidden": false,
+              "class":"plan-detail",
+              "pathToValue": ["data", "details", "IVR/Telephone" ],
+              "html": {
+                "true": "<i class=\"fa fa-check available-icon\"></i>",
+                "false": "<i class=\"fa fa-times not-available-icon\"></i>"
+              }
+            }
+  
+  
+  
+          ]
+        }
+      ]
+    }
+
+
+    
+  ]
+}

@@ -1,0 +1,86 @@
+{
+    "type": "initParameters",
+    "id": "removeVariablePage",
+    "header": {
+        "id": "pageHeader",
+        "seo": {
+            "text": "program___variable___removeVariable",
+            "icon": "fa fa-reply"
+        }
+    },
+    "details": [
+        {
+            "type": "context",
+            "id": "displayName",
+            "pathToValue": [
+                "displayName"
+            ]
+        },
+        {
+            "type": "label",
+            "id": "pageBodyConfirm",
+            "value": "{{@fv()@i18n('program___variable___confirmRemove') + '   <strong>' + @replaceTagVars('displayName') + '</strong>?'}}"
+        }
+    ],
+    "buttons": [
+        {
+            "id": "variableRemoveSubmitBtn",
+            "key": "submit",
+            "text": "generic___operations___remove",
+            "class": "btn-primary",
+            "parameters": [
+                {
+                    "key": "requestEndpoint",
+                    "value": "{{SchoolBE}}/programs/[[programID]]/variables/{{displayName}}"
+                },
+                {
+                    "key": "requestHeaders",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                },
+                {
+                    "key": "requestType",
+                    "value": "DELETE"
+                },
+                {
+                    "key": "successText",
+                    "value": false
+                },
+                {
+                    "key": "errorText",
+                    "value": "error___variableRemoveError"
+                },
+                {
+                    "key": "onSuccess",
+                    "value": {
+                        "request": [
+                            {
+                                "key": "updatePageParameter",
+                                "value": {
+                                    "programVariablesTable": {
+                                        "lazyLoading": false
+                                    },
+                                    "designerFlowComponent": {
+                                        "sendEvent": "loadVariables"
+                                    }
+                                }
+                            },
+                            {
+                                "key": "successText",
+                                "value": "success___variableRemoveSuccess"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "key": "cancel",
+            "id": "variableRemoveCancelBtn",
+            "text": "generic___operations___cancel",
+            "class": "btn-force-default btn-default"
+        }
+    ]
+}

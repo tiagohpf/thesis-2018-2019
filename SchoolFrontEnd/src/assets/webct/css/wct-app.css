@@ -1,0 +1,59 @@
+@import url('components/label.component.css');
+@import url('components/datetimepicker.component.css');
+@import url('components/progressbar.component.css');
+
+
+body{ font-size: .9rem!important; }
+body, html{ height: 100%!important; }
+
+a{ cursor: pointer!important; }
+
+.clear{ clear: both; }
+.alert{ padding: .75rem!important; }
+.hidden,.d-flex[hidden]{ display: none !important; }
+.wct-main-content-colored{ background-color: #fff; border-radius: .25rem;  border: 1px solid #dee2e6; } /* Encontra-se neste ficheiro porque pode estar definido em vários componentes (PAGE, TABS, WIZARD) */
+.wct-main-content-colored .wct-main-content-colored{ background: transparent; border-radius: 0; border: 0; }
+.wct-prevent-paragraph-margins p{ margin: 0!important; padding: 0!important; line-height: 1!important; }
+.wct-button-icon{ margin-right: 5px !important; }
+.wct-cursor-pointer{ cursor: pointer!important; }
+
+.wct-main-wrapper .wct-components-wrapper.container-fluid .wct-components-wrapper .row{ margin-left: 0; margin-right: 0; }
+app-wct-start-components .each-parameter.ignore-card-class{ width: 100% !important; padding: 0;flex: none; max-width: none; /*padding-bottom: 5px;*/ }
+app-wct-start-components .each-parameter.ignore-card-class .component-filter{ padding: 0; }
+
+
+/* 
+    WCT MAIN PAGE WRAPPER
+ */
+.wct-container,
+.wct-container .navbar:not(.wct-is-loading){ transition: margin .2s linear .48s, padding .2s linear .8s; }
+.wct-container.wct-prevent-fixed-side-menu,
+.wct-container.wct-prevent-fixed-side-menu .navbar{ margin-left: 200px; transition: margin .2s; }
+.wct-container.wct-prevent-fixed-side-menu .navbar{ padding-left: 15px!important; }
+
+
+
+/* 
+    WCT HEADER
+ */
+.navbar .wct-navbar-details .each-parameter{ display: flex; align-items: center; flex: auto; width: auto; padding: 0 .2rem; }
+.navbar .wct-navbar-details .each-parameter .dropdown-menu{ left: auto; right: 0; }
+/*TODO: remover isto quando o componente de pesquisa for reformulado*/
+.navbar .wct-navbar-details .each-parameter .fx-search-container{ padding: 0; }
+
+
+
+/* 
+    WCT HEADER
+ */
+.navbar .wct-navbar-details .each-parameter{ display: flex; align-items: center; flex: auto; width: auto; padding: 0 .2rem; max-width: 100%; }
+
+
+
+/* 
+    WCT TABLE
+ */
+.table>tbody>tr>td.limit-cell-sm app-wct-label .form-control-plaintext,
+.table>tbody>tr>th.limit-cell-sm app-wct-label .form-control-plaintext,
+.table>tbody>tr>td.limit-cell-lg app-wct-label .form-control-plaintext,
+.table>tbody>tr>th.limit-cell-lg app-wct-label .form-control-plaintext{ white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

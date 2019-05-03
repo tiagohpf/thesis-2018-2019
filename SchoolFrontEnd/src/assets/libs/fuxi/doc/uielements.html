@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--# include file="/fuxi/doc/partials/head.html" -->
+    <title>Elementos UI - FUXI</title>
+</head>
+<body data-spy="scroll" data-target="#fx-docs-nav">
+    <!--# include file="/fuxi/doc/partials/header.html" -->
+    <div class="fx-docs-container">
+        <!--view starts here-->
+        <div class="fx-mast-head">
+            <div class="row">
+                <div class="col-md-3 col-lg-2 ">
+                    <h1>Elementos UI</h1>
+                </div>
+                <div class="col-md-9 col-lg-10">
+                    <p>
+                        Snippets de elementos de user interface, tais como botões, formulários ou menus que poderão ser incluídos numa aplicação.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="fx-docs-main-content">
+            <div class="row">
+                <div class="col-md-3">
+                    <!--# include file="/fuxi/doc/partials/uielements/page-menu.html" -->
+                </div>
+                <div class="col-md-9">
+                    <section class="fx-docs-section" id="devguide-uibtn-section">
+                        <!--# include file="/fuxi/doc/partials/uielements/btn/btn-root.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/btn/btn-xs.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/btn/btn-sm.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/btn/btn-standard.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/btn/btn-lg.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/btn/btn-disabled.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/btn/btn-icon.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/btn/btn-in-table.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/btn/btn-group.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/btn/btn-dropdown.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/btn/btn-split.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/btn/btn-group-check-togglers.html" -->
+                    </section>
+                    <section class="fx-docs-section">
+                        <!--# include file="/fuxi/doc/partials/uielements/icones/icones-root.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/icones/icones-how-to.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/icones/icones-status.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/icones/icones-info.html" -->                        
+                    </section>
+                    <section class="fx-docs-section">
+                        <!--# include file="/fuxi/doc/partials/uielements/form/form-root.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/form/form-vertical.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/form/form-horizontal.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/form/form-inline.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/form/form-readonly.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/form/form-checkbox.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/form/form-required-field.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/form/form-input-sizes.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/form/form-input-disabled.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/form/form-groups.html" -->
+                    </section>
+                    <section class="fx-docs-section">
+                        <!--# include file="/fuxi/doc/partials/uielements/breadcrumb/breadcrumb-root.html" -->
+                    </section>
+                    <section class="fx-docs-section">
+                        <!--# include file="/fuxi/doc/partials/uielements/header/header-root.html" -->
+                    </section>
+                    <section class="fx-docs-section">
+                        <!--# include file="/fuxi/doc/partials/uielements/footer/footer-root.html" -->
+                    </section>
+                    <section class="fx-docs-section">
+                        <!--# include file="/fuxi/doc/partials/uielements/menus/menus-root.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/menus/menus-simples.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/menus/menus-2-niveis.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/menus/menus-split-menu.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/menus/menus-dimensoes.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/menus/menus-dimensoes-2-niveis.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/menus/menus-outros-modulos.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/menus/menus-submenus.html" -->
+                    </section>
+                    <section class="fx-docs-section">
+                        <!--# include file="/fuxi/doc/partials/uielements/label/label-root.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/label/label-types.html" -->
+                    </section>
+                    <section class="fx-docs-section">
+                        <!--# include file="/fuxi/doc/partials/uielements/badge/badge-root.html" -->
+                        <!--# include file="/fuxi/doc/partials/uielements/badge/badge-types.html" -->
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--# include file="/fuxi/doc/partials/footer.html" -->
+    </div>
+
+    <!--# include file="/fuxi/doc/partials/scripts.html" -->
+    <script src="js/devguide-uielements.js"></script>
+
+    <script>
+        FUXI.Header.init();
+
+        $(document).ready(function () {
+            devGuideUtils.setActiveNavItem();
+            devGuideUiElements.header();
+            devGuideUtils.setCodeMirror();
+            devGuideUtils.setCopyCode(); // copy code block initializer
+            FUXI.ExpandableForm.init();
+            devGuideUtils.onResizeWindow();
+        });
+    </script>
+</body>
+</html>

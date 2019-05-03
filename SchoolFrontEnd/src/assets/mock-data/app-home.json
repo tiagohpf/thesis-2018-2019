@@ -1,0 +1,34 @@
+{
+  "type": "initParameters",
+  "details": [
+    {
+      "type": "customCheckIxsExistence"
+    },
+    {
+      "type": "customIxsServiceLogin",
+      "id": "IXS_login",
+      "urlResource": [
+        {
+          "key": "path",
+          "value": "{{IxsService}}/api/v1/service-management/serviceinstances"
+        },
+        {
+          "key": "headers",
+          "value": {
+            "Authorization": "Bearer {{token}}"
+          }
+        }
+      ],
+      "navigateTo": "students",
+      "pathToValueList": "list",
+      "icon": {
+        "PREACTIVE": "fa fa-exclamation-circle",
+        "ACTIVE": "fa fa-check-square",
+        "INACTIVE": "fa fa-times-circle",
+        "SUSPENDED": "fa fa-times-circle",
+        "CANCELED": "fa fa-times-circle",
+        "DELETED": "fa fa-times-circle"
+      }
+    }
+  ]
+}

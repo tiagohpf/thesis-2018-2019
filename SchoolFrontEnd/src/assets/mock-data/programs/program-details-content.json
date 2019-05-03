@@ -1,0 +1,322 @@
+{
+  "type": "page",
+  "id": "detailsContentContainer",
+  "class": "col-sm-12",
+  "header": {
+    "id": "pageHeader",
+    "operations": [
+      {
+        "id": "progContentMenuOp",
+        "_icon": "fa fa-cog",
+        "size": 2,
+        "parameters": [
+          {
+            "type": "openModal",
+            "_role": "Execute",
+            "id": "import",
+            "text": "Import",
+            "dynamicProps": {
+              "hidden": "!'{{programGoogleSheetsId}}'"
+            },
+            "mockToLoad": "programs/program-import-from-google-docs"
+          }
+        ]
+      }
+    ],
+    "details": [
+      {
+        "type": "label",
+        "hidden": true,
+        "pathToValue": [
+          "_embedded",
+          "type"
+        ],
+        "id": "programType",
+        "urlResource": [
+          {
+            "key": "path",
+            "value": "{{AppAPIBotConfig}}/programs"
+          },
+          {
+            "key": "queryString",
+            "value": {
+              "filter": "{\"_id\": { \"$oid\":\"[[programID]]\"}}",
+              "keys": "{\"name\":1,\"type\":1}"
+            }
+          },
+          {
+            "key": "headers",
+            "value": {
+              "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+            }
+          }
+        ]
+      },
+      {
+        "type": "label",
+        "hidden": true,
+        "id": "programGoogleSheetsId",
+        "urlResource": [
+          {
+            "key": "path",
+            "value": "{{AppAPIBotConfig}}/programs"
+          },
+          {
+            "key": "pathToMainData",
+            "value": [
+              "_embedded"
+            ]
+          },
+          {
+            "key": "queryString",
+            "value": {
+              "filter": "{\"_id\": { \"$oid\":\"[[programID]]\"}}",
+              "keys": "{\"googleSheetsId\":1}"
+            }
+          },
+          {
+            "key": "headers",
+            "value": {
+              "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+            }
+          }
+        ],
+        "pathToValue": [
+          "googleSheetsId"
+        ]
+      },
+      {
+        "type": "jsonlabel",
+        "hidden": true,
+        "id": "basQuestionStatusNames",
+        "urlResource": [
+          {
+            "key": "id",
+            "value": "basQuestionStatusNamesUrlResource"
+          },
+          {
+            "key": "path",
+            "value": "{{AppAPIBotConfig}}/baseQuestionStatus"
+          },
+          {
+            "key": "headers",
+            "value": {
+              "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+            }
+          }
+        ],
+        "pathToValue": [
+          "basQuestionStatusNamesUrlResource",
+          "_embedded"
+        ]
+      }
+    ]
+  },
+  "tabs": [
+    {
+      "id": "studentsSurveysMainContainerTab",
+      "components": [
+        {
+          "type": "initTable",
+          "id": "customerConfiguration",
+          "dynamicProps": {
+            "lazyLoading": "!{{basQuestionStatusNames}}"
+          },
+          "urlResource": [
+            {
+              "key": "path",
+              "value": "{{AppAPIBotConfig}}/programs"
+            },
+            {
+              "key": "pathToMainData",
+              "value": [
+                "_embedded",
+                "questionConfigLessons"
+              ]
+            },
+            {
+              "key": "queryString",
+              "value": {
+                "page": "((page))",
+                "pagesize": "10",
+                "count": null,
+                "filter": "{\"_id\": { \"$oid\":\"[[programID]]\"}}",
+                "_filter": "{\"name\":\"{{programName_header}}\"}",
+                "keys": "{\"questionConfigLessons\":1}"
+              }
+            },
+            {
+              "key": "headers",
+              "value": {
+                "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+              }
+            },
+            {
+              "key": "reload",
+              "value": false
+            },
+            {
+              "key": "apiRecycle",
+              "value": false
+            }
+          ],
+          "columns": [
+            {
+              "type": "text",
+              "hidden": true,
+              "id": "code",
+              "pathToValue": "codigo",
+              "text": "Id"
+            },
+            {
+              "type": "text",
+              "id": "category",
+              "pathToValue": "categoria",
+              "text": "Category"
+            },
+            {
+              "type": "label",
+              "id": "programContextQuestion",
+              "pathToValue": "pergunta",
+              "text": "Question",
+              "dynamicProps": {
+                "hidden": "('[[programID]]' || '[[programToken]]') || '{{programType}}' == 'smalltalk'",
+                "_navigateTo": "'{{myTableName}}' ? '' : 'knowledgecenter/programs/detail/{{programName_header}}/[[token]]/basequestions/detail/{{code}}/{{programContextQuestion}}'"
+              }
+            },
+            {
+              "type": "label",
+              "id": "courseContextQuestion",
+              "pathToValue": "pergunta",
+              "text": "Question",
+              "dynamicProps": {
+                "hidden": "!('[[programID]]'&&!'[[programToken]]')  || '{{programType}}' == 'smalltalk'",
+                "_navigateTo": "'{{myTableName}}' ? '' : '/courses/detail/[[programID]]/[[name]]/[[token]]/program/{{programName_header}}/basequestions/detail/{{code}}/{{courseContextQuestion}}'"
+              },
+              "_navigateTo": "/courses/detail/[[programID]]/[[name]]/[[token]]/program/{{programName_header}}/basequestions/detail/{{code}}/{{courseContextQuestion}}"
+            },
+            {
+              "type": "label",
+              "id": "studentContextQuestion",
+              "pathToValue": "pergunta",
+              "text": "Question",
+              "dynamicProps": {
+                "hidden": "!('[[programToken]]'&&'[[programID]]') || '{{programType}}' == 'smalltalk'",
+                "_navigateTo": "'{{myTableName}}' ? '' : '/students/[[name]]/program/{{programName_header}}/[[programToken]]/basequestions/detail/{{code}}/{{courseContextQuestion}}'"
+              },
+              "_navigateTo": "/students/[[name]]/program/{{programName_header}}/[[programToken]]/basequestions/detail/{{code}}/{{courseContextQuestion}}"
+            },
+            {
+              "type": "text",
+              "id": "action",
+              "pathToValue": "acao",
+              "text": "Action",
+              "dynamicProps": {
+                "hidden": "'{{programType}}' == 'smalltalk'"
+              }
+            },
+            {
+              "type": "label",
+              "hidden": true,
+              "id": "action-synonymous",
+              "pathToValue": "acao-sinonimo",
+              "text": "Goal",
+              "dynamicProps": {
+                "hidden": "'{{programType}}' == 'smalltalk'"
+              }
+            },
+            {
+              "type": "text",
+              "id": "subject",
+              "pathToValue": "subject",
+              "text": "Subject",
+              "dynamicProps": {
+                "hidden": "'{{programType}}' == 'smalltalk'"
+              }
+            },
+            {
+              "type": "text",
+              "id": "subSubject",
+              "pathToValue": "subSubject",
+              "text": "Sub",
+              "dynamicProps": {
+                "hidden": "'{{programType}}' == 'smalltalk'"
+              }
+            },
+            {
+              "type": "context",
+              "id": "status",
+              "hidden": true,
+              "text": "Status",
+              "pathToValue": [
+                "@getNameForThisCode({{basQuestionStatusNames}},$this['status'])"
+              ]
+            },
+            {
+              "type": "context",
+              "hidden": true,
+              "id": "answer",
+              "pathToValue": "resposta",
+              "text": "Answer"
+            },
+            {
+              "type": "text",
+              "id": "goal",
+              "pathToValue": "goal",
+              "text": "Goal",
+              "dynamicProps": {
+                "hidden": "'{{programType}}' != 'smalltalk'"
+              }
+            },
+            {
+              "type": "text",
+              "hidden": true,
+              "id": "trainningPhrase",
+              "pathToValue": [
+                "@buildTranslationArray($this['trainning_phrases'])"
+              ],
+              "text": "Trainning Phrase",
+              "dynamicProps": {
+                "hidden": "'{{programType}}' != 'smalltalk'"
+              },
+              "style": {
+                "white-space": "normal"
+              }
+            },
+            {
+              "type": "text",
+              "hidden": true,
+              "id": "responses",
+              "pathToValue": [
+                "@buildTranslationArray($this['textResponse'], 'color-fx-tag-m')"
+              ],
+              "text": "Responses",
+              "dynamicProps": {
+                "hidden": "'{{programType}}' != 'smalltalk'"
+              },
+              "style": {
+                "white-space": "normal"
+              }
+            }
+          ],
+          "rows": [],
+          "parameters": [
+            {
+              "key": "tableActions",
+              "value": {
+                "export": false,
+                "pagination": false,
+                "columnManager": false,
+                "search": false
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

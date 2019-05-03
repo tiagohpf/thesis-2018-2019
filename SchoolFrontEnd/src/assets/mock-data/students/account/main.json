@@ -1,0 +1,102 @@
+{
+  "type": "initParameters",
+  "id": "studentAccountPage",
+  "details": [
+    {
+      "type": "initParameters",
+      "id": "_studentAccountPage",
+      "urlResource": [
+        {
+          "key": "_reload",
+          "value": false
+        },
+        {
+          "key": "apiRecycle",
+          "value": false
+        },
+        {
+          "key": "id",
+          "value": "currentSubscription"
+        },
+        {
+          "key": "path",
+          "value": "{{BillingService}}/subscriptions?entity=[[id]]&status=active"
+        },
+        {
+          "key": "pathToMainData",
+          "value": [
+            "response",
+            "items"
+          ]
+        },
+        {
+          "key": "headers",
+          "value": {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer {{token}}"
+          }
+        }
+      ],
+      "details": [
+        {
+          "type": "textbox",
+          "id": "selected-student-main",
+          "value": "[[id]]",
+          "hidden": true
+        },
+        {
+          "type": "json",
+          "text": "current-plan-id",
+          "id": "current-plan-id",
+          "hidden": true,
+          "pathToValue": [
+            "0",
+            "planId"
+          ]
+        },
+        {
+          "type": "json",
+          "text": "current-subscription-id",
+          "id": "current-subscription-id",
+          "hidden": true,
+          "pathToValue": [
+            "0",
+            "id"
+          ]
+        },
+        {
+          "type": "json",
+          "text": "current-customer-id",
+          "id": "current-customer-id",
+          "hidden": true,
+          "pathToValue": [
+            "0",
+            "customerId"
+          ]
+        },
+        {
+          "type": "wrapper",
+          "details": [
+            {
+              "include": "students/account/main-no-subscription"
+            }
+          ],
+          "dynamicProps": {
+            "hidden": "'{{current-plan-id}}' != ''"
+          }
+        },
+        {
+          "type": "wrapper",
+          "details": [
+            {
+              "include": "students/account/main-with-subscription"
+            }
+          ],
+          "dynamicProps": {
+            "hidden": "'{{current-plan-id}}' == ''"
+          }
+        }
+      ]
+    }
+  ]
+}

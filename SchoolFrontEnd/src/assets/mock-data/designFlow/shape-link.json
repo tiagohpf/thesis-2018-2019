@@ -1,0 +1,72 @@
+{
+  "type": "initParameters",
+  "header": {
+    "seo": {
+      "text": "designerFlow___modalTitle___shapeLink"
+    }
+  },
+  "details": [
+    {
+      "include": "designFlow/includes/shape-common-params"
+    },
+    {
+      "type": "wct-ng-select",
+      "id": "linkToShape",
+      "text": "designerFlow___shapes___connectToShape",
+      "pathToValueList": [
+        "shapesList",
+        "$this.filter(obj => obj.key != '{{shapeId}}' && obj.type != 'link' && obj.type != 'start')",
+        "@formatValueList($this,'key','value')"
+      ],
+      "pathToValue": [
+        "linkTo"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "parameters": [
+        {
+          "id": "calcelFilter",
+          "text": "generic___operations___cancel",
+          "class": "btn-force-default btn-default"
+        },
+        {
+          "type": "updatePage",
+          "text": "generic___operations___save",
+          "class": "btn-primary btn-submit",
+          "dynamicProps": {
+            "disabled": "!{{canSubmitForm}}"
+          },
+          "parameters": [
+            {
+              "key": "updatePageParameter",
+              "value": {
+                "designerFlowComponent": {
+                  "sendEvent": [
+                    {
+                      "key": "saveShapeName",
+                      "value": {
+                        "shapeId": "{{shapeId}}",
+                        "name": "{{shapeName}}"
+                      }
+                    },
+                    {
+                      "key": "saveDataRecs",
+                      "value": {
+                        "shapeId": "{{shapeId}}",
+                        "dataRecs": {
+                          "linkTo": "{{linkToShape___id}}"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

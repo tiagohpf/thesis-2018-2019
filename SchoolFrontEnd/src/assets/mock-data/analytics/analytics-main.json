@@ -1,0 +1,616 @@
+{
+  "type": "page",
+  "id": "analyticsMain",
+  "header": {
+    "id": "pageHeader",
+    "seo": {
+      "_text": "application___analytics",
+      "_icon": "fuxicons fuxicons-dashboard-group"
+    },
+    "operations": [
+      {
+        "id": "analyticsButtons",
+        "size": 3,
+        "parameters": [
+          {
+            "type": "updatePage",
+            "id": "showFilterButton",
+            "text": "",
+            "icon": "fa fa-filter",
+            "class": "btn-primary",
+            "parameters": [
+              {
+                "key": "updatePageParameter",
+                "value": {
+                  "hideFilterButton": {
+                    "hidden": false
+                  },
+                  "showFilterButton": {
+                    "hidden": true
+                  },
+                  "filterContainer": {
+                    "hidden": false
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "details": [
+      {
+        "type": "label",
+        "class": "titles",
+        "text": null,
+        "value": "<h1>{{@fv()@i18n('application___analytics')}}</h1>"
+      }
+    ]
+  },
+  "tabs": [
+    {
+      "id": "analyticsMainContainer",
+      "components": [
+        {
+          "type": "initParameters",
+          "id": "statisticsContent",
+          "details": [
+            {
+              "type": "initCards",
+              "id": "filterContainer",
+              "class": "col-sm-12",
+              "hidden": true,
+              "details": [
+                {
+                  "type": "wct-datepicker-interval",
+                  "id": "timeLimit",
+                  "text": "Time period",
+                  "class": "col-sm-3 offset-sm-1",
+                  "valueList": [
+                    {
+                      "value": "last week",
+                      "text": "generic___dateInterval___last7Days"
+                    },
+                    {
+                      "value": "last month",
+                      "text": "generic___dateInterval___lastMonth"
+                    },
+                    {
+                      "value": "last quarter",
+                      "text": "generic___dateInterval___lastQuarter"
+                    },
+                    {
+                      "value": "customInterval",
+                      "text": "generic___dateInterval___rangePeriod"
+                    }
+                  ],
+                  "parameters": [
+                    {
+                      "key": "preSetPeriod",
+                      "value": "last quarter"
+                    }
+                  ]
+                },
+                {
+                  "type": "input-select",
+                  "id": "aggName",
+                  "hidden": false,
+                  "class": "col-sm-3",
+                  "text": "View",
+                  "valueList": [
+                    {
+                      "key": "$hours",
+                      "value": "per hour"
+                    },
+                    {
+                      "key": "$day",
+                      "value": "per day"
+                    }
+                  ],
+                  "value": "$day"
+                },
+                {
+                  "_type": "wct-ng-select",
+                  "type": "input-select",
+                  "id": "studentFilter",
+                  "text": "Student",
+                  "class": "col-sm-3",
+                  "urlResource": [
+                    {
+                      "key": "id",
+                      "value": "studentApi"
+                    },
+                    {
+                      "key": "path",
+                      "value": "{{SchoolBOT}}/students"
+                    },
+                    {
+                      "key": "pathToMainData",
+                      "value": [
+                        "_embedded"
+                      ]
+                    },
+                    {
+                      "key": "apiRecycle",
+                      "value": false
+                    },
+                    {
+                      "key": "queryString",
+                      "value": {
+                        "filter": "{\"IXS\":\"{{IXS_id}}\"}",
+                        "keys": "{\"_id\":1,\"name\":1}"
+                      }
+                    },
+                    {
+                      "key": "headers",
+                      "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                      }
+                    },
+                    {
+                      "key": "reload",
+                      "value": false
+                    }
+                  ],
+                  "parameters": [
+                    {
+                      "key": "updatePageParameter",
+                      "value": {
+                        "apiSelector": {
+                          "value": "^{{IXS_id}}\\\\|{{studentIdForQuery}}\\\\|(?!.*fallback).*$"
+                        }
+                      }
+                    }
+                  ],
+                  "pathToValueList": [],
+                  "pathToValue": [
+                    "variableName"
+                  ],
+                  "templateOfValueList": "{\"key\":\"{{_id___$oid}}\",\"value\":\"{{name}}\"}"
+                },
+                {
+                  "type": "context",
+                  "id": "studentIdForQuery",
+                  "_value": "[^\\\\|]*",
+                  "dynamicProps": {
+                    "value": "'{{studentFilter}}' || '[^\\\\\\\\|]*'"
+                  }
+                },
+                {
+                  "type": "operations",
+                  "id": "goalTranslationsSelector",
+                  "style": {
+                    "margin-top": "20px",
+                    "_float": "right"
+                  },
+                  "class": "col-sm-11 offset-sm-1",
+                  "operations": {
+                    "id": "filterButtons",
+                    "size": 3,
+                    "parameters": [
+                      {
+                        "type": "updatePage",
+                        "id": "hideFilterButton",
+                        "text": "Cancel",
+                        "_icon": "fa fa-filter",
+                        "class": "btn-default",
+                        "hidden": true,
+                        "parameters": [
+                          {
+                            "key": "updatePageParameter",
+                            "value": {
+                              "hideFilterButton": {
+                                "hidden": true
+                              },
+                              "showFilterButton": {
+                                "hidden": false
+                              },
+                              "filterContainer": {
+                                "hidden": true
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "updatePage",
+                        "id": "filterBtn",
+                        "text": "Filter",
+                        "class": "btn-primary",
+                        "parameters": [
+                          {
+                            "key": "updatePageParameter",
+                            "value": {
+                              "chartContainer": {
+                                "lazyLoading": false
+                              },
+                              "lineChartDialogs": {
+                                "lazyLoading": false
+                              },
+                              "statisticsTable": {
+                                "lazyLoading": false
+                              },
+                              "fallbacksToggle": {
+                                "class": "btn-default"
+                              },
+                              "successesToggle": {
+                                "class": "btn-primary"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "initParameters",
+              "id": "chartContainer",
+              "class": "col-sm-6 offset-sm-3",
+              "style": {
+                "margin-top": "1vh",
+                "overflow": "hidden"
+              },
+              "details": [
+                {
+                  "type": "label",
+                  "id": "fallbacksAux",
+                  "hidden": true,
+                  "urlResource": [
+                    {
+                      "key": "path",
+                      "value": "{{AnalyticsAPI}}/Dialogue_Metrics/_aggrs/dialogue_metrics"
+                    },
+                    {
+                      "key": "queryString",
+                      "value": {
+                        "avars": "{\"key\":\"^{{IXS_id}}\\\\|{{studentIdForQuery}}\\\\|(?=.*fallback).*$\",\"TimeLine\":\"{{aggName}}\",\"aggName\":\"{{aggName}}\",\"startTime\":\"{{timeLimit___$gte}}\",\"endTime\":\"{{timeLimit___$lt}}\"}",
+                        "pagesize": "1000",
+                        "filter": "{\"IXS\" :\"{{IXS_id}}\" }"
+                      }
+                    },
+                    {
+                      "key": "headers",
+                      "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                      }
+                    }
+                  ],
+                  "pathToValue": [
+                    "@renameDataSets($this,'_embedded','fallbacks')"
+                  ]
+                },
+                {
+                  "type": "label",
+                  "id": "succesesAux",
+                  "hidden": true,
+                  "urlResource": [
+                    {
+                      "key": "path",
+                      "value": "{{AnalyticsAPI}}/Dialogue_Metrics/_aggrs/dialogue_metrics"
+                    },
+                    {
+                      "key": "queryString",
+                      "value": {
+                        "avars": "{\"key\":\"^{{IXS_id}}\\\\|{{studentIdForQuery}}\\\\|(?!.*fallback).*$\",\"TimeLine\":\"{{aggName}}\",\"aggName\":\"{{aggName}}\",\"startTime\":\"{{timeLimit___$gte}}\",\"endTime\":\"{{timeLimit___$lt}}\"}",
+                        "pagesize": "1000",
+                        "filter": "{\"IXS\" :\"{{IXS_id}}\" }"
+                      }
+                    },
+                    {
+                      "key": "headers",
+                      "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                      }
+                    }
+                  ],
+                  "pathToValue": [
+                    "@renameDataSets($this,'_embedded','successes')"
+                  ]
+                },
+                {
+                  "type": "custom-component",
+                  "subType": "custom-pie-chart",
+                  "id": "totalsChart",
+                  "valueList": "{{@fv()@calculateTotals('hits_count',@replaceTagVars('fallbacksAux'),@replaceTagVars('succesesAux'))}}",
+                  "dynamicProps": {
+                    "lazyLoading": "!({{fallbacksAux}}&&{{succesesAux}})"
+                  },
+                  "axis": [
+                    {
+                      "type": "xAxis",
+                      "id": "name",
+                      "text": "Date",
+                      "pathToValue": [
+                        "name"
+                      ]
+                    },
+                    {
+                      "type": "yAxis",
+                      "id": "numberCustomersActive",
+                      "text": "Hits",
+                      "description": "total hits",
+                      "pathToValue": [
+                        "value"
+                      ]
+                    }
+                  ],
+                  "rows": [],
+                  "parameters": [
+                    {
+                      "key": "colorScheme",
+                      "value": [
+                        "#de2c57",
+                        "#a9c00c"
+                      ]
+                    },
+                    {
+                      "key": "showLegend",
+                      "value": true
+                    },
+                    {
+                      "key": "doughnut",
+                      "value": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "label",
+              "id": "apiSelector",
+              "value": "^{{IXS_id}}\\\\|{{studentIdForQuery}}\\\\|(?!.*fallback).*$",
+              "hidden": true,
+              "_dynamicProps": {
+                "value": "'{{studentIdForQuery}}' == '____' ? '' : '^{{IXS_id}}\\\\\\\\|{{studentIdForQuery}}\\\\\\\\|(?=.*fallback).*$'",
+                "log": "'{{studentIdForQuery}}' == '____' ? '' : '^{{IXS_id}}\\\\\\\\|{{studentIdForQuery}}\\\\\\\\|(?=.*fallback).*$'"
+              }
+            },
+            {
+              "type": "operations",
+              "id": "goalTranslationsSelector",
+              "class": "hide-label col-sm-12 d-flex align-items-end",
+              "operations": {
+                "id": "goalTranslationsSelectorMenu",
+                "size": 3,
+                "parameters": [
+                  {
+                    "type": "updatePage",
+                    "id": "successesToggle",
+                    "text": "succesful dialogs",
+                    "class": "btn-primary",
+                    "parameters": [
+                      {
+                        "key": "updatePageParameter",
+                        "value": {
+                          "apiSelector": {
+                            "value": "^{{IXS_id}}\\\\|{{studentIdForQuery}}\\\\|(?!.*fallback).*$"
+                          },
+                          "lineChartDialogs": {
+                            "lazyLoading": false
+                          },
+                          "statisticsTable": {
+                            "lazyLoading": false
+                          },
+                          "fallbacksToggle": {
+                            "class": "btn-default"
+                          },
+                          "successesToggle": {
+                            "class": "btn-primary"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "updatePage",
+                    "id": "fallbacksToggle",
+                    "text": "fallbacks",
+                    "class": "btn-default",
+                    "parameters": [
+                      {
+                        "key": "updatePageParameter",
+                        "value": {
+                          "apiSelector": {
+                            "value": "^{{IXS_id}}\\\\|{{studentIdForQuery}}\\\\|(?=.*fallback).*$"
+                          },
+                          "lineChartDialogs": {
+                            "lazyLoading": false
+                          },
+                          "statisticsTable": {
+                            "lazyLoading": false
+                          },
+                          "fallbacksToggle": {
+                            "class": "btn-primary"
+                          },
+                          "successesToggle": {
+                            "class": "btn-default"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "type": "initCards",
+              "id": "statisticsChartContent",
+              "class": "col-sm-12",
+              "parameters": [
+                {
+                  "key": "tableActions",
+                  "value": {
+                    "export": false,
+                    "search": false
+                  }
+                }
+              ],
+              "details": [
+                {
+                  "type": "chart",
+                  "subType": "line-chart",
+                  "id": "lineChartDialogs",
+                  "urlResource": [
+                    {
+                      "key": "path",
+                      "value": "{{AnalyticsAPI}}/Dialogue_Metrics/_aggrs/dialogue_metrics"
+                    },
+                    {
+                      "key": "queryString",
+                      "value": {
+                        "avars": "{\"key\":\"{{apiSelector}}\",\"TimeLine\":\"{{aggName}}\",\"aggName\":\"{{aggName}}\",\"startTime\":\"{{timeLimit___$gte}}\",\"endTime\":\"{{timeLimit___$lt}}\"}",
+                        "pagesize": "1000",
+                        "filter": "{\"IXS\" :\"{{IXS_id}}\" }"
+                      }
+                    },
+                    {
+                      "key": "pathToMainData",
+                      "value": [
+                        "_embedded"
+                      ]
+                    },
+                    {
+                      "key": "headers",
+                      "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                      }
+                    }
+                  ],
+                  "axis": [
+                    {
+                      "type": "xAxis",
+                      "id": "name",
+                      "text": "Date",
+                      "pathToValue": [
+                        "_id"
+                      ]
+                    },
+                    {
+                      "type": "yAxis",
+                      "id": "numberCustomersActive",
+                      "text": "Hits",
+                      "description": "total hits",
+                      "pathToValue": [
+                        "hits_count"
+                      ]
+                    }
+                  ],
+                  "rows": [],
+                  "parameters": [
+                    {
+                      "key": "colorScheme",
+                      "value": [
+                        "#de2c57"
+                      ],
+                      "dynamicProps": {
+                        "value": "'{{apiSelector}}'==='^{{IXS_id}}\\\\|{{studentIdForQuery}}\\\\|(?=.*fallback).*$'?[\"#de2c57\"]:[\"#a9c00c\"]"
+                      }
+                    },
+                    {
+                      "key": "showLegend",
+                      "value": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "initCards",
+              "id": "statisticsChartContent",
+              "class": "col-sm-12",
+              "parameters": [
+                {
+                  "key": "tableActions",
+                  "value": {
+                    "export": false,
+                    "search": false
+                  }
+                }
+              ],
+              "details": [
+                {
+                  "type": "initTable",
+                  "id": "statisticsTable",
+                  "lazyLoading": false,
+                  "icon": "fa fa-table",
+                  "urlResource": [
+                    {
+                      "key": "path",
+                      "value": "{{AnalyticsAPI}}/Dialogue_Metrics/_aggrs/dialogue_metrics_sortvalue"
+                    },
+                    {
+                      "key": "queryString",
+                      "value": {
+                        "avars": "{\"key\":\"{{apiSelector}}\",\"TimeLine\":\"{{aggName}}\",\"aggName\":\"$userSays\",\"startTime\":\"{{timeLimit___$gte}}\",\"endTime\":\"{{timeLimit___$lt}}\"}",
+                        "page": "((page))",
+                        "pagesize": "((pagesize))",
+                        "sort": "-hits",
+                        "filter": "{\"IXS\" :\"{{IXS_id}}\" }"
+                      }
+                    },
+                    {
+                      "key": "pathToMainData",
+                      "value": [
+                        "_embedded"
+                      ]
+                    },
+                    {
+                      "key": "reload",
+                      "value": false
+                    },
+                    {
+                      "key": "headers",
+                      "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                      }
+                    }
+                  ],
+                  "parameters": [
+                    {
+                      "key": "tableActions",
+                      "value": {
+                        "export": true,
+                        "search": false,
+                        "pagination": true
+                      }
+                    }
+                  ],
+                  "columns": [
+                    {
+                      "type": "text",
+                      "id": "userSays",
+                      "text": "Dialog",
+                      "pathToValue": [
+                        "_id"
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "hits",
+                      "pathToValue": [
+                        "$this['hits_count'].toString()"
+                      ],
+                      "text": "Hits"
+                    }
+                  ],
+                  "rows": []
+                }
+              ]
+            }
+          ],
+          "_dynamicProps": {
+            "lazyLoading": "!'{{studentIdForQuery}}'"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+    "type": "initTable",
+    "id": "programAliasTable",
+    "hidden": true,
+    "header": {
+        "id": "pageHeader",
+        "_seo": {
+            "text": "program___alias___namePlural",
+            "icon": "fa fa-book"
+        },
+        "operations": {
+            "id": "pageHeaderOperations",
+            "text": "generic___operations___operations",
+            "icon": "glyphicon glyphicon-cog",
+            "parameters": [
+                {
+                    "id": "createEntitY",
+                    "type": "openModal",
+                    "icon": "fa fa-plus",
+                    "size": "lg",
+                    "mockToLoad": "programs/program-alias-create"
+                }
+            ]
+        }
+    },
+    "urlResource": [
+        {
+            "key": "id",
+            "value": "programAPIResponse"
+        },
+        {
+            "key": "apiRecycle",
+            "value": false
+        },
+        {
+            "key": "path",
+            "value": "{{SchoolBE}}/programs/[[programID]]"
+        },
+        {
+            "key": "queryString",
+            "value": {
+                "keys": "{\"_id\":1,\"name\":1,\"code\":1,\"version\":1,\"alias\":1}"
+            }
+        },
+        {
+            "key": "headers",
+            "value": {
+                "Authorization": "Bearer {{token}}",
+                "IXS": "{{IXS_id}}"
+            }
+        },
+        {
+            "key": "pathToMainData",
+            "value": [
+                "@objToTupleList($this['alias'])"
+            ]
+        }
+    ],
+    "columns": [
+        {
+            "type": "context",
+            "id": "programCode",
+            "pathToValue": [
+                "code"
+            ]
+        },
+        {
+            "type": "context",
+            "size": "sm",
+            "id": "aliasIdx",
+            "pathToValue": [
+                "key"
+            ]
+        },
+        {
+            "type": "json",
+            "id": "aliasDetails",
+            "pathToValue": [
+                "value"
+            ],
+            "hidden": true
+        },
+        {
+            "type": "text",
+            "id": "displayName",
+            "pathToValue": [
+                "value",
+                "word"
+            ],
+            "text": "program___alias___word"
+        },
+        {
+            "type": "text",
+            "id": "alias",
+            "text": "program___alias___name",
+            "pathToValue": [
+                "value",
+                "alias"
+            ]
+        },
+        {
+            "type": "actions",
+            "id": "actions",
+            "operations": [
+                {
+                    "id": "viewEntitY",
+                    "type": "openModal",
+                    "text": "generic___seeDetails",
+                    "icon": "icomoon icon-edit",
+                    "size": "lg",
+                    "mockToLoad": "programs/program-alias-edit",
+                    "parameters": [
+                        {
+                            "key": "context",
+                            "value": [
+                                "programCode",
+                                "aliasIdx",
+                                "displayName",
+                                "alias"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "removeCourse",
+                    "type": "openModal",
+                    "text": "generic___remove",
+                    "icon": "fa fa-trash-o",
+                    "mockToLoad": "programs/program-alias-remove",
+                    "parameters": [
+                        {
+                            "key": "context",
+                            "value": [
+                                "aliasIdx",
+                                "aliasName",
+                                "displayName"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "rows": [],
+    "parameters": [
+        {
+            "key": "tableActions",
+            "value": {
+                "export": false,
+                "columnManager": false,
+                "search": true
+            }
+        }
+    ]
+}

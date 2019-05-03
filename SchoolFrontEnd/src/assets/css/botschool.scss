@@ -1,0 +1,1063 @@
+@import "theme";
+@import "/students/root";
+@import "/integrations/root";
+@import "/programs/root";
+@import "/courses/root";
+@import "navbar";
+@import "/icon/style";
+@import "startPageModal";
+@import "entityDetails";
+@import "forms";
+@import "extends";
+@import "slidingNavs";
+@import "variables";
+@import "mixins";
+@import "fullfilments";
+@import "tutorials";
+@import "knowledgeCenter";
+@import "integrations";
+@import "account";
+
+@font-face {
+    font-family: "FallingSky";
+    src: url("/assets/fonts/FallingSky/FallingSky.WOFF") format("woff");
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url("/assets/fonts/Lato/Lato.woff") format("woff");
+}
+
+@font-face {
+    font-family: "FallingSkyBd";
+    src: url("/assets/fonts/FallingSky/FallingSkyBd.WOFF") format("woff");
+}
+
+@font-face {
+    font-family: "IconsMenu";
+    src: url("/assets/fonts/Icons/icomoon.woff") format("woff");
+}
+
+body {
+    background: $nav-color !important;
+    font-family: FallingSky;
+    font-size: 18px;
+    color: #c73fec;
+    font-weight: 400;
+    text-decoration: none solid rgb(255, 255, 255);
+    line-height: 26px;
+}
+
+/* HIDE BREADCRUMB */
+
+app-wct-breadcrumb {
+    display: none;
+}
+
+/* HIDE FOOTER */
+
+app-wct-footer {
+    display: none;
+}
+
+/* COLOR CONTAINER */
+
+.wct-container {
+    background-color: $primary-color !important;
+    margin-left: 80px;
+    height: auto !important;
+    min-height: 100%;
+}
+
+
+//*********** H1 ***********//
+h1 {
+    width: 540px;
+    height: 46px;
+    font-family: FallingSkyBd;
+    font-size: 48px;
+    color: #ffffff;
+    font-weight: 400;
+    text-decoration: none solid rgb(255, 255, 255);
+    line-height: 46px;
+}
+
+//*********** H2 ***********//
+h2 {
+    width: 300px;
+    height: 26px;
+    font-family: FallingSky;
+    font-size: 30px;
+    color: $secundary-text-color;
+    font-weight: 400;
+    text-decoration: none solid rgb(89, 89, 89);
+    line-height: 26px;
+}
+
+//*********** H3 ***********//
+h3 {
+    font-family: FallingSky;
+    font-size: 18px;
+    color: #4f4f4f;
+    font-weight: 400;
+    text-decoration: none solid rgb(79, 79, 79);
+    line-height: 26px;
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(70px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        top: -100%;
+        opacity: 0;
+    }
+
+    100% {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideRight {
+    0% {
+        transform: translateX(0px);
+    }
+
+    100% {
+        transform: translateX(70px);
+    }
+}
+
+/* Esconde a div vazia que está dentro do modal-component e que, no caso da BotSchool, não tem utilizade */
+
+modal-component,
+app-wct-modal {
+    div:not(#wct-modal-startModal) {
+
+        // Não aplica no caso da modal inicial, com as boas vindas aos utilizadores
+        #modalComponent {
+
+            // max-height: calc(100% - 3.5rem);
+            // min-height: 500px;
+            >.modal-content {
+                height: 100%;
+
+                >app-wct-page {
+                    height: 100%;
+                    display: flex;
+                    flex-flow: column;
+                }
+            }
+        }
+    }
+
+    .modal-body {
+        max-height: 500px;
+    }
+
+    >div {
+        &:not(.modal) {
+            display: none;
+        }
+    }
+}
+
+/* Dentro da modal, os elementos não necessitam de ter cor de fundo ou border */
+
+#modalComponent {
+    .wct-main-wrapper {
+        padding: 0;
+
+        .wct-main-content-colored {
+            border: 0;
+            background: transparent;
+        }
+    }
+}
+
+// Padding values
+.pt-0 {
+    padding-top: 0;
+}
+
+.pr-0 {
+    padding-right: 0;
+}
+
+.pb-0 {
+    padding-bottom: 0;
+}
+
+.pl-0 {
+    padding-left: 0;
+}
+
+#wct-content-coursesMain {
+    background: $primary-color;
+
+    .wct-header-content {
+        position: relative;
+        @include max-width-screen;
+        margin: 0 auto;
+        padding: 15px;
+
+        h1 {
+            padding: 7px;
+        }
+
+        app-wct-header {
+            display: flex;
+            flex-flow: row-reverse;
+        }
+
+        // .wct-header-buttons {
+        //   width: 80px;
+        //   position: absolute !important;
+        //   right: 0;
+        //   top: 10px;
+        // }
+    }
+
+    .wct-tabs-wrapper {
+        @include max-width-screen;
+        margin: 0 auto;
+        width: 100%;
+
+        .wct-main-content-colored {
+            background: $primary-color;
+            border: none !important;
+            margin-top: 35px;
+
+            .wct-main-wrapper {
+                border: none !important;
+                border-radius: unset !important;
+                width: 100%;
+
+                .wct-components-wrapper {
+                    background: $primary-color !important;
+                    margin-top: -15px; //padding: 0;
+                    padding-top: 20px;
+                    background: #fff;
+
+                    .title {
+                        .wct-header-info {
+                            .icon {
+                                font-size: 30px;
+                                color: $primary-color !important;
+                            }
+                        }
+
+                        .h2 {
+                            p {
+                                font-size: 18px;
+                                color: $primary-color;
+                                text-transform: lowercase;
+                            }
+                        }
+                    }
+                }
+
+                .card-list-container {
+                    .card-wrapper {
+                        // margin-bottom: 8px;
+                        padding: 15px;
+
+                        >.card {
+                            &:hover {
+                                box-shadow: 0px 0px 20px 4px #252525cc;
+                            }
+                        }
+
+                        .card {
+                            padding: 0;
+                            margin: 0;
+                            background-color: #fff;
+                            border: none;
+                            border-radius: 0;
+
+                            .card-body {
+                                padding: 0;
+                                padding: 0;
+                                max-width: none;
+                                flex: 1;
+
+                                .each-parameter {
+                                    .wct-field-format-component {
+                                        .label-grouper {
+                                            p {
+                                                a {
+                                                    word-break: break-all;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    &.courseStudentName {
+                                        .label-grouper {
+                                            p {
+                                                margin-top: 30px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.back {
+    @include max-width-screen;
+    left: 50%;
+    transform: translateX(-50%);
+
+    p {
+        a {
+            color: #ffffff;
+
+            i {
+                transform: rotate(180deg);
+                display: inline-block;
+                font-size: 22px;
+                vertical-align: -17%;
+            }
+
+            span {
+                font-size: 18px;
+                padding: 0px 5px;
+            }
+        }
+    }
+}
+
+.content-disabled {
+    background: #d6d6d63d;
+
+    .wct-components-wrapper {
+        background: #d6d6d603 !important;
+    }
+}
+
+#wct-table-dialogsMain {
+    i {
+        font-size: 18px;
+    }
+}
+
+.we-are-listening {
+    color: black !important;
+}
+
+/******************MODAL BUTTONS********************/
+
+.modal-footer {
+    justify-content: space-between;
+
+    app-wct-buttons {
+        width: 100%;
+
+        .btn-group {
+            width: 100%;
+            display: inline-block;
+
+            .btn:not([style*="display:none"]):last-child {
+                float: right;
+            }
+
+            .btn:not([style*="display:none"]):only-child {
+                float: left;
+            }
+
+        }
+    }
+}
+
+
+
+/******************COPYTOCLIPBOARD BUTTON********************/
+.copyboardButton {
+    border: none;
+    background-color: $primary-color;
+    color: white;
+}
+
+/******************SLIDER********************/
+
+slider-component {
+    color: $secundary-text-color;
+
+    input {
+        min-width: 80px;
+    }
+
+    .ui-slider {
+        span {
+            &.ui-slider-handle {
+                background-color: #5b3ccd !important;
+            }
+        }
+    }
+}
+
+#modalComponent {
+    .modal-header {
+        .wct-header-info {
+            h1 {
+                width: 100%;
+            }
+
+            p,
+            i {
+                font-size: 18px;
+                color: #253aa5;
+                text-transform: lowercase;
+            }
+        }
+    }
+}
+
+
+.chat-is-typing {
+    span {
+        color: black;
+    }
+}
+
+app-wct-tuple-list {
+    .remove-card {
+        i {
+            color: black;
+        }
+    }
+}
+
+
+/* MODAL CREATE ENTITIES   Student and Program */
+#wct-modal-subscriptionCreateProgram,
+#wct-modal-modalCreateStudent {
+    #modalComponent {
+        @include max-width-screen;
+        margin-top: 0;
+
+        #wct-page-header-createProgram,
+        #wct-page-header-createStudent {
+            display: none;
+        }
+
+        .modal-body {
+            max-height: none;
+        }
+
+        .modal-content {
+            background-color: transparent;
+            border: none;
+
+            #wct-each-parameter-categoryProgramWrapper {
+                padding: 0;
+
+                .wct-components-wrapper {
+                    &.container-fluid {
+                        padding-top: 0 !important;
+
+                    }
+
+                    #wct-each-parameter-categoryProgram {
+                        padding: 0;
+
+                    }
+                }
+            }
+
+            nav {
+                text-align: center;
+                position: absolute;
+                top: 265px;
+
+                .fx-nav-items {
+                    display: inline-flex;
+
+                    li {
+                        width: 36px;
+                        height: 36px;
+                        border: 2px solid #595959;
+                        border-radius: 3px;
+                        background-size: cover;
+                        font-family: Falling Sky;
+                        font-size: 22px;
+                        color: #595959;
+                        font-weight: 400;
+                        text-decoration: none solid rgb(255, 255, 255);
+                        text-align: center;
+
+                        &.active {
+                            border: 2px solid #ffffff;
+                            color: #ffffff;
+
+                            .fx-wizardstep-number {
+                                height: 22px;
+                                background: transparent;
+                                font-family: FallingSky;
+                                margin-right: 0;
+                                font-weight: 400;
+                                text-align: center;
+                            }
+                        }
+
+                        &.visited {
+                            border: 2px solid #ffffff;
+                            color: #ffffff;
+
+                            .fx-wizardstep-number {
+                                height: 22px;
+                                background: #00cfb6 !important;
+                                font-family: FallingSky;
+                                border-radius: 4px;
+                                margin-right: 0;
+                                font-weight: 400;
+                                text-align: center;
+                            }
+                        }
+
+                        .inner-padding {
+                            width: 100%;
+                            height: 100%;
+                            padding: 5px;
+
+                            .fx-wizardstep-number {
+                                height: 22px;
+                                background: transparent;
+                                font-family: FallingSky;
+                                border-radius: 4px;
+                                margin-right: 0;
+                                font-weight: 400;
+                                text-align: center;
+                                align-items: center;
+                                display: flex;
+                                justify-content: center;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .fx-wizard-wrapper {
+                margin-top: 100px;
+            }
+
+            .app-wct-page-wizard {
+                .wct-main-wrapper {
+                    margin: 0 auto;
+                    max-width: 600px;
+                }
+            }
+
+
+            .entityTitleCreate {
+                p {
+                    font-size: 44px;
+                    color: #ffffff;
+                    font-weight: 400;
+                    line-height: 46px;
+                    text-align: center;
+                    text-transform: lowercase;
+                }
+            }
+
+            .entityInfoMessage {
+                p {
+                    font-family: Lato;
+                    font-size: 16px;
+                    color: #b5b5b5;
+                    line-height: 26px;
+                    text-align: center;
+                    text-transform: lowercase;
+                }
+
+                padding-bottom: 10px;
+            }
+
+            .entitySubtitleCreate {
+                p {
+                    font-family: Lato;
+                    font-size: 20px;
+                    color: #ffffff;
+                    line-height: 26px;
+                    text-align: center;
+                    text-transform: lowercase;
+                }
+
+                padding-bottom: 80px;
+
+            }
+
+            input,
+            textarea {
+                background: transparent;
+                border: none;
+                border-bottom: 1px solid #b5b5b5;
+                border-radius: 0;
+                color: white;
+
+
+                &.form-control:focus {
+                    color: white;
+                }
+            }
+
+            .ng-select-container {
+                background: transparent;
+                border: none;
+                border-bottom: 1px solid #b5b5b5;
+                border-radius: 0;
+                color: white;
+
+                .ng-placeholder {
+                    color: white;
+                }
+            }
+
+            select {
+                background: transparent;
+                border: none;
+                border-bottom: 1px solid #b5b5b5;
+                border-radius: 0;
+                color: white;
+
+                option {
+                    color: black;
+                    background-color: transparent;
+                }
+            }
+
+            .form-group {
+                label {
+                    font-size: 14px;
+                    color: #878787;
+                    font-weight: 400;
+                    text-decoration: none solid rgb(135, 135, 135);
+                }
+
+                padding: 0;
+            }
+
+            #wct-each-parameter-degreeStudentsImage {
+                text-align: center;
+                // padding: 50px 0;
+
+                #wct-image-degreeStudentsImage {
+                    width: 110px;
+                }
+            }
+
+
+            #wct-label-studentGender {
+                font-size: 32px;
+                color: #ffffff;
+                font-weight: 400;
+                line-height: 26px;
+            }
+
+            .wct-field-format-label {
+                label {
+                    padding-left: 0.75rem;
+                }
+            }
+
+            #wct-image-degreeStudentsImage {
+                height: 110px;
+                width: 110px;
+                ;
+            }
+
+            #wct-each-parameter-genderButtonsWrapper {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+
+                .buttonMale {
+                    background-color: #265be0 !important;
+                    box-shadow: #265be0 0px 7px 30px 0px !important;
+
+                    &.notSelected {
+                        background-color: #b5b5b5 !important;
+                        box-shadow: none !important;
+
+                    }
+                }
+
+                .buttonFemale {
+                    background-color: #f551a0 !important;
+                    box-shadow: #f551a0 0px 7px 30px 0px !important;
+
+                    &.notSelected {
+                        background-color: #b5b5b5 !important;
+                        box-shadow: none !important;
+
+                    }
+                }
+
+            }
+
+            .filterWrapper {
+                padding: 0 15px;
+
+                #wct-each-parameter-programFind {
+                    padding-right: 0;
+
+                    #wct-input-textbox-programFind {
+                        padding: 0px 0px 0px 15px;
+                        border-radius: 3px;
+                        background-size: cover;
+                        background-color: rgba(135, 135, 135, 0.25);
+                        border: none;
+                        font-size: 14px;
+                        color: white;
+                        font-weight: 400;
+                        text-decoration: none solid rgb(135, 135, 135);
+                        border-bottom-right-radius: 0 !important;
+                        border-top-right-radius: 0 !important;
+
+                        &::placeholder {
+                            color: #878787;
+                            content: "s";
+                        }
+                    }
+                }
+
+                .findButtonOperations {
+                    padding: 0;
+
+                    #wct-operations-btn-findButtonProgram {
+                        margin: 0 !important;
+                        padding: 9px !important;
+                        background-color: rgba(135, 135, 135, 0.25);
+                        border-bottom-left-radius: 0 !important;
+                        border-top-left-radius: 0 !important;
+
+                        &:focus {
+                            box-shadow: none;
+                        }
+                    }
+
+
+                }
+            }
+
+        }
+
+        .modal-footer {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            border: none;
+            background-color: #1c1e4152;
+            position: fixed;
+            left: 0;
+
+            >.fx-wizard-buttons-wrapper-inner {
+                @include max-width-screen;
+                margin: auto;
+            }
+
+            #wct-wizard-btn-next-createProgram,
+            #wct-wizard-btn-next-createStudent {
+                padding: 4px 30px !important;
+                border-radius: 3px;
+                background-image: linear-gradient(90deg, #7958ec 1%, #be4ce4 100%);
+                box-shadow: rgba(190, 76, 228, 0.5) 0px;
+                background-position: center center;
+                font-size: 14px;
+                color: #ffffff;
+                font-weight: 400;
+                box-shadow: 0px 7px 15px rgba(190, 76, 228, 0.5);
+                border: none;
+                transition: all 0.2s ease-in-out;
+                margin: 6px !important;
+                text-transform: lowercase;
+                margin-left: auto !important;
+
+                &:hover {
+                    padding: 6px 32px !important;
+                    margin: 4px !important;
+                    margin-left: auto !important;
+
+                }
+            }
+
+            .fx-wizard-buttons-previous:not(:disabled)+#wct-wizard-btn-next-createStudent {
+                margin-left: 0 !important;
+
+                &:hover {
+                    margin-left: 0 !important;
+
+                }
+            }
+
+
+            .fx-wizard-buttons-cancel {
+                background-color: rgb(255, 98, 13) !important;
+                padding: 4px 30px !important;
+                box-shadow: rgba(255, 98, 13, 0.5) 0px 7px 30px 0px !important;
+                margin: 6px !important;
+
+                &:hover {
+                    padding: 6px 32px !important;
+                    margin: 4px !important;
+                    margin-right: auto !important;
+
+                }
+            }
+
+            .fx-wizard-buttons-submit {
+                background-color: rgb(87, 210, 212) !important;
+                padding: 4px 30px !important;
+                box-shadow: rgba(106, 239, 214, 0.5) 0px 7px 30px 0px !important;
+                margin: 6px !important;
+
+                &:hover {
+                    padding: 6px 32px !important;
+                    margin: 4px !important;
+                    // margin-left: auto !important;
+
+                }
+            }
+
+            .fx-wizard-buttons-previous {
+                background-color: rgba(87, 210, 212, 0) !important;
+                padding: 4px 30px !important;
+                border: 1px solid rgb(255, 255, 255);
+                margin: 6px !important;
+                margin-left: auto !important;
+
+                &:hover {
+                    padding: 6px 32px !important;
+                    margin: 4px !important;
+                    margin-left: auto !important;
+
+                }
+            }
+        }
+
+        #wct-each-parameter-studentmdainCardCreate {
+            padding: 0;
+            background-color: transparent;
+            border: none;
+
+
+            .container-fluid {
+                padding-top: 0;
+            }
+
+            #wct-card-container-studentmdainCardCreate {
+                justify-content: center;
+
+                .card-wrapper {
+                    padding: 15px;
+
+                    @media only screen and (min-width: 1201px) {
+                        width: 20%;
+                    }
+
+                    @media only screen and (min-width: 980px) and(max-width : 1200px) {
+                        width: 33.333%;
+                    }
+
+                    @media only screen and (min-width: 768px) and(max-width : 979px) {
+                        width: 33.333%;
+                    }
+
+                    @media only screen and (min-width: 480px) and(max-width : 767px) {
+                        width: 50%;
+                    }
+
+                    @media only screen and (min-width: 320px) and(max-width : 479px) {
+                        width: 100%;
+                    }
+
+
+                    .card {
+                        * {
+                            word-break: break-all;
+                        }
+
+                        &:before {
+                            color: white;
+                            z-index: 1000;
+                        }
+
+                        box-shadow: 0px 0px 40px -9px rgba(0, 0, 0, 0.68);
+                        background-size: cover;
+                        background-color: #ffffff;
+                        width: 100%;
+                        border-radius: 0;
+                        border: 0px;
+                        padding: 0;
+                        margin-bottom: 0;
+
+                        .card-header {
+                            display: none;
+                        }
+
+                        .card-body {
+                            padding: 0;
+                            min-height: 265px;
+
+
+                            * {
+                                padding: 0;
+                            }
+
+                            .programImage {
+                                .basic-style {
+                                    margin-top: 0;
+                                    border-top-left-radius: 7px;
+                                    border-top-right-radius: 7px;
+                                    width: 100%;
+                                    height: 100%;
+                                }
+
+                                &.studentCreate {
+                                    img {
+                                        max-width: 100%;
+                                        height: 175px;
+                                        // border-top-left-radius: 7px;
+                                        // border-top-right-radius: 7px;
+                                        width: 100%;
+                                    }
+                                }
+                            }
+
+                            .replaced-svg {
+                                width: 15px;
+                                margin-top: 4px;
+                            }
+
+                            .programName_escola {
+                                a {
+                                    font-size: 16px;
+                                    word-break: break-all;
+                                }
+                            }
+
+                            .deprecated-program {
+                                position: absolute;
+                                margin-top: 20px;
+                                margin-left: 2px;
+
+                                .student-deprecated-program {
+                                    padding: 0 5px 0 5px;
+                                    border-radius: 5px;
+                                }
+                            }
+
+                            .programStatus {
+                                z-index: 100;
+                                position: absolute;
+                                right: 0;
+                                top: 0;
+                                width: 120px;
+
+                                .label-grouper {
+                                    float: right;
+
+                                    p {
+                                        background-color: #00cfb6;
+                                        font-size: 14px;
+                                        padding: 7px !important;
+                                        font-weight: 400;
+                                        text-align: center;
+                                        height: 35px;
+                                        padding: 3px;
+
+                                        img {
+                                            margin-top: -3px;
+                                        }
+
+                                        .statusText,
+                                        i {
+                                            color: #ffffff;
+                                        }
+                                    }
+                                }
+
+                                &.status_1 {
+                                    p {
+                                        background-color: #4c69cf;
+                                    }
+                                }
+
+                                &.status_3 {
+                                    p {
+                                        background-color: #00cfb6;
+                                    }
+                                }
+
+                                &.status_4 {
+                                    p {
+                                        background-color: #000000;
+                                    }
+                                }
+                            }
+
+                            .cardInfo_Wrapper {
+                                padding: 0 1.25rem 1.25rem 1.25rem;
+
+                                .card {
+                                    box-shadow: none;
+
+                                    .programName {
+                                        a {
+                                            word-break: break-all;
+                                            font-size: 18px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#wct-modal-modalCreateStudent {
+    #modalComponent {
+        #wct-content-createStudent {
+            #fx-wizard-add-service {
+                ng2-wizard-tab:nth-of-type(2) {
+
+                    .wct-main-wrapper {
+                        margin: 0 auto;
+                        max-width: 100%;
+                    }
+                }
+            }
+        }
+
+
+    }
+}

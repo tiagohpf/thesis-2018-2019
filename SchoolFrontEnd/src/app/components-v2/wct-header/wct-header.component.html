@@ -1,0 +1,63 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
+
+    <div class="wct-header-info d-flex">
+    
+      <div *ngIf="viewStructure.groups.seo?.icon" class="icon text-primary">
+        <i class="{{viewStructure.groups.seo?.icon}}"></i>
+      </div>
+      <div *ngIf="viewStructure.groups.seo?.text || viewStructure.groups.seo?.description" class="info">
+        <h1 *ngIf="viewStructure.groups.seo?.text" class="h2 wct-prevent-paragraph-margins">
+          <app-wct-label
+            [inputParameters]="viewStructure.groups.seo"
+            [inputValue]="viewStructure.groups.seo.text"
+            [updateParamWithVal]="false"
+            [dataRecs]="dataRecs"></app-wct-label>
+        </h1>
+        <h5 *ngIf="viewStructure.groups.seo?.description" class="h5 wct-prevent-paragraph-margins">
+          <app-wct-label
+            [inputParameters]="viewStructure.groups.seo"
+            [inputValue]="viewStructure.groups.seo.description"
+            [updateParamWithVal]="false"
+            [dataRecs]="dataRecs"></app-wct-label>
+        </h5>
+      </div>
+    </div>
+    
+    <div class="wct-header-buttons d-flex flex-row-reverse">
+
+        <div class="btn-group wct-btn-group" *ngIf="allowReload || !!sideFilterId">
+            <button
+                *ngIf="allowReload"
+                type="button"
+                class="btn wct-btn-refresh"
+                [id]="viewStructure.id ? 'wct-header-btn-refresh-' + viewStructure.id : ''"
+                (click)="reloadComponent()">
+                    <i class="fa fa-refresh" [class.spin-icon]="refreshMe"></i>
+            </button>
+            <button
+                *ngIf="!!sideFilterId"
+                type="button"
+                class="btn wct-btn-filter"
+                [id]="viewStructure.id ? 'wct-header-btn-filter-' + viewStructure.id : ''"
+                (click)="toggleFilter()">
+                    <i class="fa fa-filter"></i>
+            </button>
+        </div>  
+
+        <app-wct-buttons
+            *ngIf="viewStructure.groups.operations?.parameters?.length > 0"
+            [inputParametersContext]="inputParameters"
+            [operations]="viewStructure.groups.operations"
+            [dataRecs]="dataRecs"
+            [btnMax]="viewStructure.groups.operations.size >= 0 ? viewStructure.groups.operations.size : 2"></app-wct-buttons>
+
+    </div>
+
+</div>
+
+<app-wct-start-components
+            *ngIf="viewStructure.groups?.details?.parameters?.length > 0"
+            class="w-100"
+            [viewStructure]="viewStructure"
+            [dataRecs]="dataRecs"
+            [inputParameters]="viewStructure.groups.details.parameters"></app-wct-start-components>

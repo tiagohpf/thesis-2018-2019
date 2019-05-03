@@ -1,0 +1,47 @@
+<h3 id="docs-form-inline">Formulários inline</h3>
+<p>Este snippet demonstra como instanciar um formulário sem quebra de linha, a menos que já não exista mais espaço na horizontal para albergar os campos.</p>
+<div class="alert alert-info">
+    <p>Dentro de um formulário inline, por defeito, um elemento com a class <code>form-control</code> terá <code>width: auto</code>. Como tal, poderá em alguns casos ter de definir uma <code>width</code> para o elemento.</p>
+</div>
+<div class="fx-docs-snippet-code">
+    <div>
+        <form class="form-inline">
+            <div class="form-group">
+                <label class="control-label" for="form-inline-username">
+                    Username
+                </label>
+                <input id="form-inline-username" type="text" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="form-inline-password">
+                    Password
+                </label>
+                <input id="form-inline-password" type="password" class="form-control" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" style="margin-bottom: 0;">login</button> <!-- Style inline pois estamos a aplicar um estilo na documentação que dá um margin-bottom aos botões -->
+            </div>
+        </form>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<form class="form-inline">
+    <div class="form-group">
+        <label class="control-label" for="form-inline-username">
+            Username
+        </label>
+        <input id="form-inline-username" type="text" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="form-inline-password">
+            Password
+        </label>
+        <input id="form-inline-password" type="password" class="form-control" />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">login</button>
+    </div>
+</form>
+        </textarea>
+    </form>
+</div>

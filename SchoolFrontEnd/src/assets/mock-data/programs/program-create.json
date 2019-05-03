@@ -1,0 +1,455 @@
+{
+  "type": "page",
+  "id": "createProgram",
+  "header": {
+    "_id": "pageHeader",
+    "_seo": {
+      "text": "application___createProgram",
+      "icon": "fa fa-book"
+    }
+  },
+  "wizard": [
+    {
+      "id": "createProgramDetails",
+      "text": "Step 1",
+      "components": [
+        {
+          "type": "initParameters",
+          "class": "col-sm-12 ",
+          "id": "createProgramDetails",
+          "text": "student___studentDetails",
+          "details": [
+            {
+              "type": "label",
+              "class": "entityTitleCreate",
+              "value": "Add Program"
+            },
+            {
+              "type": "label",
+              "class": "entitySubtitleCreate",
+              "value": "Define your Program Settings"
+            },
+            {
+              "type": "image",
+              "id": "degreeStudentsImage",
+              "class": "col-md-12",
+              "text": null,
+              "_navigateTo": "students/{{degreeStudentId}}",
+              "pathToValue": [
+                "'{{ImageService}}/programs/123'"
+              ]
+            },
+            {
+              "type": "label",
+              "class": "entityInfoMessage",
+              "value": "You can change the Image of Program later on the details page"
+            },
+            {
+              "type": "textbox",
+              "id": "programName",
+              "text": "application___name",
+              "pathToValueList": "_embedded",
+              "pathToValue": "name",
+              "parameters": [
+                {
+                  "key": "inlineHelp",
+                  "value": {
+                      "text": "help___program___create___name"
+                  }
+                }
+              ],
+              "validator": {
+                "required": [
+                  true,
+                  "warnings___fieldRequired"
+                ],
+                "regex": [
+                  "^[a-zA-Z0-9çÇ_-]*$",
+                  "Characters allowed: [a-z], [A-Z], [0-9], '-', '_' , 'ç-Ç'"
+                ],
+                "unique": [
+                  {
+                    "urlResource": [
+                      {
+                        "key": "path",
+                        "value": "{{AppAPIBotConfig}}/programs"
+                      },
+                      {
+                        "key": "queryString",
+                        "value": {
+                          "filter": "{\"name\":{\"$regex\":\"^(?i){{programName}}$\"},\"IXS\": \"{{IXS_id}}\"}",
+                          "keys": "{\"_id\":1,\"name\":1}"
+                        }
+                      },
+                      {
+                        "key": "headers",
+                        "value": {
+                          "Authorization": "Bearer {{token}}",
+                          "IXS": "{{IXS_id}}"
+                        }
+                      }
+                    ]
+                  },
+                  "warnings___nameExists"
+                ],
+                "maxlength": [
+                  20,
+                  "warnings___maxTextLength20"
+                ]
+              }
+            },
+            {
+              "type": "textbox",
+              "subType": "textarea",
+              "id": "programDescription",
+              "text": "Description",
+              "pathToValue": "description",
+              "validator": {
+                "required": [
+                  true,
+                  "warnings___fieldRequired"
+                ],
+                "maxlength": [
+                  200,
+                  "warnings___maxTextLength200"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "createProgramDetails2",
+      "text": "Step 2",
+      "components": [
+        {
+          "type": "initParameters",
+          "id": "courseSelectContainer",
+          "details": [
+            {
+              "type": "label",
+              "class": "entityTitleCreate",
+              "value": "associate to your degree"
+            },
+            {
+              "type": "label",
+              "class": "entitySubtitleCreate",
+              "value": "select a degree to associate your program"
+            },
+            {
+              "type": "wct-ng-select",
+              "id": "courseSelect",
+              "text": "application___course",
+              "placeholder": "program___courseSelection",
+              "class": "col-md-12",
+              "urlResource": [
+                {
+                  "key": "path",
+                  "value": "{{AppAPIBotConfig}}/courses"
+                },
+                {
+                  "key": "queryString",
+                  "value": {
+                    "filter": "{\"IXS\":\"{{IXS_id}}\"}"
+                  }
+                },
+                {
+                  "key": "headers",
+                  "value": {
+                    "Authorization": "Bearer {{token}}",
+                    "IXS": "{{IXS_id}}"
+                  }
+                }
+              ],
+              "pathToValueList": "_embedded",
+              "templateOfValueList": "{\"key\":\"{{_id___$oid}}\",\"value\":\"{{name}}\"}",
+              "parameters": [
+                {
+                  "key": "inlineHelp",
+                  "value": {
+                      "text": "help___program___create___degree"
+                  }
+                }
+              ],
+              "validator": {
+                "required": [
+                  true,
+                  "warnings___fieldRequired"
+                ]
+              }
+            },
+            {
+              "type": "initParameters",
+              "id": "categoryProgramWrapper",
+              "class": "col-md-12",
+              "details": [
+                {
+                  "type": "json",
+                  "id": "categoriesValues",
+                  "pathToValue": "_embedded",
+                  "urlResource": [
+                    {
+                      "key": "path",
+                      "value": "{{SchoolBOT}}/categories"
+                    },
+                    {
+                      "key": "headers",
+                      "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                      }
+                    }
+                  ],
+                  "hidden": true
+                },
+                {
+                  "type": "wct-ng-select",
+                  "subType": "multiple",
+                  "id": "categoryProgram",
+                  "class": "select-multiple",
+                  "placeholder": "application___selectCategory",
+                  "text": "application___category",
+                  "templateOfValueList": "{\"key\":\"{{_id___$oid}}\",\"value\":\"{{label}}\"}",
+                  "dynamicProps": {
+                    "lazyLoading": "!'{{languageProgramStudent}}'",
+                    "hidden": "!'{{languageProgramStudent}}'",
+                    "valueList": "{{categoriesValues}}.filter(category=>category.language=='{{languageProgramStudent}}')"
+                  },
+                  "parameters": [
+                    {
+                      "key": "inlineHelp",
+                      "value": {
+                          "text": "help___program___create___category"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "initParameters",
+              "id": "studentInfoInitParams",
+              "class": "col-md-12",
+              "dynamicProps": {
+                "lazyLoading": "!'{{courseSelect}}'",
+                "hidden": "!'{{courseSelect}}'"
+              },
+              "urlResource": [
+                {
+                  "key": "requestId",
+                  "value": "studentInfo"
+                },
+                {
+                  "key": "apiRecycle",
+                  "value": false
+                },
+                {
+                  "key": "path",
+                  "value": "{{AppAPIBotConfig}}/students"
+                },
+                {
+                  "key": "queryString",
+                  "value": {
+                    "filter": "{\"courses.0\":\"{{courseSelect___id}}\"}",
+                    "np": null,
+                    "rep": "pj"
+                  }
+                },
+                {
+                  "key": "headers",
+                  "value": {
+                    "Authorization": "Bearer {{token}}",
+                    "IXS": "{{IXS_id}}"
+                  }
+                },
+                {
+                  "key": "pathToMainData",
+                  "value": [
+                    "0"
+                  ]
+                }
+              ],
+              "details": [
+                {
+                  "type": "label",
+                  "id": "studentID",
+                  "hidden": true,
+                  "pathToValue": [
+                    "_id",
+                    "$oid"
+                  ]
+                },
+                {
+                  "type": "label",
+                  "id": "languageProgramStudent",
+                  "class": "col-md-12",
+                  "text": "application___language",
+                  "hidden": true,
+                  "pathToValue": [
+                    "language"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "buttons": [
+    {
+      "key": "cancel",
+      "text": "generic___operations___cancel",
+      "class": "btn-default"
+    },
+    {
+      "id": "programCreateButton",
+      "key": "submit",
+      "text": "generic___operations___save",
+      "class": "btn-primary",
+      "parameters": [
+        {
+          "key": "requestId",
+          "value": "programCreateAPI"
+        },
+        {
+          "key": "requestEndpoint",
+          "value": "{{SchoolBE}}/programs"
+        },
+        {
+          "key": "requestType",
+          "value": "POST"
+        },
+        {
+          "key": "requestHeaders",
+          "value": {
+            "Authorization": "Bearer {{token}}",
+            "IXS": "{{IXS_id}}"
+          }
+        },
+        {
+          "key": "requestBody",
+          "type": "json",
+          "value": {
+            "name": "{{programName}}",
+            "IXS": "{{IXS_id}}",
+            "description": "{{programDescription}}",
+            "createdBy": "{{logged-user}}",
+            "lastUpdate": "{{timestampWithTZ}}",
+            "status": 1,
+            "type": "flow",
+            "version": "V1.0",
+            "categories": "{{categoryProgram}}",
+            "creationDate": "{{timestampWithTZ}}",
+            "belongsTo": [
+              "{{courseIdFinal}}"
+            ],
+            "googleSheetsId": "{{programGoogleSheetsId}}",
+            "questionConfigLessons": [],
+            "lessons": [],
+            "chapters": [],
+            "public": "{{isPublic}}",
+            "language": "{{languageProgramStudent}}",
+            "lastPublishedDate": null,
+            "lastPublishedBy": null,
+            "lastPublishedVersion": null
+          }
+        },
+        {
+          "key": "onSuccess",
+          "value": {
+            "request": [
+              {
+                "key": "errorText",
+                "value": "Error when processing your request."
+              },
+              {
+                "key": "requestEndpoint",
+                "value": "{{SchoolBOT}}/courses/{{courseSelect___id}}"
+              },
+              {
+                "key": "requestHeaders",
+                "value": {
+                  "Authorization": "Bearer {{token}}",
+                  "IXS": "{{IXS_id}}"
+                }
+              },
+              {
+                "key": "requestType",
+                "value": "PATCH"
+              },
+              {
+                "key": "requestBody",
+                "type": "json",
+                "value": {
+                  "$push": {
+                    "programs": "{{@fv()@replaceTagVars('programCreateAPI____id___$oid')}}"
+                  }
+                }
+              },
+              {
+                "key": "onSuccess",
+                "value": {
+                  "request": [
+                    {
+                      "key": "requestEndpoint",
+                      "value": "{{SchoolBOT}}/students/{{studentID}}"
+                    },
+                    {
+                      "key": "requestHeaders",
+                      "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                      }
+                    },
+                    {
+                      "key": "requestType",
+                      "value": "PATCH"
+                    },
+                    {
+                      "key": "requestBody",
+                      "type": "json",
+                      "value": {
+                        "$push": {
+                          "programs": "{{@fv()@generateStudentProgramsStructure(@replaceTagVars('programCreateAPI____id___$oid'),@replaceTagVars('timestampWithTZ'),@replaceTagVars('preferred_username'))}}"
+                        }
+                      }
+                    },
+                    {
+                      "key": "errorText",
+                      "value": "errors___requestError"
+                    },
+                    {
+                      "key": "successText",
+                      "value": "success___programCreateSuccess"
+                    },
+                    {
+                      "key": "successRouter",
+                      "value": "knowledgecenter/programs/{{@fv()@replaceTagVars('programCreateAPI____id___$oid')}}"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "key": "onError",
+          "value": {
+            "notification": {
+              "type": "warning",
+              "text": "warnings___problemRetrievingSheet",
+              "limit": 1,
+              "timeout": 3000,
+              "position": "top-right"
+            },
+            "navigateTo": {
+              "route": "programs"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

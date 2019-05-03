@@ -1,0 +1,204 @@
+<h3 id="docs-exp-editor-instance">Instanciação de um editor de expressões</h3>
+<p>Um editor de expressões pode ser disponibilizado em página ou em janela modal. O exemplo abaixo demonstra como instanciar em página. A instanciação em janela modal é idêntica à de em página mas deve ser executada no evento <code>shown</code> da janela modal.</p>
+<p>O markup do editor de expressões deverá ser explicitamente disponibilizado na página.</p>
+<p>O snippet de código abaixo ilustra os ficheiros necessários ao correto funcionamento do editor de expressões. Demonstra ainda a instanciação dos diferentes elementos usados. O markup necessário não está demonstrado para que esta secção não fique demasiado extensa. Por favor, inspecione a página e copie o markup necessário.</p>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <div id="expressions-editor">
+            <div class="fx-ee-dialog">
+                <div class="fx-ee-content">
+                    <div class="fx-ee-header">
+                        <h4 class="fx-ee-title">Título do editor de expressões</h4>
+                        <p>Descrição do editor de expressões</p>
+                    </div>
+                    <div class="fx-ee-body">
+                        <div class="clearfix" style="height: 450px;"> <!-- A FIXED HEIGHT MUST BE SETTED TO THIS DIV -->                            
+                            <div class="fx-ee-wrapper">
+                                <div class="ui-layout-west">
+                                    <form role="search">
+                                        <div class="form-group fx-search-input">
+                                            <div class="fx-pos-rel">
+                                                <input type="text" class="fx-ee-search-expression-value fx-dropdown-search form-control input-sm full-width" placeholder="pesquisar ...">
+                                                <button class="glyphicon glyphicon-search fx-ee-search-expression" id="bt-ee-tree-search" type="button"></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="fx-ee-options">
+                                        <div class="fx-ee-tree-container"></div>
+                                    </div>
+                                </div>
+
+                                <div class="ui-layout-center">
+                                    <div class="fx-ee-more-actions-wrapper clearfix">
+                                        <p class="fx-ee-type-area-title">Operadores</p>
+                                        <button type="button" class="btn btn-default btn-xs pull-right fx-ee-toogle-all-actions">
+                                            <span class="sr-only">
+                                                ver todas as ações
+                                            </span>
+                                            ver todos <i class="caret"></i>
+                                        </button>
+                                        <div class="fx-ee-all-actions-wrapper hidden">
+                                            <div class="fx-ee-all-actions-inner">
+                                                <form role="search">
+                                                    <div class="form-group fx-search-input">
+                                                        <div class="fx-pos-rel">
+                                                            <input type="text" class="fx-ee-search-action-value fx-dropdown-search form-control input-sm full-width" placeholder="pesquisar ...">
+                                                            <button class="glyphicon glyphicon-search fx-ee-search-action" id="bt-ee-operators-search" type="button"></button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <div class="fx-ee-all-actions">
+                                                    <!--load template here-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fx-ee-common-actions clearfix">
+                                        <!--load template here-->
+                                    </div>
+
+                                    <div class="fx-ee-type-area-tools clearfix">
+                                        <p class="fx-ee-type-area-title">Regra</p>
+                                        <button type="button" id="bt-ee-clear-rule" class="btn btn-default btn-xs pull-right fx-clear-rule">
+                                            <i class="fa fa-eraser"></i> limpar
+                                        </button>
+                                        <button type="submit" class="btn btn-default btn-xs pull-right fx-check-syntax" id="bt-ee-check-syntax">
+                                            <i class="glyphicon glyphicon-ok"></i> verificar sintaxe
+                                        </button>
+                                        <div class="alert fx-ee-feedback">
+                                            <div class="fx-alert-icon">
+                                                <i class="fx-validation-feedback-icon"></i>
+                                            </div>
+                                            <div class="fx-alert-desc">
+                                                <p class="fx-validation-feedback-messsage">
+                                                    <!--Mensagem de feedback aqui-->
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="fx-ee-constructors">
+                                        <div class="form-group fx-ee-form-group-type-rule">
+                                            <textarea class="form-control fx-ee-editable-area" spellcheck="false"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fx-ee-footer">
+                        <label>output</label>
+                        <select class="form-control fx-ee-return-type">
+                            <option>string</option>
+                            <option>list</option>
+                            <option>inteiro</option>
+                        </select>
+                        <button id="btn-confirm" type="button" class="btn btn-primary btn-sm fx-ee-confirm">
+                            aplicar
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm fx-ee-cancel">
+                            cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!-- Ficheiros necessários a incluir no head-->
+
+<head>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/fuxi/lib/jstree/3.0/themes/fuxi/style.css" rel="stylesheet" />
+    <link href="/fuxi/lib/uilayout/layout-default-latest.css" rel="stylesheet" />
+    <link href="/fuxi/common/html/css/fuxi.min.css" rel="stylesheet" />
+
+    <!--Estes scripts dentro da tag head devido ao UI Layout-->
+    <script src="/basepack/jquery/1.11/jquery.min.js"></script>
+    <script src="/fuxi/lib/jqueryui/1.11/js/jquery-ui.min.js"></script>
+    <script src="/fuxi/lib/uilayout/jquery.layout-latest.js"></script>
+</head>
+        </textarea>
+    </form>
+
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!--Ficheiros a colocar antes de fechar a tag body-->
+
+<script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+<script src="/fuxi/lib/jstree/3.0/jstree.min.js"></script>
+<script src="/fuxi/common/exec/jstree.plugin.popoverinfo.js"></script>
+<script src="/fuxi/common/exec/common-expression-editor.js"></script>
+<script src="/fuxi/common/exec/fuxi.js"></script>
+        </textarea>
+    </form>
+
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!--Instanciação do editor de expressões-->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //the items populating the tree
+        var eexpItems = [
+            { "id": "demo_root_1", "parent": "#", "text": "Mais usados", "state": { "opened": true }, "li_attr": { "data-showinfo": "false" }, "icon": "fa fa-file" },
+                { "id": "demo_child_1", "parent": "demo_root_1", "text": "criarNovo()", "icon": "glyphicon glyphicon-plus", "li_attr": { "data-showinfo": "true", "data-expression": "createNew()", "data-drag": true }, "info": "Texto de apoio ao utilizador." },
+                { "id": "demo_child_2", "parent": "demo_root_1", "text": "atualizarObjeto()", "icon": "glyphicon glyphicon-refresh", "li_attr": { "data-showinfo": "true", "data-expression": "updateObject()", "data-drag": true }, "info": "Texto de apoio ao utilizador." },
+            { "id": "demo_root_3", "parent": "#", "text": "Funções QRE", "li_attr": { "data-showinfo": "false" }, "icon": "fa fa-file" },
+        ];
+
+        //the operators
+        var eeOperItems = [
+            {
+                "name": "operadores lógicos",
+                "cssname": "fx-ee-operations-wrapper",
+                "maxitems": 3,
+                "items": [
+                    {
+                        "text": "not",
+                        "action": "not"
+                    }
+                ]
+            },
+            {
+                "name": "operadores relacionais",
+                "cssname": "fx-ee-operators-wrapper",
+                "maxitems": 5,
+                "items": [
+                    {
+                        "text": "+",
+                        "action": "sum"
+                    }
+                ]
+            }
+        ];
+
+        //expression editor options
+        var options = {
+            expressionItems: eexpItems,
+            operatorItems: eeOperItems,
+            clientCheckRuleSyntaxValidator: "checkRuleSyntax",
+        };
+
+        //init editor
+        var $ee = $("#expressions-editor");
+
+        $ee.eEditor(options);
+
+        // demo check syntax
+        window.checkRuleSyntax = function (rule) {
+            console.log("validating rule: " + rule);
+            // do something !!!
+            return (Math.floor((Math.random() * 100) + 1) % 2 === 0);
+        };
+    });
+</script>
+
+        </textarea>
+    </form>
+</div>

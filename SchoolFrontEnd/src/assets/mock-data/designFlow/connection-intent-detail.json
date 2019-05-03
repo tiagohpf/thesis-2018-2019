@@ -1,0 +1,19 @@
+{
+    "type": "initParameters",
+    "details": [
+        {
+            "type": "json",
+            "text": null,
+            "pathToValue": [
+                "obj"
+            ]
+        }
+    ],
+    "buttons": [
+        {
+            "key": "cancel",
+            "text": "Ok",
+            "class": "btn-default"
+        }
+    ]
+}

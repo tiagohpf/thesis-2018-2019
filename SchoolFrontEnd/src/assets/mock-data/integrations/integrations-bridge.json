@@ -1,0 +1,55 @@
+{
+    "type": "page",
+    "id": "integrationsBridge",
+    "tabs": [
+        {
+            "id": "integrationsBridgeCenterMainContainer",
+            "components": [
+                {
+                    "include": "fullfilment/fullfilment-list",
+                    "role": "@fv()window.location.href.includes('fullfilment')"
+                },
+                {
+                    "include": "integrations/integration-slack",
+                    "role": "@fv()window.location.href.includes('slack')"
+                },
+                {
+                    "include": "integrations/integration-skype",
+                    "role": "@fv()window.location.href.includes('skype')"
+                },
+                {
+                    "include": "integrations/integration-whatsapp",
+                    "role": "@fv()window.location.href.includes('whatsapp')"
+                },
+                {
+                    "include": "integrations/integration-facebook",
+                    "role": "@fv()window.location.href.includes('facebook')"
+                },
+                {
+                    "include": "integrations/integration-ivr",
+                    "role": "@fv()window.location.href.includes('ivr')"
+                },
+                {
+                    "include": "integrations/integration-googleHome",
+                    "role": "@fv()window.location.href.includes('google_home')"
+                },
+                {
+                    "include": "integrations/integration-googleSpeech",
+                    "role": "@fv()window.location.href.includes('google_speech')"
+                },
+                {
+                    "include": "integrations/integration-alexa",
+                    "role": "@fv()window.location.href.includes('alexa')"
+                },
+                {
+                    "include": "integrations/integration-pollyAmazon",
+                    "role": "@fv()window.location.href.includes('polly')"
+                },
+                {
+                    "include": "integrations/integration-telegram",
+                    "role": "@fv()window.location.href.includes('telegram')"
+                }
+            ]
+        }
+    ]
+}

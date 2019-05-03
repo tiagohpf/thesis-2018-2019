@@ -1,0 +1,94 @@
+{
+    "type": "initParameters",
+    "id": "pageUnLearn",
+    "header": {
+        "id": "pageHeader",
+        "seo": {
+            "_text": "{{@fv()@i18n('student___programsUnLearn') + '   <strong>' + @replaceTagVars('studentsProgramsMainCardList___name') + '</strong>.'}}",
+            "_icon": "fa fa-credit-card"
+        }
+    },
+    "details": [
+        {
+            "type": "label",
+            "id": "programID",
+            "pathToValue": [
+                "programID"
+            ],
+            "hidden": true
+        },
+        {
+            "type": "label",
+            "id": "pageBody",
+            "value": "{{@fv()@i18n('student___confirmUnLearn') + '   <strong>' + @replaceTagVars('studentsProgramsMainCardList___name') + '</strong>?'}}"
+        },
+        {
+            "type": "label",
+            "id": "pageBodyInform",
+            "value": "{{@fv()@i18n('student___informUnLearn')}}"
+        }
+    ],
+    "operations": {
+        "parameters": [
+            {
+                "type": "updatePage",
+                "text": "generic___operations___cancel",
+                "class": "btn-default"
+            },
+            {
+                "type": "execute",
+                "id": "executeUnlearn",
+                "text": "generic___operations___unlearn",
+                "class": "btn-primary",
+                "parameters": [
+                    {
+                        "key": "requestEndpoint",
+                        "value": "{{SchoolBE}}/availableProgram/{{programID}}/unlearn/[[id]]",
+                        "_value": "{{subscription_xapi_ms}}/services/{{remove_id}}"
+                    },
+                    {
+                        "key": "requestHeaders",
+                        "value": {
+                            "Authorization": "Bearer {{token}}",
+                            "IXS": "{{IXS_id}}"
+                        }
+                    },
+                    {
+                        "key": "requestType",
+                        "value": "POST"
+                    },
+                    {
+                        "key": "requestBody",
+                        "type": "json",
+                        "value": {
+                            "requestedBy": "{{logged-user}}"
+                        }
+                    },
+                    {
+                        "key": "successText",
+                        "value": "Unlearned program successfully."
+                    },
+                    {
+                        "key": "errorText",
+                        "value": "ERROR!\n Could not execute program unlearn."
+                    },
+                    {
+                        "key": "onSuccess",
+                        "value": {
+                            "request": [
+                                {
+                                    "key": "updatePageParameter",
+                                    "value": {
+                                        "studentPropertiesViewTabStudyContent": {
+                                            "lazyLoading": false
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

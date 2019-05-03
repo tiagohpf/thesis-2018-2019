@@ -1,0 +1,458 @@
+{
+  "type": "page",
+  "id": "studentSurveysComponent",
+  "lazyLoading": true,
+  "header": {
+    "id": "pageHeader",
+    "seo": {
+      "text": "[[name]]",
+      "icon": "fa fa-graduation-cap",
+      "description": "<i class=\"fuxicons fuxicons-checkboxes fx-icon\"></i>&nbsp;&nbsp;Surveys"
+    },
+    "_operations": {
+      "id": "pageHeaderOperations",
+      "text": "generic___operations___operations",
+      "icon": "fa fa-cog",
+      "parameters": []
+    },
+    "details": [
+      {
+        "type": "label",
+        "id": "statusCodes",
+        "hidden": true,
+        "urlResource": [
+          {
+            "key": "path",
+            "value": "{{AppAPIBotConfig}}/baseQuestionStatus"
+          },
+          {
+            "key": "headers",
+            "value": {
+              "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+            }
+          }
+        ],
+        "pathToValue": [
+          "_embedded",
+          "JSON.stringify($this)"
+        ]
+      }
+    ]
+  },
+  "navigation": [
+    {
+      "class": "",
+      "icon": "fa fa-cogs",
+      "showComponentById": "studentPropsComponent"
+    },
+    {
+      "class": "",
+      "icon": "fuxicons fuxicons-lightbulb-configuration",
+      "showComponentById": "studentLearningComponent"
+    },
+    {
+      "class": "active",
+      "icon": "fuxicons fuxicons-checkboxes fx-icon",
+      "showComponentById": "studentSurveysComponent"
+    },
+    {
+      "class": "",
+      "icon": "fa fa-comments",
+      "showComponentById": "studentDialogsComponent"
+    },
+    {
+      "class": "",
+      "icon": "fa fa-bar-chart",
+      "showComponentById": "studentStatisticsComponent"
+    }
+  ],
+  "sidebar": [
+    {
+      "type": "filter",
+      "id": "surveysMainCardsFilter",
+      "mappingId": [
+        "surveysMainCard",
+        "surveysMainTable"
+      ],
+      "details": [
+        {
+          "type": "textbox",
+          "subType": "autocomplete",
+          "id": "nameFilter",
+          "apiFieldName": "identification.name",
+          "text": "Name",
+          "pathToValueList": "_embedded",
+          "pathToValue": [
+            "identification",
+            "name"
+          ],
+          "validator": {
+            "autocomplete": [
+              {
+                "urlResource": [
+                  {
+                    "key": "path",
+                    "value": "{{AppAPIBotConfig}}/surveys"
+                  },
+                  {
+                    "key": "queryString",
+                    "value": {
+                      "keys": "{\"identification.name\":1}",
+                      "filter": "{\"identification.name\":{\"$regex\":\"(?i){{nameFilter}}.*\"}}"
+                    }
+                  },
+                  {
+                    "key": "headers",
+                    "value": {
+                      "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                  }
+                ]
+              },
+              "no records matched"
+            ]
+          }
+        },
+        {
+          "type": "input-checkbox",
+          "id": "statusFilter",
+          "apiFieldName": "identification.status",
+          "text": "Status",
+          "filterTemplate": "{\"$in\":\"{{statusFilter}}\"}",
+          "valueList": [
+            {
+              "key": 1,
+              "value": "<i class=\"fa fa-certificate fx-icon text-info\"></i>&nbsp;{{@fv()@i18n('surveys___status_types___new')}}"
+            },
+            {
+              "key": 3,
+              "value": "<i class=\"fa fa-check fx-icon text-success\"></i>&nbsp;{{@fv()@i18n('surveys___status_types___published')}}"
+            },
+            {
+              "key": 4,
+              "value": "<i class=\"fa fa-certificate fx-icon text-info\"></i>&nbsp;{{@fv()@i18n('surveys___status_types___new')}}&nbsp;&nbsp;<i class=\"fa fa-check fx-icon text-success\"></i>"
+            }
+          ]
+        },
+        {
+          "type": "dates-interval",
+          "id": "lastUpdateFilter",
+          "text": "student___lastUpdate",
+          "apiFieldName": "identification.lastUpdated",
+          "placeholder": "Select period",
+          "filterTemplate": "{{@fv()@restoreMilliseconds(@replaceTagVars('lastUpdateFilter'))}}",
+          "valueList": [
+            {
+              "value": "last week",
+              "text": "generic___dateInterval___last7Days"
+            },
+            {
+              "value": "last month",
+              "text": "generic___dateInterval___lastMonth"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tabs": [
+    {
+      "id": "surveysMainContainer",
+      "components": [
+        {
+          "type": "initTable",
+          "id": "surveysMainTable",
+          "showComponentById": true,
+          "icon": "fa fa-table",
+          "dynamicProps": {
+            "lazyLoading": "!'{{studentIdAux}}'"
+          },
+          "urlResource": [
+            {
+              "key": "path",
+              "value": "{{AppAPIBotConfig}}/surveys"
+            },
+            {
+              "key": "queryString",
+              "value": {
+                "page": "((page))",
+                "pagesize": "((pagesize))",
+                "count": null,
+                "filter": "{\"identification.students\":\"{{studentIdAux}}\"}",
+                "sort": "-identification.lastUpdated",
+                "keys": "{\"identification\":1}"
+              }
+            },
+            {
+              "key": "pathToMainData",
+              "value": [
+                "_embedded"
+              ]
+            },
+            {
+              "key": "reload",
+              "value": false
+            },
+            {
+              "key": "headers",
+              "value": {
+                "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+              }
+            }
+          ],
+          "parameters": [
+            {
+              "key": "tableActions",
+              "value": {
+                "columnManager": false,
+                "export": false,
+                "search": false
+              }
+            }
+          ],
+          "columns": [
+            {
+              "type": "context",
+              "id": "tableSurveyId",
+              "pathToValue": [
+                "_id",
+                "$oid"
+              ],
+              "hidden": true
+            },
+            {
+              "type": "context",
+              "id": "tableStatusContext",
+              "hidden": true,
+              "pathToValue": [
+                "identification",
+                "status"
+              ]
+            },
+            {
+              "type": "label",
+              "id": "tableNameFromSurvey",
+              "pathToValue": [
+                "identification",
+                "name"
+              ],
+              "dynamicProps": {
+                "hidden": "'[[name]]'"
+              },
+              "navigateTo": "surveys/detail/{{tableSurveyId}}",
+              "text": "Name",
+              "sort": true,
+              "sortTemplate": {
+                "sort": "{\"identification.name\":{{@fv()@setSortDirection(@replaceTagVars('config::surveysMainTable'))}}}"
+              }
+            },
+            {
+              "type": "label",
+              "id": "tableNameFromStudent",
+              "pathToValue": [
+                "identification",
+                "name"
+              ],
+              "dynamicProps": {
+                "hidden": "!'[[name]]'"
+              },
+              "navigateTo": "students/[[name]]/surveys/{{tableSurveyId}}",
+              "text": "Name",
+              "sort": true,
+              "sortTemplate": {
+                "sort": "{\"identification.name\":{{@fv()@setSortDirection(@replaceTagVars('config::surveysMainTable'))}}}"
+              }
+            },
+            {
+              "type": "label",
+              "hidden": true,
+              "id": "tableName",
+              "dynamicProps": {
+                "value": "'{{tableNameFromStudent}}' ? '{{tableNameFromStudent}}' : '{{tableNameFromSurvey}}'"
+              }
+            },
+            {
+              "type": "text",
+              "id": "tableStatus",
+              "pathToValue": [
+                "@getNameForThisCode({{statusCodes}},$this['identification']['status'])"
+              ],
+              "text": "Status"
+            },
+            {
+              "type": "text",
+              "id": "tableLastUpdate",
+              "pathToValue": [
+                "@millisecondsToDateString($this['identification']['lastUpdated'])"
+              ],
+              "text": "student___lastUpdate",
+              "sort": "DESC",
+              "sortTemplate": {
+                "sort": "{\"identification.lastUpdated\":{{@fv()@setSortDirection(@replaceTagVars('config::surveysMainTable'))}}}"
+              }
+            },
+            {
+              "type": "actions",
+              "id": "tableCourseActions",
+              "operations": [
+                {
+                  "size": 1,
+                  "text": "General actions",
+                  "icon": "fa fa-cog",
+                  "parameters": [
+                    {
+                      "type": "navigate",
+                      "id": "surveyConsultFromSurvey",
+                      "text": "Consult",
+                      "icon": "fuxicons fuxicons-eye fx-icon",
+                      "_dynamicProps": {
+                        "hidden": "'[[name]]'"
+                      },
+                      "navigateTo": "surveys/detail/{{tableSurveyId}}"
+                    },
+                    {
+                      "type": "navigate",
+                      "id": "surveyConsultFromStudent",
+                      "text": "Consult",
+                      "icon": "fuxicons fuxicons-eye fx-icon",
+                      "dynamicProps": {
+                        "hidden": "!'[[name]]'"
+                      },
+                      "navigateTo": "students/[[name]]/surveys/{{tableSurveyId}}"
+                    },
+                    {
+                      "type": "openModal",
+                      "id": "surveyPublish",
+                      "text": "Publish",
+                      "role": "Execute",
+                      "icon": "fa fa-check",
+                      "dynamicProps": {
+                        "hidden": "'{{tableStatusContext}}'==='3'"
+                      },
+                      "mockToLoad": "surveys/survey-publish",
+                      "parameters": [
+                        {
+                          "key": "context",
+                          "value": [
+                            "tableName"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "rows": []
+        },
+        {
+          "type": "initCards",
+          "subType": "card-container",
+          "showComponentById": true,
+          "lazyLoading": true,
+          "id": "surveysMainCard",
+          "icon": "fa fa-th-large",
+          "class": "col-sm-6",
+          "urlResource": [
+            {
+              "key": "path",
+              "value": "{{AppAPIBotConfig}}/surveys"
+            },
+            {
+              "key": "queryString",
+              "value": {
+                "page": "((page))",
+                "pagesize": "((pagesize))",
+                "count": null,
+                "filter": "{\"identification.students\":\"{{studentIdAux}}\"}",
+                "sort": "-identification.lastUpdated",
+                "keys": "{\"identification\":1}"
+              }
+            },
+            {
+              "key": "pathToMainData",
+              "value": [
+                "_embedded"
+              ]
+            },
+            {
+              "key": "reload",
+              "value": false
+            },
+            {
+              "key": "headers",
+              "value": {
+                "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+              }
+            }
+          ],
+          "pathToValueList": "",
+          "parameters": [
+            {
+              "key": "tableActions",
+              "value": {
+                "columnManager": false,
+                "export": false,
+                "search": false
+              }
+            }
+          ],
+          "details": [
+            {
+              "type": "header",
+              "header": {
+                "id": "pageHeader",
+                "seo": {
+                  "icon": "fuxicons fuxicons-checkboxes fx-icon",
+                  "navigateTo": "surveys/detail/{{cardSurveyId}}",
+                  "text": "{{cardName}}"
+                }
+              }
+            },
+            {
+              "type": "label",
+              "id": "cardSurveyId",
+              "pathToValue": [
+                "_id",
+                "$oid"
+              ],
+              "hidden": true
+            },
+            {
+              "type": "label",
+              "id": "cardName",
+              "pathToValue": [
+                "identification",
+                "name"
+              ],
+              "hidden": true
+            },
+            {
+              "type": "label",
+              "id": "cardSurveyStatus",
+              "class": "col-sm-6",
+              "pathToValue": [
+                "@getNameForThisCode({{statusCodes}},$this['identification']['status'])"
+              ],
+              "text": "Status:"
+            },
+            {
+              "type": "label",
+              "id": "lastUpdate",
+              "pathToValue": [
+                "@millisecondsToDateString($this['identification']['lastUpdated'])"
+              ],
+              "class": "col-sm-6",
+              "text": "student___lastUpdate"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

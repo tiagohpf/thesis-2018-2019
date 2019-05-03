@@ -1,0 +1,169 @@
+{
+    "type": "initParameters",
+    "id": "editAliasPage",
+    "header": {
+        "id": "editAliasPageHeader",
+        "seo": {
+            "text": "program___alias___editAlias",
+            "icon": "fa fa-reply"
+        },
+        "details": [
+            {
+                "type": "context",
+                "text": "programCode",
+                "id": "programCode",
+                "pathToValue": [
+                    "programAPIResponse",
+                    "code"
+                ]
+            }
+        ]
+    },
+    "details": [
+        {
+            "type": "context",
+            "id": "aliasIdx",
+            "text": "aliasIdx",
+            "pathToValue": [
+                "$this['aliasIdx'] || '0'"
+            ]
+        },
+        {
+            "TODO": "Ativar a validacao da unidade",
+            "type": "textbox",
+            "id": "word",
+            "text": "program___alias___word",
+            "class": "col-sm-6",
+            "pathToValueList": "_embedded",
+            "pathToValue": [
+                "displayName"
+            ],
+            "title": "program___alias___wordSeparatorHelper",
+            "validator": {
+                "required": [
+                    true,
+                    "warnings___fieldRequired"
+                ],
+                "regex": [
+                    "^[^*%+[\\]?&;|() ]+( ?\\| ?[^*%+[\\]?&;|() ]+)*$",
+                    "program___alias___wordSeparatorHelper"
+                ],
+                "_unique": [
+                    {
+                        "urlResource": [
+                            {
+                                "key": "path",
+                                "value": "{{AppAPIBotConfig}}/programs"
+                            },
+                            {
+                                "key": "queryString",
+                                "value": {
+                                    "filter": "{\"_id\": { \"$oid\":\"[[programID]]\"},\"alias\":{\"$elemMatch\":{\"word\":{\"$regex\":\"(?i){{word}}.*\"}}}}",
+                                    "keys": "{\"_id\":1,\"name\":1,\"alias\":1}"
+                                }
+                            },
+                            {
+                                "key": "headers",
+                                "value": {
+                                    "Authorization": "Bearer {{token}}",
+                                    "IXS": "{{IXS_id}}"
+                                }
+                            }
+                        ]
+                    },
+                    "warnings___nameExists"
+                ]
+            }
+        },
+        {
+            "type": "textbox",
+            "id": "alias",
+            "text": "program___alias___name",
+            "title": "program___alias___aliasHelper",
+            "pathToValue": [
+                "alias"
+            ],
+            "class": "col-sm-6",
+            "validator": {
+                "required": [
+                    true,
+                    "warnings___fieldRequired"
+                ],
+                "regex": [
+                    "^[^*%+[\\]?&;|() ]*$",
+                    "warnings___wordWithoutSpecialCharacters"
+                ]
+            }
+        }
+    ],
+    "operations": {
+        "parameters": [
+            {
+                "type": "submit",
+                "id": "aliasCreateSubmitBtn",
+                "text": "generic___operations___save",
+                "class": "btn-primary",
+                "parameters": [
+                    {
+                        "key": "requestEndpoint",
+                        "value": "{{SchoolBE}}/programs/[[programID]]"
+                    },
+                    {
+                        "key": "requestHeaders",
+                        "value": {
+                            "Authorization": "Bearer {{token}}",
+                            "IXS": "{{IXS_id}}"
+                        }
+                    },
+                    {
+                        "key": "requestType",
+                        "value": "PATCH"
+                    },
+                    {
+                        "key": "requestBody",
+                        "type": "json",
+                        "value": {
+                            "$set": {
+                                "alias.{{aliasIdx}}.word": "{{word}}",
+                                "alias.{{aliasIdx}}.alias": "{{alias}}"
+                            }
+                        }
+                    },
+                    {
+                        "key": "successRouter",
+                        "value": "knowledgecenter/programs/[[programID]]"
+                    },
+                    {
+                        "key": "errorText",
+                        "value": "ERROR!\n Could not edit alias."
+                    },
+                    {
+                        "key": "onSuccess",
+                        "value": {
+                            "request": [
+                                {
+                                    "key": "updatePageParameter",
+                                    "value": {
+                                        "programAliasTable": {
+                                            "lazyLoading": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "key": "successText",
+                                    "value": "Alias edited successfully."
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "aliasEditCancelBtn",
+                "type": "updatePage",
+                "text": "generic___operations___cancel",
+                "class": "btn-default"
+            }
+        ]
+    }
+}

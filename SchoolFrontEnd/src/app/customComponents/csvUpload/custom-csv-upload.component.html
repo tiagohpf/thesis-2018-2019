@@ -1,0 +1,49 @@
+<!-- <input type="file" name="csvFile" style="background: #fff; color: #009688;"> -->
+<!-- <input type="file" #fileInput placeholder="Upload file..." /> -->
+<!-- <input type="button" value="Upload" style="background: #fff; color: #009688;" (click)="submitForm()"> -->
+
+<form action="" name="myForm">
+  <div class="col-sm-12">
+    <div class="form-group div-as-table">
+      <div class="tr">
+        <div class="control-label td fx-required-field" style="padding-right:20px;">
+          <label for="_componentId">{{inputParameters.text}}</label>
+        </div>
+        <div class="td keep-alignment-to-label">
+          <div class="input-group csv-upload-wrapper">
+            <div class="btn-group">
+              <button class="btn btn-default custom-csv-cursor">
+                <i class="fuxicons fuxicons-upload-file fx-icon custom-csv-cursor"></i>
+                Choose file
+              </button>
+              <input type="text" disabled [value]="fileName">
+              <input [id]="_componentId" type="file" name="csvFile" (change)="getFileName($event)">
+            </div>
+          </div>
+          <!-- <button class="btn btn-default">
+              <i class="fa fa-question-circle"></i>
+            </button> -->
+          <div *ngIf="inputParameters.description" class="label-grouper">
+            <p class="form-control-static textbox-align custm-csv-description">{{inputParameters.description}}</p>
+          </div>
+          <a *ngIf="viewExample" [attr.href]="viewExample['url']" target="_blank">{{viewExample['text']}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div class="modal-footer custom-csv-footer">
+    <div style="display:inline-block;">
+      <div class="btn-group">
+
+        <button type="button" [disabled]="!fileName" class="btn btn-sm btn-primary" (click)="submitForm()" title="" id="custom-csv-upload-btn-changeGoalSubmit">
+          <span>Change</span>
+        </button>
+
+        <button type="button" class="btn btn-sm btn-default" (click)="closeModal()" title="" id="custom-csv-upload-btn-changeGoalCancel">
+          <span>Cancel</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

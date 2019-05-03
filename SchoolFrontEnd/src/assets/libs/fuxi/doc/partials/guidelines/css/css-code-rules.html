@@ -1,0 +1,611 @@
+<h3 id="docs-css-code-rules">Regras de codificação</h3>
+<p>Esta secção apresenta as regras de codificação que a equipa segue para a declaração dos estilos.</p>
+
+<!-- ID & Class Names-->
+<div>
+    <h4>Nomes de ID e Class</h4>
+    <p>Não usamos nomes que reflitam questões apresentacionais nem atribuímos nomes sem qualquer significado. Procuramos sempre atribuír nomes que representem o propósito do elemento em questão ou, em alternativa, usar nomes genéricos.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+/*Recomendado por representar o propósito da funcionalidade*/
+#login {
+    background: #fff;
+}
+
+/*Recomendado por representar algo genérico*/
+.danger {
+    background: #f00;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-danger">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+/*Não recomendado por não ter significado*/
+#wui-997 {
+    color: #fff;
+}
+
+/*Não recomendado por ser apresentacional*/
+.red-bt {
+    background: #f00;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Prefixação -->
+<div>
+    <h4>Prefixação dos nomes de ID e Class</h4>
+    <p>Usamos um prefixo curto e percetível de acordo com o projeto, nomeadamente para distinguir os nossos estilos de outros de bibliotecas externas.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+#fx-login{
+    padding: 10px;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-danger">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+#login {
+    padding: 10px;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Evitar qualificação -->
+<div>
+    <h4>Evitamos qualificar ID e Class</h4>
+    <p>Procuramos ao máximo evitar a qualificação de ID e Class pois isso faz com que o estilo fique preso a um tipo de elemento. No exemplo não recomendado, caso a class <code>.tabs</code> fosse aplicado a uma <code>ol</code> o estilo não seria aplicado.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+.tabs {
+    padding: 10px;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-danger">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+ul.tabs {
+    padding: 10px;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sem unidade após valor 0 -->
+<div>
+    <h4>Não especificamos unidades ao valor 0</h4>
+    <p>Ao valor 0 nunca atribuímos nenhuma unidade de medida.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+.tabs {
+    padding: 10px 0;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-danger">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+.tabs {
+    padding: 10px 0px;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Shorthand -->
+<div>
+    <h4>Shorthand</h4>
+    <p>Existem inúmeras propriedades CSS que podem ser alvo de shortand. Sempre que possível usamos esta técnica para manter a folha de estilos mais concisa.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+.avatar-default {
+    background: url(../caminhodaimagem.png) no-repeat #fff;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-danger">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+.avatar-default {
+    background-image: url(../caminhodaimagem.png);
+    background-repeat: no-repeat;
+    background-color: #fff;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Omitir 0 à esquerda -->
+<div>
+    <h4>Omitimos o 0 antes dos valores decimais entre valores -1 e 1</h4>
+    <p>Por não acrescentar valor à regra nunca colocamos o 0 antes dos valores decimais entre valores -1 e 1.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+p {
+    font-size: .8em;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-danger">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+p {
+    font-size: 0.8em;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Notação hex -->
+<div>
+    <h4>Notação hexadecimal</h4>
+    <p>Usamos notação hexadecimal para as cores e sempre que possível usamos apenas 3 caracteres. Preferimos esta notação pois facilita o copy/paste a partir dos editores de imagem no qual fazemos os protótipos.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+.breaking-news {
+    background: #f00;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-danger">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+.breaking-news {
+    background: #ff0000;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delimitadores de nomes ID e Class -->
+<div>
+    <h4>Delimitadores de nomes de ID e class</h4>
+    <p>Separamos palavras do nome de uma classe com hyphen em vez de underscrore ou camel case. Preferimos esta opção pois a própria linguagem CSS utiliza esta notação para definir as suas propriedades. Por exemplo, <code>font-size</code> ou <code>margin-top</code>.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+.breaking-news {
+    padding-top: 10px;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-danger">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+.breaking_news,
+.breakingNews {
+    padding-top: 10px;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Seletor por linha -->
+<div>
+    <h4>Um seletor e uma propriedade por linha</h4>
+    <p>Para facilitar a leitura do código declaramos um seletor e uma propriedade por linha.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+a:focus,
+a:active {
+    position: relative;
+    top: 1px;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-danger">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+a:focus, a:active {
+    position: relative; top: 1px;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Ordem alfabética -->
+<div>
+    <h4>Ordenação alfabética das propriedades</h4>
+    <p> Para facilitar a leitura do código ordenamos alfabeticamente as propriedades. Os <i>vendor prefixs</i> também são ordenados alfabeticamente. Colocamos a propriedade standard no fim dos <i>vendor prefixs</i>.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+.breaking-news {
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    padding: 0;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-danger">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+.breaking-news {
+    padding: 0;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Identação -->
+<div>
+    <h4>Indentação do código</h4>
+    <p>Indentamos as propriedades assim como os seletores como forma a que a hierarquia seja refletida, facilitando assim o entendimento.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+.tabs {
+    background: #ccc;
+    overflow: hidden;
+}
+
+    .tabs li {
+        float: left;
+        margin-right: 5px;
+    }
+                    </textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-danger">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+.tabs {
+background: #ccc;
+overflow: hidden;
+}
+
+.tabs li {
+float: left;
+margin-right: 5px;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Terminar com ; -->
+<div>
+    <h4>Terminamos todas as declarações com ;</h4>
+    <p>Apesar de a última propriedade de uma declaração não necessitar de ser fechada com ; como forma de precaver erros futuros também a fechamos.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+.tabs {
+    color: #333;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-danger">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+.tabs {
+    color: #333
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Fim do nome propriedade ; -->
+<div>
+    <h4>Fim do nome da propriedade</h4>
+    <p>Para facilitar a leitura do nosso código usamos um espaço entre os : e o valor da propriedade mas não usamos um espaço entre o nome da propriedade e os :</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+.tabs {
+    color: #333;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-danger">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+.tabs {
+    color :#333;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Separação declaration blocks -->
+<div>
+    <h4>Separação das declarações</h4>
+    <p>Para facilitar a leitura do nosso código usamos um espaço entre o último seletor e a chaveta de abertura do <i>declaration block</i>. A chaveta de abertura fica sempre na linha do último seletor e a de fecho na linha abaixo da última propriedade.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+.tabs {
+    background: #ccc;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="fx-docs-snippet-code alert alert-danger">
+                <h5 class="fx-danger-txt">
+                    <i class="fa fa-times-circle"></i>
+                    Não recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+/*Não recomendado por ausência de espaço entre seletor e chaveta de abertura/
+.tabs{
+    background :#ccc;
+}
+
+/*Não recomendado por uso desnecessário de quebra de linha/
+.tabs
+{
+    background :#ccc;
+}
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC -->
+<div>
+    <h4>Comentários de secção e inserção de uma <i>table of contents</i></h4>
+    <p>Para facilitar a manutenção do código procuramos agrupar os estilos em zonas comentadas da folha de estilos e, no topo da mesma, colocamos a <i>table of contents</i> do ficheiro.</p>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="fx-docs-snippet-code alert alert-success">
+                <h5 class="fx-success-txt">
+                    <i class="fa fa-check-circle"></i>
+                    Recomendado
+                </h5>
+                <form class="fx-codemirror">
+                    <textarea class="fx-codemirror-textarea">
+/* Table of contents
+- Tipografia
+- Footer
+*/
+
+/* Tipografia */
+h1 {
+    font-family: 'arial', helvetica, sans-serif
+}
+
+/* Footer */
+                    </textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

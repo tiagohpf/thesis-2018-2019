@@ -1,0 +1,167 @@
+<h3 id="docs-tabs-options">Opções</h3>
+<p>O componente de Tabs disponibiliza as opções abaixo enumeradas, todas elas do tipo <code>HTML data-*</code>.</p>
+<p>Os defaults são aplicados na ausência dos <code>data-*</code> no DOM.</p>
+
+<div class="table-responsive">
+    <table class="table fx-table fx-table-with-codemirror">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th class="fx-col-type">Tipo</th>
+                <th>Default</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="4"><strong>Opções da diretiva <code>fxtabset</code></strong></td>
+            </tr>
+            <tr>
+                <td>data-fxtab-refresh</td>
+                <td>texto</td>
+                <td><code>''</code></td>
+                <td>Atributo que ao ser alterado permite refrescar as tabs.</td>
+            </tr>
+            <tr>
+                <td>data-fxtab-data</td>
+                <td>texto</td>
+                <td><code>''</code></td>
+                <td>Atributo que recebe os dados a serem carregados.</td>
+            </tr>
+            <tr>
+                <td>data-fx-onsortable</td>
+                <td>texto</td>
+                <td><code>''</code></td>
+                <td>Atributo que permite definir o nome da função a executar do lado da app.js para ordenar os tabs.</td>
+            </tr>
+            <tr>
+                <td>data-fxtab-language</td>
+                <td>texto</td>
+                <td><code>'en'</code></td>
+                <td>Atributo que permite definir a língua em que são mostradas as mensagens.</td>
+            </tr>
+            <tr>
+                <td>data-fx-statict-content</td>
+                <td>texto</td>
+                <td><code>''</code></td>
+                <td>Atributo que indica se o conteúdo das tabs é estático ou é carregado utilizando uma view (ex: ui-router).</td>
+            </tr>
+            <tr>
+                <td>fx-show-add</td>
+                <td>texto</td>
+                <td><code>false</code></td>
+                <td>Atributo que indica se existe criação de tabs.</td>
+            </tr>
+            <tr>
+                <td>fx-add-callback</td>
+                <td>texto</td>
+                <td><code>''</code></td>
+                <td>Atributo que permite definir a função para tratar da criação de tabs. Depende da definição do atributo <code>fx-show-add</code>.</td>
+            </tr>
+            <tr>
+                <td>fx-add-tab-button-text</td>
+                <td>texto</td>
+                <td><code>''</code></td>
+                <td>Atributo que permite definir o texto do botão de criação de tab.</td>
+            </tr>
+            <tr>
+                <td colspan="4"><strong>Opções da diretiva <code>fxtab</code></strong></td>
+            </tr>
+            <tr>
+                <td>active</td>
+                <td>booleano</td>
+                <td>false</td>
+                <td>Atributo presente na tab ativa.</td>
+            </tr>
+            <tr>
+                <td>disable</td>
+                <td>booleano</td>
+                <td>false</td>
+                <td>Atributo que indica se uma tab pode ser clicável e colocada como ativa.</td>
+            </tr>
+            <tr>
+                <td>dismissible</td>
+                <td>booleano</td>
+                <td>false</td>
+                <td>Atributo que indica se a tab pode ser removida.</td>
+            </tr>
+            <tr>
+                <td>fx-sortable</td>
+                <td>booleano</td>
+                <td>true</td>
+                <td>Atributo que indica se a tab pode ser reposicionada.</td>
+            </tr>
+            <tr>
+                <td>status</td>
+                <td>HTML data-*</td>
+                <td><code>''</code></td>
+                <td>Atributo que permite mostrar um ícone após o título da tab indicado o estado desta. Poderá ser: <code>warning</code> | <code>error</code> | <code>success</code> | <code>info</code>.</td>
+            </tr>
+            <tr>
+                <td>href</td>
+                <td>HTML data-*</td>
+                <td><code>''</code></td>
+                <td>Atributo que permite definir o url da tab. É usado quando se clica com o botão direito do rato e se faz abrir link ou quando se faz o ctrl+click ou mouse middle click para abrir o url num novo tab.</td>
+            </tr>
+            <tr>
+                <td>data-fx-onselect</td>
+                <td>HTML data-*</td>
+                <td><code>''</code></td>
+                <td>Atributo que permite indicar o nome da função a executar quando se activa uma tab.</td>
+            </tr>
+            <tr>
+                <td>data-fx-ondeselect</td>
+                <td>HTML data-*</td>
+                <td><code>''</code></td>
+                <td>Atributo que permite indicar o nome da função a executar quando se desativa uma tab.</td>
+            </tr>
+            <tr>
+                <td>data-fx-onremove</td>
+                <td>HTML data-*</td>
+                <td>-</td>
+                <td>Atributo que permite indicar o nome da função a executar quando se remove uma tab.</td>
+            </tr>
+            <tr>
+                <td>heading</td>
+                <td>HTML data-*</td>
+                <td>-</td>
+                <td>Atributo que permite definir o texto do cabeçalho.</td>
+            </tr>
+            <tr>
+                <td>
+                    <a class="fx-devguide-toggle-code-vis" role="button">
+                        <i class="fa fa-angle-down"></i>ver código
+                    </a>
+                    <div class="fx-devguide-toggled-code-vis hidden">
+                        <form class="fx-codemirror">
+                            <textarea class="fx-codemirror-textarea-hidden">
+<fxtab-heading></fxtab-heading></textarea>
+                        </form>
+                    </div>
+                </td>
+                <td>HTML</td>
+                <td><code>''</code></td>
+                <td>Atributo que permite definir o HTML do cabeçalho. Em alternativa ao atributo <code>heading</code>.</td>
+            </tr>
+            <tr>
+                <td colspan="4"><strong>Atributo para carregamento do conteúdo das tabs utilizando uma view.</strong></td>
+            </tr>
+            <tr>
+                <td>
+                    <a class="fx-devguide-toggle-code-vis" role="button">
+                        <i class="fa fa-angle-down"></i>ver código
+                    </a>
+                    <div class="fx-devguide-toggled-code-vis hidden">
+                        <form class="fx-codemirror">
+                            <textarea class="fx-codemirror-textarea-hidden">
+<div ui-view></div></textarea>
+                        </form>
+                    </div>
+                </td>
+                <td>HTML</td>
+                <td><code>''</code></td>
+                <td>View para carregamento do conteúdo das tabs.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

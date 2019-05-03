@@ -1,0 +1,72 @@
+<h3 id="docs-menus-2-niveis">Menu com 2 níveis</h3>
+<p>Este snippet demonstra como utilizar um menu simples com 2 níveis.</p>
+<p>Para os níveis estarem disponíveis é necessário aplicar à tag <code>nav</code> as classes <code>carousel</code> e <code>slide</code>. O segundo nível é composto por uma <code>div</code> com a class <code>carousel-inner</code>.</p>
+<p>Os itens com um nível abaixo devem ter como indicação uma seta à direita com a class <code>fa-angle-right</code> e <code>fx-slide-indicator</code>.</p> 
+
+<div class="fx-docs-snippet-code">
+    <header class="fx-header-devguide">
+        <nav class="fx-navbar" role="navigation">
+            <ul class="fx-nav">
+                <li><a class="fx-brand" href="javascript:void(0)"><h1 class="fx-logo-brand">FUXI</h1></a></li>
+                <li>
+                    <a class="collapsed" data-toggle="collapse" data-target="#menu-two-level">Menu com 2 níveis<i class="fa fa-angle-down"></i></a>
+                    <nav id="menu-two-level" class="fx-menu collapse carousel slide devguide-keep-open devguide-manage-menu-vis" data-interval="false">
+                        <!-- Carousel items -->
+                        <div class="carousel-inner">
+                            <div class="active item">
+                                <ul class="list-unstyled">
+                                    <li><a data-slide-to="1" href="#menu-two-level">Menu Item 1<i class="fa fa-angle-right fx-slide-indicator pull-right"></i></a></li>
+                                    <li><a href="javascript:void(0)">Menu Item 2</a></li>
+                                </ul>
+                            </div>
+                            <div class="item">
+                                <ul class="list-unstyled">
+                                    <li><a class="back" data-slide-to="0" href="#menu-two-level"><i class="fa fa-angle-left fx-slide-indicator pull-left"></i>Menu Item 1</a></li>
+                                    <li><a href="javascript:void(0)">Menu Item 1.1</a></li>
+                                    <li><a href="javascript:void(0)">Menu Item 1.2</a></li>
+                                    <li><a href="javascript:void(0)">Menu Item 1.3</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </li>
+            </ul>
+        </nav>
+    </header>
+        <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<header id="fx-header">
+    <nav class="fx-navbar" role="navigation">
+        <ul class="fx-nav">
+            <li><a class="fx-brand" href="#"><h1 class="fx-logo-brand">FUXI</h1></a></li>
+            <li>
+                <a class="collapsed" data-toggle="collapse" data-target="#menu-two-level">Menu com 2 níveis<i class="fa fa-angle-down"></i></a>
+                <nav id="menu-two-level" class="fx-menu collapse carousel slide" data-interval="false">
+                    <!-- Carousel items -->
+                    <div class="carousel-inner">
+                        <div class="active item">
+                            <ul class="list-unstyled">
+                                <li><a data-slide-to="1" href="#menu-two-level">Menu Item 1<i class="fa fa-angle-right fx-slide-indicator pull-right"></i></a></li>
+                                <li><a href="#">Menu Item 2</a></li>
+                            </ul>
+                        </div>
+                        <div class="item">
+                            <ul class="list-unstyled">
+                                <li><a class="back" data-slide-to="0" href="#menu-two-level"><i class="fa fa-angle-left fx-slide-indicator pull-left"></i>Menu Item 1</a></li>
+                                <li><a href="#">Menu Item 1.1</a></li>
+                                <li><a href="#">Menu Item 1.2</a></li>
+                                <li><a href="#">Menu Item 1.3</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </li>
+        </ul>
+    </nav>
+</header>
+        </textarea>
+    </form>
+</div>
+
+
+

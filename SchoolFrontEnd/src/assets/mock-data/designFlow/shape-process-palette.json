@@ -1,0 +1,94 @@
+{
+    "default": [
+        {
+            "key": "channel",
+            "type": "wct-ng-select",
+            "subType": "multiple",
+            "id": "new_channel",
+            "text": "designerFlow___shapes___answer___channel",
+            "class": "col-sm-6",
+            "valueList": [
+                {
+                    "key": "web",
+                    "value": "designerFlow___shapes___answer___channelOptions___web"
+                },
+                {
+                    "key": "facebook",
+                    "value": "designerFlow___shapes___answer___channelOptions___facebook"
+                },
+                {
+                    "key": "ivr",
+                    "value": "designerFlow___shapes___answer___channelOptions___ivr"
+                }
+            ]
+        }
+    ],
+    "options": [
+        {
+            "key": "rendering",
+            "type": "wrapper",
+            "text": "designerFlow___shapes___answer___plainText",
+            "icon": "fa fa-font",
+            "id": "wrapperPlainText",
+            "details": [
+                {
+                    "type": "custom-mentions",
+                    "id": "new_plainText",
+                    "text": "designerFlow___shapes___answer___text",
+                    "pathToValueList": [
+                        "config::designerFlowComponent",
+                        "variables",
+                        "@mentionsComponentFormat($this)"
+                    ]
+                }
+            ],
+            "parameters": [
+                {
+                    "key": "chatAnswer",
+                    "id": "chatAnswerLabel",
+                    "type": "label",
+                    "dynamicProps": {
+                        "value": "'{{new_plainText}}'"
+                    }
+                }
+            ]
+        },
+        {
+            "text": "designerFlow___shapes___answer___map",
+            "icon": "fa fa-map",
+            "include": "designFlow/shape-process-palette-map"
+        },
+        {
+            "text": "designerFlow___shapes___answer___fileRun",
+            "icon": "fa fa-cogs",
+            "include": "designFlow/shape-process-palette-fileRun"
+        },
+        {
+            "text": "designerFlow___shapes___answer___image",
+            "icon": "fa fa-picture-o",
+            "include": "designFlow/shape-process-palette-image"
+        },
+        {
+            "text": "designerFlow___shapes___answer___cards",
+            "icon": "fa fa-id-card-o",
+            "include": "designFlow/shape-process-palette-cards"
+        },
+        {
+            "text": "designerFlow___shapes___answer___items",
+            "icon": "fa fa-list",
+            "include": "designFlow/shape-process-palette-items"
+        },
+        {
+            "text": "designerFlow___shapes___answer___buttons",
+            "icon": "fa fa-play-circle-o",
+            "include": "designFlow/shape-process-palette-buttons"
+        }
+    ],
+    "actions": [
+        {
+            "text": "designerFlow___shapes___actions___custom",
+            "icon": "fa fa-list",
+            "include": "designFlow/shape-process-palette-customAction"
+        }
+    ]
+}

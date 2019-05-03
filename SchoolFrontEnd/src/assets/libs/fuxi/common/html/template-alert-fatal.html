@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge; text/html;" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0,  user-scalable=yes" />
+		<link rel="icon" href="/fuxi/common/html/css/images/favicon.ico" type="image/x-icon" />
+		<title>Notificação Fatal FUXI</title>
+		<link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/fuxi/common/html/css/fuxi.min.css" rel="stylesheet">
+		<script src="/basepack/modernizr/2.6/modernizr.js"></script>
+		<!-- Respond.js - IE8 support of media queries -->
+		<!--[if lt IE 9]>
+		<script src="/fuxi/lib/respond/1.4/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body style="overflow: auto;">
+		<div class="fx-alert-fatal">
+
+			<h1 class="fx-alert-fatal-title">Unexpected Error</h1>
+
+			<h2 class="fx-alert-fatal-desc"><i class="fuxicons fuxicons-error"></i> Título da notificação fatal (erro 500) </h2>
+
+			<div class="fx-alert-fatal-date">
+				<p>
+					<strong>Data</strong> 04-02-2014 19:17:55
+				</p>
+			</div>
+
+			<p class="fx-alert-fatal-summary">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</p>
+
+			<p class="fx-alert-fatal-instructions">
+				Para resolver o problema, tente uma das seguintes opções:
+			</p>
+
+			<div class="fx-alert-actions">
+				<div class="row">
+					<div class="col-sm-3 text-right">
+						<button type="submit" class="btn btn-default">
+							Tentar novamente
+						</button>
+					</div>
+					<div class="col-sm-9">
+						<p>
+							Tentar efetuar novamente o pedido de página.
+						</p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-3 text-right">
+						<button type="submit" class="btn btn-default">
+							Reportar erro
+						</button>
+					</div>
+					<div class="col-sm-9">
+						<p>
+							Informar os administradores do sistema sobre este problema.
+						</p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-3"></div>
+					<div class="col-sm-9">
+						<a href="template-alert.html">Voltar à página principal</a>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-3"></div>
+
+					<div class="col-sm-9">
+						<button type="button" class="fx-alert-fatal-st-toggle btn btn-default" data-alternate-text="esconder detalhes">
+							<i class="glyphicon glyphicon-chevron-down"></i>
+							<span>mostrar detalhes</span>
+						</button>
+
+						<div class="fx-alert-fatal-stack-trace">
+							<pre>Exception in thread "main" java.lang.Error: Random exception
+                 at pro.l.a(ProGuard:55)
+                 at pro.bo.b(ProGuard:405)
+                 at pro.ci.a(ProGuard:51)
+                 at pro.bo.a(ProGuard:356)
+                 at pro.be.a(ProGuard:109)
+                 at pro.bo.a(ProGuard:356)
+                 at pro.be.a(ProGuard:186)
+                 at pro.bg.a(ProGuard:369)
+                 at pro.bY.a(ProGuard:286)
+                 at pro.bc.a(ProGuard:55)
+                 at pro.bo.b(ProGuard:405)
+                 at pro.ci.a(ProGuard:51)
+                 at pro.bo.a(ProGuard:356)
+                 at pro.be.a(ProGuard:109)
+                 at pro.bo.a(ProGuard:356)
+                 at pro.be.a(ProGuard:186)
+                 at pro.bg.a(ProGuard:369)
+                 at pro.bY.a(ProGuard:286)
+                 at pro.bc.a(ProGuard:55)
+                 at pro.bo.b(ProGuard:405)
+                 at pro.ci.a(ProGuard:51)
+                 at pro.bo.a(ProGuard:356)
+                 at pro.be.a(ProGuard:109)
+                 at pro.bo.a(ProGuard:356)
+                 at pro.be.a(ProGuard:186)
+                 at pro.bg.a(ProGuard:369)
+                 at pro.bY.a(ProGuard:286)
+                 at pro.bc.a(ProGuard:55)
+                 at proguard.ProGuard.a(ProGuard:363)
+                 at proguard.ProGuard.c(ProGuard:187)
+                 at proguard.ProGuard.b(ProGuard:385)
+                 at proguard.ProGuard.main(ProGuard:429)
+               </pre>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Alert -->
+		<script src="/basepack/jquery/1.9/jquery.min.js"></script>
+		<script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+		<script src="/fuxi/common/exec/fuxi.min.js"></script>
+		
+		<script>
+			/* Para efeitos de demonstração, este código fica aqui no html */
+			$(document).ready(function() {			
+			
+				/* Handler para mostrar/esconder o stacktrace na janela de alerta FATAL */
+				$('.fx-alert-fatal-st-toggle').click(function(e) {
+					e.preventDefault();
+					$('.fx-alert-fatal-stack-trace').toggle();
+					var exp = $('.fx-alert-fatal-st-toggle > i');
+					var expButtonText = $('.fx-alert-fatal-st-toggle');
+			
+					if (exp.hasClass('glyphicon-chevron-up')) {
+						exp.removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+						exp.attr('title', 'mostrar');
+					} else {
+						exp.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+						exp.attr('title', 'esconder');
+					}
+			
+					// trocar o texto do botão
+					var buttonText = expButtonText.find("span").html();
+					var altText = expButtonText.attr('data-alternate-text');
+					expButtonText.find("span").html(altText);
+					expButtonText.attr('data-alternate-text', buttonText);
+				});
+			});
+		</script>
+	</body>
+</html>

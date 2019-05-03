@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge; text/html;" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0,  user-scalable=yes" />
+		<link rel="icon" href="/fuxi/common/html/css/images/favicon.ico" type="image/x-icon" />
+		<title>Template tabs</title>
+		<link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.min.css" />
+		<script src="/basepack/modernizr/2.6/modernizr.js"></script>
+		<!-- Respond.js - IE8 support of media queries -->
+		<!--[if lt IE 9]>
+		<script src="/fuxi/lib/respond/1.4/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="fx-main-content">
+			<h1> Tabs em cima </h1>
+
+			<ul class="nav nav-tabs fx-main-tabs">
+				<li class="active">
+					<a href="#tab1" class="fx-tab" data-toggle="tab">Tab 1</a>
+				</li>
+				<li>
+					<a href="#tab2" class="fx-tab" data-toggle="tab">Tab 2</a>
+				</li>
+				<li>
+					<a href="#tab3" class="fx-tab" data-toggle="tab">Tab 3</a>
+				</li>
+				<li>
+					<a href="#tab4" class="fx-tab" data-toggle="tab">Tab 4</a>
+				</li>
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content fx-main-tab-content with-padding">
+				<div class="tab-pane active" id="tab1" style="padding: 20px;">
+                    
+                    <h6>Tabs de segundo nível</h6>
+
+                    <ul class="nav nav-tabs fx-second-level-tabs">
+                        <li class="active">
+                            <a href="#tabsecond1" class="fx-tab" data-toggle="tab">Tab 1</a>
+                        </li>
+                        <li>
+                            <a href="#tabsecond2" class="fx-tab" data-toggle="tab">Tab 2</a>
+                        </li>
+                        <li class="disabled">
+                            <a href="#tabsecond3" class="fx-tab" data-toggle="tab">Tab 2</a>
+                        </li>
+                    </ul>
+				</div>
+				<div class="tab-pane" id="tab2">
+					Conteudo tab 2
+				</div>
+				<div class="tab-pane" id="tab3">
+					Conteudo tab 3
+				</div>
+				<div class="tab-pane" id="tab4">
+					Conteudo tab 4
+				</div>
+			</div>
+			<hr>
+			<h1> Tabs à esquerda </h1>
+
+			<ul class="nav nav-tabs nav-stacked nav-tabs-stacked-left pull-left">
+				<li class="active">
+					<a href="#tab1l" class="fx-tab" data-toggle="tab">Tab 1</a>
+				</li>
+				<li>
+					<a href="#tab2l" class="fx-tab" data-toggle="tab">Tab 2</a>
+				</li>
+				<li>
+					<a href="#tab3l" class="fx-tab" data-toggle="tab">Tab 3</a>
+				</li>
+				<li>
+					<a href="#tab4l" class="fx-tab" data-toggle="tab">Tab 4</a>
+				</li>
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content nav-tabs-stacked-left-content">
+				<div class="tab-pane active" id="tab1l">
+					Conteudo tab 1
+				</div>
+				<div class="tab-pane" id="tab2l">
+					Conteudo tab 2
+				</div>
+				<div class="tab-pane" id="tab3l">
+					Conteudo tab 3
+				</div>
+				<div class="tab-pane" id="tab4l">
+					Conteudo tab 4
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<hr>
+			<h1> Tabs à direita </h1>
+			<ul class="nav nav-tabs nav-stacked nav-tabs-stacked-right pull-right">
+				<li class="active">
+					<a href="#tab1r" class="fx-tab" data-toggle="tab">Tab 1</a>
+				</li>
+				<li>
+					<a href="#tab2r" class="fx-tab" data-toggle="tab">Tab 2</a>
+				</li>
+				<li>
+					<a href="#tab3r" class="fx-tab" data-toggle="tab">Tab 3</a>
+				</li>
+				<li>
+					<a href="#tab4r" class="fx-tab" data-toggle="tab">Tab 4</a>
+				</li>
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content nav-tabs-stacked-right-content">
+				<div class="tab-pane active" id="tab1r">
+					Conteudo tab 1
+				</div>
+				<div class="tab-pane" id="tab2r">
+					Conteudo tab 2
+				</div>
+				<div class="tab-pane" id="tab3r">
+					Conteudo tab 3
+				</div>
+				<div class="tab-pane" id="tab4r">
+					Conteudo tab 4
+				</div>
+			</div>
+
+		</div>
+		<script src="/basepack/jquery/1.9/jquery.min.js"></script>
+		<script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+		<script src="/fuxi/common/exec/fuxi.min.js"></script>
+	</body>
+</html>

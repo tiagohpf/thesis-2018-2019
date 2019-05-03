@@ -1,0 +1,33 @@
+.sp-container,
+.sp-palette-container {
+  background-color: #fff;
+  border-color: #dedede; }
+
+.sp-button-container > button,
+.sp-cancel {
+  background: #0099ab;
+  text-shadow: none;
+  font-weight: normal;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+  text-transform: lowercase;
+  font-family: Arial, Helvetica, "Helvetica Neue", sans-serif;
+  color: #fff;
+  border: 1px solid #278796; }
+  .sp-button-container > button:hover,
+  .sp-cancel:hover {
+    background: #008291;
+    text-shadow: none;
+    border: 1px solid #278796; }
+
+.sp-cancel {
+  background-color: #f3f3f3;
+  border-color: #d2d2d2;
+  color: #666 !important; }
+  .sp-cancel:hover {
+    color: #333 !important;
+    background-color: #dfdfdf;
+    border-color: #b3b3b3;
+    text-decoration: none; }

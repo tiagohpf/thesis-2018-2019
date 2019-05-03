@@ -1,0 +1,92 @@
+{
+    "type": "wrapper",
+    "class": "col-sm-6",
+    "dynamicProps": {
+        "hidden": "'{{current-plan-id}}' == ''"
+    },
+    "urlResource": [
+        {
+            "key": "id",
+            "value": "currentPlanDetails"
+        },
+        {
+            "key": "reload",
+            "value": false
+        },
+        {
+            "key": "apiRecycle",
+            "value": false
+        },
+        {
+            "key": "path",
+            "value": "{{BillingService}}/plans/{{current-plan-id}}"
+        },
+        {
+            "key": "pathToMainData",
+            "value": [
+                "response",
+                "item"
+            ]
+        },
+        {
+            "key": "headers",
+            "value": {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer {{token}}"
+            }
+        }
+    ],
+    "details": [
+        {
+            "type": "context",
+            "id": "studentId",
+            "hidden": true,
+            "pathToValue": [
+                "$this['_id']['$oid']"
+            ]
+        },
+        {
+            "type": "label",
+            "id": "planName",
+            "class": "col-sm-12",
+            "text": "Plan",
+            "pathToValue": ["nickname"],
+            "parameters": [
+                {
+                  "key": "inlineHelp",
+                  "value": {
+                      "text": "help___student___account___plan"
+                  }
+                }
+              ]
+        },
+        {
+            "type": "label",
+            "id": "renewalDate",
+            "class": "col-sm-12",
+            "text": "Renewal date",
+            "pathToValue": ["currentSubscription", "response", "items", "0", "renewalDate"],
+            "parameters": [
+                {
+                  "key": "inlineHelp",
+                  "value": {
+                      "text": "help___student___account___renewalDate"
+                  }
+                }
+              ]
+        },
+        {
+            "type": "label",
+            "class": "col-sm-12",
+            "text": "last Payment Date",
+            "pathToValue": ["currentSubscription", "response", "items", "0", "lastPayment"]
+        },
+        {
+            "type": "context",
+            "id": "lastPaymentDate",
+            "class": "col-sm-12",
+            "text": "last Payment Date",
+            "pathToValue": ["currentSubscription", "response", "items", "0", "lastPayment"]
+        }
+    ]
+}

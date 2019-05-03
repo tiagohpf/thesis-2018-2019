@@ -1,0 +1,15 @@
+
+.row{ /* padding: 0 8px; */ }
+.row > .each-parameter{ /* padding: 0 7px; */ min-height: 0!important; }
+
+.each-parameter.component-type-groupParameters{ margin-bottom: 15px; }
+.each-parameter.component-type-groupParameters:last-of-type{ margin-bottom: 0; }
+
+.each-parameter .wct-group-parameters .card{ border-radius: .25rem; border-bottom: 1px solid rgba(0,0,0,.125) }
+.each-parameter .wct-group-parameters .card:not(.show) .card-header{ border-bottom: 0; }
+
+.each-parameter .wct-group-parameters .card .wct-group-parameters-body{ height: 0; overflow: hidden; transition: height .2s cubic-bezier(0.4,-0.5, 1, 1) .2s; }
+.each-parameter .wct-group-parameters .card.show .wct-group-parameters-body{ height: auto; transition: height 0.5s cubic-bezier(0,0, 0.5, 1.5); }
+
+.each-parameter .wct-group-parameters .card .wct-group-parameters-body .wct-opacity-control{ opacity: 0; transition: opacity .2s; }
+.each-parameter .wct-group-parameters .card.show .wct-group-parameters-body .wct-opacity-control{ opacity: 1; transition: opacity .2s linear .2s; }

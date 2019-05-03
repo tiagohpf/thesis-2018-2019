@@ -1,0 +1,279 @@
+{
+    "type": "wrapper",
+    "details": [
+        {
+            "type": "input-radio",
+            "id": "coordsInputType",
+            "text": "designerFlow___shapes___answer___mapForm___coordsInputType",
+            "valueList": [
+                {
+                    "key": "lat_long",
+                    "value": "designerFlow___shapes___answer___mapForm___lat_long"
+                },
+                {
+                    "key": "coords",
+                    "value": "designerFlow___shapes___answer___mapForm___coords"
+                }
+            ]
+        },
+        {
+            "type": "label",
+            "text": null,
+            "class": "align-titles",
+            "hidden": true,
+            "dynamicProps": {
+                "hidden": "'{{coordsInputType}}' != 'lat_long'",
+                "value": "'<h4>{{@fv()@i18n('designerFlow___shapes___answer___mapForm___lat_long')}}</h4>'"
+            }
+        },
+        {
+            "type": "custom-mentions",
+            "id": "map_lat_txt",
+            "class": "col-sm-8 pr-0",
+            "text": "designerFlow___shapes___answer___mapForm___lat",
+            "hidden": true,
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ],
+            "dynamicProps": {
+                "hidden": "'{{coordsInputType}}' != 'lat_long'"
+            }
+        },
+        {
+            "type": "custom-mentions",
+            "id": "map_latUnit_txt",
+            "class": "col-sm-4 pl-0",
+            "text": "designerFlow___shapes___answer___mapForm___unit",
+            "hidden": true,
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ],
+            "dynamicProps": {
+                "hidden": "'{{coordsInputType}}' != 'lat_long'"
+            }
+        },
+        {
+            "type": "custom-mentions",
+            "id": "map_long_txt",
+            "class": "col-sm-8 pr-0",
+            "text": "designerFlow___shapes___answer___mapForm___long",
+            "hidden": true,
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ],
+            "dynamicProps": {
+                "hidden": "'{{coordsInputType}}' != 'lat_long'"
+            }
+        },
+        {
+            "type": "custom-mentions",
+            "id": "map_longUnit_txt",
+            "class": "col-sm-4 pl-0",
+            "text": "designerFlow___shapes___answer___mapForm___unit",
+            "hidden": true,
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ],
+            "dynamicProps": {
+                "hidden": "'{{coordsInputType}}' != 'lat_long'"
+            }
+        },
+        {
+            "type": "label",
+            "text": null,
+            "class": "align-titles",
+            "hidden": true,
+            "dynamicProps": {
+                "hidden": "'{{coordsInputType}}' != 'coords'",
+                "value": "'<h4>{{@fv()@i18n('designerFlow___shapes___answer___mapForm___coords')}}</h4>'"
+            }
+        },
+        {
+            "type": "custom-mentions",
+            "id": "map_coords_txt",
+            "class": "col-sm-8 pr-0",
+            "text": "designerFlow___shapes___answer___mapForm___coords",
+            "hidden": true,
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ],
+            "dynamicProps": {
+                "hidden": "'{{coordsInputType}}' != 'coords'"
+            }
+        },
+        {
+            "type": "custom-mentions",
+            "id": "map_coordsUnit_txt",
+            "class": "col-sm-4 pl-0",
+            "text": "designerFlow___shapes___answer___mapForm___unit",
+            "hidden": true,
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ],
+            "dynamicProps": {
+                "hidden": "'{{coordsInputType}}' != 'coords'"
+            }
+        },
+        {
+            "type": "label",
+            "text": null,
+            "class": "align-titles",
+            "value": "<h4>{{@fv()@i18n('designerFlow___shapes___answer___mapForm___zoom')}}</h4>"
+        },
+        {
+            "type": "wct-ng-select",
+            "id": "map_zoom_txt",
+            "text": "designerFlow___shapes___answer___mapForm___autoZoom",
+            "class": "col-sm-8 pr-0",
+            "valueList": [
+                {
+                    "key": "0",
+                    "value": "designerFlow___shapes___answer___mapForm___autoZoomLevel___0"
+                },
+                {
+                    "key": "1",
+                    "value": "designerFlow___shapes___answer___mapForm___autoZoomLevel___1"
+                },
+                {
+                    "key": "2",
+                    "value": "designerFlow___shapes___answer___mapForm___autoZoomLevel___2"
+                },
+                {
+                    "key": "3",
+                    "value": "designerFlow___shapes___answer___mapForm___autoZoomLevel___3"
+                },
+                {
+                    "key": "4",
+                    "value": "designerFlow___shapes___answer___mapForm___autoZoomLevel___4"
+                },
+                {
+                    "key": "5",
+                    "value": "designerFlow___shapes___answer___mapForm___autoZoomLevel___5"
+                },
+                {
+                    "key": "6",
+                    "value": "designerFlow___shapes___answer___mapForm___autoZoomLevel___6"
+                },
+                {
+                    "key": "7",
+                    "value": "designerFlow___shapes___answer___mapForm___autoZoomLevel___7"
+                },
+                {
+                    "key": "8",
+                    "value": "designerFlow___shapes___answer___mapForm___autoZoomLevel___8"
+                },
+                {
+                    "key": "9",
+                    "value": "designerFlow___shapes___answer___mapForm___autoZoomLevel___9"
+                },
+                {
+                    "key": "10",
+                    "value": "designerFlow___shapes___answer___mapForm___autoZoomLevel___10"
+                },
+                {
+                    "key": "11",
+                    "value": "designerFlow___shapes___answer___mapForm___autoZoomLevel___11"
+                },
+                {
+                    "key": "12",
+                    "value": "designerFlow___shapes___answer___mapForm___autoZoomLevel___12"
+                },
+                {
+                    "key": "13",
+                    "value": "designerFlow___shapes___answer___mapForm___autoZoomLevel___13"
+                },
+                {
+                    "key": "14",
+                    "value": "designerFlow___shapes___answer___mapForm___autoZoomLevel___14"
+                },
+                {
+                    "key": "15",
+                    "value": "designerFlow___shapes___answer___mapForm___autoZoomLevel___15"
+                },
+                {
+                    "key": "16",
+                    "value": "designerFlow___shapes___answer___mapForm___autoZoomLevel___16"
+                },
+                {
+                    "key": "17",
+                    "value": "designerFlow___shapes___answer___mapForm___autoZoomLevel___17"
+                },
+                {
+                    "key": "18",
+                    "value": "designerFlow___shapes___answer___mapForm___autoZoomLevel___18"
+                },
+                {
+                    "key": "19",
+                    "value": "designerFlow___shapes___answer___mapForm___autoZoomLevel___19"
+                }
+            ],
+            "dynamicProps": {
+                "disabled": "!!'{{map_zoom_var}}'"
+            }
+        },
+        {
+            "type": "custom-mentions",
+            "id": "map_zoom_var",
+            "class": "col-sm-4 pl-0",
+            "text": "designerFlow___shapes___answer___mapForm___manualZoom",
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ],
+            "dynamicProps": {
+                "disabled": "!!{{map_zoom_txt}}"
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "key": "chatAnswer",
+            "type": "wrapper",
+            "id": "wrapper_lat_long",
+            "dynamicProps": {
+                "key": "'{{coordsInputType}}' == 'lat_long' ? 'chatAnswer' : 'chatAnswerFromFile"
+            },
+            "details": [
+                {
+                    "type": "map",
+                    "rows": [],
+                    "dynamicProps": {
+                        "position": "@positionMapObj('{{map_zoom_var}}' || '{{map_zoom_txt___id}}' || 4,'{{map_lat_txt}}','{{map_long_txt}}')"
+                    },
+                    "position": {}
+                }
+            ]
+        },
+        {
+            "key": "chatAnswer",
+            "type": "wrapper",
+            "id": "wrapper_coords",
+            "dynamicProps": {
+                "key": "'{{coordsInputType}}' == 'coords' ? 'chatAnswer' : 'chatAnswerFromFile'"
+            },
+            "details": [
+                {
+                    "type": "map",
+                    "rows": [],
+                    "dynamicProps": {
+                        "position": "@positionMapObj('{{map_zoom_var}}' || '{{map_zoom_txt___id}}' || 4,'{{map_lat_txt}}','{{map_long_txt}}')"
+                    },
+                    "position": {}
+                }
+            ]
+        }
+    ]
+}

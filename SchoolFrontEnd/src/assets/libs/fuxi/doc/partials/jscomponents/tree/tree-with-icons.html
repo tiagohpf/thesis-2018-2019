@@ -1,0 +1,47 @@
+<h3 id="docs-tree-icons">Tree com ícones</h3>
+<p>Este snippet demonstra uma tree em que se aplicam ícones aos nós.</p>
+<p>Neste exemplo os ícones são colocados via CSS class. Contudo, caso se pretenda, também se pode colocar imagens.</p>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <div id="devguide-tree-with-icons"></div>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!-- Ficheiros necessários a incluir no head-->
+<head>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/fuxi/lib/jstree/3.0/themes/fuxi/style.css" rel="stylesheet" />
+    <link href="/fuxi/common/html/css/fuxi.min.css" rel="stylesheet" />
+</head>
+
+<!--Ficheiros a colocar antes de fechar a tag body-->
+<script src="/basepack/jquery/1.11/jquery.min.js"></script>
+<script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+<script src="/fuxi/lib/jstree/3.0/jstree.min.js"></script>
+<script src="/fuxi/common/exec/fuxi.js"></script>
+
+<!--Markup necessário-->
+<div id="devguide-tree-with-icons"></div>
+
+<!--Instanciação da tree-->
+<script type="text/javascript">
+    $('#devguide-tree-with-icons').jstree({
+        'core': {
+            'data': [
+               { "id": "root-icons-1", "parent": "#", "text": "Root 1", "icon": "fa fa-folder" },
+               { "id": "root-icons-2", "parent": "#", "text": "Root 2", "state": { "opened": true }, "icon": "fa fa-folder" },
+               { "id": "root-icons-2-child-1", "parent": "root-icons-2", "text": "Child 1", "state": { "selected": true }, "icon": "fa fa-file" },
+               { "id": "root-icons-2-child-2", "parent": "root-icons-2", "text": "Child 2", "icon": "fa fa-file" },
+            ],
+            themes: {
+                name: 'fuxi',
+                icons: true
+            },
+        }
+    });
+</script>
+        </textarea>
+    </form>
+</div>
+

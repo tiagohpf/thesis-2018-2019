@@ -1,0 +1,26 @@
+
+.first-level-page{ height: calc(100% - 140px) !important; }
+.prevent-side-navbar{ margin-left: 45px; width: calc(100% - 45px); }
+
+.wct-main-wrapper .wct-header-content:not(.modal-header){ padding-top: 15px; padding-bottom: 15px; z-index: 0; }
+
+.wct-main-wrapper .wct-components-wrapper{ flex: 1; overflow: auto; }
+.wct-main-wrapper .wct-components-wrapper.container-fluid{ padding-top: 15px; padding-bottom: 15px; }
+.wct-main-wrapper .wct-components-wrapper.container-fluid .wct-components-wrapper{ padding-left: 0!important; padding-right: 0!important; }
+
+.wct-main-wrapper .wct-tabs-wrapper{ flex: 1; overflow: hidden; }
+
+.wct-side-navbar{ position: absolute; width: 45px; /* height: calc(100% - 90px); */ padding: 8px 0 0 10px; z-index: 3; }
+.wct-side-navbar .nav-item{ text-align: center; }
+.wct-side-navbar .nav-item>a{ padding: 10px 5px; color: #1f0002; }
+.wct-side-navbar .nav-item>a:hover { color: #000; }
+.wct-side-navbar .nav-item>a.active { color: #007bff; }
+.wct-side-navbar .nav-item>a i{ font-size: 20px; }
+
+.wct-side-filter{ position: fixed; top: 0; right: 0; padding-top: 45px; width: 0; height: 100%; background: #dedede; z-index: 1; transition: width 0.5s cubic-bezier(0.4,-0.5, 1, 1) .2s, box-shadow .5s linear .2s; }
+.wct-side-filter.show{ width: 250px; box-shadow: 0 0 5px #000; transition: width 0.5s cubic-bezier(0,0, 0.5, 1.5), box-shadow .5s; }
+
+.wct-side-filter .wct-opacity-control{ width: 100%; overflow: hidden; opacity: 0; transition: opacity .2s; }
+.wct-side-filter.show .wct-opacity-control{ opacity: 1; transition: opacity .2s linear .5s; }
+
+app-wct-footer{ position: fixed; bottom: 0; }

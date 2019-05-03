@@ -1,0 +1,89 @@
+﻿ {
+    "aaData": [
+        {
+            "field1": "field 1",
+            "field2": { "id":1, "text": "field n" },
+            "field3": [{ "id":1, "text": "field 3 1" }, { "id":2, "text": "field 3 2" }],
+            "field4": "2014/07/01",
+            "actions": { "id": "1", "allowEdit": true, "allowDelete": true }
+        },
+        {
+            "field1": "field 2",
+            "field2": { "id":2, "text": "field 2" },
+            "field3": [{ "id":1, "text": "field 3 1" }],
+            "field4": "2014/12/31",
+            "actions": { "id": "2", "allowEdit": true, "allowDelete": false }
+        },
+        {
+            "field1": "field 3",
+            "field2": { "id":3, "text": "field z" },
+            "field3": [{ "id":1, "text": "field 3 1" }, { "id":2, "text": "field 3 2" }, { "id":3, "text": "field 3 3" }],
+            "field4": "2014/12/25",
+            "actions": { "id": "3", "allowEdit": true, "allowDelete": false }
+        },
+        {
+            "field1": "field 4",
+            "field2": { "id":3, "text": "field z" },
+            "field3": [{ "id":1, "text": "field 3 1" }, { "id":2, "text": "field 3 2" }, { "id":3, "text": "field 3 3" }],
+            "field4": "2014/12/25",
+            "actions": { "id": "4", "allowEdit": true, "allowDelete": false }
+        },
+        {
+            "field1": "field 5",
+            "field2": { "id":3, "text": "field z" },
+            "field3": [{ "id":1, "text": "field 3 1" }, { "id":2, "text": "field 3 2" }, { "id":3, "text": "field 3 3" }],
+            "field4": "2014/12/25",
+            "actions": { "id": "5", "allowEdit": true, "allowDelete": false }
+        },
+        {
+            "field1": "field 6",
+            "field2": { "id":3, "text": "field z" },
+            "field3": [{ "id":1, "text": "field 3 1" }, { "id":2, "text": "field 3 2" }, { "id":3, "text": "field 3 3" }],
+            "field4": "2014/12/25",
+            "actions": { "id": "6", "allowEdit": true, "allowDelete": false }
+        },
+        {
+            "field1": "field 7",
+            "field2": { "id":3, "text": "field z" },
+            "field3": [{ "id":1, "text": "field 3 1" }, { "id":2, "text": "field 3 2" }, { "id":3, "text": "field 3 3" }],
+            "field4": "2014/12/25",
+            "actions": { "id": "7", "allowEdit": true, "allowDelete": false }
+        },
+        {
+            "field1": "field 8",
+            "field2": { "id":3, "text": "field z" },
+            "field3": [{ "id":1, "text": "field 3 1" }, { "id":2, "text": "field 3 2" }, { "id":3, "text": "field 3 3" }],
+            "field4": "2014/12/25",
+            "actions": { "id": "8", "allowEdit": true, "allowDelete": false }
+        },
+        {
+            "field1": "field 9",
+            "field2": { "id":3, "text": "field z" },
+            "field3": [{ "id":1, "text": "field 3 1" }, { "id":2, "text": "field 3 2" }, { "id":3, "text": "field 3 3" }],
+            "field4": "2014/12/25",
+            "actions": { "id": "9", "allowEdit": true, "allowDelete": false }
+        },
+        {
+            "field1": "field 10",
+            "field2": { "id":3, "text": "field z" },
+            "field3": [{ "id":1, "text": "field 3 1" }, { "id":2, "text": "field 3 2" }, { "id":3, "text": "field 3 3" }],
+            "field4": "2014/12/25",
+            "actions": { "id": "10", "allowEdit": true, "allowDelete": false }
+        },
+        {
+            "field1": "field 11",
+            "field2": { "id":3, "text": "field z" },
+            "field3": [{ "id":1, "text": "field 3 1" }, { "id":2, "text": "field 3 2" }, { "id":3, "text": "field 3 3" }],
+            "field4": "2014/12/25",
+            "actions": { "id": "11", "allowEdit": true, "allowDelete": false }
+        },
+        {
+            "field1": "field 12",
+            "field2": { "id":3, "text": "field z" },
+            "field3": [{ "id":1, "text": "field 3 1" }, { "id":2, "text": "field 3 2" }, { "id":3, "text": "field 3 3" }],
+            "field4": "2014/12/25",
+            "actions": { "id": "12", "allowEdit": true, "allowDelete": false }
+        }
+
+    ]
+}

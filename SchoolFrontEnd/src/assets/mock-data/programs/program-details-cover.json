@@ -1,0 +1,407 @@
+{
+  "type": "initParameters",
+  "id": "detailsCoverContainer",
+  "class": "col-sm-12",
+  "details": [
+    {
+      "type": "initParameters",
+      "class": "col-sm-12 groupParameters_noHeader",
+      "text": null,
+      "details": [
+        {
+          "type": "header",
+          "class": "col-sm-12 primary-header",
+          "header": {
+            "seo": {
+              "text": "program___programDetails",
+              "icon": "fa fa-file-text-o"
+            }
+          }
+        },
+        {
+          "type": "label",
+          "id": "programLanguage",
+          "text": "application___language",
+          "pathToValue": [
+            "programApiResponse",
+            "language"
+          ],
+          "class": "col-sm-6",
+          "html": {
+            "es": "{{@fv()@i18n('generic___language___pt')}}",
+            "en": "{{@fv()@i18n('generic___language___en')}}",
+            "pt": "{{@fv()@i18n('generic___language___pt')}}",
+            "fr": "{{@fv()@i18n('generic___language___fr')}}"
+          },
+          "parameters": [
+            {
+              "key": "inlineHelp",
+              "value": {
+                  "text": "help___program___details___language"
+              }
+            }
+          ]
+        },
+        {
+          "type": "tag",
+          "class": "col-sm-6",
+          "id": "programCategoriesTag",
+          "text": "application___categories",
+          "urlResource": [
+            {
+              "key": "path",
+              "value": "{{AppAPIBotConfig}}/categories"
+            },
+            {
+              "key": "queryString",
+              "value": {
+                "filter": "{ \"_id\":{\"$in\":{{@fv()@generateInObjectIdFilter(@replaceTagVars('programCategories'))}} }}",
+                "np": null,
+                "rep": "pj"
+              }
+            },
+            {
+              "key": "reload",
+              "value": false
+            },
+            {
+              "key": "headers",
+              "value": {
+                "Authorization": "Bearer {{token}}",
+                "IXS": "{{IXS_id}}"
+              }
+            }
+          ],
+          "pathToValueList": [
+            ""
+          ],
+          "details": [
+            {
+              "type": "label",
+              "id": "categoryLabel",
+              "pathToValue": [
+                "label"
+              ]
+            }
+          ],
+          "parameters":[
+            {
+              "key": "inlineHelp",
+              "value": {
+                  "text": "help___program___details___categories"
+              }
+            }
+          ]
+        },
+        {
+          "type": "label",
+          "id": "programDescription",
+          "text": "program___description",
+          "class": "col-md-12",
+          "pathToValue": [
+            "programApiResponse",
+            "description"
+          ]
+        },
+        {
+          "type": "wrapper",
+          "id": "programAccuracyWrapper",
+          "class": "col-md-6 col-sm-12",
+          "details": [
+            {
+              "type": "label",
+              "id": "programAccuracyNum",
+              "class": "col-sm-8",
+              "text": "program___accuracy",
+              "pathToValue": [
+                "programApiResponse",
+                "accuracyLevel"
+              ],
+              "parameters": [
+                {
+                  "key": "inlineHelp",
+                  "value": {
+                      "text": "help___program___details___accuracy"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "slider",
+              "id": "programAccuracy_Slider",
+              "hidden": true,
+              "text": "program___accuracy",
+              "class": "col-md-8",
+              "pathToValue": [
+                "programApiResponse",
+                "accuracyLevel"
+              ],
+              "parameters": [
+                {
+                  "key": "animate",
+                  "value": true
+                },
+                {
+                  "key": "minRange",
+                  "value": 0
+                },
+                {
+                  "key": "maxRange",
+                  "value": 1
+                },
+                {
+                  "key": "step",
+                  "value": 0.1
+                },
+                {
+                  "key": "range",
+                  "value": false
+                },
+                {
+                  "key": "inlineHelp",
+                  "value": {
+                      "text": "help___program___details___accuracy"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "operations",
+              "class": "col-sm-4 hide-label editFieldButtons",
+              "operations": {
+                "text": "generic___operations___operations",
+                "icon": "glyphicon glyphicon-cog",
+                "size": 3,
+                "parameters": [
+                  {
+                    "type": "updatePage",
+                    "id": "programAccuracyNumEdit",
+                    "class": "editButton btn-default",
+                    "icon": "icomoon icon-edit",
+                    "parameters": [
+                      {
+                        "key": "updatePageParameter",
+                        "value": {
+                          "programAccuracyNum": {
+                            "hidden": true
+                          },
+                          "programAccuracy_Slider": {
+                            "hidden": false
+                          },
+                          "programAccuracyNumEdit": {
+                            "hidden": true
+                          },
+                          "programAccuracyNumCancel": {
+                            "hidden": false
+                          },
+                          "programAccuracyNumSave": {
+                            "hidden": false
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "execute",
+                    "id": "programAccuracyNumSave",
+                    "class": "btn-primary",
+                    "hidden": true,
+                    "text": "generic___operations___save",
+                    "parameters": [
+                      {
+                        "key": "requestEndpoint",
+                        "value": "{{AppAPIBotConfig}}/programs/[[programID]]"
+                      },
+                      {
+                        "key": "requestType",
+                        "value": "PATCH"
+                      },
+                      {
+                        "key": "requestBody",
+                        "type": "json",
+                        "value": "{\"accuracyLevel\": \"{{programAccuracy_Slider}}\" }"
+                      },
+                      {
+                        "key": "requestHeaders",
+                        "value": {
+                          "Authorization": "Bearer {{token}}",
+                          "IXS": "{{IXS_id}}"
+                        }
+                      },
+                      {
+                        "key": "errorText",
+                        "value": "errors___modelAccuracyChange"
+                      },
+                      {
+                        "key": "onSuccess",
+                        "value": {
+                          "request": [
+                            {
+                              "key": "updatePageParameter",
+                              "value": {
+                                "programAccuracyNum": {
+                                  "hidden": false,
+                                  "value": "{{programAccuracy_Slider}}"
+                                },
+                                "programAccuracy_Slider": {
+                                  "originalValue": "{{programAccuracy_Slider}}",
+                                  "hidden": true
+                                },
+                                "programAccuracyNumEdit": {
+                                  "hidden": false
+                                },
+                                "programAccuracyNumCancel": {
+                                  "hidden": true
+                                },
+                                "programAccuracyNumSave": {
+                                  "hidden": true
+                                }
+                              }
+                            },
+                            {
+                              "key": "successText",
+                              "value": "success___modelAccuracyChange"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "updatePage",
+                    "id": "programAccuracyNumCancel",
+                    "class": "btn-default",
+                    "hidden": true,
+                    "text": "Cancel",
+                    "parameters": [
+                      {
+                        "key": "updatePageParameter",
+                        "value": {
+                          "programAccuracyNum": {
+                            "hidden": false
+                          },
+                          "programAccuracy_Slider": {
+                            "hidden": true
+                          },
+                          "programAccuracyNumEdit": {
+                            "hidden": false
+                          },
+                          "programAccuracyNumCancel": {
+                            "hidden": true
+                          },
+                          "programAccuracyNumSave": {
+                            "hidden": true
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "tag",
+          "class": "col-sm-6",
+          "id": "programCoursesTag",
+          "text": "program___belongsCouses",
+          "urlResource": [
+            {
+              "key": "path",
+              "value": "{{AppAPIBotConfig}}/courses"
+            },
+            {
+              "key": "queryString",
+              "value": {
+                "filter": "{ \"programs\": \"[[programID]]\"}",
+                "keys": "{\"_id\":1,\"name\":1}",
+                "np": null,
+                "rep": "pj"
+              }
+            },
+            {
+              "key": "reload",
+              "value": false
+            },
+            {
+              "key": "headers",
+              "value": {
+                "Authorization": "Bearer {{token}}",
+                "IXS": "{{IXS_id}}"
+              }
+            }
+          ],
+          "pathToValueList": [
+            ""
+          ],
+          "details": [
+            {
+              "type": "label",
+              "id": "course",
+              "pathToValue": [
+                "name"
+              ],
+              "navigateTo": "knowledgecenter/courses/{{_id___$oid}}"
+            }
+          ],
+          "parameters": [
+            {
+              "key": "inlineHelp",
+              "value": {
+                  "text": "help___program___details___degree"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "initParameters",
+      "id": "studentAdditionalInfo",
+      "text": "application___additionalInformation",
+      "details": [
+        {
+          "type": "header",
+          "class": "col-sm-12 primary-header",
+          "header": {
+            "seo": {
+              "text": "application___activity",
+              "icon": "fuxicons fuxicons-monitoring-alt"
+            }
+          }
+        },
+        {
+          "type": "label",
+          "id": "studentCreatedBy",
+          "text": "application___createdBy",
+          "class": "col-sm-6",
+          "pathToValue": [
+            "programApiResponse",
+            "createdBy"
+          ]
+        },
+        {
+          "type": "label",
+          "id": "studentCreationDate",
+          "text": "application___creationDate",
+          "class": "col-sm-6",
+          "pathToValue": [
+            "programApiResponse",
+            "creationDate"
+          ]
+        },
+        {
+          "type": "label",
+          "id": "studentLastUpdated",
+          "text": "application___lastUpdate",
+          "class": "col-sm-6",
+          "pathToValue": [
+            "programApiResponse",
+            "lastUpdate"
+          ]
+        }
+      ]
+    }
+  ]
+}

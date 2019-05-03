@@ -1,0 +1,256 @@
+{
+    "type": "initParameters",
+    "header": {
+        "seo": {
+            "text": "designerFlow___modalTitle___connIntent"
+        }
+    },
+    "details": [
+        {
+            "type": "json",
+            "id": "intentsInUse",
+            "hidden": true,
+            "pathToValue": [
+                "intentsInUse"
+            ]
+        },
+        {
+            "id": "connectionId",
+            "type": "label",
+            "text": "designerFlow___connections___connId",
+            "hidden": true,
+            "pathToValue": [
+                "line",
+                "id"
+            ]
+        },
+        {
+            "id": "connectionSelectedIntent",
+            "type": "label",
+            "hidden": true,
+            "pathToValue": [
+                "line",
+                "intent",
+                "name"
+            ]
+        },
+        {
+            "type": "boolean",
+            "id": "isFallback",
+            "text": null,
+            "description": "designerFlow___connections___markAsFallback",
+            "pathToValue": [
+                "line",
+                "intent",
+                "isFallback"
+            ]
+        },
+        {
+            "type": "wct-ng-select",
+            "id": "intentName",
+            "placeholder": "designerFlow___connections___selectIntent",
+            "text": "Intent",
+            "urlResource": [
+                {
+                    "key": "path",
+                    "value": "{{SchoolBE}}/designer/intents/[[programID]]"
+                },
+                {
+                    "key": "headers",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                }
+            ],
+            "pathToValueList": [
+                "intents",
+                "@formatValueList($this,'name','friendlyName')",
+                "@disabledIntentsInUse(@replaceTagVars('connectionSelectedIntent'),$this,@getJsonParam('intentsInUse').value)"
+            ],
+            "pathToValue": [
+                "connectionSelectedIntent"
+            ],
+            "dynamicProps": {
+                "hidden": "{{isFallback}}"
+            }
+        },
+        {
+            "type": "number",
+            "_subType": "number",
+            "id": "lifeSpan",
+            "text": "designerFlow___connections___numberOfChances",
+            "min": 1,
+            "pathToValue": [
+                "line",
+                "dataRecs",
+                "$this['lifeSpan'] || 1"
+            ]
+        },
+        {
+            "type": "wct-tuple-list",
+            "id": "outputVariables",
+            "text": "designerFlow___setValues",
+            "min": 0,
+            "pathToValueList": [
+                "line",
+                "dataRecs",
+                "outputVariables",
+                "@findOutputVariables($this)"
+            ],
+            "details": [
+                {
+                    "type": "wct-ng-select",
+                    "id": "variableName",
+                    "text": "designerFlow___variableName",
+                    "class": "col-sm-4",
+                    "pathToValueList": [
+                        "config::designerFlowComponent",
+                        "variables",
+                        "@formatValueList($this,'displayName','displayName', {\"line1\": \"displayName\",\"line2\": \"description\"})",
+                        "@formatValueListTwoLines($this)"
+                    ],
+                    "pathToValue": [
+                        "variableName"
+                    ]
+                },
+                {
+                    "type": "custom-mentions",
+                    "id": "path",
+                    "class": "col-sm-5",
+                    "text": "designerFlow___newValue",
+                    "pathToValue": [
+                        "path",
+                        "$this.toString()"
+                    ],
+                    "pathToValueList": [
+                        "config::designerFlowComponent",
+                        "variables",
+                        "@mentionsComponentFormat($this)"
+                    ],
+                    "parameters": [
+                        {
+                            "key": "updatePageParameter",
+                            "value": {
+                                "pathType": {
+                                    "value": "{{@fv()@getPathType(@replaceTagVars('path'))}}"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "input-select",
+                    "id": "pathType",
+                    "text": "designerFlow___valueType",
+                    "class": "col-sm-3",
+                    "placeholder": null,
+                    "valueList": [
+                        {
+                            "key": "string",
+                            "value": "designerFlow___valueTypeOptions___string"
+                        },
+                        {
+                            "key": "number",
+                            "value": "designerFlow___valueTypeOptions___number"
+                        },
+                        {
+                            "key": "boolean",
+                            "value": "designerFlow___valueTypeOptions___boolean"
+                        },
+                        {
+                            "key": "reset",
+                            "value": "designerFlow___valueTypeOptions___reset"
+                        },
+                        {
+                            "key": "null",
+                            "value": "designerFlow___valueTypeOptions___empty"
+                        }
+                    ],
+                    "pathToValue": [
+                        "@evaluatePathType($this['pathType'],$this['path'])"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "wct-tuple-list",
+            "id": "logicExpressions",
+            "text": "designerFlow___scriptsExecution",
+            "min": 0,
+            "pathToValueList": [
+                "line",
+                "dataRecs",
+                "logicExpressions"
+            ],
+            "details": [
+                {
+                    "type": "custom-mentions",
+                    "id": "expression",
+                    "text": "designerFlow___scriptExpression",
+                    "pathToValue": [
+                        "expression"
+                    ],
+                    "pathToValueList": [
+                        "config::designerFlowComponent",
+                        "variables",
+                        "@mentionsComponentFormat($this)"
+                    ]
+                }
+            ]
+        }
+    ],
+    "buttons": [
+        {
+            "key": "cancel",
+            "text": "generic___operations___cancel",
+            "class": "btn-force-default btn-default"
+        },
+        {
+            "key": "submit",
+            "text": "generic___operations___save",
+            "class": "btn-primary",
+            "dynamicProps": {
+                "text": "{{line___dataRecs___openNextShape}} ? 'generic___operations___next' : 'generic___operations___save'"
+            },
+            "parameters": [
+                {
+                    "key": "updatePageParameter",
+                    "value": {
+                        "designerFlowComponent": {
+                            "sendEvent": [
+                                {
+                                    "key": "setIntent",
+                                    "value": {
+                                        "connectionId": "{{connectionId}}",
+                                        "intent": "{{intentName}}",
+                                        "isFallback": "{{isFallback}}"
+                                    }
+                                },
+                                {
+                                    "_key": "setConnectionShapes",
+                                    "value": {
+                                        "connectionId": "{{connectionId}}",
+                                        "from": "{{connectsFrom}}",
+                                        "to": "{{connectsTo}}"
+                                    }
+                                },
+                                {
+                                    "key": "saveDataRecs",
+                                    "value": {
+                                        "connectionId": "{{connectionId}}",
+                                        "dataRecs": {
+                                            "outputVariables": "{{@fv()@mapOutputVariables(@getJsonParam('outputVariables').value)}}",
+                                            "logicExpressions": "{{logicExpressions}}",
+                                            "lifeSpan": "{{lifeSpan}}"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

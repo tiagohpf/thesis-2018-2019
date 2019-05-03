@@ -1,0 +1,505 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge; text/html;" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0,  user-scalable=yes" />
+    <link rel="icon" href="/fuxi/common/html/css/images/favicon.ico" type="image/x-icon" />
+    <title>Template wizard</title>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.min.css" />
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+    <!-- Respond.js - IE8 support of media queries -->
+    <!--[if lt IE 9]>
+    <script src="/fuxi/lib/respond/1.4/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="fx-push-footer fx-full-height">
+        <header id="fx-header">
+            <nav class="fx-navbar" role="navigation">
+                <a class="fx-brand" href="#"><h1 class="fx-logo-brand">Fuxi</h1></a>
+            </nav>
+            <!-- breadcrumb -->
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#"><i class="fuxicons fuxicons-home"></i>Início</a>
+                </li>
+                <li>
+                    <a href="#">Link</a>
+                </li>
+                <li class="active">
+                    Ativo
+                </li>
+            </ul>
+        </header>
+        <div class="fx-prevent-content-behind-footer fx-full-height">
+
+            <div class="fx-main-content-wrapper">
+                
+                <div class="fx-entity-header fx-fixed-position" data-fix-to="top" data-calc-height="true">
+                    <div class="fx-entity-header-inner">
+                        <div class="fx-entity-header-headings clearfix">
+                            <div class="pull-left fx-constraint">
+
+                                <h1><i class="glyphicon glyphicon-hdd"></i> Wizard com steps dinâmicos</h1>
+                                <p><strong>Para ver exemplo em modal seguir o seguinte <a href="template-wizard.html">link</a></strong></p>
+                                <p><strong>Para ver exemplo com steps dinâmicos e substeps seguir o seguinte <a href="template-wizard-dynamic-substeps.html">link</a></strong></p>
+                            </div>
+                            <div class="pull-right">
+                                <a class="btn btn-default btn-sm" title="editar"> <i class="glyphicon glyphicon-pencil"></i> </a>
+                                <button class="btn btn-default btn-sm" title="atualizar">
+                                    <i class="glyphicon glyphicon-refresh"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav nav-tabs fx-main-tabs">
+                        <li class="active">
+                            <a href="#tab-wizard" data-toggle="tab">Wizard com steps dinâmicos</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="tab-content fx-main-tab-content">
+
+
+                    <div class="tab-pane active" id="tab-wizard">
+
+
+
+                        <div id="fx-wizard-add-service" class="fx-wizard-wrapper"
+                             data-wiz-prev="#wiz-prev"
+                             data-wiz-next="#wiz-next"
+                             data-wiz-complete="#wiz-complete"
+                             data-step-opened="1"
+                             data-client-validator="validateAll"
+                             data-wizard>
+                            <nav>
+                                <ul class="list-unstyled fx-nav-items">
+                                    <li id="navWizStep1" class="fx-nav-link" data-client-validator="validateStep">
+                                        <a>
+                                            <span class="fx-wizardstep-number"> 1 </span>
+                                            <span class="fx-wizardstep-title">Step 1</span>
+                                            <div class="pull-right fx-wizardstep-error fx-alert-icon hidden">
+                                                <i class="fuxicons fuxicons-error"></i>
+                                            </div>
+
+                                            <div class="fx-wizardstep-info hidden">
+                                                <!--DEMO-->
+                                                <!--THIS INFO WOLL BE APPENDED VIA THE ARRAY SUMMARY-->
+                                                <!--<ul class="fx-wizardstep-info-items">
+                                                    <li>
+                                                        Nome do serviço
+                                                    </li>
+                                                    <li class="step-decisision">
+                                                        Internet
+                                                    </li>
+                                                </ul>-->
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li id="navWizStep11" class="fx-nav-link hidden blocked" data-client-validator="validateStep" data-dynamic-parent-decider="xpto1" data-dynamic-step>
+                                        <a>
+                                            <span class="fx-wizardstep-number"> 1.1</span>
+                                            <span class="fx-wizardstep-title">Dinâmico 1.1</span>
+                                            <div class="pull-right fx-wizardstep-error fx-alert-icon hidden">
+                                                <i class="fuxicons fuxicons-error"></i>
+                                            </div>
+                                            <div class="fx-wizardstep-info hidden">
+
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li id="navWizStep12" class="fx-nav-link hidden blocked" data-client-validator="validateStep" data-dynamic-parent-decider="xpto1" data-dynamic-step>
+                                        <a>
+                                            <span class="fx-wizardstep-number"> 1.2</span>
+                                            <span class="fx-wizardstep-title">Dinâmico 1.2</span>
+                                            <div class="pull-right fx-wizardstep-error fx-alert-icon hidden">
+                                                <i class="fuxicons fuxicons-error"></i>
+                                            </div>
+                                            <div class="fx-wizardstep-info hidden">
+
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li id="navWizStep2" class="fx-nav-link" data-client-validator="validateStep">
+                                        <a>
+                                            <span class="fx-wizardstep-number"> 2 </span>
+                                            <span class="fx-wizardstep-title">Step 2</span>
+                                            <div class="pull-right fx-wizardstep-error fx-alert-icon hidden">
+                                                <i class="fuxicons fuxicons-error"></i>
+                                            </div>
+                                            <div class="fx-wizardstep-info hidden">
+                                                <!--THIS INFO WOLL BE APPENDED VIA THE ARRAY SUMMARY-->
+                                                <!--<ul class="fx-wizardstep-info-items">
+                                                    <li>
+                                                        Nome do serviço
+                                                    </li>
+                                                    <li class="step-decisision">
+                                                        Internet
+                                                    </li>
+                                                </ul>-->
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li id="navWizStep3" class="fx-nav-link" data-client-validator="validateStep">
+                                        <a>
+                                            <span class="fx-wizardstep-number"> 3 </span>
+                                            <span class="fx-wizardstep-title">Step 3</span>
+                                            <div class="pull-right fx-wizardstep-error fx-alert-icon hidden">
+                                                <i class="fuxicons fuxicons-error"></i>
+                                            </div>
+                                            <div class="fx-wizardstep-info hidden">
+                                                <!--THIS INFO WOLL BE APPENDED VIA THE ARRAY SUMMARY-->
+                                                <!--<ul class="fx-wizardstep-info-items">
+                                                    <li>
+                                                        Nome do serviço
+                                                    </li>
+                                                    <li class="step-decisision">
+                                                        Internet
+                                                    </li>
+                                                </ul>-->
+                                            </div>
+                                        </a>
+                                    </li>
+                                    
+                                    <li id="navWizStep6" class="fx-nav-link hidden blocked" data-client-validator="validateStep" data-dynamic-parent-decider="xpto2" data-dynamic-step>
+                                        <a>
+                                            <span class="fx-wizardstep-number"> 6</span>
+                                            <span class="fx-wizardstep-title">Dinâmico ?</span>
+                                            <div class="pull-right fx-wizardstep-error fx-alert-icon hidden">
+                                                <i class="fuxicons fuxicons-error"></i>
+                                            </div>
+                                            <div class="fx-wizardstep-info">
+                                                <!--THIS INFO WOLL BE APPENDED VIA THE ARRAY SUMMARY-->
+                                                <!--<ul class="fx-wizardstep-info-items">
+                                                    <li>
+                                                        Nome do serviço
+                                                    </li>
+                                                    <li class="step-decisision">
+                                                        Internet
+                                                    </li>
+                                                </ul>-->
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </nav>
+                            <!--STEP 1-->
+                            <section id="wizStep1" class="fx-wizardsteps-content">
+                                <h4><span class="fx-wizardstep-number">1</span> | Step 1</h4>
+                                <p class="fx-required-fields-message">
+                                    Campos de preenchimento obrigatório
+                                </p>
+
+                                <div>
+                                    <input type="checkbox" id="chk-dyn-1" data-block-step="true" data-dynamic-decider="xpto1" onclick="showDynamic(this);" /> <label for="chk-dyn-1">Show step dinâmico 1.1 e 1.2</label><br />
+                                    <input type="checkbox" id="chk-dyn-2" data-block-step="false" data-dynamic-decider="xpto2" onclick="showDynamic(this);" /> <label for="chk-dyn-2">Show step dinâmico 6</label><br /><br />
+                                </div>
+
+                                <div class="fx-wizardsteps-content-block">
+                                    <a class="fx-expand" data-toggle="collapse" data-target="#step-1-expand"> <i class="caret"></i> Delimitador de campos comuns (pode ou não existir)  </a>
+                                    <div id="step-1-expand" class="collapse in fx-indent">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="serviceName" class="col-sm-2 control-label fx-required-field">Nome do serviço</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control input-sm" id="serviceName">
+                                                    <div contenteditable="true" style="border: 1px solid #ccc; width:300px; height:100px;">
+                                                        qq coisa aqui!
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </section>
+
+                            <!--STEP 1.1-->
+                            <section id="wizStep11" class="fx-wizardsteps-content" data-dynamic-parent-decider="xpto1" data-dynamic-step>
+                                <h4><span class="fx-wizardstep-number">1.1</span> | Dinâmico 1.1</h4>
+                                <div class="fx-wizardsteps-content-block">
+                                    <a class="fx-expand" data-toggle="collapse" data-target="#step-11-expand"> <i class="caret"></i>  Delimitador de campos comuns (pode ou não existir) </a>
+                                    <div id="step-11-expand" class="collapse in fx-indent">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="input11" class="col-sm-2 control-label">Nome do campo</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control input-sm" id="input11">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!--STEP 1.2-->
+                            <section id="wizStep12" class="fx-wizardsteps-content" data-dynamic-parent-decider="xpto1" data-dynamic-step>
+                                <h4><span class="fx-wizardstep-number">1.1</span> | Dinâmico 1.2</h4>
+                                <div class="fx-wizardsteps-content-block">
+                                    <a class="fx-expand" data-toggle="collapse" data-target="#step-12-expand"> <i class="caret"></i>  Delimitador de campos comuns (pode ou não existir) </a>
+                                    <div id="step-12-expand" class="collapse in fx-indent">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="input12" class="col-sm-2 control-label">Nome do campo</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control input-sm" id="input12">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+
+                            <!--STEP 2-->
+                            <section id="wizStep2" class="fx-wizardsteps-content">
+                                <h4><span class="fx-wizardstep-number">2</span> | Step 2</h4>
+                                <p class="fx-required-fields-message">
+                                    Campos de preenchimento obrigatório
+                                </p>
+
+
+
+                                <div class="fx-wizardsteps-content-block">
+                                    <a class="fx-expand" data-toggle="collapse" data-target="#step-2-expand"> <i class="caret"></i> Delimitador de campos comuns (pode ou não existir)  </a>
+                                    <div id="step-2-expand" class="collapse in fx-indent">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="input-step-2" class="col-sm-2 control-label fx-required-field">Nome do serviço</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control input-sm" id="input-step-2">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </section>
+
+                            <!--STEP 3-->
+                            <section id="wizStep3" class="fx-wizardsteps-content">
+                                <h4><span class="fx-wizardstep-number">3</span> | Step 3</h4>
+                                <p class="fx-required-fields-message">
+                                    Campos de preenchimento obrigatório
+                                </p>
+
+
+
+                                <div class="fx-wizardsteps-content-block">
+                                    <a class="fx-expand" data-toggle="collapse" data-target="#step-3-expand"> <i class="caret"></i> Delimitador de campos comuns (pode ou não existir)  </a>
+                                    <div id="step-3-expand" class="collapse in fx-indent">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="input-step-3" class="col-sm-2 control-label fx-required-field">Nome do serviço</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control input-sm" id="input-step-3">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </section>
+
+                            <!--STEP xpto-->
+                            <section id="wizStepxpto" class="fx-wizardsteps-content" data-dynamic-parent-decider="xpto2" data-dynamic-step>
+                                <h4><span class="fx-wizardstep-number">4</span> | Dinâmico xpto</h4>
+                                <div class="fx-wizardsteps-content-block">
+                                    <a class="fx-expand" data-toggle="collapse" data-target="#step-xpto-expand"> <i class="caret"></i>  Delimitador de campos comuns (pode ou não existir) </a>
+                                    <div id="step-xpto-expand" class="collapse in fx-indent">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputxpto" class="col-sm-2 control-label">Nome do campo</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control input-sm" id="inputxpto">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <div class="fx-wizard-buttons-wrapper">
+                                <div class="fx-wizard-buttons-wrapper-inner">
+                                    <button id="wiz-prev" class="btn btn-default btn-sm disabled" type="button">
+                                        <i class="glyphicon glyphicon-chevron-left"></i>anterior
+                                    </button>
+                                    <button id="wiz-next" class="btn btn-default btn-sm" type="button">
+                                        seguinte<i class="glyphicon glyphicon-chevron-right"></i>
+                                    </button>
+                                    <button id="wiz-complete" class="btn btn-primary btn-sm" type="button">
+                                        finalizar
+                                    </button>
+                                    <button id="wiz-cancel" class="btn btn-default btn-sm" type="button">
+                                        cancelar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- FOOTER ABOUT -->
+        <!--# include file="/fuxi/partials/html/partial-footer-about.html" -->
+    </div>
+
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+    <script src="/fuxi/common/exec/fuxi.js"></script>
+    <!--script src="/fuxi/wireframes/exec/template-detail.min.js"></script-->
+    <!-- RESOURCES EN / PT : include according culture-->
+    <!--<script src="/fuxi/resources/fuxi_en.js" language="javascript" type="text/javascript"></script>-->
+    <script src="/fuxi/resources/fuxi_pt.js" language="javascript" type="text/javascript"></script>
+    <script>
+        
+        var $currentStepContainer = $(".fx-wizardsteps-content").eq(0);        
+        $(function () {
+            FUXI.Header.init();
+            FUXI.FixedPositions.init();
+
+            /*enum
+                FUXI.Wizard.modeEnum = {
+                EDIT: 'EDIT',
+                INSERT: "INSERT",
+                VIEW: 'VIEW'
+            }; */
+            FUXI.Wizard.init({ 'isAsync': true, 'mode': FUXI.Wizard.modeEnum.INSERT });
+            
+            $(document).on('goto.wizard.fuxi', function (e) {
+                
+                console.log('goto.wizard.fuxi (currentStep/ targetStep /step Is Valid?)' + e.currentStep + " / " + e.targetStep + " / " + e.stepIsValid);
+                
+                $currentStepContainer = e.Wizard.getCurrentStepContainer(e.targetStep);
+
+            });
+            
+            $(document).on('next.wizard.fuxi', function (e) {
+                
+                console.log('next.wizard.fuxi (currentStep/ targetStep /step Is Valid?)' + e.currentStep + " / " + e.targetStep + " / " + e.stepIsValid);
+                
+                e.Wizard.setSummary(e.currentStep, summary[e.currentStep]);
+
+                $currentStepContainer = e.Wizard.getCurrentStepContainer((e.stepIsValid) ? e.targetStep : e.currentStep);
+            });
+
+            $(document).on('prev.wizard.fuxi', function (e) {
+
+                console.log('prev.wizard.fuxi (currentStep/ targetStep /step Is Valid?)' + e.currentStep + " / " + e.targetStep + " / " + e.stepIsValid);
+                
+                $currentStepContainer = e.Wizard.getCurrentStepContainer((e.stepIsValid) ? e.targetStep : e.currentStep);
+            });
+
+            $(document).on('complete.wizard.fuxi', function (e) {
+                
+                console.log('complete.wizard.fuxi (currentStep/ targetStep /step Is Valid?)' + e.currentStep + " / " + e.targetStep + " / " + e.stepIsValid);
+                
+            });
+
+            summary = [
+            [],
+            [{ stepDecision: true, title: 'S1 Nome do campo', value: 'Valor do campo' },
+             { stepDecision: false, title: 'S1 Nome do campo', value: 'Valor do campo' }
+            ],
+            [{ stepDecision: false, title: 'S1.1 Nome do campo', value: 'Valor do campo' },
+             { stepDecision: false, title: 'S1.1 Nome do campo', value: 'Valor do campo' }
+            ],
+            [{ stepDecision: false, title: 'S1.2 Nome do campo', value: 'Valor do campo' },
+             { stepDecision: false, title: 'S1.2 Nome do campo', value: 'Valor do campo' }
+            ],
+            [{ stepDecision: false, title: 'S2 Nome do campo', value: 'Valor do campo' },
+             { stepDecision: false, title: 'S2 Nome do campo', value: 'Valor do campo' }
+            ],
+            [{ stepDecision: false, title: 'S3 Nome do campo', value: 'Valor do campo' },
+             { stepDecision: false, title: 'S3 Nome do campo', value: 'Valor do campo' }
+            ],
+            [{ stepDecision: false, title: 'Sxpto Nome do campo', value: 'Valor do campo' },
+             { stepDecision: false, title: 'Sxpto Nome do campo', value: 'Valor do campo' }
+            ],
+            ]
+
+        });
+                
+        function showDynamic(elem) {
+            
+            var $this = $(elem);
+
+            FUXI.Wizard.toggleDynamicSteps($this);
+            FUXI.Wizard.rearrangeNumeration($this.closest("[data-wizard]"));
+        }
+
+        // demo for function to validate steps
+        function validateStep(args) {
+            var step = args.step;
+            var w = args.Wizard;
+
+            var dt = new Date();
+            var s = dt.getSeconds();
+            console.log("seconds: " + s);
+
+
+            //console.log(step + "\n" + w);
+            switch (step) {
+                case 1:
+                    // função para validar o step 1...
+                    return { isValid: !!(s % 2), message: '<p>Campos obrigatórios por preencher</p>' };
+                    break;
+                case 2:
+                    // função para validar o step 2...
+                    return { isValid: !!(s % 2), message: '<p>Campos obrigatórios por preencher</p>' };
+                    break;
+                case 3:
+                    // função para validar o step 3...
+                    return { isValid: !!(s % 2), message: '<p>Campos obrigatórios por preencher</p>' };
+                    break;
+                case 4:
+                    // função para validar o step 4...
+                    return { isValid: !!(s % 2), message: '<p>Campos obrigatórios por preencher</p>' };
+                    break;
+                case 5:
+                    // função para validar o step 4...
+                    return { isValid: !!(s % 2), message: '<p>Campos obrigatórios por preencher</p>' };
+                    break;
+                case 6:
+                    // função para validar o step 4...
+                    return { isValid: !!(s % 2), message: '<p>Campos obrigatórios por preencher</p>' };
+                    break;
+                default:
+                    var msg = "Step " + step + " não tem função de validação associada!";
+                    throw msg;
+            }
+
+        }
+
+        function validateAll(args) {
+            console.log("validateAll() ", args);
+            var dt = new Date();
+            var s = dt.getSeconds();
+
+            return { isValid: !!(s % 2), message: '<p>Campos obrigatórios por preencher</p>' };
+        }
+    </script>
+</body>
+</html>

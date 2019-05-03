@@ -1,0 +1,196 @@
+<h3 id="docs-exp-editor-options">Opções</h3>
+<p>O editor de expressões disponibiliza as opções abaixo enumeradas.</p>
+
+<div class="table-responsive">
+    <table class="table fx-table fx-table-with-codemirror">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th class="fx-col-type">Tipo</th>
+                <th>Default</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>layoutOptions</td>
+                <td>Objeto</td>
+                <td>
+                    <a class="fx-devguide-toggle-code-vis" role="button">
+                        <i class="fa fa-angle-down"></i>ver código
+                    </a>
+                    <div class="fx-devguide-toggled-code-vis hidden">
+                        <form class="fx-codemirror">
+                            <textarea class="fx-codemirror-textarea-hidden">
+layoutOptions: {
+    defaults: {
+        resizable: true,
+        livePaneResizing: true,
+        resizerTip: "Resize",
+        spacing_closed: 10,
+        spacing_open: 10
+    },
+    west: {
+        size:250,
+        contentSelector: '.fx-ee-options'
+    },
+    center: {
+        size: 450,
+        minSize: 100,
+        maxSize: 450,
+        contentSelector: '.fx-ee-constructors'
+    },
+    east: {
+        size: 100,
+        contentSelector: '.fx-ee-options'
+    }
+}
+                            </textarea>
+                        </form>
+                    </div>
+                </td>
+                <td>
+                    Opções do jQuery UI Layout.
+                </td>
+            </tr>
+            <tr>
+                <td>hideWestPanel</td>
+                <td>booleano</td>
+                <td><code>false</code></td>
+                <td>Controla a visibilidade do painel da esquerda.</td>
+            </tr>
+            <tr>
+                <td>hideEastPanel</td>
+                <td>booleano</td>
+                <td><code>true</code></td>
+                <td>Controla a visibilidade do painel da direita.</td>
+            </tr>
+            <tr>
+                <td>clientCheckRuleSyntaxValidator</td>
+                <td>function</td>
+                <td><code>undefined</code></td>
+                <td>Função utilizada para verificar a sintaxe da regra. Por defeito está a <strong>undefined</strong> e cada equipa deverá implementar a sua lógica.</td>
+            </tr>
+            <tr>
+                <td>expressionItems</td>
+                <td>Array</td>
+                <td><code>[]</code></td>
+                <td>Serve para popular a árvore das expressões. Admite JSON no formato permitido pela jsTree.</td>
+            </tr>
+            <tr>
+                <td>operatorItems</td>
+                <td>Array</td>
+                <td>
+                    <code>[]</code>
+                </td>
+                <td>
+                    Serve para popular a área de operadores. Admite JSON com a estrutura exemplificada.
+                    <a class="fx-devguide-toggle-code-vis" role="button">
+                        <i class="fa fa-angle-down"></i>ver código
+                    </a>
+                    <div class="fx-devguide-toggled-code-vis hidden">
+                        <form class="fx-codemirror">
+                            <textarea class="fx-codemirror-textarea-hidden">
+[{
+    "name": "", //nome que vai identificar o bloco
+    "cssname": "", //class a aplicar e que permitirá diferenciar o aspeto dos botões
+    "maxitems": , //número máximo de botões rápidos por grupo
+    "items": [{ //cada um botões
+        "text": "", //texto do botão
+        "action": "" //ação do botão
+    }]
+}]
+                            </textarea>
+                        </form>
+</td>
+            </tr>
+            <tr>
+                <td>templateGroup</td>
+                <td>HTML</td>
+                <td>
+                    <a class="fx-devguide-toggle-code-vis" role="button">
+                        <i class="fa fa-angle-down"></i>ver código
+                    </a>
+                    <div class="fx-devguide-toggled-code-vis hidden">
+                        <form class="fx-codemirror">
+                            <textarea class="fx-codemirror-textarea-hidden">
+<div class="fx-ee-actions-group {{CSSNAME}}" data-name="{{NAME}}">
+    {{ITEMS}}
+</div>
+                            </textarea>
+                        </form>
+</td>
+                <td>
+                    Template HTML para o grupo de ações.
+                </td>
+            </tr>
+            <tr>
+                <td>templateGroupItem</td>
+                <td>HTML</td>
+                <td>
+                    <a class="fx-devguide-toggle-code-vis" role="button">
+                        <i class="fa fa-angle-down"></i>ver código
+                    </a>
+                    <div class="fx-devguide-toggled-code-vis hidden">
+                        <form class="fx-codemirror">
+                            <textarea class="fx-codemirror-textarea-hidden">
+<button type="button" class="btn btn-default btn-xs fx-ee-btn-action" data-action="{{ACTION}}">
+    {{TEXT}}
+</button>
+                            </textarea>
+                        </form>
+</td>
+                <td>
+                    Template HTML para os items do grupo de acções.
+                </td>
+            </tr>
+            <tr>
+                <td>templateAllActions</td>
+                <td>HTML</td>
+                <td>
+                    <a class="fx-devguide-toggle-code-vis" role="button">
+                        <i class="fa fa-angle-down"></i>ver código
+                    </a>
+                    <div class="fx-devguide-toggled-code-vis hidden">
+                        <form class="fx-codemirror">
+                            <textarea class="fx-codemirror-textarea-hidden">
+<div class="col-sm-6 fx-ee-all-actions-block {{CSSNAME}}" data-name="{{NAME}}">
+    <p class="fx-ee-all-actions-block-title">{{NAME}}</p>
+    <div>
+        {{ITEMS}}
+    </div>
+</div>
+                            </textarea>
+                        </form>
+</td>
+                <td>Template HTML para todas as acções definidas.</td>
+            </tr>
+            <tr>
+                <td>
+                    languageStrings
+                </td>
+                <td>Objeto</td>
+                <td>
+                    <a class="fx-devguide-toggle-code-vis" role="button">
+                        <i class="fa fa-angle-down"></i>ver código
+                    </a>
+                    <div class="fx-devguide-toggled-code-vis hidden">
+                        <form class="fx-codemirror">
+                            <textarea class="fx-codemirror-textarea-hidden">
+languageStrings: {
+    feedbackSucceed: "A regra definida não apresenta nenhum problema.", //Surge quando a sintaxe colocada no campo regra é corretamente validada
+    feedbackError: "A regra definida não está corretamente formatada.", //Surge quando a sintaxe colocada no campo regra está com problemas
+    feedbackEmptyRule: "Não foi definida nenhuma regra. Por favor escreva a regra pretendida.", //Surge quando se clica em verificar sintaxe sem colocar uma regra
+    noActins: "<p>Não foi definido nenhum operador.</p>" //Surge quando não existem operadores definidos.
+}
+                            </textarea>
+                        </form>
+</td>
+                <td>
+                    Objeto com as mensagens utilizadas.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

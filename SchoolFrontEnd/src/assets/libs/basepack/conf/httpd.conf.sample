@@ -1,0 +1,12 @@
+# configuracao para acesso local
+Alias /basepack/ "/opt/ptin/basepack/web/"
+<Directory "/opt/ptin/basepack/web/">
+    Options FollowSymLinks
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+</Directory>
+
+# configuracao para acesso remoto, tipo CDN, em ambiente desenvolvimento!
+# ProxyPass /basepack http://pds.ptin.corppt.com/basepack
+#ProxyPassReverse /basepack http://pds.ptin.corppt.com/basepack

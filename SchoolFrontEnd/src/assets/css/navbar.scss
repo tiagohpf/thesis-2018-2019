@@ -1,0 +1,194 @@
+/******************** LEFT BAR *********************/
+
+app-wct-side-navbar {
+    nav {
+        overflow: hidden;
+        &.wct-side-menu {
+            z-index: 1038 !important;
+            background: rgb(17, 16, 94) !important; //opacity: 0.9 !important;
+            width: 80px !important;
+            transition: width 0.2s cubic-bezier(0, 0, 0.2, 1) !important;
+            .wct-open-side-menu {
+                display: none;
+            }
+            .wct-opacity-control {
+                opacity: unset !important;
+                margin-top: 15px;
+                .wct-side-menu-pin {
+                    display: none !important;
+                }
+                ul {
+                    li {
+                        &:nth-child(2) {
+                            margin-top: 80px;
+                        }
+                        &.navbar-brand {
+                            margin: 0 !important;
+                            /* height: 70px; */
+                            width: 100%;
+                            height: auto; //padding-top: 20px !important;
+                            //padding-bottom: 40px !important;
+                            .nav-link {
+                                padding: 5px !important;
+                                img {
+                                    width: 70px;
+                                    content: url("../images/platform/logo.svg");
+                                }
+                            }
+                            a::after {
+                                content: url("../images/platform/logo_lettering.svg");
+                                height: auto;
+                                width: 130px !important;
+                                display: inline-block;
+                                vertical-align: middle;
+                                opacity: 0;
+                                margin-left: 0px;
+                            }
+                        }
+                        &.wct-side-nav-item-menu {
+                            padding-bottom: 25px;
+                            a {
+                                &.active {
+                                    color: rgb(165, 65, 198) !important;
+                                }
+                                line-height: 26px;
+                                text-decoration: none;
+                                text-align: start;
+                                pointer-events: all;
+                                color: white;
+                                span {
+                                    height: 40px;
+                                    margin-left: 0;
+                                    opacity: 0;
+                                    transition: opacity 0.1s, margin-left 0.2s;
+                                    white-space: nowrap;
+                                    font-size: 16px;
+                                    font-family: FallingSky;
+                                    font-size: 22px;
+                                    font-weight: 400;
+                                    text-transform: lowercase !important;
+                                    padding: 5px;
+                                    position: absolute;
+                                }
+                                i {
+                                    &.wct-button-icon {
+                                        margin: 0 !important;
+                                    }
+                                    font-size: 40px;
+                                    width: 40px;
+                                    height: 40px;
+                                    padding: 3px;
+                                }
+                            }
+                            &:hover {
+                                a {
+                                    span {
+                                        color: rgb(165, 65, 198);
+                                    }
+                                    i {
+                                        color: rgb(165, 65, 198);
+                                    }
+                                }
+                            }
+                        }
+                        &:nth-last-child(1) {
+                            // position: absolute;
+                            // bottom: 30px;
+                            margin-top: 100px;
+                        }
+                    }
+                }
+            }
+            &:hover {
+                width: 280px !important;
+                transition: width 0.3s cubic-bezier(0, 0, 0.2, 1);
+                background: rgba(18, 16, 96, 0.9019607843137255) !important;
+                .wct-opacity-control {
+                    ul {
+                        li {
+                            &.wct-side-nav-item-menu {
+                                a {
+                                    span {
+                                        opacity: 1;
+                                        margin-left: 20px;
+                                        transition: opacity 0.1s linear 0.2s, margin 0.1s linear 0.2s;
+                                        display: inline-flex;
+                                    }
+                                }
+                            }
+                            &.navbar-brand {
+                                a::after {
+                                    opacity: 1;
+                                    margin-left: 10px;
+                                    transition: opacity 0.1s linear 0.2s, margin 0.1s linear 0.2s;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .wct-side-menu-pin {
+            display: none;
+        }
+    }
+}
+
+/******************** TOP BAR *********************/
+
+//app-wct-navbar {
+nav {
+    width: 100%;
+    >app-wct-navbar-menu {
+        display: none;
+        overflow: visible;
+    }
+    &.navbar {
+        height: 70px;
+        &.fixed-top {
+            position: relative;
+            margin-left: 0 !important;
+            padding: 20px;
+        }
+        &.wct-prevent-side-menu {
+            padding-left: 0;
+            padding: 15px 40px; //margin-left: 80px !important;
+        }
+        &.navbar:not(.wct-is-loading) {
+            transition: none;
+        }
+        button {
+            display: none;
+        }
+        .wct-navbar-details {
+            width: 100%;
+            @include max-width-screen;
+            margin: 0 auto;
+            position: relative;
+            #wct-each-parameter-navUserWrapper {
+                position: absolute;
+                right: 0;
+                top: -20px;
+                .form-group {
+                    margin: 0;
+                }
+                #wct-each-parameter-userLogo {
+                    #wct-image-userLogo {
+                        width: 35px;
+                    }
+                }
+                #wct-each-parameter-userName {
+                    #wct-label-userName {
+                        font-size: 14px;
+                        color: #ffffff;
+                    }
+                }
+                .caret {
+                    color: white !important;
+                }
+            }
+        }
+    }
+}
+
+//}

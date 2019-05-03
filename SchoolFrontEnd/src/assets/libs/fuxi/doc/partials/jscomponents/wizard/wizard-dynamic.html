@@ -1,0 +1,261 @@
+<h3 id="docs-wizard-dynamic">Wizard dinâmico</h3>
+<p>Este snippet demonstra um wizard em que as decisões do utilizador vão influenciar o seu percurso.</p>
+<p>O elemento com a class <code>fx-wizard-wrapper</code> ocupará sempre 100% da altura do seu parent.</p>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <div style="height: 300px">
+            <div id="devguide-wizard-dynamic" class="fx-wizard-wrapper"
+                 data-wiz-prev="#devguide-wiz-prev-dynamic"
+                 data-wiz-next="#devguide-wiz-next-dynamic"
+                 data-wiz-complete="#devguide-wiz-complete-dynamic"
+                 data-step-opened="1"
+                 data-client-validator="auxFuncs.wizard.devguideWizValidateDynamic"
+                 data-wizard>
+                <nav>
+                    <ul class="list-unstyled fx-nav-items">
+                        <li id="devguide-wiz-dynamic-step-1" class="fx-nav-link">
+                            <span class="fx-wizardstep-number"> 1 </span>
+                            <span class="fx-wizardstep-title">Step 1</span>
+                            <div class="pull-right fx-wizardstep-error fx-alert-icon hidden">
+                                <i class="fuxicons fuxicons-error"></i>
+                            </div>
+                            <div class="fx-wizardstep-info hidden">
+                                <!--THIS INFO WILL BE APPENDED VIA THE ARRAY SUMMARY-->
+                            </div>
+                        </li>
+                        <li id="devguide-wiz-dynamic-step-2" class="fx-nav-link blocked">
+                            <span class="fx-wizardstep-number"> 2 </span>
+                            <span class="fx-wizardstep-title">Step 2</span>
+                            <div class="pull-right fx-wizardstep-error fx-alert-icon hidden">
+                                <i class="fuxicons fuxicons-error"></i>
+                            </div>
+                        </li>
+                        <li id="devguide-wiz-dynamic-step-3" class="fx-nav-link hidden blocked" data-dynamic-parent-decider="demo-dynamic" data-dynamic-step>
+                            <span class="fx-wizardstep-number"> 3</span>
+                            <span class="fx-wizardstep-title">Step dinâmico</span>
+                            <div class="pull-right fx-wizardstep-error fx-alert-icon hidden">
+                                <i class="fuxicons fuxicons-error"></i>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!--STEP 1-->
+                <section id="devguide-wiz-dynamic-step-1-content" class="fx-wizardsteps-content">
+                    <h4><span class="fx-wizardstep-number">1</span> | Step 1</h4>
+                    <div class="fx-wizardsteps-content-block">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="devguide-trigger-dynamic-step" data-block-step="true" data-dynamic-decider="demo-dynamic" onclick="auxFuncs.wizard.showDynamic(this);" />
+                            Trigger step dinâmico
+                        </label>
+                    </div>
+                </section>
+
+                <!--STEP 2-->
+                <section id="devguide-wiz-dynamic-step-2-content" class="fx-wizardsteps-content">
+                    <h4><span class="fx-wizardstep-number">2</span> | Step 2</h4>
+                    <div class="fx-wizardsteps-content-block">
+                        Conteúdo do step 2
+                    </div>
+                </section>
+
+                <!--STEP DINÂMICO-->
+                <section id="devguide-wiz-dynamic-step-3-content" class="fx-wizardsteps-content" data-dynamic-parent-decider="demo-dynamic" data-dynamic-step>
+                    <h4><span class="fx-wizardstep-number">3</span> | Step Dinâmico</h4>
+                    <div class="fx-wizardsteps-content-block">
+                        Conteúdo do step dinâmico
+                    </div>
+                </section>
+
+                <div class="fx-wizard-buttons-wrapper">
+                    <div class="fx-wizard-buttons-wrapper-inner">
+                        <button id="devguide-wiz-prev-dynamic" class="btn btn-default btn-sm disabled" type="button">
+                            <i class="glyphicon glyphicon-chevron-left"></i>anterior
+                        </button>
+                        <button id="devguide-wiz-next-dynamic" class="btn btn-default btn-sm" type="button">
+                            seguinte<i class="glyphicon glyphicon-chevron-right"></i>
+                        </button>
+                        <button id="devguide-wiz-complete-dynamic" class="btn btn-primary btn-sm" type="button">
+                            finalizar
+                        </button>
+                        <button id="devguide-wiz-cancel-dynamic" class="btn btn-default btn-sm" type="button">
+                            cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h4>Data-attributes</h4>
+<div class="table-responsive">
+    <table class="table fx-table">
+        <thead>
+            <tr>
+                <th>Datta-attribute</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>data-dynamic-step</code></td>
+                <td>Identifica o step como sendo dinâmico. Deve ser aplicado ao <code>li</code> da navegação e ao container do conteúdo do step.</td>
+            </tr>
+            <tr>
+                <td><code>data-dynamic-decider</code></td>
+                <td>Deve ser aplicado ao elemento que despoleta o aparecimento do step dinâmico. Aceita uma key que deve ser igual à key definida no <code>li</code> da navegação e ao container do conteúdo do step entretanto despoletado.</td>
+            </tr>
+            <tr>
+                <td><code>data-dynamic-parent-decider</code></td>
+                <td>Deve ser aplicado ao <code>li</code> da navegação e ao container do conteúdo do step. Aceita uma key que deve ser igual à key definida no elemento que faz surgir o step. A esse elemento deve atribuir-se o atributo <code>data-dynamic-decider</code>.</td>
+            </tr>
+            <tr>
+                <td><code>data-block-step</code></td>
+                <td>Deve ser aplicado no elemento que despoleta o aparecimento do step dinâmico. Aceita os valores<code>true | false</code> e define se o step aparece bloqueado ou desbloqueado.</td>
+            </tr>
+
+            
+        </tbody>
+    </table>
+</div>
+
+<h4>Markup</h4>
+<form class="fx-codemirror">
+    <textarea class="fx-codemirror-textarea">
+<div id="devguide-wizard-dynamic" class="fx-wizard-wrapper"
+        data-wiz-prev="#devguide-wiz-prev-dynamic"
+        data-wiz-next="#devguide-wiz-next-dynamic"
+        data-wiz-complete="#devguide-wiz-complete-dynamic"
+        data-step-opened="1"
+        data-client-validator="devguideWizValidateDynamic"
+        data-wizard>
+    <nav>
+        <ul class="list-unstyled fx-nav-items">
+            <li id="devguide-wiz-dynamic-step-1" class="fx-nav-link">
+                <span class="fx-wizardstep-number"> 1 </span>
+                <span class="fx-wizardstep-title">Step 1</span>
+                <div class="pull-right fx-wizardstep-error fx-alert-icon hidden">
+                    <i class="fuxicons fuxicons-error"></i>
+                </div>
+                <div class="fx-wizardstep-info hidden">
+                    <!--THIS INFO WILL BE APPENDED VIA THE ARRAY SUMMARY-->
+                </div>
+            </li>
+            <li id="devguide-wiz-dynamic-step-2" class="fx-nav-link blocked">
+                <span class="fx-wizardstep-number"> 2 </span>
+                <span class="fx-wizardstep-title">Step 2</span>
+                <div class="pull-right fx-wizardstep-error fx-alert-icon hidden">
+                    <i class="fuxicons fuxicons-error"></i>
+                </div>
+            </li>
+            <li id="devguide-wiz-dynamic-step-3" class="fx-nav-link hidden blocked" data-dynamic-parent-decider="demo-dynamic" data-dynamic-step>
+                <span class="fx-wizardstep-number"> 3</span>
+                <span class="fx-wizardstep-title">Step dinâmico</span>
+                <div class="pull-right fx-wizardstep-error fx-alert-icon hidden">
+                    <i class="fuxicons fuxicons-error"></i>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <!--STEP 1-->
+    <section id="devguide-wiz-dynamic-step-1-content" class="fx-wizardsteps-content">
+        <h4><span class="fx-wizardstep-number">1</span> | Step 1</h4>
+        <div class="fx-wizardsteps-content-block">
+            <label class="checkbox-inline">
+                <input type="checkbox" id="devguide-trigger-dynamic-step" data-block-step="true" data-dynamic-decider="demo-dynamic" onclick="showDynamic(this);" />
+                Trigger step dinâmico
+            </label>
+        </div>
+    </section>
+
+    <!--STEP 2-->
+    <section id="devguide-wiz-dynamic-step-2-content" class="fx-wizardsteps-content">
+        <h4><span class="fx-wizardstep-number">2</span> | Step 2</h4>
+        <div class="fx-wizardsteps-content-block">
+            Conteúdo do step 2
+        </div>
+    </section>
+
+    <!--STEP DINÂMICO-->
+    <section id="devguide-wiz-dynamic-step-3-content" class="fx-wizardsteps-content" data-dynamic-parent-decider="demo-dynamic" data-dynamic-step>
+        <h4><span class="fx-wizardstep-number">3</span> | Step Dinâmico</h4>
+        <div class="fx-wizardsteps-content-block">
+            Conteúdo do step dinâmico
+        </div>
+    </section>
+
+    <div class="fx-wizard-buttons-wrapper">
+        <div class="fx-wizard-buttons-wrapper-inner">
+            <button id="devguide-wiz-prev-dynamic" class="btn btn-default btn-sm disabled" type="button">
+                <i class="glyphicon glyphicon-chevron-left"></i>anterior
+            </button>
+            <button id="devguide-wiz-next-dynamic" class="btn btn-default btn-sm" type="button">
+                seguinte<i class="glyphicon glyphicon-chevron-right"></i>
+            </button>
+            <button id="devguide-wiz-complete-dynamic" class="btn btn-primary btn-sm" type="button">
+                finalizar
+            </button>
+            <button id="devguide-wiz-cancel-dynamic" class="btn btn-default btn-sm" type="button">
+                cancelar
+            </button>
+        </div>
+    </div>
+</div>        
+    </textarea>
+</form>
+
+<h4>Scripting</h4>
+<form class="fx-codemirror">
+    <textarea class="fx-codemirror-textarea">
+        <script type="text/javascript">
+    //função para simular validação
+    function devguideWizValidateAllDynamic(args) {
+        return {
+            isValid: true,
+            message: '<p>Mensagem de validação.</p>'
+        };
+    }
+    
+    //objeto para simular opções efetuadas no wizard
+    summaryDynamicWiz = [[],
+        [{ stepDecision: true, title: 'Trigger step dinâmico', value: 'True' },
+        ]
+    ];
+    
+    //função responsável por fazer surgir o passo dinâmico
+    function showDynamic(elem) {
+        var $this = $(elem);
+
+        FUXI.Wizard.toggleDynamicSteps($this);
+        FUXI.Wizard.rearrangeNumeration($this.closest("[data-wizard]"));
+    }
+
+    $(document).ready(function () {
+        FUXI.Wizard.init({
+            'isAsync': true,
+            'mode': FUXI.Wizard.modeEnum.INSERT
+        });
+
+        $(document).on('goto.wizard.fuxi', '#devguide-wizard-dynamic', function (e) {
+            //evento disparado ao clicar numa das opções desbloqueadas na navegação lateral
+        });
+
+        $(document).on('next.wizard.fuxi', '#devguide-wizard-dynamic', function (e) {
+            e.Wizard.setSummary(e.currentStep, summaryDynamicWiz[e.currentStep]);
+        });
+
+        $(document).on('prev.wizard.fuxi', '#devguide-wizard-dynamic', function (e) {
+            //evento disparado ao clicar em anterior
+        });
+
+        $(document).on('complete.wizard.fuxi', '#devguide-wizard-dynamic', function (e) {
+            //evento disparado ao clicar em finalizar
+        });
+    });
+        </script>
+    </textarea>
+</form>
+

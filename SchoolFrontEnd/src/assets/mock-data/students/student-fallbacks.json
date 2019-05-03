@@ -1,0 +1,710 @@
+{
+  "type": "page",
+  "id": "pageEntityDetails",
+  "tabs": [
+    {
+      "id": "studentFallbacksContainer",
+      "components": [
+        {
+          "type": "initParameters",
+          "urlResource": [
+            {
+              "key": "path",
+              "value": "{{SchoolBOT}}/students/[[id]]"
+            },
+            {
+              "key": "queryString",
+              "value": {
+                "keys": "{\"fallbacks\":1}"
+              }
+            },
+            {
+              "key": "reload",
+              "value": false
+            },
+            {
+              "key": "headers",
+              "value": {
+                "Authorization": "Bearer {{token}}",
+                "IXS": "{{IXS_id}}"
+              }
+            }
+          ],
+          "details": [
+            {
+              "type": "initParameters",
+              "details": [
+                {
+                  "type": "header",
+                  "class": "col-sm-6 primary-header",
+                  "header": {
+                    "seo": {
+                      "text": "student___accuracy",
+                      "icon": "fa fa-bullseye"
+                    }
+                  }
+                },
+                {
+                  "type": "operations",
+                  "_role": "customer_create",
+                  "class": "col-sm-6 hide-label editFieldButtons",
+                  "operations": {
+                    "text": "generic___operations___operations",
+                    "icon": "glyphicon glyphicon-cog",
+                    "size": 3,
+                    "parameters": [
+                      {
+                        "type": "updatePage",
+                        "id": "accuracyNumEdit",
+                        "class": "editButton btn-default",
+                        "icon": "icomoon icon-edit",
+                        "parameters": [
+                          {
+                            "key": "updatePageParameter",
+                            "value": {
+                              "accuracyNum": {
+                                "hidden": true
+                              },
+                              "fallbacksAccuracy_Slider": {
+                                "hidden": false
+                              },
+                              "accuracyNumEdit": {
+                                "hidden": true
+                              },
+                              "accuracyNumCancel": {
+                                "hidden": false
+                              },
+                              "accuracyNumSave": {
+                                "hidden": false
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "execute",
+                        "id": "accuracyNumSave",
+                        "class": "btn-primary",
+                        "hidden": true,
+                        "text": "generic___operations___save",
+                        "parameters": [
+                          {
+                            "key": "requestEndpoint",
+                            "value": "{{SchoolBOT}}/students/[[id]]"
+                          },
+                          {
+                            "key": "requestType",
+                            "value": "PATCH"
+                          },
+                          {
+                            "key": "requestBody",
+                            "type": "json",
+                            "value": "{\"fallbacks\": {\"maxConsecutiveFallbacks\": {{fallbacksNum_Slider}} ,\"accuracyLevel\": {{fallbacksAccuracy_Slider}},\"answers\": \"{{@fv()@tupleListTobj(@replaceTagVars('fallbacksAnswers_Tuple'))}}\",\"forwardToHuman\": {{forwardToHuman}} }}"
+                          },
+                          {
+                            "key": "requestHeaders",
+                            "value": {
+                              "Authorization": "Bearer {{token}}",
+                              "IXS": "{{IXS_id}}"
+                            }
+                          },
+                          {
+                            "key": "errorText",
+                            "value": "errors___modelAccuracyChange"
+                          },
+                          {
+                            "key": "onSuccess",
+                            "value": {
+                              "request": [
+                                {
+                                  "key": "updatePageParameter",
+                                  "value": {
+                                    "accuracyNum": {
+                                      "hidden": false,
+                                      "value": "{{fallbacksAccuracy_Slider}}"
+                                    },
+                                    "fallbacksAccuracy_Slider": {
+                                      "originalValue": "{{fallbacksAccuracy_Slider}}",
+                                      "hidden": true
+                                    },
+                                    "accuracyNumEdit": {
+                                      "hidden": false
+                                    },
+                                    "accuracyNumCancel": {
+                                      "hidden": true
+                                    },
+                                    "accuracyNumSave": {
+                                      "hidden": true
+                                    }
+                                  }
+                                },
+                                {
+                                  "key": "successText",
+                                  "value": "success___modelAccuracyChange"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "updatePage",
+                        "id": "accuracyNumCancel",
+                        "class": "btn-default",
+                        "hidden": true,
+                        "text": "Cancel",
+                        "parameters": [
+                          {
+                            "key": "updatePageParameter",
+                            "value": {
+                              "accuracyNum": {
+                                "hidden": false
+                              },
+                              "fallbacksAccuracy_Slider": {
+                                "hidden": true
+                              },
+                              "accuracyNumEdit": {
+                                "hidden": false
+                              },
+                              "accuracyNumCancel": {
+                                "hidden": true
+                              },
+                              "accuracyNumSave": {
+                                "hidden": true
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "label",
+                  "id": "accuracyNum",
+                  "class": "col-sm-6",
+                  "text": "student___accuracy",
+                  "pathToValue": [
+                    "fallbacks",
+                    "accuracyLevel"
+                  ],
+                  "parameters": [
+                    {
+                      "key": "inlineHelp",
+                      "value": {
+                          "text": "help___student___fallbacks___details___accuracy"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "slider",
+                  "id": "fallbacksAccuracy_Slider",
+                  "hidden": true,
+                  "text": "student___accuracy",
+                  "class": "col-md-6",
+                  "pathToValue": [
+                    "fallbacks",
+                    "accuracyLevel"
+                  ],
+                  "parameters": [
+                    {
+                      "key": "animate",
+                      "value": true
+                    },
+                    {
+                      "key": "minRange",
+                      "value": 0
+                    },
+                    {
+                      "key": "maxRange",
+                      "value": 1
+                    },
+                    {
+                      "key": "step",
+                      "value": 0.1
+                    },
+                    {
+                      "key": "range",
+                      "value": false
+                    },
+                    {
+                      "key": "inlineHelp",
+                      "value": {
+                          "text": "help___student___fallbacks___edit___accuracy"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "initParameters",
+              "details": [
+                {
+                  "type": "header",
+                  "class": "col-sm-6 primary-header",
+                  "header": {
+                    "seo": {
+                      "text": "student___fallbacksAnswers",
+                      "icon": "fuxicons fuxicons-script"
+                    }
+                  }
+                },
+                {
+                  "type": "operations",
+                  "_role": "customer_create",
+                  "class": "col-sm-6 hide-label editFieldButtons",
+                  "operations": {
+                    "text": "generic___operations___operations",
+                    "icon": "glyphicon glyphicon-cog",
+                    "size": 3,
+                    "id": "buttonsStudentsFallbacksAnswers",
+                    "parameters": [
+                      {
+                        "type": "updatePage",
+                        "id": "fallbacksAnswersEdit",
+                        "class": "editButton btn-default",
+                        "icon": "icomoon icon-edit",
+                        "parameters": [
+                          {
+                            "key": "updatePageParameter",
+                            "value": {
+                              "fallbacksAnswers_Table": {
+                                "hidden": true
+                              },
+                              "fallbacksAnswers_Tuple": {
+                                "hidden": false
+                              },
+                              "fallbacksAnswersEdit": {
+                                "hidden": true
+                              },
+                              "fallbacksAnswersCancel": {
+                                "hidden": false
+                              },
+                              "fallbacksAnswersSave": {
+                                "hidden": false
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "execute",
+                        "id": "fallbacksAnswersSave",
+                        "class": "btn-primary",
+                        "hidden": true,
+                        "text": "generic___operations___save",
+                        "parameters": [
+                          {
+                            "key": "requestEndpoint",
+                            "value": "{{SchoolBOT}}/students/[[id]]"
+                          },
+                          {
+                            "key": "requestType",
+                            "value": "PATCH"
+                          },
+                          {
+                            "key": "requestBody",
+                            "type": "json",
+                            "value": "{\"fallbacks\": {\"maxConsecutiveFallbacks\": {{fallbacksNum_Slider}} ,\"accuracyLevel\": {{fallbacksAccuracy_Slider}},\"answers\": \"{{@fv()@tupleListTobj(@replaceTagVars('fallbacksAnswers_Tuple'))}}\",\"forwardToHuman\": {{forwardToHuman}}}}"
+                          },
+                          {
+                            "key": "successRouter",
+                            "value": "/students/[[id]]/fallbacks"
+                          },
+                          {
+                            "key": "apiRecycle",
+                            "value": false
+                          },
+                          {
+                            "key": "requestHeaders",
+                            "value": {
+                              "Authorization": "Bearer {{token}}",
+                              "IXS": "{{IXS_id}}"
+                            }
+                          },
+                          {
+                            "key": "errorText",
+                            "value": "errors___FallbacksChange"
+                          },
+                          {
+                            "key": "onSuccess",
+                            "value": {
+                              "request": [
+                                {
+                                  "key": "updatePageParameter",
+                                  "value": {
+                                    "fallbacksAnswers_Table": {
+                                      "lazyLoading": false,
+                                      "hidden": false
+                                    },
+                                    "fallbacksAnswers_Tuple": {
+                                      "hidden": true
+                                    },
+                                    "fallbacksAnswersEdit": {
+                                      "hidden": false
+                                    },
+                                    "fallbacksAnswersCancel": {
+                                      "hidden": true
+                                    },
+                                    "fallbacksAnswersSave": {
+                                      "hidden": true
+                                    }
+                                  }
+                                },
+                                {
+                                  "key": "successText",
+                                  "value": "success___FallbacksChange"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "updatePage",
+                        "id": "fallbacksAnswersCancel",
+                        "class": "btn-default",
+                        "hidden": true,
+                        "text": "Cancel",
+                        "parameters": [
+                          {
+                            "key": "updatePageParameter",
+                            "value": {
+                              "fallbacksAnswers_Table": {
+                                "hidden": false
+                              },
+                              "fallbacksAnswers_Tuple": {
+                                "hidden": true
+                              },
+                              "fallbacksAnswersEdit": {
+                                "hidden": false
+                              },
+                              "fallbacksAnswersCancel": {
+                                "hidden": true
+                              },
+                              "fallbacksAnswersSave": {
+                                "hidden": true
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "initTable",
+                  "id": "fallbacksAnswers_Table",
+                  "operations": {
+                    "id": "customerConfigurationOperations",
+                    "text": "generic___operations___bulkOperations",
+                    "icon": "fa fa-cog",
+                    "size": 1,
+                    "parameters": [
+                      {
+                        "id": "bulkRemoveCustomer",
+                        "type": "openModal",
+                        "role": "Execute",
+                        "text": "generic___operations___remove",
+                        "icon": "glyphicon glyphicon-remove",
+                        "mockToLoad": "customers-bulk-remove"
+                      }
+                    ]
+                  },
+                  "urlResource": [
+                    {
+                      "key": "path",
+                      "value": "{{SchoolBOT}}/students/[[id]]"
+                    },
+                    {
+                      "key": "queryString",
+                      "value": {
+                        "keys": "{\"fallbacks\":1}"
+                      }
+                    },
+                    {
+                      "key": "reload",
+                      "value": false
+                    },
+                    {
+                      "key": "headers",
+                      "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                      }
+                    },
+                    {
+                      "key": "pathToMainData",
+                      "value": [
+                        "fallbacks",
+                        "answers"
+                      ]
+                    }
+                  ],
+                  "columns": [
+                    {
+                      "type": "text",
+                      "id": "name",
+                      "pathToValue": "",
+                      "text": "Name"
+                    }
+                  ],
+                  "rows": [],
+                  "parameters": [
+                    {
+                      "key": "tableActions",
+                      "value": {
+                        "export": false,
+                        "columnManager": false,
+                        "search": false
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "wct-tuple-list",
+                  "id": "fallbacksAnswers_Tuple",
+                  "hidden": true,
+                  "text": "student___fallbackTrainingPhrase",
+                  "class": "hide-label",
+                  "pathToValueList": [
+                    "fallbacks",
+                    "answers"
+                  ],
+                  "validator": {
+                    "required": [
+                      true,
+                      "warnings___fieldRequired"
+                    ]
+                  },
+                  "details": [
+                    {
+                      "type": "textbox",
+                      "id": "value",
+                      "placeholder": "student___phrase",
+                      "pathToValue": [
+                        ""
+                      ],
+                      "class": "col-sm-7"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "initParameters",
+              "class": "content-disabled",
+              "details": [
+                {
+                  "type": "header",
+                  "class": "col-md-6 primary-header",
+                  "header": {
+                    "seo": {
+                      "text": "student___rulesFowardHuman",
+                      "icon": "fuxicons fuxicons-ruler"
+                    }
+                  }
+                },
+                {
+                  "type": "operations",
+                  "_role": "customer_create",
+                  "class": "col-sm-6 hide-label editFieldButtons",
+                  "operations": {
+                    "text": "generic___operations___operations",
+                    "icon": "glyphicon glyphicon-cog",
+                    "size": 3,
+                    "parameters": [
+                      {
+                        "type": "updatePage",
+                        "disabled": true,
+                        "id": "fallbacksNumEdit",
+                        "_text": "generic___operations___edit",
+                        "class": "editButton btn-default",
+                        "icon": "icomoon icon-edit",
+                        "parameters": [
+                          {
+                            "key": "updatePageParameter",
+                            "value": {
+                              "fallbacksNum": {
+                                "hidden": true
+                              },
+                              "forwardToHuman": {
+                                "readonly": false
+                              },
+                              "fallbacksNum_Slider": {
+                                "hidden": false
+                              },
+                              "fallbacksNumEdit": {
+                                "hidden": true
+                              },
+                              "fallbacksNumCancel": {
+                                "hidden": false
+                              },
+                              "fallbacksNumSave": {
+                                "hidden": false
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "execute",
+                        "id": "fallbacksNumSave",
+                        "class": "btn-primary",
+                        "hidden": true,
+                        "text": "generic___operations___save",
+                        "parameters": [
+                          {
+                            "key": "updatePageParameter",
+                            "value": {
+                              "fallbacksNum": {
+                                "hidden": false
+                              },
+                              "forwardToHuman": {
+                                "readonly": true
+                              },
+                              "fallbacksNum_Slider": {
+                                "hidden": true
+                              },
+                              "fallbacksNumEdit": {
+                                "hidden": false
+                              },
+                              "fallbacksNumCancel": {
+                                "hidden": true
+                              },
+                              "fallbacksNumSave": {
+                                "hidden": true
+                              }
+                            }
+                          },
+                          {
+                            "key": "requestEndpoint",
+                            "value": "{{SchoolBOT}}/students/[[id]]"
+                          },
+                          {
+                            "key": "requestType",
+                            "value": "PATCH"
+                          },
+                          {
+                            "key": "requestBody",
+                            "type": "json",
+                            "value": "{\"fallbacks\": {\"maxConsecutiveFallbacks\": {{fallbacksNum_Slider}} ,\"accuracyLevel\": {{fallbacksAccuracy_Slider}},\"answers\": \"{{@fv()@tupleListTobj(@replaceTagVars('fallbacksAnswers_Tuple'))}}\",\"forwardToHuman\": {{forwardToHuman}}}}"
+                          },
+                          {
+                            "key": "requestHeaders",
+                            "value": {
+                              "Authorization": "Bearer {{token}}",
+                              "IXS": "{{IXS_id}}"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "updatePage",
+                        "id": "fallbacksNumCancel",
+                        "class": "btn-default",
+                        "hidden": true,
+                        "text": "Cancel",
+                        "parameters": [
+                          {
+                            "key": "updatePageParameter",
+                            "value": {
+                              "fallbacksNum": {
+                                "hidden": false
+                              },
+                              "forwardToHuman": {
+                                "readonly": true
+                              },
+                              "fallbacksNum_Slider": {
+                                "hidden": true
+                              },
+                              "fallbacksNumEdit": {
+                                "hidden": false
+                              },
+                              "fallbacksNumCancel": {
+                                "hidden": true
+                              },
+                              "fallbacksNumSave": {
+                                "hidden": true
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "boolean",
+                  "id": "forwardToHuman",
+                  "readonly": true,
+                  "class": "col-sm-12",
+                  "text": "student___fallbackForwardHuman",
+                  "pathToValue": [
+                    "fallbacks",
+                    "forwardToHuman"
+                  ]
+                },
+                {
+                  "type": "groupParameters",
+                  "dynamicProps": {
+                    "hidden": "!{{forwardToHuman}}"
+                  },
+                  "class": "groupParameters_noHeader",
+                  "parameters": [
+                    {
+                      "type": "slider",
+                      "id": "fallbacksNum_Slider",
+                      "hidden": true,
+                      "text": "student___consecutiveFallbacksAnswers",
+                      "class": "col-md-6",
+                      "pathToValue": [
+                        "fallbacks",
+                        "maxConsecutiveFallbacks"
+                      ],
+                      "parameters": [
+                        {
+                          "key": "animate",
+                          "value": true
+                        },
+                        {
+                          "key": "minRange",
+                          "value": 2
+                        },
+                        {
+                          "key": "maxRange",
+                          "value": 10
+                        },
+                        {
+                          "key": "step",
+                          "value": 1
+                        },
+                        {
+                          "key": "range",
+                          "value": false
+                        }
+                      ]
+                    },
+                    {
+                      "type": "label",
+                      "id": "fallbacksNum",
+                      "dynamicProps": {},
+                      "class": "col-sm-6",
+                      "text": "student___consecutiveFallbacksAnswers",
+                      "pathToValue": [
+                        "fallbacks",
+                        "maxConsecutiveFallbacks"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

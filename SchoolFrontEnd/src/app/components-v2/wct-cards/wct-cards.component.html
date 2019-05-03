@@ -1,0 +1,129 @@
+<!--
+    OPERAÇÕES
+-->
+<!-- <div class="inner-padding set-half-padding card-operations-container" style="padding-bottom: 0;">
+  <div class="pull-right table-options">
+    <table-options-component
+      [viewStructure]="inputParameters"
+      [allowReload]="allowReload"
+      [rows]="valueRows"
+      [columns]="inputParameters.groups.details.parameters"
+      [isHorizontalFilter]="isHorizontalFilter"
+      [viewStructureContext]="viewStructureContext"
+      [(tableSearchHidden)]="tableSearchHidden"
+      (pageChangeEmit)="pageChange()"></table-options-component>
+  </div>
+
+  <div class="clear"></div>
+
+  <div *ngIf="isHorizontalFilter" class="component-filter">
+    <div
+      class="horizontal-filter collapsed collapse"
+      [id]="inputParameters.id ? 'wct-panel-collapse-filter-' + inputParameters.id : ''">
+      <div class="clear spacer"></div>
+      <div class="filter-content">
+        <table-filter-component
+          [inputFilters]="inputParameters.filter.parameters"
+          [horizontalFilter]="true"
+          (filter)="makeFilter($event)"
+          class="fx-full-height"></table-filter-component>
+      </div>
+      <div class="clear spacer"></div>
+    </div>
+  </div>
+
+  <div class="clear"></div>
+</div> -->
+
+<ng-template #cardslist>
+  <div class="card-list-container" [id]="getHtmlId(inputParameters, 'card-container')">
+
+    <ng-template ngFor let-entry [ngForOf]="structArr" let-i="index">
+      <ng-template [ngIf]="tableSearchHidden.indexOf(i) < 0">
+  
+        <div class="card-wrapper" (click)="selectCard(i, structArrAsObj && structArrAsObj[i] ? structArrAsObj[i][inputParameters.id] : null)">
+            <div
+              class="card"
+              [id]="getHtmlId(entry)"
+              [class.card-as-select]="selectable"
+              [class.card-selected]="isMyCardSelected(i)">
+                <div class="card-body">
+  
+                    <app-wct-start-components
+                      *ngIf="entry.groups?.details?.parameters?.length > 0"
+                      [viewStructure]="entry"
+                      [baseInfoForm]="baseInfoForm"
+                      [dataRecs]="structArrAsObj ? structArrAsObj[i] : {}"
+                      [inputDataRecs]="structArrAsObj ? structArrAsObj[i] : {}"
+                      [inputParameters]="entry.groups.details.parameters">
+                    </app-wct-start-components>
+      
+      
+                    <!-- <div class="clear"></div>
+                    <div
+                      *ngIf="entry.groups?.operations"
+                      [id]="entry.id ? 'wct-cardList-operations-' + entry.id: ''"
+                      class="inner-padding set-card-padding">
+                      <div class="card-footer">
+                        <app-wct-buttons
+                          [cardOperations]="true"
+                          [inputParameters]="entry"
+                          [operations]="entry.groups.operations"
+                          [btnSize]="'btn-xs'"
+                          [dataRecs]="structArrAsObj ? structArrAsObj[i] : {}"
+                          [btnMax]="entry.groups.operations.size >= 0 ? entry.groups.operations.size : 2"></app-wct-buttons>
+                      </div>
+                    </div> -->
+      
+                </div>
+            </div>
+        </div>
+        
+      </ng-template>
+    </ng-template>
+  
+  </div>
+
+</ng-template>
+
+<div
+  *ngIf="!structArr?.length; else cardslist"
+  class="card-container"
+  [id]="inputParameters.id ? 'wct-card-noRecords-' + inputParameters.id : ''">
+  <div class="card">
+    <div class="card-block">
+      <div class="inner-padding set-half-padding">
+        <span *ngIf="cardIsLoading"><wct-loading [inputParameters]="inputParameters"></wct-loading></span>
+        <i *ngIf="!cardIsLoading" class="fx-text-disabled">{{'warnings___noRecords' | myI18n}}</i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+    ERRO NO PEDIDO
+-->
+<!-- <div
+  *ngIf="dataRecsNoContent"
+  class="alert alert-danger"
+  style="padding:12px 8px;margin:5px 0;border-radius:5px;"
+  [id]="inputParameters.id ? 'wct-card-apiError-' + inputParameters.id : ''">
+    <a class="fx-expand table-expand-error collapsed" data-toggle="collapse" [attr.data-target]="'#errorExpand_'+pagingSettings.id"><i class="caret"></i></a>
+    <b>{{'warnings___ups' | myI18n}}</b> {{'warnings___errorOcurred' | myI18n}}
+    <div id="errorExpand_{{pagingSettings.id}}" class="collapse">
+      <pre class="format-json"><span *ngFor="let item of dataRecsNoContent | myObject"><b>{{item.key}}:</b> {{item.value | json}}<br /></span></pre>
+    </div>
+</div> -->
+
+<!-- <pagination-component *ngIf="showPaging()"
+  [pagingSettings]="pagingSettings"
+  [rows]="valueArr"
+  (pageChanged)="pageChange()"
+  [maxSize] = "paginationConfig.maxSize"
+  [autoCompact] = "paginationConfig.autoCompact"
+  [boundaryLinks] = "paginationConfig.boundaryLinks"
+  [directionLinks] = "paginationConfig.directionLinks"
+  [disabled] = "paginationConfig.disabled"
+  [rotate] = "paginationConfig.rotate"
+  [compact] = "paginationConfig.compact">
+</pagination-component> -->

@@ -1,0 +1,37 @@
+<div class="tuplelist-component">
+    <div *ngIf="props.readonly && valueHtmlFormat">
+        <table [id]="props?.id ? 'wct-tuple-' + props.id : ''">
+            <tr>
+                <td *ngFor="let listParams of valueHtmlFormat[0] | myObject" style="color:#000;border-bottom:1px solid rgba(0,0,0,0.15);padding:5px;padding-bottom:2px">{{loadTupleName(listParams.key)}}</td>
+            </tr>
+            <tr *ngFor="let list of valueHtmlFormat;let i=index;" [id]="props?.id ? 'wct-tupleList-' + props.id + '-' + i : ''">
+                <td *ngFor="let listParams of list | myObject" [id]="props?.id ? 'wct-tupleList-' + props.id + '-' + i + '-' + listParams.key : ''"
+                    style="padding:5px;padding-bottom:0;">{{listParams.value}}</td>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="!props.readonly" [id]="props?.id ? 'wct-tuple-' + props.id : ''">
+        <div class="pull-right wct-add-new-line">
+            <button *ngIf="allowCreation" type="button" class="btn btn-primary btn-xs" (click)="addNewLine()">
+                <i class="fa fa-plus ng-star-inserted"></i>
+                <span class="ng-star-inserted"></span>
+            </button>
+        </div>
+        <div class="clear"></div>
+        <ng-template ngFor let-l [ngForOf]="list" let-i="index">
+            <div class="card" [id]="props?.id ? 'wct-tupleList-' + props.id + '-' + i : ''">
+                <app-wct-start-components
+                    *ngIf="tupleInfoForm[i]"
+                    [viewStructure]="props"
+                    [inputParameters]="l"
+                    [dataRecs]="listValues ? listValues[i] || {} : {}"
+                    [(baseInfoForm)]="tupleInfoForm[i]"></app-wct-start-components>
+                <div *ngIf="allowCreation" class="remove-card" (click)="removeLine(i)"><i class="fa fa-times"></i></div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </ng-template>
+        <div class="clear"></div>
+    </div>
+    <input type="hidden" [name]="props.id" [formControl]="control" [(ngModel)]="valueControl" [id]="props?.id ? 'wct-addTuple-btn-' + props.id : ''" />
+</div>

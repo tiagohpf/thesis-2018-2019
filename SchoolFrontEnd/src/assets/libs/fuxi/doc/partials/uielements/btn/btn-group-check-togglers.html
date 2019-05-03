@@ -1,0 +1,64 @@
+<h3 id="docs-btn-check-togglers">Checkboxes e Radios</h3>
+<p>Por vezes poderemos querer mascarar checkboxes e radios com o aspeto de botões. Poderemos tirar partido da pseudo-class <code>:checked</code> para estilizar elementos e atingir esse fim. </p>
+<p>Este snippet demonstra como instanciar checkboxes e radios com o aspeto de um botão default (representado a cinza). Para qualquer outro tipo de botão devemos substituir o <code>-default</code> pelo tipo que desejarmos (<code>-primary, -success, -info, -warning, -danger</code>). O estado ativo é dado pela class <code>active</code>.</p>
+<div class="alert alert-warning">
+    <p>Tenha por favor em atenção que, em Internet Explorer, esta técnica apenas é suportada a partir da versão 9.</p>
+</div>
+<div class="fx-docs-snippet-code">
+    <div>
+        <h4>Checkbox</h4>
+        <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-default active">
+                <input type="checkbox" autocomplete="off" checked> Checkbox 1 (pre-checked)
+            </label>
+            <label class="btn btn-default">
+                <input type="checkbox" autocomplete="off"> Checkbox 2
+            </label>
+            <label class="btn btn-default">
+                <input type="checkbox" autocomplete="off"> Checkbox 3
+            </label>
+        </div>
+
+        <h4>Radio</h4>
+        <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-default active">
+                <input type="radio" name="devguide-radio-btn-default" id="devguide-radio-btn-default-1" autocomplete="off" checked> Radio 1 (preselected)
+            </label>
+            <label class="btn btn-default">
+                <input type="radio" name="devguide-radio-btn-default" id="devguide-radio-btn-default-2" autocomplete="off"> Radio 2
+            </label>
+            <label class="btn btn-default">
+                <input type="radio" name="devguide-radio-btn-default" id="devguide-radio-btn-default-3" autocomplete="off"> Radio 3
+            </label>
+        </div>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!--Checkbox-->
+<div class="btn-group" data-toggle="buttons">
+    <label class="btn btn-default active">
+        <input type="checkbox" autocomplete="off" checked> Checkbox 1 (pre-checked)
+    </label>
+    <label class="btn btn-default">
+        <input type="checkbox" autocomplete="off"> Checkbox 2
+    </label>
+    <label class="btn btn-default">
+        <input type="checkbox" autocomplete="off"> Checkbox 3
+    </label>
+</div>
+
+<!--Radio-->
+<div class="btn-group" data-toggle="buttons">
+    <label class="btn btn-default active">
+        <input type="radio" name="devguide-radio-btn-default" id="devguide-radio-btn-default-1" autocomplete="off" checked> Radio 1 (preselected)
+    </label>
+    <label class="btn btn-default">
+        <input type="radio" name="devguide-radio-btn-default" id="devguide-radio-btn-default-2" autocomplete="off"> Radio 2
+    </label>
+    <label class="btn btn-default">
+        <input type="radio" name="devguide-radio-btn-default" id="devguide-radio-btn-default-3" autocomplete="off"> Radio 3
+    </label>
+</div>
+        </textarea>
+    </form>
+</div>

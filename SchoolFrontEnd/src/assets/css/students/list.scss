@@ -1,0 +1,401 @@
+@import "../variables";
+@import "../mixins";
+
+#wct-content-studentsMain {
+    background: $primary-color;
+
+    #wct-page-tabsContent-studentsMainContainerTab {
+        padding-top: 50px;
+        background-color: transparent;
+        border-radius: 0;
+        border: none;
+
+        #wct-content-studentsMainContainerInitParameters {
+            >.container-fluid {
+                width: 100%;
+                @include max-width-screen;
+            }
+
+            /******************** START LISTAGEM STUDENTS STATIC INFO *********************/
+            #wct-each-parameter-studentStaticInit {
+                padding: 0;
+
+                .wct-components-wrapper {
+                    padding: 0;
+                }
+
+                #wct-content-studentStaticInit {
+                    .card {
+                        background: none !important;
+                        border: none;
+                        box-shadow: none;
+                        margin: 0;
+
+                        .card-body {
+                            padding: 0;
+
+                            .each-parameter {
+                                p {
+                                    a {
+                                        font-size: 26px;
+                                        color: #ffffff;
+                                        line-height: 26px;
+                                    }
+
+                                    font-size: 26px;
+                                    color: #ffffff;
+                                    line-height: 26px;
+                                }
+                            }
+                        }
+                    }
+
+                    #wct-each-parameter-studentVideo {
+                        min-height: 350px !important;
+                        padding: 15px;
+                        cursor: pointer;
+
+
+                        #wct-content-studentVideo {
+                            transform: translate(0, 0);
+
+                            .wct-components-wrapper {
+                                //background: rgb(196, 100, 247);
+                                background-image: linear-gradient(90deg, #7958ec 3%, #be4ce4 103%);
+                                height: 303px;
+
+                                &:hover {
+                                    #wct-card-container-studentVideo {
+                                        height: calc(100% - 105px);
+                                        transition: 0.2s;
+                                    }
+                                }
+                            }
+
+                            #wct-card-container-studentVideo {
+                                background-image: url("../images/platform/video.svg");
+                                background-repeat: no-repeat;
+                                height: 100%;
+                                background-position: center center;
+                                background-size: cover;
+                                transition: 0.2s;
+                                background-repeat: unset;
+
+                                >.card-wrapper {
+                                    background: #00000012;
+
+                                    .card {
+                                        position: absolute;
+                                        bottom: 20px;
+                                    }
+                                }
+
+                                #wct-operations-btn-play {
+                                    width: 45px;
+                                    height: 45px;
+                                    margin: 3px 0px 0px 5px;
+                                    background-color: white;
+                                    border-radius: 50% !important;
+                                    box-shadow: none !important;
+                                    padding: 0px !important;
+                                    color: black !important;
+                                    margin: 0px !important;
+                                    transition: none !important;
+
+                                    i {
+                                        font-size: 16px;
+                                    }
+
+                                    &:hover {
+                                        width: 48px;
+                                        height: 48px;
+                                    }
+                                }
+
+                                #wct-each-parameter-studentVideo_Play {
+                                    position: fixed;
+                                    top: 0;
+                                    left: 0;
+                                    padding: 0;
+                                    width: 100%;
+                                    height: 100%;
+                                    overflow: hidden;
+
+                                    .wct-external-wrapper {
+                                        height: 100%;
+
+                                        video {
+                                            width: 100%;
+                                            height: 100%;
+                                            background: #000;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    #wct-each-parameter-wrapperStudentInfo {
+                        app-wct-start-components {
+                            .row {
+                                height: 100%;
+                            }
+                        }
+
+                        padding: 0;
+
+                        .component-type-initCards {
+                            padding: 15px;
+
+                            @media (max-width: 768px) {
+                                height: 100%;
+                            }
+
+                            .wct-main-wrapper {
+                                &:hover {
+                                    .card-list-container {
+                                        height: calc(100% - 65px);
+                                        transition: 0.3s;
+                                    }
+                                }
+                            }
+
+                            .wct-components-wrapper {
+                                //background: rgb(196, 100, 247);
+                                background-image: linear-gradient(90deg, #7958ec 3%, #be4ce4 103%);
+                            }
+
+                            .card-list-container {
+                                background-repeat: no-repeat;
+                                background-position: center center;
+                                background-size: cover;
+                                height: 100%;
+                                transition: 0.5s;
+                                background-repeat: unset;
+                                cursor: pointer;
+
+
+                                &#wct-card-container-studentAdd {
+                                    background-image: url("../images/platform/add.svg");
+                                }
+
+                                &#wct-card-container-studentPrograms {
+                                    background-image: url("../images/platform/programs.svg");
+                                }
+
+                                &#wct-card-container-knowledgeCenter {
+                                    background-image: url("../images/platform/subscriptions.svg");
+                                }
+
+                                &#wct-card-container-studentAnalytics {
+                                    background-image: url("../images/platform/analytics.svg");
+                                }
+
+                                >.card-wrapper {
+                                    background: #00000021;
+
+                                    .card {
+                                        position: absolute;
+                                        bottom: 20px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            /******************** END LISTAGEM STUDENTS STATIC INFO *********************/
+            /******************** START LISTAGEM STUDENTS -> CARDS *********************/
+            #wct-each-parameter-studentCardsList {
+                padding: 0;
+                margin-top: 10px;
+
+                #wct-content-studentCardsList {
+                    .wct-components-wrapper {
+                        padding: 0;
+
+                        #wct-card-container-studentsMainCard {
+                            .card-wrapper {
+                                // margin-bottom: 8px;
+                                padding: 15px;
+
+                                >.card {
+                                    &:hover {
+                                        box-shadow: 0px 0px 20px 4px #252525cc;
+                                    }
+                                }
+
+                                .card {
+                                    padding: 0;
+                                    margin: 0;
+                                    background-color: #fff;
+                                    border: none;
+                                    border-radius: 0;
+
+                                    .card-body {
+                                        padding: 0;
+
+                                        .studentImage {
+                                            padding: 0;
+                                            width: 200px;
+
+                                            @media (max-width: 768px) {
+                                                width: 100%;
+                                            }
+
+                                            flex: none;
+
+                                            app-wct-fields-format {
+                                                .form-group {
+                                                    padding: 0;
+                                                    margin: 0;
+                                                }
+
+                                                .image-component {
+                                                    height: 200px;
+                                                    width: 100%;
+                                                }
+                                            }
+                                        }
+
+                                        .cardInfo_Wrapper {
+                                            padding: 0;
+                                            max-width: none;
+                                            flex: 1;
+
+                                            .wct-group-parameters {
+                                                height: 100%;
+
+                                                .card {
+                                                    height: 100%;
+
+                                                    .wct-group-parameters-body {
+                                                        height: 100%;
+                                                    }
+                                                }
+                                            }
+
+                                            .form-group {
+                                                margin-bottom: 0;
+                                            }
+
+                                            .studentName {
+                                                margin-top: 12px;
+
+                                                .form-group {
+                                                    padding-left: 30px;
+                                                }
+                                            }
+
+                                            .studentStatus {
+                                                padding: 0;
+                                                right: 0;
+                                                position: absolute;
+                                                width: 165px;
+
+                                                .label-grouper {
+
+                                                    height: 45px;
+                                                    background-color: #00cfb6;
+
+                                                    p {
+                                                        white-space: nowrap;
+                                                        font-size: 18px;
+                                                        color: #ffffff !important;
+                                                        text-align: center;
+                                                    }
+                                                }
+
+                                                &.pre-live {
+                                                    .label-grouper {
+                                                        background-color: #f0970a;
+                                                    }
+                                                }
+
+                                                &.live {
+                                                    .label-grouper {
+                                                        background-color: #00cfb6;
+                                                    }
+                                                }
+
+                                                &.blocked {
+                                                    .label-grouper {
+                                                        background-color: #cf4f00;
+                                                    }
+                                                }
+
+                                                &.suspended {
+                                                    .label-grouper {
+                                                        background-color: #a3a3a3;
+                                                    }
+                                                }
+
+                                            }
+
+                                            .studentGender {
+                                                padding-left: 45px;
+
+                                                .wct-external-wrapper {
+                                                    padding: 0;
+
+                                                    p {
+                                                        padding: 0;
+                                                        font-size: 18px;
+                                                        color: #4f4f4f;
+                                                        font-weight: 400;
+                                                        text-decoration: none solid rgb(79, 79, 79);
+                                                        line-height: 26px;
+                                                    }
+                                                }
+                                            }
+
+                                            .studentCourse,
+                                            .studentLanguage,
+                                            .studentLastUpdate {
+                                                padding: 0;
+                                                margin: 0;
+                                                margin-top: 20px;
+
+                                                @media (max-width: 768px) {
+                                                    padding-left: 45px;
+                                                }
+
+                                                .form-group {
+                                                    padding: 0;
+
+                                                    .wct-field-format-component {
+                                                        padding: 0;
+
+                                                        .label-grouper {
+                                                            p {
+                                                                font-size: 22px;
+                                                                color: #4f4f4f;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                            .studentCourse {
+                                                padding-left: 45px;
+                                            }
+
+                                            .studentLastUpdate {
+                                                @media (max-width: 768px) {
+                                                    margin-bottom: 20px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /******************** END LISTAGEM STUDENTS -> CARDS *********************/
+    }
+}

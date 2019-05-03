@@ -1,0 +1,543 @@
+{
+    "type": "initParameters",
+    "header": {
+        "id": "entityDtlPageHeader",
+        "seo": {
+            "text": "program___entity___name",
+            "icon": "fa fa-reply"
+        }
+    },
+    "urlResource": [
+        {
+            "key": "pathToMainData",
+            "value": [
+                ""
+            ]
+        }
+    ],
+    "details": [
+        {
+            "type": "context",
+            "id": "programCode",
+            "pathToValue": [
+                "$this['programCode']"
+            ]
+        },
+        {
+            "type": "context",
+            "id": "entityDtlIdx",
+            "text": "entityDtlIdx",
+            "pathToValue": [
+                "$this['entityIdx'] || '0'"
+            ]
+        },
+        {
+            "type": "operations",
+            "role": "Programs.Entities.Operations.Name.Edit",
+            "class": "col-sm-6 hide-label editFieldButtons",
+            "operations": {
+                "text": "generic___operations___operations",
+                "icon": "glyphicon glyphicon-cog",
+                "size": 3,
+                "parameters": [
+                    {
+                        "type": "updatePage",
+                        "id": "entityNameEdit",
+                        "class": "editButton btn-default",
+                        "icon": "icomoon icon-edit",
+                        "parameters": [
+                            {
+                                "key": "updatePageParameter",
+                                "value": {
+                                    "entityName": {
+                                        "hidden": true
+                                    },
+                                    "entityNameTextbox": {
+                                        "hidden": false
+                                    },
+                                    "entityNameEdit": {
+                                        "hidden": true
+                                    },
+                                    "entityNameCancel": {
+                                        "hidden": false
+                                    },
+                                    "entityNameSave": {
+                                        "hidden": false
+                                    },
+                                    "synonymsEdit": {
+                                        "hidden": true
+                                    }
+                                }
+                            },
+                            {
+                                "key": "keepModal",
+                                "value": true
+                            }
+                        ]
+                    },
+                    {
+                        "type": "execute",
+                        "id": "entityNameSave",
+                        "hidden": true,
+                        "class": "btn-primary",
+                        "text": "generic___operations___save",
+                        "parameters": [
+                            {
+                                "key": "requestEndpoint",
+                                "value": "{{SchoolBE}}/programs/[[programID]]"
+                            },
+                            {
+                                "key": "requestType",
+                                "value": "PATCH"
+                            },
+                            {
+                                "key": "requestBody",
+                                "type": "json",
+                                "value": {
+                                    "$set": {
+                                        "chapters.{{entityDtlIdx}}.displayName": "{{@fv()@replaceTagVars('programCode')+'_'+@replaceTagVars('entityNameTextbox')}}"
+                                    }
+                                }
+                            },
+                            {
+                                "key": "requestHeaders",
+                                "value": {
+                                    "Authorization": "Bearer {{token}}",
+                                    "IXS": "{{IXS_id}}"
+                                }
+                            },
+                            {
+                                "key": "onSuccess",
+                                "value": {
+                                    "keepModal": true,
+                                    "request": [
+                                        {
+                                            "key": "updatePageParameter",
+                                            "value": {
+                                                "entityName": {
+                                                    "hidden": false,
+                                                    "value": "{{entityNameTextbox}}"
+                                                },
+                                                "entityNameTextbox": {
+                                                    "hidden": true
+                                                },
+                                                "entityNameEdit": {
+                                                    "hidden": false
+                                                },
+                                                "entityNameCancel": {
+                                                    "hidden": true
+                                                },
+                                                "entityNameSave": {
+                                                    "hidden": true
+                                                },
+                                                "synonymsEdit": {
+                                                    "hidden": false
+                                                },
+                                                "programEntitiesTable": {
+                                                    "lazyLoading": false
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "key": "successText",
+                                            "value": false
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "updatePage",
+                        "id": "entityNameCancel",
+                        "hidden": true,
+                        "class": "btn-force-default btn-default",
+                        "text": "generic___operations___cancel",
+                        "parameters": [
+                            {
+                                "key": "updatePageParameter",
+                                "value": {
+                                    "entityName": {
+                                        "hidden": false
+                                    },
+                                    "entityNameTextbox": {
+                                        "hidden": true
+                                    },
+                                    "entityNameEdit": {
+                                        "hidden": false
+                                    },
+                                    "entityNameCancel": {
+                                        "hidden": true
+                                    },
+                                    "entityNameSave": {
+                                        "hidden": true
+                                    },
+                                    "synonymsEdit": {
+                                        "hidden": false
+                                    }
+                                }
+                            },
+                            {
+                                "key": "keepModal",
+                                "value": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "label",
+            "id": "entityName",
+            "text": "program___entity___entityName",
+            "pathToValue": [
+                "entityDetails",
+                "@getDisplayNameFormated($this['displayName'],@replaceTagVars('programCode')+'_')"
+            ]
+        },
+        {
+            "type": "textbox",
+            "id": "entityNameTextbox",
+            "text": "program___entity___entityName",
+            "pathToValue": [
+                "entityDetails",
+                "@getDisplayNameFormated($this['displayName'],@replaceTagVars('programCode')+'_')"
+            ],
+            "validator": {
+                "required": [
+                    true,
+                    "warnings___fieldRequired"
+                ]
+            },
+            "hidden": true
+        },
+        {
+            "type": "header",
+            "class": "col-sm-6 primary-header",
+            "header": {
+                "seo": {
+                    "text": "program___entity___entityValues",
+                    "icon": "fuxicons fuxicons-script"
+                }
+            }
+        },
+        {
+            "type": "operations",
+            "_role": "customer_create",
+            "class": "col-sm-6 hide-label editFieldButtons",
+            "operations": {
+                "text": "generic___operations___operations",
+                "icon": "glyphicon glyphicon-cog",
+                "size": 3,
+                "id": "buttonsTrainingPhrases",
+                "parameters": [
+                    {
+                        "type": "updatePage",
+                        "id": "synonymsEdit",
+                        "class": "editButton btn-default",
+                        "icon": "icomoon icon-edit",
+                        "parameters": [
+                            {
+                                "key": "updatePageParameter",
+                                "value": {
+                                    "synonyms_Table": {
+                                        "lazyLoading": true,
+                                        "hidden": true
+                                    },
+                                    "values_Tuple": {
+                                        "lazyLoading": false,
+                                        "hidden": false
+                                    },
+                                    "synonymsEdit": {
+                                        "hidden": true
+                                    },
+                                    "synonymsCancel": {
+                                        "hidden": false
+                                    },
+                                    "synonymsSave": {
+                                        "hidden": false
+                                    }
+                                }
+                            },
+                            {
+                                "key": "keepModal",
+                                "value": true
+                            }
+                        ]
+                    },
+                    {
+                        "type": "execute",
+                        "id": "synonymsSave",
+                        "hidden": true,
+                        "class": "btn-primary",
+                        "text": "generic___operations___save",
+                        "parameters": [
+                            {
+                                "key": "requestEndpoint",
+                                "value": "{{SchoolBE}}/programs/[[programID]]"
+                            },
+                            {
+                                "key": "requestType",
+                                "value": "PATCH"
+                            },
+                            {
+                                "key": "requestBody",
+                                "type": "json",
+                                "value": {
+                                    "$set": {
+                                        "chapters.{{entityDtlIdx}}.entities": "{{@fv()@generateSynonymsList(@replaceTagVars('values_Tuple'))}}"
+                                    }
+                                }
+                            },
+                            {
+                                "key": "apiRecycle",
+                                "value": false
+                            },
+                            {
+                                "key": "requestHeaders",
+                                "value": {
+                                    "Authorization": "Bearer {{token}}",
+                                    "IXS": "{{IXS_id}}"
+                                }
+                            },
+                            {
+                                "key": "onSuccess",
+                                "value": {
+                                    "keepModal": true,
+                                    "request": [
+                                        {
+                                            "key": "updatePageParameter",
+                                            "value": {
+                                                "synonyms_Table": {
+                                                    "lazyLoading": false,
+                                                    "hidden": false
+                                                },
+                                                "values_Tuple": {
+                                                    "hidden": true
+                                                },
+                                                "synonymsEdit": {
+                                                    "hidden": false
+                                                },
+                                                "synonymsCancel": {
+                                                    "hidden": true
+                                                },
+                                                "synonymsSave": {
+                                                    "hidden": true
+                                                },
+                                                "programEntitiesTable": {
+                                                    "lazyLoading": false
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "key": "successText",
+                                            "value": false
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "updatePage",
+                        "id": "synonymsCancel",
+                        "hidden": true,
+                        "class": "btn-force-default btn-default",
+                        "text": "generic___operations___cancel",
+                        "parameters": [
+                            {
+                                "key": "updatePageParameter",
+                                "value": {
+                                    "synonyms_Table": {
+                                        "lazyLoading": false,
+                                        "hidden": false
+                                    },
+                                    "values_Tuple": {
+                                        "lazyLoading": true,
+                                        "hidden": true
+                                    },
+                                    "synonymsEdit": {
+                                        "hidden": false
+                                    },
+                                    "synonymsCancel": {
+                                        "hidden": true
+                                    },
+                                    "synonymsSave": {
+                                        "hidden": true
+                                    }
+                                }
+                            },
+                            {
+                                "key": "keepModal",
+                                "value": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "initTable",
+            "id": "synonyms_Table",
+            "urlResource": [
+                {
+                    "key": "path",
+                    "value": "{{SchoolBE}}/programs/[[programID]]"
+                },
+                {
+                    "key": "queryString",
+                    "value": {
+                        "keys": "{\"_id\":1,\"name\":1,\"chapters\":1,\"code\":1,\"version\":1}"
+                    }
+                },
+                {
+                    "key": "headers",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                },
+                {
+                    "key": "pathToMainData",
+                    "value": [
+                        "@getArrayEntryByIndex($this['chapters'],@replaceTagVars('entityDtlIdx'))",
+                        "entities"
+                    ]
+                }
+            ],
+            "columns": [
+                {
+                    "type": "context",
+                    "id": "synonyms",
+                    "pathToValue": [
+                        "synonyms"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "id": "entityValue",
+                    "class": "col-md-1",
+                    "pathToValue": [
+                        "value"
+                    ],
+                    "text": "program___entity___value"
+                },
+                {
+                    "type": "initParameters",
+                    "id": "valueSynonyms",
+                    "details": [
+                        {
+                            "type": "tag",
+                            "id": "entityValues",
+                            "class": "col-md-11",
+                            "pathToValueList": [
+                                "@objToTupleList($this['synonyms'])"
+                            ],
+                            "text": "program___entity___synonyms",
+                            "details": [
+                                {
+                                    "type": "label",
+                                    "id": "intentValue",
+                                    "pathToValue": [
+                                        "value"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "rows": [],
+            "parameters": [
+                {
+                    "key": "tableActions",
+                    "value": {
+                        "export": false,
+                        "columnManager": false,
+                        "search": false,
+                        "pagination": false
+                    }
+                }
+            ]
+        },
+        {
+            "type": "wct-tuple-list",
+            "id": "values_Tuple",
+            "class": "hide-label",
+            "urlResource": [
+                {
+                    "key": "path",
+                    "value": "{{SchoolBE}}/programs/[[programID]]"
+                },
+                {
+                    "key": "queryString",
+                    "value": {
+                        "keys": "{\"_id\":1,\"name\":1,\"chapters\":1,\"code\":1,\"version\":1}"
+                    }
+                },
+                {
+                    "key": "headers",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                },
+                {
+                    "key": "pathToMainData",
+                    "value": [
+                        "@getArrayEntryByIndex($this['chapters'],@replaceTagVars('entityDtlIdx'))"
+                    ]
+                }
+            ],
+            "pathToValueList": [
+                "entities"
+            ],
+            "validator": {
+                "required": [
+                    true,
+                    "warnings___fieldRequired"
+                ]
+            },
+            "details": [
+                {
+                    "type": "textbox",
+                    "id": "entityValue",
+                    "placeholder": "program___entity___value",
+                    "text": "program___entity___value",
+                    "pathToValue": [
+                        "value"
+                    ],
+                    "validator": {
+                        "required": [
+                            true,
+                            "warnings___fieldRequired"
+                        ]
+                    },
+                    "class": "col-sm-4"
+                },
+                {
+                    "type": "custom-tag-input",
+                    "id": "synonyms",
+                    "text": "program___entity___synonyms",
+                    "placeholder": "program___entity___addSynonym",
+                    "pathToValueList": [
+                        "synonyms"
+                    ],
+                    "class": "col-sm-8"
+                }
+            ],
+            "lazyLoading": true,
+            "hidden": true
+        }
+    ],
+    "operations": {
+        "parameters": [
+            {
+                "id": "btnCancelClose",
+                "type": "updatePage",
+                "text": "generic___operations___close",
+                "class": "btn-default"
+            }
+        ]
+    }
+}

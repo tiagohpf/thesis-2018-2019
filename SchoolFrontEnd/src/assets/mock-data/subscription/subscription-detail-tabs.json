@@ -1,0 +1,38 @@
+[
+  {
+    "icon": "fa fa-book",
+    "type": "navigate",
+    "id": "subscriptionPrograms",
+    "navigateTo": "knowledgecenter"
+  },
+  {
+    "icon": "fuxicons fuxicons-dashboard-group",
+    "type": "navigate",
+    "id": "subscriptionCourses",
+    "navigateTo": "knowledgecenter"
+  },
+  {
+    "icon": "fa fa-comments",
+    "type": "navigate",
+    "id": "subscriptionDialog",
+    "navigateTo": "dialogs"
+  },
+  {
+    "_icon": "fa fa-cogs",
+    "_type": "navigate",
+    "_id": "subscriptionDetails",
+    "_navigateTo": "subscription"
+  },
+  {
+    "_icon": "fuxicons fuxicons-checkboxes fx-icon",
+    "_type": "navigate",
+    "_id": "subscriptionPrograms3",
+    "_navigateTo": "programs/program-list"
+  },
+  {
+    "_icon": "fa fa-comments",
+    "_type": "navigate",
+    "_id": "subscriptionPrograms4",
+    "_navigateTo": "programs/program-list"
+  }
+]

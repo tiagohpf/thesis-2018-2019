@@ -1,0 +1,292 @@
+{
+  "type": "page",
+  "id": "pageEntitySuggestions",
+  "tabs": [
+    {
+      "id": "customerList",
+      "text": "customers___entityName",
+      "components": [
+        {
+          "type": "initTable",
+          "id": "dialogsMain",
+          "urlResource": [
+            {
+              "key": "path",
+              "value": "{{AlticeAssistantConfig_rpd}}/intentsSuggestions"
+            },
+            {
+              "key": "queryString",
+              "value": {
+                "page": "((page))",
+                "pagesize": "((pagesize))",
+                "count": null,
+                "filter": "{\"botId\": \"[[id]]\", \"ignore\":false}",
+                "sort": "-date"
+              }
+            },
+            {
+              "key": "pathToMainData",
+              "value": [
+                "_embedded"
+              ]
+            },
+            {
+              "key": "headers",
+              "value": {
+                "Authorization": "Bearer {{token}}",
+                "IXS": "{{IXS_id}}"
+              }
+            },
+            {
+              "key": "reload",
+              "value": false
+            }
+          ],
+          "columns": [
+            {
+              "type": "text",
+              "id": "suggestionId",
+              "pathToValue": "_id",
+              "text": "Id"
+            },
+            {
+              "type": "text",
+              "size": "sm",
+              "id": "date",
+              "pathToValue": "lastUpdate",
+              "text": "Date"
+            },
+            {
+              "type": "text",
+              "size": "md",
+              "id": "message",
+              "pathToValue": "message",
+              "text": "User Message"
+            },
+            {
+              "type": "text",
+              "size": "sm",
+              "id": "program",
+              "pathToValue": "program",
+              "text": "Program"
+            },
+            {
+              "type": "text",
+              "size": "lg",
+              "id": "intent",
+              "pathToValue": "intent",
+              "text": "Intent Suggestion"
+            },
+            {
+              "type": "text",
+              "size": "sm",
+              "id": "validated",
+              "pathToValue": "validated",
+              "text": "Validated"
+            },
+            {
+              "type": "text",
+              "size": "sm",
+              "id": "ignore",
+              "pathToValue": "ignore",
+              "text": "Ignore"
+            },
+            {
+              "type": "actions",
+              "id": "actions",
+              "operations": [
+                {
+                  "id": "acceptSuggestion",
+                  "type": "execute",
+                  "icon": "fa fa-check",
+                  "dynamicProps": {
+                    "hidden": "'{{validated}}' == 'true'"
+                  },
+                  "parameters": [
+                    {
+                      "key": "requestEndpoint",
+                      "value": "{{AlticeAssistantConfig_rpd}}/intentsSuggestions/{{suggestionId}}"
+                    },
+                    {
+                      "key": "requestType",
+                      "value": "PATCH"
+                    },
+                    {
+                      "key": "requestBody",
+                      "type": "json",
+                      "value": "{\"validated\": true}"
+                    },
+                    {
+                      "key": "requestHeaders",
+                      "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                      }
+                    },
+                    {
+                      "key": "onSuccess",
+                      "value": {
+                        "request": [
+                          {
+                            "key": "requestEndpoint",
+                            "value": "{{SuggestionsMS}}/addPhrasesAndEntities"
+                          },
+                          {
+                            "key": "requestType",
+                            "value": "POST"
+                          },
+                          {
+                            "key": "requestBody",
+                            "type": "json",
+                            "value": {
+                              "xxxx": "{{validated}}"
+                            }
+                          },
+                          {
+                            "key": "requestHeaders",
+                            "value": {
+                              "Authorization": "Bearer {{token}}",
+                              "IXS": "{{IXS_id}}"
+                            }
+                          },
+                          {
+                            "key": "onSuccess",
+                            "value": {
+                              "request": [
+                                {
+                                  "key": "updatePageParameter",
+                                  "value": {
+                                    "dialogsMain": {
+                                      "lazyLoading": false
+                                    }
+                                  }
+                                },
+                                {
+                                  "key": "successText",
+                                  "value": "Suggestion Validated"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "declineSuggestion",
+                  "type": "execute",
+                  "hidden": true,
+                  "icon": "fa fa-times",
+                  "dynamicProps": {
+                    "hidden": "'{{validated}}' == 'false'"
+                  },
+                  "parameters": [
+                    {
+                      "key": "requestEndpoint",
+                      "value": "{{AlticeAssistantConfig_rpd}}/intentsSuggestions/{{suggestionId}}"
+                    },
+                    {
+                      "key": "requestType",
+                      "value": "PATCH"
+                    },
+                    {
+                      "key": "requestBody",
+                      "type": "json",
+                      "value": "{\"validated\": false}"
+                    },
+                    {
+                      "key": "requestHeaders",
+                      "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                      }
+                    },
+                    {
+                      "key": "onSuccess",
+                      "value": {
+                        "request": [
+                          {
+                            "key": "updatePageParameter",
+                            "value": {
+                              "dialogsMain": {
+                                "lazyLoading": false
+                              }
+                            }
+                          },
+                          {
+                            "key": "successText",
+                            "value": "Suggestion Unchecked"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "removeSuggestion",
+                  "type": "execute",
+                  "icon": "fa fa-trash-o",
+                  "dynamicProps": {
+                    "hidden": "'{{validated}}' == 'true'"
+                  },
+                  "parameters": [
+                    {
+                      "key": "requestEndpoint",
+                      "value": "{{AlticeAssistantConfig_rpd}}/intentsSuggestions/{{suggestionId}}"
+                    },
+                    {
+                      "key": "requestType",
+                      "value": "PATCH"
+                    },
+                    {
+                      "key": "requestBody",
+                      "type": "json",
+                      "value": "{\"ignore\": true}"
+                    },
+                    {
+                      "key": "requestHeaders",
+                      "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                      }
+                    },
+                    {
+                      "key": "onSuccess",
+                      "value": {
+                        "request": [
+                          {
+                            "key": "updatePageParameter",
+                            "value": {
+                              "dialogsMain": {
+                                "lazyLoading": false
+                              }
+                            }
+                          },
+                          {
+                            "key": "successText",
+                            "value": "Suggestion Ignored"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "rows": [],
+          "parameters": [
+            {
+              "key": "tableActions",
+              "value": {
+                "export": false,
+                "search": false
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

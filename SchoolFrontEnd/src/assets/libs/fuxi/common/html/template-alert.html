@@ -1,0 +1,955 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge; text/html;" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0,  user-scalable=yes" />
+    <link rel="icon" href="/fuxi/common/html/css/images/favicon.ico" type="image/x-icon" />
+    <title>Notificações + Ajuda Contextual</title>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/basepack/datatables-pt/1.9/css/jquery.dataTables.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.min.css" />
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+    <script src="/basepack/jquery/1.11/jquery.min.js"></script>
+
+    <!-- Respond.js - IE8 support of media queries -->
+    <!--[if lt IE 9]>
+    <script src="/fuxi/lib/respond/1.4/js/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        /* Para efeitos de demonstração, este código fica aqui no html */
+        body {
+            margin: 20px 20px;
+        }
+
+        #test-console {
+            display: block;
+            position: fixed;
+            right: 10px;
+            top: 40px;
+            z-index: 10;
+            background-color: #FFF;
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid #999;
+        }
+
+        #test-contents {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body style="overflow: auto;">
+    <div class="fx-main-content" id="mc1">
+        <h1>Notificações + Ajuda Contextual</h1>
+
+        <h2>Página de Login</h2>
+        <div class="fx-login-box">
+            <div class="fx-login-box-header">
+                <p>
+                    Faça a autenticação na sua conta cliente
+                </p>
+            </div>
+            <form role="form">
+                <!--Alert div must be shown if the login fails-->
+                <div class="alert alert-error">
+                    <div class="fx-alert-icon">
+                        <i class="fuxicons fuxicons-error"></i>
+                    </div>
+                    <div class="fx-alert-desc">
+                        <p>
+                            O nome de utilizador ou a palavra-passe inseridos estão incorretos
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Login form -->
+                <div class="form-group">
+                    <label class="control-label" for="inputLogin">Nome de utilizador</label>
+                    <input class="form-control" type="text" id="inputLogin" autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="inputPassword">Palavra-passe</label>
+                    <input class="form-control" type="password" id="inputPassword">
+                </div>
+
+                <div class="fx-captcha-block"></div>
+
+                <div class="fx-login-submit">
+                    <a href="#">Esqueceu-se da palavra-passe?</a>
+                    <button class="btn btn-primary">
+                        entrar
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+        <hr>
+
+        <h3>Notificação Geral</h3>
+        <div class="btn-group">
+            <button id="btn-info" data-target="info_container" class="btn btn-info" type="button">
+                Info
+            </button>
+            <button id="btn-success" data-target="success_container" class="btn btn-success" type="button">
+                Success
+            </button>
+            <button id="btn-warning" data-target="warning_container" class="btn btn-warning" type="button">
+                Warning
+            </button>
+            <button id="btn-danger" data-target="error_container" class="btn btn-danger" type="button">
+                Error
+            </button>
+        </div>
+
+        <div class="fx-alert-container" id="info_container">
+            <div class="alert fx-global-alert fx-global-alert-info alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    &times;
+                </button>
+                <div class="fx-alert-icon">
+                    <i class="fuxicons fuxicons-info"></i>
+                </div>
+                <div class="fx-alert-desc">
+                    <strong>Process "xpto" has successfuly completed</strong>
+                    <p>
+                        You can view aditional information on your dashboard or in processes tab
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="fx-alert-container" id="success_container">
+            <div class="alert fx-global-alert fx-global-alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    &times;
+                </button>
+                <div class="fx-alert-icon">
+                    <i class="fuxicons fuxicons-success"></i>
+                </div>
+                <div class="fx-alert-desc">
+                    <strong>Successfully saved</strong>
+                    <p>
+                        A new revision was created and state is now draft.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="fx-alert-container" id="warning_container">
+            <div class="alert fx-global-alert fx-global-alert-warning alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    &times;
+                </button>
+                <div class="fx-alert-icon">
+                    <i class="fuxicons fuxicons-warning"></i>
+                </div>
+                <div class="fx-alert-desc">
+                    <strong>This price will expire in 2 days</strong>
+                    <p>
+                        This entity will become inaccessible in 2 days. To update the expire date, go to "Characteristics" tab and update "Expiration" field.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="fx-alert-container" id="error_container">
+            <div class="alert fx-global-alert fx-global-alert-error alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    &times;
+                </button>
+                <div class="fx-alert-icon">
+                    <i class="fuxicons fuxicons-error"></i>
+                </div>
+                <div class="fx-alert-desc">
+                    <strong>Could not save due to input errors</strong>
+                    <p>
+                        Please check tabs that are signed with a red icon, they have fields with errors
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <h2>Notificação Contextual</h2>
+        <div class="alert alert-info">
+            <div class="fx-alert-icon">
+                <i class="fuxicons fuxicons-info"></i>
+            </div>
+            <div class="fx-alert-desc">
+                <strong>Process "xpto" has successfuly completed</strong>
+                <p>
+                    You can view aditional information on your dashboard or in processes tab
+                </p>
+            </div>
+        </div>
+
+        <div class="alert alert-success">
+            <div class="fx-alert-icon">
+                <i class="fuxicons fuxicons-success"></i>
+            </div>
+            <div class="fx-alert-desc">
+                <strong>Successfully saved</strong>
+                <p>
+                    A new revision was created and state is now draft.
+                </p>
+            </div>
+        </div>
+        <div class="alert alert-warning">
+            <div class="fx-alert-icon">
+                <i class="fuxicons fuxicons-warning"></i>
+            </div>
+            <div class="fx-alert-desc">
+                <strong>This price will expire in 2 days</strong>
+                <p>
+                    This entity will become inaccessible in 2 days. To update the expire date, go to "Characteristics" tab and update "Expiration" field.
+                </p>
+            </div>
+        </div>
+        <div class="alert alert-error">
+            <div class="fx-alert-icon">
+                <i class="fuxicons fuxicons-error"></i>
+            </div>
+            <div class="fx-alert-desc">
+                <strong>Could not save due to input errors</strong>
+                <p>
+                    Please check tabs that are signed with a red icon, they have fields with errors
+                </p>
+            </div>
+        </div>
+
+        <hr>
+
+        <h2>Notificação de Inputs</h2>
+        <h3>Campos com descrição lateral</h3>
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <div class="has-info">
+                    <label class="col-sm-1 control-label">Instante de Mudança</label>
+                </div>
+
+                <div class="col-sm-11">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios1" id="optionsRadios1" value="option1">
+                            Data e Hora de subscrição
+                        </label>
+                    </div>
+
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios1" id="optionsRadios2" value="option2">
+                            Data e Hora de subscrição às
+                        </label>
+                    </div>
+
+                    <div class="has-info">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios1" id="optionsRadios3" value="option3" checked>
+                                Dia X...
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <div class="fx-alert-icon">
+                            <i class="fuxicons fuxicons-info"></i>
+                        </div>
+                        <div class="fx-alert-desc">
+                            <p>
+                                Input with info
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="has-warning">
+                    <label class="col-sm-1 control-label">Instante de Mudança</label>
+                </div>
+
+                <div class="col-sm-11">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios2" id="optionsRadios4" value="option4">
+                            Data e Hora de subscrição
+                        </label>
+                    </div>
+
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios2" id="optionsRadios5" value="option5">
+                            Data e Hora de subscrição às
+                        </label>
+                    </div>
+
+                    <div class="has-warning">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios2" id="optionsRadios6" value="option6" checked>
+                                Dia X...
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-warning">
+                        <div class="fx-alert-icon">
+                            <i class="fuxicons fuxicons-warning"></i>
+                        </div>
+                        <div class="fx-alert-desc">
+                            <p>
+                                Input with warning
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="has-error">
+                    <label class="col-sm-1 control-label">Instante de Mudança</label>
+                </div>
+
+                <div class="col-sm-11">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios3" id="optionsRadios7" value="option7">
+                            Data e Hora de subscrição
+                        </label>
+                    </div>
+
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios3" id="optionsRadios8" value="option8">
+                            Data e Hora de subscrição às
+                        </label>
+                    </div>
+
+                    <div class="has-error">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios3" id="optionsRadios9" value="option9" checked>
+                                Dia X...
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-error">
+                        <div class="fx-alert-icon">
+                            <i class="fuxicons fuxicons-error"></i>
+                        </div>
+                        <div class="fx-alert-desc">
+                            <p>
+                                Input with error
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <h3>Campos único</h3>
+        <form role="form">
+            <div class="form-group has-info">
+                <label class="control-label" for="inputInfo1">Input with info</label>
+                <input class="form-control" type="text" id="inputInfo1">
+                <div class="alert alert-info">
+                    <div class="fx-alert-icon">
+                        <i class="fuxicons fuxicons-info"></i>
+                    </div>
+                    <div class="fx-alert-desc">
+                        <p>
+                            Input with info
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group has-warning">
+                <label class="control-label" for="inputWarning1">Input with warning</label>
+                <input class="form-control" type="text" id="inputWarning1">
+                <div class="alert alert-warning">
+                    <div class="fx-alert-icon">
+                        <i class="fuxicons fuxicons-warning"></i>
+                    </div>
+                    <div class="fx-alert-desc">
+                        <p>
+                            Input with warning
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group has-error">
+                <label class="control-label" for="inputError1">Input with error</label>
+                <input class="form-control" type="text" id="inputError1">
+                <div class="alert alert-error">
+                    <div class="fx-alert-icon">
+                        <i class="fuxicons fuxicons-error"></i>
+                    </div>
+                    <div class="fx-alert-desc">
+                        <p>
+                            Input with error
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group has-success">
+                <label class="control-label" for="inputSuccess1">Input with success</label>
+                <input class="form-control" type="text" id="inputSuccess1">
+                <div class="alert alert-success">
+                    <div class="fx-alert-icon">
+                        <i class="fuxicons fuxicons-success"></i>
+                    </div>
+                    <div class="fx-alert-desc">
+                        <p>
+                            Input with success
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <hr>
+
+        <h2>Botão de Notificação + Ajuda Contextual</h2>
+
+        <form class="form-horizontal" role="form" style="max-width: 600px;">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Input with info</label>
+                <div class="col-sm-10">
+                    <div class="fx-input-group">
+                        <input class="form-control input-sm" type="text">
+                        <div class="fx-input-group-addon fx-input-group-feedback">
+                            <button class="fx-alert-button fx-alert-button-info" type="button" data-toggle="popover" data-placement="right" data-content="Mensagem informativa">
+                                <i class="fuxicons fuxicons-info"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group has-success">
+                <label class="col-sm-2 control-label">Input with success</label>
+                <div class="col-sm-10">
+                    <div class="fx-input-group">
+                        <input class="form-control input-sm" type="text">
+                        <div class="fx-input-group-addon fx-input-group-feedback">
+                            <button class="fx-alert-button fx-alert-button-success" type="button" data-toggle="popover" data-placement="right" data-content="Mensagem informativa">
+                                <i class="fuxicons fuxicons-success"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group has-warning">
+                <label class="col-sm-2 control-label">Input with warning</label>
+                <div class="col-sm-10">
+                    <div class="fx-input-group ">
+                        <input class="form-control input-sm" type="text">
+                        <div class="fx-input-group-addon fx-input-group-feedback">
+                            <button class="fx-alert-button fx-alert-button-warning" type="button" data-toggle="popover" data-placement="right" data-content="Mensagem informativa">
+                                <i class="fuxicons fuxicons-warning"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Input with help</label>
+                <div class="col-sm-10">
+                    <div class="fx-input-group">
+                        <input class="form-control input-sm" type="text">
+                        <div class="fx-input-group-addon fx-input-group-feedback">
+                            <button class="fx-alert-button fx-alert-button-help" type="button" data-toggle="popover" data-placement="right" data-content="Mensagem informativa">
+                                <i class="fuxicons fuxicons-help"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group has-error">
+                <label class="col-sm-2 control-label">Input with error</label>
+                <div class="col-sm-10">
+                    <div class="fx-input-group ">
+                        <input class="form-control input-sm" type="text">
+                        <div class="fx-input-group-addon fx-input-group-feedback">
+                            <button class="fx-alert-button fx-alert-button-error" type="button" data-toggle="popover" data-placement="right" data-content="Mensagem informativa">
+                                <i class="fuxicons fuxicons-error"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <hr>
+
+        <h2>Erros em Tabs</h2>
+        <ul class="nav nav-tabs fx-main-tabs">
+            <li class="fx-status">
+                <a href="#tab1" data-toggle="tab">
+                    <span class="fx-tab-title">Tab estado Informativo</span>
+                </a>
+                <span title="Title para o status informativo" class="fx-status-tab">
+                    <i class="fuxicons fuxicons-info fx-status-info"></i>
+                </span>
+            </li>
+            <li class="fx-status active">
+                <a href="#tab2" data-toggle="tab">
+                    <span class="fx-tab-title">Tab estado Erro</span>
+                </a>
+                <span title="Title para o status de erro" class="fx-status-tab">
+                    <i class="fuxicons fuxicons-error fx-status-error"></i>
+                </span>
+            </li>
+            <li class="fx-status">
+                <a href="#tab4" data-toggle="tab">
+                    <span class="fx-tab-title">Tab estado Aviso</span>
+                </a>
+                <span title="Title para o status aviso" class="fx-status-tab">
+                    <i class="fuxicons fuxicons-warning fx-status-warning"></i>
+                </span>
+            </li>
+            <li class="fx-status">
+                <a href="#tab5" data-toggle="tab">
+                    <span class="fx-tab-title">Tab estado Sucesso</span>
+                </a>
+                <span title="Title para o status sucesso" class="fx-status-tab">
+                    <i class="fuxicons fuxicons-success fx-status-success"></i>
+                </span>
+            </li>
+        </ul>
+        <div class="tab-content fx-main-tab-content with-padding">
+            <div class="tab-pane" id="tab1">
+                <p>
+                    Conteúdo do tab <strong>Informativo</strong>.
+                </p>
+            </div>
+            <div class="tab-pane active" id="tab2">
+
+                <p class="fx-required-fields-message">
+                    Campos de preenchimento obrigatório
+                </p>
+
+                <form class="form-horizontal has-error" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label fx-required-field" for="inputTabInfo1">Quantidade de Vouchers</label>
+                        <input class="col-sm-11 form-control" type="text" id="inputTabInfo1">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label fx-required-field" for="inputTabInfo2">Tamanho Sub grupo</label>
+                        <input class="col-sm-11 form-control" type="text" id="inputTabInfo2">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label fx-required-field" for="inputTabInfo3">Localidade</label>
+                        <input class="col-sm-11 form-control" type="text" id="inputTabInfo3">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label fx-required-field" for="inputTabInfo4">Início uso</label>
+                        <input class="col-sm-5 form-control" type="text" id="inputTabInfo4">
+                        <label class="col-sm-1 control-label fx-required-field" for="inputTabInfo5">Nº de utilizações</label>
+                        <input class="col-sm-5 form-control" type="text" id="inputTabInfo5">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label fx-required-field" for="inputTabInfo6">Dono</label>
+                        <input class="col-sm-11 form-control" type="text" id="inputTabInfo6">
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-11 alert alert-error">
+                            <div class="fx-alert-icon">
+                                <i class="fuxicons fuxicons-error"></i>
+                            </div>
+                            <div class="fx-alert-desc">
+                                <p>
+                                    Input with error
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="tab-pane" id="tab4">
+                <p>
+                    Conteúdo do tab <strong>Aviso</strong>.
+                </p>
+            </div>
+            <div class="tab-pane" id="tab5">
+                <p>
+                    Conteúdo do tab <strong>Sucesso</strong>.
+                </p>
+            </div>
+        </div>
+
+        <hr>
+
+        <h2>Notificação Fatal</h2>
+        <a class="btn btn-primary btn-sm" href="template-alert-fatal.html">Abrir</a>
+        será redirecionado para outra página
+        <hr>
+
+        <h2>Contextuais a Tabelas</h2>
+
+        <div class="alert alert-error">
+            <div class="fx-alert-icon">
+                <i class="fuxicons fuxicons-error"></i>
+            </div>
+            <div class="fx-alert-desc">
+                <p>
+                    1 - O nome de utilizador ou a palavra-passe inseridos estão incorretos
+                </p>
+                <p>
+                    2 - O nome de utilizador ou a palavra-passe inseridos estão incorretos
+                </p>
+                <p>
+                    3 - O nome de utilizador ou a palavra-passe inseridos estão incorretos
+                </p>
+            </div>
+        </div>
+
+        <div class="alert alert-warning">
+
+            <div class="fx-alert-icon">
+                <i class="fuxicons fuxicons-warning"></i>
+            </div>
+            <div class="fx-alert-desc">
+                <p>
+                    1 - O nome de utilizador ou a palavra-passe inseridos estão incorretos
+                </p>
+                <p>
+                    2 - O nome de utilizador ou a palavra-passe inseridos estão incorretos
+                </p>
+                <p>
+                    3 - O nome de utilizador ou a palavra-passe inseridos estão incorretos
+                </p>
+            </div>
+        </div>
+
+        <table class="table" id="alert-table1">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                    <th>Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#1</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>
+                        <div class="fx-pos-rel">
+                            <span class="fx-tr-danger">3</span>
+                            <div class="form-group has-error">
+                                <input class="form-control" type="text" id="tr1" placeholder="edit me">
+                            </div>
+                        </div>
+                    </td>
+                    <td class="fx-table-actions">
+                        <button class="btn btn-link btn-link-in-table" title="editar">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </button>
+                        <button class="btn btn-link btn-link-in-table" title="eliminar">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </button>
+                </tr>
+                <tr class="danger">
+                    <td>#2</td>
+                    <td>Josh</td>
+                    <td>Otto</td>
+                    <td>
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="tr2" placeholder="edit me">
+                        </div>
+                    </td>
+                    <td class="fx-table-actions">
+                        <div class="fx-pos-rel">
+                            <span class="fx-tr-danger">2</span>
+                        </div>
+                        <button class="btn btn-link btn-link-in-table" title="editar">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </button>
+                        <button class="btn btn-link btn-link-in-table" title="eliminar">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>#3</td>
+                    <td class="warning">
+                        <div class="fx-pos-rel">
+                            Sinclair <span class="fx-tr-warning">1</span>
+                        </div>
+                    </td>
+                    <td>@BBootstrap</td>
+                    <td>
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="tr3" placeholder="edit me">
+                        </div>
+                    </td>
+                    <td class="fx-table-actions">
+                        <button class="btn btn-link btn-link-in-table" title="editar">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </button>
+                        <button class="btn btn-link btn-link-in-table" title="eliminar">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>#4</td>
+                    <td class="warning">
+                        <div class="fx-pos-rel">
+                            Otto <span class="fx-tr-warning">1</span>
+                        </div>
+                    </td>
+                    <td class="danger">
+                        <div class="fx-pos-rel">
+                            @TwBootstrap <span class="fx-tr-danger">1</span>
+                        </div>
+                    </td>
+                    <td class="warning">
+                        <div class="fx-pos-rel">
+                            <span class="fx-tr-warning">3</span>
+                            <div class="form-group has-warning">
+                                <input class="form-control" type="text" id="tr4" placeholder="edit me">
+                            </div>
+                        </div>
+                    </td>
+                    <td class="fx-table-actions">
+                        <button class="btn btn-link btn-link-in-table" title="editar">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </button>
+                        <button class="btn btn-link btn-link-in-table" title="eliminar">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>#5</td>
+                    <td>Sinclair</td>
+                    <td>@BBootstrap</td>
+                    <td class="danger">
+                        <div class="fx-pos-rel">
+                            <span class="fx-tr-danger">3</span>
+                            <div class="form-group has-error">
+                                <input class="form-control" type="text" id="tr5" placeholder="edit me">
+                            </div>
+                        </div>
+                    </td>
+                    <td class="fx-table-actions">
+                        <button class="btn btn-link btn-link-in-table" title="editar">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </button>
+                        <button class="btn btn-link btn-link-in-table" title="eliminar">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>#6</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="tr6" placeholder="edit me">
+                        </div>
+                    </td>
+                    <td class="fx-table-actions">
+                        <button class="btn btn-link btn-link-in-table" title="editar">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </button>
+                        <button class="btn btn-link btn-link-in-table" title="eliminar">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>#7</td>
+                    <td>Sinclair</td>
+                    <td>@BBootstrap</td>
+                    <td>
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="tr7" placeholder="edit me">
+                        </div>
+                    </td>
+                    <td class="fx-table-actions">
+                        <button class="btn btn-link btn-link-in-table" title="editar">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </button>
+                        <button class="btn btn-link btn-link-in-table" title="eliminar">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr class="warning">
+                    <td>#8</td>
+                    <td>Larry the Bird</td>
+                    <td>Larry the Pig</td>
+                    <td>
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="tr8" placeholder="edit me">
+                        </div>
+                    </td>
+                    <td class="fx-table-actions">
+                        <button class="btn btn-link btn-link-in-table" title="editar">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </button>
+                        <button class="btn btn-link btn-link-in-table" title="eliminar">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </button>
+                        <div class="fx-pos-rel">
+                            <span class="fx-tr-warning">2</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>#9</td>
+                    <td>Sinclair</td>
+                    <td class="danger">
+                        <div class="fx-pos-rel">
+                            @BBootstrap <span class="fx-tr-danger">1</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="tr9" placeholder="edit me">
+                        </div>
+                    </td>
+                    <td class="fx-table-actions">
+                        <button class="btn btn-link btn-link-in-table" title="editar">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </button>
+                        <button class="btn btn-link btn-link-in-table" title="eliminar">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Tabelas com registos obrigatórios</h3>
+
+        <h4>Notificação informativa/erro</h4>
+
+        <table class="table" id="alert-table2">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                    <th>Operations</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <!-- Alert -->
+
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+    <script src="/fuxi/common/exec/fuxi.min.js"></script>
+    <script src="/basepack/datatables-pt/1.9/js/jquery.dataTables.min.js"></script>
+    <script src="/fuxi/lib/datatables-pt/1.9/js/inputPaging.min.js"></script>
+    <script>
+        /* Para efeitos de demonstração, este código fica aqui no html */
+        $(document).ready(function () {
+
+            /* Alerta de SUCESSO desaparece ao fim de 5s, exceto quando com mouseover */
+            $('.fx-global-alert-success').delay(5000).fadeOut(1000);
+
+            $('.fx-global-alert-success').hover(function () {
+                $('.fx-global-alert-success').stop(true, false).fadeTo(1, 1);
+            }, function () {
+                this.timeout = setTimeout("$('.fx-global-alert-success').fadeOut(1000)", 5000);
+            });
+
+            /* Alerta de ERRO (de input) em formulário desaparece quando */
+            $('.form-control, inputError1').change(function () {
+                $('.fx-global-alert-error').fadeOut(1000);
+            });
+
+            /* Handler para mostrar/esconder o stacktrace na janela de alerta FATAL */
+            $('.fx-alert-fatal-st-toggle').click(function (e) {
+                e.preventDefault();
+                $('.fx-alert-fatal-stack-trace').toggle();
+                var exp = $('.fx-alert-fatal-st-toggle > i');
+                var expButtonText = $('.fx-alert-fatal-st-toggle');
+
+                if (exp.hasClass('glyphicon-chevron-up')) {
+                    exp.removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+                    exp.attr('title', 'mostrar');
+                } else {
+                    exp.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+                    exp.attr('title', 'esconder');
+                }
+
+                // trocar o texto do botão
+                var buttonText = expButtonText.find("span").html();
+                var altText = expButtonText.attr('data-alternate-text');
+                expButtonText.find("span").html(altText);
+                expButtonText.attr('data-alternate-text', buttonText);
+            });
+
+            $('.fx-alert-container').hide();
+            $('.btn-group button').click(function () {
+                var target = "#" + $(this).data("target");
+                console.log(target);
+                $(".fx-alert-container").not(target).hide();
+                $(target).show();
+            });
+
+            $('.table tr').click(function (e) {
+                $(this).children('td').toggleClass('dataTable-row-selected');
+            });
+
+
+            var tableConf = $.extend({}, FUXI.Presets.DataTables, {
+                'iDisplayLength': 5,
+                'aLengthMenu': [5, 10, 25, 50],
+                'aoColumns': [{ "bSortable": true }, { "bSortable": true }, { "bSortable": true }, { "bSortable": true }, { "bSortable": false }]
+            });
+
+            tableConf.oLanguage.sZeroRecords = '<div class="alert alert-info">' +
+                                                     '<div class="fx-alert-icon"> ' +
+                                                          '<i class="fuxicons fuxicons-info"></i>' +
+                                                     '</div> ' +
+                                                     '<div class="fx-alert-desc">' +
+                                                          '<p>Deve associar pelo menos um registo</p> ' +
+                                                     '</div> ' +
+                                                '</div>';
+
+            $('.table').on('init.dt', FUXI.Utils.SetDTPagination).dataTable(tableConf);
+
+
+            //Hides all popovers except one clicked
+            $('body').click(function (e) {
+                $('[data-toggle=popover]').each(function () {
+                    if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                        var toHide = $(this).next();
+                        if ($(toHide).hasClass('popover')) {
+                            $(this).popover('hide');
+                            $(toHide).remove();
+                        }
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>

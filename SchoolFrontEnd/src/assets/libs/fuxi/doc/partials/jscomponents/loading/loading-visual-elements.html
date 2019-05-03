@@ -1,0 +1,78 @@
+<h3 id="docs-loading-visual-elements">Loading - elementos visuais</h3>
+<p>A FUXI disponibiliza dois tipos de loaders, cada um em 3 tamanhos distintos. Por defeito os componentes usam loading do tipo spinner.</p>
+<p>Dependendo do contexto, pode ser aplicado loading do tipo spinner ou barras. Aconselhamos a utilização de apenas um destes tipos por produto.</p>
+<p>No snippet abaixo está exemplificado o tamanho mais pequeno dos loadings spinner e barras . Podem instanciar-se outros tipos de tamanho através das classes <code>fx-ico-loading-m, fx-ico-loading-l</code> ou <code>fx-ico-loading-bars-m, fx-ico-loading-bars-l</code>.</p>
+<div class="alert alert-info">
+    <p>Caso o browser não suporte animações está garantido um fallback para um gif animado.</p>
+</div>
+<div class="fx-docs-snippet-code">
+    <div>
+        <button id="btn-trigger-loading-visual-elements" class="btn btn-default">simular loaders</button>
+        <br />
+        <br />
+        <div id="devguide-table-visual-loading-elements" class="table-responsive">
+            <table class="table fx-table">
+                <thead>
+                    <tr>
+                        <th>Spinner</th>
+                        <th>Barras</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><i class="fx-ico-loading inactive">a carregar conteúdo...</i></td>
+                        <td>
+                            <div class="fx-ico-loading-bars inactive">
+                                <div class="fx-rect1"></div>
+                                <div class="fx-rect2"></div>
+                                <div class="fx-rect3"></div>
+                                <div class="fx-rect4"></div>
+                                <span class="sr-only">A carregar conteúdo...</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fx-ico-loading-m inactive">a carregar conteúdo...</i></td>
+                        <td>
+                            <div class="fx-ico-loading-bars-m inactive">
+                                <div class="fx-rect1"></div>
+                                <div class="fx-rect2"></div>
+                                <div class="fx-rect3"></div>
+                                <div class="fx-rect4"></div>
+                                <span class="sr-only">A carregar conteúdo...</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fx-ico-loading-l inactive">a carregar conteúdo...</i></td>
+                        <td>
+                            <div class="fx-ico-loading-bars-l inactive">
+                                <div class="fx-rect1"></div>
+                                <div class="fx-rect2"></div>
+                                <div class="fx-rect3"></div>
+                                <div class="fx-rect4"></div>
+                                <span class="sr-only">A carregar conteúdo...</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!--SPINNER-->
+<i class="fx-ico-loading">a carregar conteúdo...</i>
+
+<!--BARRAS-->
+<div class="fx-ico-loading-bars">
+    <div class="fx-rect1"></div>
+    <div class="fx-rect2"></div>
+    <div class="fx-rect3"></div>
+    <div class="fx-rect4"></div>
+    <span class="sr-only">A carregar conteúdo...</span>
+</div>
+
+        </textarea>
+    </form>
+</div>

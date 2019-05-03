@@ -1,0 +1,164 @@
+{
+    "type": "initParameters",
+    "id": "studentPropsChannel_Facebook",
+    "header": {
+        "seo": {
+            "text": "Facebook",
+            "icon": "fa fa-facebook-square"
+        }
+    },
+    "urlResource": [
+        {
+            "key": "path",
+            "value": "{{SchoolBOT}}/students/[[id]]"
+        },
+        {
+            "key": "queryString",
+            "value": {
+                "keys": "{\"integrations\":1}"
+            }
+        },
+        {
+            "key": "headers",
+            "value": {
+                "Authorization": "Bearer {{token}}",
+                "IXS": "{{IXS_id}}"
+            }
+        },
+        {
+            "key": "pathToMainData",
+            "value": [
+                "integrations",
+                "facebook"
+            ]
+        },
+        {
+            "key": "reload",
+            "value": false
+        }
+    ],
+    "details": [
+        {
+            "type": "label",
+            "class": "col-md-12",
+            "value": " <div class=\"description\">Create and teach a Bot Student for Facebook.</div>"
+        },
+        {
+            "type": "label",
+            "class": "col-md-12",
+            "value": "<div class=\"description\"><p>After you design and test your Bot Student, you can launch your Faceboom bot</p><ol><li>Get your Facebook Page Access Token and insert it in the field below.</li><li>Create your own Verify Token (can be any string).</li><li>Click 'START' below.</li><li>Use the Callback URL and Verify Token to create an event in the Facebook MessengerWebhook Setup.</li></ol></div>"
+        },
+        {
+            "type": "textbox",
+            "id": "callbackURL_Facebook",
+            "text": "student___callbackURL",
+            "class": "col-sm-11",
+            "disabled": true,
+            "pathToValue": [
+                "callback"
+            ],
+            "validator": {
+                "required": [
+                    true,
+                    "warnings___fieldRequired"
+                ]
+            }
+        },
+        {
+            "type": "copyclipboard",
+            "id": "copy",
+            "class": "col-sm-1",
+            "icon": "fa fa-clipboard",
+            "_value": "generic___operations___getYourBotStudentTag",
+            "mappingId": "callbackURL_Facebook"
+        },
+        {
+            "type": "textbox",
+            "id": "verifyToken_Facebook",
+            "text": "student___verifyToken",
+            "placeholder": "student___verifyToken",
+            "class": "col-sm-12",
+            "pathToValue": [
+                "verifyToken"
+            ],
+            "validator": {
+                "required": [
+                    true,
+                    "warnings___fieldRequired"
+                ]
+            }
+        },
+        {
+            "type": "textbox",
+            "id": "pageAccessToken_Facebook",
+            "text": "student___pageAccessToken",
+            "placeholder": "student___pageAccessToken",
+            "class": "col-sm-12",
+            "pathToValue": [
+                "fbPageToken"
+            ],
+            "validator": {
+                "required": [
+                    true,
+                    "warnings___fieldRequired"
+                ]
+            }
+        }
+    ],
+    "operations": [
+        {
+            "parameters": [
+                {
+                    "id": "cancelButton",
+                    "text": "generic___operations___cancel",
+                    "class": "btn-default"
+                },
+                {
+                    "type": "submit",
+                    "id": "fullfilmentFacebookSave",
+                    "text": "generic___operations___save",
+                    "class": "btn-primary",
+                    "parameters": [
+                        {
+                            "key": "requestEndpoint",
+                            "value": "{{SchoolBOT}}/students/[[id]]"
+                        },
+                        {
+                            "key": "requestHeaders",
+                            "value": {
+                                "Authorization": "Bearer {{token}}",
+                                "IXS": "{{IXS_id}}"
+                            }
+                        },
+                        {
+                            "key": "requestType",
+                            "value": "PATCH"
+                        },
+                        {
+                            "key": "requestBody",
+                            "type": "json",
+                            "value": {
+                                "$set": {
+                                    "integrations.facebook.verifyToken": "{{verifyToken_Facebook}}",
+                                    "integrations.facebook.fbPageToken": "{{pageAccessToken_Facebook}}"
+                                }
+                            }
+                        },
+                        {
+                            "key": "onSuccess",
+                            "value": {
+                                "notification": {
+                                    "type": "success",
+                                    "text": "success___requestSuccess",
+                                    "limit": 1,
+                                    "timeout": 3000,
+                                    "position": "top-right"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

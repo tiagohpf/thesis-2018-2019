@@ -1,0 +1,581 @@
+{
+  "type": "wrapper",
+  "details": [
+    {
+      "type": "initParameters",
+      "details":[
+        {
+          "type": "header",
+          "class": "col-sm-10 title",
+          "header": {
+              "seo": {
+              "text": "Current Plan",
+              "icon": "icomoon icon-Students"
+              }
+              }
+          },
+        {"include": "students/account/account-plan"},
+        {
+          "type": "wrapper",
+          "class": "col-sm-6",
+          "dynamicProps":{
+            "hidden": "'{{current-plan-id}}' == ''"
+          },
+          "details": [
+
+
+    
+            {
+              "type": "initParameters",
+              "id": "planDetail",
+              "urlResource": [
+                {
+                  "key": "id",
+                  "value": "currentPlan"
+                },
+                {
+                  "key": "reload",
+                  "value": false
+                },
+                {
+                  "key": "apiRecycle",
+                  "value": false
+                },
+                {
+                  "key": "path",
+                  "value": "{{BillingService}}/plans/{{current-plan-id}}"
+                },
+                {
+                  "key": "pathToMainData",
+                  "value": [
+                    "response",
+                    "item"
+                  ]
+                },
+                {
+                  "key": "headers",
+                  "value": {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer {{token}}"
+                  }
+                }
+              ],
+              "details": [
+        
+                {
+                  "type": "json",
+                  "text": "current-plan-rank",
+                  "id": "current-plan-rank",
+                  "hidden": true,
+                  "pathToValue": [
+                    "currentPlan","response","data", "details", "rank"
+                  ]
+                },
+        
+                {
+                  "type": "textbox",
+                  "text": "ixs-id",
+                  "dynamicProps": {
+                    "value": "'{{IXS_id}}'"
+                  },
+                  "hidden": true
+                },
+                {
+                  "type": "textbox",
+                  "text": "",
+                  "id": "selectedPlanId",
+                  "dynamicProps": {
+                    "value": "'{{plansCardList___id}}'"
+                  },
+                  "validator": {
+                    "required": [
+                      true,
+                      "warnings___fieldRequired"
+                    ]
+                  }
+                },
+                {
+                  "type": "textbox",
+                  "hidden": "true",
+                  "id": "selectedPlanObj",
+                  "dynamicProps": {
+                    "value": "'{{plansCardList}}'"
+                  }
+                },
+                {
+                  "type": "initCards",
+                  "lazyLoading": false,
+                  "id": "currentPlanCard",
+                  "icon": "fa fa-th-large",
+                  "text": "current plan",
+                  "class": "col-sm-8",
+                  "pathToValue": [
+                    "currentPlan","response","item"
+                  ],
+        
+                  "details": [         
+                    {
+                      "type": "label",
+                      "id": "nickname",
+                      "text": "nickname",
+                      "class": "hide-label plan-name",
+                      "pathToValue": [
+                        "nickname"
+                      ]
+                    },
+                    {
+                      "type": "label",
+                      "id": "plan-id",
+                      "class": "hide-label",
+                      "hidden": true,
+                      "pathToValue": [
+                        "id"
+                      ]
+                    },
+                    {
+                      "type": "label",
+                      "id": "amount",
+                      "_text": "amount",
+                      "hidden": true,
+                      "class": "hide-label plan-price",
+                      "pathToValue": [
+                        "amount"
+                      ]
+                    },
+                    {
+                      "type": "label",
+                      "id": "price",
+                      "text": "",
+                      "class": "hide-label plan-price",
+                      "pathToValue": [
+                        "@getPlanPrice('{{amount}}', '{{interval}}')"
+                      ]
+                    },
+                    {
+                      "type": "label",
+                      "id": "interval",
+                      "_text": "interval",
+                      "class": "hide-label",
+                      "hidden": true,
+                      "pathToValue": [
+                        "interval"
+                      ]
+                    },
+
+                    {
+                      "type": "label",
+                      "text":"plans___units",
+                      "id": "detailUnits",
+                      "hidden": false,
+                      "class":"plan-detail",
+                      "pathToValue": ["data", "details", "units" ]
+                    },
+                    {
+                      "type": "label",
+                      "text":"plans___web",
+                      "id": "detailWeb",
+                      "hidden": false,
+                      "class":"plan-detail",
+                      "pathToValue": ["data", "details", "web" ],
+                      "html": {
+                        "true": "<i class=\"fa fa-check available-icon\"></i>",
+                        "false": "<i class=\"fa fa-times not-available-icon\"></i>"
+                      }
+                    },
+                    {
+                      "type": "label",
+                      "text":"plans___skype",
+                      "id": "detailSkype",
+                      "hidden": false,
+                      "class":"plan-detail",
+                      "pathToValue": ["data", "details", "skype" ],
+                      "html": {
+                        "true": "<i class=\"fa fa-check available-icon\"></i>",
+                        "false": "<i class=\"fa fa-times not-available-icon\"></i>"
+                      }
+                    },
+                    {
+                      "type": "label",
+                      "text":"plans___facebook",
+                      "id": "detailFacebook",
+                      "hidden": false,
+                      "class":"plan-detail",
+                      "pathToValue": ["data", "details", "facebook" ],
+                      "html": {
+                        "true": "<i class=\"fa fa-check available-icon\"></i>",
+                        "false": "<i class=\"fa fa-times not-available-icon\"></i>"
+                      }
+                    },
+                    {
+                      "type": "label",
+                      "text":"plans___whatsApp",
+                      "id": "detailWhatsApp",
+                      "hidden": false,
+                      "class":"plan-detail",
+                      "pathToValue": ["data", "details", "whatsApp" ],
+                      "html": {
+                        "true": "<i class=\"fa fa-check available-icon\"></i>",
+                        "false": "<i class=\"fa fa-times not-available-icon\"></i>"
+                      }
+                    },
+                    {
+                      "type": "label",
+                      "text":"plans___ivr",
+                      "id": "detailIvr",
+                      "hidden": false,
+                      "class":"plan-detail",
+                      "pathToValue": ["data", "details", "IVR/Telephone" ],
+                      "html": {
+                        "true": "<i class=\"fa fa-check available-icon\"></i>",
+                        "false": "<i class=\"fa fa-times not-available-icon\"></i>"
+                      }
+                    },
+                    {
+                      "type": "operations",
+                      "id": "planUpgradeButtons",
+                      "text":null,
+                      "class": "col-sm-12",
+                      "_dynamicProps":{
+                        "hidden": "'{{current-plan-id}}' == 'gold'"
+                      },
+                      "operations": [
+                        {
+                          "size": 1,
+                          "parameters": [
+                              {
+                                  "type": "openModal",
+                                  "id": "plan-upgrade-modal",
+                                  "text": "billing___planUpgrade",
+                                  "mockToLoad": "billing/plan-upgrade-wiz",
+                                  "size": "lg",
+                                  "class":"btn-default",
+                                  "parameters": [
+                                      {
+                                          "key": "context",
+                                          "value": [
+                                              "selected-student-main"
+                                          ]
+                                      }
+                                  ]
+                              }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "wrapper",
+          "class": "col-sm-6",
+          "dynamicProps":{
+            "hidden": "'{{current-plan-id}}' != ''"
+          },
+          "details": [
+            {
+              "type": "operations",
+              "id": "gotoProdButtons",
+              "text":null,
+              "class": "col-sm-4",
+              "operations": [
+                  {
+                      "size": 1,
+                      "parameters": [
+                          {
+                              "type": "openModal",
+                              "id": "go-to-prod-modal",
+                              "text": "billing___goLive",
+                              "mockToLoad": "billing/go-to-prod-wiz",
+                              "size": "lg",
+                              "class":"btn-default",
+                              "parameters": [
+                                  {
+                                      "key": "context",
+                                      "value": ["selected-student-main"]
+                                  }
+                              ]
+                          }
+                      ]
+                  }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    {
+      "type": "initParameters",
+      "id": "studentAccountUsage",
+      "text": "",
+      "details": [
+        {
+          "type": "header",
+          "class": "col-sm-12 title",
+          "header": {
+            "seo": {
+              "text": "Usage",
+              "icon": "icomoon icon-activity"
+            }
+          }
+        },
+        {"include": "students/account/usage"}
+      ]
+    },
+
+    {"include": "students/account/account-customer"},
+
+    {
+      "type": "initParameters",
+      "id": "studentAccountPaymentInfo",
+      "text": "",
+      "urlResource": [
+        {
+          "key": "reload",
+          "value": false
+        },
+        {
+          "key": "apiRecycle",
+          "value": false
+        },
+        {
+          "key": "id",
+          "value": "currentSubscriptionComplete"
+        },
+        {
+          "key": "path",
+          "value": "{{BillingService}}/subscriptions/{{current-subscription-id}}"
+        },
+        {
+          "key": "pathToMainData",
+          "value": [
+            "response",
+            "item",
+            "card"
+          ]
+        },
+        {
+          "key": "headers",
+          "value": {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer {{token}}"
+          }
+        }
+      ],
+      "details": [
+        {
+          "type": "header",
+          "class": "col-sm-12 title",
+          "header": {
+            "seo": {
+              "text": "Payment Information",
+              "icon": "fa fa-credit-card"
+            }
+          }
+        },
+        {
+          "type": "label",
+          "text": "creditCardId",
+          "class": "col-sm-12",
+          "id": "creditCardId",
+          "hidden": true,
+          "pathToValue": ["id"]
+        },
+        {
+          "type": "label",
+          "text": "Brand",
+          "class": "col-sm-12",
+          "pathToValue": ["brand"],
+          "dynamicProps":{
+            "hidden": "'{{creditCardId}}' == ''"
+          }
+        },
+        {
+          "type": "label",
+          "text": "Card number",
+          "class": "col-sm-12",
+          "value": "**** **** **** {{last4}}",
+          "dynamicProps":{
+            "hidden": "'{{creditCardId}}' == ''"
+          }
+        },
+
+        {
+          "type": "label",
+          "id": "exp_date",
+          "text": "Expire date",
+          "class": "col-sm-12",
+          "value": "{{exp_month}}/{{exp_year}}",
+          "dynamicProps":{
+            "hidden": "'{{creditCardId}}' == ''"
+          }
+        }
+
+      ]
+    },
+
+
+
+
+
+
+    
+    {
+      "type": "initParameters",
+      "id": "studentReceipts",
+      "text": "",
+      "details": [
+        {
+          "type": "header",
+          "class": "col-sm-12 title",
+          "header": {
+            "seo": {
+              "text": "billing___receipts",
+              "icon": "fa fa-file-text-o"
+            }
+          }
+        },
+        {
+          "type": "initTable",
+          "id": "studentReceipts_Table",
+          "urlResource": [
+            {
+              "key": "id",
+              "value": "currentPlan"
+            },
+            {
+              "key": "reload",
+              "value": false
+            },
+            {
+              "key": "apiRecycle",
+              "value": false
+            },
+            {
+              "key": "path",
+              "value": "{{BillingService}}/charges?entity=[[id]]"
+            },
+            {
+              "key": "pathToMainData",
+              "value": [
+                "response",
+                "items"
+              ]
+            },
+
+            {
+              "key": "headers",
+              "value": {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer {{token}}"
+              }
+            }
+          ],
+          "columns": [
+              {
+                  "type": "text",
+                  "id": "date",
+                  "pathToValue": [
+                      "date"
+                  ],
+                  "text": "date"
+              },
+              {
+                  "type": "text",
+                  "id": "description",
+                  "pathToValue": [
+                      "description"
+                  ],
+                  "text": "description"
+              },
+              {
+                "type": "text",
+                "id": "amount",
+                "pathToValue": [
+                  "@getPlanPrice('{{amount}}')"
+                ],
+                "text": "amount"
+              },
+              {
+                "type": "context",
+                "id": "receiptUrl",
+                "pathToValue": [
+                    "receiptUrl"
+                ]
+              },
+              {
+                "type": "json",
+                "id": "chargeObj",
+                "pathToValue": [""],
+                "hidden":true
+              },
+              {
+                "type": "actions",
+                "id": "actions",
+                "size": 1,
+                "operations": [
+                    {
+                        "type": "openModal",
+                        "id": "showReceipt",
+                        "text": "billing___showReceipt",
+                        "mockToLoad": "students/account/receipt",
+                        "icon": "fa fa-file-text-o",
+                        "_size": "xl",
+                        "hidden": false,
+                        "parameters": [
+                          {
+                            "key": "context",
+                            "value": [
+                              "chargeObj"
+                            ]
+                          }
+                        ]
+                    }
+                ]
+              },
+              {
+                "type": "text",
+                "id": "download",
+                "hidden": true,
+                "value": "Download",
+                "navigateTo": "{{receiptUrl}}"
+              }
+
+          ],
+          "rows": [],
+          "parameters": [
+              {
+                  "key": "tableActions",
+                  "value": {
+                      "export": false,
+                      "columnManager": false,
+                      "search": false,
+                      "pagination": false
+                  }
+              }
+          ]
+        }
+      ]
+    }
+  ]
+}

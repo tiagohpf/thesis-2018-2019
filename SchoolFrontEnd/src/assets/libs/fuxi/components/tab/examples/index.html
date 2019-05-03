@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge; text/html;">
+    <title>Tabs angular</title>
+
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.css" />
+
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/fuxi/lib/jqueryui/1.10/jquery-ui-1.10.4.custom.min.js"></script>
+
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+        
+</head>
+<body class="container" style="overflow:auto" ng-app="ngApp">
+    <section class="well row">
+        <h1><strong>fxTabs - AngularJS</strong></h1>
+        (<a target="_blank" href="/fuxi/common/html/template-dynamic-tabs.html">ver versão similar em Javascript</a>)
+        <div class="row">
+            <div id="ws-doc">
+                <h3><i class="caret"></i> <strong>Opções</strong></h3>
+                <div style="padding: 0 20px" class="hidden">
+                    <div>
+                        <label><strong>fxtabset: </strong></label>
+                        <span>Diretiva encarregada de encapsular as tabs</span>
+                        <ul>
+                            <li>
+                                <strong>data-fxtab-refresh: </strong>
+                                <i>Data attribute</i> que ao alterar o seu valor permite refrescar as tabs
+                            </li>
+                            <li>
+                                <strong>data-fxtab-data: </strong>
+                                <i>Data attribute</i> que recebe os dados a serem carregados
+                            </li>
+                            <li>
+                                <strong>data-fx-onsortable: </strong>
+                                <i>Data attribute</i> que indica o nome da função a executar do lado da app, para ordenar os tabs.<br />
+                                A função recebe dois parâmetros myFunction(<strong>fromIndex</strong>, <strong>toIndex</strong>).
+                            </li>
+                            <li>
+                                <strong>data-fxtab-language: </strong>
+                                <i>Data attribute</i> que indica o ídioma em que são mostradas as mensagens
+                            </li>
+                            <li>
+                                <strong>data-fx-statict-content: </strong>
+                                <i>Data attribute</i> que indica se o conteúdo das tabs é estático ou é carregado utilizando uma view (ex: ui-router)
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <label><strong>fxtab: </strong></label>
+                        <span>Diretiva encarregada de renderizar as tabs</span>
+                        <ul>
+                            <li><strong>active: </strong>(true ou <strong>false</strong>) tab ativa</li>
+                            <li><strong>disable: </strong>(true ou <strong>false</strong>) tab pode ser clicável e colocada como ativa</li>
+                            <li><strong>dismissible: </strong>(true ou <strong>false</strong>) tab pode ser removida</li>
+                            <li><strong>fx-sortable: </strong>(<strong>true</strong> ou false) tab pode ser ordenável</li>
+                            <li>
+                                <strong>href: </strong>
+                                <i>Data attribute</i> com o url da tab. É usado quando se clica com o botão direito do rato e se faz abrir link ou quando se faz o ctrl+click  ou mouse middle click para abrir o url num novo tab.
+                            </li>
+                            <li>
+                                <strong>status: </strong>
+                                <i>Data attribute</i> que dependendo do estado passado mostra icon a seguir ao titulo da tab (canto direito). Status: warning, error, success, info
+                            </li>
+                            <li>
+                                <strong>data-fx-onselect: </strong>
+                                <i>Data attribute</i> que indica o nome da função a executar quando se activa uma tab
+                            </li>
+                            <li>
+                                <strong>data-fx-ondeselect: </strong>
+                                <i>Data attribute</i> que indica o nome da função a executar quando se desactiva uma tab
+                            </li>
+
+                            <li>
+                                <strong>data-fx-onremove: </strong>
+                                <i>Data attribute</i> que indica o nome da função a executar quando se remove uma tab
+                            </li>
+                            <li>
+                                <strong>heading</strong> ou <strong> &lt;tab-heading&gt; :</strong>
+                                Texto do cabeçalho ou HTML
+                            </li>
+                            <li>
+                                <strong>actions:</strong>&nbsp;(<strong>true</strong> ou <strong>false</strong>) indica se a tab tem um menu com acções ou não.
+                            </li>
+                            <li>
+                                <strong>tabactions:</strong>&nbsp;lista de acções (<strong>fxtab-action</strong>) do menu.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <label><strong>fxtab-action: </strong></label>
+                        <span>Diretiva encarregue de renderizar as acções do menu das tabs</span>
+                        <ul>
+                            <li>
+                                <strong>label:</strong>&nbsp;Label da acção do menu.
+                            </li>
+                            <li>
+                                <strong>icon:</strong>&nbsp;Icon da acção do menu. (ex.: "{'glyphicon glyphicon-remove': true}") ou (ex.:"{'fuxicons fuxicons-thumb-tack': actionitem.show, 'fuxicons fuxicons-thumb-tack-o': !actionitem.show}")
+                            </li>
+                            <li>
+                                <strong>show:</strong>&nbsp;(<strong>true</strong> ou <strong>false</strong>) indica se o menu item é visível ou não.
+                            </li>
+                            <li>
+                                <strong>disabled:</strong>&nbsp;(<strong>true</strong> ou <strong>false</strong>) indica se o menu item está activo ou não.
+                            </li>
+                            <li>
+                                <strong>permission:</strong>&nbsp;(<strong>true</strong> ou <strong>false</strong>) indica se tem permissões para aceder ao menu item ou não.
+                            </li>
+                            <li>
+                                <strong>action:</strong>&nbsp;Acção que será usada no broadcast que é efectuado quando é pressionado o menu item. (ex.: 'removeTabAction')
+                            </li>
+
+                            actionitem="action" tabelm="elm"
+                        </ul>
+                    </div>
+
+                </div>
+
+                <h3><i class="caret"></i> <strong>How To? Step by Step</strong></h3>
+                <div style="padding: 0 20px" class="hidden">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Verificar que tem incluído os seguintes ficheiros:
+                                    <ul>
+                                        <li>
+                                            <strong>CSS</strong>
+                                            <ul>
+                                                <li>Bootstrap (/basepack/bootstrap-pt/3.0/css/bootstrap.min.css)</li>
+                                                <li>Fuxi (/fuxi/common/html/css/fuxi.css)</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>JS</strong>
+                                            <ul>
+                                                <li>jQuery (/basepack/jquery/1.9/jquery.min.js)</li>
+                                                <li>jQuery UI (/fuxi/lib/jqueryui/1.10/jquery-ui-1.10.4.custom.min.js)</li>
+
+                                                <li>Modernizr (/basepack/modernizr/2.6/modernizr.js)</li>
+
+                                                <li>Fuxi (/fuxi/common/exec/fuxi.js)</li>
+                                                <li>Bootstrap (/basepack/bootstrap-pt/3.0/js/bootstrap.min.js)</li>
+
+                                                <li>Angular JS (1.3.15) (https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js)</li>
+                                                <li>Angular UI-Router (//angular-ui.github.io/ui-router/release/angular-ui-router.js)</li>
+
+                                                <li>fxtab (/fuxi/components/tab/dist/fxtab.js)</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Elemento DOM utilizado no Exemplo #1</strong><br />
+                                    <blockquote style="background:white;">
+                                        &lt;fxtabset data-fxtab-refresh=&quot;demo.reload&quot; data-fxtab-data=&quot;demo.items&quot; data-fx-onsortable=&quot;demo.sortable(fromIndex, toIndex)&quot; data-fxtab-language=&quot;pt&quot; fx-show-add=&quot;true&quot; fx-add-callback=&quot;demo.addTab()&quot;&gt;
+                                        &lt;fxtab ng-repeat=&quot;tab in demo.items track by $id(tab)&quot; active=&quot;tab.active&quot; data-fx-onselect=&quot;demo.selected(tab)&quot; data-fx-ondeselect=&quot;demo.deselected(tab)&quot; data-fx-onremove=&quot;demo.removeTab($index)&quot; disable=&quot;tab.disabled&quot; actions=&quot;tab.actions&quot;dismissible=&quot;tab.dismissible&quot; data-fx-sortable=&quot;tab.sortable&quot;&gt;
+                                        &lt;fxtab-heading&gt;
+                                        &lt;i class=&quot;glyphicon glyphicon-bell&quot;&gt;&lt;/i&gt; {{tab.title}} &lt;/fxtab-heading&gt; &lt;/fxtab&gt; &lt;/fxtabset&gt;
+                                        &lt;div ui-view&gt;&lt;/div&gt;
+                                    </blockquote>
+                                    No ficheiro <a href="app.js" target="_blank">app.js</a> pode verificar:
+                                    <ul>
+                                        <li>a forma de instanciar os módulos necessários para o correcto funcionamento do componente,</li>
+                                        <li>métodos de exemplo para o carregamento do conteúdo utilizando o UI-Router.</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3><i class="caret"></i> <strong style="color:red">Issues (não corrigidos: <span id="number-bugs"></span>)</strong></h3>
+                <div class="hidden">
+                    <ul id="bugs-list"></ul>
+                </div>
+                <h3><i class="caret"></i> <strong style="color:green">New Features (não implementadas: <span id="number-newfeatures"></span>)</strong></h3>
+                <div class="hidden">
+                    <ul id="newfeatures-list"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div ui-view>loading...</div>
+
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $("#number-bugs").text($("#bugs-list li").length);
+            $("#number-newfeatures").text($("#newfeatures-list li").length);
+            
+            $("#ws-doc h3").css("cursor", "pointer").on('click', function () {
+                $(this).next().toggleClass("hidden");
+            });
+
+
+
+        });
+    </script>
+
+    <script src="/fuxi/common/exec/fuxi.js"></script>
+
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+
+    <!--angular js 1.3.15-->
+    <script src="/fuxi/lib/angular/1.3/angular.js"></script>
+    <!-- UI-Router -->
+    <script src="/fuxi/lib/angular-ui-router/0.2/angular-ui-router.js"></script>
+
+
+    <script src="/fuxi/lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+    <!--app module-->
+    <script src="app.js"></script>
+
+    <!--fxtab-->
+    <script src="/fuxi/components/tab/dist/fxtab.js"></script>
+    <!--<script src="/fuxi/sandbox/angular/fx-components/fxtab/src/services/fxtabService.js"></script>
+    <script src="/fuxi/sandbox/angular/fx-components/fxtab/src/filters/fxtabFilters.js"></script>
+    <script src="/fuxi/sandbox/angular/fx-components/fxtab/src/controllers/fxtabController.js"></script>
+    <script src="/fuxi/sandbox/angular/fx-components/fxtab/src/directives/fxtabSetDirective.js"></script>
+    <script src="/fuxi/sandbox/angular/fx-components/fxtab/src/directives/fxtabDirective.js"></script>
+    <script src="/fuxi/sandbox/angular/fx-components/fxtab/src/directives/fxtabHeadingTranscludeDirective.js"></script>
+    <script src="/fuxi/sandbox/angular/fx-components/fxtab/src/directives/fxtabContentTranscludeDirective.js"></script>
+    <script src="/fuxi/sandbox/angular/fx-components/fxtab/src/directives/fxtabSortable.js"></script>-->
+
+</body>
+</html>

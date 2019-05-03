@@ -1,0 +1,15 @@
+version: '3'
+services:
+  schoolfrontendv2:
+    image: schoolfrontendv2:latest
+    logging:
+      driver: gelf
+      options:
+        gelf-address: udp://10.113.133.33:12201
+        tag: "schoolfrontendv2"
+    environment:
+      - SERVICE_NAME=schoolfrontendv2
+    ports:
+      - "8909:8909"
+#    volumes:
+#      - /opt/ptin/amalia/schoolFrontEnd/config:/opt/ptin/amalia/schoolfrontend/assets/configuration

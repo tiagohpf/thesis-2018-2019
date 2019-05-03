@@ -1,0 +1,489 @@
+{
+    "type": "initParameters",
+    "id": "usage-dashbord",
+    "class": "col-md-12",
+    "details": [
+
+        {
+            "type": "operations",
+            "id": "entityInfoButtonAreas",
+            "class": "tabsButtonsAccount col-md-10",
+            "text": null,
+            "operations": [
+              {
+                "size": 10,
+                "parameters": [
+                  {
+                    "type": "updatePage",
+                    "id": "switchResume",
+                    "text": "Summary",
+                    "class": "entityInfoButton",
+                    "parameters": [
+                      {
+                        "key": "updatePageParameter",
+                        "value": {
+                            "studentAccountConsumptionsResume":{
+                                "hidden":false
+                            },
+                            "studentAccountConsumptionsChart":{
+                                "hidden":true
+                            },
+                            "studentAccountConsumptionsTable":{
+                                "hidden":true
+                            },
+                            "switchResume":{
+                                "class": "active entityInfoButton"
+                            },
+                            "switchChart":{
+                                "class": "entityInfoButton"
+                            },
+                            "switchTable":{
+                                "class": "entityInfoButton"
+                            }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "updatePage",
+                    "id": "switchChart",
+                    "text": "By Chart",
+                    "class": "active entityInfoButton",
+                    "parameters": [
+                      {
+                        "key": "updatePageParameter",
+                        "value": {
+                            "studentAccountConsumptionsResume":{
+                                "hidden":true
+                            },
+                            "studentAccountConsumptionsChart":{
+                                "hidden":false
+                            },
+                            "studentAccountConsumptionsTable":{
+                                "hidden":true
+                            },
+                            "switchResume":{
+                                "class": "entityInfoButton"
+                            },
+                            "switchChart":{
+                                "class": "active entityInfoButton"
+                            },
+                            "switchTable":{
+                                "class": "entityInfoButton"
+                            }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "updatePage",
+                    "id": "switchTable",
+                    "text": "By Table",
+                    "class": "entityInfoButton",
+                    "parameters": [
+                      {
+                        "key": "updatePageParameter",
+                        "value": {
+                            "studentAccountConsumptionsResume":{
+                                "hidden":true
+                            },
+                            "studentAccountConsumptionsChart":{
+                                "hidden":true
+                            },
+                            "studentAccountConsumptionsTable":{
+                                "hidden":false
+                            },
+                            "switchResume":{
+                                "class": "entityInfoButton"
+                            },
+                            "switchChart":{
+                                "class": "entityInfoButton"
+                            },
+                            "switchTable":{
+                                "class": "active entityInfoButton"
+                            }
+                        }
+                      }
+                    ]
+                  }
+                  
+                  
+                ]
+              }
+            ]
+          },
+          {
+            "type": "operations",
+            "id": "buyAddonButtonsGlobal",
+            "text": null,
+            "class": "col-md-2",
+            "style": {
+              "float": "right"
+            },
+            "dynamicProps":{
+              "hidden": "'{{current-plan-id}}' == '' || '{{current-plan-id}}' == 'free'"
+            },
+            "operations": [
+              {
+                "size": 1,
+                "parameters": [
+                    {
+                        "type": "openModal",
+                        "id": "go-to-prod-modal",
+                        "text": "Add extra dialogs",
+                        "mockToLoad": "billing/buy-addon-wiz",
+                        "size": "lg",
+                        "class":"btn-default",
+                        "parameters": [
+                            {
+                                "key": "context",
+                                "value": [
+                                    "selected-student-main", "current-customer-id"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+              }
+            ]
+          },
+
+
+
+
+
+
+        {
+            "type":"label",
+            "id": "todayAux",
+            "pathToValue": ["@todayDate()"],
+            "hidden":true
+        },
+
+        {
+            "type": "initParameters",
+            "id": "studentAccountConsumptionsResume",
+            "hidden": true,
+            "urlResource": [
+              {
+                "key": "_reload",
+                "value": false
+              },
+              {
+                "key": "apiRecycle",
+                "value": false
+              },
+              {
+                "key": "id",
+                "value": "currentSubscription"
+              },
+              {
+                "key": "path",
+                "value": "{{BillingService}}/entities/[[id]]"
+              },
+              {
+                "key": "pathToMainData",
+                "value": [
+                  "response"
+                ]
+              },
+              {
+                "key": "headers",
+                "value": {
+                  "Content-Type": "application/json",
+                  "Authorization": "Bearer {{token}}"
+                }
+              }
+            ],
+            "details": [
+              {
+                  "type":"groupParameters",
+                  "class":"col-md-4 groupParameters_noHeader",
+                  "text": "Included in the plan",
+                  "parameters":[
+                    {
+                        "type": "header",
+                        "class": "col-sm-12 title",
+                        "header": {
+                          "seo": {
+                            "text": "Included in the plan",
+                            "icon": "fa fa-comment-o"
+                          }
+                        }
+                    },
+                    {
+                        "type":"label",
+                        "text":"contracted",
+                        "pathToValue":["plan", "contracted"]
+                      },
+                      {
+                        "type":"label",
+                        "text":"available",
+                        "pathToValue":["plan", "available"]
+                      },
+                      {
+                        "type":"label",
+                        "text":"used",
+                        "pathToValue":["plan", "used"]
+                      }
+                  ]
+              },
+              {
+                "type": "groupParameters",
+                "class": "col-md-4 groupParameters_noHeader",
+                "text": "Extra dialogs",
+                "parameters":[
+                    {
+                        "type": "header",
+                        "class": "col-sm-12 title",
+                        "header": {
+                          "seo": {
+                            "text": "Extra dialogs",
+                            "icon": "fa fa-comment"
+                          }
+                        }
+                    },
+                    {
+                      "type": "label",
+                      "id": "emptyLabel",
+                      "text": "\t",
+                      "value": "&nbsp;"
+                    },
+                    {
+                        "type":"label",
+                        "text":"available",
+                        "pathToValue":["ordersAndRemaining", "available"]
+                    },
+                    {
+                        "type":"label",
+                        "text":"used",
+                        "pathToValue":["ordersAndRemaining", "used"]
+                    },
+                    {
+                        "type": "operations",
+                        "id": "buyAddonButtons",
+                        "text": null,
+                        "_class": "col-sm-4",
+                        "dynamicProps":{
+                          "hidden": "'{{current-plan-id}}' == '' || '{{current-plan-id}}' == 'free'"
+                        },
+                        "operations": [
+                          {
+                            "size": 1,
+                            "parameters": [
+                                {
+                                    "type": "openModal",
+                                    "id": "go-to-prod-modal",
+                                    "text": "Add extra dialogs",
+                                    "mockToLoad": "billing/buy-addon-wiz",
+                                    "size": "lg",
+                                    "class":"btn-default",
+                                    "parameters": [
+                                        {
+                                            "key": "context",
+                                            "value": [
+                                                "selected-student-main", "current-customer-id"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                          }
+                        ]
+                      }
+                ]
+            }
+
+      
+      
+            ]
+          },
+
+              {
+                "type": "chart",
+                "_subType": "line-chart",
+                "subType": "bar-vertical-2d",
+                "id": "studentAccountConsumptionsChart",
+                "class": "hide-label",
+                "hidden": false,
+                "urlResource": [
+                    {
+                        "key": "id",
+                        "value": "sessionsVolumeTableRequest"
+                    },
+                    {
+                        "key": "apiRecycle",
+                        "value": false
+                    },
+                    {
+                        "key": "reload",
+                        "value": false
+                    },
+                    {
+                        "key": "path",
+                        "value": "{{AnalyticsAPI}}/Dialogue_Metrics/_aggrs/dialogue_metrics"
+                    },
+    
+                    {
+                        "key": "headers",
+                        "value": {
+                            "Content-Type": "application/json",
+                            "Authorization": "Bearer {{token}}"
+                        }
+                    },
+    
+                    {
+                        "key": "queryString",
+                        "value": {
+                            "avars": "{\"key\":\"{{@fv()@getAnalyticsKey('{{IXS_id}}','{{selected-student-main}}')}}\",\"TimeLine\":\"$day\",\"aggName\":\"$day\",\"startTime\":\"{{@fv()@utcToLocalTimezone('{{lastPaymentDate}}')}}\",\"endTime\":\"{{todayAux}}\"}",
+                            "_page": "((page))",
+                            "_pagesize": "((pagesize))",
+                            "_count": null,
+                            "np": false
+                        }
+                    },
+                    {
+                        "key": "pathToMainData",
+                        "value": [
+                            "@formatAnalyticsAggregations($this, '{{lastPaymentDate}}', '{{todayAux}}')"
+                        ]
+                    }
+                ],
+                "axis": [
+                  {
+                    "type": "xAxis",
+                    "id": "topic",
+                    "text": "Day",
+                    "pathToValue": [
+                      "$this['_id']"
+                    ]
+                  },
+                  {
+                    "type": "yAxis",
+                    "id": "temp",
+                    "description": "Dialogs",
+                    "pathToValue": [
+                      "$this['hits_count']"
+                    ]
+                  },
+                  {
+                    "type": "yAxis",
+                    "id": "hum",
+                    "description": "humidity",
+                    
+                    "pathToValue": [
+                      "$this['humidity']"
+                    ]
+                  }
+                ],
+                "rows": [],
+                "parameters": [
+                  {
+                    "key": "colorScheme",
+                    "value": [
+                      "#253aa5",
+                      "#253aa5",
+                      "#253aa5",
+                      "#253aa5",
+                      "#253aa5"
+                    ]
+                  },
+                  {
+                    "key": "showLegend",
+                    "value": false
+                  },
+                  {
+                    "key": "barPadding",
+                    "value": 10
+                  }
+                ]
+              },
+
+
+        {
+            "type": "initTable",
+            "id": "studentAccountConsumptionsTable",
+            "title": "",
+            "hidden": "true",
+            "class": "uppercase",
+            "urlResource": [
+                {
+                    "key": "id",
+                    "value": "sessionsVolumeTableRequest"
+                },
+                {
+                    "key": "apiRecycle",
+                    "value": false
+                },
+                {
+                    "key": "reload",
+                    "value": false
+                },
+                {
+                    "key": "path",
+                    "value": "{{AnalyticsAPI}}/Dialogue_Metrics/_aggrs/dialogue_metrics"
+                },
+
+                {
+                    "key": "headers",
+                    "value": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer {{token}}"
+                    }
+                },
+
+                {
+                    "key": "queryString",
+                    "value": {
+                        "avars": "{\"key\":\"{{@fv()@getAnalyticsKey('{{IXS_id}}','{{selected-student-main}}')}}\",\"TimeLine\":\"$day\",\"aggName\":\"$day\",\"startTime\":\"{{@fv()@utcToLocalTimezone('{{lastPaymentDate}}')}}\",\"endTime\":\"{{todayAux}}\"}",
+                        "_page": "((page))",
+                        "_pagesize": "((pagesize))",
+                        "_count": null,
+                        "np": false
+                    }
+                },
+                {
+                    "key": "pathToMainData",
+                    "value": [
+                        "@formatAnalyticsAggregations($this, '{{lastPaymentDate}}', '{{todayAux}}')"
+                    ]
+                },
+                {
+                    "key": "pathToTotalRecords",
+                    "value": [
+                        "_size"
+                    ]
+                }
+            ],
+            "lazyLoading": false,
+
+            "columns": [
+                {
+                    "type": "text",
+                    "size": "sm",
+                    "id": "date",
+                    "pathToValue": "_id",
+                    "text": "billing___statistics___date",
+                    "_sort": "ASC"
+                },
+                {
+                    "type": "text",
+                    "size": "sm",
+                    "id": "qtyTotVol_sum",
+                    "text": "billing___statistics___dialogs",
+                    "pathToValue": "hits_count"
+                }
+            ],
+            "rows": [],
+            "parameters": [
+                {
+                    "key": "tableActions",
+                    "value": {
+                        "export": false,
+                        "search": false
+                    }
+                }
+            ]
+        }
+    ]
+}

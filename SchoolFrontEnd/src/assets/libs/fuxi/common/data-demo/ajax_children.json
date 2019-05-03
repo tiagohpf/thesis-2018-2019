@@ -1,0 +1,7 @@
+﻿[
+    { "id": "demo_child_1", "text": "Child 1", "type": "site", "li_attr": {"showinfo": "true", "showactionbuttons": "false" } },
+    { "id": "demo_child_2", "text": "Child 2", "type": "site-error", "li_attr": {"showinfo": "true"} },
+    { "id": "demo_child_3", "text": "Child 3", "type": "site-danger", "li_attr": {"showinfo": "true"} },
+    { "id": "demo_child_4", "text": "Child 4", "type": "site-warning", "li_attr": {"showinfo": "true"} },
+    { "id": "demo_child_5", "text": "Child 5", "type": "site-error", "li_attr": {"showinfo": "true"}, "children" : [ { "id" : "demo_child_6", "text" : "OLT", "li_attr": {"showactionbuttons": "false", "linkText": "OLT-130-DEF","linkHref":"template-eqp-detail.html?id=demo_child_5" }, "type" : "olt-error" }] }
+]

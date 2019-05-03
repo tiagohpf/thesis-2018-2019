@@ -1,0 +1,237 @@
+.profile-resume {
+  text-align: center;
+}
+
+.profile-service-status-list {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
+  text-align: center;
+  text-align: -webkit-center;
+}
+
+img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-size: cover;
+}
+
+.plan-background {
+  height: 35px;
+  border-radius: 5px;
+  background-image: url(/assets/img/plan_background.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.friendlyName{
+  text-align: center;
+}
+.friendlyName span{
+    width: 300px;
+    height: 26px;
+    font-family: FallingSky;
+    font-size: 32px;
+    color: #ffffff;
+    font-weight: 400;
+    text-decoration: none solid rgb(255, 255, 255);
+    line-height: 26px;
+    text-align: center;
+}
+
+.active {
+  width: 15px;
+  height: 15px;
+  font-size: 15px;
+  color: white;
+  border-radius: 50%;
+  background: #2edba6;
+}
+
+.inactive {
+  width: 15px;
+  height: 15px;
+  font-size: 15px;
+  color: white;
+  border-radius: 50%;
+  background: #f80012;
+}
+
+.suspended {
+  width: 15px;
+  height: 15px;
+  font-size: 15px;
+  color: white;
+  border-radius: 50%;
+  background: #fbdd04;
+}
+
+.no-actions a {
+  cursor: default;
+}
+
+span.pending-requests-message,
+span.service-name {
+  width: 203px;
+  height: 16px;
+  font-family: Montserrat;
+  font-size: 14px;
+  color: #595959;
+  text-decoration: none solid rgb(89, 89, 89);
+  line-height: 16px;
+  text-align: center;
+}
+
+.service-status {
+  height: 15px;
+  font-family: Montserrat;
+  font-size: 10px;
+  color: #595959;
+  font-weight: 700;
+  text-decoration: none solid rgb(89, 89, 89);
+  text-align: center;
+  display: block;
+  float: left;
+  padding-top: 2px;
+  padding-left: 5px;
+}
+
+.service-status-icon {
+  display: block;
+  float: left;
+}
+
+.member-status-div {
+  height: 0;
+  color: #fff;
+}
+
+.member-status-div + span {
+  font-size: 22px;
+  font-weight: 700;
+  font-family: Montserrat Bold;
+  /*padding: 10px;*/
+  padding: 5px;
+  display: block;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.member-status-inner-div {
+  position: relative;
+  bottom: 100px;
+  left: 45px;
+  display: inline-block;
+  padding: 0px 5px 0px 2px;
+  border-radius: 5px;
+  height: 17px;
+}
+.member-status-inner-div.member-status-active {
+  background-color: #00deae;
+}
+.member-status-inner-div.member-status-suspended {
+  background-color: #fbdd04;
+}
+.member-status-inner-div.member-status-inactive {
+  background-color: #fe2205;
+}
+.member-status-inner-div span {
+  font-family: Montserrat Bold;
+  font-weight: 700;
+  font-size: 10px;
+  position: relative;
+  bottom: 2px;
+}
+.member-status-inner-div i {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+div.service-box {
+  position: relative;
+  text-align: center;
+
+  width: 255px;
+  height: 82px;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  background-size: cover;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+div.service-box:hover {
+  background-color: rgb(232, 232, 232);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+div.pending-requests {
+  background-color: rgb(255, 242, 196);
+}
+
+div.pending-requests:hover {
+  background-color: rgb(255, 242, 196);
+  cursor: default;
+}
+
+span.pending-requests-message {
+  width: 100%;
+  display: none;
+}
+
+div.pending-requests:hover span.pending-requests-message {
+  display: inline;
+}
+
+.abc-alert-icon {
+  position: absolute;
+  left: 10px;
+  display: none;
+}
+
+div.pending-requests span.abc-tooltip {
+  display: none;
+}
+
+div.pending-requests span.abc-alert-icon {
+  display: inline;
+}
+
+div.pending-requests:hover span.abc-alert-icon {
+  position: relative;
+  left: 0px;
+}
+
+div.pending-requests:hover span.service-icon,
+div.pending-requests:hover span.service-name {
+  display: none;
+}
+
+div.service-box > div {
+  width: 100%;
+}
+
+div.service-box > div:nth-child(1) {
+  height: 33px;
+  padding-top: 6px;
+}
+
+div.service-box > div:nth-child(1) .icomoon {
+  font-size: 30px;
+  color: #515151;
+}
+
+div.service-box > div:nth-child(2) {
+  height: 23px;
+}
+
+div.service-box > div:nth-child(3) {
+  height: 29px;
+  display: flex;
+  justify-content: center;
+}

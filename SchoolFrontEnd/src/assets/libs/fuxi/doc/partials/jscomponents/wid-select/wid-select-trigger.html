@@ -1,0 +1,51 @@
+<h3 id="docs-wid-select-trigger">Trigger do Widget select</h3>
+<p>Quando o widget select é disponibilizado em modal sugere-se que o elemento que o despoleta tenha o aspeto abaixo apresentado. Nesta demo a janela modal contendo um widget select não será demonstrada pois ambas as temáticas estão documentadas em <a href="#docs-modal-trigger">abrir modal</a> e <a href="#docs-wid-select-instance">instanciação do widget select</a>.</p>
+<p>Sugere-se que os elementos selecionados sejam representados através de uma tag semelhante à representada no snippet e que o preview da informação da tag seja efetuado como documentado em <a href="#docs-quickview-complete">quickview complexo</a>.</p>
+<div class="fx-docs-snippet-code">
+    <div>
+        <div class="fx-input-group fx-input-group-content-editable">
+            <div class="fx-input-group-control">
+                <div class="fx-input-group-control-selected-content" data-toggle="modal" data-target="#trigger-wid-select-modal">
+                    <div class="fx-tag-alt">
+                        <div title="remover" class="fx-tag-alt-remove">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </div>
+                        <div class="fx-tag-alt-preview">
+                            <span class="fx-tag-alt-name">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</span>
+                            <i class="fuxicons fuxicons-eye fx-tag-alt-preview-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fx-input-group-addon" data-toggle="modal" data-target="#trigger-wid-select-modal">
+                <button class="btn btn-default">
+                    <i class="glyphicon glyphicon-plus fx-trigger-icon"></i>
+                </button>
+
+            </div>
+        </div>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<div class="fx-input-group-control">
+    <div class="fx-input-group-control-selected-content" data-toggle="modal" data-target="#trigger-wid-select-modal">
+        <div class="fx-tag-alt">
+            <div title="remover" class="fx-tag-alt-remove">
+                <i class="glyphicon glyphicon-remove"></i>
+            </div>
+            <div class="fx-tag-alt-preview">
+                <span class="fx-tag-alt-name">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</span>
+                <i class="fuxicons fuxicons-eye fx-tag-alt-preview-icon"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="fx-input-group-addon" data-toggle="modal" data-target="#trigger-wid-select-modal">
+    <button class="btn btn-default">
+        <i class="glyphicon glyphicon-plus fx-trigger-icon"></i>
+    </button>
+
+</div>
+        </textarea>
+    </form>
+</div>

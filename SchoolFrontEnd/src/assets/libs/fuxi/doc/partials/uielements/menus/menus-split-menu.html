@@ -1,0 +1,76 @@
+<h3 id="docs-menus-split-menu">Split menu</h3>
+<p>Este snippet demonstra como utilizar um split menu que é composto por um item clicável de primeiro nível e um submenu que abre através de clique na seta existente à direita.</p>
+
+<div class="fx-docs-snippet-code">
+    <header class="fx-devguide-header">
+        <nav class="fx-navbar" role="navigation">
+            <ul class="fx-nav fx-main-menu">
+                <li><a class="fx-brand" href="javascript:void(0)"><h1 class="fx-logo-brand">FUXI</h1></a></li>
+            </ul>
+            <ul id="2nd-header" class="fx-nav fx-main-menu">
+                <li class="fx-menu-btn-group">
+                    <div data-original-title="split-menu" data-placement="bottom" data-toggle="tooltip" class="fx-menu-btn">
+                        <a href="javascript:void(0)" id="split-menu">Split menu</a>
+                    </div>
+                    <div class="fx-menu-btn">
+                        <a class="collapsed" data-toggle="collapse" data-target="#menu-drop">
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+
+                        <ul id="menu-drop" class="fx-menu collapse devguide-keep-open devguide-manage-menu-vis" role="menu">
+                            <li>
+                                <a tabindex="-1" href="javascript:void(0)"> Item 1 </a>
+                            </li>
+                            <li>
+                                <a tabindex="-1" href="javascript:void(0)">Item 2 </a>
+                            </li>
+                            <li>
+                                <a tabindex="-1" href="javascript:void(0)">Item 3 </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<header id="fx-header">
+    <nav class="fx-navbar" role="navigation">
+        <ul class="fx-nav fx-main-menu">
+            <li><a class="fx-brand" href="#"><h1 class="fx-logo-brand">FUXI</h1></a></li>
+        </ul>
+        <ul id="2nd-header" class="fx-nav fx-main-menu">
+            <li class="fx-menu-btn-group">
+                <div data-original-title="split-menu" data-placement="bottom" data-toggle="tooltip" class="fx-menu-btn">
+                    <a href="javascript:void(0)" id="split-menu">
+                        Split menu
+                    </a>
+                </div>
+                <div class="fx-menu-btn">
+                    <a class="collapsed" data-toggle="collapse" data-target="#split-menu-drop">
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+
+                    <ul id="split-menu-drop" class="fx-menu collapse" role="menu">
+                        <li>
+                            <a tabindex="-1" href="javascript:void(0)"> Item 1 </a>
+                        </li>
+                        <li>
+                            <a tabindex="-1" href="javascript:void(0)">Item 2 </a>
+                        </li>
+                        <li>
+                            <a tabindex="-1" href="javascript:void(0)">Item 3 </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+        </textarea>
+    </form>
+</div>
+
+

@@ -1,0 +1,174 @@
+<h3 id="docs-loading-tabs">Loading em tabs</h3>
+<p>
+    Existem duas abordagens que podem ser seguidas para demonstrar o estado de loading em tabs.
+</p>
+<h4>Loading a pedido</h4>
+<p>Este snippet demonstra como aplicar um bloco de loading ao conteúdo de uma tab após ter clicado na mesma.</p>
+<p>Os valores por defeito aplicados ao <strong>BlockUI</strong> são disponibilizados através da função <code>FUXI.BlockUiDefaults.init();</code>.</p>
+<div class="fx-docs-snippet-code">
+    <div>
+        <ul class="nav nav-tabs fx-main-tabs">
+            <li class="active">
+                <a href="#devguide-loading-tab1" class="fx-tab" data-toggle="tab">
+                    <span class="fx-tab-title">Tab ativo</span>
+                </a>
+            </li>
+            <li>
+                <a id="devguide-trigger-loading-tab2" href="#devguide-loading-tab2" class="fx-tab" data-toggle="tab">
+                    <span class="fx-tab-title">Tab que ao clicar mostra loading</span>
+                </a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content fx-main-tab-content with-padding">
+            <div class="tab-pane active" id="devguide-loading-tab1">
+                <div class="fx-tab-pane-inner">
+                    <p>Conteúdo do tab ativo...</p>
+                </div>
+            </div>
+            <div class="tab-pane" id="devguide-loading-tab2">
+                <div class="fx-tab-pane-inner">
+                    <div class="devguide-tab-blocked-content hidden">
+                        <div class="form-horizontal" id="devguide-freezed-object">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">
+                                    Username
+                                </label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">João Silva</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">
+                                    Morada
+                                </label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-static">Rua das Flores, nº10</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+            <ul class="nav nav-tabs fx-main-tabs">
+                <li class="active">
+                    <a href="#devguide-loading-tab1" class="fx-tab" data-toggle="tab">
+                        <span class="fx-tab-title">Tab ativo</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="devguide-trigger-loading-tab2" href="#devguide-loading-tab2" class="fx-tab" data-toggle="tab">
+                        <span class="fx-tab-title">Tab que ao clicar mostra loading</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content fx-main-tab-content with-padding">
+                <div class="tab-pane active" id="devguide-loading-tab1">
+                    <div class="fx-tab-pane-inner">
+                        <p>Conteúdo do tab ativo...</p>
+                    </div>
+                </div>
+                <div class="tab-pane" id="devguide-loading-tab2">
+                    <div class="fx-tab-pane-inner">
+                        <div class="devguide-tab-blocked-content hidden">
+                            <div class="form-horizontal" id="devguide-freezed-object">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">
+                                        Username
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <p class="form-control-static">João Silva</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">
+                                        Morada
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <p class="form-control-static">Rua das Flores, nº10</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </textarea>
+    </form>
+</div>
+
+<h4>Loading silencioso</h4>
+<p>Este snippet demonstra que algo está a ser carregado numa tab que atualmente não estamos a visualizar.</p>
+<div class="alert alert-info">
+    <p>Para efeitos de demo utilizamos um botão para fazer trigger ao loading silencioso. Ao fim de 5 segundos a animação terminará.</p>
+</div>
+<div class="fx-docs-snippet-code">
+    <div>
+        <button id="btn-trigger-loading-silent-tab" class="btn btn-default">simular loading silencioso em tab</button>
+        <br />
+        <br />
+        <ul class="nav nav-tabs fx-main-tabs">
+            <li class="active">
+                <a href="#devguide-silent-loading-tab1" class="fx-tab" data-toggle="tab">
+                    <span class="fx-tab-title">Tab ativo</span>
+                </a>
+            </li>
+            <li>
+                <a href="#devguide-silent-loading-tab2" class="fx-tab" data-toggle="tab">
+                    <i class="fx-ico-loading inactive">a carregar conteúdo...</i>
+                    <span class="fx-tab-title">Tab a carregar info silenciosamente</span>
+                </a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content fx-main-tab-content with-padding">
+            <div class="tab-pane active" id="devguide-silent-loading-tab1">
+                <div class="fx-tab-pane-inner">
+                    <p>Conteúdo do tab...</p>
+                </div>
+            </div>
+            <div class="tab-pane" id="devguide-silent-loading-tab2">
+                <div class="fx-tab-pane-inner">
+                    <p>Conteúdo do tab a carregar info silenciosamente...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<ul class="nav nav-tabs fx-main-tabs">
+    <li class="active">
+        <a href="#devguide-silent-loading-tab1" class="fx-tab" data-toggle="tab">
+            <span class="fx-tab-title">Tab ativo</span>
+        </a>
+    </li>
+    <li>
+        <a href="#devguide-silent-loading-tab2" class="fx-tab" data-toggle="tab">
+            <i class="fx-ico-loading inactive">a carregar conteúdo...</i>
+            <span class="fx-tab-title">Tab a carregar info silenciosamente</span>
+        </a>
+    </li>
+</ul>
+
+<div class="tab-content fx-main-tab-content with-padding">
+    <div class="tab-pane active" id="devguide-silent-loading-tab1">
+        <div class="fx-tab-pane-inner">
+            <p>Conteúdo do tab...</p>
+        </div>
+    </div>
+    <div class="tab-pane" id="devguide-silent-loading-tab2">
+        <div class="fx-tab-pane-inner">
+            <p>Conteúdo do tab a carregar info silenciosamente...</p>
+        </div>
+    </div>
+</div>                  
+        </textarea>
+    </form>
+</div>

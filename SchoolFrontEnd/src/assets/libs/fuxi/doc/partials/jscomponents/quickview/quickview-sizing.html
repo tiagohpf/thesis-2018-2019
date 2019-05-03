@@ -1,0 +1,54 @@
+<h3 id="docs-quickview-sizing">Tamanho do quickview</h3>
+<p>Este snippet demonstra as diferentes larguras disponíveis para um quickview: <strong>xxs, xs, s, m, l</strong>. Para este caso, como pretendemos injetar algumas classes FUXI será necessário definir via JavaScript um template.</p>
+<p>No snippet abaixo apenas está disponível o template para um quickview <strong>m</strong>. Para qualquer outro tamanho basta alterar a class no template.</p>
+<div class="fx-docs-snippet-code">
+    <div>
+        <button type="button" class="btn btn-default" id="quickview-xxs">
+            abrir xxs quickview
+        </button>
+        <button type="button" class="btn btn-default" id="quickview-xs">
+            abrir xs quickview
+        </button>
+        <button type="button" class="btn btn-default" id="quickview-s">
+            abrir s quickview
+        </button>
+        <button type="button" class="btn btn-default" id="quickview-m">
+            abrir m quickview
+        </button>
+        <button type="button" class="btn btn-default" id="quickview-l">
+            abrir l quickview
+        </button>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<button type="button" class="btn btn-default" id="quickview-m">
+    abrir m quickview
+</button>
+
+<div id="content-quickview" class="hide">
+    <div class="fx-popover-main-content">
+        <div class="fx-popover-inner">
+            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('#quickview-m').popover({
+        content: $('#content-quickview').html(),
+        html: true,
+        placement: 'bottom auto',
+        template: '<div class="popover fx-popover-m"><div class="arrow"></div><div class="popover-content no-padding"></div></div>'
+    });
+</script>
+        </textarea>
+    </form>
+</div>
+
+<div id="content-quickview" class="hide">
+    <div class="fx-popover-main-content">
+        <div class="fx-popover-inner">
+            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+        </div>
+    </div>
+</div>

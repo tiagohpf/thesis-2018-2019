@@ -1,0 +1,295 @@
+{
+  "type": "page",
+  "id": "pageEntityDetails",
+  "_sidebar": [
+    {
+      "type": "filter",
+      "id": "dialogsMainCardsFilter",
+      "mappingId": [
+        "dialogsMain"
+      ],
+      "details": [
+        {
+          "type": "dates-interval",
+          "id": "dateFilter",
+          "apiFieldName": "date",
+          "text": "Time period",
+          "class": "col-sm-12",
+          "valueList": [
+            {
+              "value": "last 24h",
+              "text": "generic___dateInterval___last24h"
+            },
+            {
+              "value": "last week",
+              "text": "generic___dateInterval___last7Days"
+            },
+            {
+              "value": "last month",
+              "text": "generic___dateInterval___lastMonth"
+            },
+            {
+              "value": "customInterval",
+              "text": "generic___rangePeriod"
+            }
+          ],
+          "_parameters": [
+            {
+              "key": "preSetPeriod",
+              "value": "last month"
+            }
+          ]
+        },
+        {
+          "type": "textbox",
+          "subType": "autocomplete",
+          "id": "userSaysFilter",
+          "apiFieldName": "userSays",
+          "text": "User question",
+          "pathToValueList": [
+            "@uniqueValuesFromData($this['_embedded'],'userSays')"
+          ],
+          "pathToValue": "userSays",
+          "validator": {
+            "autocomplete": [
+              {
+                "urlResource": [
+                  {
+                    "key": "path",
+                    "value": "{{AnalyticsAPI}}/DialogueHistory"
+                  },
+                  {
+                    "key": "queryString",
+                    "value": {
+                      "keys": "{\"userSays\":1}",
+                      "filter": "{\"userSays\":{\"$regex\":\"(?i){{userSaysFilter}}.*\"}}"
+                    }
+                  },
+                  {
+                    "key": "headers",
+                    "value": {
+                      "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                  }
+                ]
+              },
+              "no records matched"
+            ]
+          }
+        },
+        {
+          "type": "textbox",
+          "subType": "autocomplete",
+          "id": "botNameFilter",
+          "role": "@fv()'{{enviroment::init___env}}'!=='development'",
+          "apiFieldName": "botName",
+          "text": "Bot name",
+          "pathToValueList": [
+            "@uniqueValuesFromData($this['_embedded'],'botName')"
+          ],
+          "pathToValue": "botName",
+          "validator": {
+            "autocomplete": [
+              {
+                "urlResource": [
+                  {
+                    "key": "path",
+                    "value": "{{AnalyticsAPI}}/DialogueHistory"
+                  },
+                  {
+                    "key": "queryString",
+                    "value": {
+                      "keys": "{\"botName\":1}",
+                      "filter": "{\"botName\":{\"$regex\":\"(?i){{botNameFilter}}.*\"}}"
+                    }
+                  },
+                  {
+                    "key": "headers",
+                    "value": {
+                      "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                  }
+                ]
+              },
+              "no records matched"
+            ]
+          }
+        },
+        {
+          "type": "textbox",
+          "subType": "autocomplete",
+          "id": "topicFilter",
+          "apiFieldName": "topic",
+          "text": "Topic",
+          "pathToValueList": [
+            "@uniqueValuesFromData($this['_embedded'],'topic')"
+          ],
+          "pathToValue": "topic",
+          "validator": {
+            "autocomplete": [
+              {
+                "urlResource": [
+                  {
+                    "key": "path",
+                    "value": "{{AnalyticsAPI}}/DialogueHistory"
+                  },
+                  {
+                    "key": "queryString",
+                    "value": {
+                      "keys": "{\"topic\":1}",
+                      "filter": "{\"topic\":{\"$regex\":\"(?i){{topicFilter}}.*\"}}"
+                    }
+                  },
+                  {
+                    "key": "headers",
+                    "value": {
+                      "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                  }
+                ]
+              },
+              "no records matched"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "tabs": [
+    {
+      "id": "customerList",
+      "text": "customers___entityName",
+      "components": [
+        {
+          "type": "initTable",
+          "id": "dialogsMain",
+          "urlResource": [
+            {
+              "key": "path",
+              "value": "{{AnalyticsAPI}}/DialogueHistory"
+            },
+            {
+              "key": "queryString",
+              "value": {
+                "page": "((page))",
+                "pagesize": "((pagesize))",
+                "count": null,
+                "filter": "{\"botId\": \"[[id]]\"}",
+                "sort": "-date"
+              }
+            },
+            {
+              "key": "pathToMainData",
+              "value": [
+                "_embedded"
+              ]
+            },
+            {
+              "key": "headers",
+              "value": {
+                "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+              }
+            },
+            {
+              "key": "reload",
+              "value": false
+            }
+          ],
+          "columns": [
+            {
+              "type": "text",
+              "size": "sm",
+              "id": "channel",
+              "pathToValue": "channel",
+              "text": "Channel",
+              "html": {
+                "web": "<i class=\"fa fa-globe-europe\"></i>",
+                "ivr": "<i class=\"fa fa-phone-square\"></i>",
+                "facebook": "<i class=\"fa fa-facebook\"></i>"
+              }
+            },
+            {
+              "type": "text",
+              "size": "sm",
+              "id": "date",
+              "pathToValue": "date",
+              "text": "Date"
+            },
+            {
+              "type": "text",
+              "size": "sm",
+              "id": "userSays",
+              "pathToValue": "userSays",
+              "text": "User question"
+            },
+            {
+              "type": "text",
+              "size": "lg",
+              "id": "botAnswer",
+              "pathToValue": "botAnswer",
+              "text": "Bot answer"
+            },
+            {
+              "type": "text",
+              "size": "xs",
+              "id": "accur",
+              "pathToValue": "{{@fv()@convertToPercentage($this['accur'])}}",
+              "text": "Degree of certainty"
+            },
+            {
+              "type": "label",
+              "size": "sm",
+              "id": "botName",
+              "pathToValue": "botname",
+              "text": "Bot name",
+              "role": "@fv()'{{enviroment::init___env}}'!=='development'"
+            },
+            {
+              "type": "text",
+              "size": "lg",
+              "id": "topictable",
+              "pathToValue": "topic",
+              "text": "Topic"
+            },
+            {
+              "type": "actions",
+              "id": "actions",
+              "operations": [
+                {
+                  "type": "updatePage",
+                  "id": "validateIntent_Button",
+                  "class": "active",
+                  "text": "application___endpoint",
+                  "parameters": [
+                    {
+                      "key": "updatePageParameter",
+                      "value": {
+                        "validationtable": {
+                          "value": "!{{validationtable}}"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+          }
+          ],
+          "rows": [],
+          "parameters": [
+            {
+              "key": "tableActions",
+              "value": {
+                "export": false,
+                "search": false
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

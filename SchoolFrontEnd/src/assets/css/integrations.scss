@@ -1,0 +1,43 @@
+#wct-content-studentPropsChannel_Web{
+  #wct-input-textarea-studentChatTag{
+    height: 100px;
+  }
+  #wct-each-parameter-copy {
+    .form-group {
+        margin-top: 60px;
+        padding: 0;
+
+        .copyboardButton {
+            height: 30px;
+            width: 30px;
+        }
+    }
+}
+}
+
+#wct-content-studentPropsChannel_Facebook {
+    .modal-body {
+        padding: 10px 30px;
+
+        p,
+        li {
+            font-size: 17px !important;
+            color: #595959;
+        }
+        .form-group {
+          margin-bottom: 12px;
+        }
+
+        #wct-each-parameter-copy {
+            .form-group {
+                margin-top: 30px;
+                padding: 0;
+
+                .copyboardButton {
+                    height: 30px;
+                    width: 30px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,152 @@
+{
+    "type": "initParameters",
+    "id": "studentStaticInit",
+    "details": [
+        {
+            "type": "initCards",
+            "id": "studentVideo",
+            "icon": "fa fa-th-large",
+            "class": "col-md-6  col-sm-12",
+            "details": [
+                {
+                    "type": "operations",
+                    "text": null,
+                    "operations": {
+                        "size": 1,
+                        "parameters": [
+                            {
+                                "type": "updatePage",
+                                "id": "play",
+                                "text": null,
+                                "class": "buttonPlay",
+                                "icon": "fa fa-play",
+                                "parameters": [
+                                    {
+                                        "key": "updatePageParameter",
+                                        "value": {
+                                            "studentVideo_Play": {
+                                                "hidden": false,
+                                                "lazyLoading": false
+                                            },
+                                            "play": {
+                                                "hidden": true
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "label",
+                    "id": "description",
+                    "class": "col-md-6",
+                    "text": null,
+                    "value": "student___learnMoreAboutHowBotSchoolWorks"
+                },
+                {
+                    "type": "customVideo",
+                    "id": "studentVideo_Play",
+                    "value": "assets/videos/BotSchoolVideo.mp4",
+                    "parameters": [
+                        {
+                            "key": "configurations",
+                            "value": {
+                                "muted": false,
+                                "autoplay": true,
+                                "controls": true
+                            }
+                        }
+                    ],
+                    "hidden": true,
+                    "lazyLoading": true,
+                    "text": null
+                }
+            ]
+        },
+        {
+            "type": "wrapper",
+            "id": "wrapperStudentInfo",
+            "class": "col-md-6 col-sm-12",
+            "details": [
+                {
+                    "type": "initCards",
+                    "id": "studentAdd",
+                    "icon": "fa fa-th-large",
+                    "class": "col-md-6",
+                    "_navigateTo": "/students/create",
+                    "_mockToLoad":"students/student-create",
+                    "details": [
+                        {
+                            "type": "context",
+                            "text": null
+                        },
+                        {
+                            "type": "label",
+                            "id": "description",
+                            "text": null,
+                            "value": "generic___operations___addStudents",
+                            "_navigateTo": "/students/create"
+                        }
+                    ],
+                    "parameters": [
+                        {
+                            "key": "openModal",
+                            "value": "students/student-create",
+                            "id":"modalCreateStudent"
+                        }
+                    ]
+                },
+                {
+                    "type": "initCards",
+                    "id": "studentPrograms",
+                    "icon": "fa fa-th-large",
+                    "class": "col-md-6",
+                    "navigateTo": "knowledgecenter",
+                    "details": [
+                        {
+                            "type": "label",
+                            "id": "description",
+                            "text": null,
+                            "value": "application___programs",
+                            "navigateTo": "knowledgecenter"
+                        }
+                    ]
+                },
+                {
+                    "type": "initCards",
+                    "id": "knowledgeCenter",
+                    "icon": "fa fa-th-large",
+                    "class": "col-md-6",
+                    "navigateTo": "/knowledgecenter",
+                    "details": [
+                        {
+                            "type": "label",
+                            "id": "description",
+                            "text": null,
+                            "value": "application___knowledgeCenter___name",
+                            "navigateTo": "/knowledgecenter"
+                        }
+                    ]
+                },
+                {
+                    "type": "initCards",
+                    "id": "studentAnalytics",
+                    "icon": "fa fa-th-large",
+                    "class": "col-md-6",
+                    "navigateTo": "/analytics",
+                    "details": [
+                        {
+                            "type": "label",
+                            "id": "description",
+                            "text": null,
+                            "value": "application___analytics",
+                            "navigateTo": "/analytics"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0,  user-scalable=yes" />
+    <link rel="icon" href="/fuxi/common/html/css/images/favicon.ico" type="image/x-icon" />
+    <title>FUXI - 5xx Server Error</title>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/fuxi/common/html/css/fuxi.min.css" rel="stylesheet">
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+    <!-- Respond.js - IE8 support of media queries -->
+    <!--[if lt IE 9]>
+    <script src="/fuxi/lib/respond/1.4/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="fx-push-footer fx-full-height">
+        <header id="fx-header">
+            <nav class="fx-navbar" role="navigation">
+                <ul class="fx-nav">
+                    <li><a class="fx-brand" href="#"><h1 class="fx-logo-brand">FUXI</h1></a></li>
+                    <li><a href="#" onclick=loadErrorTemplate('500');>Erro interno do servidor - 500</a></li>
+                    <li><a href="#" onclick=loadErrorTemplate('503');>Serviço indisponível - 503</a></li>
+                </ul>
+            </nav>
+
+            <!-- BREADCRUMB -->
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#"><i class="fuxicons fuxicons-home"></i>Início</a>
+                </li>
+                <li>
+                    <a href="#">Link</a>
+                </li>
+                <li class="active">
+                    Ativo
+                </li>
+            </ul>
+        </header>
+        <div class="fx-prevent-content-behind-footer fx-full-height">
+
+            <div class="fx-main-content-wrapper">
+
+                <!-- SERVER ERROR -->
+                <div class="fx-error-wrapper fx-server-error">
+                    <div class="fx-error-container">
+                        <div class="fx-error-inner">
+
+                            <!--TEMPLATE GOES HERE-->
+                            <div id="body-template"></div>
+
+                            <div class="fx-error-details">
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingOne">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                    <i class="caret"></i> Detalhes do erro
+                                                </a>
+                                            </h4>
+                                        </div>
+
+                                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                            <div class="panel-body">
+                                                <p>Copie o código de erro abaixo e envie ao suporte.</p>
+                                                <p>Código do erro: <strong>098309adsad812-12asda3123-adada</strong></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="fx-error-timestamp">
+                                <p>Hora servidor: Tue Apr 4 16:01:12 WEST 2015</p>
+                                <p>Hora cliente: Tue Apr 4 16:01:12 GMT+0100 (Hora de Verão de GMT)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="fx-main-footer">
+            <div class="fx-copyright">
+                [nome do produto] © [ano de criação] Altice Labs - todos os direitos reservados
+            </div>
+            <div class="fx-about">
+                <span class="fx-version"></span>
+                <a href="#" data-toggle="modal" data-target="#modal">Abrir em modal</a>
+            </div>
+        </footer>
+    </div>
+
+    <div class="modal" id="modal" tabindex="-1" role="dialog" aria-labelledby="em-modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content fx-server-error">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="modal">Em modal</h4>
+                </div>
+                <div class="modal-body">
+
+                    <!-- SERVER ERROR IN MODAL -->
+                    <div class="fx-error-wrapper fx-server-error">
+                        <div class="fx-error-container">
+                            <div class="fx-error-inner">
+
+                                <!--TEMPLATE GOES HERE-->
+                                <div id="modal-template"></div>
+
+                                <div class="fx-error-details">
+                                    <div class="panel-group" id="mAccordion" role="tablist" aria-multiselectable="true">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="mHeadingOne">
+                                                <h4 class="panel-title">
+                                                    <a class="collapsed" data-toggle="collapse" data-parent="#mAccordion" href="#mCollapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                        <i class="caret"></i> Detalhes do erro
+                                                    </a>
+                                                </h4>
+                                            </div>
+
+                                            <div id="mCollapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="mHeadingOne">
+                                                <div class="panel-body">
+                                                    <p>Copie o código de erro abaixo e envie ao suporte.</p>
+                                                    <p>Código do erro: <strong>098309adsad812-12asda3123-adada</strong></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="fx-error-timestamp">
+                                    <p>Hora servidor: Tue Apr 4 16:01:12 WEST 2015</p>
+                                    <p>Hora cliente: Tue Apr 4 16:01:12 GMT+0100 (Hora de Verão de GMT)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">
+                        fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TEMPLATE -->
+    <script id="template" type="text/template">
+        <div class="fx-error-icon-box">
+            <div class="fx-error-icon">
+                <i class="{{ICON}}"></i>
+            </div>
+        </div>
+
+        <div class="fx-error-info">
+            <p>{{INFO}}</p>
+        </div>
+
+        <div class="fx-error-description">
+            <p>{{DESCRIPTION}}</p>
+        </div>
+
+        <div class="fx-error-action">
+            <p>{{ACTION}}</p>
+        </div>
+    </script>
+
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+    <script>
+        // DEMO PURPOSE ONLY
+        var errors = [
+                    {
+                        id: '500',
+                        icon: 'glyphicon glyphicon-flash',
+                        info: 'Erro interno do servidor - 500',
+                        description: 'Pedimos desculpa, mas não é possível apresentar o conteúdo solicitado.',
+                        action: 'Pode <a href="#">tentar novamente</a> ou contactar o <a href="#">suporte</a>.'
+                    },
+                    {
+                        id: '503',
+                        icon: 'glyphicon glyphicon-flash',
+                        info: 'Serviço indisponível - 503',
+                        description: 'Pedimos desculpa, mas a aplicação encontra-se indisponível.',
+                        action: 'Pode tentar mais tarde ou contactar o <a href="#">suporte</a>.'
+                    }
+        ], template = $("#template").html();
+
+        function loadErrorTemplate(error) {
+            var html = [],
+                arr = jQuery.grep(errors, function (it, idx) {
+                    return it.id == error;
+                })[0];
+
+            html.push(template
+                .replace(/{{ICON}}/gi, arr.icon)
+                .replace(/{{INFO}}/gi, arr.info)
+                .replace(/{{DESCRIPTION}}/gi, arr.description)
+                .replace(/{{ACTION}}/gi, arr.action));
+
+            $("#body-template").html(html.join(""));
+            $("#modal-template").html(html.join(""));
+        };
+
+        $(function () {
+            loadErrorTemplate('500');
+        });
+    </script>
+</body>
+</html>

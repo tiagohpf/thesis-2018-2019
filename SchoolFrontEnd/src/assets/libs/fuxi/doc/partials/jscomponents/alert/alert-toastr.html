@@ -1,0 +1,46 @@
+<h3 id="docs-alert-toastr">Alertas gerais</h3>
+<p>Este snippet demonstra os diferentes tipos de alertas gerais que podem ser instanciados com apoio da biblioteca <a class="fx-docs-btn-link" href="https://github.com/CodeSeven/toastr" target="_blank">toastr</a>.</p>
+<p>Existem diversas propriedades que podem ser controladas. Para consultar o que é passível de ser controlado aceda a <a class="fx-docs-btn-link" href="http://codeseven.github.io/toastr/demo.html" target="_blank">demos toastr</a></p>
+<p>No snippet abaixo mostra-se um exemplo dos valores default que se podem aplicar a uma mensagem toastr bem como a forma de instanciar a mesma.</p>
+<div class="fx-docs-snippet-code">
+    <div>
+        <button class="btn btn-success btn-sm btn-toastr" type="button" data-type="success">
+            alerta global sucesso
+        </button>
+        <button class="btn btn-info btn-sm btn-toastr" type="button" data-type="info">
+            alerta global informativo
+        </button>
+        <button class="btn btn-warning btn-sm btn-toastr" type="button" data-type="warning">
+            alerta global aviso
+        </button>
+        <button class="btn btn-danger btn-sm btn-toastr" type="button" data-type="error">
+            alerta global erro
+        </button>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<script type="text/javascript">
+    var options = {
+        "target": 'body',
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": false,
+        "positionClass": "toast-top-center",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "100",
+        "hideDuration": "100",
+        "timeOut": "5000",
+        "extendedTimeOut": "5000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
+    toastr["success"]("Alerta geral com mensagem de sucesso.", "Título do alerta")
+</script>
+        </textarea>
+    </form>
+</div>

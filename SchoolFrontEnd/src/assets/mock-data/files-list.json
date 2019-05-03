@@ -1,0 +1,677 @@
+{
+    "type": "page",
+    "id": "fileManagementMain",
+    "details": [
+        {
+            "type": "context",
+            "id": "contextType",
+            "global": true,
+            "hidden": true,
+            "value": "subscription"
+        }
+    ],
+    "sidebar": [
+        {
+            "type": "filter",
+            "id": "filesFilter",
+            "mappingId": [
+                "tableFilesList",
+                "cardsFilesList"
+            ],
+            "details": [
+                {
+                    "type": "textbox",
+                    "id": "fileNameFilter",
+                    "apiFieldName": "name",
+                    "text": "fileManagement___properties___name",
+                    "filterTemplate": "{{fileNameFilter}}",
+                    "subType": "autocomplete",
+                    "min": "1",
+                    "pathToValueList": "files",
+                    "pathToValue": "name",
+                    "validator": {
+                        "autocomplete": [
+                            {
+                                "urlResource": [
+                                    {
+                                        "key": "headers",
+                                        "value": {
+                                            "Content-Type": "application/json",
+                                            "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                                        }
+                                    },
+                                    {
+                                        "key": "path",
+                                        "value": "{{WIFIM_SMBE}}/file-management/service-subscriptions/[[subscriptionId]]/files"
+                                    },
+                                    {
+                                        "key": "queryString",
+                                        "value": {
+                                            "currentPage": 1,
+                                            "pageSize": 10,
+                                            "sortCriterion": "name",
+                                            "sortDirection": "ASC",
+                                            "name": "{{fileNameFilter}}"
+                                        }
+                                    }
+                                ]
+                            },
+                            null
+                        ]
+                    },
+                    "value": ""
+                },
+                {
+                    "type": "dates-interval",
+                    "id": "creationDateFilter",
+                    "subType": "date",
+                    "class": "date-type-datepicker",
+                    "text": "fileManagement___properties___creationDate",
+                    "apiFieldName": "creationDate"
+                },
+                {
+                    "type": "dates-interval",
+                    "id": "changeDateFilter",
+                    "subType": "date",
+                    "class": "date-type-datepicker",
+                    "text": "fileManagement___properties___changeDate",
+                    "apiFieldName": "changeDate"
+                },
+                {
+                    "type": "input-checkbox",
+                    "id": "fileTypeFilter",
+                    "apiFieldName": "type",
+                    "text": "fileManagement___properties___fileType",
+                    "valueList": [
+                        {
+                            "key": "image",
+                            "value": " "
+                        },
+                        {
+                            "key": "video",
+                            "value": " "
+                        },
+                        {
+                            "key": "document",
+                            "value": " "
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "tabs": [
+        {
+            "id": "fileManagementTabs",
+            "text": "xpto",
+            "icon": "fx-ico-loading",
+            "components": [
+                {
+                    "type": "initTable",
+                    "id": "tableFilesList",
+                    "icon": "fa fa-bars",
+                    "showComponentById": true,
+                    "lazyLoading": false,
+                    "header": {
+                        "id": "pageReportsHeader",
+                        "seo": {
+                            "text": "fileManagement___header",
+                            "icon": "fa fa-copy"
+                        }
+                    },
+                    "details": [
+                        {
+                            "type": "custom-component",
+                            "subType": "file-management-upload-component",
+                            "id": "fileUploadButton",
+                            "AAArole": "role para upload ficheiros"
+                        },
+                        {
+                            "type": "label",
+                            "id": "maxDiskSpace",
+                            "pathToValue": "_max_disk_space",
+                            "hidden": true,
+                            "urlResource": [
+                                {
+                                    "key": "headers",
+                                    "value": {
+                                        "Content-Type": "application/json",
+                                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                                    }
+                                },
+                                {
+                                    "key": "reload",
+                                    "value": false
+                                },
+                                {
+                                    "key": "path",
+                                    "value": "{{WIFIM_SMBE}}/file-management/service-subscriptions/[[subscriptionId]]/files"
+                                },
+                                {
+                                    "key": "queryString",
+                                    "value": {
+                                        "pageSize": "1"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "label",
+                            "id": "remainingDiskSpace",
+                            "pathToValue": "_remaining_disk_space",
+                            "hidden": true,
+                            "urlResource": [
+                                {
+                                    "key": "headers",
+                                    "value": {
+                                        "Content-Type": "application/json",
+                                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                                    }
+                                },
+                                {
+                                    "key": "reload",
+                                    "value": false
+                                },
+                                {
+                                    "key": "path",
+                                    "value": "{{WIFIM_SMBE}}/file-management/service-subscriptions/[[subscriptionId]]/files"
+                                },
+                                {
+                                    "key": "queryString",
+                                    "value": {
+                                        "pageSize": "1"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "initParameters",
+                            "id": "initParamsProgressBar",
+                            "dynamicProps": {
+                                "lazyLoading": "{{remainingDiskSpace}} == '' || {{maxDiskSpace}} == ''? true : false"
+                            },
+                            "details": [
+                                {
+                                    "type": "progressbar",
+                                    "id": "storageSpaceBar",
+                                    "text": "fileManagement___feedback___usedStorageSpace",
+                                    "pathToValue": ["@getUsedFileStorageSpacePercentage({{remainingDiskSpace}}, {{maxDiskSpace}})"],
+                                    "class": "hide-label"
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "usedDiskSpace",
+                                    "pathToValue": ["@mathSubtract({{maxDiskSpace}}, {{remainingDiskSpace}})"],
+                                    "hidden": true
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "convertedUsedDiskSpace",
+                                    "pathToValue": ["@convertBytesToMbWithUnitInfo({{usedDiskSpace}}, true)"],
+                                    "hidden": true
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "convertedMaxDiskSpace",
+                                    "pathToValue": ["@convertBytesToMbWithUnitInfo('{{maxDiskSpace}}', true)"],
+                                    "hidden": true
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "convertedRemainingDiskSpace",
+                                    "pathToValue": ["@convertBytesToMbWithUnitInfo('{{remainingDiskSpace}}', true)"],
+                                    "hidden": true
+                                },
+                                {
+                                    "type": "label",
+                                    "id": "storageSpaceLabel",
+                                    "value": "fileManagement___feedback___storageSpaceMessage",
+                                    "class": "hide-label"
+                                }
+                            ]
+                        }
+                    ],
+                    "urlResource": [
+                        {
+                            "key": "headers",
+                            "value": {
+                                "Content-Type": "application/json",
+                                "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                            }
+                        },
+                        {
+                            "key": "reload",
+                            "value": false
+                        },
+                        {
+                            "key": "path",
+                            "value": "{{WIFIM_SMBE}}/file-management/service-subscriptions/[[subscriptionId]]/files"
+                        },
+                        {
+                            "key": "queryString",
+                            "value": {
+                                "((creationDate))": {
+                                    "creationDateFrom": "{{$gte}}",
+                                    "creationDateTo": "{{$lt}}"
+                                },
+                                "((changeDate))": {
+                                    "changeDateFrom": "{{$gte}}",
+                                    "changeDateTo": "{{$lt}}"
+                                },
+                                "page": "((page))",
+                                "pageSize": "((pagesize))",
+                                "count": null,
+                                "((filter))": null
+                            }
+                        },
+                        {
+                            "key": "pathToMainData",
+                            "value": [
+                                "files"
+                            ]
+                        }
+                    ],
+                    "columns": [
+                        {
+                          "type": "context",
+                          "id": "fileId",
+                          "pathToValue": "id"  
+                        },
+                        {
+                            "type": "context",
+                            "id": "fileUri",
+                            "pathToValue": "uri"
+                        },
+                        {
+                            "type": "context",
+                            "id": "fileName",
+                            "pathToValue": "name"
+                        },
+                        {
+                            "type": "text",
+                            "id": "name",
+                            "text": "fileManagement___properties___name",
+                            "pathToValue": "name",
+                            "size": "sm",
+                            "sort": true
+                        },
+                        {
+                            "type": "text",
+                            "id": "creationDate",
+                            "subType": "date",
+                            "pathToValue": "creationDate",
+                            "text": "fileManagement___properties___creationDate",
+                            "sort": "desc"
+                        },
+                        {
+                            "type": "text",
+                            "id": "changeDate",
+                            "subType": "date",
+                            "pathToValue": "changeDate",
+                            "text": "fileManagement___properties___changeDate",
+                            "sort": true
+                        },
+                        {
+                            "type": "text",
+                            "id": "type",
+                            "pathToValue": "type",
+                            "text": "fileManagement___properties___fileType",
+                            "sort": true,
+                            "html": {
+                                "image": "fileManagement___properties___types___image",
+                                "video": "fileManagement___properties___types___video",
+                                "document": "fileManagement___properties___types___document"
+                            },
+                            "icon": {
+                                "image": "fa fa-image",
+                                "video": "fa fa-film",
+                                "document": "fa fa-file"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "id": "size",
+                            "pathToValue": ["@convertBytesToMbWithUnitInfo('{{size}}', true)"],
+                            "text": "fileManagement___properties___size",
+                            "sort": true
+                        },
+                        {
+                            "type": "custom-component",
+                            "subType": "file-download-link-component",
+                            "id": "fileDownload",
+                            "description": "fileManagement___operations___download",
+                            "icon": "fuxicons fuxicons-download",
+                            "tableAction": true,
+                            "baseUrl": "{{WIFIM_SMBE}}",
+                            "url": "fileUri",
+                            "errorMessage": "fileManagement___feedback___downloadError"
+                        },
+                        {
+                            "type": "actions",
+                            "id": "actions",
+                            "size": 1,
+                            "operations": [
+                                {
+                                    "type": "openModal",
+                                    "id": "removeFile",
+                                    "text": "fileManagement___operations___remove",
+                                    "mockToLoad": "filemanagement/files-delete",
+                                    "icon": "fa fa-trash-o",
+                                    "hidden": false,
+                                    "dynamicProps": {
+                                        "AAAhidden": " ficheiro esta a ser usado? true : false"
+                                    },
+                                    "AAArole": "role para apagar ficheiros"
+                                }
+                            ]
+                        }
+                    ],
+                    "class": "uppercase",
+                    "rows": [],
+                    "parameters": [
+                        {
+                            "key": "tableActions",
+                            "value": {
+                                "search": false,
+                                "export": false,
+                                "columnManager": false 
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "initCards",
+                    "subType": "card-container",
+                    "id": "cardsFilesList",
+                    "icon": "fa fa-th-large",
+                    "showComponentById": true,
+                    "lazyLoading": true,
+                    "class": "col-sm-6 horizontal-form",
+                    "urlResource": [
+                        {
+                            "key": "headers",
+                            "value": {
+                                "Content-Type": "application/json",
+                                "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                            }
+                        },
+                        {
+                            "key": "reload",
+                            "value": false
+                        },
+                        {
+                            "key": "path",
+                            "value": "{{WIFIM_SMBE}}/file-management/service-subscriptions/[[subscriptionId]]/files"
+                        },
+                        {
+                            "key": "queryString",
+                            "value": {
+                                "((creationDate))": {
+                                    "creationDateFrom": "{{$gte}}",
+                                    "creationDateTo": "{{$lt}}"
+                                },
+                                "((changeDate))": {
+                                    "changeDateFrom": "{{$gte}}",
+                                    "changeDateTo": "{{$lt}}"
+                                },
+                                "page": "((page))",
+                                "pageSize": "((pagesize))",
+                                "count": null,
+                                "((filter))": null
+                            }
+                        }
+                    ],
+                    "pathToValueList": "files",
+                    "header": {
+                        "id": "pageReportsHeader",
+                        "seo": {
+                            "text": "fileManagement___header",
+                            "icon": "fa fa-copy"
+                        },
+                        "details": [
+                            {
+                                "type": "custom-component",
+                                "subType": "file-management-upload-component",
+                                "id": "fileUploadButton",
+                                "AAArole": "role para upload ficheiros"
+                            },
+                            {
+                                "type": "label",
+                                "id": "maxDiskSpace",
+                                "pathToValue": "_max_disk_space",
+                                "hidden": true,
+                                "urlResource": [
+                                    {
+                                        "key": "headers",
+                                        "value": {
+                                            "Content-Type": "application/json",
+                                            "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                                        }
+                                    },
+                                    {
+                                        "key": "reload",
+                                        "value": false
+                                    },
+                                    {
+                                        "key": "path",
+                                        "value": "{{WIFIM_SMBE}}/file-management/service-subscriptions/[[subscriptionId]]/files"
+                                    },
+                                    {
+                                        "key": "queryString",
+                                        "value": {
+                                            "pageSize": "1"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "label",
+                                "id": "remainingDiskSpace",
+                                "pathToValue": "_remaining_disk_space",
+                                "hidden": true,
+                                "urlResource": [
+                                    {
+                                        "key": "headers",
+                                        "value": {
+                                            "Content-Type": "application/json",
+                                            "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                                        }
+                                    },
+                                    {
+                                        "key": "reload",
+                                        "value": false
+                                    },
+                                    {
+                                        "key": "path",
+                                        "value": "{{WIFIM_SMBE}}/file-management/service-subscriptions/[[subscriptionId]]/files"
+                                    },
+                                    {
+                                        "key": "queryString",
+                                        "value": {
+                                            "pageSize": "1"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "initParameters",
+                                "id": "initParamsProgressBar",
+                                "dynamicProps": {
+                                    "lazyLoading": "{{remainingDiskSpace}} == '' || {{maxDiskSpace}} == ''? true : false"
+                                },
+                                "details": [
+                                    {
+                                        "type": "progressbar",
+                                        "id": "storageSpaceBar",
+                                        "text": "fileManagement___feedback___usedStorageSpace",
+                                        "pathToValue": ["@getUsedFileStorageSpacePercentage({{remainingDiskSpace}}, {{maxDiskSpace}})"],
+                                        "class": "hide-label"
+                                    },
+                                    {
+                                        "type": "context",
+                                        "id": "usedDiskSpace",
+                                        "pathToValue": ["@mathSubtract({{maxDiskSpace}}, {{remainingDiskSpace}})"],
+                                        "hidden": true
+                                    },
+                                    {
+                                        "type": "context",
+                                        "id": "convertedUsedDiskSpace",
+                                        "pathToValue": ["@convertBytesToMbWithUnitInfo({{usedDiskSpace}}, true)"],
+                                        "hidden": true
+                                    },
+                                    {
+                                        "type": "context",
+                                        "id": "convertedMaxDiskSpace",
+                                        "pathToValue": ["@convertBytesToMbWithUnitInfo('{{maxDiskSpace}}', true)"],
+                                        "hidden": true
+                                    },
+                                    {
+                                        "type": "context",
+                                        "id": "convertedRemainingDiskSpace",
+                                        "pathToValue": ["@convertBytesToMbWithUnitInfo('{{remainingDiskSpace}}', true)"],
+                                        "hidden": true
+                                    },
+                                    {
+                                        "type": "label",
+                                        "id": "storageSpaceLabel",
+                                        "value": "fileManagement___feedback___storageSpaceMessage",
+                                        "class": "hide-label"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "operations": {},
+                    "parameters": [
+                        {
+                            "key": "tableActions",
+                            "value": {
+                                "search": false,
+                                "export": false
+                            }
+                        }
+                    ],
+                    "details": [
+                        {
+                            "type": "context",
+                            "id": "fileId",
+                            "pathToValue": "id",
+                            "hidden": true
+                        },
+                        {
+                            "type": "context",
+                            "id": "fileUri",
+                            "pathToValue": "uri",
+                            "hidden": true
+                        },
+                        {
+                            "type": "context",
+                            "id": "fileName",
+                            "pathToValue": "name",
+                            "hidden": true
+                        },
+                        {
+                            "type": "custom-component",
+                            "subType": "file-preview-component",
+                            "id": "preview",
+                            "fileType": "cardsType",
+                            "fileUri": "fileUri",
+                            "class": "col-sm-4"
+                        },
+                        {
+                            "type": "label",
+                            "id": "cardsName",
+                            "text": "fileManagement___properties___name",
+                            "pathToValue": "name",
+                            "title": "{{cardsName}}",
+                            "class": "col-sm-4"
+                        },
+                        {
+                            "type": "label",
+                            "id": "cardsCreationDate",
+                            "text": "fileManagement___properties___creationDate",
+                            "pathToValue": "creationDate",
+                            "class": "col-sm-1"
+                        },
+                        {
+                            "type": "operations",
+                            "id": "filesListCardsOperations",
+                            "class": "col-sm-1",
+                            "operations": {
+                                "id": "cardsMenuOperations",
+                                "icon": "fa fa-ellipsis-h",
+                                "size": 1,
+                                "parameters": [
+                                    {
+                                        "type": "openModal",
+                                        "id": "cardsRemoveFile",
+                                        "text": "fileManagement___operations___remove",
+                                        "title": "fileManagement___operations___remove",
+                                        "mockToLoad": "filemanagement/files-delete",
+                                        "icon": "fa fa-trash-o",
+                                        "hidden": false,
+                                        "dynamicProps": {
+                                            "AAAhidden": " ficheiro esta a ser usado? true : false"
+                                        },
+                                        "AAArole": "role para apagar ficheiros"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "custom-component",
+                            "subType": "file-download-link-component",
+                            "id": "cardsFileDownload",
+                            "description": "fileManagement___operations___download",
+                            "icon": "fuxicons fuxicons-download",
+                            "tableAction": true,
+                            "baseUrl": "{{WIFIM_SMBE}}",
+                            "url": "fileUri",
+                            "errorMessage": "fileManagement___feedback___downloadError",
+                            "class": "col-sm-2"
+                        },
+                        {
+                            "type": "label",
+                            "id": "cardsChangeDate",
+                            "text": "fileManagement___properties___changeDate",
+                            "pathToValue": "changeDate",
+                            "class": "col-sm-4"
+                        },
+                        {
+                            "type": "label",
+                            "id": "cardsType",
+                            "text": "fileManagement___properties___fileType",
+                            "pathToValue": "type",
+                            "class": "col-sm-2",
+                            "icon": {
+                                "image": "fa fa-image",
+                                "video": "fa fa-film",
+                                "document": "fa fa-file"
+                            },
+                            "html": {
+                                "image": "fileManagement___properties___types___image",
+                                "video": "fileManagement___properties___types___video",
+                                "document": "fileManagement___properties___types___document"
+                            }
+                        },
+                        {
+                            "type": "label",
+                            "id": "cardsSize",
+                            "text": "fileManagement___properties___size",
+                            "pathToValue": ["@convertBytesToMbWithUnitInfo('{{size}}', true)"],
+                            "title": "{{cardsSize}}",
+                            "class": "col-sm-2"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

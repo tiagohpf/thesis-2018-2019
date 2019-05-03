@@ -1,0 +1,87 @@
+
+<output-label
+    *ngIf="inputParameters.readonly; else datetimepicker"
+    [inputValue]="formatDate(showCurrentValue())"></output-label>
+
+<ng-template #datetimepicker>
+    <div class="datetimepicker-wrapper" *ngIf="bsConfig">
+        <div #datePickerInputGroup class="input-group">
+          <span class="input-group-addon" (click)="evaluatePopupPosition($event);dp.toggle();toggleSelectDate()">
+            <span class="fa fa-calendar"></span>
+          </span>
+          <input
+
+            #wctDatepicker
+
+            type="text"
+            class="form-control input-sm prevent-icon-size {{componentElementsIdTime}} {{componentElementsIdOptions}}"
+            [id]="componentElementsId"
+            [placeholder]="myPlaceholder"
+            
+            bsDatepicker
+            #dp="bsDatepicker"
+            triggers="dblclick:click"
+            
+            [minDate]="upperDateTimeBound"
+            [maxDate]="lowerDateTimeBound"
+            [bsConfig]="bsConfig"
+            [placement]="popupPosition"
+            (click)="evaluatePopupPosition($event)"
+            (bsValueChange)="setValue($event, true)"
+            
+            [value]="formatDate(showCurrentValue()) || ''"
+            (keyup)="setValueManual($event.target.value)"
+            (click)="evaluatePopupPosition($event);togglePopupPicker(componentElementsIdOptions)">
+      </div>
+      <span class="invalid-date-format" *ngIf="invalidDateFormat">{{'generic___invalidDateFormat' | myI18n}}</span>
+
+      <!-- DateTimepicker basic options popup (today / clear) -->
+      <div
+            *ngIf="getPopupStatus(componentElementsIdOptions)"
+            [id]="componentElementsIdOptions"
+            class="dp-popup date-time-options position-{{popupPosition}}">
+                <div class="btn-group">
+                    <button
+                    type="button"
+                    class="btn btn-xs btn-default"
+                    [id]="componentElementsId + '-today'"
+                    (click)="today()">
+                        <i class="fa fa-calendar-check-o"></i> {{'generic___today' | myI18n}}
+                    </button>
+                    <button
+                    type="button"
+                    class="btn btn-xs btn-default"
+                    [id]="componentElementsId + '-clear'"
+                    [disabled]="!showCurrentValue()"
+                    (click)="clear()">
+                        <i class="fa fa-calendar-o "></i> {{'generic___clear' | myI18n}}
+                    </button>
+                </div>
+        </div>
+    
+        <!-- Timepicker popup -->
+        
+        <div class="time-popup-position-simulator" #timePopupPositionSimulator>
+            <div
+                *ngIf="timePicker && getPopupStatus(componentElementsIdTime)"
+                class="dp-popup date-time-calendar position-{{popupPosition}}"
+                [id]="componentElementsIdTime">
+                    <timepicker
+                        [(ngModel)]="valuePosition ? inputParameters.value[valuePosition] : inputParameters.value"
+                        [minuteStep]="1"
+                        [showMeridian]="false"
+                        [showSeconds]="true"
+                        (ngModelChange)="setValue($event)"></timepicker>
+                    <div class="clearfix bottom-controls">
+                        <div class="pull-right">
+                            <button
+                                type="button"
+                                class="btn btn-sm btn-primary"
+                                [id]="componentElementsId + '-done'"
+                                (click)="togglePopupPicker(componentElementsIdTime)"> <i class="fa fa-calendar-check-o"></i> {{'generic___done' | myI18n}}</button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

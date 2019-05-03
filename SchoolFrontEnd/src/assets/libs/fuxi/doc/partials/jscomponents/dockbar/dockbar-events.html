@@ -1,0 +1,44 @@
+<h3 id="docs-dockbar-events">Eventos e Métodos</h3>
+<p>A dockbar disponibiliza os eventos e métodos abaixo enumerados.</p>
+
+<h4>Eventos</h4>
+<p>Todos os eventos deverão ser associados a um objeto dockbar. Um objeto dockbar é identificado pelo data-attribute <code>data-menu="offscreen-menu"</code>. Exemplo: <code>$('div[data-menu="offscreen-menu"]').on('toggled.offscreenmenu.fuxi', function (event) { });</code>.</p>
+<div class="table-responsive">
+    <table class="table fx-table">
+        <thead>
+            <tr>
+                <th>Evento</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>toggled.offscreenmenu.fuxi</td>
+                <td>Executado quando se clica num botão localizado dentro do elemento DOM com a class<code>fx-offscreen-menu</code>. No <code>event</code> é passado a propriedade <code>state</code> que admite os seguintes estados:
+                    <ul>
+                        <li><code>collapsed</code>: quando a dockbar se encontra colapsada.</li>
+                        <li><code>expanded</code>: quando a dockbar se encontra expandida.</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>attach.offscreenmenu.fuxi</td>
+                <td>
+                    Executado quando se clica num dos botões identificados pelo data-attribute <code>data-menu="detach"</code> ou <code>data-menu="reattach"</code>. No <code>event</code> é passado a propriedade <code>state</code> que admite os seguintes estados:
+                    <ul>
+                        <li><code>detach</code>: quando a dockbar se encontra destacada.</li>
+                        <li><code>reattach</code>: quando a dockbar se encontra fixa.</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<h4>Métodos</h4>
+<div class="fx-method-desc">
+    <h5><code>FUXI.OffscreenMenu.init()</code></h5>
+    <p>Método que inicializa a dockbar.</p>
+</div>
+

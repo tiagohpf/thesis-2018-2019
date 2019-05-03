@@ -1,0 +1,291 @@
+<app-wct-breadcrumb *ngIf="viewStructure && !componentIsLoading && firstLevelLayer && !loadingFromModal && configService.isI18n() && authzService.loggedIn" [dataRecs]="dataRecsMainInfo"></app-wct-breadcrumb>
+
+<!--LOADING FOR OPERATIONS-->
+<div *ngIf="firstLevelLayer && !loadingFromModal && pageService.operationLoading" class="operation-page-loading">
+    <div class="abs-middle"><app-wct-loading></app-wct-loading></div>
+</div>
+
+<!--LOADING PAGE/MODAL-->
+<ng-template [ngIf]="!viewStructure || viewStructure.lazyLoading || !loadComponentHtml || componentIsLoading || !configService.isI18n() || !authzService.loggedIn">
+    <ng-template #loading><div class="align-loading" [hidden]="viewStructure?.hidden"><app-wct-loading *ngIf="loadComponentHtml"></app-wct-loading></div></ng-template>
+    <div class="modal-on-loading" *ngIf="loadingFromModal && firstLevelLayer;else loading" [hidden]="viewStructure?.hidden">
+        <div class="modal-header">
+            <button
+                type="button"
+                class="close"
+                id="wct-modal-btn-close-onLoading"
+                (click)="modalService.closeModal()">&times;</button>
+        </div>
+        <div class="modal-body"><app-wct-loading></app-wct-loading></div>
+    </div>
+</ng-template>
+
+<ng-template [ngIf]="viewStructure && !viewStructure.lazyLoading && loadComponentHtml && !componentIsLoading && configService.isI18n() && authzService.loggedIn">
+
+    <!--SIDEMENU-->
+    <nav
+        *ngIf="viewStructure.groups?.navigation?.parameters?.length > 1"
+        class="wct-side-navbar"
+        [hidden]="viewStructure?.hidden">
+        <ul class="nav flex-column">
+            <li
+                *ngFor="let sm of viewStructure.groups.navigation.parameters"
+                class="nav-item"
+                title="{{sm.title | myI18n}}">
+                    <a *ngIf="sm.navigateTo || !sm.showComponentById" href class="nav-link" [ngClass]="sm.class" [class.active]="isActiveSideNav(sm)" (click)="sideNavClick(sm)">
+                        <i [class]="sm.icon"></i>
+                        <span *ngIf="sm.text">{{sm.text | myI18n}}</span>
+                    </a>
+                    <a *ngIf="sm.showComponentById" href class="nav-link" [ngClass]="sm.class" href="" (click)="showComponentById(sm.showComponentById, viewStructure.groups.navigation.parameters, true)">
+                        <i [class]="sm.icon"></i>
+                        <span *ngIf="sm.text">{{sm.text | myI18n}}</span>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!--SIDEBAR-->
+    <div
+        *ngIf="isSideBar()"
+        class="wct-side-filter"
+        [class.show]="getFilterStatus(getHtmlId(viewStructure,'side-filter'))"
+        [id]="getHtmlId(viewStructure,'side-filter')"
+        [class.fx-splitter-collapsed]="colapsedSidebar"
+        [hidden]="viewStructure?.hidden">
+            <div class="wct-opacity-control h-100">
+            <ng-template ngFor let-sidebar [ngForOf]="viewStructure.groups.sidebar.parameters">
+
+                <!--TOGGLE DATARECS-->
+                <sidebar-toggle-rows-component
+                    *ngIf="sidebar?.type == 'toggleRows'"
+                    [dataRecs]="dataRecsMainInfo"
+                    [inputParameters]="sidebar.parameters"
+                    [showComponentByIndex]="showComponentByIndex"
+                    (changeComponentByIndex)="showComponentByIndexEmited($event)"></sidebar-toggle-rows-component>
+                <!--FILTROS-->
+                <app-wct-filter
+                    *ngIf="sidebar?.type == 'filter'"
+                    [viewStructure]="viewStructure"
+                    [sidebar]="sidebar"
+                    [inputFilters]="sidebar.groups?.details?.parameters"
+                    [inputParameters]="sidebar.groups?.details?.parameters ? null : viewStructure.groups?.columns?.parameters"
+                    [initDateSearch]="initDateSearch"
+                    [filterDateField]="filterDateField"
+                    [filterDateInterval]="filterDateInterval"
+                    (filter)="makeFilter($event)"></app-wct-filter>
+                
+            </ng-template>
+            </div>
+    </div>
+
+    <!--MAIN CONTENT-->
+    <div
+        class="wct-main-wrapper h-100 d-flex flex-column"
+        [class.container-fluid]="firstLevelLayer"
+        [class.prevent-side-navbar]="viewStructure.groups?.navigation?.parameters?.length > 1"
+        [class.first-level-page]="firstLevelLayer && !loadingFromModal"
+        [id]="'wct-content-' + (viewStructure.id || componentId)"
+        [hidden]="viewStructure?.hidden">
+
+            <!--HEADER-->
+            <div
+                class="wct-header-content container-fluid"
+                *ngIf="viewStructure.groups.header"
+                [id]="'wct-page-header-' + (viewStructure.id || componentId)"
+                [class.modal-header]="loadingFromModal">
+                    <button
+                        *ngIf="loadingFromModal && firstLevelLayer"
+                        type="button"
+                        class="close"
+                        [id]="viewStructure.id ? 'wct-modal-btn-close-' + viewStructure.id : ''"
+                        (click)="modalService.closeModal()">&times;</button>
+                    <app-wct-header
+                        [viewStructure]="viewStructure.groups.header"
+                        [dataRecs]="dataRecsMainInfo"
+                        [allowReload]="allowReload"
+                        [sideFilterId]="isSideBar() ? getHtmlId(viewStructure,'side-filter') : null"
+                        (reloadEmit)="manualReloadComponent()"></app-wct-header>
+            </div>
+
+            <!--TABS-->
+            <div
+                *ngIf="viewStructure.groups.tabs?.parameters?.length > 0"
+                class="wct-tabs-wrapper">
+                <app-wct-tabs (tabChanged)="pageService.updateFuxiView()">
+                    <app-wct-tabs-content
+                        *ngFor="let eachtab of viewStructure.groups.tabs.parameters;let tIndex=index;"
+                        [eachtab]="eachtab"
+                        [nTabs]="viewStructure.groups.tabs.parameters.length">
+                        <ng-template [ngIf]="!eachtab.lazyLoading">
+                            <ng-template ngFor let-component [ngForOf]="eachtab.groups.components.parameters">
+                                <ng-template [ngIf]="!component.lazyLoading">
+                                    <app-wct-page
+                                      #pageComponentOnTabs
+                                      class="app-wct-page-tabs"
+                                      [class.hidden]="component.hidden"
+                                      [eachtab]="eachtab"
+                                      [componentIndex]="tIndex"
+                                      [baseInfoForm]="baseInfoForm"
+                                      [inputMock]="component.mockToLoad || false"
+                                      [inputMockJson]="!component.mockToLoad ? component.mockJson : false"
+                                      [inputParameters]="!component.mockToLoad ? component : false"
+                                      [inputDataRecs]="dataRecsMainInfo"
+                                      [firstLevelLayer]="false"
+                                      [origin]="'page'"
+                                      [loadingFromModal]="loadingFromModal"></app-wct-page>
+                                </ng-template>
+                            </ng-template>
+                        </ng-template>
+                    </app-wct-tabs-content>
+                </app-wct-tabs>
+            </div>
+
+            <!--WIZARD-->
+            <div class="fx-full-height" *ngIf="isWizard()">
+                <ng2-wizard
+                    [viewStructure]="viewStructure"
+                    [loadingFromModal]="loadingFromModal"
+                    (onNext)="onNext(indx)"
+                    (onPrevious)="onPrevious(indx)"
+                    (onFinish)="onFinish()"
+                    (onTabChange)="onTabChange()">
+                    <ng-template ngFor let-wizard [ngForOf]="viewStructure.groups.wizard.parameters" let-wIndex="index">
+                        <ng2-wizard-tab [title]="wizard.text" *ngIf="!wizard.hidden">
+                            <ng2-wizard-step>
+                                <ng-template ngFor let-component [ngForOf]=" wizard.groups.components.parameters">
+                                    <app-wct-page
+                                        *ngIf="!component.lazyLoading && !wizard.lazyLoading"
+                                        #pageComponentOnWizard
+                                        class="app-wct-page-wizard"
+                                        [baseInfoForm]="baseInfoForm"
+                                        [componentIndex]="wIndex"
+                                        [inputMock]="component.mockToLoad || false"
+                                        [inputMockJson]="!component.mockToLoad ? component.mockJson : false"
+                                        [inputParameters]="!component.mockToLoad ? component : false"
+                                        [inputDataRecs]="dataRecsMainInfo"
+                                        [firstLevelLayer]="false"
+                                        [origin]="'page'"
+                                        [loadingFromModal]="loadingFromModal"></app-wct-page>
+                                </ng-template>
+                            </ng2-wizard-step>
+                        </ng2-wizard-tab>
+                    </ng-template>
+                </ng2-wizard>
+            </div>
+
+            <!--GENERAL CONTENT-->
+            <div
+                *ngIf="viewStructure.type?.indexOf('init') === 0"
+                class="wct-components-wrapper container-fluid"
+                (scroll)="generalContentScroll($event)"
+                [class.wct-main-content-colored]="firstLevelLayer"
+                [class.modal-body]="(loadingFromModal && firstLevelLayer && !viewStructure.groups.tabs && !isWizard()) || (loadingFromModal && !firstLevelLayer && componentIndex >= 0 && origin === 'page')">
+
+                <!--TOPMENU-->
+                <ul class="list-inline" *ngIf="viewStructure.groups.menus && viewStructure.groups.menus.parameters && viewStructure.groups.menus.parameters.length > 0">
+                    <li
+                        *ngFor="let menu of viewStructure.groups.menus.parameters;let menuIndex=index"
+                        [id]="menu.id ? 'wct-topmenu-' + menu.id : ''"
+                        [class]="menu.class"
+                        (click)="showComponentById(menu.showComponentById, viewStructure.groups.menus.parameters, true)">
+                        <div class="inner-padding set-half-padding">{{menu.text | myI18n}}</div>
+                    </li>
+                </ul>
+
+                <!--TABLES-->
+                <ng-template [ngIf]="isComponentActive('TableComponent') && viewStructure.type == 'initTable'">
+                    <app-wct-start-components
+                        *ngIf="viewStructure.groups.details?.parameters?.length > 0"
+                        [viewStructure]="viewStructure"
+                        [baseInfoForm]="baseInfoForm"
+                        [dataRecs]="dataRecsToParameters()"
+                        [inputDataRecs]="inputDataRecs"
+                        [inputParameters]="viewStructure.groups?.details?.parameters"></app-wct-start-components>
+                    <app-wct-table
+                        [viewStructureContext]="eachtab?.groups.components.parameters"
+                        [viewStructure]="viewStructure"
+                        [config]="config.sorting"
+                        [pagingSettings]="pagingSettings"
+                        [rows]="viewStructure.groups.rows"
+                        [columns]="viewStructure.groups.columns.parameters"
+                        [filter]="filter"
+                        [filterDateField]="filterDateField"
+                        [tabs]="eachtab"
+                        [inputDataRecs]="inputDataRecs"
+                        [dataRecsNoContent]="dataRecsNoContent"
+                        [listName]="viewStructure.text"
+                        [allowReload]="allowReload"
+                        [isHorizontalFilter]="isHorizontalFilter()"
+                        [baseInfoForm]="baseInfoForm"
+                        (toggleHorizFilter)="colapsedSidebar = !colapsedSidebar"
+                        (pageChanged)="pageChange()"
+                        (tableChanged)="onChangeTable($event,pagingSettings)"
+                        (emitMakeFilter)="makeFilter($event)"></app-wct-table>
+                </ng-template>
+                <!--PARAMETERS-->
+                <ng-template [ngIf]="isComponentActive('ShowParametersByTypeComponent') && viewStructure.type == 'initParameters'">
+                    <app-wct-start-components
+                        *ngIf="displayParametersComponent"
+                        [viewStructure]="viewStructure"
+                        [baseInfoForm]="baseInfoForm"
+                        [dataRecs]="dataRecsToParameters()"
+                        [inputDataRecs]="inputDataRecs"
+                        [componentIndex]="componentIndex"
+                        [loadingFromModal]="loadingFromModal"
+                        [inputParameters]="viewStructure.groups?.details?.parameters"></app-wct-start-components>
+                </ng-template>
+                <!-- CARDS -->
+                <ng-template [ngIf]="isComponentActive('CardComponent') && viewStructure.type == 'initCards'">
+                    <app-wct-cards
+                        [viewStructureContext]="eachtab?.groups.components.parameters || viewStructure?.groups?.details?.parameters"
+                        [inputParameters]="viewStructure"
+                        [inputDataRecs]="dataRecsMainInfo"
+                        [dataRecsNoContent]="dataRecsNoContent"
+                        [pagingSettings]="pagingSettings"
+                        [allowReload]="allowReload"
+                        [control]="baseInfoForm.controls[viewStructure.id]"
+                        (pageChanged)="pageChange()"
+                        (emitMakeFilter)="makeFilter($event)"></app-wct-cards>
+                </ng-template>
+            </div>
+
+    </div>
+
+    <!--BUTTONS (ONLY IN CASE OF A MODAL LOAD)-->
+    <div
+        class="modal-footer"
+        *ngIf="loadingFromModal && firstLevelLayer && !isWizard() && (pageService.buttonsConfig?.modal || viewStructure?.groups?.operations?.parameters?.length > 0)"
+        [hidden]="viewStructure?.hidden">
+        <ng-template [ngIf]="pageService.buttonsConfig?.modal">
+            <ng-template ngFor let-button [ngForOf]="modalButtonsArray(pageService.buttonsConfig.modal)">
+                <button
+                    *ngIf="button.key == 'submit'"
+                    type="button"
+                    class="btn btn-primary {{pageService.buttonsConfig.modal.submit.class}}"
+                    [id]="pageService.buttonsConfig.modal.submit.id ? 'wct-modal-btn-submit-' + pageService.buttonsConfig.modal.submit.id : ''"
+                    [disabled]="isSubmitDisabled(button)"
+                    (click)="onSumbitClick(button)">{{pageService.buttonsConfig.modal.submit.text | myI18n}}</button>
+                <button
+                    *ngIf="button.key == 'cancel'"
+                    type="button"
+                    class="btn btn-default {{pageService.buttonsConfig.modal.cancel.class}}"
+                    [id]="pageService.buttonsConfig.modal.cancel.id ? 'wct-modal-btn-cancel-' + pageService.buttonsConfig.modal.cancel.id : ''"
+                    (click)="modalService.closeModal()">{{pageService.buttonsConfig.modal.cancel.text | myI18n}}</button>
+            </ng-template>
+        </ng-template>
+        <ng-template [ngIf]="viewStructure?.groups?.operations?.parameters?.length > 0">
+            <app-wct-buttons
+            [loadingFromModal]="loadingFromModal"
+            [operations]="viewStructure.groups.operations"
+            [btnSize]="'btn-sm'"
+            [btnMax]="viewStructure.groups.operations.size >= 0 ? viewStructure.groups.operations.size : 2"></app-wct-buttons>
+        </ng-template>
+    </div>
+
+</ng-template>
+
+<app-wct-footer
+    *ngIf="firstLevelLayer && !loadingFromModal && configService.isI18n() && authzService.loggedIn"
+    [class.prevent-side-navbar]="viewStructure?.groups?.navigation?.parameters?.length > 1"
+    [hidden]="viewStructure?.hidden"
+    class="w-100 container-fluid footer-component"></app-wct-footer>

@@ -1,0 +1,8 @@
+
+
+@mixin max-width-screen {
+    max-width: 1110px;
+    @media (min-width: 1600px) {
+      max-width: 1450px;
+    }
+  }

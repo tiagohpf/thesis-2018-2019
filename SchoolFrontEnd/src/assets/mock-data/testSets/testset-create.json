@@ -1,0 +1,257 @@
+{
+  "type": "page",
+  "id": "pageConfiguration",
+  "header": {
+    "id": "pageHeader",
+    "seo": {
+      "text": "Create Test Set",
+      "icon": "fa fa-file-code-o"
+    },
+    "_operations": [
+      {
+        "id": "create",
+        "size": 2,
+        "parameters": [
+          {
+            "type": "navigate",
+            "id": "courseCancel",
+            "text": "Cancel",
+            "class": "btn-default",
+            "navigateTo": "knowledgecenter"
+          },
+          {
+            "id": "testsetCreate",
+            "type": "submit",
+            "_role": "Execute",
+            "text": "Create",
+            "class": "btn-primary",
+            "parameters": [
+              {
+                "_key": "successRouter",
+                "value": "/testset"
+              },
+              {
+                "key": "successText",
+                "value": "Test Set created successfully!"
+              },
+              {
+                "key": "errorText",
+                "value": "warnings___errorOcurred"
+              },
+              {
+                "key": "requestEndpoint",
+                "value": "{{AppAPIBotConfig}}/testSets"
+              },
+              {
+                "key": "requestType",
+                "value": "POST"
+              },
+              {
+                "key": "requestHeaders",
+                "value": {
+                  "Authorization": "Bearer [[token]]"
+                }
+              },
+              {
+                "key": "requestBody",
+                "type": "json",
+                "value": {
+                  "name": "{{testsetName}}",
+                  "description": "{{testsetDescription}}",
+                  "createdBy": "{{preferred-username}}",
+                  "lastUpdate": "{{timestampWithTZ}}",
+                  "IXS": "{{IXS_id}}",
+                  "status": 1,
+                  "creationDate": "{{timestampWithTZ}}",
+                  "googleSheetsId": "{{testsetGoogleSheetsId}}",
+                  "testsCustom": []
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "tabs": [
+    {
+      "id": "testsetCreate",
+      "components": [
+        {
+          "type": "initParameters",
+          "id": "testsetMainInformation",
+          "details": [
+            {
+              "type": "title",
+              "id": "testsetCreatePageTitle",
+              "text": "Main properties",
+              "parameters": [
+                {
+                  "id": "requiredFields",
+                  "text": "generic___mandatoryFields",
+                  "class": "fx-required-fields-message"
+                }
+              ]
+            },
+            {
+              "type": "groupParameters",
+              "id": "testsetCreateFormWrapper",
+              "style": {
+                "margin-left": "8vw"
+              },
+              "class": "remove-max-width col-sm-12",
+              "parameters": [
+                {
+                  "type": "textbox",
+                  "id": "testsetName",
+                  "text": "Name",
+                  "description": "Nº of charaters 0/20",
+                  "pathToValueList": "_embedded",
+                  "pathToValue": "name",
+                  "validator": {
+                    "required": [
+                      true,
+                      "warnings___fieldRequired"
+                    ],
+                    "regex": [
+                      "^[a-zA-Z0-9-_]*$",
+                      "Characters allowed: [a-z], [A-Z], [0-9], '-', '_'"
+                    ],
+                    "unique": [
+                      {
+                        "urlResource": [
+                          {
+                            "key": "path",
+                            "value": "{{AppAPIBotConfig}}/testSets"
+                          },
+                          {
+                            "key": "queryString",
+                            "value": {
+                              "filter": "{\"IXS\":\"{{IXS_id}}\",\"name\":{\"$regex\":\"^(?i){{testsetName}}$\"}}"
+                            }
+                          },
+                          {
+                            "key": "headers",
+                            "value": {
+                              "Authorization": "Bearer {{token}}",
+                              "IXS": "{{IXS_id}}"
+                            }
+                          }
+                        ]
+                      },
+                      "Name allready exists!"
+                    ],
+                    "fn": [
+                      [
+                        "validateCharLimit20",
+                        "Nº of characters exceeded"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "type": "textbox",
+                  "subType": "textarea",
+                  "id": "testsetDescription",
+                  "text": "Description",
+                  "pathToValue": "description",
+                  "validator": {
+                    "required": [
+                      true,
+                      "warnings___fieldRequired"
+                    ],
+                    "fn": [
+                      [
+                        "validateCharLimit200",
+                        "Nº of characters exceeded"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "type": "initParameters",
+                  "id": "coursecontainer",
+                  "hidden": true,
+                  "lazyLoading": true,
+                  "details": [
+                    {
+                      "type": "label",
+                      "id": "course",
+                      "text": "Course",
+                      "urlResource": [
+                        {
+                          "key": "path",
+                          "value": "{{AppAPIBotConfig}}/courses/[[courseId]]?keys={'name':1}"
+                        },
+                        {
+                          "key": "headers",
+                          "value": {
+                            "Authorization": "Bearer {{token}}",
+                            "IXS": "{{IXS_id}}"
+                          }
+                        }
+                      ],
+                      "pathToValue": "name"
+                    }
+                  ],
+                  "dynamicProps": {
+                    "lazyLoading": "!'[[courseId]]'",
+                    "hidden": "!'[[courseId]]'"
+                  }
+                },
+                {
+                  "type": "label",
+                  "id": "courseIdFinal",
+                  "hidden": true,
+                  "dynamicProps": {
+                    "value": "'[[courseId]]'?'[[courseToken]]':'{{courseSelect}}'"
+                  }
+                },
+                {
+                  "type": "input-select",
+                  "hidden": true,
+                  "id": "testseteaiConfiguration",
+                  "text": "Default service",
+                  "placeholder": "select service",
+                  "urlResource": [
+                    {
+                      "key": "path",
+                      "value": "{{AppAPIBotConfig}}/eaiConfiguration"
+                    },
+                    {
+                      "key": "headers",
+                      "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                      }
+                    }
+                  ],
+                  "pathToValueList": "_embedded",
+                  "templateOfValueList": "{\"key\":\"{{name}}\",\"value\":\"{{description}}\"}",
+                  "validator": {
+                    "required": [
+                      true,
+                      "warnings___fieldRequired"
+                    ]
+                  }
+                },
+                {
+                  "type": "textbox",
+                  "id": "testsetGoogleSheetsId",
+                  "text": "Google sheets ID",
+                  "pathToValue": "googleSheetsId",
+                  "validator": {
+                    "required": [
+                      true,
+                      "warnings___fieldRequired"
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

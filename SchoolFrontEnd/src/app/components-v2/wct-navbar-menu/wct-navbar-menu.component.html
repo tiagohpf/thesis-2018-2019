@@ -1,0 +1,63 @@
+<ul class="navbar-nav">
+    <li
+        *ngFor="let menu of viewStructure?.groups?.menus?.parameters"
+        class="nav-item"
+        id="wct-mainmenu-{{menu.id}}"
+        title="{{menu.title | myI18n}}"
+        [id]="menu.id ? 'wct-menu-' + menu.id : ''"
+        [class.active]="checkActivatedRoute(menu)"
+        [class.dropdown]="menu.groups.menus?.parameters?.length > 0 || menu.groups.details?.parameters?.length > 0"
+        [class.show]="getSubMenuStatus(menu)"
+        [hidden]="menu.hidden">
+            <a
+                *ngIf="!menu.groups?.menus?.parameters?.length && !menu.groups?.details?.parameters?.length; else dropdownmenu"
+                href="#"
+                class="nav-link"
+                [id]="'wct-navbar-menu-' + menu.id"
+                (mousedown)="navigateTo($event,menu)">
+                    <i *ngIf="menu.icon" class="wct-button-icon {{menu.icon}}"></i>{{menu.text | myI18n}}
+            </a>
+            <ng-template #dropdownmenu>
+                <a
+                    *ngIf="menuHasActions(menu)"
+                    href="#"
+                    class="nav-link"
+                    [id]="'wct-navbar-menu-' + menu.id"
+                    (click)="navigateTo($event,menu)">
+                        <i *ngIf="menu.icon" class="wct-button-icon {{menu.icon}}"></i>{{menu.text | myI18n}}
+                </a>
+                <a
+                    href="#"
+                    class="nav-link wct-toggle-submenu"
+                    [class.wct-split-link]="menuHasActions(menu)"
+                    [id]="'wct-navbar-open-submenu-' + menu.id"
+                    (click)="toggleSubMenuStatus(menu)">
+                        <ng-template [ngIf]="!menuHasActions(menu) && (menu.icon || menu.text)">
+                            <i *ngIf="menu.icon" class="wct-button-icon {{menu.icon}}"></i>{{menu.text | myI18n}}
+                        </ng-template>
+                        <span class="caret"></span>
+                </a>
+                <div
+                    class="dropdown-menu wct-toggle-submenu"
+                    [attr.aria-labelledby]="'wct-open-submenu-' + menu.id"
+                    [id]="'wct-submenu-' + menu.id"
+                    [class.show]="getSubMenuStatus(menu)">
+                        <ng-template [ngIf]="menu.groups.menus?.parameters?.length > 0">
+                            <ng-template ngFor let-sm [ngForOf]="menu.groups.menus.parameters">
+                                <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    (mousedown)="navigateTo($event,sm)">
+                                    <i *ngIf="sm.icon" class="{{sm.icon}}"></i>{{sm.text | myI18n}}
+                                </a>  
+                            </ng-template>
+                        </ng-template>
+                        <ng-template [ngIf]="menu.groups?.details?.parameters?.length > 0">
+                            <show-parameters-by-type-component
+                                [viewStructure]="viewStructure"
+                                [inputParameters]="menu.groups.details.parameters"></show-parameters-by-type-component>
+                        </ng-template>
+                </div>
+            </ng-template>
+    </li>
+</ul>

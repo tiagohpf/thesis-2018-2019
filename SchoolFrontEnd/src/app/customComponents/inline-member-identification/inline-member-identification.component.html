@@ -1,0 +1,80 @@
+<div class="row profile-resume">
+  <div class="col-sm-12">
+    <input
+      style="display: none"
+      type="file"
+      (change)="onFileChanged($event)"
+      #fileInput
+    />
+    <svg
+      (mouseenter)="mouseEnter()"
+      (mouseleave)="mouseLeave()"
+      (click)="!readonly && fileInput.click()"
+      width="100px"
+      height="100px"
+      preserveAspectRatio="xMinYMin meet"
+      style="cursor: pointer;"
+    >
+      <svg:g
+        profile-picture-component
+        borderWidth="0px"
+        [text]="name"
+        [fontSize]="3"
+        [id]="id"
+        [img]="imageUri"
+        [entity]="entity"
+        [applyUploadPhotoMask]="applyUploadPhotoMask"
+      />
+    </svg>
+    <div [ngSwitch]="status.toUpperCase()" class="member-status-div">
+      <!-- student status-->
+      <div
+        *ngSwitchCase="'LIVE'"
+        class="member-status-inner-div member-status-active"
+      >
+        <i class="fa fa-check fx-icon"></i>
+        <span>{{ "student___status___live" | myI18n }}</span>
+      </div>
+      <div
+        *ngSwitchCase="'SUSPENDED'"
+        class="member-status-inner-div member-status-suspended"
+      >
+        <i class="fa fa-check fx-icon"></i>
+        <span>{{ "student___status___suspended" | myI18n }}</span>
+      </div>
+      <div
+        *ngSwitchCase="'NEEDPAYMENT'"
+        class="member-status-inner-div member-status-inactive"
+      >
+        <i class="fa fa-check fx-icon"></i>
+        <span>{{ "student___status___needPayment" | myI18n }}</span>
+      </div>
+      <!-- program status -->
+      <div
+        *ngSwitchCase="'1'"
+        class="member-status-inner-div member-status-active"
+      >
+        <i class="fa fa-certificate fx-icon"></i>
+        <span>{{ "program___status_types___new" | myI18n }}</span>
+      </div>
+      <div
+        *ngSwitchCase="'3'"
+        class="member-status-inner-div member-status-active"
+      >
+        <i class="fa fa-check fx-icon"></i>
+        <span>{{ "program___status_types___published" | myI18n }}</span>
+      </div>
+      <div
+        *ngSwitchCase="'4'"
+        class="member-status-inner-div member-status-active"
+      >
+        <i class="fa fa-check fx-icon"></i>
+        <span>{{ "program___status_types___published" | myI18n }}</span>
+        <i class="fa fa-pencil-square-o"></i>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 friendlyName">
+    <span>{{ name }}</span>
+  </div>
+</div>

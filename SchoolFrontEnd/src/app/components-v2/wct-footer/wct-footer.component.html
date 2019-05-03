@@ -1,0 +1,11 @@
+<footer
+    class="wct-footer container-fluid wct-prevent-paragraph-margins"    
+    [id]="viewStructure?.id ? 'wct-app-footer-' + viewStructure.id : ''"
+    [ngStyle]="viewStructure?.style">
+        <app-wct-start-components
+            *ngIf="viewStructure?.groups?.details?.parameters?.length > 0"
+            class="w-100"
+            [viewStructure]="viewStructure"
+            [inputParameters]="viewStructure.groups.details.parameters"
+            [parametersFormat]="false"></app-wct-start-components>
+</footer>

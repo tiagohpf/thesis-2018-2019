@@ -1,0 +1,97 @@
+{
+    "type": "initParameters",
+    "id": "removeEntityPage",
+    "header": {
+        "id": "pageHeader",
+        "seo": {
+            "text": "program___entity___removeEntity",
+            "icon": "fa fa-credit-card"
+        }
+    },
+    "details": [
+        {
+            "type": "context",
+            "id": "originalDisplayName",
+            "pathToValue": [
+                "originalDisplayName"
+            ]
+        },
+        {
+            "type": "context",
+            "id": "displayName",
+            "pathToValue": [
+                "displayName"
+            ]
+        },
+        {
+            "type": "context",
+            "id": "programCode",
+            "pathToValue": [
+                "programCode"
+            ]
+        },
+        {
+            "type": "label",
+            "id": "pageBodyConfirm",
+            "value": "{{@fv()@i18n('program___entity___confirmRemove') + '   <strong>' + @replaceTagVars('displayName') + '</strong>?'}}"
+        }
+    ],
+    "buttons": [
+        {
+            "id": "entityRemoveSubmitBtn",
+            "key": "submit",
+            "text": "generic___operations___remove",
+            "class": "btn-primary",
+            "parameters": [
+                {
+                    "key": "requestEndpoint",
+                    "value": "{{SchoolBE}}/programs/[[programID]]/entities/{{originalDisplayName}}"
+                },
+                {
+                    "key": "requestHeaders",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                },
+                {
+                    "key": "requestType",
+                    "value": "DELETE"
+                },
+                {
+                    "key": "successText",
+                    "value": false
+                },
+                {
+                    "key": "errorText",
+                    "value": "errors___entityRemoveError"
+                },
+                {
+                    "key": "onSuccess",
+                    "value": {
+                        "request": [
+                            {
+                                "key": "updatePageParameter",
+                                "value": {
+                                    "programEntitiesTable": {
+                                        "lazyLoading": false
+                                    }
+                                }
+                            },
+                            {
+                                "key": "successText",
+                                "value": "success___entityRemoveSuccess"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "key": "cancel",
+            "id": "entityRemoveCancelBtn",
+            "text": "generic___operations___cancel",
+            "class": "btn-force-default btn-default"
+        }
+    ]
+}

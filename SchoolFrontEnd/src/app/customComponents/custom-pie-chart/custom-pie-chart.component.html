@@ -1,0 +1,60 @@
+<div class="chart-container">
+
+  <ng-template [ngIf]="showCharts">
+
+    <div *ngIf="inputParameters.groups?.rows?.originalValue?.length <= 0; else showChart">
+      <div
+        *ngIf="dataRecsNoContent"
+        class="alert alert-danger"
+        style="max-width:100%;padding:12px 8px;margin:5px 0;border-radius:5px;"
+        [id]="inputParameters.id ? 'wct-chart-apiError-' + inputParameters.id : ''">
+        <a
+          class="fx-expand table-expand-error collapsed"
+          data-toggle="collapse"
+          [id]="inputParameters.id ? 'wct-click-collapse-error-' + inputParameters.id : ''"
+          [attr.data-target]="inputParameters.id ? '#wct-panel-collapse-error-' + inputParameters.id : ''"><i class="caret"></i></a>
+
+          <div class="fx-alert-icon">
+            <i class="fuxicons fuxicons-error"></i>
+          </div>
+          <div class="fx-alert-desc">
+            <p *ngIf="!errorMsg; else customErrorMsg">
+              <b>{{'warnings___ups' | myI18n}}</b> {{'warnings___errorOcurred' | myI18n}}
+            </p>
+            <ng-template #customErrorMsg>{{errorMsg | myI18n}}</ng-template>
+          </div>
+
+        <div
+          class="collapse"
+          [id]="inputParameters.id ? 'wct-panel-collapse-error-' + inputParameters.id : ''">
+          <pre class="format-json"><span *ngFor="let item of dataRecsNoContent | myObject"><b>{{item.key}}:</b> {{item.value | json}}<br /></span></pre>
+        </div>
+      </div>
+      <div
+        *ngIf="!dataRecsNoContent"
+        class="alert alert-info"
+        style="max-width:100%;padding:12px 8px;margin:5px 0;border-radius:5px;"
+        [id]="inputParameters.id ? 'wct-chart-noRecords-' + inputParameters.id : ''">
+
+        <div class="fx-alert-icon">
+          <i class="fuxicons fuxicons-info"></i>
+        </div>
+        <div class="fx-alert-desc">
+          <p *ngIf="!noDataMsg; else customNoDataMsg">{{'warnings___noRecords' | myI18n}}</p>
+          <ng-template #customNoDataMsg><p>{{noDataMsg | myI18n}}</p></ng-template>
+        </div>
+
+      </div>
+    </div>
+
+    <ng-template #showChart>
+      <div style="height:23vh">
+        <ngx-charts-advanced-pie-chart
+          [scheme]="colorScheme"
+          [results]="single"
+          [gradient]="gradient">
+        </ngx-charts-advanced-pie-chart>
+      </div>
+    </ng-template>
+  </ng-template>
+  </div>

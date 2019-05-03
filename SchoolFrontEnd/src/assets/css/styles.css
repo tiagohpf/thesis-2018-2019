@@ -1,0 +1,45 @@
+#wct-table-student_testsetMainTable tr .students_testset_tests>table-component>.table {
+    table-layout: fixed;
+}
+
+#wct-table-student_testsetMainTable tr .students_testset_tests>table-component>.table {
+    table-layout: fixed;
+}
+
+#wct-table-student_testsetMainTable tr .students_testset_steps_tests>table-component>.table>tbody>tr>td {
+    white-space: normal !important;
+    border-bottom: 1px solid #c4b9b9;
+    /* width: 30px; */
+}
+
+#wct-table-student_testsetMainTable tr .students_testset_steps_tests>table-component>.table>tbody>tr>td.students_testset_steps_tests_status {
+    width: 120px !important;
+}
+
+#wct-table-student_testsetMainTable td {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/**************SideBar***************/
+
+.wct-side-menu a {
+    text-decoration: none;
+    color: white;
+    margin-left: 15px;
+}
+
+.wct-side-menu .side-nav-item-submenu {
+    margin-left: 2px;
+}
+
+.fa {
+    color: #2196F3;
+}
+
+@media (min-width: 768px) {
+    #wct-content-studentmdainCardCreate .card-wrapper {
+        width: 100%;
+        padding: 15px;
+    }
+}

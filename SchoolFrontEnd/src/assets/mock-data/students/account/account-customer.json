@@ -1,0 +1,108 @@
+{
+    "type": "initParameters",
+    "id": "studentAccountCustomerInfo",
+    "text": "",
+    "urlResource": [
+      {
+        "key": "reload",
+        "value": false
+      },
+      {
+        "key": "path",
+        "value": "{{BillingService}}/customers/{{current-customer-id}}"
+      },
+      {
+        "key": "pathToMainData",
+        "value": ["response","item"]
+      },
+      {
+        "key": "headers",
+        "value": {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer {{token}}"
+        }
+      }
+    ],
+    "details": [
+      {
+        "type": "header",
+        "class": "col-sm-12 title",
+        "header": {
+          "seo": {
+            "text": "Customer Information",
+            "icon": "fa fa-id-card-o"
+          }
+        }
+      },
+
+      {
+        "type":"wrapper",
+
+        "dynamicProps":{
+          "hidden": "'{{current-plan-id}}' == ''"
+        },
+        "details":[
+          {
+            "type": "label",
+            "_id": "customerName",
+            "text": "billing___customer___name",
+            "placeholder": "billing___customer___name",
+            "class": "col-sm-8",
+            "pathToValue": "customerName"
+          },
+          {
+            "type": "label",
+            "_id": "customerVat",
+            "text": "billing___customer___vat",
+            "placeholder": "billing___customer___vat",
+            "class": "col-sm-4",
+            "pathToValue": "customerVat"
+          },
+      
+          {
+            "type": "label",
+            "_id": "addressName",
+            "text": "billing___customer___address",
+            "placeholder": "billing___customer___address",
+            "pathToValue": "customerAddress"
+          },
+          {
+            "type": "label",
+            "_id": "city",
+            "text": "billing___customer___city",
+            "placeholder": "billing___customer___city",
+            "class": "col-sm-8",
+            "pathToValue": "city"
+          },
+          {
+            "type": "label",
+            "_id": "country",
+            "text": "billing___customer___country",
+            "placeholder": "billing___customer___country",
+            "class": "col-sm-4",
+            "pathToValue": "country"
+      
+          },
+          {
+            "type": "label",
+            "_id": "email",
+            "text": "billing___customer___email",
+            "placeholder": "billing___customer___email",
+            "class": "col-sm-8",
+            "pathToValue": "email"
+          },
+          {
+            "type": "label",
+            "_id": "phone",
+            "text": "billing___customer___phone",
+            "placeholder": "billing___customer___phone",
+            "class": "col-sm-4",
+            "pathToValue": "phone"
+          }
+        ]
+      }
+
+      
+      
+    ]
+  }

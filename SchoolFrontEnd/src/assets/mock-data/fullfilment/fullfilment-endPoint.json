@@ -1,0 +1,147 @@
+{
+  "type": "wrapper",
+  "id": "endpoint_Tab",
+  "pathToValue": [""],
+  "details": [
+    {
+      "type": "input-select",
+      "id": "endpoint_method",
+      "placeholder": "application___selectMethod",
+      "text": "application___method",
+      "class": "col-sm-2",
+      "pathToValue": [
+        "httpMethod"
+      ],
+      "valueList": [
+        { 
+          "key": "post",
+          "value": "POST"
+        },
+        {
+          "key": "get",
+          "value": "GET"
+        },
+        {
+          "key": "patch",
+          "value": "PATCH"
+        },
+        {
+          "key": "put",
+          "value": "PUT"
+        }
+      ],
+      "validator": {
+        "required": [
+          true,
+          "warnings___fieldRequired"
+        ]
+      },
+      "parameters": [
+        {
+          "key": "inlineHelp",
+          "value": {
+              "text": "help___fullfilment___create___endpoint___method"
+          }
+        }
+      ]
+    },
+    {
+      "type": "textbox",
+      "id": "endpoint_url",
+      "text": "application___url",
+      "placeholder": "http://",
+      "class": "col-sm-10",
+      "value": "",
+      "pathToValue": [
+        "endpoint",
+        "@getUrlFromUrlNoParameters($this)"
+      ],
+      "validator": {
+        "required": [
+          true,
+          "warnings___fieldRequired"
+        ]
+      },
+      "parameters": [
+        {
+          "key": "inlineHelp",
+          "value": {
+              "text": "help___fullfilment___create___endpoint___url"
+          }
+        }
+      ]
+    },
+    {
+      "type": "label",
+      "id": "endpoint_url_complex",
+      "class": "offset-sm-2 col-sm-10",
+      "text": null,
+      "dynamicProps": {
+        "value": "'{{@fv()@generateUrlWithParams(@replaceTagVars('endpoint_url'),@replaceTagVars('endpoint_parameters'))}}'"
+      }
+    },
+    {
+      "type": "wct-tuple-list",
+      "id": "endpoint_parameters",
+      "class": "col-sm-12",
+      "text": "application___parameters",
+      "pathToValueList": [
+        "queryParameters"
+      ],
+      "parameters": [
+        {
+          "key": "inlineHelp",
+          "value": {
+              "text": "help___fullfilment___create___endpoint___parameters"
+          }
+        }
+      ],
+      "min":1,
+      "details": [
+        {
+          "type": "textbox",
+          "id": "Key",
+          "text": "application___key",
+          "pathToValue": [
+           "Key"
+          ],
+          "class": "col-sm-4",
+          "parameters": [
+            {
+              "key": "inlineHelp",
+              "value": {
+                  "text": "help___fullfilment___create___endpoint___key"
+              }
+            }
+          ]
+        },
+        {
+          "type": "textbox",
+          "id": "Value",
+          "text": "application___value",
+          "pathToValue": [
+            "Value"
+           ],
+          "class": "col-sm-4",
+          "parameters": [
+            {
+              "key": "inlineHelp",
+              "value": {
+                  "text": "help___fullfilment___create___endpoint___value"
+              }
+            }
+          ]
+        },
+        {
+          "type": "textbox",
+          "id": "Description",
+          "text": "application___description",
+          "pathToValue": [
+            "Description"
+           ],
+          "class": "col-sm-4"
+        }
+      ]
+    }
+  ]
+}

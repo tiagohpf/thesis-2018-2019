@@ -1,0 +1,61 @@
+﻿[class="fx-codemirror"] .CodeMirror {
+    background: $codemirror-bg-color;
+    height: auto;
+}
+
+[class="fx-codemirror"] .CodeMirror-scroll {
+    max-height: 300px;
+}
+
+[class="fx-codemirror"] {
+    margin-top: 10px;
+    position: relative;
+}
+
+.fx-codemirror {
+
+    .fx-btn-copy-code {
+        display: none;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        z-index: 7;
+    }
+
+    &:hover .fx-btn-copy-code {
+        display: block;
+    }
+}
+
+.fx-copied-msg {
+    border-radius: 5px;
+    background: lighten($color-black, 22%);
+    color: $color-white;
+    display:none;
+    font-size: 25px;
+    left: 50%;
+    margin-left: -150px;
+    padding: 10px;
+    position: absolute;
+    text-align: center;
+    top:0;
+    width: 300px;
+    z-index:7;
+}
+
+//code snippets wrapper
+.fx-docs-snippet-code {
+    border: 1px solid $code-snippet-container-border-color;
+    font-family: $fuxi-main-font!important;
+    margin: 10px 0;
+    padding: 10px;
+
+    &.alert {
+        background: $color-white;
+    }
+
+    h6,
+    strong {
+        font-family: $fuxi-main-font;
+    }
+}

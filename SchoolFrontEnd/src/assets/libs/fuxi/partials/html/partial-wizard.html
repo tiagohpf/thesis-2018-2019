@@ -1,0 +1,594 @@
+ <div id="fx-wizard-add-service" class="fx-wizard-wrapper"
+                             data-wiz-prev="#wiz-prev"
+                             data-wiz-next="#wiz-next"
+                             data-wiz-complete="#wiz-complete"
+                             data-step-opened="1"
+                             data-client-validator="validateAll"
+                             data-wizard>
+                            <nav>
+                                <ul class="list-unstyled fx-nav-items">
+                                    <li id="navWizStep1" class="fx-nav-link" data-client-validator="validateStep">
+                                        <a>
+                                            <span class="fx-wizardstep-number"> 1 </span>
+                                            <span class="fx-wizardstep-title">Tipo de serviço</span>
+                                            <button class="pull-right fx-wizardstep-error hidden fx-alert-button" type="button" rel="popover" data-toggle="popover" data-placement="right" data-html="true" data-content="Mensagem informativa">
+                                                <i class="fuxicons fuxicons-error"></i>
+                                            </button>
+
+                                            <div class="fx-wizardstep-info hidden">
+                                                <!--DEMO-->
+                                                <!--<ul class="fx-wizardstep-info-items">
+                                                    <li>
+                                                        Nome do serviço
+                                                    </li>
+                                                    <li class="step-decisision">
+                                                        Internet
+                                                    </li>
+                                                </ul>-->
+                                            </div>
+                                        </a>
+                                    </li>                                    
+                                    <li id="navWizStep2" class="fx-nav-link" data-client-validator="validateStep">
+                                        <a>
+                                            <span class="fx-wizardstep-number"> 2 </span>
+                                            <span class="fx-wizardstep-title">Parâmetros do serviço</span>
+                                            
+                                            <button class="pull-right fx-wizardstep-error hidden fx-alert-button" type="button" rel="popover" data-toggle="popover" data-placement="right" data-html="true" data-content="Mensagem informativa">
+                                                <i class="fuxicons fuxicons-error"></i>
+                                            </button>
+
+                                         
+                                            <div class="fx-wizardstep-info hidden">
+                                                <ul>
+                                                    <li>
+                                                        Parâmetro 1
+                                                    </li>
+                                                    <li>
+                                                        Parâmetro 2
+                                                    </li>
+                                                    <li>
+                                                        Parâmetro 3
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li id="navWizStep3" class="fx-nav-link" data-client-validator="validateStep">
+                                        <a>
+                                            <span class="fx-wizardstep-number"> 3 </span>
+                                            <span class="fx-wizardstep-title">Operador do serviço</span>
+                                            <button class="pull-right fx-wizardstep-error hidden fx-alert-button" type="button" rel="popover" data-toggle="popover" data-placement="right" data-html="true" data-content="Mensagem informativa">
+                                                <i class="fuxicons fuxicons-error"></i>
+                                            </button>
+                                            <div class="fx-wizardstep-info hidden">
+                                                <ul>
+                                                    <li>
+                                                        Oi
+                                                    </li>
+                                                    <li>
+                                                        ONT XPTO 1234
+                                                    </li>
+                                                    <li>
+                                                        Porto 65123
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li id="navWizStep4" class="fx-nav-link" data-client-validator="validateStep">
+                                        <a>
+                                            <span class="fx-wizardstep-number"> 4</span>
+                                            <span class="fx-wizardstep-title">Cliente aderente</span>
+                                            <button class="pull-right fx-wizardstep-error hidden fx-alert-button" type="button" rel="popover" data-toggle="popover" data-placement="right" data-html="true" data-content="Mensagem informativa">
+                                                <i class="fuxicons fuxicons-error"></i>
+                                            </button>
+                                            <div class="fx-wizardstep-info">
+                                                <ul>
+                                                    <li>
+                                                        Rui Manuel Costa
+                                                    </li>
+                                                    <li>
+                                                        ONT XPTO 9453
+                                                    </li>
+                                                    <li>
+                                                        Porto 35649
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <!--STEP 1-->
+                            <section id="wizStep1" class="fx-wizardsteps-content">
+                                <h4><span class="fx-wizardstep-number">1</span> | Tipo de serviço</h4>
+                                <p class="fx-required-fields-message">
+                                    Campos de preenchimento obrigatório
+                                </p>
+
+                                <div class="fx-wizardsteps-content-block">
+                                    <a class="fx-expand" data-toggle="collapse" data-target="#serviceID"> <i class="caret"></i> Identificação do serviço </a>
+                                    <div id="serviceID" class="collapse in">
+                                        <div class="form-horizontal">
+                                            <div class="form-group has-error">
+                                                <label for="serviceName" class="col-sm-2 control-label fx-required-field">Nome do serviço</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control input-sm" id="serviceName">
+                                                </div>
+                                            </div>
+                                            <div class="form-group ">
+                                                <label for="inputServiceType" class="col-sm-2 control-label">Tipo de serviço</label>
+                                                <div class="col-sm-10">
+                                                    <div class="input-group input-and-bt-icon">
+                                                        <input type="text" class="form-control input-sm" id="inputServiceType" value="Internet">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#selectServiceType">
+                                                                <i class="fa fa-ellipsis-h"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </section>
+
+                            <!--STEP 2-->
+                            <section id="wizStep2" class="fx-wizardsteps-content">
+                                <h4><span class="fx-wizardstep-number">2</span> | Parâmetros do serviço</h4>
+                                <p class="fx-required-fields-message">
+                                    Campos de preenchimento obrigatório
+                                </p>
+                                <div class="fx-wizardsteps-content-block">
+                                    <a class="fx-expand" data-toggle="collapse" data-target="#paramGroup1"> <i class="caret"></i> Grupo de parâmetros 1 </a>
+                                    <div id="paramGroup1" class="collapse in">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputParam1" class="col-sm-2 control-label">Parâmetro 1</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control input-sm" id="inputParam1" value="Texto do parâmetro">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputParam2" class="col-sm-2 control-label">Parâmetro 2</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control input-sm" id="inputParam2" value="Texto do parâmetro">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputParam3" class="col-sm-2 control-label">Parâmetro 3</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control input-sm" id="inputParam3" value="Texto do parâmetro">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputParam4" class="col-sm-2 control-label">Parâmetro 4</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control input-sm" id="inputParam4" value="Texto do parâmetro">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="fx-wizardsteps-content-block">
+                                    <a class="fx-expand" data-toggle="collapse" data-target="#paramGroup2"> <i class="caret"></i> Grupo de parâmetros 2 </a>
+                                    <div id="paramGroup2" class="collapse in">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="input-select-param1" class="col-sm-2 control-label">Grupo de opções 1</label>
+                                                <div class="col-sm-10">
+                                                    <select id="input-select-param1" class="form-control input-sm">
+                                                        <option>Opção 1</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="input-select-param2" class="col-sm-2 control-label">Grupo de opções 2</label>
+                                                <div class="col-sm-10">
+                                                    <select id="input-select-param2" class="form-control input-sm">
+                                                        <option>Opção 1</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="fx-wizardsteps-content-block">
+                                    <a class="fx-expand" data-toggle="collapse" data-target="#adminStatus"> <i class="caret"></i> Estado administrativo </a>
+                                    <div id="adminStatus" class="collapse in">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="input-select-status" class="col-sm-2 control-label">Estado</label>
+                                                <div class="col-sm-10">
+                                                    <select id="input-select-status" class="form-control input-sm">
+                                                        <option>Reservado</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </section>
+
+                            <!--STEP 3-->
+                            <section id="wizStep3" class="fx-wizardsteps-content">
+                                <h4><span class="fx-wizardstep-number">3</span> | Operador do serviço</h4>
+                                <p class="fx-required-fields-message">
+                                    Campos de preenchimento obrigatório
+                                </p>
+                                <div class="fx-wizardsteps-content-block">
+                                    <a class="fx-expand" data-toggle="collapse" data-target="#selectedOperator"> <i class="caret"></i> Identificação do operador </a>
+                                    <div id="selectedOperator" class="collapse in">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputSelectOperator" class="col-sm-2 control-label">Operador</label>
+                                                <div class="col-sm-10">
+                                                    <div class="input-group input-and-bt-icon">
+                                                        <input type="text" class="form-control input-sm" id="inputSelectOperator" value="Oi">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#selectOperator">
+                                                                <i class="fa fa-ellipsis-h"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="fx-wizardsteps-content-block">
+                                    <a class="fx-expand" data-toggle="collapse" data-target="#connectedTerminal"> <i class="caret"></i> Terminal associado </a>
+                                    <div id="connectedTerminal" class="collapse in">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="input-equipment" class="col-sm-2 control-label">Equipamento</label>
+                                                <div class="col-sm-10">
+                                                    <select id="input-equipment" class="form-control input-sm">
+                                                        <option>ONT XPTO 1234</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="input-entry-port" class="col-sm-2 control-label">Porto de entrada</label>
+                                                <div class="col-sm-10">
+                                                    <select id="input-entry-port" class="form-control input-sm">
+                                                        <option>65123</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </section>
+
+                            <!--STEP 4-->
+                            <section id="wizStep4" class="fx-wizardsteps-content">
+                                <h4><span class="fx-wizardstep-number">4</span> | Cliente aderente</h4>
+                                <p class="fx-required-fields-message">
+                                    Campos de preenchimento obrigatório
+                                </p>
+                                <div class="fx-wizardsteps-content-block">
+                                    <a class="fx-expand" data-toggle="collapse" data-target="#clientID"> <i class="caret"></i> Identificação do cliente </a>
+                                    <div id="clientID" class="collapse in">
+
+                                        <div class="form-inline">
+                                            <select id="input-client-id" class="form-control input-sm">
+                                                <option>Rui Manuel Costa</option>
+                                            </select>
+                                            <button class="btn btn-default btn-sm" role="button" data-toggle="modal" data-target="#newUser">
+                                                <i class="glyphicon glyphicon-plus"></i>
+                                                criar novo
+                                            </button>
+                                        </div>
+                                        <br />
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Endereço do lote</label>
+                                                <div class="col-sm-10">
+                                                    <p class="form-control-static">
+                                                        Rua das Moitas de Trás, 1223, 4º esq.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Celular</label>
+                                                <div class="col-sm-10">
+                                                    <p class="form-control-static">
+                                                        987 365 425
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">E-mail</label>
+                                                <div class="col-sm-10">
+                                                    <p class="form-control-static">
+                                                        rcosta@email.pt
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">CNPJ</label>
+                                                <div class="col-sm-10">
+                                                    <p class="form-control-static">
+                                                        888 998 111
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Coordenadas GPS do lote ou da CVP</label>
+                                                <div class="col-sm-10">
+                                                    <p class="form-control-static">
+                                                        N 52 22.361, E 4 53.579
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label"></label>
+                                                <div class="col-sm-10">
+                                                    <p class="form-control-static">
+                                                        <button data-target="#viewUser" data-toggle="modal" role="button" class="btn btn-default btn-sm">
+                                                            <i class="glyphicon glyphicon-user"></i>
+                                                            ver identificação completa
+                                                        </button>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="fx-wizardsteps-content-block">
+                                    <a class="fx-expand" data-toggle="collapse" data-target="#clientConnectedTerminal"> <i class="caret"></i> Terminal associado </a>
+                                    <div id="clientConnectedTerminal" class="collapse in">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="input-client-equipment" class="col-sm-2 control-label">Equipamento</label>
+                                                <div class="col-sm-10">
+                                                    <select id="input-client-equipment" class="form-control input-sm">
+                                                        <option>ONT XPTO 9453</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="input-client-entry-port" class="col-sm-2 control-label">Porto de entrada</label>
+                                                <div class="col-sm-10">
+                                                    <select id="input-client-entry-port" class="form-control input-sm">
+                                                        <option>35649</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!--STEP 5-->
+                            <section id="wizStep5" class="fx-wizardsteps-content">
+                                <h4><span class="fx-wizardstep-number">5</span> | Cliente aderente</h4>
+                                <p class="fx-required-fields-message">
+                                    Campos de preenchimento obrigatório
+                                </p>
+                                <div class="fx-wizardsteps-content-block">
+                                    <a class="fx-expand" data-toggle="collapse" data-target="#clientID"> <i class="caret"></i> Identificação do cliente </a>
+                                    <div id="clientID" class="collapse in">
+
+                                        <div class="form-inline">
+                                            <select id="input-client-id" class="form-control input-sm">
+                                                <option>Rui Manuel Costa</option>
+                                            </select>
+                                            <button class="btn btn-default btn-sm" role="button" data-toggle="modal" data-target="#newUser">
+                                                <i class="glyphicon glyphicon-plus"></i>
+                                                criar novo
+                                            </button>
+                                        </div>
+                                        <br />
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Endereço do lote</label>
+                                                <div class="col-sm-10">
+                                                    <p class="form-control-static">
+                                                        Rua das Moitas de Trás, 1223, 4º esq.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Celular</label>
+                                                <div class="col-sm-10">
+                                                    <p class="form-control-static">
+                                                        987 365 425
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">E-mail</label>
+                                                <div class="col-sm-10">
+                                                    <p class="form-control-static">
+                                                        rcosta@email.pt
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">CNPJ</label>
+                                                <div class="col-sm-10">
+                                                    <p class="form-control-static">
+                                                        888 998 111
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Coordenadas GPS do lote ou da CVP</label>
+                                                <div class="col-sm-10">
+                                                    <p class="form-control-static">
+                                                        N 52 22.361, E 4 53.579
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label"></label>
+                                                <div class="col-sm-10">
+                                                    <p class="form-control-static">
+                                                        <button data-target="#viewUser" data-toggle="modal" role="button" class="btn btn-default btn-sm">
+                                                            <i class="glyphicon glyphicon-user"></i>
+                                                            ver identificação completa
+                                                        </button>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="fx-wizardsteps-content-block">
+                                    <a class="fx-expand" data-toggle="collapse" data-target="#clientConnectedTerminal"> <i class="caret"></i> Terminal associado </a>
+                                    <div id="clientConnectedTerminal" class="collapse in">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="input-client-equipment" class="col-sm-2 control-label">Equipamento</label>
+                                                <div class="col-sm-10">
+                                                    <select id="input-client-equipment" class="form-control input-sm">
+                                                        <option>ONT XPTO 9453</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="input-client-entry-port" class="col-sm-2 control-label">Porto de entrada</label>
+                                                <div class="col-sm-10">
+                                                    <select id="input-client-entry-port" class="form-control input-sm">
+                                                        <option>35649</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <div class="fx-wizard-buttons-wrapper">
+                                <div class="fx-wizard-buttons-wrapper-inner">
+                                    <button id="wiz-prev" class="btn btn-default btn-sm disabled" type="button">
+                                        <i class="glyphicon glyphicon-chevron-left"></i>anterior
+                                    </button>
+                                    <button id="wiz-next" class="btn btn-default btn-sm" type="button">
+                                        seguinte<i class="glyphicon glyphicon-chevron-right"></i>
+                                    </button>
+                                    <button id="wiz-complete" class="btn btn-primary btn-sm" type="button">
+                                        finalizar
+                                    </button>
+                                    <button id="wiz-cancel" class="btn btn-default btn-sm" type="button" onclick="location.href='template-provisioning.html'">
+                                        cancelar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <script>
+        $(function () {
+
+
+            FUXI.Wizard.init({ 'isAsync': true, 'mode': FUXI.Wizard.modeEnum.EDIT });
+
+            /*enum
+            FUXI.Wizard.modeEnum = {
+    EDIT: 'EDIT',
+    INSERT: "INSERT",
+    VIEW: 'VIEW'
+}; */
+
+            $(document).on('goto.wizard.fuxi', function (e) {
+
+                console.log('goto.wizard.fuxi (currentStep/ targetStep)' + e.currentStep + " / " + e.targetStep);
+
+            });
+            $(document).on('complete.wizard.fuxi', function (e) {
+
+                console.log('complete.wizard.fuxi (currentStep/ targetStep)' + e.currentStep + " / " + e.targetStep);
+
+            });
+
+            $(document).on('next.wizard.fuxi', function (e) {
+
+                //e.Wizard.markStepAsInvalid(1);
+
+                console.log('next.wizard.fuxi (currentStep/ targetStep)' + e.currentStep + " / " + e.targetStep);
+
+                var summary;
+                summary = [
+                    { stepDecision: false, title: 'Nome do serviço', value: 'qq coisa aqui escolhida?' },
+                    { stepDecision: true, title: 'Tipo de serviço 2', value: 'internet!' }
+                ]
+
+                //summary = "QQ COISA AQUI COM QQ MAIS E MAIS  E MAIS QQ COISA!!"
+
+                e.Wizard.setSummary(e.currentStep, summary);
+
+            });
+            $(document).on('prev.wizard.fuxi', function (e) {
+
+                //e.Wizard.markStepAsInvalid(1);
+                console.log('prev.wizard.fuxi (currentStep/ targetStep)' + e.currentStep + " / " + e.targetStep);
+
+            });
+
+        });
+
+        function showDynamic(elem) {
+            var $this = $(elem);
+
+            FUXI.Wizard.toggleDynamicSteps($this.data('dynamic-decider'), elem.checked);
+            FUXI.Wizard.rearrangeNumeration($this.closest("[data-wizard]"));
+        }
+
+        // demo for function to validate steps
+        function validateStep(args) {
+            var step = args.step;
+            var w = args.Wizard;
+
+            var dt = new Date();
+            var s = dt.getSeconds();
+            console.log("seconds: " + s);
+                       
+
+            //console.log(step + "\n" + w);
+            switch (step) {
+                case 1:
+                    // função para validar o step 1...
+                    return { isValid: s % 2, message: '<p>Campos obrigatórios por preencher</p>' };
+                    break;
+                case 2:
+                    // função para validar o step 2...
+                    return { isValid: s % 2, message: '<p>Campos obrigatórios por preencher</p>' };
+                    break;
+                case 3:
+                    // função para validar o step 3...
+                    return { isValid: s % 2, message: '<p>Campos obrigatórios por preencher</p>' };
+                    break;
+                case 4:
+                    // função para validar o step 4...
+                    return { isValid: s % 2, message: '<p>Campos obrigatórios por preencher</p>' };
+                    break;
+                default:
+                    var msg = "Step " + step + " não tem função de validação associada!";
+                    throw msg;
+            }
+
+        }
+
+        function validateAll(args) {
+            console.log("validateAll() " + args);
+            var dt = new Date();
+            var s = dt.getSeconds();
+
+            return s % 2;
+        }
+    </script>

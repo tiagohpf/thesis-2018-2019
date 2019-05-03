@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge; text/html;" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0,  user-scalable=yes" />
+    
+    <title>Color picker</title>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.min.css" />
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+    <script src="/basepack/jquery/1.11/jquery.min.js"></script>
+
+    <!-- Respond.js - IE8 support of media queries -->
+    <!--[if lt IE 9]>
+    <script src="/fuxi/lib/respond/1.4/js/respond.min.js"></script>
+    <![endif]-->
+
+    <link href="/fuxi/lib/spectrum/1.6/css/spectrum.min.css" rel="stylesheet" />
+	<!--<link href="/fuxi/lib/laktek-colorpicker/css/colorPicker.css" rel="stylesheet" />-->
+
+    <style>
+        .spectrum,
+        .laktek-color-picker,
+        .simple-color-jquery {
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .color-picker-container {
+            margin: 20px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="fx-push-footer fx-full-height">
+        <header id="fx-header">
+            <nav class="fx-navbar" role="navigation">
+                <a class="fx-brand" href="#"><h1 class="fx-logo-brand">Fuxi</h1></a>
+            </nav>
+            <!-- breadcrumb -->
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#"><i class="fuxicons fuxicons-home"></i>Início</a>
+                </li>
+                <li>
+                    <a href="#">Link</a>
+                </li>
+                <li class="active">
+                    Ativo
+                </li>
+            </ul>
+        </header>
+        <div class="fx-prevent-content-behind-footer fx-full-height">
+
+            <div class="fx-main-content-wrapper">
+                <div class="color-picker-container">
+
+                    <h1>Spectrum Color picker</h1>
+                    <p><a href="http://bgrins.github.io/spectrum/" target="_blank">http://bgrins.github.io/spectrum/</a></p>
+                    <div class="spectrum">
+                        <input type='text' id="custom" />
+                        <script language="javascript" type="text/javascript">
+                        /*options = {
+                            color: tinycolor,
+                            flat: bool,
+                            showInput: bool,
+                            showInitial: bool,
+                            allowEmpty: bool,
+                            showAlpha: bool,
+                            disabled: bool,
+                            localStorageKey: string,
+                            showPalette: bool,
+                            showPaletteOnly: bool,
+                            togglePaletteOnly: bool,
+                            showSelectionPalette: bool,
+                            clickoutFiresChange: bool,
+                            cancelText: string,
+                            chooseText: string,
+                            togglePaletteMoreText: string,
+                            togglePaletteLessText: string,
+                            containerClassName: string,
+                            replacerClassName: string,
+                            preferredFormat: string,
+                            maxSelectionSize: int,
+                            palette: [[string]],
+                            selectionPalette: [string]
+                        };*/
+                        
+                        $(document).ready(function () {
+                            $("#custom").spectrum({
+                                color: "#f00",
+                                showAlpha: true,
+                                showPalette: true,
+                                palette: [
+                                    ['black', 'white', 'blanchedalmond'],
+                                    ['rgb(255, 128, 0);', 'hsv 100 70 50', 'lightyellow']
+                                ]
+                            });
+                        });
+                        </script>
+                    </div>
+
+                    <!--<h1>Laktek Color picker</h1>
+                    <p><a href="https://github.com/laktek/really-simple-color-picker" target="_blank">https://github.com/laktek/really-simple-color-picker</a></p>
+                    <div class="laktek-color-picker">
+                        <input type="text" id="color1" name="color1" value="#f00" />
+                        <script language="javascript" type="text/javascript">
+                        $(document).ready(function () {
+                            $('#color1').colorPicker({
+                                pickerDefault: "ff0000"
+                            });
+                        });
+                        </script>
+                    </div>
+
+                    <h1>Simple Color jQuery</h1>
+                    <p><a href="https://github.com/recurser/jquery-simple-color" target="_blank">https://github.com/recurser/jquery-simple-color</a></p>
+                    <div class="simple-color-jquery">
+                        <script type="text/javascript">
+                        $(document).ready(function () {
+                            $('.close_button').click(function (event) {
+                                $('.simple-color-jquery input').closeChooser();
+                            });
+                            $('.set_color_button').click(function (event) {
+                                $('.simple-color-jquery input').setColor('#ff0000');
+                            });
+                            $('.simple_color').simpleColor();
+                            $('.simple_color_color_code').simpleColor({ displayColorCode: true });
+                            $('.simple_color_custom_chooser_css').simpleColor({ chooserCSS: { 'background-color': 'black', 'opacity': '0.8' } });
+                            $('.simple_color_custom_display_css').simpleColor({ displayCSS: { 'border': '1px solid red' } });
+                            $('.simple_color_custom_cell_size').simpleColor({ cellWidth: 30, cellHeight: 10 });
+                            $('.simple_color_live_preview').simpleColor({ livePreview: true });
+                            $('.simple_color_callback').simpleColor({
+                                onSelect: function (hex, element) {
+                                    alert("You selected #" + hex + " for input #" + element.attr('class'));
+                                }
+                            });
+                            $('.simple_color_mouse_enter').simpleColor({
+                                onCellEnter: function (hex, element) {
+                                    console.log("You just entered #" + hex + " for input #" + element.attr('class'));
+                                }
+                            });
+                            $('.simple_color_kitchen_sink').simpleColor({
+                                boxHeight: 40,
+                                cellWidth: 20,
+                                cellHeight: 20,
+                                chooserCSS: { 'border': '1px solid #660033' },
+                                displayCSS: { 'border': '1px solid red' },
+                                displayColorCode: true,
+                                livePreview: true,
+                                onSelect: function (hex, element) {
+                                    alert("You selected #" + hex + " for input #" + element.attr('class'));
+                                },
+                                onCellEnter: function (hex, element) {
+                                    console.log("You just entered #" + hex + " for input #" + element.attr('class'));
+                                },
+                                onClose: function (element) {
+                                    alert("color chooser closed for input #" + element.attr('class'));
+                                }
+                            });
+                        });
+                        </script>
+                        <button class='close_button'>Close all color choosers</button>
+                        <button class='set_color_button'>Set all to red</button>
+
+                        <div style="display:table-row">
+                            <div style="display:table-cell; padding: 0 10px">
+                                <h3>Basic</h3>
+                                <input class='simple_color' value='#cc3333' />
+                            </div>
+                            <div style="display:table-cell; padding: 0 10px">
+                                <h3>Display Color Code</h3>
+                                <input class='simple_color_color_code' value='#33cc33' />
+                            </div>
+                            <div style="display:table-cell; padding: 0 10px">
+                                <h3>Custom Color Chooser CSS</h3>
+                                <input class='simple_color_custom_chooser_css' value='#ff6633' />
+                            </div>
+                            <div style="display:table-cell; padding: 0 10px">
+                                <h3>Custom Color Display CSS</h3>
+                                <input class='simple_color_custom_display_css' value='#ccffff' />
+                            </div>
+                            <div style="display:table-cell; padding: 0 10px">
+                                <h3>Custom Cell Size</h3>
+                                <input class='simple_color_custom_cell_size' value='#cc9966' />
+                            </div>
+                            <div style="display:table-cell; padding: 0 10px">
+                                <h3>With Live Preview</h3>
+                                <input class='simple_color_live_preview' value='#ff00ff' />
+                            </div>
+                            <div style="display:table-cell; padding: 0 10px">
+                                <h3>With Callback</h3>
+                                <input class='simple_color_callback' value='#cc3333' />
+                            </div>
+                            <div style="display:table-cell; padding: 0 10px">
+                                <h3>With Mouse Entry Events (see javascript console)</h3>
+                                <input class='simple_color_mouse_enter' value='#336600' />
+                            </div>
+                            <div style="display:table-cell; padding: 0 10px">
+                                <h3>Kitchen Sink</h3>
+                                <input class='simple_color_kitchen_sink' value='#993300' />
+                            </div>
+                        </div>
+                    </div>-->
+
+                </div>
+            </div>
+
+        </div>
+        <!-- FOOTER ABOUT -->
+        <!--# include file="/fuxi/partials/html/partial-footer-about.html" -->
+    </div>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+    <script src="/fuxi/common/exec/fuxi.min.js"></script>
+
+    <script src="/fuxi/lib/spectrum/1.6/js/spectrum.min.js"></script>
+    <!--<script src="/fuxi/lib/laktek-colorpicker/jquery.colorPicker.js"></script>
+    <script src="/fuxi/lib/jquery-simple-color/jquery.simple-color.js"></script>-->
+
+    <script>
+        (function ($) {
+
+            var localization = $.spectrum.localization["pt-pt"] = {
+                cancelText: "cancelar",
+                chooseText: "escolher",
+                clearText: "limpar",
+                togglePaletteMoreText: 'mais',
+                togglePaletteLessText: 'menos'
+            };
+
+            $.extend($.fn.spectrum.defaults, localization);
+
+        })(jQuery);
+    </script>
+
+</body>
+</html>

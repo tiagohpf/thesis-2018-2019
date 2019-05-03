@@ -1,0 +1,211 @@
+
+
+<h3 id="docs-form-groups">Grupos em formulários</h3>
+<p>Tipicamente os formulários das aplicações que usam FUXI como base são bastante complexos. Como tal desenvolveu-se uma estratégia que permite ter grupos agrupadores, que podem ser colapsáveis caso tal se pretenda.</p>
+<div class="alert alert-info">
+    <p>Invocando esta porção de código <code>FUXI.ExpandableForm.init();</code> tornará os grupos colapsáveis.</p>
+</div>
+<div class="fx-docs-snippet-code">
+    <div>
+        <div class="fx-form-content fx-expandable-form-blocks">
+            <div class="form-horizontal">
+                <div class="fx-form-block">
+                    <div class="fx-form-block-help fx-first">
+                        <h6><i class="caret"></i>Grupo 1</h6>
+                        <p>
+                            Breve descrição do grupo 1
+                        </p>
+                    </div>
+                    <div class="fx-form-block-controls fx-first">
+                        <div class="form-group">
+                            <label for="form-group-username" class="col-sm-2 control-label">Nome</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="form-group-username" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="form-group-address">Morada</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="form-group-address" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fx-form-block">
+                    <div class="fx-form-block-help">
+                        <h6><i class="caret"></i>Grupo 2</h6>
+                        <p>Breve descrição do grupo 2</p>
+                    </div>
+                    <div class="fx-form-block-controls">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="form-group-password">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" id="form-group-password" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="form-group-confirm-password">Confirme Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" id="form-group-confirm-password" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<div class="fx-form-content fx-expandable-form-blocks">
+    <div class="form-horizontal">
+        <div class="fx-form-block">
+            <div class="fx-form-block-help fx-first">
+                <h6><i class="caret"></i>Grupo 1</h6>
+                <p>
+                    Breve descrição do grupo 1
+                </p>
+            </div>
+            <div class="fx-form-block-controls fx-first">
+                <div class="form-group">
+                    <label for="form-group-username" class="col-sm-2 control-label">Nome</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="form-group-username" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="form-group-address">Morada</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="form-group-address" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fx-form-block">
+            <div class="fx-form-block-help">
+                <h6><i class="caret"></i>Grupo 2</h6>
+                <p>Breve descrição do grupo 2</p>
+            </div>
+            <div class="fx-form-block-controls">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="form-group-password">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" id="form-group-password" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="form-group-confirm-password">Confirme Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" id="form-group-confirm-password" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </textarea>
+    </form>
+</div>
+<h4>
+    Variação gráfica dos grupos em formulários 
+</h4>
+<p>Em resoluções mais pequenas ou por exemplo em janelas modais, através da inclusão da class de controlo <code>.fx-toggle-form-vertical</code> em conjunto com a class <code>.form-horizontal</code> o aspeto dos grupos é transformado.</p>
+<div class="fx-docs-snippet-code">
+    <div>
+        <div class="fx-form-content fx-expandable-form-blocks">
+            <div class="form-horizontal fx-toggle-form-vertical">
+                <div class="fx-form-block">
+                    <div class="fx-form-block-help fx-first">
+                        <h6><i class="caret"></i>Grupo 1</h6>
+                        <p>
+                            Breve descrição do grupo 1
+                        </p>
+                    </div>
+                    <div class="fx-form-block-controls fx-first">
+                        <div class="form-group">
+                            <label for="form-group-username-alt" class="col-sm-2 control-label">Nome</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="form-group-username-alt" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="form-group-address-alt">Morada</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="form-group-address-alt" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fx-form-block">
+                    <div class="fx-form-block-help">
+                        <h6><i class="caret"></i>Grupo 2</h6>
+                        <p>Breve descrição do grupo 2</p>
+                    </div>
+                    <div class="fx-form-block-controls">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="form-group-password-alt">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" id="form-group-password-alt" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="form-group-confirm-password-alt">Confirme Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" id="form-group-confirm-password-alt" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<div class="fx-form-content fx-expandable-form-blocks">
+    <div class="form-horizontal fx-toggle-form-vertical">
+        <div class="fx-form-block">
+            <div class="fx-form-block-help fx-first">
+                <h6><i class="caret"></i>Grupo 1</h6>
+                <p>
+                    Breve descrição do grupo 1
+                </p>
+            </div>
+            <div class="fx-form-block-controls fx-first">
+                <div class="form-group">
+                    <label for="form-group-username" class="col-sm-2 control-label">Nome</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="form-group-username" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="form-group-address">Morada</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="form-group-address" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fx-form-block">
+            <div class="fx-form-block-help">
+                <h6><i class="caret"></i>Grupo 2</h6>
+                <p>Breve descrição do grupo 2</p>
+            </div>
+            <div class="fx-form-block-controls">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="form-group-password">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" id="form-group-password" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="form-group-confirm-password">Confirme Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" id="form-group-confirm-password" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </textarea>
+    </form>
+</div>

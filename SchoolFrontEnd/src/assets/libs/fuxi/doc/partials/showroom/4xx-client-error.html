@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--# include file="/fuxi/doc/partials/showroom/partials/head-templates.html" -->
+    <title>Template 4xx Client Error</title>
+</head>
+<body>
+
+    <div class="fx-error-wrapper fx-client-error">
+        <div class="fx-error-container">
+            <div class="fx-error-inner">
+
+                <!--TEMPLATE GOES HERE-->
+                <div id="body-template"></div>
+
+                <div class="fx-error-timestamp">
+                    <p>Hora servidor: Tue Apr 4 16:01:12 WEST 2015</p>
+                    <p>Hora cliente: Tue Apr 4 16:01:12 GMT+0100 (Hora de Verão de GMT)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal" id="modal" tabindex="-1" role="dialog" aria-labelledby="em-modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="modal">Em modal</h4>
+                </div>
+                <div class="modal-body">
+
+                    <!-- CLIENT ERROR IN MODAL -->
+                    <div class="fx-error-wrapper fx-client-error">
+                        <div class="fx-error-container">
+                            <div class="fx-error-inner">
+
+                                <!--TEMPLATE GOES HERE-->
+                                <div id="modal-template"></div>
+
+                                <div class="fx-error-timestamp">
+                                    <p>Hora servidor: Tue Apr 4 16:01:12 WEST 2015</p>
+                                    <p>Hora cliente: Tue Apr 4 16:01:12 GMT+0100 (Hora de Verão de GMT)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">
+                        fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="template-desc-container right-pos fixed maximized">
+        <div class="template-desc-header clearfix">
+            <div class="template-desc-actions">
+                <button id="btn-detach" class="btn btn-xs btn-link" title="destacar">
+                    <i class="fuxicons fuxicons-open-in-window"></i>
+                </button>
+                <button id="btn-fix" class="btn btn-xs btn-link hidden" title="fixar">
+                    <i class="fuxicons fuxicons-restore-from-window"></i>
+                </button>
+                <button id="btn-minimize" class="btn btn-xs btn-link" title="minimizar">
+                    <i class="glyphicon glyphicon-minus"></i>
+                </button>
+                <button id="btn-maximize" class="btn btn-xs btn-link hidden" title="maximizar">
+                    <i class="glyphicon glyphicon-plus"></i>
+                </button>
+            </div>
+            <h3><i class="fx-drag-bright"></i> Informação útil</h3>
+        </div>
+
+
+        <div class="template-desc-body">
+            <ul class="list-unstyled">
+                <li>
+                    <p>Sessão expirada</p>
+                    <a href="#" class="btn btn-default btn-sm active" onclick=loadErrorTemplate('4xx');>Sessão expirada</a>
+                </li>
+                <li>
+                    <hr />
+                    <p>Em manutenção</p>
+                    <a href="#" class="btn btn-default btn-sm" onclick=loadErrorTemplate('503');>Em manutenção - 503</a>
+                </li>
+                <li>
+                    <hr />
+                    <p>Pedido Inválido</p>
+                    <a href="#" class="btn btn-default btn-sm" onclick=loadErrorTemplate('400');>Pedido inválido - 400</a>
+                </li>
+                <li>
+                    <hr />
+                    <p>Acesso não autorizado</p>
+                    <a href="#" class="btn btn-default btn-sm" onclick=loadErrorTemplate('401');>Acesso não autorizado - 401</a>
+                </li>
+                <li>
+                    <hr />
+                    <p>Página não encontrada</p>
+                    <a href="#" class="btn btn-default btn-sm" onclick=loadErrorTemplate('404');>Página não encontrada - 404</a>
+                </li>
+
+                <li>
+                    <hr>
+                    <p>Erro em modal. Apresentará o erro que atualmente está a ser visto em página.</p>
+                    <a data-target="#modal" data-toggle="modal" href="#" class="btn btn-default btn-sm" id="btn-error-modal">página de erro em modal</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- TEMPLATE -->
+    <script id="template" type="text/template">
+        <div class="fx-error-icon-box">
+            <div class="fx-error-icon">
+                <i class="{{ICON}}"></i>
+            </div>
+        </div>
+
+        <div class="fx-error-info">
+            <p>{{INFO}}</p>
+        </div>
+
+        <div class="fx-error-description">
+            <p>{{DESCRIPTION}}</p>
+        </div>
+
+        <div class="fx-error-action">
+            <p>{{ACTION}}</p>
+        </div>
+    </script>
+
+    <!--# include file="/fuxi/doc/partials/showroom/partials/scripts-templates.html" -->
+
+
+    <script>
+        // DEMO PURPOSE ONLY
+        var errors = [
+                {
+                    id: '4xx',
+                    icon: 'fuxicons fuxicons-session',
+                    info: 'Sessão expirada',
+                    description: 'A sua sessão expirou. Os dados não foram guardados/submetidos.',
+                    action: 'Clique para <a href="#">iniciar sessão</a> novamente.'
+                },
+                {
+                    id: '503',
+                    icon: 'fuxicons fuxicons-configuration',
+                    info: 'Em manutenção - 503',
+                    description: 'Pedimos desculpa, mas a aplicação está em manutenção. Prometemos ser breves.',
+                    action: 'Contacte o <a href="#">suporte</a>.'
+                },
+                {
+                    id: '400',
+                    icon: 'glyphicon glyphicon-flash',
+                    info: 'Pedido inválido - 400',
+                    description: 'Pedimos desculpa, mas não foi possível completar o pedido.',
+                    action: 'Por favor <a href="#">tente novamente</a> ou contactar o <a href="#">suporte</a>.'
+                },
+                {
+                    id: '401',
+                    icon: 'fuxicons fuxicons-session',
+                    info: 'Acesso não autorizado - 401',
+                    description: 'Não tem permissões para aceder à área ou à página com as credenciais que lhe foram fornecidas.',
+                    action: 'Contacte o <a href="#">administrador</a> do sistema ou o <a href="#">suporte</a>.'
+                },
+                {
+                    id: '404',
+                    icon: 'fa fa-unlink',
+                    info: 'Página não encontrada - 404',
+                    description: 'Pedimos desculpa, mas não encontramos a página que procura.',
+                    action: 'Pode voltar para o <a href="#">portal</a> ou para a <a href="#">página inicial do módulo</a> que estava a consultar.'
+                }
+        ], template = $("#template").html();
+
+        function loadErrorTemplate(error) {
+            var html = [],
+                arr = jQuery.grep(errors, function (it, idx) {
+                    return it.id == error;
+                })[0];
+
+            html.push(template
+                .replace(/{{ICON}}/gi, arr.icon)
+                .replace(/{{INFO}}/gi, arr.info)
+                .replace(/{{DESCRIPTION}}/gi, arr.description)
+                .replace(/{{ACTION}}/gi, arr.action));
+
+            $("#body-template").html(html.join(""));
+            $("#modal-template").html(html.join(""));
+        };
+
+        $(document).ready(function () {
+            utils.templateDesc();
+            loadErrorTemplate('4xx');
+            utils.activeButton();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--# include file="/fuxi/doc/partials/head.html" -->
+    <title>Guidelines - FUXI</title>
+</head>
+<body data-spy="scroll" data-target="#fx-docs-nav">
+    <!--# include file="/fuxi/doc/partials/header.html" -->
+    <div class="fx-docs-container">
+        <!--view starts here-->
+        <div class="fx-mast-head">
+            <div class="row">
+                <div class="col-md-3 col-lg-2 ">
+                    <h1>Guidelines</h1>
+                </div>
+                <div class="col-md-9 col-lg-10">
+                    <p>
+                        Regras que a equipa de U&UX segue para tornar o código mais legível e fácil de manter.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="fx-docs-main-content">
+            <div class="row">
+                <div class="col-md-3 cenas">
+                    <!--# include file="/fuxi/doc/partials/guidelines/page-menu.html" -->
+                </div>
+                <div class="col-md-9">
+                    <section class="fx-docs-section">
+                        <!--# include file="/fuxi/doc/partials/guidelines/html/html-root.html" -->
+                        <!--# include file="/fuxi/doc/partials/guidelines/html/html-code-rules.html" -->
+                    </section>
+                    <section class="fx-docs-section">
+                        <!--# include file="/fuxi/doc/partials/guidelines/css/css-root.html" -->
+                        <!--# include file="/fuxi/doc/partials/guidelines/css/css-code-rules.html" -->
+                        <!--# include file="/fuxi/doc/partials/guidelines/css/css-specificity.html" -->
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--# include file="/fuxi/doc/partials/footer.html" -->
+    </div>
+    <!--# include file="/fuxi/doc/partials/scripts.html" -->
+    <script>
+        $(document).ready(function () {
+            devGuideUtils.setActiveNavItem();
+            devGuideUtils.setCodeMirror();
+            devGuideUtils.onResizeWindow();
+        });
+    </script>
+</body>
+</html>

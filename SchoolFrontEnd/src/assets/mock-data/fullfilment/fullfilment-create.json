@@ -1,0 +1,363 @@
+{
+  "type": "page",
+  "id": "createFullfilment",
+  "header": {
+    "id": "createFullfilment",
+    "_seo": {
+      "text": "Create New Api",
+      "icon": "fa fa-briefcase"
+    },
+    "details": [
+      {
+        "type": "label",
+        "text": null,
+        "class": "col-md-12 back",
+        "value": "<i class='icomoon icon-go' ></i> <span>{{@fv()@i18n('generic___operations___back')}}</span>",
+        "navigateTo": "/fullfilments"
+      },
+      {
+        "type": "label",
+        "class": "title-create",
+        "text": null,
+        "value": "<h2>{{@fv()@i18n('application___fullfilments')}}</h2>"
+      }
+    ]
+  },
+  "tabs": [
+    {
+      "components": [
+        {
+          "type": "initParameters",
+          "details": [
+            {
+              "type": "groupParameters",
+              "class": "col-sm-12 ",
+              "id": "createFullfilmentNames",
+              "text": "application___fullfilmentDetails",
+              "parameters": [
+                {
+                  "type": "textbox",
+                  "id": "name",
+                  "text": "application___name",
+                  "class": "col-sm-6",
+                  "validator": {
+                    "required": [
+                      true,
+                      "warnings___fieldRequired"
+                    ]
+                  },
+                  "parameters": [
+                    {
+                      "key": "inlineHelp",
+                      "value": {
+                          "text": "help___fullfilment___create___name"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "input-radio",
+                  "hidden": true,
+                  "id": "type",
+                  "class": "col-md-6",
+                  "text": "application___type",
+                  "apiFieldName": "",
+                  "placeholder": "application___type",
+                  "valueList": [
+                    {
+                      "key": "customerSystem",
+                      "value": "application___customerSystem"
+                    },
+                    {
+                      "key": "external",
+                      "value": "application___external"
+                    }
+                  ],
+                  "validator": {
+                    "required": [
+                      true,
+                      "warnings___fieldRequired"
+                    ]
+                  }
+                },
+                {
+                  "type": "textbox",
+                  "id": "description",
+                  "class": "col-sm-6",
+                  "text": "application___description",
+                  "value": "",
+                  "validator": {
+                    "required": [
+                      true,
+                      "warnings___fieldRequired"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "groupParameters",
+              "id": "createFullfilmentDefinitions",
+              "class": "col-sm-12",
+              "text": "application___fullfilmentDefinition",
+              "pathToValue": "",
+              "parameters": [
+                {
+                  "type": "operations",
+                  "text": null,
+                  "class": "fullfilmentDefinition_buttons",
+                  "operations": {
+                    "size": 3,
+                    "parameters": [
+                      {
+                        "type": "updatePage",
+                        "id": "endPoint_Button",
+                        "class": "active",
+                        "text": "application___endpoint",
+                        "dynamicProps": {
+                          "text": "'{{@fv()@i18n('application___endpoint')}} <span class=\"parametersCounter\"> {{@fv()@tupleLineCounter(@replaceTagVars('endpoint_parameters'))}} </span>'"
+                        },
+                        "parameters": [
+                          {
+                            "key": "updatePageParameter",
+                            "value": {
+                              "endpoint_Tab": {
+                                "hidden": false
+                              },
+                              "header_Tab": {
+                                "hidden": true
+                              },
+                              "body_Tab": {
+                                "hidden": true
+                              },
+                              "endPoint_Button": {
+                                "class": "active"
+                              },
+                              "headers_Button": {
+                                "class": ""
+                              },
+                              "body_Button": {
+                                "class": ""
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "updatePage",
+                        "id": "headers_Button",
+                        "class": "",
+                        "dynamicProps": {
+                          "text": "'{{@fv()@i18n('application___headers')}} <span class=\"parametersCounter\"> {{@fv()@tupleLineCounter(@replaceTagVars('header_parameters'))}} </span>'"
+                        },
+                        "text": "application___headers",
+                        "parameters": [
+                          {
+                            "key": "updatePageParameter",
+                            "value": {
+                              "endpoint_Tab": {
+                                "hidden": true
+                              },
+                              "header_Tab": {
+                                "hidden": false
+                              },
+                              "body_Tab": {
+                                "hidden": true
+                              },
+                              "endPoint_Button": {
+                                "class": ""
+                              },
+                              "headers_Button": {
+                                "class": "active"
+                              },
+                              "body_Button": {
+                                "class": ""
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "updatePage",
+                        "id": "body_Button",
+                        "class": "",
+                        "text": "application___body",
+                        "parameters": [
+                          {
+                            "key": "updatePageParameter",
+                            "value": {
+                              "endpoint_Tab": {
+                                "hidden": true
+                              },
+                              "header_Tab": {
+                                "hidden": true
+                              },
+                              "body_Tab": {
+                                "hidden": false
+                              },
+                              "endPoint_Button": {
+                                "class": ""
+                              },
+                              "headers_Button": {
+                                "class": ""
+                              },
+                              "body_Button": {
+                                "class": "active"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "include": "fullfilment/fullfilment-endPoint"
+                },
+                {
+                  "include": "fullfilment/fullfilment-header"
+                },
+                {
+                  "include": "fullfilment/fullfilment-body"
+                }
+              ]
+            },
+            {
+              "type": "groupParameters",
+              "id": "createFullfilmentVariables",
+              "class": "col-sm-12",
+              "text": "application___fullfilmentAnswerVariables",
+              "pathToValue": "",
+              "parameters": [
+                {
+                  "type": "wct-tuple-list",
+                  "id": "createFullfilmentVariables_tuple",
+                  "class": "col-sm-12",
+                  "text": null,
+                  "pathToValueList": [
+                    "headers"
+                  ],
+                  "min": 1,
+                  "details": [
+                    {
+                      "type": "textbox",
+                      "id": "fullfilmentVariables_name",
+                      "text": "application___variableName",
+                      "class": "col-sm-4",
+                      "parameters": [
+                        {
+                          "key": "inlineHelp",
+                          "value": {
+                              "text": "help___fullfilment___create___variableName"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "textbox",
+                      "id": "fullfilmentVariables_path",
+                      "text": "application___path",
+                      "class": "col-sm-8",
+                      "parameters": [
+                        {
+                          "key": "inlineHelp",
+                          "value": {
+                              "text": "help___fullfilment___create___path"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "operations",
+              "operations": {
+                "id": "pageHeaderOperations",
+                "text": "generic___operations___operations",
+                "icon": "glyphicon glyphicon-cog",
+                "size": 3,
+                "parameters": [
+                  {
+                    "type": "navigate",
+                    "text": "generic___operations___cancel",
+                    "class": "btn-force-default btn-default",
+                    "navigateTo": "/fullfilments"
+                  },
+                  {
+                    "type": "submit",
+                    "id": "customerCreateSave",
+                    "text": "generic___operations___save",
+                    "class": "btn-primary",
+                    "parameters": [
+                      {
+                        "key": "onSuccess",
+                        "value": {
+                          "navigateTo": {
+                            "route": "integrations/fullfilments"
+                          }
+                        }
+                      },
+                      {
+                        "key": "requestEndpoint",
+                        "value": "{{subscription_xapi_ms}}/services"
+                      },
+                      {
+                        "key": "requestHeaders",
+                        "value": {
+                          "Authorization": "Bearer {{token}}",
+                          "IXS": "{{IXS_id}}"
+                        }
+                      },
+                      {
+                        "key": "requestType",
+                        "value": "POST"
+                      },
+                      {
+                        "key": "requestBody",
+                        "type": "json",
+                        "value": {
+                          "name": "{{name}}",
+                          "description": "{{description}}",
+                          "endpoint": "{{endpoint_url_complex}}",
+                          "httpMethod": "{{endpoint_method}}",
+                          "headers": "{{@fv()@arrayObjToObject(@replaceTagVars('header_parameters'))}}",
+                          "authorizationType": "{{header_authorization_type}}",
+                          "authorizationStatus": "{{header_authorization}}",
+                          "token": "{{header_authorization_token}}",
+                          "username": "{{header_authorization_username}}",
+                          "password": "{{header_authorization_password}}",
+                          "body": "{{@fv()JSON.parse(@replaceTagVars('body_raw_body'))}}",
+                          "ContentType": "{{body_format}}",
+                          "queryParameters": "{{endpoint_parameters}}",
+                          "responseFilterMapper": "{{@fv()@arrayObjToObject(@replaceTagVars('createFullfilmentVariables_tuple'))}}"
+                        },
+                        "parameters": [
+                          {
+                            "key": "paramAsString",
+                            "value": [
+                              "body"
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "key": "successText",
+                        "value": "fullfilment___createMessageSuccess"
+                      },
+                      {
+                        "key": "reload",
+                        "value": false
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

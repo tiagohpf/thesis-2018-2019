@@ -1,0 +1,124 @@
+{
+    "type": "initParameters",
+    "id": "testsetPrpertiesViewPropertiesContent",
+    "urlResource": [
+        {
+            "key": "path",
+            "value": "{{SchoolBOT}}/students?5b940ebab1370d3d8078bbda"
+        },
+        {
+            "key": "pathToMainData",
+            "value": [
+                "_embedded",
+                "0"
+            ]
+        },
+        {
+          "key": "headers",
+          "value": {
+            "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+          }
+        },
+        {
+            "key": "reload",
+            "value": false
+        }
+    ],
+    "details": [
+        {
+            "type": "label",
+            "id": "baseQuestionsMainPropertiesName",
+            "class": "col-md-6",
+            "text": "Name",
+            "pathToValue": [
+                "$this['name']"
+            ]
+        },
+        {
+            "type": "label",
+            "id": "baseQuestionsMainPropertiesGender",
+            "class": "col-md-6",
+            "text": "Gender",
+            "pathToValue": [
+                "$this['gender']"
+            ]
+        },
+        {
+            "type": "label",
+            "id": "baseQuestionsMainPropertiesLanguage",
+            "class": "col-md-6",
+            "text": "Language",
+            "pathToValue": [
+                "$this['language']"
+            ]
+        },
+        {
+            "_type": "initParameters",
+            "TODO": "Rever isto",
+            "id": "baseQuestionsMainPropertiesCourseNameContainer",
+            "urlResource": [
+                {
+                    "key": "id",
+                    "value": "coursesEndpoint"
+                },
+                {
+                    "key": "path",
+                    "value": "{{SchoolBOT}}/students?5b940ebab1370d3d8078bbda"
+                },
+                {
+                  "key": "headers",
+                  "value": {
+                    "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                  }
+                }
+            ],
+            "details": [
+                {
+                    "type": "label",
+                    "id": "baseQuestionsMainPropertiesCourseId",
+                    "pathToValue": [
+                        "_embedded",
+                        "0",
+                        "_id",
+                        "$oid"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "groupParameters",
+            "id": "testsetPrpertiesViewPropertiesContentGroup1",
+            "text": "Additional Information",
+            "parameters": [
+                {
+                    "type": "label",
+                    "id": "baseQuestionsMainPropertiesName",
+                    "text": "Name",
+                    "class": "col-md-6",
+                    "pathToValue": [
+                        "$this['name']"
+                    ]
+                },
+                {
+                    "type": "label",
+                    "id": "baseQuestionsMainPropertiesGender",
+                    "text": "Gender",
+                    "class": "col-md-6",
+                    "pathToValue": [
+                        "$this['gender']"
+                    ]
+                },
+                {
+                    "type": "label",
+                    "id": "baseQuestionsMainPropertiesDescription",
+                    "text": "Description",
+                    "pathToValue": [
+                        "$this['description']"
+                    ]
+                }
+            ]
+        }
+    ]
+}

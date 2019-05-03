@@ -1,0 +1,156 @@
+﻿//Main nav
+.navbar {
+    border-radius: 0;
+}
+
+.fx-main-nav {
+    border-bottom: 1px solid $main-nav-border-color;
+    position: fixed;
+    transition: top .6s ease-in-out;
+    -webkit-transition: top .6s ease-in-out;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+
+    .navbar {
+        background: $main-nav-bg-color;
+        border: 0;
+        margin-bottom: 0;
+    }
+
+    .navbar-collapse {
+        border-color: $main-nav-border-color;
+    }
+
+    .navbar-nav > li {
+
+        > a {
+            color: $nav-link-txt-color;
+            font-size: 15px;
+            padding-left: 9px;
+            padding-right: 9px;
+        }
+
+        > a:hover,
+        > a:focus,
+        &.active > a,
+        &.active > a:hover,
+        &.active > a:focus {
+            background: $nav-link-hover-bg-color;
+            color: inherit;
+        }
+    }
+
+    .navbar-brand {
+        color: $nav-link-txt-color;
+        font-family: 'open_sansbold';
+        font-size: 22px;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-transform: uppercase;
+
+        &:hover,
+        &:focus {
+            background: $nav-link-hover-bg-color;
+            color: inherit;
+        }
+    }
+    
+    .navbar-toggle { //button that appears on small screens to trigger main nav
+
+        &:hover,
+        &:focus {
+            background: $main-nav-icon-toggler-hover-bg-color;
+            border-color: $main-nav-icon-toggler-hover-border-color;
+        }
+
+        .icon-bar {
+            background: $main-nav-icon-toggler-color;
+        }
+    }
+}
+
+.fx-main-nav-up {
+    top: -400px;
+}
+
+
+//DOCS NAV
+.fx-docs-sidebar.affix { //consider scripting to aplly width
+    top: 20px;
+}
+
+@media (min-width: 992px) {
+    .fx-docs-sidebar {
+        border-right: 1px solid $docs-nav-border-color;
+        padding-right: 30px;
+
+        &.affix {
+            width: 213px;
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    .fx-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+
+@media (min-width: 1500px) {
+    .fx-docs-sidebar.affix {
+        width: 20%;
+    }
+}
+
+.fx-search-docs-nav {
+    display: none; //hidden until search is developed
+    margin-bottom: 20px;
+}
+
+
+.fx-docs-nav {
+    .nav .nav { //second level nav hidden until first level becomes active
+        display: none;
+
+        > li > a { //Second level menu indents
+            padding-left: 10px;
+        }
+        
+        > li.active > a { /*Second level active menu*/
+            font-family: open_sansregular;
+
+            &:before {
+                content:"_";
+                left: 4px;
+                position: absolute;
+            }
+        } 
+    }
+
+    .nav > li.active > .nav {
+        display: block; //second level nav becomes visible when first level item becomes active
+    }
+
+    .nav > li {
+        > a {
+            color: $nav-link-txt-color;
+            padding: 5px 0;
+            position: relative;
+
+            &:hover,
+            &:focus {
+                background: $nav-link-hover-bg-color;
+            }
+        }
+
+        &.active > a { //First level active menu    
+            color: $docs-nav-first-level-active-txt-color;
+            font-family: open_sansbold;
+        }
+    }
+
+    > .nav > li > a { //First level menu increases size
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,246 @@
+<!-- <app-navbar-component
+  [canImport]="canImport()"
+  [canExport]="canExport()"
+  [canConnect]="canConnect()"
+
+  (import)="import()"
+  (export)="export()"
+  (connect)="connectShapes()"></app-navbar-component> -->
+
+<!-- <app-form-handler-component
+  [formConfig]="formConfig"></app-form-handler-component> -->
+
+<div class="drag-component-container">
+  <div *ngIf="!readOnly()" class="dashboard">
+    <div class="dashboard-header">{{'generic___designerFlow___shapes' | myI18n}}</div>
+    <div cdkDropList #todoList="cdkDropList" class="shape-container" [cdkDropListData]="pallete"
+      [cdkDropListConnectedTo]="[doneList]" (cdkDropListDropped)="drop($event, pallete)">
+      <div cdkDrag *ngFor="let shape of pallete" class="element-shape {{shape.type}}" [title]="shape.type">
+        <img alt="{{shape.text || shape.type}}" src="/assets/img/shapes/{{shape.icon}}.svg" />
+        <br />
+        {{shape.text || shape.type}}
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="dashboard-header">{{'generic___designerFlow___apis' | myI18n}}</div>
+    <div cdkDropList #todoList="cdkDropList" class="shape-container" [cdkDropListData]="apis"
+      [cdkDropListConnectedTo]="[doneList]" (cdkDropListDropped)="drop($event, apis)">
+      <div cdkDrag *ngFor="let api of apis" class="element-shape" [title]="api.text">
+        <img alt="api" src="/assets/img/shapes/api.svg" />
+        <br />
+        {{api.text}}
+      </div>
+      <div class="clear"></div>
+    </div>
+
+  </div>
+
+  <div #canvasParent class="d-flex flex-row board" [class.try-mode]="tryMode" [class.stopAnimations]="isConnectionAnimationStopped" id="dragComponentBoard">
+
+    <div class="btn-actions">
+      <div class="btn-group">
+        <button class="btn btn-danger" (click)="toggleConnectionsMovement()" data-html="true" data-toggle="tooltip" data-placement="top" title="Conections movement">
+          <i [className]="isConnectionAnimationStopped ? 'fa fa-play' : 'fa fa-pause'"></i>
+        </button>
+      </div>
+
+      <div *ngIf="!readOnly() && canConnect" class="btn-group">
+        <button class="btn btn-primary" (click)="connectShapes()">{{'generic___designerFlow___connect' | myI18n}}</button>
+      </div>
+
+      <div *ngIf="!readOnly()" class="btn-group">
+        <button *ngIf="canImport()" class="btn btn-default" (click)="import()">{{'generic___designerFlow___undo' | myI18n}}</button>
+      </div>
+
+    </div>
+
+    <div class="items-config-wrapper" *ngIf="selectedConnections.length > 0 || selectedShapes.length > 0">
+        <div cdkDrag *ngIf="selectedConnections.length > 0" class="items-config">
+          <h3>{{'generic___designerFlow___connections' | myI18n}}</h3>
+          <div *ngIf="!readOnly()" class="btn-group change-line-angle">
+            <button class="btn btn-primary" (click)="changeAngle(1)"><img alt="|" src="/assets/img/diagonal-line.svg" /></button>
+            <button class="btn btn-primary" (click)="changeAngle(-8)"><img alt="(" src="/assets/img/curved-line.svg" /></button>
+          </div>
+          <div *ngIf="!readOnly()" class="btn-group">
+            <button [disabled]="selectedConnections.length != 1" class="btn btn-primary" (click)="openModalSetIntent(selectedConnections[0])"><i class="fa fa-cog"></i></button>
+          </div>
+          <div *ngIf="!readOnly()" class="btn-group">
+            <button class="btn btn-danger" (click)="deleteShapes()"><i class="icomoon icon-trash"></i></button>
+          </div>
+          <p *ngIf="selectedIntents.length > 0">{{'generic___designerFlow___intentTrainingPhases' | myI18n}}:</p>
+          <div class="training-phrases-wrapper" *ngIf="selectedIntents.length > 0">
+            <ng-template ngFor let-selConnConfig [ngForOf]="selectedIntents">
+              <ul>
+                <li><b>{{selConnConfig.intent}}</b></li>
+                <li *ngFor="let tFrase of selConnConfig.trainingPhrases">{{tFrase}}</li>
+              </ul>
+            </ng-template>
+          </div>
+          <hr />
+          <div *ngIf="!readOnly()" class="btn-group intents-management">
+            <button class="btn btn-primary" (click)="openModal('programs/program-intent-list')">{{'program___intent___namePlural' | myI18n}}</button>
+          </div>
+        </div>
+    
+        <div cdkDrag *ngIf="selectedShapes.length > 0" class="items-config">
+          <h3>{{'generic___designerFlow___shapes' | myI18n}}</h3>
+          <div *ngIf="!readOnly()" class="btn-group">
+            <button [disabled]="selectedShapes.length != 1 || !selectedShapes[0].mockToLoad" class="btn btn-primary" (click)="openModalShape(selectedShapes[0])"><i class="fa fa-cog"></i></button>
+          </div>
+          <div *ngIf="!readOnly()" class="btn-group">
+            <button class="btn btn-danger" (click)="deleteShapes()"><i class="icomoon icon-trash"></i></button>
+          </div>
+          <!-- <p *ngIf="selectedIntents.length > 0">Training Phrases por Intent:</p>
+          <div class="training-phrases-wrapper" *ngIf="selectedIntents.length > 0">
+            <ng-template ngFor let-selConnConfig [ngForOf]="selectedIntents">
+              <ul>
+                <li><b>{{selConnConfig.intent}}</b></li>
+                <li *ngFor="let tFrase of selConnConfig.trainingPhrases">{{tFrase}}</li>
+              </ul>
+            </ng-template>
+          </div> -->
+        </div>
+    </div>
+
+    <div class="board-graph-paper"></div>
+
+    <svg #svgcanvas id="mainSvgContainer" (click)="svgClick($event)">
+      <ng-template ngFor let-connection [ngForOf]="connections" let-connIndex="index">
+
+        <ng-template [ngIf]="connection.type == 'line'">
+
+          <defs *ngIf="!connHasSubType(connection,'toDot','annotation')">
+            <marker [id]="'arrow' + connIndex" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" [attr.fill]="svgColor(connection)" />
+            </marker>
+          </defs>
+          <marker *ngIf="!connHasSubType(connection,'fromDot','annotation')" [id]="'circle' + connIndex" markerWidth="4" markerHeight="4" refX="2" refY="2">
+            <circle cx="2" cy="2" r="2" stroke="none" [attr.fill]="svgColor(connection)" />
+          </marker>
+          <!-- <line
+              class="svg-element"
+              [attr.stroke-dasharray]="isOptionConnection(connection) ? '5, 5' : '0'"
+              [attr.x1]="connection.pos.x1"
+              [attr.y1]="connection.pos.y1"
+              [attr.x2]="connection.pos.x2"
+              [attr.y2]="connection.pos.y2"
+              [attr.marker-start]="'url(#circle' + connIndex + ')'"
+              [attr.marker-end]="'url(#arrow' + connIndex + ')'"
+              [class.selected]="connection.isSelected"
+              [class.highlighted]="connection.isHighlighted"
+              [class.suggestion]="connection.isSuggestion"
+              (click)="selectConnection($event, connection)"
+              (dblclick)="addPointToLine(connection)" /> -->
+
+          <path
+            class="line svg-element"
+            [attr.d]="getLineArc(connection)"
+            [attr.marker-start]="'url(#circle' + connIndex + ')'"
+            [attr.marker-end]="'url(#arrow' + connIndex + ')'"
+            [class.selected]="connection.isSelected"
+            [class.highlighted]="connection.isHighlighted"
+            [class.suggestion]="connection.isSuggestion"
+            (click)="selectConnection($event, connection)"
+            (dblclick)="addPointToLine(connection)"></path>
+
+          <text
+            *ngIf="connection.intent"
+            class="svg-element"
+            fill="#f0f0f7"
+            stroke="#f0f0f7"
+            stroke-width="10"
+            [attr.x]="connection.intent?.pos?.x"
+            [attr.y]="connection.intent?.pos?.y">{{getLineLabel(connection) | myI18n}}</text>
+          <text
+            *ngIf="connection.intent"
+            class="svg-element"
+            [attr.x]="connection.intent?.pos?.x"
+            [attr.y]="connection.intent?.pos?.y"
+            [attr.fill]="svgColor(connection)"
+            (click)="selectConnection($event, connection)"
+            (dblclick)="openModalSetIntent(connection)">{{getLineLabel(connection) | myI18n}}</text>
+
+        </ng-template>
+
+      </ng-template>
+
+    </svg>
+
+    <div
+      cdkDrag
+      *ngFor="let shape of shapes; let i=index"
+      class="svg-element element-shape {{shape.type}}"
+      cdkDragBoundary=".board"
+      [id]="shape.id"
+      [class.option-shape]="isOptionShape(shape)"
+      [class.selected]="shape.isSelected"
+      [class.highlighted]="shape.isHighlighted"
+      [class.is-end]="shape.dataRecs?.markAsEnd"
+      (cdkDragStarted)="startingDragging($event, shape)"
+      (cdkDragMoved)="dragging($event, shape)"
+      [ngStyle]="{
+        'transform': 'translate3d(' + shape.pos?.x + 'px,' + shape.pos?.y + 'px,0px)',
+        'width': shape.pos.w + 'px',
+        'height': shape.pos.h + 'px'
+      }"
+      (click)="selectShape($event, shape)"
+      (dblclick)="openModalShape(shape)">
+        <svg
+          *ngIf="shape.icon"
+          [attr.height]="shape.pos.h"
+          [attr.width]="shape.pos.w"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink">
+            <image x="0" y="0" [attr.height]="shape.pos.h" [attr.width]="shape.pos.w" [attr.xlink:href]="'/assets/img/shapes/' + shape.icon + '.svg'" />
+        </svg>
+        <div class="element">
+          <span class="shape-name" [innerHTML]="shape.text"></span>
+          <!-- <span class="shape-info">{{shape.id}}<br /><small>w:{{shape.pos?.w}} | h:{{shape.pos?.h}} | x:{{shape.pos?.x}} | y:{{shape.pos?.y}}</small></span> -->
+          <!-- <input *ngIf="shape.type != 'annotation'" class="shape-input" [(ngModel)]="shape.text" readonly /> -->
+          <!-- <textarea *ngIf="shape.type == 'annotation'"  class="shape-input" [(ngModel)]="shape.text"></textarea> -->
+        </div>
+        <ng-container *ngTemplateOutlet="elementShapeOptions; context: {$implicit: shape}"></ng-container>
+        <ng-container *ngTemplateOutlet="elementShapeDots; context: {$implicit: shape}"></ng-container>
+    </div>
+
+  </div>
+
+</div>
+
+<ng-template #elementShapeOptions let-shape>
+
+  <ng-template [ngIf]="!this.readOnly() && !isOptionShape(shape) && shape.type != 'dot'">
+    <div class="element-shape-options" *ngIf="shape.type == 'placeholder'">
+      <!-- Só mostra quando é uma shape do tipo "Placeholder" -->
+      <div *ngIf="shape.type != 'placeholder'; else placeholderOptions" class="options-wrapper">
+        <i class="far fa-comment-alt" (click)="createAnnotation(shape)" title="Text Annotation"></i>
+        <i class="far fa-clone" (click)="cloneShape(shape)" title="Clone"></i>
+        <i class="far fa-trash-alt" (click)="deleteShapes(shape)" title="Delete"></i>
+      </div>
+      <ng-template #placeholderOptions>
+        <div class="options-wrapper">
+            <ng-template ngFor let-option [ngForOf]="pallete">
+              <i *ngIf="canEndConnection(option)" [class]="option.faCode + ' ' + option.type" (click)="setShapeForNewConnection(shape, option)" [title]="option.text || option.type"></i>
+            </ng-template>
+          <i class="fa fa-ban" (click)="setShapeForNewConnection(shape)" title="{{'generic___operations___cancel' | myI18n}}"></i>
+        </div>
+      </ng-template>
+    </div>
+  </ng-template>
+
+</ng-template>
+
+<ng-template #elementShapeDots let-shape>
+
+  <ng-template [ngIf]="!this.readOnly() && !isOptionShape(shape) && shape.type != 'dot' && canStartConnection(shape)">
+    <div
+      cdkDrag
+      *ngFor="let pos of ['top', 'right', 'bottom', 'left']"
+      class="start-conn-dot align-{{pos}}"
+      (click)="createNewConnection(shape)"
+      (cdkDragStarted)="startingNewConnection($event, shape)"
+      (cdkDragMoved)="draggingNewConnection($event, shape)"
+      (cdkDragEnded)="endingNewConnection($event, shape)"></div>
+  </ng-template>
+
+</ng-template>

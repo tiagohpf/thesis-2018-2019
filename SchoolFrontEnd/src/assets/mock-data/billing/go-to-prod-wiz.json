@@ -1,0 +1,117 @@
+{
+    "type": "page",
+    "id": "gotoProdWiz",
+    "header": {
+        "id": "pageHeader",
+        "seo": {
+            "text": "billing___goLive"
+        }
+    },
+    "wizard": [
+
+        {
+            "id": "customer-list-step",
+            "components": [
+                {
+                    "include": "billing/customer-list"
+                }
+            ]
+        },
+        {
+            "id": "payment-step",
+            "lazyLoading": true,
+            "components": [
+                {
+                    "include": "billing/stripe"
+                }
+            ]
+        }
+    ],
+    "buttons": [
+        {
+            "id": "submitSubscription",
+            "key": "submit",
+            "text": "billing___subscribe",
+            "class": "btn-primary",
+
+            "parameters": [
+                {
+                    "key": "requestEndpoint",
+                    "value": "{{BillingService}}/subscriptions"
+                },
+                {
+                    "key": "requestHeaders",
+                    "value": {
+                        "Authorization": "Bearer {{token}}"
+                    }
+                },
+                {
+                    "key": "requestType",
+                    "value": "POST"
+                },
+                {
+                    "key": "requestBodyPay",
+                    "type": "json",
+                    "value": {
+                        "customerId": "{{selectedCustomerId}}",
+                        "planId": "{{selectedPlanId}}", 
+                        "entity": "{{selected-student}}",
+                        "defaultSource": "{{stripe-selected-card}}"
+                    },
+                    "dynamicProps": {
+                        "key": "'{{selectedPlanId}}'!='free'? 'requestBody':'requestBodyPay'"
+                    }
+                },                
+                {
+                    "key": "requestBodyFree",
+                    "type": "json",
+                    "value": {
+                        "customerId": "{{selectedCustomerId}}",
+                        "planId": "{{selectedPlanId}}", 
+                        "entity": "{{selected-student}}"
+                    },
+                    "dynamicProps": {
+                        "key": "'{{selectedPlanId}}'=='free'? 'requestBody':'requestBodyFree'"
+                    }
+                },
+                {
+                    "key": "onSuccess",
+                    "value": {
+                        "fn": "@updatePageParameterWithDelay(@getJsonParam('studentAccountPage'))",
+                        "notification": {
+                            "type": "success",
+                            "text": "Your request was successfully sent.\nThe operation may take a few minutes to process.",
+                            "limit": 1,
+                            "timeout": 3000,
+                            "position": "top-right"
+                        },
+                        "_request": [
+                            {
+                                "key": "updatePageParameter",
+                                "value": {
+                                    "studentAccountPage": {
+                                        "lazyLoading": false
+                                    }
+                                }
+                            },
+                            {
+                                "key": "successText",
+                                "value": "Your request was successfully sent.\nThe operation may take a few minutes to process."
+                            }
+                        ]
+                    }
+                },
+                {
+                    "key": "errorText",
+                    "value": "ERROR!\n Subscription Error."
+                }
+            ]
+        },
+        {
+            "key": "cancel",
+            "text": "generic___operations___cancel",
+            "class": "btn-force-default btn-default"
+        }
+
+    ]
+}

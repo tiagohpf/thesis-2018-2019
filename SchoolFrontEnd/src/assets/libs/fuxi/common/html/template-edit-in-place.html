@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge; text/html;" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0,  user-scalable=yes" />
+    <link rel="icon" href="/fuxi/common/html/css/images/favicon.ico" type="image/x-icon" />
+    <title>Template edit in place</title>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/basepack/datatables-pt/1.9/css/jquery.dataTables.css" rel="stylesheet">
+    <link href="/fuxi/lib/select2/3.4/css/select2.css" rel="stylesheet">
+    <link href="/fuxi/lib/select2/3.4/css/select2-bootstrap.css" rel="stylesheet">
+    <link href="/fuxi/lib/bootstrap-datetimepicker/2.1/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <!--<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>-->
+    <link href="/fuxi/lib/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.min.css" />
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+
+    <!-- Respond.js - IE8 support of media queries -->
+    <!--[if lt IE 9]>
+    <script src="/fuxi/lib/respond/1.4/js/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        hr {
+            margin: 40px 0;
+        }
+
+        td .editable-container.editable-inline, td .editable-container.editable-inline .form-inline .form-group, td .editable-input {
+            display: block;
+        }
+
+            td .editable-input .form-control {
+                max-width: 100%;
+            }
+
+        td .editable-buttons {
+            float: right;
+            margin-top: 3px;
+        }
+
+        td .editable-container.editable-inline .form-inline .select2-container {
+            width: 100%;
+        }
+    </style>
+</head>
+<body style="overflow: auto;">
+
+    <div class="fx-main-content">
+        <h2>
+            <a href="https://github.com/vitalets/x-editable" target="new">https://github.com/vitalets/x-editable</a><br />
+            Issues:<a href="https://github.com/vitalets/x-editable/issues" target="new">https://github.com/vitalets/x-editable/issues</a>
+        </h2>
+        <h1>Edit in place Formulário</h1>
+        <form class="form-horizontal">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Nome</label>
+
+                        <div class="col-sm-10">
+
+                            <a href="#" id="username">Paulo Roberto Torres Real</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Morada</label>
+                        <div class="col-sm-10">
+                            <a href="#" id="address">Rua dos cardeais</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">País</label>
+                        <div class="col-sm-10">
+                            <a href="#" id="country" data-type="select2" data-pk="1" data-value="pt" data-title="País"></a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Hobbies</label>
+                        <div class="col-sm-10">
+                            <a href="#" id="hobbies" data-type="checklist" data-pk="1" data-title="Hobbies"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Skills</label>
+                        <div class="col-sm-10">
+                            <a href="#" id="skills" data-type="select2" data-pk="1" data-value="sk1" data-title="Skills"></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+        <hr>
+        <h1>Edit in place em Tabela</h1>
+        <table class="table" id="exampleTable">
+            <thead>
+                <tr>
+
+                    <th> Tipo </th>
+                    <th>Nome do relatório</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Modo inline</td>
+                    <td><a href="#" id="reportName">Relatório de serviços de televisão aprovisionados em 2013</a></td>
+                    <td><a href="#" id="event" data-type="combodate" data-template="D MMM YYYY  HH:mm" data-format="YYYY-MM-DD HH:mm" data-viewformat="MMM D, YYYY, HH:mm" data-pk="1">15/03/2013 12:45</a></td>
+                </tr>
+
+                <tr>
+                    <td>Modo popup</td>
+                    <td><a href="#" id="reportNamePopup">Relatório de serviços de televisão aprovisionados em 2013</a></td>
+                    <td><a href="#" id="eventPopup" data-type="combodate" data-template="D MMM YYYY  HH:mm" data-format="YYYY-MM-DD HH:mm" data-viewformat="MMM D, YYYY, HH:mm" data-pk="1">15/03/2013 12:45</a></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+    <script src="/fuxi/common/exec/fuxi.min.js"></script>
+    <script src="/basepack/datatables-pt/1.9/js/jquery.dataTables.min.js"></script>
+    <script src="/fuxi/lib/datatables-pt/1.9/js/inputPaging.min.js"></script>
+    <script src="/fuxi/lib/select2/3.4/js/select2.min.js"></script>
+    <script src="/fuxi/lib/moment/2.5/js/moment-with-langs.min.js"></script>
+    <script src="/fuxi/lib/bootstrap-datetimepicker/2.1/js/bootstrap-datetimepicker.min.js"></script>
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>-->
+    <script src="/fuxi/lib/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            var oTable = $('#exampleTable').dataTable({
+                "iDisplayLength": 10,
+                "sDom": 'rt<"dataTable-table-info"li><"dataTable-pagination-wrapper"p>',
+                "sPaginationType": "input",
+                "aoColumns": [{
+                    "bSortable": true
+                }, {
+                    "bSortable": true
+                }, {
+                    "bSortable": true
+                }],
+                "oLanguage": {
+                    "sProcessing": "A processar...",
+                    "sLengthMenu": "_MENU_ registos por página",
+                    "sZeroRecords": "Não foram encontrados resultados",
+                    "sInfo": "Total de registos <strong>_TOTAL_</strong>",
+                    "sInfoEmpty": "Apresentando de 0 até 0 de 0 registos",
+                    "sInfoFiltered": "(filtrado de _MAX_ registos no total)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Procurar:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "",
+                        "sPrevious": "Anterior",
+                        "sNext": "Seguinte",
+                        "sLast": ""
+                    }
+                }
+
+            });
+
+            $('#username').editable({
+                mode: 'inline',
+                type: 'text'
+            });
+
+            $('#address').editable({
+                mode: 'inline',
+                type: 'textarea'
+            });
+
+            $('#country').editable({
+                source: [{
+                    id: 'pt',
+                    text: 'Portugal'
+                }, {
+                    id: 'gb',
+                    text: 'Great Britain'
+                }, {
+                    id: 'us',
+                    text: 'United States'
+                }, {
+                    id: 'ru',
+                    text: 'Russia'
+                }],
+                select2: {
+                    multiple: false
+                },
+                mode: 'inline'
+            });
+
+            $('#hobbies').editable({
+                value: [1, 3],
+                source: [{
+                    value: 1,
+                    text: 'desporto'
+                }, {
+                    value: 2,
+                    text: 'cinema'
+                }, {
+                    value: 3,
+                    text: 'música'
+                }],
+                mode: 'inline'
+            });
+
+            $('#skills').editable({
+                source: [{
+                    id: 'sk1',
+                    text: 'skill 1'
+                }, {
+                    id: 'sk2',
+                    text: 'skill 2'
+                }, {
+                    id: 'sk3',
+                    text: 'skill 3'
+                }, {
+                    id: 'sk4',
+                    text: 'skill 4'
+                }],
+                select2: {
+                    multiple: true
+                },
+                mode: 'inline'
+            });
+
+            $('#event').editable({
+                mode: 'inline'
+            });
+
+            $('#reportName').editable({
+                mode: 'inline',
+                type: 'text'
+            });
+
+            $('#reportNamePopup').editable({
+                mode: 'popup',
+                type: 'text'
+            });
+
+            $('#eventPopup').editable({
+                mode: 'popup'
+            });
+
+        });
+    </script>
+</body>
+</html>

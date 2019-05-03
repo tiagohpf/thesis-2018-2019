@@ -1,0 +1,157 @@
+<h3 id="docs-wizard-validation">Validação no wizard</h3>
+<p>Este snippet demonstra a forma como é mostrado ao utilizador que existe um problema num determinado step do wizard. Naturalmente poderá ser necessário apresentar ao utilizador outras validações. Na secção <a class="fx-nav-link" href="#docs-alert-root">alertas</a> pode encontrar exemplos úteis.</p>
+<p>Nesta demo nunca conseguirá passar do primeiro step pois está a ser usada uma função que define os step como inválidos atribuindo o valor <code>false</code> à propriedade <code>isValid</code>.
+Num cenário de utilização real deverá programar-se a função de validação para que a propriedade <code>isValid</code> seja <code>true</code> se todas as regras de validação do step forem cumpridas.</p>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <div style="height: 300px;">
+            <div id="devguide-wizard-validate" class="fx-wizard-wrapper"
+                 data-wiz-prev="#devguide-wiz-prev-validate"
+                 data-wiz-next="#devguide-wiz-next-validate"
+                 data-wiz-complete="#devguide-wiz-complete-validate"
+                 data-step-opened="1"
+                 data-client-validator="auxFuncs.wizard.devguideWizValidateAllValidate"
+                 data-wizard>
+                <nav>
+                    <ul class="list-unstyled fx-nav-items">
+                        <li id="navWizStep1" class="fx-nav-link">
+                            <span class="fx-wizardstep-number"> 1 </span>
+                            <span class="fx-wizardstep-title">Step 1</span>
+                            <button class="pull-right fx-wizardstep-error hidden fx-alert-button" type="button" rel="popover" data-toggle="popover" data-placement="right" data-html="true" data-content="">
+                                <i class="fuxicons fuxicons-error"></i>
+                            </button>
+                        </li>
+                        <li id="navWizStep2" class="fx-nav-link blocked">
+                            <span class="fx-wizardstep-number"> 2 </span>
+                            <span class="fx-wizardstep-title">Step 2</span>
+                            <button class="pull-right fx-wizardstep-error hidden fx-alert-button" type="button" rel="popover" data-toggle="popover" data-placement="right" data-html="true" data-content="">
+                                <i class="fuxicons fuxicons-error"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!--STEP 1-->
+                <section id="wizStep1" class="fx-wizardsteps-content">
+                    <h4><span class="fx-wizardstep-number">1</span> | Step 1</h4>
+                    <div class="fx-wizardsteps-content-block">
+                        Conteúdo do step 1.
+                    </div>
+                </section>
+
+                <!--STEP 2-->
+                <section id="wizStep2" class="fx-wizardsteps-content">
+                    <h4><span class="fx-wizardstep-number">2</span> | Step 2</h4>
+                    <div class="fx-wizardsteps-content-block">
+                        Conteúdo do step 2.
+                    </div>
+                </section>
+
+                <div class="fx-wizard-buttons-wrapper">
+                    <div class="fx-wizard-buttons-wrapper-inner">
+                        <button id="devguide-wiz-prev-validate" class="btn btn-default btn-sm disabled" type="button">
+                            <i class="glyphicon glyphicon-chevron-left"></i>anterior
+                        </button>
+                        <button id="devguide-wiz-next-validate" class="btn btn-default btn-sm" type="button">
+                            seguinte<i class="glyphicon glyphicon-chevron-right"></i>
+                        </button>
+                        <button id="devguide-wiz-complete-validate" class="btn btn-primary btn-sm" type="button">
+                            finalizar
+                        </button>
+                        <button id="devguide-wiz-cancel-validate" class="btn btn-default btn-sm" type="button">
+                            cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h4>Markup</h4>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<div id="devguide-wizard-validate" class="fx-wizard-wrapper"
+        data-wiz-prev="#devguide-wiz-prev-validate"
+        data-wiz-next="#devguide-wiz-next-validate"
+        data-wiz-complete="#devguide-wiz-complete-validate"
+        data-step-opened="1"
+        data-client-validator="devguideWizValidateAllValidate"
+        data-wizard>
+    <nav>
+        <ul class="list-unstyled fx-nav-items">
+            <li id="navWizStep1" class="fx-nav-link">
+                <span class="fx-wizardstep-number"> 1 </span>
+                <span class="fx-wizardstep-title">Step 1</span>
+                <button class="pull-right fx-wizardstep-error hidden fx-alert-button" type="button" rel="popover" data-toggle="popover" data-placement="right" data-html="true" data-content="">
+                    <i class="fuxicons fuxicons-error"></i>
+                </button>
+            </li>
+            <li id="navWizStep2" class="fx-nav-link blocked">
+                <span class="fx-wizardstep-number"> 2 </span>
+                <span class="fx-wizardstep-title">Step 2</span>
+                <button class="pull-right fx-wizardstep-error hidden fx-alert-button" type="button" rel="popover" data-toggle="popover" data-placement="right" data-html="true" data-content="">
+                    <i class="fuxicons fuxicons-error"></i>
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <!--STEP 1-->
+    <section id="wizStep1" class="fx-wizardsteps-content">
+        <h4><span class="fx-wizardstep-number">1</span> | Step 1</h4>
+        <div class="fx-wizardsteps-content-block">
+            Conteúdo do step 1.
+        </div>
+    </section>
+
+    <!--STEP 2-->
+    <section id="wizStep2" class="fx-wizardsteps-content">
+        <h4><span class="fx-wizardstep-number">2</span> | Step 2</h4>
+        <div class="fx-wizardsteps-content-block">
+            Conteúdo do step 2.
+        </div>
+    </section>
+
+    <div class="fx-wizard-buttons-wrapper">
+        <div class="fx-wizard-buttons-wrapper-inner">
+            <button id="devguide-wiz-prev-validate" class="btn btn-default btn-sm disabled" type="button">
+                <i class="glyphicon glyphicon-chevron-left"></i>anterior
+            </button>
+            <button id="devguide-wiz-next-validate" class="btn btn-default btn-sm" type="button">
+                seguinte<i class="glyphicon glyphicon-chevron-right"></i>
+            </button>
+            <button id="devguide-wiz-complete-validate" class="btn btn-primary btn-sm" type="button">
+                finalizar
+            </button>
+            <button id="devguide-wiz-cancel-validate" class="btn btn-default btn-sm" type="button">
+                cancelar
+            </button>
+        </div>
+    </div>
+</div>
+        </textarea>
+    </form>
+
+    <h4>Scripting</h4>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<script type="text/javascript">
+    function devguideWizValidateAllValidate(args) {
+        return {
+            isValid: false,
+            message: '<p>Mensagem de validação.</p>'
+        };
+    }
+
+    $(document).ready(function () {
+        FUXI.Wizard.init({
+            'isAsync': true,
+            'mode': FUXI.Wizard.modeEnum.INSERT
+        });
+    });
+</script>            
+        </textarea>
+    </form>
+</div>
+

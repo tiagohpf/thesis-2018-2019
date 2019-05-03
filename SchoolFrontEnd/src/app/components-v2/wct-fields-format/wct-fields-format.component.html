@@ -1,0 +1,23 @@
+<ng-template [ngIf]="loadingFromTable">
+    <ng-container *ngTemplateOutlet="fieldErrorTemplate"></ng-container>
+</ng-template>
+
+<ng-template [ngIf]="!loadingFromTable">
+  <div *ngIf="parametersFormat && inputParameters.text !== null;else fieldErrorTemplate" class="form-group">
+    <div *ngIf="labelText !== null" class="wct-field-format-label">
+      <label class="w-100 text-truncate" [attr.for]="labelFor">
+          {{labelText | myI18n}}
+          <ng-template #popTemplate><div [innerHtml]="inlineHelp.text | myI18n"></div></ng-template>
+          <i *ngIf="inlineHelp.visible" class="fa fa-question-circle inlineHelpIcon" aria-hidden="true" containerClass="popover-inlineHelp-tooltip" [popover]="popTemplate" triggers="mouseenter:mouseleave" data-container="body" placement="top"></i>
+      </label>
+      
+      
+    </div>
+    <div class="wct-field-format-component"><ng-container *ngTemplateOutlet="fieldErrorTemplate"></ng-container></div>
+  </div>
+</ng-template>
+
+<ng-template #fieldErrorTemplate>
+    <ng-content></ng-content>
+    <div *ngIf="showError && errorMessage" class="alert alert-danger">{{errorMessage | myI18n}}</div>
+</ng-template>

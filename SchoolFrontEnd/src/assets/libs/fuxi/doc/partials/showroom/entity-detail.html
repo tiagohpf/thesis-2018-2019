@@ -1,0 +1,393 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--# include file="/fuxi/doc/partials/showroom/partials/head-templates.html" -->
+    <title>Detalhe de entidade</title>
+</head>
+<body>
+    <form id="frmValidation" class="fx-push-footer fx-full-height">
+        <!--# include file="/fuxi/doc/partials/showroom/partials/header-templates.html" -->
+        <div class="fx-prevent-content-behind-footer fx-full-height">
+
+            <div class="fx-main-content-wrapper">
+
+                <div class="fx-entity-header fx-fixed-position" data-fix-to="top" data-calc-height="true">
+                    <div class="fx-entity-header-inner">
+                        <div class="fx-entity-header-headings clearfix">
+                            <div class="pull-left fx-constraint">
+                                <h1><i class="glyphicon glyphicon-hdd"></i> Entidade </h1>
+                            </div>
+                            <div id="edit-refresh" class="pull-right">
+                                <a class="btn btn-default btn-sm" title="editar" href="#" id="main-edit"> <i class="glyphicon glyphicon-pencil"></i> </a>
+                                <button class="btn btn-default btn-sm" title="atualizar">
+                                    <i class="glyphicon glyphicon-refresh"></i>
+                                </button>
+                            </div>
+                            <div id="save-cancel" class="pull-right hidden">
+                                <button type="submit" class="btn btn-primary btn-sm" id="main-save">
+                                    <i class="fuxicons fuxicons-floppy-disk"></i> guardar
+                                </button>
+                                <button type="reset" class="btn btn-default btn-sm" id="main-cancel">
+                                    cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav nav-tabs fx-main-tabs">
+                        <li class="active">
+                            <a href="#tab-form" data-toggle="tab">Dados entidade</a>
+                        </li>
+                        <li>
+                            <a href="#tab-table" data-toggle="tab">Lista de propriedades</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tab-content fx-main-tab-content">
+
+                    <div class="tab-pane active" id="tab-form">
+                        <div class="fx-form-content fx-expandable-form-blocks">
+                            <!--READ ONLY-->
+                            <div id="read" class="form-horizontal">
+                                <div class="fx-form-block">
+                                    <div class="fx-form-block-help fx-first">
+                                        <h6><i class="caret"></i>Identificação</h6>
+                                        <p>
+                                            Dados pessoais
+                                        </p>
+                                    </div>
+                                    <div class="fx-form-block-controls fx-first">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="form-group-username">Nome</label>
+                                            <div class="col-sm-10">
+                                                <p class="form-control-static">João Silva</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="form-group-address" class="col-sm-2 control-label">Morada</label>
+                                            <div class="col-sm-10">
+                                                <p class="form-control-static">Rua Eng. José Ferreira Pinto Basto<br />3810 - 106 Aveiro (PORTUGAL)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="fx-form-block">
+                                    <div class="fx-form-block-help">
+                                        <h6><i class="caret"></i>Credenciais</h6>
+                                        <p>Informações para acesso</p>
+                                    </div>
+                                    <div class="fx-form-block-controls">
+                                        <div class="form-group">
+                                            <label for="form-group-password" class="col-sm-2 control-label">Password</label>
+                                            <div class="col-sm-10">
+                                                <p class="form-control-static">--</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!--EDIT-->
+                            <div id="edit" class="form-horizontal hidden">
+                                <div class="fx-form-block">
+                                    <div class="fx-form-block-help fx-first">
+                                        <h6><i class="caret"></i>Identificação</h6>
+                                        <p>
+                                            Dados pessoais
+                                        </p>
+                                    </div>
+                                    <div class="fx-form-block-controls fx-first">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label fx-required-field" for="formGroupUsername">Nome</label>
+                                            <div class="col-sm-10">
+                                                <input id="form-group-username" class="form-control input-sm" name="formGroupUsername" autofocus />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="form-group-address" class="col-sm-2 control-label">Morada</label>
+                                            <div class="col-sm-10">
+                                                <textarea class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="fx-form-block">
+                                    <div class="fx-form-block-help">
+                                        <h6><i class="caret"></i>Credenciais</h6>
+                                        <p>Informações para acesso</p>
+                                    </div>
+                                    <div class="fx-form-block-controls">
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label fx-required-field" for="inputPasswordAtual">Password atual</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="password" name="inputPasswordAtual" id="inputPasswordAtual">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label fx-required-field" for="inputPasswordNova">Nova password</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="password" name="inputPasswordNova" id="inputPasswordNova">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label fx-required-field" for="inputPasswordConfNova">Confirmar nova password</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="password" name="inputPasswordConfNova" id="inputPasswordConfNova">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="tab-table">
+                        <div class="fx-tab-pane-inner">
+                            <div class="fx-bulk-actions clearfix">
+                                <div class="pull-right">
+                                    <div class="btn-group">
+                                        <button title="exportar características" data-toggle="dropdown" type="button" class="btn btn-default btn-xs dropdown-toggle">
+                                            <i class="glyphicon glyphicon-export"></i><span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu fx-dropdown-open-to-left">
+                                            <li>
+                                                <a href="#">PDF</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">XLS</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">CSV</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="properties-table-wrapper" class="dataTables_wrapper">
+                                <table class="table" id="properties-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo</th>
+                                            <th>Nome</th>
+                                            <th>Descrição</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <span title="alarme" class="fx-info-icon"><i class="fa fa-cog"></i></span> Tipo da propriedade
+                                            </td>
+                                            <td><a>Nome da propriedade</a></td>
+                                            <td>Descrição da propriedade</td>
+                                            <td>
+                                                <a href="#" class="btn btn-link btn-link-in-table" title="Consultar"><i class="fuxicons fuxicons-eye"></i></a>
+                                                <div class="btn-group">
+                                                    <button title="Mais ações" class="btn btn-link btn-link-in-table dropdown-toggle" data-toggle="dropdown">
+                                                        <i class="fa fa-cog"></i>
+                                                        <i class="caret"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu fx-dropdown-open-to-left" role="menu">
+                                                        <li>
+                                                            <a href="#">
+                                                                Ação 1
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                Ação 2
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                Ação 3
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--# include file="/fuxi/doc/partials/showroom/partials/footer-templates.html" -->
+    </form>
+
+    <div class="template-desc-container right-pos fixed maximized">
+        <div class="template-desc-header clearfix">
+            <div class="template-desc-actions">
+                <button id="btn-detach" class="btn btn-xs btn-link" title="destacar">
+                    <i class="fuxicons fuxicons-open-in-window"></i>
+                </button>
+                <button id="btn-fix" class="btn btn-xs btn-link hidden" title="fixar">
+                    <i class="fuxicons fuxicons-restore-from-window"></i>
+                </button>
+                <button id="btn-minimize" class="btn btn-xs btn-link" title="minimizar">
+                    <i class="glyphicon glyphicon-minus"></i>
+                </button>
+                <button id="btn-maximize" class="btn btn-xs btn-link hidden" title="maximizar">
+                    <i class="glyphicon glyphicon-plus"></i>
+                </button>
+            </div>
+            <h3><i class="fx-drag-bright"></i> Informação útil</h3>
+        </div>
+        <div class="template-desc-body">
+            <ul class="list-unstyled">
+                <li>
+                    <p>Por defeito sugere-se que a página de detalhe de entidade tenha este aspeto, mas isso dependerá sempre do tipo de entidade que se está a visualizar.</p>
+                </li>
+                <li>
+                    <hr />
+                    <p>Detalhes da entidade</p>
+                    <div class="btn-group">
+                        <button id="bt-read" class="btn btn-default btn-sm active">read</button>
+                        <button id="bt-write" class="btn btn-default btn-sm">write</button>
+                    </div>
+                </li>
+                <li>
+                    <hr />
+                    <p>Lista de características</p>
+                    <button id="bt-table" class="btn btn-default btn-sm">lista</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--# include file="/fuxi/doc/partials/showroom/partials/scripts-templates.html" -->
+
+    <script>
+        FUXI.ExpandableForm.init();
+        FUXI.FixedPositions.init();
+
+        var errMsgTmpl = '<div class="alert alert-error">' +
+                            '<div class="fx-alert-icon">' +
+                            ' <i class="fuxicons fuxicons-error"></i>' +
+                        '</div>' +
+                        '<div class="fx-alert-desc"><label for="{{LABEL-FOR}}">{{ERROR-MSG}}</label></div>' +
+                    '</div>';
+
+        //options para o alerta que surge no ready da página
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "timeOut": "30000",
+            "extendedTimeOut": "10000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+        $.validator.setDefaults({
+            submitHandler: function () {
+                alert("submitted!");
+            }
+            , debug: true
+            , ignore: null // por defeito ignora os campos :hidden
+            , errorClass: "fx-validation-status-error"
+            , highlight: function (element, errorClass, validClass) {
+                var $elm = $(element);
+                $elm.closest('.form-group').addClass("has-error").removeClass(validClass);
+
+                var currentBlock = $elm.closest('.fx-form-block');
+                if (currentBlock.hasClass('collapsed')) {
+                    console.log('1');
+                    FUXI.ExpandableForm.openGroup($(currentBlock).find(".fx-form-block-help > h6"));
+                }
+            }
+            , unhighlight: function (element, errorClass, validClass) {
+                var $elm = $(element);
+                $elm.closest('.form-group').removeClass("has-error").addClass(validClass);
+            }
+        });
+
+        $(document).ready(function () {
+            utils.templateDesc();
+            $('#btn-minimize').click(); //faz trigger para que a barra surja por defeito minimizada
+            utils.activeButton();
+
+            //the alert message displayed on document ready
+            toastr["warning"]("O scripting colocado inline nesta página serve apenas o propósito da demo e não deve ser considerado como válido para implementação pelas equipas de produto que queiram usar este template.")
+
+            //TABLE
+            var $table = $('#properties-table');
+
+            var propertiesTable = $.extend({}, FUXI.Presets.DataTables, {
+                'iDisplayLength': 20,
+                'bPaginate': true,
+                'bInfo': true,
+                'aoColumns': [{
+                    'bSortable': true
+                }, {
+                    'bSortable': true
+                }, {
+                    'bSortable': true
+                }, {
+                    'bSortable': false
+                }]
+            });
+
+            $table.dataTable(propertiesTable);
+
+
+            //TEMPLATE DESC BEHAVIOURS
+            $('#bt-read, #main-cancel').on('click', function () {
+                //click tab show/hide form
+                $('.nav-tabs').find('a[href="#tab-form"]').trigger('click');
+
+                $('#read, #edit-refresh').removeClass('hidden');
+                $('#edit, #save-cancel').addClass('hidden');
+            });
+
+            $('#bt-write, #main-edit').on('click', function () {
+                //click tab show/hide form
+                $('.nav-tabs').find('a[href="#tab-form"]').trigger('click');
+
+                $('#read, #edit-refresh').addClass('hidden');
+                $('#edit, #save-cancel').removeClass('hidden');
+
+            });
+
+            $('#bt-table').on('click', function () {
+                //click tab
+                $('.nav-tabs').find('a[href="#tab-table"]').trigger('click');
+
+                $('#read, #edit-refresh').removeClass('hidden');
+                $('#edit, #save-cancel').addClass('hidden');
+            });
+
+
+            // validate form
+            $("#frmValidation").validate({
+                rules: {
+                    formGroupUsername: "required",
+                    inputPasswordAtual: "required",
+                    inputPasswordNova: {
+                        required: true,
+                        minlength: 5
+                    },
+                    inputPasswordConfNova: {
+                        required: true,
+                        minlength: 5,
+                        equalTo: "#inputPasswordNova"
+                    },
+                }                
+            });
+        });
+    </script>
+</body>
+</html>

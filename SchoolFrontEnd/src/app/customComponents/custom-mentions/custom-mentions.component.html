@@ -1,0 +1,32 @@
+<div class="mentions-component">
+    <div [class.input-group]="inputParameters.icon" mwlTextInputHighlightContainer>
+        <span *ngIf="inputParameters.icon" class="input-group-addon" [id]="componentElementsId.icon">
+            <i class="{{inputParameters.icon}}"></i>
+        </span>
+        <textarea mwlTextInputElement class="form-control input-{{inputParameters.size || 'sm'}}"
+            placeholder="{{inputParameters.placeholder | myI18n}}" title="{{inputParameters.title | myI18n}}"
+            [id]="componentElementsId.component"
+            [class.prevent-icon-size]="inputParameters.icon"
+            [class.disabled]="inputParameters.disabled"
+            [readonly]="inputParameters.readonly"
+            [maxlength]="inputParameters.validator && inputParameters.validator['maxlength'] ? inputParameters.validator['maxlength']['value'] : false"
+            [disabled]="inputParameters.disabled"
+            [ngModel]="inputParameters.value"
+            [ngStyle]="inputParameters.style"
+            autocomplete="off"
+            [mention]="items"
+            [mentionConfig]="MENTION_CONFIG"
+            rows="1"
+            (ngModelChange)="term$.next($event)"
+            (keydown.enter)="$event.preventDefault()"
+            #textarea>
+        </textarea>
+        <mwl-text-input-highlight [tags]="tags" [textInputElement]="textarea">
+        </mwl-text-input-highlight>
+    </div>
+    <!--output-label *ngIf="inputParameters.description"
+                    class="textbox-description"
+                    [id]="componentElementsId.description"
+                    [inputValue]="inputParameters.description | myI18n"
+                    [textboxAlign]="true"></output-label-->
+</div>

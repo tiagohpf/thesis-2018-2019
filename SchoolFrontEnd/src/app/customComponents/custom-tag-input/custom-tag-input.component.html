@@ -1,0 +1,8 @@
+<div class="custom-tag-input-component">
+    <!-- <label *ngIf="inputParameters.text">{{inputParameters.text | myI18n}}</label> -->
+    <tag-input [(ngModel)]='items' [id]="componentElementsId.component" [editable]='true'
+        (onRemove)="onRemove($event)" (onTagEdited)="onTagEdited($event)" (onAdd)="addAdd($event)"
+        placeholder="{{inputParameters.placeholder | myI18n}}"
+        secondaryPlaceholder="{{inputParameters.placeholder | myI18n}}">
+    </tag-input>
+</div>

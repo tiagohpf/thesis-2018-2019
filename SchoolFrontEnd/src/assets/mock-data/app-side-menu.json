@@ -1,0 +1,37 @@
+{
+  "type": "menu",
+  "id": "appSideMenu",
+  "value": "ICON",
+  "icon": "assets/images/platform/logo.svg",
+  "text": null,
+  "navigateTo": "/",
+  "menus": [
+    {
+      "text": "application___myStudents",
+      "icon": "icomoon icon-Students",
+      "class": "firstMenuElement",
+      "navigateTo": "students"
+    },
+    {
+      "text": "application___knowledgeCenter___name",
+      "icon": "icomoon icon-knowledge_center",
+      "navigateTo": "knowledgecenter"
+    },
+    {
+      "text": "application___fullfilments",
+      "icon": "icomoon icon-api_fill",
+      "navigateTo": "fullfilments"
+    },
+    {
+      "text": "application___analytics",
+      "icon": "icomoon icon-Analytics",
+      "navigateTo": "analytics"
+    },
+    {
+      "text": "application___learnMore",
+      "icon": "icomoon icon-learnmore",
+      "navigateTo": "learnmore",
+      "class":"lastMenuElement"
+    }
+  ]
+}

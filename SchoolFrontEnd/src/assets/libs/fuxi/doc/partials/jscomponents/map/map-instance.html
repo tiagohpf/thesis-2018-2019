@@ -1,0 +1,120 @@
+﻿<h3 id="docs-map-instance">Instanciação de um mapa</h3>
+<p>
+    Este snippet demonstra um mapa com as seguintes opções:
+    <ul>
+        <li>
+            Mapa centrado em Aveiro/Altice Labs;
+        </li>
+        <li>
+            Marcador posicionado na Altice labs com popover informativo;
+        </li>
+        <li>
+            Ao fazer zoom e chegando ao máximo, muda o tipo de mapa e permite adicionar marcadores.
+        </li>
+    </ul>
+</p>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <div id="map" style="height: 400px"></div>
+        <br />
+        <button class="btn btn-default" type="button" id="removeMarkers">
+            remover markers
+        </button>
+    </div>
+
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!-- Ficheiros necessários a incluir no head-->
+<head>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/basepack/leaflet/0.7/leaflet.css" rel="stylesheet" />
+    <link href="/fuxi/common/html/css/fuxi.min.css" rel="stylesheet">
+</head>
+
+<!--Ficheiros a colocar antes de fechar a tag body-->
+<script src="/basepack/jquery/1.9/jquery.min.js"></script>
+<script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+<script src="/basepack/leaflet/0.7/leaflet.js"></script>
+<script src="/fuxi/common/exec/fuxi.min.js"></script>
+
+<!--Markup necessário-->
+<div id="map" style="height: 400px"></div>
+
+<button class="btn btn-default" type="button" id="removeMarkers">
+    remove markers
+</button>
+
+<!--Instanciação do gráfico-->
+<script type="text/javascript">
+    // Initialize map
+    var map = L.map('map').setView([40.629608, -8.646958], 16);
+
+    // Set a layer/map type for the map
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
+
+    // Define a Icon
+    var LeafIcon = L.Icon.extend({
+        options: {
+            iconSize: [100, 30],
+            shadowSize: [50, 64],
+            iconAnchor: [21, 10],
+            shadowAnchor: [4, 62],
+            popupAnchor: [-7, -10]
+        }
+    });
+
+    // Icon definition
+    var ptIcon = new LeafIcon({
+        iconUrl: 'http://evox-technologies.pt/img/alticelabs_logo.png'
+    });
+
+    // Costum marker definition
+    L.marker([40.6296, -8.6469], {
+        icon: ptIcon
+    }).bindPopup("<strong>Altice labs</strong>\
+  		                    <p>Rua Eng. José Ferreira Pinto Basto<br>\
+  		                    3810-106 Aveiro</p>\
+  		                    Site: <a href='http://www.alticelabs.com'>www.alticelabs.com</a><br>\
+  		                    Telf: 234 123 456").addTo(map);
+
+    // Event that controls the change of map type 
+    map.on('zoomend', function (event) {
+        if (map.getZoom() > 17) {
+            console.log("current zoom, ", map.getZoom());
+            L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png').addTo(map);
+
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setOpacity(1);
+            }
+        } else {
+            console.log("current zoom, ", map.getZoom());
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
+
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setOpacity(0);
+            }
+
+        }
+    });
+
+    // Marker is an array that will store all added markers
+    var markers = [];
+    var newMarkerGroup = new L.LayerGroup();
+    map.on('click', function (e) {
+
+        if (map.getZoom() > 17) {
+            markers.push(new L.marker(e.latlng, { icon: ptIcon }).addTo(map));
+        }
+    });
+
+    // Remove added markers
+    $('#removeMarkers').on("click", function () {
+        console.log("removing");
+        for (var i = 0; i < markers.length; i++) {
+            map.removeLayer(markers[i]);
+        }
+    });
+</script></textarea>
+    </form>
+</div>

@@ -1,0 +1,180 @@
+{
+    "type": "initParameters",
+    "id": "createEntityPage",
+    "header": {
+        "id": "createEntityPageHeader",
+        "seo": {
+            "text": "program___entity___createNewEntity",
+            "icon": "fa fa-reply"
+        },
+        "details": [
+            {
+                "type": "context",
+                "text": "programCode",
+                "id": "programCode",
+                "pathToValue": [
+                    "programAPIResponse",
+                    "code"
+                ]
+            }
+        ]
+    },
+    "details": [
+        {
+            "type": "textbox",
+            "id": "entityName",
+            "text": "program___entity___entityName",
+            "pathToValueList": "_embedded",
+            "pathToValue": "name",
+            "validator": {
+                "required": [
+                    true,
+                    "warnings___fieldRequired"
+                ],
+                "unique": [
+                    {
+                        "urlResource": [
+                            {
+                                "key": "path",
+                                "value": "{{AppAPIBotConfig}}/programs"
+                            },
+                            {
+                                "key": "queryString",
+                                "value": {
+                                    "filter": "{\"_id\": { \"$oid\":\"[[programID]]\"},\"chapters\":{\"$elemMatch\":{\"displayName\":\"{{entityName}}\"}}}",
+                                    "keys": "{\"_id\":1,\"name\":1}"
+                                }
+                            },
+                            {
+                                "key": "headers",
+                                "value": {
+                                    "Authorization": "Bearer {{token}}",
+                                    "IXS": "{{IXS_id}}"
+                                }
+                            }
+                        ]
+                    },
+                    "warnings___nameExists"
+                ]
+            }
+        },
+        {
+            "type": "header",
+            "class": "col-sm-6 primary-header",
+            "header": {
+                "seo": {
+                    "text": "program___entity___entityValues",
+                    "icon": "fuxicons fuxicons-script"
+                }
+            }
+        },
+        {
+            "type": "wct-tuple-list",
+            "id": "values_Tuple",
+            "_class": "hide-label",
+            "pathToValueList": [
+                "dummy"
+            ],
+            "validator": {
+                "required": [
+                    true,
+                    "warnings___fieldRequired"
+                ]
+            },
+            "details": [
+                {
+                    "type": "textbox",
+                    "id": "entityValue",
+                    "placeholder": "program___entity___value",
+                    "text": "program___entity___value",
+                    "_validator": {
+                        "required": [
+                            true,
+                            "warnings___fieldRequired"
+                        ]
+                    },
+                    "class": "col-sm-4"
+                },
+                {
+                    "type": "custom-tag-input",
+                    "id": "synonyms",
+                    "text": "program___entity___synonyms",
+                    "placeholder": "program___entity___addSynonym",
+                    "pathToValueList": [
+                        "dummy"
+                    ],
+                    "class": "col-sm-8 synonyms"
+                }
+            ]
+        }
+    ],
+    "operations": {
+        "parameters": [
+            {
+                "id": "entityCreateCancelBtn",
+                "type": "updatePage",
+                "text": "generic___operations___cancel",
+                "class": "btn-force-default btn-default"
+            },
+            {
+                "type": "execute",
+                "id": "entityCreateSubmitBtn",
+                "text": "generic___operations___save",
+                "class": "btn-primary",
+                "parameters": [
+                    {
+                        "key": "requestEndpoint",
+                        "value": "{{SchoolBE}}/programs/[[programID]]"
+                    },
+                    {
+                        "key": "requestHeaders",
+                        "value": {
+                            "Authorization": "Bearer {{token}}",
+                            "IXS": "{{IXS_id}}"
+                        }
+                    },
+                    {
+                        "key": "requestType",
+                        "value": "PATCH"
+                    },
+                    {
+                        "key": "requestBody",
+                        "type": "json",
+                        "value": {
+                            "$push": {
+                                "chapters": {
+                                    "displayName": "{{@fv()@replaceTagVars('programCode')+'_'+@replaceTagVars('entityName')}}",
+                                    "kind": "KIND_MAP",
+                                    "entities": "{{@fv()@generateSynonymsList(@replaceTagVars('values_Tuple'))}}"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "key": "errorText",
+                        "value": "ERROR!\n Could not create entity."
+                    },
+                    {
+                        "key": "onSuccess",
+                        "value": {
+                            "request": [
+                                {
+                                    "key": "updatePageParameter",
+                                    "value": {
+                                        "programEntitiesTable": {
+                                            "lazyLoading": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "key": "successText",
+                                    "value": "Entity created successfully."
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

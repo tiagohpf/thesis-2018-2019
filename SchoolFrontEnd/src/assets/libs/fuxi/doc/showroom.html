@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--# include file="/fuxi/doc/partials/head.html" -->
+    <title>Showroom - FUXI</title>
+</head>
+<body>
+    <!--# include file="/fuxi/doc/partials/header.html" -->
+    <div class="fx-docs-container">
+        <!--view starts here-->
+        <div class="fx-mast-head">
+            <div class="row">
+                <div class="col-md-3 col-lg-2 ">
+                    <h1>Showroom FUXI</h1>
+                </div>
+                <div class="col-md-9 col-lg-10">
+                    <p>
+                        Exemplos de páginas onde são combinados os elementos UI com as componentes baseadas em JavaScript.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="fx-docs-main-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Templates</h2>
+                    <p>As páginas aqui disponibilizadas pretendem apenas ser um exemplo de como os diversos assets da FUXI se podem conjugar numa página.</p>
+                    <p>Copiar integralmente uma página aqui presente não garante por si só a melhor experiência de utilização.</p>
+                </div>
+            </div>
+            <div id="showroom-thumbs" class="row fx-docs-showroom-thumbs">
+                <!--TEMPLATE HERE-->
+            </div>
+        </div>
+        <!--# include file="/fuxi/doc/partials/footer.html" -->
+    </div>
+    <!--# include file="/fuxi/doc/partials/scripts.html" -->
+
+    <script id="devguide-showroom-template-item" type="text/devguide-showroom-template">
+        <div class="col-sm-6 col-md-3 fx-docs-showroom-thumb-container">
+            <div class="thumbnail">
+                <img src="partials/showroom/img/{{TEMPLATE-IMG-SRC}}" alt="" class="img-responsive" />
+                <h3>{{TEMPLATE-TITLE}}</h3>
+                <p>{{TEMPLATE-DESC}}</p>
+                <div class="fx-btn-container">
+                    <a class="fx-docs-btn-link" href="partials/showroom/{{TEMPLATE-LINK}}" target="_blank">
+                        ver demo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script>
+        var Showroom_Data = function () {
+            function thumbnail(img, title, desc, link) {
+                this.Img = img,
+                this.Title = title,
+                this.Desc = desc,
+                this.Link = link
+            };
+
+            return {
+                getTemplates: function () {
+                    var templates = [];
+                    templates.push(new thumbnail('wireframe.png', 'Wireframe', 'Template de wireframe.', 'wireframe.html'));
+                    templates.push(new thumbnail('login.png', 'Login', 'Template para página de autenticação.', 'login.html'));
+                    templates.push(new thumbnail('entity-list.png', 'Página de listagem', 'Template para página de listagem.', 'entity-list.html'));
+                    templates.push(new thumbnail('entity-detail.png', 'Detalhe de entidade', 'Template para página de detalhe de entidade.<br/>Inclui validação do formulário de edição de características.', 'entity-detail.html'));
+                    templates.push(new thumbnail('sidebar-filters.png', 'Filtros de pesquisa avançada', 'Template para filtros de pesquisa avançada.', 'sidebar-filter.html'));
+                    templates.push(new thumbnail('ui-layout.png', 'Página jQuery UI Layout', 'Template jQuery UI Layout.', 'ui-layout.html'));
+                    templates.push(new thumbnail('system-search.png', 'Pesquisa transversal', 'Template para página de pesquisa transversal.', 'system-search.html'));
+                    templates.push(new thumbnail('error-4xx.png', 'Página de erro 4xx', 'Template para as páginas de erro 4xx.', '4xx-client-error.html'));
+                    templates.push(new thumbnail('error-5xx.png', 'Página de erro 5xx', 'Template para as páginas de erro 5xx.', '5xx-server-error.html'));
+                    templates.push(new thumbnail('cookies-msg.png', 'Política de cookies', 'Exemplo da informação acerca do uso de cookies.', 'cookies.html'));
+                    
+                    return templates;
+                },
+            }
+        }();
+
+        function loadTemplates() {
+
+            var templates = Showroom_Data.getTemplates();
+
+            var HTML = "";
+            
+            var templ = $("#devguide-showroom-template-item").html();
+
+            $.each(templates, function (idx, template) {
+                HTML += templ.replace(new RegExp("{{TEMPLATE-IMG-SRC}}", "ig"), template.Img)
+                             .replace(new RegExp("{{TEMPLATE-TITLE}}", "ig"), template.Title)
+                             .replace(new RegExp("{{TEMPLATE-DESC}}", "ig"), template.Desc)
+                             .replace(new RegExp("{{TEMPLATE-LINK}}", "ig"), template.Link)
+            });
+
+            $("#showroom-thumbs").html(HTML);
+        }
+
+
+        $(document).ready(function () {
+            devGuideUtils.setActiveNavItem();
+            loadTemplates();
+        });
+    </script>
+</body>
+</html>

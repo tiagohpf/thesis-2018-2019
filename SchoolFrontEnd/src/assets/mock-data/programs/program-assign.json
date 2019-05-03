@@ -1,0 +1,525 @@
+{
+    "type": "page",
+    "id": "courseAssignPrograms",
+    "header": {
+        "id": "pageHeader",
+        "seo": {
+            "text": "application___programs",
+            "icon": "icomoon icon-programs"
+        }
+    },
+    "wizard": [
+        {
+            "TODO": "Capacitar mock para inserir programs em multi student do curso , neste momento so insere num unico student do course",
+            "TODO2": "Multi Learn de Programs por parte do student quando se seleciona a opção do learn",
+            "id": "courseProgramsID",
+            "text": "Step 1",
+            "components": [
+                {
+                    "type": "initParameters",
+                    "details": [
+                        {
+                            "type": "initCards",
+                            "subType": "card-container-checkBox",
+                            "id": "courseProgramsAssignMainCardList",
+                            "icon": "fa fa-th-large",
+                            "class": "col-md-12 courseProgramsMainCardList programAssign",
+                            "urlResource": [
+                                {
+                                    "key": "path",
+                                    "value": "{{SchoolBOT}}/programs"
+                                },
+                                {
+                                    "key": "_queryString",
+                                    "value": {
+                                        "pagesize": "((pagesize))",
+                                        "count": null,
+                                        "keys": "{\"_id\":1,\"name\":1,\"image\":1,\"description\":1,\"status\":1,\"type\":1}",
+                                        "filter": "{\"IXS\":\"{{IXS_id}}\", \"_id\": { \"$nin\": {{courseProgramsIds}} }}",
+                                        "np": null,
+                                        "rep": "pj"
+                                    },
+                                    "dynamicProps": {
+                                        "key": "'{{courseProgramsIds}}'?'queryString':'_queryString'"
+                                    }
+                                },
+                                {
+                                    "key": "_queryString",
+                                    "value": {
+                                        "pagesize": "((pagesize))",
+                                        "count": null,
+                                        "keys": "{\"_id\":1,\"name\":1,\"image\":1,\"description\":1,\"status\":1,\"type\":1}",
+                                        "filter": "{\"IXS\":\"{{IXS_id}}\"}",
+                                        "np": null,
+                                        "rep": "pj"
+                                    },
+                                    "dynamicProps": {
+                                        "key": "!'{{courseProgramsIds}}'?'queryString':'_queryString'"
+                                    }
+                                },
+                                {
+                                    "key": "headers",
+                                    "value": {
+                                        "Authorization": "Bearer {{token}}",
+                                        "IXS": "{{IXS_id}}"
+                                    }
+                                },
+                                {
+                                    "key": "reload",
+                                    "value": false
+                                }
+                            ],
+                            "pathToValueList": "",
+                            "parameters": [
+                                {
+                                    "key": "tableActions",
+                                    "value": {
+                                        "tableManager": false,
+                                        "export": false,
+                                        "search": false,
+                                        "paging": false
+                                    }
+                                },
+                                {
+                                    "key": "identifier",
+                                    "id": "name"
+                                }
+                            ],
+                            "details": [
+                                {
+                                    "type": "context",
+                                    "id": "ctxtId",
+                                    "pathToValue": [
+                                        "_id",
+                                        "$oid"
+                                    ]
+                                },
+                                {
+                                    "type": "image",
+                                    "id": "programImage",
+                                    "class": "programImage col-md-2",
+                                    "pathToValue": [
+                                        "_id",
+                                        "$oid",
+                                        "'{{ImageService}}/programs/'+ $this"
+                                    ],
+                                    "_value": "/assets/images/degree/default.svg"
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "programID",
+                                    "pathToValue": [
+                                        "_id",
+                                        "$oid"
+                                    ]
+                                },
+                                {
+                                    "type": "label",
+                                    "id": "name",
+                                    "pathToValue": "name",
+                                    "class": "col-md-3",
+                                    "navigateTo": "knowledgecenter/programs/{{programID}}",
+                                    "text": "program___name"
+                                },
+                                {
+                                    "type": "label",
+                                    "id": "studentDescription",
+                                    "class": "col-md-3",
+                                    "pathToValue": [
+                                        "description"
+                                    ],
+                                    "text": "program___description"
+                                },
+                                {
+                                    "type": "label",
+                                    "class": "col-md-2",
+                                    "id": "studentCourseLastUpdate",
+                                    "text": "application___lastUpdate",
+                                    "pathToValue": "lastUpdate"
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "studentProgramStatus_color",
+                                    "pathToValue": "status"
+                                },
+                                {
+                                    "type": "label",
+                                    "id": "studentProgramStatus",
+                                    "class": "col-md-2 programStatus",
+                                    "pathToValue": "status",
+                                    "dynamicProps": {
+                                        "class": "'col-md-2 programStatus status_{{studentProgramStatus_color}}'"
+                                    },
+                                    "text": null,
+                                    "html": {
+                                        "1": "<img alt='' title='' src='assets/images/platform/new2.svg'>&nbsp;<span class='statusText'>{{@fv()@i18n('program___status_types___new')}}</span>",
+                                        "3": "<img alt='' title='' src='assets/images/platform/published.svg'>&nbsp;<span class='statusText'>{{@fv()@i18n('program___status_types___published')}}</span>",
+                                        "4": "<img alt='' title='' src='assets/images/platform/edit.svg'>&nbsp;<span class='statusText'>{{@fv()@i18n('program___status_types___editing')}}</span>"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "textbox",
+                            "id": "assignProgramsIds",
+                            "dynamicProps": {
+                                "value": "{{@fv()@getIdsFromObjList(@replaceTagVars('courseProgramsAssignMainCardList'))}}"
+                            },
+                            "validator": {
+                                "required": [
+                                    true,
+                                    "warnings___fieldRequired"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "programsLearn",
+            "text": "Step 2",
+            "components": [
+                {
+                    "type": "initParameters",
+                    "id": "programsLearnDtl",
+                    "details": [
+                        {
+                            "type": "input-checkbox",
+                            "text": "generic___operations___assignPrograms___programsAvailable",
+                            "id": "programIdsToLearn",
+                            "pathToValueList": "_embedded",
+                            "checked": true,
+                            "templateOfValueList": "{\"key\":\"{{programId}}\",\"value\":\"{{name}}\"}",
+                            "urlResource": [
+                                {
+                                    "key": "path",
+                                    "value": "{{SchoolBOT}}/availablePrograms"
+                                },
+                                {
+                                    "key": "id",
+                                    "value": "availableProgramAPI"
+                                },
+                                {
+                                    "key": "apiRecycle",
+                                    "value": false
+                                },
+                                {
+                                    "key": "queryString",
+                                    "value": {
+                                        "keys": "{\"_id\":1,\"programId\":1,\"name\":1}",
+                                        "filter": "{\"programId\": { \"$in\": {{assignProgramsIds}} }, \"deprecated\":false}"
+                                    }
+                                },
+                                {
+                                    "key": "headers",
+                                    "value": {
+                                        "Authorization": "Bearer {{token}}",
+                                        "IXS": "{{IXS_id}}"
+                                    }
+                                },
+                                {
+                                    "key": "reload",
+                                    "value": false
+                                }
+                            ],
+                            "dynamicProps": {
+                                "lazyLoading": "!'{{assignProgramsIds}}'"
+                            }
+                        },
+                        {
+                            "type": "header",
+                            "class": "col-sm-12 title",
+                            "header": {
+                              "seo": {
+                                "text": "{{@fv()@i18n('generic___operations___assignPrograms___learnConfirmMsg')}}",
+                                "_icon": "icomoon icon-Students"
+                              }
+                            },
+                            "dynamicProps": {
+                                "lazyLoading": "!'{{programIdsToLearn}}' || {{programIdsToLearn}}.length == 0",
+                                "hidden": "!'{{programIdsToLearn}}' || {{programIdsToLearn}}.length == 0"
+                            }
+                          },
+                        {
+                            "type": "input-checkbox",
+                            "id": "assignStudentProgram",
+                            "pathToValueList": "",
+                            "templateOfValueList": "{\"key\":\"{{_id___$oid}}\",\"value\":\"{{name}}\"}",
+                            "urlResource": [
+                                {
+                                    "key": "path",
+                                    "value": "{{SchoolBOT}}/students"
+                                },
+                                {
+                                    "key": "id",
+                                    "value": "courseStudentsAPI"
+                                },
+                                {
+                                    "key": "queryString",
+                                    "value": {
+                                        "keys": "{\"_id\":1,\"name\":1}",
+                                        "filter": "{\"courses\": { \"$in\": ['[[id]]'] }}",
+                                        "np": null,
+                                        "rep": "pj"
+                                    }
+                                },
+                                {
+                                    "key": "headers",
+                                    "value": {
+                                        "Authorization": "Bearer {{token}}",
+                                        "IXS": "{{IXS_id}}"
+                                    }
+                                },
+                                {
+                                    "key": "reload",
+                                    "value": false
+                                }
+                            ],
+                            "dynamicProps": {
+                                "lazyLoading": "!'{{programIdsToLearn}}' || {{programIdsToLearn}}.length == 0",
+                                "hidden": "!'{{programIdsToLearn}}' || {{programIdsToLearn}}.length == 0"
+                            }
+                        },
+                        {
+                            "type": "context",
+                            "id": "courseStudents",
+                            "dynamicProps": {
+                                "lazyloading": "!{{courseStudentsAPI}}",
+                                "value": "'{{courseStudentsAPI___0____id___$oid}}'"
+                            },
+                            "_pathToValue": [
+                                "courseStudentsAPI",
+                                "0",
+                                "_id",
+                                "$oid"
+                            ]
+                        },
+                        {
+                            "type": "json",
+                            "id": "singleStudent_AUX",
+                            "dynamicProps": {
+                                "value": "{{assignStudentProgram}}[0]"
+                            },
+                            "hidden": true
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "buttons": [
+        {
+            "key": "submit",
+            "id": "assign",
+            "text": "SaveSSSS",
+            "class": "btn-primary",
+            "parameters": [
+                {
+                    "key": "successText",
+                    "value": "success___requestSuccess"
+                },
+                {
+                    "key": "errorText",
+                    "value": "errors___requestError"
+                },
+                {
+                    "key": "requestEndpoint",
+                    "value": "save/resource/path"
+                },
+                {
+                    "key": "requestHeaders",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                },
+                {
+                    "key": "requestType",
+                    "value": "POST"
+                },
+                {
+                    "key": "requestBody",
+                    "type": "json",
+                    "value": {
+                        "orderExternalId": "{{uuid}}",
+                        "orderSource": "_ARM",
+                        "executionMode": {
+                            "@executionMode": "Async",
+                            "url": "save/resource/path1",
+                            "otherInfo": {
+                                "entry": [
+                                    {
+                                        "key": "ssl",
+                                        "value": "save/resource/path1"
+                                    }
+                                ]
+                            }
+                        },
+                        "orderItems": {
+                            "myFormItems": {
+                                "@operation": "Create",
+                                "param1": "{{param1}}",
+                                "param2": "{{param2}}",
+                                "reason": {
+                                    "code": "REASON_001",
+                                    "description": "ReasonDesc"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "key": "submit",
+            "id": "assignLearn",
+            "text": "Save",
+            "class": "btn-primary",
+            "parameters": [
+                {
+                    "key": "successText",
+                    "value": "success___requestSuccess"
+                },
+                {
+                    "key": "errorText",
+                    "value": "errors___requestError"
+                },
+                {
+                    "key": "requestEndpoint",
+                    "value": "{{SchoolBOT}}/courses/[[id]]"
+                },
+                {
+                    "key": "requestHeaders",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                },
+                {
+                    "key": "requestType",
+                    "value": "PATCH"
+                },
+                {
+                    "key": "requestBody",
+                    "type": "json",
+                    "value": {
+                        "$push": {
+                            "programs": {
+                                "$each": "{{assignProgramsIds}}"
+                            }
+                        }
+                    }
+                },
+                {
+                    "key": "onSuccess",
+                    "value": {
+                        "request": [
+                            {
+                                "key": "successText",
+                                "value": "success___requestSuccess"
+                            },
+                            {
+                                "key": "errorText",
+                                "value": "errors___requestError"
+                            },
+                            {
+                                "key": "requestEndpoint",
+                                "value": "{{SchoolBOT}}/students/{{courseStudents}}"
+                            },
+                            {
+                                "key": "requestHeaders",
+                                "value": {
+                                    "Authorization": "Bearer {{token}}",
+                                    "IXS": "{{IXS_id}}"
+                                }
+                            },
+                            {
+                                "key": "requestType",
+                                "value": "PATCH"
+                            },
+                            {
+                                "key": "requestBody",
+                                "type": "json",
+                                "value": {
+                                    "$push": {
+                                        "programs": {
+                                            "$each": "{{@fv()@generateArrayStudentProgramsStructureIDs(@replaceTagVars('assignProgramsIds'),@replaceTagVars('timestampWithTZ'),@replaceTagVars('preferred_username'))}}"
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "key": "onSuccess",
+                                "dynamicProps": {
+                                    "key": "{{assignStudentProgram}}.length > 0 ?'onSuccess':'_onSuccess'"
+                                },
+                                "value": {
+                                    "request": [
+                                        {
+                                            "key": "requestEndpoint",
+                                            "value": "{{SchoolBE}}/availablePrograms/learn"
+                                        },
+                                        {
+                                            "key": "requestHeaders",
+                                            "value": {
+                                                "Authorization": "Bearer {{token}}",
+                                                "IXS": "{{IXS_id}}"
+                                            }
+                                        },
+                                        {
+                                            "key": "requestType",
+                                            "value": "POST"
+                                        },
+                                        {
+                                            "key": "requestBody",
+                                            "type": "json",
+                                            "value": {
+                                                "students": "{{assignStudentProgram}}",
+                                                "programs": "{{programIdsToLearn}}",
+                                                "requestedBy": "{{logged-user}}"
+                                            }
+                                        },
+                                        {
+                                            "key": "successRouter",
+                                            "value": "courses/[[id]]"
+                                        },
+                                        {
+                                            "key": "successText",
+                                            "value": "success___requestSuccess"
+                                        },
+                                        {
+                                            "key": "errorText",
+                                            "value": "errors___requestError"
+                                        },
+                                        {
+                                            "key": "onError",
+                                            "value": {
+                                                "notification": {
+                                                    "type": "warning",
+                                                    "text": "warnings___problemRetrievingSheet",
+                                                    "limit": 1,
+                                                    "timeout": 3000,
+                                                    "position": "top-right"
+                                                },
+                                                "navigateTo": {
+                                                    "route": "programs"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "key": "cancel",
+            "text": "generic___operations___cancel",
+            "class": "btn-default",
+            "_navigateTo": "customers"
+        }
+    ]
+}

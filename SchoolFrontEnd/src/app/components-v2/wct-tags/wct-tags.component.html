@@ -1,0 +1,18 @@
+<label
+    *ngIf="inputParameters.description"
+    style="padding-left: 12px"
+    [id]="inputParameters?.id ? 'wct-tagDescription-' + inputParameters.id : ''">{{inputParameters.description | myI18n}} ({{details.length}})</label>
+
+<output-label *ngIf="details.length == 0;else tagsList" [textboxAlign]="true"></output-label>
+<ng-template #tagsList>
+    <div
+        *ngFor="let detail of details;let i=index"
+        class="btn btn-secundary"
+        [id]="inputParameters?.id ? 'wct-tag-' + inputParameters.id + '-' + i : ''">
+          <show-parameters-by-type-component
+              [viewStructure]="props"
+              [dataRecs]="eachValueListData[i]"
+              [inputParameters]="detail"
+              [parametersFormat]="false"></show-parameters-by-type-component>
+    </div>
+</ng-template>

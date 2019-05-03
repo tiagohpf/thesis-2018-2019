@@ -1,0 +1,54 @@
+<h3 id="accordion-overview">Accordion - overview</h3>
+<p>
+   O componente de acordeão é constituido por uma <code>div</code> encapsuladora identificada com as classes <code>panel fx-accordion-navigation</code>, por cabeçalho com a class <code>fx-accordion-navigation-heading</code> e um body com a class <code>fx-accordion-navigation-body</code>.
+</p>
+<p>
+    Dentro do elemento com a class <code>fx-accordion-navigation-body</code> podem ser colocados diferentes tipos de conteúdo. Abaixo encontra-se um exemplo de uma solução em que a área de body possui uma porção de texto.
+</p>
+<p>
+    Importa referir que para que a funcionalidade de acordeão seja garantida, os elementos deverão ter o mesmo <code>data-parent</code>.
+</p>
+
+<div id="devguide-accordion-overview-example">
+    <div class="panel fx-accordion-navigation">
+        <div class="fx-accordion-navigation-heading">
+            <a data-parent="#devguide-accordion-overview-example" class="collapsed" data-toggle="collapse" href="#devguide-accordion-overview-panel1"><i class="fa"></i>Painel 1</a>
+        </div>
+        <div class="fx-accordion-navigation-body collapse" id="devguide-accordion-overview-panel1">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consectetur ante in felis volutpat hendrerit. Pellentesque at ex velit. Nunc malesuada sit amet purus gravida commodo. In lobortis eu turpis ut maximus. Etiam dictum neque fringilla leo semper, eget tempus ex suscipit. Maecenas vitae aliquam mi, consectetur tincidunt eros. Nullam nibh ipsum, accumsan quis metus eget, aliquam fermentum nunc. Aenean tincidunt ante ut velit iaculis pharetra. Sed eu commodo justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit at erat eu tempor. Aliquam id lacinia magna, dictum posuere elit. Nullam pretium arcu lorem, et placerat est dignissim at. In non elit eget mauris congue vestibulum.</p>
+        </div>
+    </div>
+    <div class="panel fx-accordion-navigation">
+        <div class="fx-accordion-navigation-heading">
+            <a data-parent="#devguide-accordion-overview-example" class="collapsed" data-toggle="collapse" href="#devguide-accordion-overview-panel2"><i class="fa"></i>Painel 2</a>
+        </div>
+        <div class="fx-accordion-navigation-body collapse" id="devguide-accordion-overview-panel2">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consectetur ante in felis volutpat hendrerit. Pellentesque at ex velit. Nunc malesuada sit amet purus gravida commodo. In lobortis eu turpis ut maximus. Etiam dictum neque fringilla leo semper, eget tempus ex suscipit. Maecenas vitae aliquam mi, consectetur tincidunt eros. Nullam nibh ipsum, accumsan quis metus eget, aliquam fermentum nunc. Aenean tincidunt ante ut velit iaculis pharetra. Sed eu commodo justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit at erat eu tempor. Aliquam id lacinia magna, dictum posuere elit. Nullam pretium arcu lorem, et placerat est dignissim at. In non elit eget mauris congue vestibulum.</p>
+        </div>
+    </div>
+</div>
+
+
+<form class="fx-codemirror">
+    <textarea class="fx-codemirror-textarea">
+<div id="devguide-accordion-overview-example">
+    <div class="panel fx-accordion-navigation">
+        <div class="fx-accordion-navigation-heading">
+            <a data-parent="#devguide-accordion-overview-example" class="collapsed" data-toggle="collapse" href="#devguide-accordion-overview-panel1"><i class="fa"></i>Painel 1</a>
+        </div>
+        <div class="fx-accordion-navigation-body collapse" id="devguide-accordion-overview-panel1">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consectetur ante in felis volutpat hendrerit. Pellentesque at ex velit. Nunc malesuada sit amet purus gravida commodo. In lobortis eu turpis ut maximus. Etiam dictum neque fringilla leo semper, eget tempus ex suscipit. Maecenas vitae aliquam mi, consectetur tincidunt eros. Nullam nibh ipsum, accumsan quis metus eget, aliquam fermentum nunc. Aenean tincidunt ante ut velit iaculis pharetra. Sed eu commodo justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit at erat eu tempor. Aliquam id lacinia magna, dictum posuere elit. Nullam pretium arcu lorem, et placerat est dignissim at. In non elit eget mauris congue vestibulum.</p>
+        </div>
+    </div>
+    <div class="panel fx-accordion-navigation">
+        <div class="fx-accordion-navigation-heading">
+            <a data-parent="#devguide-accordion-overview-example" class="collapsed" data-toggle="collapse" href="#devguide-accordion-overview-panel2"><i class="fa"></i>Painel 2</a>
+        </div>
+        <div class="fx-accordion-navigation-body collapse" id="devguide-accordion-overview-panel2">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consectetur ante in felis volutpat hendrerit. Pellentesque at ex velit. Nunc malesuada sit amet purus gravida commodo. In lobortis eu turpis ut maximus. Etiam dictum neque fringilla leo semper, eget tempus ex suscipit. Maecenas vitae aliquam mi, consectetur tincidunt eros. Nullam nibh ipsum, accumsan quis metus eget, aliquam fermentum nunc. Aenean tincidunt ante ut velit iaculis pharetra. Sed eu commodo justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit at erat eu tempor. Aliquam id lacinia magna, dictum posuere elit. Nullam pretium arcu lorem, et placerat est dignissim at. In non elit eget mauris congue vestibulum.</p>
+        </div>
+    </div>
+</div>
+    </textarea>
+</form>
+

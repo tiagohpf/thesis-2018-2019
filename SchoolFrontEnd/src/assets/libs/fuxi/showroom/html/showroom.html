@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html>
+<html ng-app="showroomApp">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge; text/html;" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0,  user-scalable=yes" />
+		<link rel="icon" href="/fuxi/common/html/css/images/favicon.ico" type="image/x-icon" />
+		<title>Showroom FUXI</title>
+		<link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.min.css" />
+
+		<script src="/basepack/jquery/1.9/jquery.min.js"></script>
+		<script src="/fuxi/lib/masonry/2.1/js/jquery.masonry.min.js"></script>
+		<script src="/basepack/angularjs/1.2/angular.min.js"></script>
+		<script>
+			angular.module('showroomApp', []).directive("masonry", function() {
+				var NGREPEAT_SOURCE_RE = '<!-- ngRepeat: ((.*) in ((.*?)( track by (.*))?)) -->';
+				return {
+					compile : function(element, attrs) {
+						// auto add animation to brick element
+						var animation = attrs.ngAnimate || "'masonry'";
+						var $brick = element.children();
+						$brick.attr("ng-animate", animation);
+
+						// generate item selector (exclude leaving items)
+						var type = $brick.prop('tagName');
+						var itemSelector = type + ":not([class$='-leave-active'])";
+
+						return function(scope, element, attrs) {
+							var options = angular.extend({
+								itemSelector : itemSelector
+							}, scope.$eval(attrs.masonry));
+
+							// try to infer model from ngRepeat
+							if (!options.model) {
+								var ngRepeatMatch = element.html().match(NGREPEAT_SOURCE_RE);
+								if (ngRepeatMatch) {
+									options.model = ngRepeatMatch[4];
+								}
+							}
+
+							// initial animation
+							element.addClass('masonry');
+
+							//element.on("READY", function() {
+
+							// Wait inside directives to render
+							setTimeout(function() {
+								element.masonry(options);
+
+								/*element.on("$destroy", function() {
+								 element.masonry('destroy')
+								 console.log("dest");
+								 });*/
+
+								if (options.model) {
+									scope.$apply(function() {
+										scope.$watchCollection(options.model, function(_new, _old) {
+											if (_new == _old)
+												return;
+
+											// Wait inside directives to render
+											setTimeout(function() {
+												element.masonry("reload");
+											}, 200);
+
+										});
+									});
+								}
+							});
+							//}); //element.on("READY", function() {
+						};
+					}
+				};
+			}).controller('ShowroomCtrl', function($scope, $http) {
+				$scope.orderProp = 'name';
+				$http.get('resources/templates.json').success(function(data) {
+					$scope.templates = data;
+					//$scope.$emit("READY","loaded");
+				});
+			});
+
+			var calcSizes = function() {
+				var mainContentHeight = $('.fx-prevent-content-behind-footer').height();
+				$(".fx-showroom-container").css("height", mainContentHeight - 45);
+			}
+
+			$(document).ready(function() {
+				//adjusts sizes on window resize
+				$(window).on('resize', function() {
+					calcSizes();
+				});
+			});
+
+			//resets sizes when window is resized
+			$(window).ready(function() {
+				calcSizes();
+			});
+
+		</script>
+		<style type="text/css">
+			body {
+				background-color: #f1f1f1;
+			}
+
+			.fx-prevent-content-behind-footer {
+				padding: 0 0 40px 0;
+			}
+
+			.fx-showroom-container {
+				overflow-y: scroll;
+			}
+
+			.grid {
+				padding: 10px;
+			}
+
+			.grid  li {
+				display: inline-block;
+				margin: 0 0 20px 20px;
+				width: 350px;
+			}
+
+			.thumbnail {
+				-moz-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.18);
+				-webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.18);
+				box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.18);
+				border-radius: 3px;
+				margin-bottom: 0;
+				padding: 10px;
+			}
+
+			.thumbnail > .caption > p {
+				font-family: 'open_sanslight';
+			}
+
+			#fx-header {
+				position: relative;
+			}
+
+			.fx-main-footer {
+				position: fixed;
+			}
+
+			/**** Transitions ****/
+			.masonry, .masonry li {/* apply before masonry add class */
+				position: absolute; /* important to add it before enter animation start */
+				-webkit-transition-duration: .7s;
+				transition-duration: .7s;
+				-webkit-transition-property: all;
+				transition-property: all;
+			}
+
+			.masonry .masonry-enter {/* limit animated properties for entering elements */
+				-webkit-transition-property: -webkit-transform, opacity;
+				transition-property: transform, opacity;
+			}
+
+			.masonry-enter, .masonry-leave.masonry-leave-active {
+				opacity: 0;
+				-webkit-transform: scale(0.1);
+				transform: scale(0.1);
+			}
+
+			.masonry-leave, .masonry-enter.masonry-enter-active {
+				opacity: 1;
+				-webkit-transform: scale(1);
+				transform: scale(1);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="fx-push-footer fx-full-height" ng-controller="ShowroomCtrl">
+
+			<!-- header -->
+			<header id="fx-header">
+				<nav class="fx-navbar" role="navigation">
+					<a class="fx-logo-showroom" href="#"></a>
+					<ul class="fx-nav pull-right">
+						<li>
+							<form role="search" class="fx-nav fx-search">
+								<div class="form-group fx-search-input">
+									<div class="fx-pos-rel">
+										<button class="glyphicon glyphicon-search"></button>
+										<input type="text" ng-model="query" class="form-control input-sm" placeholder="pesquisar..." autofocus>
+									</div>
+								</div>
+							</form>
+						</li>
+					</ul>
+				</nav>
+			</header>
+
+			<div class="fx-prevent-content-behind-footer fx-full-height">
+
+                <div class="fx-alert-container" id="error_container">
+                    <div class="alert fx-global-alert fx-global-alert-error alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                            &times;
+                        </button>
+                        <div class="fx-alert-icon">
+                            <i class="fuxicons fuxicons-error"></i>
+                        </div>
+                        <div class="fx-alert-desc">
+                            <strong>ATENÇÃO!</strong>
+                            <p>
+                                Esta área encontra-se em construção e pode não estar atualizada. Nenhum artefacto deve ser utilizado sem consultar primeira a equipa U&UX.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+				<div class="fx-alert-container" id="warning_container">
+					<div class="alert fx-global-alert fx-global-alert-warning alert-dismissable" style="top: 120px;">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+							&times;
+						</button>
+						<div class="fx-alert-icon">
+							<i class="fuxicons fuxicons-warning"></i>
+						</div>
+						<div class="fx-alert-desc">
+							<strong>Em caso de erro verifique as suas permissões!</strong>
+							<p>
+								Para a correta visualização do Showroom, 
+								deve ter acesso ao <a href="http://mocho.ptin.corppt.com/units/FUXI/Documents/Forms/AllItems.aspx">Mocho</a> 
+								e <a href="http://wiki.ptin.corppt.com/display/FUXI/Home">Wiki</a> da UD FUXI.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="fx-main-content-wrapper">
+					<div class="fx-showroom-container">
+
+						<ul class="grid" masonry="true">
+							<li ng-if="templates" ng-repeat="template in templates | filter: { name: query } | orderBy: orderProp">
+								<div class="thumbnail">
+									<img ng-src="{{template.thumb}}" alt="...">
+									<div class="caption">
+										<h3>{{template.name}}</h3>
+										<p>
+											{{template.description}}
+										</p>
+										<span class="label label-info">{{template.category}}</span>
+										<hr>
+										<div class="btn-group">
+											<!--a href="{{template.prototype}}" class="btn btn-default" role="button">Protótipo</a-->
+											<a href="{{template.doc}}" class="btn btn-default" role="button">Wiki</a>
+											<a href="{{template.demo}}" class="btn btn-primary" role="button">Html</a>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+
+					</div>
+				</div>
+			</div>		
+
+			<!-- FOOTER ABOUT -->
+			<!--# include file="/fuxi/partials/html/partial-footer-about.html" -->
+			
+		</div>
+		<script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+	</body>
+</html>

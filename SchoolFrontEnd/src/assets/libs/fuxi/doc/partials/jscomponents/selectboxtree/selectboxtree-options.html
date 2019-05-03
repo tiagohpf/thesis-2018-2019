@@ -1,0 +1,216 @@
+<h3 id="docs-selectboxtree-options">Opções</h3>
+<p>O Selectboxtree disponibiliza as opções abaixo enumeradas.</p>
+
+<div class="table-responsive">
+    <table class="table fx-table fx-table-with-codemirror">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th class="fx-col-type">Tipo</th>
+                <th>Default</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>required</td>
+                <td>booleano</td>
+                <td><code>false</code></td>
+                <td>Altera layout para indicar que o componente é de preenchimento obrigatório.</td>
+            </tr>
+            <tr>
+                <td>multiple</td>
+                <td>booleano</td>
+                <td><code>true</code></td>
+                <td>Permite multi seleção de items.</td>
+            </tr>
+            <tr>
+                <td>disabled</td>
+                <td>booleano</td>
+                <td><code>true</code></td>
+                <td>Mostra o componente sem a possibilidade de selecionar items.</td>
+            </tr>
+            <tr>
+                <td>showMode</td>
+                <td>texto</td>
+                <td><code>'tree'</code></td>
+                <td>Permite escolher o modo de visualização dos items -  <code>grid</code> | <code>tree</code>.</td>
+            </tr>
+            <tr>
+                <td>showSelectAll</td>
+                <td>booleano</td>
+                <td><code>false</code></td>
+                <td>Mostra a opção de selecionar todos os items.</td>
+            </tr>
+            <tr>
+                <td>showSearch</td>
+                <td>booleano</td>
+                <td><code>true</code></td>
+                <td>Mostra a opção de pesquisar sobre os items.</td>
+            </tr>
+            <tr>
+                <td>numberDisplayed</td>
+                <td>número</td>
+                <td><code>0</code></td>
+                <td>Numero até ao qual são mostrados os items. Após este número é apresentada uma tag com o numero de items selecionados seguido do texto definido na opção <code>nSelectedText</code>.</td>
+            </tr>
+            <tr>
+                <td>nSelectedText</td>
+                <td>texto</td>
+                <td><code>''</code></td>
+                <td>Texto a ser apresentado quando a opção <code>numberDisplayed</code> está definida.</td>
+            </tr>
+            <tr>
+                <td>allSelectedText</td>
+                <td>texto</td>
+                <td><code>''</code></td>
+                <td>Texto a ser apresentado quando se tem todos os items selecionados.</td>
+            </tr>
+            <tr>
+                <td>fullWidth</td>
+                <td>booleano</td>
+                <td><code>true</code></td>
+                <td>Renderiza o componente ocupando 100% da largura.</td>
+            </tr>
+            <tr>
+                <td>searchPlaceholder</td>
+                <td>texto</td>
+                <td><code>'pesquisar...'</code></td>
+                <td>Placeholder a ser mostrado no campo de pesquisa.</td>
+            </tr>
+            <tr>
+                <td>selectedPlaceholder</td>
+                <td>texto</td>
+                <td><code>'selecione...'</code></td>
+                <td>Placeholder a ser mostrado no campo dos items selecionados.</td>
+            </tr>
+            <tr>
+                <td>selectableName</td>
+                <td>texto</td>
+                <td><code>'isgroup'</code></td>
+                <td>
+                    Nome da propriedade no JSON utilizada para indicar se o item é um agrupador e não deve fazer parte da lista de items selecionados.
+                    Ao ter um item da árvore definido a true nesta propriedade é utilizado o plugin "<i>changed</i>" que se encontra no ficheiro <a class="fx-docs-btn-link" href="https://github.com/vakata/jstree/blob/master/src/misc.js#L25" target="_blank">jstree.misc.js</a>, pelo que deve estar incluído na página.
+                </td>
+            </tr>
+            <tr>
+                <td>selectedIDsSpacer</td>
+                <td>texto</td>
+                <td><code>','</code></td>
+                <td>Caractere utilizado pela função <code>getSelectedIDs()</code> na separação dos identificadores dos items retornados.</td>
+            </tr>
+            <tr>
+                <td>items</td>
+                <td>array</td>
+                <td><code>[]</code></td>
+                <td>Lista de items a carregar na árvore (<code>showMode: 'tree'</code>). Estrutura do JSON de acordo com a <a class="fx-docs-btn-link" href="https://www.jstree.com/docs/json/" target="_blank">documentação do jsTree</a>.</td>
+            </tr>
+            <tr>
+                <td>selectedItems</td>
+                <td>array</td>
+                <td><code>[]</code></td>
+                <td>Lista de items pré selecionados. Estrutura do elemento <code>[{"id": "ID-VALUE", "text": "TEXT-VALUE"}]</code></td>
+            </tr>
+            <tr>
+                <td>jstreePlugins</td>
+                <td>array</td>                
+                <td>
+                    <a class="fx-devguide-toggle-code-vis" role="button">
+                        <i class="fa fa-angle-down"></i>ver código
+                    </a>
+                    <div class="fx-devguide-toggled-code-vis hidden">
+                        <form class="fx-codemirror">
+                            <textarea class="fx-codemirror-textarea-hidden">
+[ 'checkbox', 'search', 'changed' ]</textarea>
+                        </form>
+                    </div>
+                </td>
+                <td>Lista de plugins usados pelo jsTree (<code>showMode: 'tree'</code>).</td>
+            </tr>
+            <tr>
+                <td>jstreePluginsConfiguration</td>
+                <td>array</td>                
+                <td>
+                    <a class="fx-devguide-toggle-code-vis" role="button">
+                        <i class="fa fa-angle-down"></i>ver código
+                    </a>
+                    <div class="fx-devguide-toggled-code-vis hidden">
+                        <form class="fx-codemirror">
+                            <textarea class="fx-codemirror-textarea-hidden">
+[
+    { key: 'search', value: { show_only_matches: false } },
+    { key: 'checkbox', value: { three_state: false } }
+]</textarea>
+                        </form>
+                    </div>
+                </td>
+                <td>Lista de configurações dos plugins usados pelo jsTree (<code>showMode: 'tree'</code>).</td>
+            </tr>
+            <tr>
+                <td>jstreeCoreConfiguration</td>
+                <td>array</td>
+                <td>
+                    <a class="fx-devguide-toggle-code-vis" role="button">
+                        <i class="fa fa-angle-down"></i>ver código
+                    </a>
+                    <div class="fx-devguide-toggled-code-vis hidden">
+                        <form class="fx-codemirror">
+                            <textarea class="fx-codemirror-textarea-hidden">
+[ { key: 'themes', value: { name: 'fuxi', icons: false } } ]</textarea>
+                        </form>
+                    </div>
+                </td>
+                <td>Lista de configurações base utilizadas pelo jsTree (<code>showMode: 'tree'</code>).</td>
+            </tr>
+            <tr>
+                <td>selectItemTemplate</td>
+                <td>html</td>
+                <td>
+                    <a class="fx-devguide-toggle-code-vis" role="button">
+                        <i class="fa fa-angle-down"></i>ver código
+                    </a>
+                    <div class="fx-devguide-toggled-code-vis hidden">
+                        <form class="fx-codemirror">
+                            <textarea class="fx-codemirror-textarea-hidden">
+<li class="fx-ms-search-choice">
+    <a class="fx-ms-search-choice-close" data-item-id="{{ID}}">
+        <i class="glyphicon glyphicon-remove"></i>
+    </a>
+    <span>
+        {{TEXT}}
+    </span>
+</li></textarea>
+                        </form>
+                    </div>
+                </td>
+                <td>Template HTML para cada item seleccionado.</td>
+            </tr>
+            <tr>
+                <td>gridItemTemplate</td>
+                <td>html</td>
+                <td>
+                    <a class="fx-devguide-toggle-code-vis" role="button">
+                        <i class="fa fa-angle-down"></i>ver código
+                    </a>
+                    <div class="fx-devguide-toggled-code-vis hidden">
+                        <form class="fx-codemirror">
+                            <textarea class="fx-codemirror-textarea-hidden">
+<li class="fx-ms-grid-element checkbox">
+    <label data-multi-select>
+        <input type="checkbox" data-multi-select id="opt-item-{{ID}}" name="chk-item-selected" value="{{ID}}">
+        {{TEXT}}
+    </label>
+    <label data-uni-select>
+        <a data-uni-select id="opt-item-{{ID}}" value="{{ID}}" title="{{TEXT}}">
+            {{TEXT}}
+        </a>
+    </label>
+</li></textarea>
+                        </form>
+                    </div>
+                </td>                
+                <td>Template HTML para cada item representado na grelha (<code>showMode: 'grid'</code>).</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

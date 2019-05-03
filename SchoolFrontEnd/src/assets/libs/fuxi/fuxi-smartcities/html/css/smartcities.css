@@ -1,0 +1,115 @@
+/*
+Add banner
+*/
+/* **********************************************
+ *                VARIÁVEIS                     *
+ ************************************************/
+/* **********************************************
+* Notificações de ERRO, SUCESSO, AVISO, FATAIS *
+************************************************/
+/* Fundos nofificações em contexto */
+/* Border lateral notificações globais */
+/* Fim dos gradientes */
+/*COMMON COLORS*/
+/*TOC
+- OVERRIDES
+*/
+/**********************************************************************************************************************
+OVERRIDES
+***********************************************************************************************************************/
+/* OVERRIDE NAVBAR HEIGHT */
+.fx-navbar {
+  height: 65px; }
+
+/* OVERRIDE POSITION OF MENU*/
+.fx-nav-down {
+  bottom: 30px;
+  position: absolute;
+  right: 0; }
+
+/* OVERRIDE POSITION OF MENU*/
+.fx-nav-down {
+  bottom: 30px;
+  position: absolute;
+  right: 0; }
+
+.fx-nav > li > a,
+.fx-nav > li > a[data-toggle].collapsed {
+  height: 30px;
+  padding: 5px 25px; }
+
+.fx-navbar > .fx-nav {
+  clear: both;
+  display: block;
+  margin-bottom: 0;
+  height: 30px; }
+
+.breadcrumb > li + li:before {
+  color: inherit;
+  padding: 0 2px; }
+
+/* CARDS FOR IXS */
+.fx-ixs-container {
+  padding: 0 20px 10px; }
+
+.fx-card {
+  background: #f6f6f6;
+  border-top: 3px solid #eba000;
+  margin: 15px 30px 30px 0px;
+  position: relative; }
+
+.fx-card-config {
+  position: absolute;
+  right: 8px;
+  top: 5px; }
+  .fx-card-config a:hover {
+    text-decoration: none; }
+
+.fx-card:hover {
+  background: #fff9de; }
+
+.fx-card-inner {
+  border: 1px solid #e1e1e1;
+  border-top: none;
+  height: 100%;
+  padding: 10px; }
+  .fx-card-inner .fx-card-icon {
+    left: 20px;
+    position: absolute;
+    top: 20px; }
+  .fx-card-inner .fx-card-desc {
+    display: inline-block;
+    padding-left: 100px;
+    /*p {
+    	font-size: 14px;
+    	margin-bottom: 0;
+    }*/ }
+    .fx-card-inner .fx-card-desc strong {
+      color: #565656;
+      font-size: 21px; }
+    .fx-card-inner .fx-card-desc h2 {
+      font-weight: bold;
+      margin-bottom: 15px;
+      margin-top: 5px; }
+
+/* OVERRIDE COL HREF COLOR */
+.col-sm-6 a {
+  color: #565656; }
+
+/* AUX CLASS FOR OVERFLOW-Y */
+.fx-overflow {
+  overflow-y: scroll; }
+
+/* OVERRIDE TO COMPENSATE BIG MENU */
+.fx-prevent-content-behind-footer {
+  padding: 95px 0 63px; }
+
+.fx-entity-header.fx-sticky {
+  width: 100%;
+  background: #fff;
+  position: fixed;
+  z-index: 2; }
+
+/* OVERRIDE USERNAME OVERFLOW */
+.fx-username {
+  max-width: 210px; }

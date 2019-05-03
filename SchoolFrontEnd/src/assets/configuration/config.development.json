@@ -1,0 +1,139 @@
+{
+    "default": {
+        "appName": "BCM - Bot Chat Management",
+        "chatBot_TAG": "<chat-component data-chat-key='[[id]]'></chat-component> <link href='{{ChatBot}}/styles.css?v=7' rel='stylesheet' type='text/css'> <script src='{{ChatBot}}/chat-component.js?v=8'></script>",
+        "language": "en-US",
+        "sideMenu": "app-side-menu",
+        "_userInfo": {
+            "email": "tiago-f-nolasco@alticelabs.com",
+            "user_roles": [
+                "Execute",
+                "Read"
+            ]
+        },
+        "timezone": "Europe/Lisbon",
+        "_dateFormat": "DD/MM/YYYY HH:mm:ss",
+        "NLU": "RASA"
+    },
+    "_validation": {
+        "regex": " ^[a-zA-Z0-9-_ ]*$"
+    },
+    "endpoints": [
+        {
+            "key": "ChatComponentSocketIp",
+            "protocol": "https",
+            "host": "api-gw.rpd.ai.alticelabs.com",
+            "path": ""
+        },
+        {
+            "key": "AnalyticsAPI",
+            "protocol": "https",
+            "host": "api-gw.rpd.ai.alticelabs.com",
+            "path": "analytics"
+        },
+        {
+            "key": "AppAPIBotConfig",
+            "protocol": "https",
+            "host": "api-gw.rpd.ai.alticelabs.com",
+            "path": "alticeAssistantConfig"
+        },
+        {
+            "key": "SchoolBOT",
+            "protocol": "https",
+            "host": "api-gw.rpd.ai.alticelabs.com",
+            "path": "alticeAssistantConfig"
+        },
+        {
+            "key": "SchoolBE",
+            "protocol": "https",
+            "host": "api-gw.rpd.ai.alticelabs.com",
+            "path": "schoolbackend"
+        },
+        {
+            "key": "surveyService",
+            "protocol": "https",
+            "host": "api-gw.rpd.ai.alticelabs.com",
+            "path": "survey"
+        },
+        {
+            "key": "IxsService",
+            "protocol": "https",
+            "host": "api-gw.rpd.ai.alticelabs.com",
+            "_port": 8180,
+            "path": "ixsservice"
+        },
+		{
+            "key": "BillingService",
+            "protocol": "https",
+            "host": "api-gw.rpd.ai.alticelabs.com",
+            "port": null,
+            "path": ""
+        },
+        {
+            "key": "OICIpPort",
+            "description": "Login with Keycloak",
+            "protocol": "https",
+            "host": "authz.rpd.ai.alticelabs.com",
+            "port": null,
+            "path": "auth",
+            "entries": [
+                {
+                    "key": "OICRealmId",
+                    "value": "botschool"
+                },
+                {
+                    "key": "OICClientId",
+                    "value": "botschoolselfcare"
+                },
+                {
+                    "key": "OICSecretId",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "key": "subscription_xapi_ms",
+            "protocol": "https",
+            "host": "api-gw.rpd.ai.alticelabs.com",
+            "path": "subxapi"
+        },
+        {
+            "key": "ChatBot",
+            "protocol": "https",
+            "host": "api-gw.rpd.ai.alticelabs.com",
+            "path": "chatbot"
+        },
+        {
+            "key": "ImageService",
+            "protocol": "https",
+            "host": "img.rpd.ai.alticelabs.com",
+            "path": ""
+        },
+        {
+            "key": "AlticeAssistantConfig_rpd",
+            "protocol": "https",
+            "host": "api-gw.rpd.ai.alticelabs.com",
+            "path": "alticeAssistantConfig"
+        },
+        {
+            "key": "SuggestionsMS",
+            "protocol": "http",
+            "host": "127.0.0.1",
+            "port": 3500
+        }
+    ],
+    "entities": {
+        "student": {
+            "maxConsecutiveFallbacks": 2,
+            "accuracyLevel": 0.3,
+            "defaultAnswers": {
+                "pt": "Desculpe não percebi, pode repetir",
+                "es": "Lo siento, no entendí, puede por favor repetir",
+                "en": "Sorry, I didn't understand, may you please repeat",
+                "fr": "Désolé, je ne savais pas, pouvez-vous répéter s'il vous plaît",
+                "gr": "Entschuldigung, ich verstehe nicht, mögest du es bitte wiederholen"
+            }
+        }
+    },
+    "stripeKey": "pk_test_OnANvRl6ingSIjJ8Pmz571Bn"
+}

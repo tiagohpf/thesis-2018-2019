@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-sm-12">
+        <!-- Its a Textbox -->
+        <div class="row" *ngIf="_editionMode;else NotEditionMode">
+            <div class="col-sm-6">
+                <input #inputText  type="textarea" class="form-control input-sm" [id]="inputParameters?.id ? 'wct-textarea-' + inputParameters?.id + '' : ''"
+                    [class.disabled]="inputParameters.disabled" [(ngModel)]="inputParameters ? printValue() : showMyText"
+                    autocomplete="off" /></div>
+            <div class="col-sm-6">
+                <button (click)="onSave(inputText.value)" type="button" class="btn ng-star-inserted" title="" [id]="inputParameters?.id ? 'wct-operations-btn-' + inputParameters?.id + '' : ''">
+                    <span>Save</span>
+                </button>
+                <button (click)="toogleEditionMode(_editionMode)" type="button" class="btn ng-star-inserted" title=""
+                    [id]="inputParameters?.id ? 'wct-operations-btn-' + inputParameters?.id + '' : ''">
+                    <span>Cancel</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Its a Label -->
+        <ng-template #NotEditionMode>
+            <div class="row">
+                <div class="label-grouper col-sm-2" [ngStyle]="inputParameters?.style">
+                    <p *ngIf="!inputParameters || !inputParameters?.navigateTo" class="form-control-static" [id]="inputParameters?.id ? 'wct-label-' + inputParameters?.id + '' : ''"
+                        [class.textbox-align]="textboxAlign" [innerHtml]="inputParameters ? printValue() : showMyText"
+                        [title]="myTitle" (click)="labelClick()"></p>
+
+                </div>
+                <div class="col-sm-10">
+                    <button (click)="toogleEditionMode(_editionMode)" type="button" class="btn ng-star-inserted" title=""
+                        [id]="inputParameters?.id ? 'wct-operations-btn-' + inputParameters?.id + '' : ''">
+                        <span>Edit</span>
+                    </button>
+                </div>
+            </div>
+        </ng-template>
+
+    </div>
+</div>
+<div class="clear"></div>

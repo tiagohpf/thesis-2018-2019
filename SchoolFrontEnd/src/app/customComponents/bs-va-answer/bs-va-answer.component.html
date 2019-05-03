@@ -1,0 +1,51 @@
+<div class="va-answer-component">
+  <div class="form-label-title">
+    <p>{{answerValue[palleteView]}}</p>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 palette-list">
+
+
+
+      <div class="btn-group w-100">
+        <button class="btn btn-secondary" [ngClass]="{active: palleteView ==='options'}" (click)="palleteView = 'options'">{{'generic___designerFlow___components' | myI18n}}</button>
+        <button class="btn btn-secondary" [ngClass]="{active: palleteView ==='actions'}" (click)="palleteView = 'actions'">{{'generic___designerFlow___actions' | myI18n}}</button>
+      </div>
+      <!-- <h3>Opções de resposta</h3> -->
+      <div class="row" *ngIf="palette">
+        <div *ngFor="let component of palette[palleteView]" class="col-sm-6 component">
+          <div class="component-wrapper" (click)="appendComponent(component)">
+            <i class="{{component.icon}}"></i>
+            <p>{{component.text | myI18n}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div cdkDropList class="col-sm-9">
+
+      <div class="btn-group add-response-buttons">
+        <button class="btn btn-primary" (click)="addResponse()">{{'generic___designerFlow___newResponse' | myI18n}}</button>
+      </div>
+
+      <ng-template ngFor let-response [ngForOf]="responses" let-rI="index">
+
+        <div class="card" [class.selected]="selectedCard === rI" (click)="selectedCard = rI">
+          <ng-template ngFor let-param [ngForOf]="response" let-pI="index" let-pLast="last">
+
+            <button *ngIf="!param.data?.default" class="remove" (click)="removeComponent(rI,pI)"><i class="fa fa-times"></i></button>
+
+            <app-wct-start-components [viewStructure]="inputParameters" [dataRecs]="{}" [inputDataRecs]="{}" [inputParameters]="[param]"></app-wct-start-components>
+
+            <hr *ngIf="!pLast" />
+
+          </ng-template>
+          <!-- <div class="drop-area">Drop here</div> -->
+        </div>
+
+      </ng-template>
+
+    </div>
+  </div>
+</div>

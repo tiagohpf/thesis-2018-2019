@@ -1,0 +1,43 @@
+{
+    "type": "initTable",
+    "id": "entitySynonyms_Table",
+    "urlResource": [
+        {
+            "key": "pathToMainData",
+            "value": [
+                "synonymsExpand"
+            ]
+        }
+    ],
+    "columns": [
+        {
+            "type": "text",
+            "id": "entityValue",
+            "pathToValue": [
+                "value"
+            ],
+            "text": "program___entity___value"
+        },
+        {
+            "type": "label",
+            "id": "synonymsTags",
+            "text": "program___entity___synonyms",
+            "pathToValue": [
+                "synonyms",
+                "@buildTranslationArray(@forceArray($this))"
+            ]
+        }
+    ],
+    "rows": [],
+    "parameters": [
+        {
+            "key": "tableActions",
+            "value": {
+                "export": false,
+                "columnManager": false,
+                "search": false,
+                "pagination": false
+            }
+        }
+    ]
+}

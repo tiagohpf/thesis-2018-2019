@@ -1,0 +1,52 @@
+<h3 id="docs-loading-buttons">Loading em botões</h3>
+<p>
+    Este snippet demonstra como aplicar um bloco de loading a um botão e tira partido dos métodos disponibilizados pelo bootstrap para os botões. Em <a class="fx-docs-btn-link" href="http://getbootstrap.com/javascript/#buttons" target="_blank">bootstrap button methods</a> pode consultar documentação mais pormenorizada.
+</p>
+<div class="alert alert-info">
+    <p>Para efeitos de demo ao fim de 5 segundos o loading terminará.</p>
+</div>
+<div class="alert alert-warning">
+    <p>Tenha por favor em atenção que se usar a biblioteca jQueryUI esta deve ser instanciada antes do ficheiro JavaScript do bootstrap.</p>
+</div>
+<div class="fx-docs-snippet-code">
+    <div>
+        <div class="row">
+            <div class="col-sm-6">
+                <p><strong>Quando o botão é constituído por texto ou ícone e texto</strong></p>
+                <button type="button" id="devguide-loading-button" data-loading-text="<span class='fx-ico-loading'></span><span class='fx-ico-loading-message'>a carregar conteúdo...</span>" class="btn btn-default">
+				aplicar loading ao botão
+			</button>
+            </div>
+            <div class="col-sm-6">
+                <p><strong>Quando o botão é constituído apenas por ícone</strong></p>
+                <button type="button" id="devguide-loading-icon-button" data-loading-text="<span class='fx-ico-loading'></span>" class="btn btn-default">
+				<i class="fa fa-cog"></i>
+			</button>
+            </div>
+        </div>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<button type="button" id="devguide-loading-button" data-loading-text="<span class='fx-ico-loading'></span><span class='fx-ico-loading-message'>a carregar conteúdo...</span>" class="btn btn-default">
+	aplicar loading ao botão
+</button>
+
+<button type="button" id="devguide-loading-icon-button" data-loading-text="<span class='fx-ico-loading'></span>" class="btn btn-default">
+	<i class="fa fa-cog"></i>
+</button>
+
+
+<script type="text/javascript">
+    $("#devguide-loading-button, #devguide-loading-icon-button").click(function () {
+        console.log($(this));
+        var $btn = $(this);
+        $btn.button('loading');
+        // simulating a timeout
+        setTimeout(function () {
+            $btn.button('reset');
+        }, 5000);
+    });
+</script>
+        </textarea>
+    </form>
+</div>

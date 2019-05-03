@@ -1,0 +1,55 @@
+{
+    "type": "initTable",
+    "class": "students_testset_tests",
+    "urlResource": [
+        {
+            "key": "pathToMainData",
+            "value": [
+                "testsList"
+            ]
+        }
+    ],
+    "parameters": [
+        {
+            "key": "tableActions",
+            "value": {
+                "columnManager": false,
+                "export": false,
+                "search": false,
+                "pagination": false
+            }
+        }
+    ],
+    "columns": [
+        {
+            "type": "expand",
+            "id": "steps_details_expand",
+            "mockToLoad": "testSets/student-test-sets-expand-toSteps",
+            "pathToValue": [
+                "steps"
+            ]
+        },
+        {
+            "type": "text",
+            "text": "Name",
+            "id": "name",
+            "pathToValue": [
+                "name"
+            ]
+        },
+        {
+            "type": "text",
+            "text": "Status",
+            "id": "status_toTests",
+            "pathToValue": [
+                "state"
+            ],
+            "icon": {
+                "failed": "fa fa-circle fx-status-error",
+                "passed": "fa fa-circle fx-status-success",
+                "not executed": "fa fa-circle fx-status-warning"
+            }
+        }
+    ],
+    "rows": []
+}

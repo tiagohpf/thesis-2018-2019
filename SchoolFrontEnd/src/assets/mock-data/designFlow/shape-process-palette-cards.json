@@ -1,0 +1,206 @@
+{
+    "key": "rendering",
+    "type": "wrapper",
+    "id": "wrapperCards",
+    "details": [
+        {
+            "type": "custom-mentions",
+            "id": "card_PathToValueList",
+            "class": "col-sm-6",
+            "text": "designerFlow___shapes___answer___cardsForm___valueListPath",
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ]
+        },
+        {
+            "type": "initCards",
+            "subType": "card-container-radio",
+            "id": "card_template",
+            "class": "cards-list-templates",
+            "valueList": [
+                {
+                    "key": "template1",
+                    "image": "<i class='fa fa-id-card-o'></i>",
+                    "name": "designerFlow___shapes___answer___cardsForm___template1"
+                },
+                {
+                    "key": "template2",
+                    "image": "<i class='fa fa-id-card'></i>",
+                    "name": "designerFlow___shapes___answer___cardsForm___template2"
+                },
+                {
+                    "key": "template3",
+                    "image": "<i class='fa fa-address-card-o'></i>",
+                    "name": "designerFlow___shapes___answer___cardsForm___template3"
+                },
+                {
+                    "key": "template4",
+                    "image": "<i class='fa fa-address-card'></i>",
+                    "name": "designerFlow___shapes___answer___cardsForm___template4"
+                }
+            ],
+            "details": [
+                {
+                    "type": "label",
+                    "id": "template_key",
+                    "text": null,
+                    "pathToValue": [
+                        "key"
+                    ],
+                    "hidden": true
+                },
+                {
+                    "type": "label",
+                    "id": "template_image",
+                    "text": null,
+                    "pathToValue": [
+                        "image"
+                    ]
+                },
+                {
+                    "type": "label",
+                    "id": "template_name",
+                    "text": null,
+                    "pathToValue": [
+                        "name"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "custom-mentions",
+            "id": "card_image1",
+            "class": "col-sm-6",
+            "text": "designerFlow___shapes___answer___cardsForm___image",
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ]
+        },
+        {
+            "type": "custom-mentions",
+            "id": "card_image2",
+            "class": "col-sm-6",
+            "text": "designerFlow___shapes___answer___cardsForm___image2",
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ],
+            "dynamicProps": {
+                "hidden": "({{card_template}})['key'] != 'template4'"
+            }
+        },
+        {
+            "type": "custom-mentions",
+            "id": "card_title",
+            "class": "col-sm-6",
+            "text": "designerFlow___shapes___answer___cardsForm___title",
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ]
+        },
+        {
+            "type": "custom-mentions",
+            "id": "card_subtitle",
+            "class": "col-sm-6",
+            "text": "designerFlow___shapes___answer___cardsForm___subTitle",
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ]
+        },
+        {
+            "type": "custom-mentions",
+            "id": "card_video",
+            "class": "col-sm-12",
+            "text": "designerFlow___shapes___answer___cardsForm___video",
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ]
+        },
+        {
+            "type": "custom-mentions",
+            "id": "card_description",
+            "text": "designerFlow___shapes___answer___cardsForm___description",
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ]
+        }
+    ],
+    "parameters": [
+        {
+            "key": "chatAnswer",
+            "type": "initCards",
+            "id": "chatAnswerCards",
+            "icon": "fa fa-th-large",
+            "class": "class",
+            "dynamicProps": {
+                "valueList": "'{{card_PathToValueList}}'"
+            },
+            "details": [
+                {
+                    "key": "chatAnswer",
+                    "id": "chatAnswerCardsImage",
+                    "type": "image",
+                    "dynamicProps": {
+                        "pathToValue": "'{{card_image1}}'.split('.')"
+                    }
+                },
+                {
+                    "key": "chatAnswer",
+                    "id": "chatAnswerCardsImage_2",
+                    "type": "image",
+                    "dynamicProps": {
+                        "key": "'{{card_template___key}}' == 'template4' ? 'chatAnswer' : 'chatAnswerFromUrl'",
+                        "pathToValue": "'{{card_image2}}'.split('.')"
+                    }
+                },
+                {
+                    "key": "chatAnswer",
+                    "id": "chatAnswerCardsTitle",
+                    "class":"title",
+                    "type": "label",
+                    "dynamicProps": {
+                        "pathToValue": "'{{card_title}}'.split('.')"
+                    }
+                },
+                {
+                    "key": "chatAnswer",
+                    "id": "chatAnswerCardsSubtitle",
+                    "class":"subtitle",
+                    "type": "label",
+                    "dynamicProps": {
+                        "pathToValue": "'{{card_subtitle}}'.split('.')"
+                    }
+                },
+                {
+                    "key": "chatAnswer",
+                    "id": "chatAnswerCardsDescription",
+                    "type": "label",
+                    "dynamicProps": {
+                        "pathToValue": "'{{card_description}}'.split('.')"
+                    }
+                },
+                {
+                    "key": "chatAnswer",
+                    "id": "chatAnswerCardsVideo",
+                    "type": "video",
+                    "dynamicProps": {
+                        "pathToValue": "'{{card_video}}'.split('.')"
+                    }
+                }
+            ]
+        }
+    ]
+}

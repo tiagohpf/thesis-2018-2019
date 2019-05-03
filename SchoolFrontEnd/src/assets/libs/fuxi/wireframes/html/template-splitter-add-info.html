@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge; text/html;" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0,  user-scalable=yes" />
+    <link rel="icon" href="/fuxi/common/html/css/images/favicon.ico" type="image/x-icon" />
+    <title>Template Splitter</title>
+
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--<link href="/fuxi/lib/jstree/3.0/themes/default/style.css" rel="stylesheet" />-->
+    <link href="/fuxi/lib/jstree/3.0/themes/fuxi/style.css" rel="stylesheet" />
+    <!--<link href="/fuxi/lib/jstree/3.2.1/themes/default/style.css" rel="stylesheet" />-->
+
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.css" />
+
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+
+    <!--min-->
+    <script src="/fuxi/lib/jstree/3.0/jstree.min.js"></script>
+    <script src="/fuxi/lib/jstree/3.0/jstree.misc.min.js"></script>
+    <script src="/fuxi/lib/jstree/3.0/jstree-search-match.min.js"></script>
+
+    <!--<script src="/fuxi/lib/jstree/3.2.1/jstree.js"></script>
+    <script src="/fuxi/lib/jstree/3.2.1/jstree.misc.js"></script>
+    <script src="/fuxi/lib/jstree/3.0/jstree-search-match.js"></script>-->
+
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+    <script src="/fuxi/common/exec/fuxi.min.js"></script>
+    <!-- RESOURCES EN / PT : include according culture-->
+    <!--<script src="/fuxi/resources/fuxi_en.js" language="javascript" type="text/javascript"></script>-->
+    <script src="/fuxi/resources/fuxi_pt.js" language="javascript" type="text/javascript"></script>
+
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+    <!-- Respond.js - IE8 support of media queries -->
+    <!--[if lt IE 9]>
+    <script src="/fuxi/lib/respond/1.4/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="fx-push-footer fx-full-height">
+        <header id="fx-header">
+            <nav class="fx-navbar" role="navigation">
+                <a class="fx-brand" href="#"><h1 class="fx-logo-brand">Fuxi</h1></a>
+            </nav>
+            <!-- breadcrumb -->
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#"><i class="fuxicons fuxicons-home"></i>Início</a>
+                </li>
+                <li>
+                    <a href="#">Link</a>
+                </li>
+                <li class="active">
+                    Ativo
+                </li>
+            </ul>
+        </header>
+        <div class="fx-prevent-content-behind-footer fx-full-height">
+            <div id="splitter-parent" class="fx-splitter-area">
+                <div id="fx-sidebar" class="fx-splitter-sidebar">
+                    <div class="fx-visible-when-collapsed">
+                        <i class="glyphicon glyphicon-info-sign fx-icon-represent-feature"></i>
+                    </div>
+                    <div class="fx-splitter-sidebar-content">
+                        <header class="fx-sidebar-header fx-fixed-position" data-fix-to="top">
+                            <div class="fx-sidebar-header-inner">
+                                <p><i class="glyphicon glyphicon-info-sign"></i> Informação adicional</p>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-sm" placeholder="introduzir código do local">
+                                        <span class="input-group-addon btn btn-default btn-sm" title="pesquisar"><i class="glyphicon glyphicon-search"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+                        <div class="fx-sidebar-content">
+
+                            <div class="fx-sidebar-area fx-area-top">
+                                <div class="fx-sidebar-area-title">
+                                    Title #1
+                                </div>
+                                <div id="jstree1" class="fx-sidebar-area-content fx-tree-clickable">
+                                    <ul>
+                                        <li data-jstree='{ "opened" : true }'>
+                                            Root node
+                                            <ul>
+                                                <li data-jstree='{ "selected" : true }'>Child node 1</li>
+                                                <li>Child node 2</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="fx-sidebar-area fx-area-bottom">
+                                <div class="fx-sidebar-area-title">
+                                    Title #2
+                                    <span class="badge badge-info pull-right">3</span>
+                                </div>
+                                <div class="fx-sidebar-area-content">
+                                    <div class="fx-sidebar-area-nav">
+                                        <ul class="fx-sidebar-nav-tabs nav pull-left">
+                                            <li class="active clearfix">
+                                                <a data-toggle="tab" href="#associated-equips" title="Equipamentos" class="btn btn-link btn-link-in-table fx-sidebar-nav-selector fx-tab"><i class="glyphicon glyphicon-map-marker"></i></a>
+                                            </li>
+                                            <li class="clearfix">
+                                                <a data-toggle="tab" href="#associated-others" title="Outros" class="btn btn-link btn-link-in-table fx-sidebar-nav-selector fx-tab"><i class="glyphicon glyphicon-map-marker"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="fx-sidebar-nav">
+                                            <div class="fx-sidebar-nav-inner fx-box-container tab-content">
+                                                <section id="associated-equips" class="tab-pane active">
+                                                    <div class="fx-sidebar-nav-title">
+                                                        <h4> Tab #1 </h4>
+                                                    </div>
+                                                    <div id="jstree2" class="fx-sidebar-nav-content fx-tree-clickable">
+                                                        <ul>
+                                                            <li data-jstree='{ "opened" : false }'>
+                                                                Root node
+                                                                <ul>
+                                                                    <li >Child node 1</li>
+                                                                    <li>Child node 2</li>
+                                                                </ul>
+                                                            </li>
+                                                            <li >
+                                                                Root node 2
+                                                                <ul>
+                                                                    <li>Child node 1</li>
+                                                                    <li>Child node 2</li>
+                                                                    <li data-jstree ='{ "selected" : true }'>Child node 3</li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </section>
+                                                <!--Others-->
+                                                <section id="associated-others" class="tab-pane">
+                                                    <div class="fx-sidebar-nav-title">
+                                                        <h4> Tab #2 </h4>
+                                                    </div>
+                                                    <div class="fx-sidebar-nav-content">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <a href="#" title="List item #1">List item #1</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" title="List item #2">List item #2</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" title="List item #3">List item #3</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" title="List item #4">List item #4</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div id="fx-splitter-bar" class="fx-splitter-bar" data-toggle="splitter" data-splitter-position="left" data-splitter-parent="#splitter-parent" data-splitter-sidebar="#fx-sidebar" data-splitter-content="#fx-splitter-content"></div>
+                </div>
+
+                <div id="fx-splitter-content" class="fx-splitter-content">
+                    <div class="fx-splitter-content-inner" data-fix-to-top-parent>
+
+                        <div data-fix-to="top" data-header-wrapper="" class="fx-entity-header fx-fixed-position">
+                            <div class="fx-entity-header-inner">
+                                <input type="text" id="search"><button id="btSearch">search</button>
+                            </div>                            
+                        </div>
+                        <div class="fx-entity-info" id="fx-entity-content">                            
+                            <div id="jstree3"></div>
+                        </div>
+
+                    </div>
+                </div>                
+            </div>
+
+        </div>
+        <!-- FOOTER ABOUT -->
+        <!--# include file="/fuxi/partials/html/partial-footer-about.html" -->
+    </div>
+
+    <script>
+        
+        function fixHeights() {
+            "use strict";
+
+            var h1;
+            h1 = $(window).height() - $('#fx-header').outerHeight(true) - $('.fx-main-footer').outerHeight(true) - $('.fx-sidebar-header').outerHeight(true) - $('.fx-sidebar-area-title').outerHeight(true) - 1;
+
+            if ($('.fx-sidebar-area-content').hasClass('fx-tree-clickable')) {
+                $('.fx-sidebar-nav-inner').css('min-height', h1 - 177);
+            }
+            else {
+                $('.fx-sidebar-nav-inner').css('min-height', h1 - 60);
+            }
+
+        }
+
+        function getItems() {
+            var items = [];
+
+
+            items = [
+                   { "id": "demo_root_0", "parent": "#", "text": "Item 0", "agrupador": false },
+                   { "id": "demo_root_1", "parent": "demo_root_0", "text": "Item 0.1", "agrupador": false },
+                       { "id": "demo_child_1", "parent": "demo_root_1", "text": "Item 0.1.1", "icon": "fa fa-square" },
+                       { "id": "demo_child_2", "parent": "demo_root_1", "text": "Item 0.1.2", "icon": "fa fa-circle", "li_attr": { "data-showinfo": "true", "data-expression": "createNewestObject()", "data-drag": true }, "info": "A informação a mostrar no (i)!" },
+                       { "id": "demo_child_3", "parent": "demo_root_1", "text": "Item 0.1.3", "icon": "fa fa-star", "li_attr": { "data-showinfo": "true", "data-expression": "objectCreateNewest()", "data-drag": true }, "info": "A informação a mostrar no (i)!" },
+                       { "id": "demo_child_4", "parent": "demo_root_1", "text": "Item 0.1.4", "icon": "fa fa-certificate", "li_attr": { "data-showinfo": "true", "data-expression": "otherFunction()", "data-drag": true }, "info": "A informação a mostrar no (i)!" },
+                   { "id": "demo_root_2", "parent": "#", "text": "Item 2 0.", "agrupador": true },
+                   { "id": "demo_child_17", "parent": "demo_root_2", "text": "Item 2.1 0." },
+                   { "id": "demo_child_18", "parent": "demo_root_2", "text": "Item 2.2 0." },
+                   { "id": "demo_child_19", "parent": "demo_root_2", "text": "Item 2.3 0." },
+                   { "id": "demo_child_20", "parent": "demo_root_2", "text": "Item 2.4 0." },
+                   { "id": "demo_root_3", "parent": "#", "text": "Item 3" },
+                   { "id": "demo_root_4", "parent": "#", "text": "Item 4" },
+                   { "id": "demo_root_5", "parent": "#", "text": "Item 5" },
+                   { "id": "demo_root_6", "parent": "#", "text": "Item 6" },
+                   { "id": "demo_root_7", "parent": "#", "text": "Item 7" },
+                   { "id": "demo_root_8", "parent": "#", "text": "Item 8" },
+                   { "id": "demo_root_9", "parent": "#", "text": "Item 9" },
+                   { "id": "demo_root_10", "parent": "#", "text": "Item 10" },
+                   { "id": "demo_root_11", "parent": "#", "text": "Item 11" },
+                   { "id": "demo_root_12", "parent": "#", "text": "Item 12" },
+                   { "id": "demo_root_13", "parent": "#", "text": "Item 13" },
+                   { "id": "demo_root_14", "parent": "#", "text": "Item 14" },
+                   { "id": "demo_root_15", "parent": "#", "text": "Item 15" },
+                   { "id": "demo_root_16", "parent": "#", "text": "Item 16" }
+            ];
+
+            for (var i = 17; i <= 501; i++) {
+                items.push({ "id": "demo_root_" + i, "parent": "#", "text": "Item " + i });
+            }
+
+            return items;
+        }
+
+        $(function () {
+            FUXI.Splitter.init();
+            FUXI.FixedPositions.init();
+
+            var hsTimeout = 0;
+            handleSearch = function () {
+                clearTimeout(hsTimeout);
+                hsTimeout = setTimeout(function () {
+                    var str = $searchField.val();
+                    searchTree(str);
+                }, 250);
+            };
+            searchTree = function (str) {
+                $('#jstree3').jstree(true).search(str);
+            };
+
+            var $searchField = $("#search");
+            //$searchField.on('keyup', handleSearch);
+            $("#btSearch").on('click', function () {
+                var str = $searchField.val();
+                searchTree(str);
+            })
+
+            // html demo
+            $('#jstree1, #jstree2').jstree({
+                "core": {
+                    'themes': {
+                        'name': "fuxi",
+                        'responsive': false,
+                        'stripes': false,
+                        'dots': true,
+                        'icons': true
+                    }
+                }
+            });
+
+            var jst3 = $('#jstree3').jstree({                
+                "core": {
+                    'themes': {
+                        'name': "fuxi",
+                        'responsive': false,
+                        'stripes': false,
+                        'dots': true,
+                        'icons': true
+                    },
+                    'data': getItems()
+                },
+                "plugins": ["checkbox", "search", "fxsearchmatch"],
+                "search": {
+                    "case_insensitive": true,
+                    "show_only_matches": true
+                },
+            });
+
+            $('#jstree3').on("loaded.jstree", function (e, data) {
+                $('#jstree3').jstree().open_all();                
+            });
+
+            fixHeights();
+        });
+
+        var cRes = 0
+        $(window).on('resize', function () {
+            "use strict";
+            
+            clearTimeout(cRes);
+            cRes = setTimeout(function () {
+                fixHeights();
+            }, 250);
+        });
+
+    </script>
+</body>
+</html>

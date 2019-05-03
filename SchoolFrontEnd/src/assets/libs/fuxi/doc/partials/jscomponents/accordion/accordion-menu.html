@@ -1,0 +1,73 @@
+<h3 id="accordion-menu">Accordion - menu</h3>
+<p>
+    O snippet abaixo mostra um exemplo de um acordeão que serve como menu. Dentro do elemento com a class <code>fx-accordion-navigation-body</code> encontra-se uma lista de opções.</p>
+<p>
+    Os elementos que não sejam colapsáveis têm a class <code>direct</code> e os elementos ativos têm a class <code>active</code>.
+</p>
+
+<div id="devguide-accordion-menu-example">
+    <div class="panel fx-accordion-navigation">
+        <div class="fx-accordion-navigation-heading">
+            <a href="#devguide-accordion-menu-panel1" class="collapsed" data-toggle="collapse" data-parent="#devguide-accordion-menu-example"><i class="fa"></i>Menu item 1</a>
+        </div>
+        <div class="fx-accordion-navigation-body collapse" id="devguide-accordion-menu-panel1">
+            <ul class="list-unstyled">
+                <li><a class="active" href="javascript:void(0)">Opção 1</a></li>
+                <li><a href="javascript:void(0)">Opção 2 </a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel fx-accordion-navigation">
+        <div class="fx-accordion-navigation-heading">
+            <a href="javascript:void(0)" class="direct active" data-parent="#devguide-accordion-menu-example"><i class="fa"></i>Menu item 2</a>
+        </div>
+    </div>
+    <div class="panel fx-accordion-navigation">
+        <div class="fx-accordion-navigation-heading">
+            <a href="#devguide-accordion-menu-panel3" class="collapsed" data-toggle="collapse" data-parent="#devguide-accordion-menu-example"><i class="fa"></i>Menu item 3</a>
+        </div>
+        <div class="fx-accordion-navigation-body collapse" id="devguide-accordion-menu-panel3">
+            <ul class="list-unstyled">
+                <li><a class="active" href="javascript:void(0)">Opção 1</a></li>
+                <li><a href="javascript:void(0)">Opção 2 </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<div id="devguide-accordion-menu-example">
+    <div class="panel fx-accordion-navigation">
+        <div class="fx-accordion-navigation-heading">
+            <a href="#devguide-accordion-menu-panel1" class="collapsed" data-toggle="collapse" data-parent="#devguide-accordion-menu-example"><i class="fa"></i>Menu item 1</a>
+        </div>
+        <div class="fx-accordion-navigation-body collapse" id="devguide-accordion-menu-panel1">
+            <ul class="list-unstyled">
+                <li><a class="active" href="javascript:void(0)">Opção 1</a></li>
+                <li><a href="javascript:void(0)">Opção 2 </a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel fx-accordion-navigation">
+        <div class="fx-accordion-navigation-heading">
+            <a href="javascript:void(0)" class="direct active" data-parent="#devguide-accordion-menu-example"><i class="fa"></i>Menu item 2</a>
+        </div>
+    </div>
+    <div class="panel fx-accordion-navigation">
+        <div class="fx-accordion-navigation-heading">
+            <a href="#devguide-accordion-menu-panel3" class="collapsed" data-toggle="collapse" data-parent="#devguide-accordion-menu-example"><i class="fa"></i>Menu item 3</a>
+        </div>
+        <div class="fx-accordion-navigation-body collapse" id="devguide-accordion-menu-panel3">
+            <ul class="list-unstyled">
+                <li><a class="active" href="javascript:void(0)">Opção 1</a></li>
+                <li><a href="javascript:void(0)">Opção 2 </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        </textarea>
+    </form>
+

@@ -1,0 +1,398 @@
+<h2 id="docs-header-root"><span class="fx-docs-section-title">Header</span></h2>
+<p>O elemento DOM <code>header</code> especifica o cabeçalho de um documento ou de uma secção.</p>
+<p>
+    O seguinte snippet de código ilustra um <code>header</code> de sistema que é composto por diversos elementos (apenas ilustrativos) como:
+    <ul>
+        <li>
+            Logótipo e nome do sistema
+        </li>
+        <li>
+            Mudança de sistema
+        </li>
+        <li>
+            Menus de navegação. Ver <a href="#docs-menus-simples">#docs-menus-simples</a>.
+        </li>
+        <li>
+            Pesquisa transversal
+        </li>
+        <li>
+            Notificações. Ver <a href="#docs-menus-dimensoes-2-niveis">#docs-menus-dimensoes-2-niveis</a>.
+        </li>
+        <li>
+            Mensagens. Ver <a href="#docs-menus-simples">#docs-menus-simples</a>.
+        </li>
+        <li>
+            Menu de utilizador Ver <a href="#docs-menus-simples">#docs-menus-simples</a>.
+        </li>
+    </ul>
+</p>
+<p>Este cabeçalho, por ser único, tem o identificador <code>fx-header</code>.</p>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <header id="fx-header">
+            <nav class="fx-navbar" role="navigation">
+                <ul class="fx-nav">
+                    <li>
+                        <a class="fx-brand" href="#docs-header-root"><h1 class="fx-logo-brand">FUXI</h1></a>
+                    </li>
+                    <li>
+                        <a id="fx-system-trigger" data-toggle="popover" data-placement="bottom" title="" data-original-title="Mudar de sistema:"><i class="fa fa-angle-down"></i></a>
+                    </li>
+                    <li>
+                        <a class="collapsed" data-toggle="collapse" data-target="#menu">Menu<i class="fa fa-angle-down"></i></a>
+                        <ul id="menu" class="fx-menu collapse">
+                            <li><a href="#docs-header-root">Opção 1</a></li>
+                            <li><a href="#docs-header-root">Opção 2</a></li>
+                            <li><a href="#docs-header-root">Opção 3</a></li>
+                            <li><a href="#docs-header-root">Opção 4</a></li>
+                            <li><a href="#docs-header-root">Opção 5</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="fx-nav pull-right">
+
+                    <li class="fx-main-search">
+                        <form class="fx-search collapsed" role="search">
+                            <input type="search" placeholder="search..." class="input-sm fx-input-search">
+                            <a title="pesquisa" class="fx-main-search-btn"><i class="glyphicon glyphicon-search"></i></a>
+                        </form>
+                    </li>
+
+                    <li class="fx-open-to-left">
+                        <a class="collapsed" data-toggle="collapse" data-target="#notifications-menu">
+                            <span class="sr-only">notificações</span>
+                            <i class="glyphicon glyphicon-flag"></i>
+                            <span class="badge badge-important">99+</span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <nav id="notifications-menu" class="fx-menu fx-notifications carousel slide collapse" data-interval="false">
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <ul class="list-unstyled">
+                                        <li><h3>Notificações</h3></li>
+                                        <li class="fx-notifications-list-wrapper">
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    <a data-slide-to="1" data-target="#notifications-menu">
+                                                        <div class="fx-notification-list-item">
+                                                            <div class="fx-notification-type fx-status-success">
+                                                                <i class="fuxicons fuxicons-success"></i>
+                                                            </div>
+                                                            <div class="fx-truncate">
+                                                                Exportação bem sucedida
+                                                            </div>
+                                                            <div class="fx-notification-time fx-truncate">
+                                                                há segundos
+                                                            </div>
+                                                            <div class="fx-notification-go-detail">
+                                                                <i class="fa fa-angle-right fx-slide-indicator"></i>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+
+                                        </li>
+                                        <li>
+                                            <a class="text-center" href="#docs-header-root">
+                                                Ver todas
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="item">
+                                    <a class="back" data-slide-to="0" href="" data-target="#notifications-menu"><i class="fa fa-angle-left fx-slide-indicator pull-left"></i><h3>Notificações</h3></a>
+                                    <div class="alert alert-success">
+                                        <div class="fx-alert-icon">
+                                            <i class="fuxicons fuxicons-success"></i>
+                                        </div>
+                                        <div class="fx-alert-desc">
+                                            <strong>Exportação bem sucedida</strong>
+                                            <p class="fx-notification-time">Há segundos</p>
+                                        </div>
+                                    </div>
+                                    <div class="fx-notification-desc">
+                                        <p>O ficheiro Ficheiro_de_exportacao.xls foi corretamente exportado.</p>
+                                        <p>Verifique a área de downloads do seu browser.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </li>
+
+                    <li class="fx-open-to-left">
+                        <a class="collapsed" data-toggle="collapse" data-target="#messages-menu">
+                            <span class="sr-only">mensagens</span>
+                            <i class="glyphicon glyphicon-envelope"></i>
+                            <span class="badge badge-important">99+</span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul id="messages-menu" class="fx-menu collapse" role="menu">
+                            <li>
+                                <a href="#docs-header-root"><strong>Mensagem 1</strong></a>
+                            </li>
+                            <li>
+                                <a href="#docs-header-root"><strong>Mensagem 2</strong></a>
+                            </li>
+                            <li>
+                                <a href="#docs-header-root">Mensagem 3</a>
+                            </li>
+                            <li class="fx-divider"></li>
+                            <li>
+                                <a hred="#docs-header-root">Ver todas</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="fx-open-to-left">
+                        <a class="collapsed" data-toggle="collapse" data-target="#user-menu">
+                            <span class="sr-only">menu utilizador</span>
+                            <i class="glyphicon glyphicon-user"></i> Username <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul id="user-menu" class="fx-menu collapse" role="menu">
+                            <li>
+                                <a href="#docs-header-root">Alterar palavra-passe</a>
+                            </li>
+                            <li>
+                                <a href="#docs-header-root">Editar perfil</a>
+                            </li>
+                            <li>
+                                <a href="#docs-header-root">Configurar dashboard</a>
+                            </li>
+                            <li>
+                                <a href="#docs-header-root">Ajuda</a>
+                            </li>
+                            <li>
+                                <a href="#docs-header-root">Documentação técnica</a>
+                            </li>
+                            <li>
+                                <a href="#docs-header-root">Terminar sessão</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <div id="fx-system-popover" class="hide">
+            <ul class="row list-unstyled">
+                <li class="col-xs-6 text-center">
+                    <a href="#docs-header-root">
+                        <i class="h1 fa fa-square"></i>
+                        <p>Sistema 1</p>
+                    </a>
+                </li>
+                <li class="col-xs-6 text-center">
+                    <a href="#docs-header-root">
+                        <i class="h1 fa fa-square"></i>
+                        <p>Sistema 2</p>
+                    </a>
+                </li>
+            </ul>
+            <ul class="row list-unstyled">
+                <li class="col-xs-6 text-center">
+                    <a href="#docs-header-root">
+                        <i class="h1 fa fa-square"></i>
+                        <p>Sistema 3</p>
+                    </a>
+                </li>
+                <li class="col-xs-6 text-center">
+                    <a href="#docs-header-root">
+                        <i class="h1 fa fa-square"></i>
+                        <p>Sistema 4</p>
+                    </a>
+                </li>
+            </ul>
+            <div class="row fx-popover-footer">
+                <div class="pull-right">
+                    <a href="#docs-header-root"><i class="fuxicons fuxicons-home"></i> Voltar ao portal</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<header id="fx-header">
+    <nav class="fx-navbar" role="navigation">
+        <ul class="fx-nav">
+            <li>
+                <a class="fx-brand" href="#docs-header-root"><h1 class="fx-logo-brand">FUXI</h1></a>
+            </li>
+            <li>
+                <a id="fx-system-trigger" data-toggle="popover" data-placement="bottom" title="" data-original-title="Mudar de sistema:"><i class="fa fa-angle-down"></i></a>
+            </li>
+            <li>
+                <a class="collapsed" data-toggle="collapse" data-target="#menu">Menu<i class="fa fa-angle-down"></i></a>
+                <ul id="menu" class="fx-menu collapse">
+                    <li><a href="#docs-header-root">Opção 1</a></li>
+                    <li><a href="#docs-header-root">Opção 2</a></li>
+                    <li><a href="#docs-header-root">Opção 3</a></li>
+                    <li><a href="#docs-header-root">Opção 4</a></li>
+                    <li><a href="#docs-header-root">Opção 5</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="fx-nav pull-right">
+
+            <li class="fx-main-search">
+                <form class="fx-search collapsed" role="search">
+                    <input type="search" placeholder="search..." class="input-sm fx-input-search">
+                    <a title="pesquisa" class="fx-main-search-btn"><i class="glyphicon glyphicon-search"></i></a>
+                </form>
+            </li>
+
+            <li class="fx-open-to-left">
+                <a class="collapsed" data-toggle="collapse" data-target="#notifications-menu">
+                    <span class="sr-only">notificações</span>
+                    <i class="glyphicon glyphicon-flag"></i>
+                    <span class="badge badge-important">99+</span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <nav id="notifications-menu" class="fx-menu fx-notifications carousel slide collapse" data-interval="false">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <ul class="list-unstyled">
+                                <li><h3>Notificações</h3></li>
+                                <li class="fx-notifications-list-wrapper">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a data-slide-to="1" data-target="#notifications-menu">
+                                                <div class="fx-notification-list-item">
+                                                    <div class="fx-notification-type fx-status-success">
+                                                        <i class="fuxicons fuxicons-success"></i>
+                                                    </div>
+                                                    <div class="fx-truncate">
+                                                        Exportação bem sucedida
+                                                    </div>
+                                                    <div class="fx-notification-time fx-truncate">
+                                                        há segundos
+                                                    </div>
+                                                    <div class="fx-notification-go-detail">
+                                                        <i class="fa fa-angle-right fx-slide-indicator"></i>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </li>
+                                <li>
+                                    <a class="text-center" href="#docs-header-root">
+                                        Ver todas
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="item">
+                            <a class="back" data-slide-to="0" href="" data-target="#notifications-menu"><i class="fa fa-angle-left fx-slide-indicator pull-left"></i><h3>Notificações</h3></a>
+                            <div class="alert alert-success">
+                                <div class="fx-alert-icon">
+                                    <i class="fuxicons fuxicons-success"></i>
+                                </div>
+                                <div class="fx-alert-desc">
+                                    <strong>Exportação bem sucedida</strong>
+                                    <p class="fx-notification-time">Há segundos</p>
+                                </div>
+                            </div>
+                            <div class="fx-notification-desc">
+                                <p>O ficheiro Ficheiro_de_exportacao.xls foi corretamente exportado.</p>
+                                <p>Verifique a área de downloads do seu browser.</p>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </li>
+
+            <li class="fx-open-to-left">
+                <a class="collapsed" data-toggle="collapse" data-target="#messages-menu">
+                    <span class="sr-only">mensagens</span>
+                    <i class="glyphicon glyphicon-envelope"></i>
+                    <span class="badge badge-important">99+</span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul id="messages-menu" class="fx-menu collapse" role="menu">
+                    <li>
+                        <a href="#docs-header-root"><strong>Mensagem 1</strong></a>
+                    </li>
+                    <li>
+                        <a href="#docs-header-root"><strong>Mensagem 2</strong></a>
+                    </li>
+                    <li>
+                        <a href="#docs-header-root">Mensagem 3</a>
+                    </li>
+                    <li class="fx-divider"></li>
+                    <li>
+                        <a hred="#docs-header-root">Ver todas</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="fx-open-to-left">
+                <a class="collapsed" data-toggle="collapse" data-target="#user-menu">
+                    <span class="sr-only">menu utilizador</span>
+                    <i class="glyphicon glyphicon-user"></i> Username <i class="fa fa-angle-down"></i>
+                </a>
+                <ul id="user-menu" class="fx-menu collapse" role="menu">
+                    <li>
+                        <a href="#docs-header-root">Alterar palavra-passe</a>
+                    </li>
+                    <li>
+                        <a href="#docs-header-root">Editar perfil</a>
+                    </li>
+                    <li>
+                        <a href="#docs-header-root">Configurar dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#docs-header-root">Ajuda</a>
+                    </li>
+                    <li>
+                        <a href="#docs-header-root">Documentação técnica</a>
+                    </li>
+                    <li>
+                        <a href="#docs-header-root">Terminar sessão</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Conteúdo popover de mudança de sistema -->
+<div id="fx-system-popover" class="hide">
+    <ul class="row list-unstyled">
+        <li class="col-xs-6 text-center">
+            <a href="#docs-header-root">
+                <i class="h1 fa fa-square"></i>
+                <p>Sistema 1</p>
+            </a>
+        </li>
+        <li class="col-xs-6 text-center">
+            <a href="#docs-header-root">
+                <i class="h1 fa fa-square"></i>
+                <p>Sistema 2</p>
+            </a>
+        </li>
+    </ul>
+    <ul class="row list-unstyled">
+        <li class="col-xs-6 text-center">
+            <a href="#docs-header-root">
+                <i class="h1 fa fa-square"></i>
+                <p>Sistema 3</p>
+            </a>
+        </li>
+        <li class="col-xs-6 text-center">
+            <a href="#docs-header-root">
+                <i class="h1 fa fa-square"></i>
+                <p>Sistema 4</p>
+            </a>
+        </li>
+    </ul>
+    <div class="row fx-popover-footer">
+        <div class="pull-right">
+            <a href="#docs-header-root"><i class="fuxicons fuxicons-home"></i> Voltar ao portal</a>
+        </div>
+    </div>
+</div></textarea>
+    </form>
+</div>

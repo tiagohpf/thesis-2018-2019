@@ -1,0 +1,85 @@
+<h3 id="docs-table-row-reorder">RowReorder</h3>
+<p>
+    O DataTables possui um plug-in que disponibiliza uma forma de reordenar linhas da tabela. Contudo a FUXI não empacota este plug-in pois ele apresenta algumas limitações, nomeadamente quando usado em conjunto com o ColReorder.
+<p>
+<p>
+    Ainda assim, caso pretenda usar este extra, em <a class="fx-docs-btn-link" href="http://jquery-datatables-row-reordering.googlecode.com/svn/trunk/index.html" target="_blank">DataTables RowReorder</a> pode encontrar informação detalhada. Pode igualmente fazer upgrade para a versão 1.10 do DataTables que já possui um plug-in oficial de RowReorder.
+</p>
+<p>O exemplo abaixo demonstra a forma que a FUXI sugere para apresentar uma linha como reordenável. A codificação será responsabilidade das esquipas de produto. Dependendo da forma que a equipa de produto desenvolva a funcionalidade sugere-se que seja aplicada uma <code>opacity: .5</code> ao elemento arrastável enquanto o mesmo se encontra a ser arrastado.</p>
+<div class="alert alert-warning">
+    <p>
+        Deverá fazer inclusão dos ficheiros necessários à instanciação de um objeto como DataTable, anteriormente referidos no ponto <a href="#docs-table-general-vision">tabela - overview</a>.
+    </p>
+    <p>
+        Para que o ícone representativo da funcionalidade de arrastar seja mostrado deve adicionar a class <code>.fx-allow-row-reorder</code> ao elemento <code>tbody</code>.
+    </p>
+</div>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <table class="table" id="devguide-rowreorder-table">
+            <thead>
+                <tr>
+                    <th>
+                        Cidade
+                    </th>
+                    <th>
+                        Concelho
+                    </th>
+                    <th>
+                        Distrito
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="fx-allow-row-reorder"></tbody>
+        </table>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<table class="table" id="devguide-rowreorder-table">
+    <thead>
+        <tr>
+            <th>
+                Cidade
+            </th>
+            <th>
+                Concelho
+            </th>
+            <th>
+                Distrito
+            </th>
+        </tr>
+    </thead>
+    <tbody class="fx-allow-row-reorder"></tbody>
+</table>
+
+<script type="text/javascript">
+    var tablerowReorderConf = $.extend({}, FUXI.Presets.DataTables, {
+        'iDisplayLength': 10,
+        'aLengthMenu': [5, 10, 25, 50],
+        "aoColumns": [
+            { "bSortable": false },
+            { "bSortable": false },
+            { "bSortable": false },
+        ],
+        "aaData": [
+            ["Aveiro", "Aveiro", "Aveiro", ],
+            ["Cantanhede", "Cantanhede", "Coimbra", ],
+            ["Coimbra", "Coimbra", "Coimbra", ],
+            ["Faro", "Faro", "Faro", ],
+            ["Figueira da Foz", "Figueira da Foz", "Coimbra", ],
+            ["Gouveia", "Gouveia", "Guarda", ],
+            ["Guarda", "Guarda", "Guarda", ],
+            ["Ílhavo", "Ílhavo", "Aveiro"],
+            ["Lisboa", "Lisboa", "Lisboa", ],
+            ["Viseu", "Viseu", "Viseu", ],
+            ["Porto", "Porto", "Porto", ],
+        ],
+    });
+
+    $('#devguide-rowreorder-table').on('init.dt', FUXI.Utils.SetDTPagination).dataTable(tablerowReorderConf);
+</script>
+
+        </textarea>
+    </form>
+</div>

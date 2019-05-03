@@ -1,0 +1,12 @@
+<ul class="nav flex-column" *ngIf="inputParameters.valueList">
+  <li *ngFor="let item of inputParameters.valueList" class="nav-item side-nav-item-submenu" title="{{item.name}}">
+    <a class="nav-link text-light fa fa-graduation-cap" href="#" (mousedown)="navigate(item,item._id.$oid)">
+      <i class="wct-button-icon "></i>{{item.name}}
+    </a>
+  </li>
+  <li *ngIf="inputParameters?.valueList?.length >= 3" class="nav-item side-nav-item-submenu">
+    <a class="nav-link text-light" href="#" (mousedown)="navigateStudentsList()">
+      <i class="wct-button-icon "></i>{{'application___more' | myI18n}}
+    </a>
+  </li>
+</ul>

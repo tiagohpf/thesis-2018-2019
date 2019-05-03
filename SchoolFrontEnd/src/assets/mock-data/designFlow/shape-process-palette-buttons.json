@@ -1,0 +1,71 @@
+{
+    "type": "wrapper",
+    "key": "rendering",
+    "id":"buttonsWrapper",
+    "details": [
+        {
+            "type": "wct-tuple-list",
+            "id": "buttonsObj",
+            "class": "col-sm-12",
+            "text": "designerFlow___shapes___answer___buttonsForm___buttonsConfig",
+            "min": 1,
+            "details": [
+                {
+                    "type": "textbox",
+                    "id": "buttonLabel",
+                    "text": "designerFlow___shapes___answer___buttonsForm___label",
+                    "class": "col-sm-3 button-camption",
+                    "pathToValue": [
+                        "button"
+                    ]
+                },
+                {
+                    "type": "input-select",
+                    "id": "action",
+                    "text": "designerFlow___shapes___answer___buttonsForm___action",
+                    "class": "col-sm-3 button-action",
+                    "valueList":[
+                        {
+                            "key": "sendMessage",
+                            "value": "designerFlow___shapes___answer___buttonsForm___action_sendMessage"
+                        }
+                    ],
+                    "pathToValue": [
+                        "action"
+                    ]
+                },
+                {
+                    "type": "custom-mentions",
+                    "id": "message",
+                    "text": "designerFlow___shapes___answer___buttonsForm___message",
+                    "class": "col-sm-6 button-text",
+                    "pathToValue": [
+                        "message"
+                    ],
+                    "pathToValueList": [
+                        "config::designerFlowComponent",
+                        "variables",
+                        "@mentionsComponentFormat($this)"
+                    ],
+                    "dynamicProps": {
+                        "hidden": "'{{action}}' != 'sendMessage'"
+                    }
+                }
+            ],
+            "dynamicProps": {
+                "valueList": "{{buttonsObj}}"
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "key": "chatAnswer",
+            "type": "chat-buttons",
+            "id": "itemsAnswers",
+            "dynamicProps": {
+                "value": "{{buttonsObj}}"
+            }
+             
+        }
+    ]
+}

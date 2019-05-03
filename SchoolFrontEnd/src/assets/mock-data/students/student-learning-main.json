@@ -1,0 +1,217 @@
+{
+  "type": "page",
+  "id": "studentLearningComponent",
+  "lazyLoading": "@fv()'[[fromProgram]]' ? false : true",
+  "_dynamicProps": {
+    "lazyLoading": "!('{{studentCourseCodesArrStr}}'&&'{{studentCourseCodes}}')"
+  },
+  "header": {
+    "id": "studentLearningHeader",
+    "seo": {
+      "text": "[[name]]",
+      "icon": "fa fa-graduation-cap",
+      "description": "<i class=\"fuxicons fuxicons-lightbulb-configuration\"></i>&nbsp;&nbsp;Knowledge"
+    },
+    "details": [
+      {
+        "type": "custom-component",
+        "subType": "custom-tab-validator",
+        "parameters": [
+          {
+            "key": "keyName",
+            "value": "activeTab"
+          },
+          {
+            "key": "parent",
+            "value": "studentLearningComponent"
+          }
+        ]
+      },
+      {
+        "type": "label",
+        "id": "statusCodes",
+        "hidden": true,
+        "urlResource": [
+          {
+            "key": "path",
+            "value": "{{AppAPIBotConfig}}/baseQuestionStatus"
+          },
+          {
+            "key": "headers",
+            "value": {
+              "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+            }
+          }
+        ],
+        "pathToValue": [
+          "_embedded",
+          "JSON.stringify($this)"
+        ]
+      },
+      {
+        "type": "label",
+        "id": "courseNames",
+        "hidden": true,
+        "urlResource": [
+          {
+            "key": "path",
+            "value": "{{AppAPIBotConfig}}/courses?keys={'name':1,'devAccessToken':1}"
+          },
+          {
+            "key": "headers",
+            "value": {
+              "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+            }
+          }
+        ],
+        "pathToValue": [
+          "_embedded",
+          "JSON.stringify($this)"
+        ]
+      },
+      {
+        "type": "jsonlabel",
+        "id": "studentCourseNames",
+        "hidden": true,
+        "urlResource": [
+          {
+            "key": "path",
+            "value": "{{AppAPIBotConfig}}/students"
+          },
+          {
+            "key": "pathToMainData",
+            "value": [
+              "_embedded",
+              {
+                "$filter": [
+                  "$this['name']==='[[name]]'"
+                ]
+              }
+            ]
+          },
+          {
+            "key": "queryString",
+            "value": {
+              "filter": "{\"name\":\"[[name]]\"}",
+              "keys": "{\"courses\":1,\"name\":1}"
+            }
+          },
+          {
+            "key": "headers",
+            "value": {
+              "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+            }
+          }
+        ],
+        "pathToValue": [
+          "@buildArrStrFromArrObj2($this['courses'],'code','belongsTo')"
+        ]
+      }
+    ]
+  },
+  "tabs": [
+    {
+      "id": "learnedPrograms",
+      "text": "Available programs",
+      "components": [
+        {
+          "id": "learnedProgramsTab",
+          "mockToLoad": "students/student-learning-programs"
+        }
+      ]
+    },
+    {
+      "id": "studentTestsTab",
+      "text": "Tests",
+      "lazyLoading": true,
+      "components": [
+        {
+          "id": "studentTestsMainComponent",
+          "mockToLoad": "students/student-tests-main"
+        },
+        {
+          "id": "studentTestsComponent",
+          "mockToLoad": "students/student-tests",
+          "hidden": true,
+          "lazyLoading": true
+        },
+        {
+          "id": "studentCustomTestsComponent",
+          "mockToLoad": "students/student-tests-custom",
+          "lazyLoading": true,
+          "hidden": true
+        },
+        {
+          "id": "studentTestStepsComponent",
+          "mockToLoad": "students/student-test-steps",
+          "lazyLoading": true,
+          "hidden": true
+        },
+        {
+          "id": "studentCustomTestStepsComponent",
+          "mockToLoad": "students/student-test-custom-steps",
+          "lazyLoading": true,
+          "hidden": true
+        },
+        {
+          "type": "initParameters",
+          "hidden": true,
+          "id": "testsWrapper",
+          "details": [
+            {
+              "type": "jsonlabel",
+              "id": "wrapperAutoToggle",
+              "hidden": true,
+              "text": "autoToggle"
+            },
+            {
+              "type": "jsonlabel",
+              "id": "wrapperProgramName",
+              "hidden": true,
+              "text": "programName"
+            },
+            {
+              "type": "jsonlabel",
+              "id": "wrapperTestSetIndex",
+              "hidden": true,
+              "text": "testSetIndex"
+            },
+            {
+              "type": "jsonlabel",
+              "id": "wrapperTestSetName",
+              "hidden": true,
+              "text": "testSetName"
+            },
+            {
+              "type": "label",
+              "id": "wrapperTestSetStatus",
+              "hidden": true,
+              "text": "testSetStatus"
+            },
+            {
+              "type": "jsonlabel",
+              "id": "wrapperTestIndex",
+              "hidden": true,
+              "text": "testIndex"
+            },
+            {
+              "type": "jsonlabel",
+              "id": "wrapperTestName",
+              "hidden": true,
+              "text": "testName"
+            },
+            {
+              "type": "label",
+              "id": "wrapperTestStatus",
+              "hidden": true,
+              "text": "testStatus"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

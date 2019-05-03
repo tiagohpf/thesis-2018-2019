@@ -1,0 +1,33 @@
+.webct-icon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+.webct-PROCESSED { color: #4b7f25!important; font-family: 'Glyphicons Halflings'; }
+.webct-PROCESSED:before { content: "\e013"; }
+
+.webct-PROCESSING { color: #ffb63a!important; font-family: 'Glyphicons Halflings'; }
+.webct-PROCESSING:before { content: "\e059"; }
+
+.webct-SUBMITTED { color: #31708f!important; font-family: 'Glyphicons Halflings'; }
+.webct-SUBMITTED:before { content: "\e108"; }
+
+.webct-ERROR { color: #e32e2e!important; font-family: 'Glyphicons Halflings'; }
+.webct-ERROR:before { content: "\e012"; }
+
+.webct-ACTIVE { color: #4b7f25!important; font-family: 'Glyphicons Halflings'; }
+.webct-ACTIVE:before { content: "\e013"; }
+
+.webct-CANCELED { color: #e32e2e!important; font-family: 'Glyphicons Halflings'; }
+.webct-CANCELED:before { content: "\e012"; }
+
+.webct-SUSPENDED { color: #ffb63a!important; font-family: 'Glyphicons Halflings'; }
+.webct-SUSPENDED:before { content: "\e073"; }
+
+.webct-REMOVED { color: #e32e2e!important; font-family: fa; }
+.webct-REMOVED:before { content: "\f05e";}

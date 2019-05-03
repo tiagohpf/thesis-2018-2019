@@ -1,0 +1,6 @@
+﻿[
+    { "id": "demo_child_1", "text": "createNew()", "icon": "fa fa-square",  "li_attr": { "data-showinfo": "true", "data-rule": "createNew()","data-drag": true }, "info": "A informação a mostrar no (i)!"  },
+    { "id": "demo_child_2", "text": "createNewestObject()", "icon": "fa fa-circle", "li_attr": {"data-showinfo": "true", "data-rule": "createNewestObject()","data-drag": true}, "info":  "A informação a mostrar no (i)!" },
+    { "id": "demo_child_3", "text": "objectCreateNewest()", "icon": "fa fa-star",  "li_attr": {"data-showinfo": "true", "data-rule": "objectCreateNewest()","data-drag": true}, "info":  "A informação a mostrar no (i)!" },
+    { "id": "demo_child_4", "text": "otherFunction()", "icon": "fa fa-certificate", "li_attr": {"data-showinfo": "true", "data-rule": "otherFunction()","data-drag": true}, "info":  "A informação a mostrar no (i)!" }
+]

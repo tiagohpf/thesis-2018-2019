@@ -1,0 +1,489 @@
+#wct-content-knowledgeCenter {
+    position: relative;
+    @include max-width-screen;
+    margin: 0 auto;
+
+    #wct-page-header-knowledgeCenter {
+
+        //padding-left: 0;
+        #wct-each-parameter-knowledgeCenterButtonAreas {
+            .wct-component-type-operations {
+                button {
+                    &.entityInfoButton {
+                        background: none;
+                        border-bottom: 3px solid transparent;
+                        transition: 0.2s;
+                        width: 100px;
+                        height: 45px;
+                        font-size: 16px;
+                        text-align: center;
+                        padding: 0 !important;
+                        margin: 0 !important;
+                        border: 0;
+                        border-radius: 0 !important;
+
+                        &.active {
+                            background-image: linear-gradient(90deg, #9059f7 3%, #de6af7 100%);
+
+                            span {
+                                bottom: 0px;
+                                margin-bottom: 5px;
+                            }
+                        }
+
+                        &:not(.active):hover {
+                            transition: 0.3s;
+                        }
+
+                        >span {
+                            color: #ffffff;
+                            font-size: 22px;
+                            font-weight: 400;
+                            top: 0;
+                            background: $primary-color;
+                            width: 100%;
+                            left: 0;
+                            position: absolute;
+                            bottom: 5px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            text-transform: lowercase;
+                            line-height: 46px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .menuOperations {
+
+            //   padding: 0 !important;
+            //   padding-top: 10px !important;
+            //   text-align: right;
+            .each-parameter {
+                //padding: 0;
+
+                &.subscriptionCreateOperations {
+                    text-align: right;
+
+                    app-wct-buttons {
+                        padding: 0;
+                        .btn-group {
+                            display: block;
+
+                            button {
+                                padding: 5px 10px !important;
+                                border-radius: 3px;
+                                background-image: linear-gradient(90deg, #7958ec 1%, #be4ce4 100%);
+                                background-position: center center;
+                                font-size: 14px;
+                                color: #ffffff;
+                                font-weight: 400;
+                                box-shadow: 0px 7px 15px rgba(190, 76, 228, 0.5);
+                                border: none;
+                                transition: all 0.2s ease-in-out;
+                                margin: 0 !important;
+                                text-transform: lowercase;
+
+                                &:hover {
+                                    border: none;
+                                    padding: 5px 10px !important;
+                                    margin: 0 !important;
+                                }
+
+                                i {
+                                    vertical-align: middle;
+                                    padding-right: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.find {
+                    padding-right: 0;
+
+                    input {
+                        float: right;
+
+                        &.form-control {
+                            border-bottom-right-radius: 0px !important;
+                            border-top-right-radius: 0px !important;
+                            height: 32px;
+                            padding: 5px 10px !important;
+                            border-radius: 3px;
+                            border: none;
+                            background: rgba(27, 40, 140, 0.5);
+                            color: white;
+                            width: 250px;
+
+                            &:focus {
+                                box-shadow: none;
+                            }
+
+                            &::placeholder {
+                                color: white;
+                            }
+                        }
+                    }
+                }
+
+                &.findButtonOperations {
+                    //display: flex;
+                    padding: 0;
+
+                    .form-group {
+                        padding: 0;
+
+                        .findButton {
+                            margin: 0 !important;
+                            background: rgba(27, 40, 140, 0.5);
+                            border-radius: 0 !important;
+                            border-bottom-right-radius: 3px !important;
+                            border-top-right-radius: 3px !important;
+                            padding: 6px 4px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .wct-tabs-wrapper {
+        overflow: unset;
+
+        ul {
+            &.nav {
+                display: none !important;
+            }
+        }
+
+        .wct-main-content-colored {
+            background: transparent;
+            border: none;
+
+            #wct-content-programListConfiguration {
+                padding-top: 0;
+
+                #wct-page-header-programListConfiguration {
+                    display: none;
+                }
+
+                #wct-page-tabsContent-subscriptionProgramsMainContainerTab {
+                    margin: 0;
+                    background-color: transparent;
+                    border: none;
+
+                    #wct-each-parameter-subscriptionProgramsMainCardList {
+                        padding: 0;
+
+                        .container-fluid {
+                            padding-top: 0;
+                        }
+
+                        .card-wrapper {
+                            padding: 15px;
+
+                            @media only screen and (min-width: 1201px) {
+                                width: 20%;
+                            }
+
+                            @media only screen and (min-width: 980px) and(max-width: 1200px) {
+                                width: 33.333%;
+                            }
+
+                            @media only screen and (min-width: 768px) and(max-width: 979px) {
+                                width: 33.333%;
+                            }
+
+                            @media only screen and (min-width: 480px) and(max-width: 767px) {
+                                width: 50%;
+                            }
+
+                            @media only screen and (min-width: 320px) and(max-width: 479px) {
+                                width: 100%;
+                            }
+
+                            .card {
+                                * {
+                                    word-break: break-all;
+                                }
+
+                                box-shadow: 0px 0px 40px -9px rgba(0, 0, 0, 0.68);
+                                background-size: cover;
+                                background-color: #ffffff;
+                                width: 100%; //border-radius: 7px;
+                                border: 0px;
+                                padding: 0;
+                                margin-bottom: 0;
+                                min-height: 70px;
+                                border-radius: 0;
+
+                                .card-header {
+                                    display: none;
+                                }
+
+                                .card-body {
+                                    padding: 0;
+
+                                    * {
+                                        padding: 0;
+                                    }
+
+                                    .programImage {
+                                        svg {
+                                            border-radius: 0;
+                                        }
+
+                                        .basic-style {
+                                            margin-top: 0;
+                                            border-top-left-radius: 0px;
+                                            border-top-right-radius: 0px;
+                                            width: 100%;
+                                            height: 100%;
+                                        }
+                                    }
+
+                                    .replaced-svg {
+                                        width: 15px;
+                                        margin-top: 4px;
+                                    }
+
+                                    .programName_escola {
+                                        a {
+                                            font-size: 16px;
+                                            word-break: break-all;
+                                        }
+                                    }
+
+                                    .deprecated-program {
+                                        position: absolute;
+                                        margin-top: 20px;
+                                        margin-left: 2px;
+
+                                        .student-deprecated-program {
+                                            padding: 0 5px 0 5px;
+                                            border-radius: 5px;
+                                        }
+                                    }
+
+                                    .programStatus {
+                                        position: absolute;
+                                        right: 0;
+                                        top: 0;
+                                        width: 120px;
+
+                                        .label-grouper {
+                                            p {
+                                                background-color: #00cfb6;
+                                                font-size: 14px;
+                                                padding: 7px !important;
+                                                font-weight: 400;
+                                                text-align: center;
+                                                height: 35px;
+                                                padding: 3px;
+
+                                                img {
+                                                    margin-top: -3px;
+                                                }
+
+                                                .statusText,
+                                                i {
+                                                    color: #ffffff;
+                                                }
+                                            }
+                                        }
+
+                                        &.status_1 {
+                                            p {
+                                                background-color: #4c69cf;
+                                            }
+                                        }
+
+                                        &.status_3 {
+                                            p {
+                                                background-color: #00cfb6;
+                                            }
+                                        }
+
+                                        &.status_4 {
+                                            p {
+                                                background-color: #000000;
+                                            }
+                                        }
+                                    }
+
+                                    .cardInfo_Wrapper {
+                                        padding: 0 1.25rem 1.25rem 1.25rem;
+
+                                        .card {
+                                            box-shadow: none;
+
+                                            .programName {
+                                                a {
+                                                    word-break: break-all;
+                                                    font-size: 18px;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    .each-parameter {
+                                        .wct-field-format-label {
+                                            label {
+                                                font-size: 16px;
+                                                font-size: 16px;
+                                                color: $primary-text-color;
+                                                font-weight: 400;
+                                                text-decoration: none solid rgb(181, 181, 181);
+                                            }
+                                        }
+
+                                        .wct-component-type-label {
+                                            .label-grouper {
+                                                width: 100%;
+
+                                                p {
+                                                    color: $secundary-text-color !important;
+
+                                                    a {
+                                                        font-family: FallingSky;
+                                                        font-size: 20px;
+                                                        color: $secundary-text-color;
+                                                        font-weight: 400;
+                                                        text-decoration: none solid rgb(89, 89, 89);
+                                                        line-height: 26px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            #wct-content-degreeMain {
+                #wct-page-header-degreeMain {
+                    display: none;
+                }
+
+                #wct-page-tabsContent-degreeMainContainer {
+                    #wct-each-parameter-degreeMainCards {
+                        padding: 0;
+
+                        .container-fluid {
+                            padding-top: 0;
+                        }
+
+                        .card-wrapper {
+                            padding: 15px;
+
+                            @media only screen and (min-width: 768px) {
+                                width: 33.333%;
+                            }
+
+                            @media only screen and (min-width: 480px) and(max-width: 767px) {
+                                width: 50%;
+                            }
+
+                            @media only screen and (min-width: 320px) and(max-width: 479px) {
+                                width: 100%;
+                            }
+
+                            .card {
+                                * {
+                                    word-break: break-all;
+                                }
+
+                                box-shadow: 0px 0px 40px -9px rgba(0, 0, 0, 0.68);
+                                background-size: cover;
+                                background-color: #ffffff;
+                                width: 100%;
+                                border-radius: 0;
+                                border: 0px;
+                                padding: 0;
+                                margin-bottom: 0;
+                                min-height: 350px;
+
+                                .card-header {
+                                    display: none;
+                                }
+
+                                .card-body {
+                                    position: relative;
+
+                                    padding: 0;
+
+                                    * {
+                                        padding: 0;
+                                    }
+
+                                    .degreeImage {
+                                        .basic-style {
+                                            margin-top: 0;
+                                            //border-top-left-radius: 7px;
+                                            //border-top-right-radius: 7px;
+                                            width: 100%;
+                                            height: 180px;
+                                        }
+                                    }
+
+                                    .degreeStudent {
+                                        position: absolute;
+                                        top: 40%;
+                                        left: 10%;
+                                        width: auto;
+
+                                        img {
+                                            width: 60px;
+                                            height: 60px;
+                                            border: 3px solid white;
+                                        }
+                                    }
+
+                                    .degreeName {
+                                        padding: 15px;
+
+                                        p {
+                                            font-size: 26px;
+                                            color: #4f4f4f;
+                                            font-weight: 400;
+                                            line-height: 26px;
+                                        }
+                                    }
+
+                                    .details {
+                                        padding: 15px;
+                                        border-top: 1px solid #d6d6d6;
+                                        text-transform: lowercase;
+                                        position: absolute;
+                                        bottom: 0;
+
+                                        .atributeName {
+                                            font-family: Lato;
+                                            font-size: 14px;
+                                            color: #595959;
+                                            text-decoration: none solid rgb(89, 89, 89);
+                                        }
+
+                                        .atributeValue {
+                                            font-family: Lato;
+                                            font-size: 14px;
+                                            color: #878787;
+                                            font-weight: 700;
+                                            text-decoration: none solid rgb(135, 135, 135);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

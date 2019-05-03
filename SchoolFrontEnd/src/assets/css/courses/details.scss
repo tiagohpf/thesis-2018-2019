@@ -1,0 +1,338 @@
+#wct-content-pageCourseDetails {
+    background: $primary-color;
+    padding: 0;
+    >.wct-tabs-wrapper {
+        overflow: unset;
+        .wct-main-content-colored {
+            border: none;
+            border-radius: unset;
+            height: 100% !important;
+            .wct-main-wrapper {
+                border: none !important;
+                border-radius: unset !important;
+                width: 100%; //@include max-width-screen;
+                margin: 0 auto;
+                position: relative;
+                .wct-components-wrapper {
+                    .wct-header-info {
+                        .icon {
+                            font-size: 30px;
+                            color: $primary-color !important;
+                        }
+                    }
+                    .h2 {
+                        p {
+                            font-size: 18px;
+                            color: $primary-color;
+                            text-transform: lowercase;
+                            width: 160px;
+                            height: 26px;
+                            font-family: FallingSky;
+                            font-size: 18px;
+                            color: #253aa5;
+                            font-weight: 400;
+                            text-decoration: none solid rgb(37, 58, 165);
+                            line-height: 26px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #wct-page-header-pageCourseDetails {
+        @include max-width-screen;
+        margin: 0 auto;
+        padding: 15px 30px;
+        app-wct-start-components {
+            position: relative;
+            #wct-each-parameter-pageEntityDetails_wrapper {
+                margin-left: 15px; //display: flex;
+                .back {
+                    p {
+                        a {
+                            color: #ffffff;
+                            i {
+                                transform: rotate(180deg);
+                                display: inline-block;
+                                padding-right: 5px;
+                                font-size: 22px;
+                                vertical-align: -17%;
+                            }
+                            span {
+                                font-size: 18px;
+                                padding: 0px 5px;
+                            }
+                        }
+                    }
+                }
+                #wct-each-parameter-courseStudentImage {
+                    padding-left: 20px;
+                    width: 45px;
+                    padding: 0;
+                    flex: none;
+                    .form-group {
+                        padding: 0;
+                        #wct-image-courseStudentImage {
+                            //height: 38px;
+                            width: 45px;
+                        }
+                    }
+                }
+                #wct-each-parameter-coursStudentName {
+                    flex: 1;
+                    p {
+                        font-size: 38px;
+                        color: #ffffff;
+                    }
+                }
+            }
+        }
+    }
+    #wct-page-tabsContent-courseDetailProperties {
+        #wct-content-courseDetailPropertiesContent {
+            @include max-width-screen;
+            margin: 0 auto;
+            #wct-each-parameter-courseDetailsGroup {
+                #wct-content-courseDetailsGroup {
+                    .container-fluid {
+                        overflow: hidden;
+                    }
+                    #wct-each-parameter-courseDetails {
+                        padding-left: 0;
+                        #wct-each-parameter-courseImage {
+                            width: 180px;
+                            flex: none;
+                            padding-left: 0;
+                            #wct-image-courseImage {
+                                width: 180px;
+                                height: 180px;
+                            }
+                        }
+                        #wct-each-parameter-courseDetailsName {
+                            margin-left: 30px;
+                        }
+                    }
+                }
+            }
+            #wct-each-parameter-coursecontentSummary {
+                #wct-content-coursecontentSummary {
+                    .wct-components-wrapper {
+                        overflow: hidden;
+                        #wct-each-parameter-courseDetailDescription {
+                            #wct-label-courseDetailDescription {
+                                font-family: Lato;
+                                font-size: 18px;
+                                color: #ababab;
+                                word-break: break-word;
+                            }
+                        }
+                    }
+                }
+            }
+            #wct-each-parameter-courseProgramsButtons {
+                .wct-field-format-component {
+                    float: right;
+                    #wct-operations-btn-buttonProgramAssign {
+                        border-radius: 3px;
+                        background-color: #253aa5;
+                        font-size: 14px;
+                        font-weight: 400;
+                        text-align: center;
+                        text-transform: lowercase;
+                        i {
+                            vertical-align: middle;
+                            padding-right: 5px;
+                        }
+                    }
+                    #wct-operations-btn-buttonProgramCreate {
+                        margin-right: 0 !important;
+                        border: 1px solid #253aa5;
+                        border-radius: 3px;
+                        background-color: #ffffff;
+                        font-size: 14px;
+                        color: #253aa5;
+                        font-weight: 400;
+                        text-decoration: none solid rgb(37, 58, 165);
+                        text-align: center;
+                        text-transform: lowercase;
+                        i {
+                            vertical-align: middle;
+                            padding-right: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/******************COURSE PROGRAMS********************/
+
+.courseProgramsMainCardList {
+    .card-wrapper {
+        padding: 7px 0 !important;
+        .card {
+            background-color: #f7f7f7;
+            border-radius: 0;
+            box-shadow: none;
+            margin-bottom: 0;
+            .card-body {
+                padding: 0 !important;
+                .each-parameter {
+                    height: 150px;
+                    position: relative;
+                    .form-group {
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 100%;
+                        .wct-field-format-component {
+                            .label-grouper {
+                                a,
+                                p {
+                                    font-size: 18px;
+                                    color: #4f4f4f;
+                                    font-weight: 400;
+                                }
+                            }
+                        }
+                    }
+                    &.programImage {
+                        padding: 0;
+                        .form-group {
+                            padding: 0;
+                            img {
+                                width: 150px;
+                                height: 150px;
+                            }
+                        }
+                    }
+                    &.programStatus {
+                        padding: 0;
+                        .wct-external-wrapper {
+                            float: right;
+                            .label-grouper {
+                                // padding: 0 45px 0 10px;
+                                // width: 141px;
+                                //padding: 5px;
+                                min-width: 140px;
+                                height: 45px;
+                                background-color: #00cfb6;
+                                background-size: cover;
+                                p {
+                                    white-space: nowrap;
+                                    font-size: 18px;
+                                    color: #ffffff !important;
+                                    text-align: center;
+                                    //padding-left: 20px;
+                                    i {
+                                        font-size: 25px;
+                                        position: absolute;
+                                        left: 10px;
+                                        top: 10px;
+                                    }
+                                }
+                            }
+                        }
+                        &.status_1 {
+                            .label-grouper {
+                                    background-color: #4c69cf;
+                            }
+                        }
+            
+                        &.status_3 {
+                            .label-grouper {
+                                    background-color: #00cfb6;
+                            }
+                        }
+            
+                        &.status_4 {
+                            .label-grouper {
+                                    background-color: #000000;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.programAssign {
+        .card-wrapper {
+            padding: 7px !important;
+        }
+    }
+}
+
+/******************COURSE PROGRAMS CREATE********************/
+
+#wct-each-parameter-createProgramDetails {
+    .card {
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        margin-bottom: 0;
+        #wct-each-parameter-title {
+            .form-group {
+                padding-left: 0;
+                #wct-label-title {
+                    font-size: 18px;
+                    color: #253aa5;
+                    text-transform: lowercase;
+                    #programCreateCourseName {
+                        font-size: 22px;
+                    }
+                }
+            }
+        }
+        .card-header {
+            display: none;
+            h5 {
+                .btn {
+                    &.btn-link {
+                        box-shadow: none !important;
+                        background-color: white !important;
+                        color: $primary-header-text-color;
+                        font-size: 18px;
+                        font-weight: 400 !important; //text-transform: lowercase;
+                    }
+                }
+            }
+        }
+        .card-body {
+            .each-parameter {
+                .form-group {
+                    label {
+                        padding-left: 0.75rem;
+                        font-size: 16px;
+                    }
+                }
+            }
+            #wct-each-parameter-categoryProgram {
+                padding: 0;
+            }
+        }
+    }
+}
+
+/******************COURSE PROGRAMS ASSIGN MODAL********************/
+
+
+
+#wct-content-programsLearnDtl {
+    #wct-each-parameter-programIdsToLearn {
+        .wct-field-format-label {
+            label {
+                font-size: 16px;
+                text-transform: initial;
+                color: #253aa5;
+            }
+        }
+    }
+    .title {
+        p {
+            font-size: 16px;
+            text-transform: initial;
+            padding-left: 15px !important;
+        }
+    }
+}

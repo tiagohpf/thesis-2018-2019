@@ -1,0 +1,471 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Dynamic tabs</title>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.css" />
+
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+    <script src="/fuxi/lib/jqueryui/1.10/jquery-ui-1.10.4.custom.min.js"></script>
+
+    <style>
+        .nav-tabs > li > a, .nav-tabs > li > a:hover {
+            border: 1px solid #ddd;
+            border-top-width: 1px;
+        }
+        .fx-category-icon {
+            height: 16px;
+            width: 16px;
+            display: inline-block;
+            margin-right:3px;
+        }
+
+            .fx-category-icon img {
+                display: inline-block;
+                max-height: 100%;
+                max-width: 100%;
+                vertical-align: middle;
+            }
+    </style>
+
+</head>
+<body class="container" style="overflow:auto">
+    <section class="well row">
+        <h1><strong>Dynamic tabs</strong></h1>
+        (<a target="_blank" href="/fuxi/components/tab/examples">ver versão similar em AngularJS</a>)
+
+        <div class="row">
+            <div id="ws-doc">
+                <h3><i class="caret"></i> <strong>Opções</strong></h3>
+                <div style="padding: 0 20px" class="hidden">
+                    <div>
+                        <label><strong>isAsync</strong></label>
+                        <span>
+                            true ou <strong>false</strong>. Se o comportamento é executado quando se instancia ou no evento window.load.
+                        </span>
+                    </div>
+                    <div>
+                        <label><strong>animateDuration</strong></label>
+                        <span>
+                            A duração pode ser dada em milisegundos; valores mais altos, animação mais lenta.
+                            A duração default utilizada é de <strong>400</strong> milisegundos.
+                            Podem ser utilizadas as constantes <i>fast</i> e <i>slow</i>, que têm uma duração de 200 e 600 milisegundos, respectivamente.
+                        </span>
+                    </div>
+                    <div>
+                        <label><strong>fixedIncrement</strong></label>
+                        <span><strong>80</strong> Valor de incremento quando se clica sobre as setas esquerda/ direita</span>
+                    </div>
+                    <div>
+                        <label><strong>tabTemplate</strong></label>
+                        <span>Template HTML utilizado para desenhar as tabs</span>
+                    </div>
+                    <div>
+                        <label><strong>tabDropdownTemplate</strong></label>
+                        <span>Template HTML utilizado para desenhar os items na dropdown que permite navegar directamente para uma determinada tab.</span>
+                    </div>
+                </div>
+
+                <h3><i class="caret"></i> <strong>Eventos</strong></h3>
+                <div style="padding: 0 20px" class="hidden">
+                    <div>
+                        <label><strong>selected.fx.slider.tab</strong></label>
+                        <span>Evento executado quando se seleciona uma tab.</span>
+                    </div>
+                    <div>
+                        <label><strong>moved.fx.slider.tab</strong></label>
+                        <span>Evento executado quando se move uma tab.</span>
+                    </div>
+                    <div>
+                        <label><strong>added.fx.slider.tab</strong></label>
+                        <span>Evento executado quando se adiciona uma nova tab.</span>
+                    </div>
+                    <div>
+                        <label><strong>removed.fx.slider.tab</strong></label>
+                        <span>Evento executado quando se remove uma tab.</span>
+                    </div>
+                    <div>
+                        <label><strong>removedAll.fx.slider.tab</strong></label>
+                        <span>Evento executado quando se removem todas as tabs.</span>
+                    </div>
+                    <div>
+                        <label><strong>left.fx.slider.tab</strong></label>
+                        <span>Evento executado quando se clica sobre o botão left.</span>
+                    </div>
+                    <div>
+                        <label><strong>right.fx.slider.tab</strong></label>
+                        <span>Evento executado quando se clica sobre o botão right.</span>
+                    </div>
+                </div>
+
+                <h3><i class="caret"></i> <strong>Métodos</strong></h3>
+                <div style="padding: 0 20px" class="hidden">
+                    <div>
+                        <label><strong>tabContentLoaded(tab, status, title)</strong></label>
+                        <span>
+                            Deve ser invocado quando o conteúdo da tab se encontra completamente carregado. <br />
+                            Remove o icon de loading, e coloca um icon de status e respetivo title, caso seja definido e passado no método.
+                        </span>
+                    </div>
+                    <div>
+                        <label><strong>addTab(name, id, dismissible, sortable, selected, customParams, actions, actionsList)</strong></label>
+                        <span>Método que permite adicionar uma nova tab.</span>
+                    </div>
+                    <div>
+                        <label><strong>selectTabById(tabId)</strong></label>
+                        <span>Método que permite selecionar a tab pelo identificador único.</span>
+                    </div>
+                    <div>
+                        <label><strong>removeAllTabs()</strong></label>
+                        <span>Método que permite eliminar todas as tabs.</span>
+                    </div>
+                </div>
+
+                <h3><i class="caret"></i> <strong>How To? Step by Step</strong></h3>
+                <div style="padding: 0 20px" class="hidden">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Verificar que tem incluído os seguintes ficheiros:
+                                    <ul>
+                                        <li>
+                                            <strong>CSS</strong>
+                                            <ul>
+                                                <li>Bootstrap (/basepack/bootstrap-pt/3.0/css/bootstrap.min.css)</li>
+                                                <li>Fuxi (/fuxi/common/html/css/fuxi.css)</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>JS</strong>
+                                            <ul>
+                                                <li>Modernizr (/basepack/modernizr/2.6/modernizr.js)</li>
+                                                <li>jQuery (/basepack/jquery/1.9/jquery.min.js)</li>
+                                                <li>jQuery UI (/fuxi/lib/jqueryui/1.10/jquery-ui-1.10.4.custom.min.js)</li>
+                                                <li>Bootstrap (/basepack/bootstrap-pt/3.0/js/bootstrap.min.js)</li>
+                                                <li>Fuxi (/fuxi/common/exec/fuxi.min.js) <strong>Para efeitos demonstrativos está a ser usado a versão não minificada.</strong></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Como o "feel and look" pode variar entre sistemas, o markup deve estar na página. Na demo pode verificar o elemento DOM: <br />
+                                    <code>
+                                        &lt;div id="tabExample1" class="fx-scrollable-tabs-container" data-fx-slider-tab&gt;
+                                        ...
+                                        &lt;/div&gt;
+                                    </code>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3><i class="caret"></i> <strong style="color:red">Issues (não corrigidos: <span id="number-bugs"></span>)</strong></h3>
+                <div class="hidden">
+                    <ul id="bugs-list"></ul>
+                </div>
+                <h3><i class="caret"></i> <strong style="color:green">New Features (não implementadas: <span id="number-newfeatures"></span>)</strong></h3>
+                <div class="hidden">
+                    <ul id="newfeatures-list"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div style="background:white; padding:20px">
+            <p>
+                <button class="btn btn-primary btn-sm" id="btn-add-tab">add tab</button>&nbsp;
+                <button class="btn btn-primary btn-sm" id="btn-select-tab">select tab (2)</button>&nbsp;
+                <button class="btn btn-primary btn-sm" id="btn-refresh-tab">refresh tab (2)</button>&nbsp;
+                <button class="btn btn-danger btn-sm" id="btn-remove-all-tabs">remove all tabs</button>
+            </p>
+
+            <div id="tabExample1" class="fx-scrollable-tabs-container" data-fx-slider-tab>
+                <div class="fx-scrollable-tabs-actions fx-left-placement">
+                    <span class="fx-tab-hint fx-tab-hint-left" data-fx-slider-tab-hint-left><span class="sr-only">ver conteúdo à esquerda</span></span>
+                </div>
+                <div class="fx-scrollable-tabs-list-wrapper" data-fx-slider-tab-viewport>
+                    <ul id="pageTab" class="fx-main-tabs nav nav-tabs" data-fx-slider-tab-overview>
+                        <li class="active fx-dismissible fx-sortable" id="1">
+                            <a href="#tab1" data-toggle="tab" data-tab-id="1" id="fx-a-1">
+                                <i class="fx-ico-loading"></i>
+                                <span class="fx-tab-title">tab 1</span>
+                            </a>
+                            <button class="fx-del-tab" id="fx-btn-del-1">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </button>
+                        </li>
+                        <li class="fx-not-sortable" id="2">
+                            <a href="#tab2" data-toggle="tab" data-tab-id="2" id="fx-a-2">
+                                <i class="fx-ico-loading"></i>
+                                <span class="fx-tab-title">tab 2</span>
+                            </a>
+                            <button class="fx-del-tab" id="fx-btn-del-2">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </button>
+
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="fx-add-action-wrapper fx-right-placement" data-fx-add-action-wrapper>
+                    <button class="btn btn-primary btn-sm fx-tab-overflow-add-action" type="button">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span class="fx-tab-overflow-add-action-text">add tab</span>
+                    </button>
+                </div>
+
+                <div class="fx-scrollable-tabs-actions fx-right-placement">
+                    <span class="fx-tab-hint fx-tab-hint-right" data-fx-slider-tab-hint-left><span class="sr-only">ver conteúdo à direita</span></span>
+
+                    <div class="fx-scrollable-tabs-nav">
+                        <div class="btn-group fx-view-all-tabs" data-fx-slider-tab-dropdown>
+                            <button class="btn btn-default btn-sm dropdown-toggle fx-dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <i class="glyphicon glyphicon-th-list"></i>
+                                <i class="caret"></i>
+                                <span class="sr-only">ver todos os tabs</span>
+                            </button>
+
+                            <div class="fx-dropdown fx-dropdown-open-to-left">
+                                <div class="fx-dropdown-header">
+                                    <div name="frm-search-fx-tabs" class="form-group fx-search-input">
+                                        <div class="fx-pos-rel">
+                                            <input type="text" placeholder="filtrar..." class="form-control input-sm full-width fx-dropdown-search" name="txt-fx-tab-search">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="fx-dropdown-body">
+                                    <ul id="pageTabDropdown" class="nav" data-fx-slider-tab-dropdown-overview>
+                                        <li class="active" data-tab-target-id="1">
+                                            <a data-toggle="tab" id="fx-dd-a-1" data-tab-id="1">tab 1</a>
+                                        </li>
+                                        <li data-tab-target-id="2">
+                                            <a data-toggle="tab" id="fx-dd-a-2" data-tab-id="2">tab 2</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div name="left-div" class="fx-arrow-left" data-fx-slider-tab-left>
+                            <button class="btn btn-default btn-sm fx-tab-overflow-arrows" type="button">
+                                <i class="glyphicon glyphicon-chevron-left"></i>
+                            </button>
+                        </div>
+                        <div name="right-div" class="fx-arrow-right" data-fx-slider-tab-right>
+                            <button class="btn btn-default btn-sm fx-tab-overflow-arrows" type="button">
+                                <i class="glyphicon glyphicon-chevron-right"></i>
+                            </button>
+                        </div>
+                        
+                        <button class="btn btn-primary btn-sm fx-tab-overflow-add-action" type="button" data-fx-slider-tab-add-action>
+                            <i class="glyphicon glyphicon-plus"></i>
+                        </button>
+                        
+                    </div>
+                </div>
+                <div class="fx-tab-overflow-border"></div>
+
+                <div id="pageTabContent" class="tab-content fx-main-tab-content with-padding" data-fx-slider-tab-content-wrapper>
+                    <div class="tab-pane active" id="tab1" data-tab-target-id="1">
+                        Content tab 1
+                    </div>
+                    <div class="tab-pane" id="tabn" data-tab-target-id="2">
+                        Content tab n
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </section>
+
+    <script src="/fuxi/common/exec/fuxi.js"></script>
+    <!--<script src="/fuxi/common/exec/common-slider-tabs.js"></script>-->
+
+    <!-- RESOURCES EN / PT : include according culture-->
+    <!--<script src="/fuxi/resources/fuxi_en.js" language="javascript" type="text/javascript"></script>-->
+    <script src="/fuxi/resources/fuxi_pt.js" language="javascript" type="text/javascript"></script>
+
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $("#number-bugs").text($("#bugs-list li").length);
+            $("#number-newfeatures").text($("#newfeatures-list li").length);
+
+            $("#ws-doc h3").css("cursor", "pointer").on('click', function () {
+                $(this).next().toggleClass("hidden");
+            });
+
+            // load tabs
+
+            var getRndActions = function () {
+                var act = ['', true, false];
+                var rnd = Math.floor((Math.random() * 2) + 1);
+                return act[rnd] || false;
+            }
+
+            var getRndActionsList = function () {
+                var tabactions = [
+                    { label: "Action", action: "#" },
+                    { label: "Another action", action: "#" },
+                    { label: "Something else here", action: "#" },
+                    { label: "Separated link", action: "#" }
+                ];
+                return tabactions;
+            }
+
+            var getRndDismissible = function () {
+                var dis = ['', true, false];
+                var rnd = Math.floor((Math.random() * 2) + 1);
+                return dis[rnd] || false;
+            }
+            var getRndSortable = function () {
+                var sort = ['', true, false];
+                var rnd = Math.floor((Math.random() * 2) + 1);
+                return sort[rnd] || false;
+            }
+            var getRndStatus = function () {
+                var status = ['', 'error', 'info', 'warning', 'undefined'];
+                var rnd = Math.floor((Math.random() * 4) + 1);
+                return status[rnd] || 'undefined';
+            }
+
+            var addTab = function (name, id, dismissible, sortable, selected, customParams, actions, actionsList) {
+                var fxSliderTab = $("#tabExample1").data("fxslidertab");
+                fxSliderTab.addTab(name, id, dismissible, sortable, selected, customParams, actions, actionsList);
+            };
+
+            var selectTabById = function (tID) {
+                var fxSliderTab = $("#tabExample1").data("fxslidertab");
+                fxSliderTab.selectTabById(tID);
+            };
+            function refreshTab(tabID) {
+                var fxSliderTab = $("#tabExample1").data("fxslidertab");
+
+                var tab = $("#" + tabID);
+                fxSliderTab.showLoading(tab);
+                setTimeout(function () {
+                    fxSliderTab.hideLoading(tab);
+                }, 2500);
+
+            };
+
+            $("#btn-add-tab, .fx-tab-overflow-add-action").on("click", function () {
+                var id = Math.floor((Math.random() * new Date()) + 1);
+                addTab("tab" + id, id, getRndDismissible(), getRndSortable(), true,
+                    {
+                        contentUrl: (id % 2) ? 'tabcontent.html?id=' + id : "",
+                        itemTemplParams: {
+                            imgSrc: 'css/images/fx/logo-pt.png',
+                            imgTitle: 'qualquer img title...'
+                        }
+                    }, getRndActions(), getRndActionsList());
+            });
+            $("#btn-select-tab").on("click", function () {
+                selectTabById('2');
+            });
+            $("#btn-refresh-tab").on("click", function () {
+                refreshTab('2');
+            });
+            $("#btn-remove-all-tabs").on("click", function () {
+                var fxSliderTab = $("#tabExample1").data("fxslidertab");
+                fxSliderTab.removeAllTabs();
+            });
+            var initializeTab = function (isAsync, animateDuration, increment) {
+
+                console.log("initialize...");
+
+                var tabTmpl = '<li class="fx-status fx-dismissible fx-sortable" id="{{id}}" title="{{name}}">' +
+                               '<a href="#tab{{id}}" data-toggle="tab" id="fx-a-{{id}}" data-tab-id="{{id}}">' +
+                                   '<span class="fx-category-icon"><img src="{{imgSrc}}" title="{{imgTitle}}" class="" /></span>' +
+                                   '<span class="fx-tab-title">{{name}}</span>' +
+                               '</a></li>';
+
+                FUXI.SliderTabs.init({
+                    isAsync: isAsync || true,
+                    animateDuration: animateDuration || 400,
+                    tabTemplate: tabTmpl,
+                    fixedIncrement: increment || 80  //by default use the width of data-fx-slider-tab-viewport element
+                });
+
+                $(document).off("fx::tabContentLoaded").on("fx::tabContentLoaded",
+                    function (ev, data) {
+                        //console.log("fx::tabContentLoaded", ev, data);
+                        setTimeout(function () {
+                            var status = getRndStatus();
+                            var title = (status) ? 'Title para o status ' + status : '';
+                            data.sliderTab.tabContentLoaded(data.tab, status, title);
+                        }, 5000);
+                    });
+
+                //Ciclo que simula um click no botão para adicionar uma tab
+                setTimeout(function () {
+                    for (var i = 1000; i < 1001; i++) {                        
+                        $("#btn-add-tab").trigger("click");
+                    }
+                }, 0);
+
+
+                $("#tabExample1").on("moved.fx.slider.tab", function (ev) {
+                    console.log("moved.fx.slider.tab", ev);
+
+                    console.log(FUXI.Utils.format("Moved from {0} to {1} !", ev.fromIndex, ev.toIndex));
+
+                }).on("removed.fx.slider.tab", function (ev) {
+                    console.log("removed.fx.slider.tab", ev);
+                }).on("removedAll.fx.slider.tab", function (ev) {
+                    console.log("removedAll.fx.slider.tab", ev);
+                }).on("added.fx.slider.tab", function (ev) {
+                    console.log("added.fx.slider.tab", ev);
+
+                    // append tab content DEMO
+                    var id = ev.tab.attr("id");
+                    var tabId = "tab" + id;
+                    
+                    var cP = ev.tab.data("customParams");
+                    var url = "";
+                    if (cP) {
+                        cP = JSON.parse(cP);
+                        url = cP.contentUrl;
+                    }
+                                                            
+                    $("#pageTabContent").append($('<div class="tab-pane active" id="' + tabId + '" data-tab-target-id="' + id + '"><i class="fx-ico-loading"></i> loading....</div>'));
+                    /* dynamic Load URL*/
+                    //if (url !== "") {
+                    //    $("#" + tabId).load(url, function () {
+                    //        console.log("tab content loaded...");
+
+                    //        ev.fxslidertab.tabContentLoaded(ev.tab, getRndStatus());                            
+                    //    });
+                    //}
+                    //else
+                    {
+                        /* static load content */
+                        $("#pageTabContent").append($('<div class="tab-pane active" id="' + tabId + '" data-tab-target-id="' + id + '">' + tabId + '</div>'));
+                        $(document).trigger('fx::tabContentLoaded', { tab: ev.tab, sliderTab: ev.fxslidertab });
+                    }
+                }).on("left.fx.slider.tab", function (ev) {
+                    console.log("left.fx.slider.tab", ev);
+                }).on("right.fx.slider.tab", function (ev) {
+                    console.log("right.fx.slider.tab", ev);
+                }).on("selected.fx.slider.tab", function (ev) {
+                    console.log("selected.fx.slider.tab", ev);
+                });
+            }
+            initializeTab(true, 'slow', 80);
+        });
+    </script>
+
+</body>
+
+
+
+</html>

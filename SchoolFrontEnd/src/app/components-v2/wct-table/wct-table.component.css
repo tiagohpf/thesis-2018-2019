@@ -1,0 +1,8 @@
+.table { width: 100%; }
+.table td.mat-cell, table th.mat-header-cell{ padding-left: 8px; }
+.table thead th{ border-top: 0; border-bottom-width: 1px; }
+
+.table td{ padding-top: .10rem; padding-bottom: .10rem; }
+.table td.wct-table-column-actions{ text-align: right; }
+.table td.wct-table-column-sorting{ background: #f9f9f9; }
+

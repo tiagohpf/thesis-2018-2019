@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--# include file="/fuxi/doc/partials/showroom/partials/head-templates.html" -->
+    <title>Template listagem</title>
+</head>
+<body>
+    <div class="fx-push-footer fx-full-height">
+        <!--# include file="/fuxi/doc/partials/showroom/partials/header-templates.html" -->
+        <div class="fx-prevent-content-behind-footer fx-full-height">
+
+            <div class="fx-main-content-wrapper">
+
+                <div class="fx-entity-header fx-fixed-position" data-fix-to="top" data-calc-height="true">
+                    <div class="fx-entity-header-inner">
+                        <div class="fx-entity-header-headings clearfix">
+                            <div class="pull-left fx-constraint">
+                                <h1><i class="fuxicons fuxicons-provision"></i> Título da página </h1>
+                            </div>
+                            <div class="pull-right">
+                                <a href="#" class="btn btn-primary fx-call-to-action"> <i class="glyphicon glyphicon-plus"></i> criar serviço </a>
+                            </div>
+                        </div>
+                        <div class="fx-bulk-actions clearfix">
+                            <div id="devguide-bulk-actions-row-ops" class="pull-left">
+                                <button class="btn btn-default btn-sm disabled">
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                    eliminar
+                                </button>
+                            </div>
+                            <div class="pull-right">
+                                <div class="form-group fx-search-input">
+                                    <div class="fx-pos-rel">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                        <input id="myInputTextField" type="search" placeholder="pesquisar..." class="form-control input-sm">
+                                    </div>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button data-toggle="dropdown" type="button" class="fx-dropdown-toggle dropdown-toggle btn btn-default btn-sm">
+                                        <i class="fuxicons fuxicons-manage-columns"></i> <span class="caret"></span>
+                                    </button>
+                                    <div class="fx-dropdown fx-dropdown-open-to-left">
+                                        <div class="fx-dropdown-body">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" checked>
+                                                    Cidade
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" checked>
+                                                    Concelho
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" checked>
+                                                    Distrito
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" checked>
+                                                    Estado do tempo
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button data-toggle="dropdown" type="button" class="btn btn-default btn-sm dropdown-toggle">
+                                        <i class="glyphicon glyphicon-export"></i> <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu fx-dropdown-open-to-left">
+                                        <li><a href="#">PDF</a></li>
+                                        <li><a href="#">XLS</a></li>
+                                        <li><a href="#">CSV</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="entity-content" class="fx-entity-info fx-dt-wrapper-fixed-cols">
+                    <table class="table" id="devguide-bulk-actions-table">
+                        <thead>
+                            <tr>
+                                <th class="fx-table-actions">
+                                    <input data-fx-check="all" data-fx-set="check-site" type="checkbox">
+                                </th>
+                                <th>#</th>
+                                <th>Cidade</th>
+                                <th>Concelho</th>
+                                <th>Distrito</th>
+                                <th>Estado do tempo</th>
+                                <th class="fx-table-actions">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="fx-table-actions">
+                                    <input type="checkbox" data-fx-check="" data-fx-set="check-site">
+                                </td>
+                                <td class="text-right">1</td>
+                                <td>Aveiro</td>
+                                <td>Aveiro</td>
+                                <td>Aveiro</td>
+                                <td class="text-center"><i class="fa fa-sun-o" title="sol"><span class="sr-only">sol</span></i></td>
+                                <td class="fx-table-actions">
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="pré-visualizar"> <i class="fuxicons fuxicons-eye"></i> </a>
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="editar"> <i class="glyphicon glyphicon-pencil"></i> </a>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" type="button" class="btn btn-link btn-link-in-table dropdown-toggle" title="outras operações">
+                                            <i class="fa fa-cog"></i>
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu fx-dropdown-open-to-left">
+                                            <li><a href="#"><i class="glyphicon glyphicon-remove"></i> eliminar</a></li>
+                                            <li><a href="#"><i class="fuxicons fuxicons-clone"></i> clonar</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fx-table-actions">
+                                    <input type="checkbox" data-fx-check="" data-fx-set="check-site">
+                                </td>
+                                <td class="text-right">1</td>
+                                <td>Coimbra</td>
+                                <td>Coimbra</td>
+                                <td>Coimbra</td>
+                                <td class="text-center"><i class="fa fa-tint" title="chuvoso"><span class="sr-only">chuva</span></i></td>
+                                <td class="fx-table-actions">
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="pré-visualizar"> <i class="fuxicons fuxicons-eye"></i> </a>
+                                    <a href="#" class="btn btn-link btn-link-in-table" title="editar"> <i class="glyphicon glyphicon-pencil"></i> </a>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" type="button" class="btn btn-link btn-link-in-table dropdown-toggle" title="outras operações">
+                                            <i class="fa fa-cog"></i>
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu fx-dropdown-open-to-left">
+                                            <li><a href="#"><i class="glyphicon glyphicon-remove"></i> eliminar</a></li>
+                                            <li><a href="#"><i class="fuxicons fuxicons-clone"></i> clonar</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!--# include file="/fuxi/doc/partials/showroom/partials/footer-templates.html" -->
+    </div>
+
+    <!--# include file="/fuxi/doc/partials/showroom/partials/scripts-templates.html" -->
+
+    <script>
+        FUXI.CheckboxToggler.init();
+
+        $(document).ready(function () {
+
+            var devGuideBulkActionsTable = $('#devguide-bulk-actions-table');
+
+            var tableGeneralVisionConf = $.extend({}, FUXI.Presets.DataTables, {
+                'iDisplayLength': 10,
+                'aLengthMenu': [5, 10, 25, 50],
+                "fnDrawCallback": function (oSettings) {
+                    /* Need to redo the counters if filtered or sorted */
+                    if (oSettings.bSorted || oSettings.bFiltered) {
+                        for (var i = 0, iLen = oSettings.aiDisplay.length ; i < iLen ; i++) {
+                            this.fnUpdate(i + 1, oSettings.aiDisplay[i], 1, false, false);
+                        }
+                    }
+                },
+                "aoColumns": [
+                    { "bSortable": false },
+                    { "bSortable": false },
+                    { "bSortable": true },
+                    { "bSortable": true },
+                    { "bSortable": true },
+                    { "bSortable": true },
+                    { "bSortable": false }
+                ],
+                'aaSorting': [[2, "desc"]],
+
+            });
+
+            devGuideBulkActionsTable.on('init.dt', FUXI.Utils.SetDTPagination).dataTable(tableGeneralVisionConf);
+
+            //custom search on table
+            $("#myInputTextField").on('keyup', function () {
+                devGuideBulkActionsTable.dataTable().fnFilter(this.value);
+            });
+
+            devGuideBulkActionsTable.on('change', 'th :checkbox, td :checkbox', function () {
+                var $this = $(this),
+                    CB_path = $this.parent(),
+                    DT_path = $this.closest(devGuideBulkActionsTable).parent(),
+                    removeBtn = DT_path.parent().prev().find('#devguide-bulk-actions-row-ops button'),
+                    TD_checked = DT_path.find('td :checkbox:checked').length;
+                if (CB_path.is('td')) {
+                    if (TD_checked === 1) {
+                        removeBtn.removeClass('disabled');
+                    } else if (TD_checked > 1) {
+                        removeBtn.removeClass('disabled');
+                    } else {
+                        removeBtn.addClass('disabled');
+                    }
+                } else {
+                    if ($this.is(':checked')) {
+                        removeBtn.removeClass('disabled');
+                    } else {
+                        removeBtn.addClass('disabled');
+                    }
+                }
+            });
+
+            FUXI.FixedPositions.init();
+        });
+    </script>
+</body>
+</html>

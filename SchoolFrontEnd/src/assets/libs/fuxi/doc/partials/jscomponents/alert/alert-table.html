@@ -1,0 +1,195 @@
+<h3 id="docs-alert-table">Alertas em tabela</h3>
+<p>Este snippet demonstra os diferentes tipos de alertas que poderão ser associados a uma linha ou célula de tabela: <strong>sucesso, informativo, aviso e erro</strong>.</p>
+<p>O snippet de código abaixo exemplifica um alerta informativo. Substitua <code>info</code> por <code>success, warning, ou danger</code> para instanciar cada um dos outros tipos.</p>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <table class="table" id="table-alert">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Header da coluna</th>
+                    <th>Header da coluna</th>
+                    <th>Header da coluna</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="success">
+                    <td>1</td>
+                    <td>Conteúdo da célula</td>
+                    <td>Conteúdo da célula</td>
+                    <td>Conteúdo da célula</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Conteúdo da célula</td>
+                    <td>Conteúdo da célula</td>
+                    <td>Conteúdo da célula</td>
+                </tr>
+                <tr class="info">
+                    <td>3</td>
+                    <td>Conteúdo da célula</td>
+                    <td>Conteúdo da célula</td>
+                    <td>Conteúdo da célula</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Conteúdo da célula</td>
+                    <td>Conteúdo da célula</td>
+                    <td>Conteúdo da célula</td>
+                </tr>
+                <tr class="warning">
+                    <td>5</td>
+                    <td>Conteúdo da célula</td>
+                    <td>Conteúdo da célula</td>
+                    <td>Conteúdo da célula</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Conteúdo da célula</td>
+                    <td>Conteúdo da célula</td>
+                    <td>Conteúdo da célula</td>
+                </tr>
+                <tr class="danger">
+                    <td>7</td>
+                    <td>Conteúdo da célula</td>
+                    <td>Conteúdo da célula</td>
+                    <td>Conteúdo da célula</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<table class="table" id="table-alert">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Header da coluna</th>
+            <th>Header da coluna</th>
+            <th>Header da coluna</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="info">
+            <td>1</td>
+            <td>Conteúdo da célula</td>
+            <td>Conteúdo da célula</td>
+            <td>Conteúdo da célula</td>
+        </tr>
+    </tbody>
+</table>
+        </textarea>
+    </form>
+</div>
+
+<h4>Erros contextuais a tabelas</h4>
+<p>Por vezes numa mesma tabela poderão surgir diversos erros ou avisos distintos. Nesse caso deve utilizar-se alertas contextuais.</p>
+<p><p>O snippet de código abaixo exemplifica um alerta contextual de erro. Substitua <code>danger</code> por <code>warning</code> para instanciar cada um dos outros tipos.</p></p>
+<div class="alert alert-warning">
+    É fundamental que o objeto na célula da tabela que lista o número do erro ou aviso seja o primeiro elemento dentro da célula.
+</div>
+<div class="fx-docs-snippet-code">
+    <div>
+        <div class="alert alert-error">
+            <div class="fx-alert-icon">
+                <i class="fuxicons fuxicons-error"></i>
+            </div>
+            <div class="fx-alert-desc">
+                <p>
+                    1 - Causa do erro
+                </p>
+            </div>
+        </div>
+
+        <div class="alert alert-warning">
+            <div class="fx-alert-icon">
+                <i class="fuxicons fuxicons-warning"></i>
+            </div>
+            <div class="fx-alert-desc">
+                <p>
+                    1 - Causa do aviso
+                </p>
+            </div>
+        </div>
+
+        <table class="table" id="table-alert-contextual">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Header da coluna</th>
+                    <th>Header da coluna</th>
+                    <th>Header da coluna</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="warning">
+                    <td>1</td>
+                    <td>Conteúdo da célula</td>
+                    <td>Conteúdo da célula</td>
+                    <td>
+                        <div class="fx-pos-rel">
+                            <span class="fx-tr-warning">1</span>
+                        </div>
+                        Conteúdo da célula
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Conteúdo da célula</td>
+                    <td>Conteúdo da célula</td>
+                    <td>Conteúdo da célula</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Conteúdo da célula</td>
+                    <td class="danger">
+                        <div class="fx-pos-rel">
+                            <span class="fx-tr-danger">1</span>
+                        </div>
+                        Conteúdo da célula
+                    </td>
+                    <td>Conteúdo da célula</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<div class="alert alert-error">
+    <div class="fx-alert-icon">
+        <i class="fuxicons fuxicons-error"></i>
+    </div>
+    <div class="fx-alert-desc">
+        <p>
+            1 - Causa do erro
+        </p>
+    </div>
+</div>
+
+<table class="table" id="table-alert-contextual">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Header da coluna</th>
+            <th>Header da coluna</th>
+            <th>Header da coluna</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Conteúdo da célula</td>
+            <td class="danger">
+                <div class="fx-pos-rel">
+                    <span class="fx-tr-danger">1</span>
+                </div>
+                Conteúdo da célula
+            </td>
+            <td>Conteúdo da célula</td>
+        </tr>
+    </tbody>
+</table>
+        </textarea>
+    </form>
+</div>

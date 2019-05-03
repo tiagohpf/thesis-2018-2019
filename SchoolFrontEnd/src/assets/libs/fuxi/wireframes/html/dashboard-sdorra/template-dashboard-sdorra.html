@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge; text/html;" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0,  user-scalable=yes" />
+    <link rel="icon" href="/fuxi/common/html/css/images/favicon.ico" type="image/x-icon" />
+    <title>Template dashboard (angular js)</title>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.min.css" />
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+
+    <!-- load the dashboard css -->
+    <link href="src/styles/main.css" rel="stylesheet">
+
+    <!-- Respond.js - IE8 support of media queries -->
+    <!--[if lt IE 9]>
+            <script src="/fuxi/lib/html5shiv/3.7/js/html5shiv.js"></script>
+            <script src="/fuxi/lib/respond/1.4/js/respond.min.js"></script>
+        <![endif]-->
+    <!--[if lte IE 8]>
+      <script>
+        document.createElement('ng-include');
+        document.createElement('adf-dashboard');
+        document.createElement('adf-widget');
+        document.createElement('adf-widget-content');
+      </script>
+    <![endif]-->
+
+
+
+</head>
+<body ng-app="fuxiDashboard">
+            
+    <div class="fx-push-footer fx-full-height">
+        <header id="fx-header">
+            <nav class="fx-navbar" role="navigation">
+                <a class="fx-brand" href="#"><h1 class="fx-logo-brand">Fuxi</h1></a>
+            </nav>
+            <!-- breadcrumb -->
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#"><i class="fuxicons fuxicons-home"></i>Início</a>
+                </li>
+                <li>
+                    <a href="#">Link</a>
+                </li>
+                <li class="active">
+                    Ativo
+                </li>
+            </ul>
+        </header>
+
+        <div class="fx-prevent-content-behind-footer fx-full-height">
+            <div class="fx-main-content-wrapper" ng-controller="fuxiDashboard" ng-cloak>
+                <div class="fx-entity-header fx-fixed-position" data-fix-to="top" data-calc-height="true">
+                    <div class="fx-entity-header-inner">
+                        <div class="fx-entity-header-headings clearfix">
+                            <div class="pull-left fx-constraint">
+
+                                <h1><span class="fx-info-icon"> <i class="fuxicons fuxicons-home"></i> </span> Início</h1>
+                            </div>
+                            <div class="pull-right">
+
+                                <a id="addBoard" href="#" ng-click="newDBoard();" class="btn btn-primary btn-sm">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                    adicionar dashboard
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav nav-tabs fx-main-tabs" id="divDashboards">
+                        <li ng-repeat="board in dashboardsData">
+                            <a href="#" data-toggle="tab" ng-click="loadDBoard($index);">
+                                {{board.title}}
+                                &nbsp;<i class="fa fa-times pointer pull-right" ng-if="board.actions.delete" ng-click="removeDBoard($index);$event.stopPropagation();"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tab-content fx-main-tab-content">
+                    <div class="tab-pane active" id="tab-sobre">
+                        <div class="fx-tab-pane-inners">
+
+                            <div id="divDBoardNav" ng-init="loadDBoard(1);">
+                                <div ng-include="url"></div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <footer class="fx-main-footer">
+            <div class="fx-copyright">
+                <span class="fx-developer-brand fx-logo-pt"></span>[nome do produto] © [ano de criação] PT Inovação e Sistemas, SA - todos os direitos reservados.
+            </div>
+            <div class="fx-about">
+                <span class="fx-trial-version">versão trial</span>
+                <a href="#" data-toggle="modal" data-target="#sobre">Sobre</a>
+            </div>
+        </footer>
+    </div>
+
+    <div class="modal" id="sobre" tabindex="-1" role="dialog" aria-labelledby="sobre-modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content fx-with-tabs fx-modal-content-height-m">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="sobre-modal">Sobre</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="fx-entity-header fx-fixed-position" data-fix-to="top" data-calc-height="false">
+                        <div class="fx-entity-header-inner">
+                            <div class="fx-entity-header-headings clearfix">
+                                <div class="fx-suite">
+                                    <div class="fx-logo-brand-dark">
+                                        Fuxi
+                                    </div>
+                                </div>
+                                <div class="fx-suite-desc">
+                                    <h1>Nome do produto<sup>®</sup></h1>
+                                    <p>
+                                        Versão 3.16.00
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="nav nav-tabs fx-main-tabs">
+                            <li class="active">
+                                <a href="#tab-sobre" data-toggle="tab">Sobre</a>
+                            </li>
+                            <li>
+                                <a href="#tab-produtos" data-toggle="tab">Produtos</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content fx-main-tab-content">
+                        <div class="tab-pane active" id="tab-sobre">
+                            <div class="fx-tab-pane-inner">
+                                <a class="fx-expand" data-toggle="collapse" data-target="#block1"> <i class="caret"></i> Licença </a>
+                                <div id="block1" class="collapse in">
+                                    <strong>[nome do produto] © [ano de criação] PT Inovação e Sistemas, SA - todos os direitos reservados.</strong>
+                                    <p>
+                                        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                    </p>
+                                </div>
+                                <a class="fx-expand" data-toggle="collapse" data-target="#block2"> <i class="caret"></i> Créditos </a>
+                                <div id="block2" class="collapse in">
+                                    <strong>[nome do produto] © [ano de criação] PT Inovação e Sistemas, SA - todos os direitos reservados.</strong>
+                                    <p>
+                                        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab-produtos">
+                            <div class="fx-tab-pane-inner">
+                                Existe a possibilidade de incluir mais tabs com a informação que se quiser
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">
+                        fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- load jquery library -->
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+
+    <!-- load jquery ui library -->
+    <script src="/fuxi/lib/jqueryui/1.10/jquery-ui-1.10.4.custom.min.js"></script>
+
+    <!-- load angular library -->
+    <script type="text/javascript" src="libs/angular/angular.min.js"></script>
+    <script type="text/javascript" src="libs/angular-route/angular-route.min.js"></script>
+
+    <!-- angular-bootstrap -->
+    <script type="text/javascript" src="libs/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script type="text/javascript" src="libs/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+    <!-- scripts -->
+    <script type="text/javascript" src="src/scripts/adf.js"></script>
+    <script type="text/javascript" src="src/scripts/provider.js"></script>
+    <script type="text/javascript" src="src/scripts/sortable.js"></script>
+    <script type="text/javascript" src="src/scripts/widget-content.js"></script>
+    <script type="text/javascript" src="src/scripts/widget.js"></script>
+    <script type="text/javascript" src="src/scripts/dashboard.js"></script>
+
+    <!-- local storage -->
+    <script type="text/javascript" src="libs/angular-local-storage/angular-local-storage.min.js"></script>
+
+    <!-- sample -->
+    <script type="text/javascript" src="scripts/template-dashboard-sdorra.js"></script>
+    <script type="text/javascript" src="scripts/structures.js"></script>
+
+    <!-- WIDGETS -->
+    <!-- weather widget -->
+    <script type="text/javascript" src="scripts/widgets/weather/weather.js"></script>
+
+    <!-- linklist widget -->
+    <script type="text/javascript" src="scripts/widgets/linklist/linklist.js"></script>
+
+    <!-- iframe widget -->
+    <script type="text/javascript" src="scripts/widgets/iframe/iframe.js"></script>
+
+    <!-- end widgets -->
+
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+    <script src="/fuxi/common/exec/fuxi.min.js"></script>
+    <script>
+        $(function () {
+            FUXI.ExpandableForm.init();
+            FUXI.FixedPositions.init();
+        });
+    </script>
+
+</body>
+</html>

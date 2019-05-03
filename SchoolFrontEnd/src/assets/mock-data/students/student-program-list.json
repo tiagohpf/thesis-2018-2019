@@ -1,0 +1,336 @@
+{
+    "type": "page",
+    "id": "pageEntityDetails",
+    "tabs": [
+        {
+            "id": "studentsProgramsMainContainerTab",
+            "components": [
+                {
+                    "type": "initParameters",
+                    "urlResource": [
+                        {
+                            "key": "id",
+                            "value": "studentProgramsApi"
+                        },
+                        {
+                            "key": "path",
+                            "value": "{{SchoolBOT}}/students/[[id]]"
+                        },
+                        {
+                            "key": "apiRecycle",
+                            "value": false
+                        },
+                        {
+                            "key": "queryString",
+                            "value": {
+                                "keys": "{\"programs\":1}"
+                            }
+                        },
+                        {
+                            "key": "headers",
+                            "value": {
+                                "Authorization": "Bearer {{token}}",
+                                "IXS": "{{IXS_id}}"
+                            }
+                        }
+                    ],
+                    "details": [
+                        {
+                            "type": "label",
+                            "hidden": true,
+                            "id": "selectedProgramId",
+                            "dynamicProps": {
+                                "value": "'{{studentsProgramsMainCardList___programId}}'"
+                            }
+                        },
+                        {
+                            "type": "context",
+                            "id": "studentProgramsNotLearnedIds",
+                            "pathToValue": [
+                                "@studentProgramsNotLearned($this['programs'],'versionLearned')"
+                            ]
+                        },
+                        {
+                            "type": "context",
+                            "id": "studentProgramsLearnedIds",
+                            "pathToValue": [
+                                "@studentProgramsLearnedIds($this['programs'],'versionLearned')"
+                            ]
+                        },
+                        {
+                            "type": "label",
+                            "id": "noData",
+                            "dynamicProps": {
+                                "hidden": "\"{{studentProgramsNotLearnedIds}}\" || \"{{studentProgramsLearnedIds}}\""
+                            },
+                            "value": "warnings___noRecords",
+                            "text": null
+                        },
+                        {
+                            "type": "label",
+                            "hidden": true,
+                            "id": "selectedProgramId",
+                            "dynamicProps": {
+                                "value": "'{{studentsProgramsMainCardList___programId}}'"
+                            }
+                        },
+                        {
+                            "type": "initCards",
+                            "_subType": "card-container-radio",
+                            "dynamicProps": {
+                                "lazyLoading": "!\"{{studentProgramsNotLearnedIds}}\" && !\"{{studentProgramsLearnedIds}}\""
+                            },
+                            "id": "studentsProgramsMainCardList",
+                            "icon": "fa fa-th-large",
+                            "_class": "col-md-3",
+                            "urlResource": [
+                                {
+                                    "key": "id",
+                                    "value": "programsApi"
+                                },
+                                {
+                                    "key": "apiRecycle",
+                                    "value": false
+                                },
+                                {
+                                    "key": "path",
+                                    "value": "{{SchoolBOT}}/availablePrograms"
+                                },
+                                {
+                                    "key": "queryString",
+                                    "value": {
+                                        "keys": "{\"image\":1, \"_id\":1, \"name\":1,\"deprecated\":1, \"description\":1, \"status\":1, \"lastUpdate\":1, \"language\":1, \"type\":1, \"programId\":1}",
+                                        "filter": "{{@fv()@checkParametersToFilter(@replaceTagVars('studentProgramsLearnedIds'),@replaceTagVars('studentProgramsNotLearnedIds'))}}",
+                                        "np": null,
+                                        "rep": "pj"
+                                    }
+                                },
+                                {
+                                    "key": "reload",
+                                    "value": false
+                                },
+                                {
+                                    "key": "headers",
+                                    "value": {
+                                        "Authorization": "Bearer {{token}}",
+                                        "IXS": "{{IXS_id}}"
+                                    }
+                                },
+                                {
+                                    "key": "pathToMainData",
+                                    "value": [
+                                        "new Object({\"availablePrograms\": $this})"
+                                    ]
+                                }
+                            ],
+                            "pathToValueList": [
+                                "availablePrograms"
+                            ],
+                            "parameters": [
+                                {
+                                    "key": "tableActions",
+                                    "value": {
+                                        "tableManager": false,
+                                        "export": false,
+                                        "search": false,
+                                        "paging": false
+                                    }
+                                },
+                                {
+                                    "key": "identifier",
+                                    "id": "name"
+                                }
+                            ],
+                            "details": [
+                                {
+                                    "type": "context",
+                                    "id": "programID",
+                                    "pathToValue": [
+                                        "programId"
+                                    ]
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "ctxtId",
+                                    "pathToValue": [
+                                        "programId"
+                                    ]
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "ctxtAlias",
+                                    "pathToValue": "name"
+                                },
+                                {
+                                    "TODO": "Default Image!!!",
+                                    "type": "context",
+                                    "id": "ctxtImageUri",
+                                    "pathToValue": [
+                                        "'{{ImageService}}/programs/'+$this['programId']"
+                                    ],
+                                    "_value": "/assets/images/franck-v-740555-unsplash.jpg"
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "ctxtImageShape",
+                                    "value": "rectangle"
+                                },
+                                {
+                                    "type": "context",
+                                    "id": "ctxtNavigateTo",
+                                    "pathToValue": [
+                                        "'/students/[[id]]/program/' + $this['programId']"
+                                    ]
+                                },
+                                {
+                                    "id": "colPicture",
+                                    "type": "inline-image-component",
+                                    "class": "programImage",
+                                    "viewDetails": true
+                                },
+                                {
+                                    "type": "label",
+                                    "id": "name",
+                                    "class": "col-lg-10 col-md-10 col-sm-10 programName p-15",
+                                    "text": null,
+                                    "style": {
+                                        "padding-left": "15px"
+                                    },
+                                    "pathToValue": [
+                                        "name"
+                                    ],
+                                    "navigateTo": "students/[[id]]/program/{{programID}}"
+                                },
+                                {
+                                    "type": "label",
+                                    "id": "deprecatedA",
+                                    "pathToValue": "deprecated",
+                                    "class": "deprecated-program col-md-12",
+                                    "html": {
+                                        "true": "<div class='student-deprecated-program'><span> New version </span></div>",
+                                        "false": "<span></span>"
+                                    },
+                                    "_text": "Deprecated"
+                                },
+                                {
+                                    "type": "groupParameters",
+                                    "class": "col-sm-12 cardInfo_Wrapper",
+                                    "parameters": [
+                                        {
+                                            "type": "context",
+                                            "id": "programID",
+                                            "pathToValue": [
+                                                "programId"
+                                            ]
+                                        },
+                                        {
+                                            "type": "label",
+                                            "id": "studentProgramStatus",
+                                            "pathToValue": [
+                                                "@mappingApiValues({{studentProgramsApi___programs}},$this['programId'],'programId')",
+                                                "status"
+                                            ],
+                                            "text": null,
+                                            "class": "col-lg-12 col-md-12 col-sm-12",
+                                            "html": {
+                                                "N": "<i class=\"fuxicons fuxicons-pre-active fx-status-success\"></i>&nbsp;{{@fv()@i18n('student___programs_conected___status_types___available')}}",
+                                                "L": "<i class=\"fuxicons fuxicons-lightbulb fx-status-success\"></i>&nbsp;{{@fv()@i18n('student___programs_conected___status_types___learned')}}",
+                                                "LI": "<i class=\"fuxicons fuxicons-lightbulb fx-status-success\"></i>&nbsp;{{@fv()@i18n('student___programs_conected___status_types___learning')}}",
+                                                "U": "<i class=\"fuxicons fuxicons-lightbulb-off fx-status-error\"></i>&nbsp;{{@fv()@i18n('student___programs_conected___status_types___unlearned')}}"
+                                            }
+                                        },
+                                        {
+                                            "type": "label",
+                                            "id": "studentCourseLastPublishedDate",
+                                            "text": null,
+                                            "class": "col-lg-12 col-md-12 col-sm-12",
+                                            "pathToValue": [
+                                                "@mappingApiValues({{studentProgramsApi___programs}},$this['programId'],'programId')",
+                                                "lastUpdate"
+                                            ]
+                                        },
+                                        {
+                                            "_type": "label",
+                                            "id": "description",
+                                            "pathToValue": [
+                                                "description"
+                                            ],
+                                            "text": null,
+                                            "class": "col-lg-12 col-md-12 col-sm-12"
+                                        },
+                                        {
+                                            "type": "operations",
+                                            "id": "menuOperations",
+                                            "_role": "customer_create",
+                                            "class": "col-sm-12 hide-label btn-keep-alignment-to-label",
+                                            "operations": {
+                                                "id": "menuOperations",
+                                                "icon": "glyphicon glyphicon-cog",
+                                                "size": 3,
+                                                "parameters": [
+                                                    {
+                                                        "type": "openModal",
+                                                        "id": "openModalLearn",
+                                                        "class": "btn-secundary",
+                                                        "text": "generic___operations___learn",
+                                                        "_role": "School.Students.Study.Status.Execute",
+                                                        "mockToLoad": "programs/popUp-confirm-learn",
+                                                        "dynamicProps": {
+                                                            "disabled": "'{{studentProgramStatus_Raw}}' == 'L' && '{{deprecatedA_Raw}}' == 'false'"
+                                                        },
+                                                        "parameters": [
+                                                            {
+                                                                "key": "context",
+                                                                "value": [
+                                                                    "programID"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "openModal",
+                                                        "id": "openModalUnlearn",
+                                                        "class": "btn-secundary",
+                                                        "text": "generic___operations___unlearn",
+                                                        "_role": "School.Students.Study.Status.Execute",
+                                                        "mockToLoad": "programs/popUp-confirm-unLearn",
+                                                        "dynamicProps": {
+                                                            "disabled": "'{{studentProgramStatus_Raw}}' != 'L'"
+                                                        },
+                                                        "parameters": [
+                                                            {
+                                                                "key": "context",
+                                                                "value": [
+                                                                    "programID"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "label",
+                                    "id": "deprecatedA_Raw",
+                                    "pathToValue": "deprecated",
+                                    "hidden": true
+                                },
+                                {
+                                    "type": "label",
+                                    "id": "studentProgramStatus_Raw",
+                                    "pathToValue": [
+                                        "@mappingApiValues({{studentProgramsApi___programs}},$this['programId'],'programId')",
+                                        "status"
+                                    ],
+                                    "hidden": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

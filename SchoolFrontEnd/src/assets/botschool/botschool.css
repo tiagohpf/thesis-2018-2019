@@ -1,0 +1,17 @@
+
+/**
+ *  STUDENTS DETAIL (KNOWLEDGE)
+ */
+ #wct-page-tabsContent-studentDetails{ background: transparent; border-radius: 0; border: 0; }
+ #wct-page-header-studentLearningComponent{ display: none; }
+ #wct-content-studentPropsComponent,
+ #wct-content-studentSurveysComponent,
+ #wct-content-studentDialogsComponent,
+ #wct-content-studentStatisticsComponent,
+ #wct-content-studentLearningComponent > .wct-tabs-wrapper > app-wct-tabs > app-wct-tabs-content > .wct-main-content-colored{ background: #fff; border-radius: .25rem; border: 1px solid #dee2e6; }
+ #wct-content-studentLearningComponent > .wct-tabs-wrapper > app-wct-tabs > app-wct-tabs-content > .wct-main-content-colored{ border-top-left-radius: 0; }
+
+/**
+ *  COURSES
+ */
+.botschool-tags-list{ margin: 1px; }

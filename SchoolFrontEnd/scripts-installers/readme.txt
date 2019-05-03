@@ -1,0 +1,1 @@
+- Scripts de criação de pacotes devem sempre ser executados num contexto onde os ficheiros do webct indiquem os caminhos através das fontes no node_modules para os ficheiros dos pacotes "robot" e "pallete";

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge; text/html;" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0,  user-scalable=yes" />
+		<link rel="icon" href="/fuxi/common/html/css/images/favicon.ico" type="image/x-icon" />
+		<title>Template wireframe</title>
+		<link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.min.css" />
+		<script src="/basepack/modernizr/2.6/modernizr.js"></script>
+		<!-- Respond.js - IE8 support of media queries -->
+		<!--[if lt IE 9]>
+		<script src="/fuxi/lib/respond/1.4/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="fx-push-footer fx-full-height">
+			<header id="fx-header">
+				<nav class="fx-navbar" role="navigation">
+					<a class="fx-brand" href="#"><h1 class="fx-logo-brand">Fuxi</h1></a>
+				</nav>
+				<!-- breadcrumb -->
+				<ul class="breadcrumb">
+					<li>
+						<a href="#"><i class="fuxicons fuxicons-home"></i>Início</a>
+					</li>
+					<li>
+						<a href="#">Link</a>
+					</li>
+					<li class="active">
+						Ativo
+					</li>
+				</ul>
+			</header>
+			<div class="fx-prevent-content-behind-footer fx-full-height"></div>
+			
+			<!-- FOOTER ABOUT -->
+			<!--# include file="/fuxi/partials/html/partial-footer-about.html" -->
+		</div>
+		<script src="/basepack/jquery/1.9/jquery.min.js"></script>
+		<script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+		<script src="/fuxi/common/exec/fuxi.min.js"></script>
+		<script>
+			$(function() {
+				FUXI.ExpandableForm.init();
+				FUXI.FixedPositions.init();
+			});
+		</script>
+	</body>
+</html>

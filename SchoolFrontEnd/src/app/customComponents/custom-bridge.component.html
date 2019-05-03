@@ -1,0 +1,39 @@
+<div [ngSwitch]="inputParameters.subType">
+
+  <div *ngSwitchCase="'custom-csv-upload'">
+    <custom-csv-upload [inputParameters]="inputParameters" [inputParametersContext]="inputParametersContext">
+    </custom-csv-upload>
+  </div>
+
+  <div *ngSwitchCase="'custom-table-operation'">
+    <custom-table-operation [inputParametersContext]="inputParametersContext" [inputParameters]="inputParameters"
+      [dataRecs]="dataRecs" [inputDataRecs]="inputDataRecs"></custom-table-operation>
+  </div>
+
+  <div *ngSwitchCase="'custom-textarea-variables'">
+    <message-body-editor-component [inputParameters]="inputParameters" [inputDataRecs]="inputDataRecs"
+      [formModel]="formModel" [control]="formModel.controls[inputParameters.id]"></message-body-editor-component>
+  </div>
+
+  <div *ngSwitchCase="'custom-pie-chart'">
+    <custom-pie-chart [inputParameters]="inputParameters"></custom-pie-chart>
+  </div>
+
+  <div *ngSwitchCase="'custom-survey-horiz-chart'">
+    <survey-horizontal-chart [inputParameters]="inputParameters" [dataRecs]="dataRecs"></survey-horizontal-chart>
+  </div>
+
+  <div *ngSwitchCase="'custom-tab-validator'">
+    <custom-tab-validator [inputParameters]="inputParameters"></custom-tab-validator>
+  </div>
+
+  <div *ngSwitchCase="'custom-link-open-modal'">
+    <custom-link-open-modal [inputParameters]="inputParameters" [inputParametersContext]="inputParametersContext"
+      [dataRecs]="dataRecs"></custom-link-open-modal>
+  </div>
+  <div *ngSwitchCase="'custom-label-inline-edition'">
+    <custom-label-inline-edition [inputParameters]="inputParameters" [dataRecs]="dataRecs" [formModel]="formModel">
+    </custom-label-inline-edition>
+  </div>
+
+</div>

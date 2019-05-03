@@ -1,0 +1,11 @@
+<div class="custom-survey-chart">
+  <div
+    class="elem"
+    *ngFor="let answer of dataRecs[inputParameters.id];let i=index"
+    [title]="chartSurveyTitle(answer)"
+    [ngStyle]="{
+      'width': chartSurveySize(answer.count,dataRecs[inputParameters.id]),
+      'background-color': chartSurveyColors[i]
+    }">
+  </div>
+</div>

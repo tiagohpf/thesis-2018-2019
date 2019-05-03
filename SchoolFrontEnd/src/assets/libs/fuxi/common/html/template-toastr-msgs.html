@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Toastr messages</title>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link type="text/css" rel="stylesheet" href="/fuxi/lib/toastr/toastr.css" />
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.css" />
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+    <script src="/fuxi/lib/jqueryui/1.10/jquery-ui-1.10.4.custom.min.js"></script>
+
+    <script src="/fuxi/lib/toastr/toastr.js"></script>
+
+    <script src="/fuxi/common/exec/fuxi.js"></script>
+
+    <style>
+        
+    </style>
+
+</head>
+<body>
+
+    <div class="fx-push-footer fx-full-height">
+        
+        <div class="fx-prevent-content-behind-footer fx-full-height">
+
+            <div class="fx-main-content">
+                <h1>Toastr</h1>
+                <p>
+                    Podem consultar mais exemplos no seguinte link oficial da biblioteca:
+                    <a href="http://codeseven.github.io/toastr/demo.html">http://codeseven.github.io/toastr/demo.html</a>
+                </p>
+
+                <button class="btn btn-success btn-sm btn-toastr" type="button" data-type="success">
+                    Show Success
+                </button>
+                <button class="btn btn-info btn-sm btn-toastr" type="button" data-type="info">
+                    Show Info
+                </button>
+                <button class="btn btn-warning btn-sm btn-toastr" type="button" data-type="warning">
+                    Show Warning
+                </button>
+                <button class="btn btn-danger btn-sm btn-toastr" type="button" data-type="error">
+                    Show Error
+                </button>
+                <button class="btn btn-default btn-sm" type="button" data-toggle="modal" data-target="#draggable-modal">
+                    open modal
+                </button>
+
+                <div style="margin-top:30px;">
+                    <p> Ter atenção ao posicionar a msg no top-center ou bottom-center:</p>
+                    <code>
+                        #toast-container.toast-top-center > div,
+                        #toast-container.toast-bottom-center > div {
+                            left: 0;
+                            margin: 0 auto;
+                            max-width: 400px;
+                            width: auto;
+                        } 
+                    </code>
+                </div>
+                <!-- DRAGGABLE MODAL -->
+                <div class="modal fade fx-modal-drag" id="draggable-modal" role="dialog" aria-labelledby="modalStandardDraggable" aria-hidden="true" data-backdrop="true">
+                    <div id="draggable-modal-dialog" class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    &times;
+                                </button>
+                                <h4 class="modal-title" id="defaultModal"><i class="fx-drag"></i>Título da modal</h4>
+                                <p>
+                                    Breve descrição da modal
+                                </p>
+                            </div>
+                            <div class="modal-body" id="modal-body">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="input1" class="col-sm-2 control-label">Input 1</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control input-sm" id="input1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="input2" class="col-sm-2 control-label">Input 2</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control input-sm" id="input2">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" id="btn-primary" class="btn btn-primary btn-sm">
+                                    botão primário
+                                </button>
+                                <button type="button" id="btn-cancel" class="btn btn-default btn-sm">
+                                    cancelar
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+		<!-- FOOTER ABOUT -->
+		<!--# include file="/fuxi/partials/html/partial-footer-about.html" -->
+			
+    </div>
+
+    <script language="javascript" type="text/javascript">
+
+        $(function () {
+            
+
+            var options = {
+                "target": 'body',
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": false,
+                "positionClass": "toast-top-center",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "3000000",
+                "hideDuration": "1000000000",
+                "timeOut": "150000",
+                "extendedTimeOut": "1000000000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+
+            
+
+            $("#draggable-modal-dialog").draggable({
+                scroll: true,
+                handle: ".fx-drag"
+            });
+
+            $("#btn-primary").on('click', function () {
+                toastr.clear();
+                toastr.options = $.extend({}, options, {
+                    "target": "#modal-body",
+                });
+            });
+            $("#btn-cancel").on('click', function () {
+                toastr.clear();
+                toastr.options = $.extend({}, options, {
+                    "target": "#modal-body",
+                });
+
+                toastr["error"]("cancelar clicked!", "CLICK!");
+            });
+
+            $(".btn-toastr").on('click', function () {
+                var type = $(this).data("type");
+                console.log(options);
+                toastr.options = options;
+                toastr[type]("You just clicked the " + type + " button! Hooray!!!!!", "One fine title");
+            })
+        });
+    </script>
+
+</body>
+</html>

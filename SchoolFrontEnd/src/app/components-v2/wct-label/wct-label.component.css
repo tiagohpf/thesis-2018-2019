@@ -1,0 +1,20 @@
+/**
+    DROPDOWNS
+*/
+.label-grouper{ position:relative; display: inline-grid; }
+.label-grouper .quickview{ position: absolute; bottom: 5px; margin-left: 5px; cursor: pointer; right: -10px; }
+.label-grouper .quickview > span > .caret{ display: inline-block; }
+
+.quickview-popup-position-simulator{ position: fixed; }
+
+.fx-dropdown-webct{ position: absolute !important; display: block !important; z-index: 999999 !important; top: 0px; left: calc(100% - 15px); }
+.fx-dropdown-webct .arrow{ right: auto!important; left: 20px!important; }
+
+.fx-dropdown-webct.to-right{ left: auto; right: -30px; }
+.fx-dropdown-webct.to-right .arrow{ left: auto!important; right: 10px!important; }
+
+.fx-dropdown-webct.top{ top: auto!important; bottom: calc(100% + 25px); }
+.fx-dropdown-webct.top .arrow{ top: auto!important; }
+
+/* TODO: Remover esta linha quando já não for necessária!!!! */
+.fx-dropdown-webct.hidden-from-user{ visibility: hidden !important; top: -500px !important; left: -500px !important; }

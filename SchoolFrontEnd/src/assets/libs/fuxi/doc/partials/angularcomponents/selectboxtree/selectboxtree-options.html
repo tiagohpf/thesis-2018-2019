@@ -1,0 +1,130 @@
+<h3 id="docs-selectboxtree-options" scroll-spy="">Opções</h3>
+<p>O selectboxtree disponibiliza as opções abaixo enumeradas, todas elas do tipo <code>HTML data-*</code>.</p>
+<p>Os defauts são aplicados na ausência dos data-* no DOM.</p>
+
+<div class="table-responsive">
+    <table class="table fx-table fx-table-with-codemirror">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th class ="fx-col-type">Tipo</th>
+                <th>Default</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>data-fx-select-box-tree</td>
+                <td>HTML data-*</td>
+                <td>-</td>
+                <td>Diretiva encarregada de dar o comportamento desejado ao elemento DOM.</td>
+            </tr>
+            <tr>
+                <td>data-select-box-tree-data</td>
+                <td>texto</td>
+                <td><code>''</code></td>
+                <td>Permite receber os dados a serem carregados na JSTREE. É obrigatório sobre o atributo <code>data-fx-select-box-tree</code>.</td>
+            </tr>
+            <tr>
+                <td>data-select-box-tree-url</td>
+                <td>texto</td>
+                <td><code>''</code></td>
+                <td>Indica o caminho para o ficheiro com os dados a serem carregados na JSTREE. O carregamento dos dados utilizando este método permite que os mesmos sejam carregados aquando a instanciação da directiva ou então quando clicamos sobre a dropdown para expandir e visualizar os dados da JSTRE.</td>
+            </tr>
+            <tr>
+                <td>data-select-box-tree-demand-mode</td>
+                <td>texto</td>
+                <td><code>onInstantiation</code></td>
+                <td>
+                    Permite escolher o modo de carregamento dos dados:
+                    <ul>
+                        <li>
+                            <code>onInstantiation</code> - carregamento na instanciação da diretiva;
+                        </li>
+                        <li>
+                            <code>onDemand</code> - carregamento na primeira abertura da dropdown.
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>data-select-box-tree-selected-values</td>
+                <td>array</td>
+                <td><code>[]</code></td>
+                <td>Permite receber os items previamente selecionados.</td>
+            </tr>
+            <tr>
+                <td>data-select-box-tree-multi-values</td>
+                <td>HTML data-*</td>
+                <td>Ao colocar este data atributo ativa a multi-seleção de items.</td>
+                <td>Indica que se pretende multi-seleção de items.</td>
+            </tr>
+            <tr>
+                <td>data-select-box-tree-full-width</td>
+                <td>HTML data-*</td>
+                <td>Ao colocar este data atributo o componente passa a ocupar 100%.</td>
+                <td>Indica se o componente deve ocupar 100% da largura do seu elemento pai.</td>
+            </tr>
+            <tr>
+                <td>data-select-box-tree-language</td>
+                <td>texto</td>
+                <td><code>'en'</code></td>
+                <td>Indica o ídioma em que são mostradas as mensagens.</td>
+            </tr>
+            <tr>
+                <td>data-fx-select-box-tree-target</td>
+                <td>HTML data-*</td>
+                <td>Opcional</td>
+                <td>Directiva (aplicada ao input) encarregada de dar o comportamento de obrigatoriedade ao elemento DOM.</td>
+            </tr>
+            <tr>
+                <td>data-select-box-tree-remote-search</td>
+                <td>HTML data-*</td>
+                <td>Ao colocar este atributo o componente utiliza pesquisa remota.</td>
+                <td>Indica se o componente utiliza pesquisa remota.</td>
+            </tr>
+            <tr>
+                <td>data-select-box-tree-url-params</td>
+                <td>texto</td>
+                <td><code>'qs'</code></td>
+                <td>Permite passar parâmetros extra ao pedido de pesquisa remota. Definição da <i>key</i> que irá passar o valor de pesquisa.</td>
+            </tr>
+            <tr>
+                <td>data-select-box-tree-full-label</td>
+                <td>HTML data-*</td>
+                <td>Ao colocar este atributo indica que pretende obter uma string com todos os valores selecionados</td>
+                <td>Permite indicar se é para obter uma string com todos os valores selecionados na tree, utiliza o valor do parser definido no atributo <code>data-select-box-tree-full-label-parser</code>.</td>
+            </tr>
+            <tr>
+                <td>data-select-box-tree-full-label-parser</td>
+                <td>texto</td>
+                <td><code>' , '</code></td>
+                <td>Permite passar a string a utilizar quando se retorna todos os valores selecionados.</td>
+            </tr>
+            <tr>
+                <td>data-select-box-tree-write-interval</td>
+                <td>numérico</td>
+                <td><code>'300'</code></td>
+                <td>Permite definir o intervalo de tempo (ms) entre escrita até fazer o pedido para a busca remota.</td>
+            </tr>
+            <tr>
+                <td>data-select-box-tree-submitted-event-name</td>
+                <td>texto</td>
+                <td><code>'selectBoxTree::formSubmitted'</code></td>
+                <td>Nome do evento a executar no caso do form ser submitido.</td>
+            </tr>
+            <tr>
+                <td>data-select-box-tree-read-only</td>
+                <td>HTML data-*</td>
+                <td>Ao colocar este atributo o componente abre em modo de leitura</td>
+                <td>Permite indicar se é para carregar o componente em modo apenas de leitura.</td>
+            </tr>
+            <tr>
+                <td>data-select-box-tree-disabled-browser-contextmenu</td>
+                <td>HTML data-*</td>
+                <td><code>false</code></td>
+                <td>Se definido a <code>true</code> permite desabilitar o context menu dos browsers ao fazer right-click sobre um nó da árvore.</td>
+            </tr>              
+        </tbody>
+    </table>
+</div>

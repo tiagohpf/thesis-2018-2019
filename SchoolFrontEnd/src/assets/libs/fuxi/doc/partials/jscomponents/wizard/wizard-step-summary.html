@@ -1,0 +1,188 @@
+<h3 id="docs-wizard-step-summary">Sumário de um wizard step</h3>
+<p>Este snippet demonstra a forma como é mostrado ao utilizador um sumário das escolhas efetuadas nos steps. Caso a escolha do utilizador tenha impacto no caminho do wizard a FUXI coloca um ícone diferente no sumário. Para que este ícone apareça, no sumário, é necessário definir a <code>true</code> a propriedade <code>stepDecision</code>.</p>
+<p>Tenha por favor em atenção que este sumário deve ser usado com moderação, apresentando ao utilizador apenas informação relevante. </p>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <div style="height: 300px;">
+            <div id="devguide-wizard-summary" class="fx-wizard-wrapper"
+                 data-wiz-prev="#devguide-wiz-prev-summary"
+                 data-wiz-next="#devguide-wiz-next-summary"
+                 data-wiz-complete="#devguide-wiz-complete-summary"
+                 data-step-opened="1"
+                 data-wizard>
+                <nav>
+                    <ul class="list-unstyled fx-nav-items">
+                        <li id="navWizStep1" class="fx-nav-link" data-client-validator="auxFuncs.wizard.devguideWizDefaultValidateStep">
+                            <span class="fx-wizardstep-number"> 1 </span>
+                            <span class="fx-wizardstep-title">Step 1</span>
+                            <button class="pull-right fx-wizardstep-error hidden fx-alert-button" type="button" rel="popover" data-toggle="popover" data-placement="right" data-html="true" data-content="">
+                                <i class="fuxicons fuxicons-error"></i>
+                            </button>
+                            <div class="fx-wizardstep-info hidden">
+                                <!--THIS INFO WILL BE APPENDED VIA THE ARRAY SUMMARY-->
+                            </div>
+                        </li>
+                        <li id="navWizStep2" class="fx-nav-link blocked"  data-client-validator="auxFuncs.wizard.devguideWizDefaultValidateStep">
+                            <span class="fx-wizardstep-number"> 2 </span>
+                            <span class="fx-wizardstep-title">Step 2</span>
+                            <button class="pull-right fx-wizardstep-error hidden fx-alert-button" type="button" rel="popover" data-toggle="popover" data-placement="right" data-html="true" data-content="">
+                                <i class="fuxicons fuxicons-error"></i>
+                            </button>
+                            <div class="fx-wizardstep-info hidden">
+                                <!--THIS INFO WOLL BE APPENDED VIA THE ARRAY SUMMARY-->
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!--STEP 1-->
+                <section id="wizStep1" class="fx-wizardsteps-content">
+                    <h4><span class="fx-wizardstep-number">1</span> | Step 1</h4>
+                    <div class="fx-wizardsteps-content-block">
+                        Conteúdo do step 1.
+                    </div>
+                </section>
+
+                <!--STEP 2-->
+                <section id="wizStep2" class="fx-wizardsteps-content">
+                    <h4><span class="fx-wizardstep-number">2</span> | Step 2</h4>
+                    <div class="fx-wizardsteps-content-block">
+                        Conteúdo do step 2.
+                    </div>
+                </section>
+
+                <div class="fx-wizard-buttons-wrapper">
+                    <div class="fx-wizard-buttons-wrapper-inner">
+                        <button id="devguide-wiz-prev-summary" class="btn btn-default btn-sm disabled" type="button">
+                            <i class="glyphicon glyphicon-chevron-left"></i>anterior
+                        </button>
+                        <button id="devguide-wiz-next-summary" class="btn btn-default btn-sm" type="button">
+                            seguinte<i class="glyphicon glyphicon-chevron-right"></i>
+                        </button>
+                        <button id="devguide-wiz-complete-summary" class="btn btn-primary btn-sm" type="button">
+                            finalizar
+                        </button>
+                        <button id="devguide-wiz-cancel-summary" class="btn btn-default btn-sm" type="button">
+                            cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h4>Markup</h4>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<div id="devguide-wizard-summary" class="fx-wizard-wrapper"
+        data-wiz-prev="#devguide-wiz-prev-summary"
+        data-wiz-next="#devguide-wiz-next-summary"
+        data-wiz-complete="#devguide-wiz-complete-summary"
+        data-step-opened="1"
+        data-wizard>
+    <nav>
+        <ul class="list-unstyled fx-nav-items">
+            <li id="navWizStep1" class="fx-nav-link" data-client-validator="devguideWizDefaultValidateStep">
+                <span class="fx-wizardstep-number"> 1 </span>
+                <span class="fx-wizardstep-title">Step 1</span>
+                <button class="pull-right fx-wizardstep-error hidden fx-alert-button" type="button" rel="popover" data-toggle="popover" data-placement="right" data-html="true" data-content="">
+                    <i class="fuxicons fuxicons-error"></i>
+                </button>
+                <div class="fx-wizardstep-info hidden">
+                    <!--THIS INFO WOLL BE APPENDED VIA THE ARRAY SUMMARY-->
+                </div>
+            </li>
+            <li id="navWizStep2" class="fx-nav-link blocked" data-client-validator="devguideWizDefaultValidateStep">
+                <span class="fx-wizardstep-number"> 2 </span>
+                <span class="fx-wizardstep-title">Step 2</span>
+                <button class="pull-right fx-wizardstep-error hidden fx-alert-button" type="button" rel="popover" data-toggle="popover" data-placement="right" data-html="true" data-content="">
+                    <i class="fuxicons fuxicons-error"></i>
+                </button>
+                <div class="fx-wizardstep-info hidden">
+                    <!--THIS INFO WOLL BE APPENDED VIA THE ARRAY SUMMARY-->
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <!--STEP 1-->
+    <section id="wizStep1" class="fx-wizardsteps-content">
+        <h4><span class="fx-wizardstep-number">1</span> | Step 1</h4>
+        <div class="fx-wizardsteps-content-block">
+            Conteúdo do step 1.
+        </div>
+    </section>
+
+    <!--STEP 2-->
+    <section id="wizStep2" class="fx-wizardsteps-content">
+        <h4><span class="fx-wizardstep-number">2</span> | Step 2</h4>
+        <div class="fx-wizardsteps-content-block">
+            Conteúdo do step 2.
+        </div>
+    </section>
+
+    <div class="fx-wizard-buttons-wrapper">
+        <div class="fx-wizard-buttons-wrapper-inner">
+            <button id="devguide-wiz-prev-summary" class="btn btn-default btn-sm disabled" type="button">
+                <i class="glyphicon glyphicon-chevron-left"></i>anterior
+            </button>
+            <button id="devguide-wiz-next-summary" class="btn btn-default btn-sm" type="button">
+                seguinte<i class="glyphicon glyphicon-chevron-right"></i>
+            </button>
+            <button id="devguide-wiz-complete-summary" class="btn btn-primary btn-sm" type="button">
+                finalizar
+            </button>
+            <button id="devguide-wiz-cancel-summary" class="btn btn-default btn-sm" type="button">
+                cancelar
+            </button>
+        </div>
+    </div>
+</div>
+        </textarea>
+    </form>
+
+    <h4>Scripting</h4>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<script type="text/javascript">
+    //Função demo de validação do step
+    function devguideWizDefaultValidateStep(args) {
+        var step = args.step;
+        var w = args.Wizard;
+
+        switch (step) {
+            case 1:
+                // função para validar o step 1...
+                return { isValid: true };
+                break;
+            case 2:
+                // função para validar o step 2...
+                return { isValid: true };
+                break;
+        }
+    }
+
+    //Array demo para listar sumário das escolhas do utilizador
+    summary = [[],
+        [{ stepDecision: false, title: 'Nome do campo', value: 'Valor do campo' },
+         { stepDecision: true, title: 'Nome do campo', value: 'Valor do campo' }
+        ]
+    ];
+
+    $(document).ready(function () {
+        FUXI.Wizard.init({
+            'isAsync': true,
+            'mode': FUXI.Wizard.modeEnum.INSERT
+        });
+
+        //Wizard step summary
+        $(document).on('next.wizard.fuxi', '#devguide-wizard-summary', function (e) {
+            e.Wizard.setSummary(e.currentStep, summary[e.currentStep]);
+        });
+    });
+</script>            
+        </textarea>
+    </form>
+</div>
+

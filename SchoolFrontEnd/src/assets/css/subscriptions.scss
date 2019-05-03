@@ -1,0 +1,55 @@
+// #wct-page-header-pageEntityDetails{
+//     margin: 0;
+//     padding: 25px;
+//     app-wct-start-components{
+//         > .row .each-parameter{ flex: none;
+//             &:first-of-type{ width: 300px; text-align: center; }
+//             &:last-of-type{ flex: 1; display: flex; align-items: center; height: 75px; }
+//         }
+//     }
+// }
+
+// #wct-each-parameter-entityInfoHeader{
+//     padding: 15px;
+//     .form-control-plaintext{ display: flex; align-items: center; }
+//     img{ width: 100px; height: 100px;  box-shadow: 2px 2px 5px #999; border: 3px solid #fff; margin-right: 20px; }
+//     h1{ margin: 0; }
+// }
+
+// #wct-each-parameter-entityInfoButtonAreas button{ background: none; border-bottom: 3px solid transparent; transition: .2s;
+//     &.active{ border-bottom-color: #0099ab; transition: .2s; }
+//     &:not(.active):hover{ border-bottom-color: #e1e1e1; transition: .2s; }
+// }
+
+#wct-content-pageEntityDetails {
+  ul.nav-tabs {
+    display: none;
+  }
+  /*FIX para o duplo scroll apresentado no "student x statistics"*/
+}
+
+/*
+ *  CONTENTS AREA
+ */
+
+#wct-page-tabsContent-programPropertiesViewTabDesignerFlow {
+  height: 100% !important;
+  #wct-each-parameter-initParametersContentsOperations {
+    position: absolute;
+    z-index: 1;
+    width: auto;
+    margin-top: -10px;
+    left: 50%;
+    transform: translate(-50%);
+    .btn-group {
+      padding: 2px;
+      button {
+        background: #253aa5 ;
+        color: #fff;
+        &.active {
+          background: #11105e ;
+        }
+      }
+    }
+  }
+}

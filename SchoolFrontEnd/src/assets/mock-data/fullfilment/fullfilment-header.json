@@ -1,0 +1,278 @@
+{
+  "type": "wrapper",
+  "id": "header_Tab",
+  "hidden": true,
+  "pathToValue": "",
+  "details": [
+    {
+      "type": "wct-tuple-list",
+      "id": "header_parameters",
+      "class": "col-sm-12",
+      "text": "application___parameters",
+      "min": 1,
+      "pathToValueList": [
+        "[{@valueEntriesFormat($this['headers'])}]"
+      ],
+      "details": [
+        {
+          "type": "textbox",
+          "id": "key",
+          "text": "application___key",
+          "pathToValue": [
+            "key"
+          ],
+          "class": "col-sm-6"
+        },
+        {
+          "type": "textbox",
+          "id": "value",
+          "text": "application___value",
+          "pathToValue": [
+            "value"
+          ],
+          "class": "col-sm-6"
+        }
+      ]
+    },
+    {
+      "type": "boolean",
+      "id": "header_authorization",
+      "pathToValue": [
+        "authorizationStatus"
+      ],
+      "text": "application___authorization",
+      "_class": "col-md-6"
+    },
+    {
+      "type": "wrapper",
+      "id": "authorization_Bearer",
+      "hidden": true,
+      "dynamicProps": {
+        "hidden": "!{{header_authorization}}"
+      },
+      "pathToValue": "",
+      "details": [
+        {
+          "type": "input-select",
+          "id": "header_authorization_type",
+          "class": "col-md-4",
+          "text": "application___type",
+          "apiFieldName": "",
+          "_placeholder": "application___type",
+          "pathToValue": [
+            "authorizationType"
+          ],
+          "valueList": [
+            {
+              "key": "BearerToken",
+              "value": "application___bearerToken"
+            },
+            {
+              "key": "BasicAuth",
+              "value": "application___basicAuth"
+            }
+          ]
+        },
+        {
+          "type": "textbox",
+          "subType": "textarea",
+          "id": "header_authorization_token",
+          "text": "application___token",
+          "class": "col-sm-8",
+          "dynamicProps": {
+            "hidden": "'{{header_authorization_type}}' != 'BearerToken'"
+          },
+          "pathToValue": [
+            "token"
+          ],
+          "value": "",
+          "validator": {
+            "required": [
+              false,
+              "warnings___fieldRequired"
+            ]
+          }
+        },
+        {
+          "type": "wrapper",
+          "class": "col-sm-8",
+          "pathToValue": "",
+          "details": [
+            {
+              "type": "input-select",
+              "id": "header_authorization_grantType",
+              "text": "requests___grantType",
+              "dynamicProps": {
+                "hidden": "'{{header_authorization_type}}' != 'oAuth'"
+              },
+              "_placeholder": "application___type",
+              "valueList": [
+                {
+                  "key": "clientCredentials",
+                  "value": "application___clientCredentials"
+                },
+                {
+                  "key": "passwordCredentials",
+                  "value": "application___passwordCredentials"
+                }
+              ],
+              "validator": {
+                "required": [
+                  true,
+                  "warnings___fieldRequired"
+                ]
+              }
+            },
+            {
+              "type": "textbox",
+              "id": "header_authorization_username",
+              "text": "requests___username",
+              "hidden": true,
+              "dynamicProps": {
+                "hidden": "'{{header_authorization_type}}' == 'BearerToken' || '{{header_authorization_type}}' == ''",
+                "log": "'{{header_authorization_type}}' == 'BearerToken' || ( '{{header_authorization_type}}' == 'oAuth' && '{{header_authorization_grantType}}' == 'clientCredentials')"
+              },
+              "pathToValue": [
+                "username"
+              ],
+              "value": "",
+              "validator": {
+                "required": [
+                  false,
+                  "warnings___fieldRequired"
+                ]
+              }
+            },
+            {
+              "type": "textbox",
+              "id": "header_authorization_password",
+              "text": "requests___password",
+              "hidden": true,
+              "dynamicProps": {
+                "hidden": "'{{header_authorization_type}}' == 'BearerToken' || '{{header_authorization_type}}' == ''",
+                "log": "'{{header_authorization_type}}' == 'BearerToken' || ( '{{header_authorization_type}}' == 'oAuth' && '{{header_authorization_grantType}}' == 'clientCredentials')"
+              },
+              "pathToValue": [
+                "password"
+              ],
+              "value": "",
+              "validator": {
+                "required": [
+                  false,
+                  "warnings___fieldRequired"
+                ]
+              }
+            },
+            {
+              "type": "wrapper",
+              "dynamicProps": {
+                "hidden": "'{{header_authorization_type}}' != 'oAuth'"
+              },
+              "details": [
+                {
+                  "type": "textbox",
+                  "id": "header_authorization_grantType_url",
+                  "text": "application___url",
+                  "value": "",
+                  "validator": {
+                    "required": [
+                      false,
+                      "warnings___fieldRequired"
+                    ]
+                  }
+                },
+                {
+                  "type": "textbox",
+                  "id": "header_authorization_grantType_clientID",
+                  "text": "application___clientID",
+                  "value": "",
+                  "validator": {
+                    "required": [
+                      false,
+                      "warnings___fieldRequired"
+                    ]
+                  }
+                },
+                {
+                  "type": "textbox",
+                  "id": "header_authorization_grantType_clientSecret",
+                  "text": "application___clientSecret",
+                  "value": "",
+                  "validator": {
+                    "required": [
+                      false,
+                      "warnings___fieldRequired"
+                    ]
+                  }
+                },
+                {
+                  "type": "textbox",
+                  "id": "header_authorization_grantType_scope",
+                  "text": "application___scope",
+                  "value": "",
+                  "validator": {
+                    "required": [
+                      false,
+                      "warnings___fieldRequired"
+                    ]
+                  }
+                },
+                {
+                  "type": "input-select",
+                  "id": "header_authorization_clientAuthentication",
+                  "text": "application___clientAuthentication",
+                  "valueList": [
+                    {
+                      "key": "BasicAuthHeader",
+                      "value": "application___sendBasicAuthHeader"
+                    },
+                    {
+                      "key": "CredentialsBody",
+                      "value": "application___sendCredentialsBody"
+                    }
+                  ],
+                  "validator": {
+                    "required": [
+                      true,
+                      "warnings___fieldRequired"
+                    ]
+                  }
+                },
+                {
+                  "type": "operations",
+                  "id": "menuOperations",
+                  "class": "button_Go",
+                  "text": null,
+                  "operations": {
+                    "size": 1,
+                    "parameters": [
+                      {
+                        "type": "navigate",
+                        "id": "header_authorization_generateToken",
+                        "class": "btn-default",
+                        "text": "application___requestToken"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "label",
+                  "id": "header_authorization_generatedToken_label",
+                  "text": "application___token",
+                  "dynamicProps": {
+                    "value": "'{{generatedToken}}'"
+                  }
+                },
+                {
+                  "type": "boolean",
+                  "id": "header_authorization_token_allwaysRefresh",
+                  "text": "application___generateNewTokenEachRequest"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

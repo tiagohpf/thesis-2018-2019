@@ -1,0 +1,46 @@
+{
+    "type": "wrapper",
+    "key": "rendering",
+    "id":"itemsWrapper",
+    "details": [
+        {
+            "type": "input-radio",
+            "id": "itemsFormat",
+            "text": "designerFlow___shapes___answer___itemsForm___format",
+            "valueList": [
+                {
+                    "key": "list",
+                    "value": "designerFlow___shapes___answer___itemsForm___list"
+                },
+                {
+                    "key": "bullets",
+                    "value": "designerFlow___shapes___answer___itemsForm___bullets"
+                }
+            ]
+        },
+        {
+            "type": "custom-mentions",
+            "id": "items_params",
+            "class": "col-sm-12",
+            "text": "designerFlow___shapes___answer___itemsForm___parameters",
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ]
+        }
+    ],
+    "parameters": [
+        {
+            "key": "chatAnswer",
+            "readonly": true,
+            "type": "input-radio",
+            "id": "itemsAnswers",
+            "text": "designerFlow___shapes___answer___itemsForm___items",
+            "dynamicProps": {
+                "valueList": "'{{items_params}}'"
+            }
+             
+        }
+    ]
+}

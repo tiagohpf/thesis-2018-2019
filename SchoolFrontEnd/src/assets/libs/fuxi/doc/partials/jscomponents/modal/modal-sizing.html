@@ -1,0 +1,79 @@
+<h3 id="docs-modal-sizing">Tamanho da modal</h3>
+<p>Este snippet demonstra as diferentes larguras disponíveis para uma modal: <strong>s, m, l, xl e fullscreen</strong>. Se nenhum tamanho for definido será usado o tamanho default.</p>
+<p>O snippet de código abaixo demonstra o tamanho mais pequeno para a modal. Substitua <code>s</code> por <code>m, l, xl ou fullscreen</code> para instanciar cada um dos outros tipos.</p>
+
+
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#my-sized-modal" data-sizing="default">
+            modal default
+        </button>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#my-sized-modal" data-sizing="s">
+            modal s
+        </button>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#my-sized-modal" data-sizing="m">
+            modal m
+        </button>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#my-sized-modal" data-sizing="l">
+            modal l
+        </button>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#my-sized-modal" data-sizing="xl">
+            modal xl
+        </button>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#my-sized-modal" data-sizing="fullscreen">
+            modal fullscreen
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="my-sized-modal" tabindex="-1" role="dialog" aria-labelledby="my-sized-modal-label">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="my-sized-modal-label">Título da janela modal</h4>
+                        <p>
+                            Breve descrição da modal.
+                        </p>
+                    </div>
+                    <div class="modal-body">
+                        Estamos a ver uma janela modal <strong id="demo-info-modal-size"></strong>.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">gravar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#my-sized-modal">
+    modal s
+</button>
+
+<div class="modal fade" id="my-sized-modal" tabindex="-1" role="dialog" aria-labelledby="my-sized-modal-label">
+    <div class="modal-dialog fx-modal-s" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="my-sized-modal-label">Título da janela modal</h4>
+                <p>
+                    Breve descrição da modal.
+                </p>
+            </div>
+            <div class="modal-body">
+                Estamos a ver uma janela modal S.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">gravar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+        </textarea>
+    </form>
+</div>

@@ -1,0 +1,96 @@
+﻿
+<div style="padding:10px;margin:10px !important; background:white; border:1px solid #CCC" data-ng-controller="DemoController as demo">
+    <p><strong>Exemplo #1:</strong> (tab com carregamento do conteúdo utilizando UI-Router)</p>
+    <div>
+        <!--<input type="button" value="add tab" ng-click="demo.addTab()" />-->
+        <input type="button" value="remove last tab" ng-click="demo.removeTab()" />
+        <input type="button" class="btn btn-danger" value="remove all tabs" ng-click="demo.removeAllTabs()" />
+
+        <div class="btn-group fx-view-all-tabs">
+            <button class="btn btn-default btn-sm dropdown-toggle fx-dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <span class="">Tabs Ocultas</span>
+                <i class="glyphicon glyphicon-th-list"></i>
+                <i class="caret"></i>
+            </button>
+
+            <div class="fx-dropdown fx-dropdown-open-to-left">
+                <div class="fx-dropdown-header"></div>
+
+                <div class="fx-dropdown-body">
+                    <!--| filter:tabsearch-->
+                    <ul class="nav">
+                        <li ng-repeat="tab in demo.items track by $id(tab)" ng-if="!tab.visible">
+                            <a href ng-click="demo.showTab(tab)" >{{tab.title}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br />
+
+    <!--data-fxtab-data="demo.items" -->
+    <!--fxtab data-fx-onremove="demo.removeTab($index)"-->
+    <fxtabset data-fxtab-refresh="demo.reload" data-fxtab-data="demo.items2" data-fx-onsortable="demo.sortable(fromIndex, toIndex)"
+              data-fxtab-language="pt" fx-statict-content="true" fx-show-hidden-tabs-active="true" fx-show-hidden-tabs="false"
+              fx-show-add="true" fx-add-callback="demo.addTab()" data-add-tab-button-text="criar uma nova tab aqui!!!">
+        <fxtab ng-repeat="tab in demo.items track by $id(tab)" href="tab.href" status="tab.status" active="tab.active" data-fx-onselect="demo.selected(tab)"
+               data-fx-ondeselect="demo.deselected(tab)" disable="tab.disabled" data-fx-onremove="demo.removeTab($index)" visible="tab.visible"
+               actions="tab.actions" tabactions="tab.tabactions" dismissible="tab.dismissible" data-fx-sortable="tab.sortable">
+            <fxtab-heading>
+                <i class="glyphicon glyphicon-bell"></i> {{tab.title}}
+                <i class="fa fa-eye-slash pull-right" ng-hide="tab.visible"></i>
+            </fxtab-heading>
+            {{tab.content}}
+            <!--ui router-->
+            <div ui-view></div>
+        </fxtab>
+    </fxtabset>
+    
+    <br /><br />
+    <div>
+        <ul>
+            <li ng-repeat="tab in demo.items track by $id(tab)">idx: {{$index}} - title: {{tab.title}}</li>
+        </ul>
+    </div>
+</div>
+
+<div style="padding:10px;margin:10px !important; background:white; border:1px solid #CCC" data-ng-controller="DemoController2 as demo2">
+    <p><strong>Exemplo #2:</strong></p>
+    <div>
+        <input type="button" value="add tab" ng-click="demo2.addTab()" />
+        <input type="button" value="remove last tab" ng-click="demo2.removeTab()" />
+    </div>
+    <br />
+
+    <!--<fxtabset data-fxtab-refresh="demo2.reload" data-fxtab-data="demo2.items" data-fx-onsortable="demo2.sortable(fromIndex, toIndex)" data-fxtab-language="pt" fx-statict-content="true">
+        <fxtab ng-repeat="tab in demo2.items track by $id(tab)" active="tab.active" data-fx-onremove="demo2.removeTab($index)" disable="tab.disabled" dismissible="tab.dismissible" fx-sortable="tab.sortable">
+            <fxtab-heading>
+                <i class="glyphicon glyphicon-bell"></i> {{tab.title}}
+            </fxtab-heading>
+            {{$index}}-{{tab.content}}
+        </fxtab>
+    </fxtabset>-->
+
+    <fxtabset data-fxtab-refresh="demo2.reload" data-fxtab-data="demo2.items" data-fx-onsortable="demo2.sortable(fromIndex, toIndex)"
+              data-fxtab-language="pt" fx-statict-content="true" fx-show-hidden-tabs-active="true" fx-show-hidden-tabs="false">
+        <fxtab ng-repeat="tab in demo2.items track by $id(tab)" status="tab.status" actions="tab.actions" tabactions="tab.tabactions"
+               active="tab.active" data-fx-onselect="demo2.selected(tab)" data-fx-ondeselect="demo2.deselected(tab)"
+               data-fx-onremove="demo2.removeTab($index)" disable="tab.disabled" dismissible="tab.dismissible" data-fx-sortable="tab.sortable" >
+            <fxtab-heading>
+                <i class="glyphicon glyphicon-bell"></i> {{tab.title}}
+            </fxtab-heading>
+            {{$index}}-{{tab.content}}
+        </fxtab>
+    </fxtabset>
+
+
+    <br /><br />
+    <div>
+        <ul>
+            <li ng-repeat="tab in demo2.items track by $id(tab)">idx: {{$index}} - title: {{tab.title}}</li>
+        </ul>
+    </div>
+</div>
+

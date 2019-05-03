@@ -1,0 +1,187 @@
+{
+    "type": "initTable",
+    "id": "programEntitiesTable",
+    "hidden": true,
+    "lazyLoading": true,
+    "header": {
+        "id": "pageHeader",
+        "_seo": {
+            "text": "program___entity___namePlural",
+            "icon": "fa fa-book"
+        },
+        "operations": {
+            "id": "pageHeaderOperations",
+            "text": "generic___operations___operations",
+            "icon": "glyphicon glyphicon-cog",
+            "parameters": [
+                {
+                    "id": "createEntitY",
+                    "type": "openModal",
+                    "icon": "fa fa-plus",
+                    "size": "lg",
+                    "mockToLoad": "programs/program-entity-create"
+                }
+            ]
+        }
+    },
+    "urlResource": [
+        {
+            "key": "id",
+            "value": "programAPIResponse"
+        },
+        {
+            "key": "apiRecycle",
+            "value": false
+        },
+        {
+            "key": "path",
+            "value": "{{SchoolBE}}/programs/[[programID]]"
+        },
+        {
+            "key": "queryString",
+            "value": {
+                "keys": "{\"_id\":1,\"name\":1,\"chapters\":1,\"code\":1,\"version\":1}"
+            }
+        },
+        {
+            "key": "headers",
+            "value": {
+                "Authorization": "Bearer {{token}}",
+                "IXS": "{{IXS_id}}"
+            }
+        },
+        {
+            "key": "pathToMainData",
+            "value": [
+                "@objToTupleList($this['chapters'])"
+            ]
+        }
+    ],
+    "columns": [
+        {
+            "type": "expand",
+            "id": "synonymsExpand",
+            "mockToLoad": "programs/program-entity-synonyms",
+            "pathToValue": [
+                "value",
+                "entities"
+            ],
+            "class": "col-sm-1"
+        },
+        {
+            "type": "input-checkbox",
+            "id": "customerCheckbox",
+            "pathToValue": [
+                "value",
+                "id"
+            ],
+            "hidden": true
+        },
+        {
+            "type": "context",
+            "id": "programCode",
+            "pathToValue": [
+                "code"
+            ]
+        },
+        {
+            "type": "json",
+            "id": "entityDetails",
+            "pathToValue": [
+                "value"
+            ],
+            "hidden": true
+        },
+        {
+            "type": "json",
+            "size": "sm",
+            "id": "entityIdx",
+            "pathToValue": [
+                "key"
+            ],
+            "hidden": true
+        },
+        {
+            "type": "text",
+            "id": "originalDisplayName",
+            "pathToValue": [
+                "value",
+                "displayName"
+            ],
+            "hidden": true
+        },
+        {
+            "type": "label",
+            "id": "displayName",
+            "pathToValue": [
+                "value",
+                "@getDisplayNameFormated($this['displayName'],@replaceTagVars('programAPIResponse___code')+'_')"
+            ],
+            "text": "program___entity___entityName"
+        },
+        {
+            "type": "label",
+            "id": "entityValuesTags",
+            "text":"program___entity___values",
+            "pathToValue": [
+                "value",
+                "entities",
+                "@buildTranslationArray(@forceArray($this).map(obj => obj.value))"
+            ]
+        },
+        {
+            "type": "actions",
+            "id": "actions",
+            "operations": [
+                {
+                    "id": "viewEntitY",
+                    "type": "openModal",
+                    "text": "generic___seeDetails",
+                    "icon": "fuxicons fuxicons-eye",
+                    "size": "lg",
+                    "mockToLoad": "programs/program-entity-details",
+                    "parameters": [
+                        {
+                            "key": "context",
+                            "value": [
+                                "programCode",
+                                "entityIdx",
+                                "entityDetails"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "removeEntity",
+                    "type": "openModal",
+                    "text": "generic___remove",
+                    "icon": "fa fa-trash-o",
+                    "mockToLoad": "programs/program-entity-remove",
+                    "_role": "Programs.Entities.Operations.Remove",
+                    "parameters": [
+                        {
+                            "key": "context",
+                            "value": [
+                                "programCode",
+                                "entityIdx",
+                                "displayName",
+                                "originalDisplayName"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "rows": [],
+    "parameters": [
+        {
+            "key": "tableActions",
+            "value": {
+                "export": false,
+                "columnManager": false,
+                "search": true
+            }
+        }
+    ]
+}

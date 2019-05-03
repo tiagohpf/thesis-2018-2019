@@ -1,0 +1,871 @@
+{
+  "generic": {
+    "search": "Search",
+    "designerFlow": {
+      "options": "Complex response",
+      "components": "Components",
+      "actions": "Actions",
+      "clickToEdit": "Double click to edit",
+      "fallback": "Fallback",
+      "shapes": "Shapes",
+      "connections": "Connections",
+      "apis": "API's",
+      "connect": "Connect",
+      "undo": "Undo",
+      "intentTrainingPhases": "Intents training phrases",
+      "newResponse": "New response"
+    },
+    "clean": "Clean",
+    "actions": "Actions",
+    "pagination": {
+      "recordsPerPage": "records per page",
+      "totalRecords": "Total records",
+      "page": "Page",
+      "previous": "Previous",
+      "next": "Next",
+      "last": "Last",
+      "first": "First",
+      "home": "Home"
+    },
+    "previous": "Previous",
+    "next": "Next",
+    "addNewLine": "Add new line",
+    "operations": {
+      "navigate": "Navigate",
+      "viewDetails": "View details",
+      "generalActions": "General actions",
+      "searchByName": "search by name",
+      "help": " Help",
+      "successfullyCopiedTag": "Successfully copied tag",
+      "noValueToCopy": "No value to copy",
+      "getYourBotStudentTag": "Get your Bot Student Tag",
+      "consult": "Consult",
+      "save": "Save",
+      "start": "Start",
+      "add": "Add",
+      "remove": "Remove",
+      "back": "Back",
+      "createProgramInCourse": "Create program in degree",
+      "createProgram": "Create program",
+      "createDegree": "Create degree",
+      "clickPasteYourPage": "Click and paste on your page",
+      "edit": "Edit",
+      "cancel": "Cancel",
+      "close": "Close",
+      "discard": "Discard",
+      "logout": "Logout",
+      "create": "Create",
+      "search": "Search",
+      "next": "Next",
+      "previous": "Previous",
+      "learn": "Learn",
+      "unlearn": "Unlearn",
+      "goLive": "Go Live",
+      "publish": "Publish",
+      "addStudents": "Add Bot Students",
+      "learnPrograms": "Learn Programs",
+      "addNewProgram": "Add New Program",
+      "assignPrograms": {
+        "name": "Assign Programs",
+        "programsAvailable": "Learn programs:",
+        "learnConfirmMsg": "Do you want these programs to be learned by the Bot Students:"
+      },
+      "import": "Import"
+    },
+    "status": {
+      "ACTIVE": "Active",
+      "DELETED": "Deleted",
+      "INACTIVE": "Inactive",
+      "PREACTIVE": "Pre-Active",
+      "SUSPENDED": "Suspended",
+      "NEEDPAYMENT": "Need Payment"
+    },
+    "language": {
+      "pt": "Portuguese",
+      "br": "Portuguese (Brazil)",
+      "en": "English",
+      "es": "Spanish",
+      "fr": "French",
+      "de": "Deutch"
+    },
+    "chooseRangePeriod": "Choose interval",
+    "from": "From",
+    "to": "To",
+    "done": "Done",
+    "today": "Today",
+    "clear": "Clear",
+    "mainProperties": "Main properties",
+    "properties": "Properties",
+    "dateInterval": {
+      "last24h": "Last 24h",
+      "last7Days": "Last 7 days",
+      "currentMonth": "Current month",
+      "lastMonth": "Last 30 days",
+      "lastQuarter": "Last 3 months",
+      "lastSixMonths": "Last 6 months",
+      "lastSemester": "Last 6 months",
+      "lastYear": "last year",
+      "rangePeriod": "Range period",
+      "chooseRangePeriod": "Choose interval"
+    },
+    "seeDetails": "Details",
+    "image": {
+      "upload": {
+        "invalidImage": "Invalid image. Format supported: png, jpg and jpeg.",
+        "limitReached": "Space limit reached!",
+        "existingFile": "Existing file!",
+        "genericError": "Generic error!"
+      }
+    }
+  },
+  "designerFlow": {
+    "title": "Designer Flow",
+    "modalTitle": {
+      "connEvaluation": "Evaluation connection config",
+      "connIntent": "Intent connection config",
+      "shapeApi": "Api shape config",
+      "shapeApiDescription": "External API name {{name}}",
+      "shapeDecision": "Decision shape config",
+      "shapeLink": "Link shape config",
+      "shapeProgram": "Program shape config",
+      "shapeProcess": "Answer shape config"
+    },
+    "shapes": {
+      "shapeId": "Shape ID",
+      "shapeName": "Name",
+      "inputValues": "Input values",
+      "connectToShape": "Shape",
+      "selectProgramToJump": "Program",
+      "selectProgramShapeToJump": "Shape",
+      "maskAsFinal": "Mark as End of Flow",
+      "simpleAnswer": "Simple answer",
+      "answer": {
+        "channel": "Channel",
+        "channelOptions": {
+          "web": "Web",
+          "facebook": "Facebook",
+          "ivr": "IVR"
+        },
+        "plainText": "Plain text",
+        "text": "Text",
+        "map": "Map",
+        "mapForm": {
+          "coordsInputType": "Data type",
+          "lat_long": "Lat / Long",
+          "coords": "Coordinates",
+          "lat": "Latitude",
+          "long": "Longitude",
+          "unit": "Unit",
+          "zoom": "Zoom level",
+          "autoZoom": "Auto zoom",
+          "autoZoomLevel": {
+            "0": "1:500 million<br /><font size='2'>whole world</font>",
+            "1": "1:250 million",
+            "2": "1:150 million<br /><font size='2'>subcontinental area</font>",
+            "3": "1:70 million<br /><font size='2'>largest country</font>",
+            "4": "1:35 million",
+            "5": "1:15 million<br /><font size='2'>large African country</font>",
+            "6": "1:10 million<br /><font size='2'>large European country</font>",
+            "7": "1:4 million<br /><font size='2'>small country, US state</font>",
+            "8": "1:2 million",
+            "9": "1:1 million<br /><font size='2'>wide area, large metropolitan area</font>",
+            "10": "1:500 thousand<br /><font size='2'>metropolitan area</font>",
+            "11": "1:250 thousand<br /><font size='2'>city</font>",
+            "12": "1:150 thousand<br /><font size='2'>town, or city district</font>",
+            "13": "1:70 thousand<br /><font size='2'>village, or suburb</font>",
+            "14": "1:35 thousand",
+            "15": "1:15 thousand<br /><font size='2'>small road</font>",
+            "16": "1:8 thousand<br /><font size='2'>street</font>",
+            "17": "1:4 thousand<br /><font size='2'>block, park, addresses</font>",
+            "18": "1:2 thousand<br /><font size='2'>some buildings, trees</font>",
+            "19": "1:1 thousand<br /><font size='2'>local highway and crossing details</font>"
+          },
+          "manualZoom": "Manual zoom"
+        },
+        "fileRun": "File run",
+        "fileRunForm": {
+          "inputType": "Insert file by",
+          "url": "Url",
+          "file": "File",
+          "localFile": "Local file",
+          "fileUrl": "File URL",
+          "ipAddress": "Ip Address",
+          "path": "Path",
+          "fileName": "File name"
+        },
+        "image": "Image",
+        "imageForm": {
+          "inputType": "Insert image by",
+          "url": "Url",
+          "file": "File",
+          "localFile": "Local file",
+          "imageUrl": "Image URL",
+          "ipAddress": "Ip Address",
+          "path": "Path",
+          "fileName": "Image name"
+        },
+        "cards": "Cards",
+        "cardsForm": {
+          "valueListPath": "Cards list",
+          "template1": "Template 1",
+          "template2": "template 2",
+          "template3": "template 3",
+          "template4": "template 4**",
+          "image": "Image",
+          "image2": "Second image",
+          "title": "Title",
+          "subTitle": "Sub-title",
+          "video": "Video",
+          "description": "Description"
+        },
+        "items": "Items",
+        "itemsForm": {
+          "format": "Format",
+          "items": "Items",
+          "list": "<i class='fa fa-bars'></i> List",
+          "bullets": "<i class='fa fa-list-ul'></i> Bullets",
+          "parameters": "Parametsrs"
+        },
+        "buttons": "Buttons",
+        "buttonsForm": {
+          "buttonsConfig": "Buttons config",
+          "label": "Label",
+          "action": "Action",
+          "action_sendMessage": "Send message",
+          "message": "Message"
+        }
+      },
+      "actions": {
+        "custom": "Custom",
+        "customForm": {
+          "actionName": "Action name",
+          "key": "Key",
+          "value": "Value"
+        }
+      }
+    },
+    "connections": {
+      "connId": "Connection ID",
+      "connName": "Name",
+      "numberOfChances": "Number of context chances",
+      "conditionEval": "Condition",
+      "setPriority": "To set the priority, drag the boxes listed below to the desired position.",
+      "setDefault": "Select below, if applicable, the default option",
+      "defaultWarning": "In the default evaluation, the associated expression will no longer be taken into account.",
+      "markAsFallback": "Mark as a Fallback connection",
+      "selectIntent": "Intent"
+    },
+    "setValues": "Set values",
+    "variableName": "Variable name",
+    "newValue": "New value",
+    "valueType": "Value type",
+    "valueTypeOptions": {
+      "string": "Text",
+      "number": "Number",
+      "boolean": "Boolean",
+      "reset": "Reset",
+      "null": "Empty"
+    },
+    "scriptsExecution": "Scripts execution",
+    "scriptExpression": "Expression"
+  },
+  "application": {
+    "botschool": "Botschool",
+    "language": "Language",
+    "degree": "Degree",
+    "personality": "Personality",
+    "degrees": "Degrees",
+    "learnMore": "learn more",
+    "details": "Details",
+    "startModalTitle": "Welcome to Aiblenaut Botschool",
+    "startModalSubTitle": "A certain king had a beautiful garden, and in the garden stood a tree",
+    "category": "Category",
+    "configure": "Configure",
+    "categories": "Categories",
+    "more": "More...",
+    "key": "Key",
+    "value": "Value",
+    "url": "URL",
+    "method": "Method",
+    "token": "Token",
+    "authorization": "Authorization",
+    "bearerToken": "Bearer Token",
+    "requestToken": "Request Token",
+    "basicAuth": "Basic Auth",
+    "oAuth": "OAuth 2.0",
+    "parameters": "Parameters",
+    "textPlain": "Text Plain",
+    "json": "JSON (application/json)",
+    "xml": "XML (text/xml)",
+    "clientID": "Client ID",
+    "clientSecret": "Client Secret",
+    "clientAuthentication": "Client Authentication",
+    "sendBasicAuthHeader": "Send as Basic Auth in Header",
+    "sendCredentialsBody": "Send as Credentials in Body",
+    "generateNewTokenEachRequest": "Generate a new token on each request",
+    "scope": "Scope",
+    "upload_image": "upload image",
+    "fullfilmentAnswerVariables": "Fullfilment Answer Variables",
+    "variableName": "Variable Name",
+    "path": "Path",
+    "format": "Format",
+    "formData": "Form Data",
+    "xFormUrlencoded": "x-www-form-urlencoded",
+    "raw": "Raw",
+    "clientCredentials": "Client Credentials",
+    "passwordCredentials": "Password Credentials",
+    "selectLanguage": "Select a language",
+    "selectCategory": "Select a category",
+    "selectGender": "Select a gender",
+    "selectStudent": "Select a Bot Student",
+    "createProgram": "Create a program",
+    "dontShowThisAgain": "Don't show this screen again",
+    "takeMeToSchool": "Take me to School",
+    "goToAnalytics": "Go to analytics",
+    "course": "Degree",
+    "analytics": "Analytics",
+    "name": "Name",
+    "description": "Description",
+    "courses": "Degrees",
+    "students": "Bot Students",
+    "botStudent": "Bot Student",
+    "myStudents": "My Bot Student",
+    "programs": "Programs",
+    "program": "Program",
+    "programDetails": "Program Details",
+    "fullfilments": "Fullfilments",
+    "fullfilmentID": "Fullfilment ID",
+    "fullfilmentDefinition": "Fullfilment Definitions",
+    "fullfilmentDetails": "Fullfilment Details",
+    "selectMethod": "Select Method",
+    "integrations": "Integrations",
+    "plans": "Plans",
+    "plan": "Plan",
+    "endpoint": "Endpoint",
+    "headers": "Headers",
+    "body": "Body",
+    "moreInformation": "More Information",
+    "additionalInformation": "Additional information",
+    "activity": "Activity",
+    "knowledge": "Knowledge",
+    "createdBy": "Created by",
+    "creationDate": "Creation date",
+    "lastUpdate": "Last update",
+    "status": "Status",
+    "useFallbacks": "Use Fallbacks",
+    "dontUseFallbacks": "Don't use Fallbacks",
+    "microsite": "MicroSite",
+    "customerData": "Customer Data",
+    "customerSystem": "Customer System",
+    "external": "External",
+    "orderSumarize": "Order Sumarize",
+    "paymentMode": "Payment Mode",
+    "creditCard": "Credit Card",
+    "editContent": "Edit Content",
+    "cardNumber": "card Number",
+    "securityCode": "Security Code",
+    "paypalAccount": "Paypal Account",
+    "mobilePhone": "Mobile Phone",
+    "address": "Address",
+    "country": "Country",
+    "city": "City",
+    "NIF_NIPC": " NIF / NIPC (VIES)",
+    "validity": "Validity",
+    "paypalAuthorizeSaveData": "  I authorize to use these data for the next payment",
+    "fallbacks": "Fallbacks",
+    "trainingPhrases": "Training Phrases",
+    "randomSelection": "Random Selection",
+    "accuracyLevel": "Accuracy Level",
+    "type": "Type",
+    "testSets": "TestSets",
+    "surveys": "Surveys",
+    "knowledgeCenter": {
+      "name": "Knowledge center",
+      "title": "BOTSchool is inspired by real life school to teach virtual assistants",
+      "howTo": "How to",
+      "students": {
+        "presentation": "A BotStuden is a Virtual Assistant that will help your business by answering all questions the users asked.",
+        "myStudents": "my Bot Students",
+        "create": "create",
+        "howTo": "Manage Bot Students"
+      },
+      "courses": {
+        "presentation": "It is the program group entity. It belongs only to a Bot Student and the programs that it groups have the same language assigned to the Bot Student.",
+        "myCourses": "my degrees",
+        "create": "create",
+        "howTo": "Learn"
+      },
+      "programs": {
+        "presentation": "Program is the entity that represents the knowledge organized by intents that you will teach your Bot Student.",
+        "myPrograms": "my programs",
+        "create": "create",
+        "howTo": "Create a program",
+        "publishProgram": "Publish Program"
+      }
+    }
+  },
+  "fullfilment": {
+    "createMessageSuccess": "Fullfilment created successfully!",
+    "updateMessageSuccess": "Fullfilment updated successfully!"
+  },
+  "courses": {
+    "coursesDetails": "Degree Details"
+  },
+  "student": {
+    "cover": "Cover",
+    "programs": "Study",
+    "exercises": "Exercises",
+    "fallbacks": "Fallbacks",
+    "dialogs": "Dialogs",
+    "suggestions": "Suggestions",
+    "statistics": "Statistics",
+    "account": "Account",
+    "consecutiveFallbacksAnswers": "Consecutive fallbacks answers",
+    "learnMoreAboutHowBotSchoolWorks": "Learn more about how BotSchool works",
+    "learnAboutStudents": "Learn about Bot Students",
+    "howCreatePrograms": "How to create programs",
+    "powerOfAnalytics": "The power of analytics",
+    "accuracy": "Accuracy",
+    "phrase": "Phrase",
+    "studentName": "Bot Students name",
+    "myStudents": "my Bot Students",
+    "fallbackForwardHuman": "Forward to Human",
+    "studentDetails": "Bot Student Details",
+    "studentDailogs": "Bot Student Dailogs",
+    "studentFallbacks": "Bot Student Fallbacks",
+    "studentPrograms": "Bot Student Programs",
+    "studentStatistics": "Bot Student Statistics",
+    "studentTestSets": "Bot Student TestSets",
+    "studentSurveys": "Bot Student Surveys",
+    "fallbacksAnswers": "Fallbacks answers",
+    "fallbackTrainingPhrase": "Fallback training phrase",
+    "rulesFowardHuman": "Rules to foward to Human",
+    "name": "Name",
+    "letsCreateStudent": "Lets create a Bot Student",
+    "createStudent": "Create Bot Student",
+    "channel": "Channel",
+    "gender": "Gender",
+    "istEasyCreateStudent": "It's easy to create a Bot Student.",
+    "male": "Male",
+    "female": "Female",
+    "number": "Number",
+    "verifyToken": "Verify Token",
+    "pageAccessToken": "Page Access Token",
+    "callbackURL": "Callback URL",
+    "status": {
+      "gettingReady": "Getting Ready",
+      "live": "Live",
+      "blocked": "Blocked",
+      "suspended": "Suspended"
+    },
+    "programs_conected": {
+      "status_types": {
+        "available": "Available",
+        "learned": "Learned",
+        "unlearned": "Unlearned",
+        "learning": "Learning",
+        "unlearning": "Unlearning"
+      }
+    },
+    "study": {
+      "title": "Study",
+      "warningVersionDeprecated": "New version available to learn"
+    },
+    "personality": {
+      "custom": "Custom",
+      "jovem": "Jovem",
+      "formal": "Formal"
+    },
+    "lastgoLiveDate": "Last Go Live Date",
+    "lastPublishedDate": "Last Published Date",
+    "lastUpdate": "Last Update",
+    "studentGoLiveBy": "Go Alive By",
+    "studentGoLiveDate": "Go Alive Date",
+    "studentBlockedDate": "Blocked Date",
+    "pleaseUseCodeToUseBot": "Please use this code to include in your system this Assistant",
+    "programsGoLive": "Go live programs to Bot Student",
+    "confirmGoLive": "Are you sure you wish to go live all programs learned by the Bot Student",
+    "informGoLive": "Only learned programs will be sent to goLive",
+    "programsUnLearn": "Unlearn program",
+    "confirmUnLearn": "Unlearning operation will remove all tests assigned to the program. Are you sure you wish to unlearn the program",
+    "informUnLearn": "Unlearning operation will take a few minutes. Please wait",
+    "programsLearn": "Learn program",
+    "confirmLearn": "Are you sure you want to learn the program",
+    "confirmPublish": "Are you sure you want to turn available this program version for your Bot Students?",
+    "informLearn": "Learning operation will take a few minutes. Please wait",
+    "warningLearn": "A version of this program has already been learned. It will be unlearned automatically by the system in order to learn the new program version"
+  },
+  "course": {
+    "name": "Name",
+    "courseDetails": "Degree Details",
+    "contentSummary": "Content Summary"
+  },
+  "program": {
+    "name": "Name",
+    "code": "Code",
+    "accuracy": "Accuracy",
+    "programDetails": "Program Details",
+    "contentSummary": "Content Summary",
+    "status": "Status",
+    "description": "Description",
+    "lastPublished": "Last Publish",
+    "type": "Type",
+    "defaultService": "Default Service",
+    "googleSheetsID": "Google sheets ID",
+    "belongsCouses": "Belongs to the courses",
+    "types": {
+      "smalltalk": "Smalltalk",
+      "FAQs": "FAQs"
+    },
+    "status_types": {
+      "new": "New",
+      "published": "Published",
+      "editing": "Editing"
+    },
+    "cover": "Cover",
+    "preface": "Preface",
+    "content": "Content",
+    "synonyms": "Synonyms",
+    "mode": "Mode",
+    "public": "Public",
+    "private": "Private",
+    "course": "Degree",
+    "courseSelection": "-- Select degree to associate --",
+    "lastPublishedDate": "Last Published Date",
+    "designerFlow": {
+      "title": "Designer Flow",
+      "evaluation": "Evaluation",
+      "setValues": "Set values",
+      "variable": "Variable",
+      "value": "Value",
+      "scriptsExecution": "scripts execution"
+    },
+    "intent": {
+      "name": "Intent",
+      "namePlural": "Intents",
+      "description": "Description",
+      "summary": "Intents that you will teach your Bot Student",
+      "removeIntent": "Remove intent",
+      "confirmRemove": "Are you sure you want to remove the intent ",
+      "intentName": "Name",
+      "createNewIntent": "Create intent",
+      "trainingPhrases": "Training phrases",
+      "userExpression": "Training phrase",
+      "notUsed": "Not used in program",
+      "minNbrIntents": "The program must have at least two intents configured.",
+      "minNbrTrainingPhrases": "The intent must have at least two training phrases."
+    },
+    "entity": {
+      "name": "Entity",
+      "namePlural": "Entities",
+      "description": "Entities that will be used in intents identification",
+      "removeEntity": "Remove entity",
+      "confirmRemove": "Are you sure you want to remove the entity ",
+      "entityName": "Name",
+      "value": "Value",
+      "values": "Values",
+      "entityValue": "Entity value",
+      "entityValues": "Entity values",
+      "createNewEntity": "Create new entity",
+      "synonym": "Synonym",
+      "synonyms": "Synonyms",
+      "addSynonym": "+ add synonym"
+    },
+    "variable": {
+      "name": "Variable",
+      "namePlural": "Variables",
+      "description": "Description",
+      "defaultValue": "Initial value",
+      "removeVariable": "Remove variable",
+      "confirmRemove": "Are you sure you want to remove the variable ",
+      "variableName": "Name",
+      "createNewVariable": "Create new variable",
+      "intentFulfilled": "Fulfilled on intents",
+      "nature": {
+        "name": "Nature",
+        "custom": "Custom",
+        "system": "System",
+        "session": "Session"
+      },
+      "channel": {
+        "name": "Channel",
+        "web": "Web",
+        "ivr": "IVR",
+        "whatsApp": "Whats App"
+      },
+      "entity": "Entity",
+      "value": "Entity",
+      "programVariable": "Program variable",
+      "programVariableNew": "New",
+      "programVariableExistent": "Existent",
+      "selectVariable": "Select variable"
+    },
+    "alias": {
+      "name": "Alias",
+      "namePlural": "Alias",
+      "word": "Word",
+      "wordSeparatorHelper": "To have the same alias to several words, they should be separated by '|'",
+      "description": "Intents that you will teach your Bot Student",
+      "removeAlias": "Remove alias",
+      "editAlias": "Edit alias",
+      "confirmRemove": "Are you sure you want to remove the word ",
+      "aliasName": "Name",
+      "aliasHelper": "Alias to apply to the word, related to their written representations and pronunciation to use in speech synthesis.",
+      "createNewAlias": "Create new alias"
+    },
+    "modelTraining": {
+      "operationLabel": "Training",
+      "title": "Program Training",
+      "status": "Status",
+      "start": "Start",
+      "trainStart": "Train start",
+      "trainEnd": "Train end",
+      "pipeline": "Algorithm",
+      "pipelineFit": "Fit",
+      "pipelinePreTrained": "Pre-trained",
+      "requestedBy": "Requested by",
+      "modelStatus": {
+        "new": "new",
+        "active": "active",
+        "deprecated": "deprecated",
+        "error": "error"
+      }
+    },
+    "testsUserSaying": "User saying",
+    "testsBotResponse": "Bot Response",
+    "programRemove": "Program remove"
+  },
+  "billing": {
+    "customer": {
+      "name": "Name",
+      "email": "e-mail",
+      "address": "Address",
+      "city": "City",
+      "country": "Country",
+      "vat": "VAT",
+      "phone": "Phone",
+      "timezone": "Timezone",
+      "create": "Create customer",
+      "cancel": "Cancel creation"
+    },
+    "statistics": {
+      "date": "Date",
+      "dialogs": "Dialogs"
+    },
+    "goLive": "Go to production",
+    "contactUs": "Contact us",
+    "buyAddon": "Buy Addon",
+    "buy": "Buy",
+    "planUpgrade": "Plan Upgrade",
+    "subscribe": "Subscribe",
+    "receipts": "receipts"
+  },
+  "plans": {
+    "description": "Description",
+    "monthlyCharge": "Monthly Charge",
+    "monthlyDialogs": "Monthly Dialogs",
+    "extraDialogsCharge": "Extra Dialogs Charge",
+    "name": "Name",
+    "units": "Dialogs",
+    "testStudents": "Test Students",
+    "web": "Web",
+    "skype": "Skype",
+    "facebook": "Facebook",
+    "whatsApp": "WhatsApp",
+    "ivr": "IVR/Telephone"
+  },
+  "surveys": {
+    "istEasyCreateSurvey": "It's easy to create a survey.",
+    "letsCreateSurvey": "Lets create a Survey",
+    "status_types": {
+      "new": "New",
+      "published": "Published"
+    }
+  },
+  "user": {
+    "roles": {
+      "rolesTitle": "Permissões",
+      "rolesList": "Lista de permissões",
+      "templates": "Modelos",
+      "selectTemplate": "Selecionar modelo",
+      "read": "Ler",
+      "create": "Criar",
+      "update": "Atualizar",
+      "delete": "Apagar",
+      "execute": "Executar",
+      "genericRoles": "Permissões Genéricas",
+      "simRoles": "Permissões SIM",
+      "lpwaRoles": "Permissões LPWA",
+      "managementRoles": "Permissões de Gestão"
+    }
+  },
+  "requests": {
+    "entityName": "Requests",
+    "requestManagement": "Requests Management",
+    "requestDetail": "Request detail",
+    "requestDetailDescription": "Request ID: [[requestId]]",
+    "requestId": "Request ID",
+    "mainInformation": "Main information",
+    "requestDetails": "Request details",
+    "entity": "Entity",
+    "requestStatus": "Status",
+    "creationDate": "Creation date",
+    "message": "Message",
+    "requestOperation": "Operation",
+    "username": "Username",
+    "password": "Password",
+    "grantType": "Grant Type",
+    "entityId": "Entity ID",
+    "requestUrl": "URL",
+    "requestBody": "Body",
+    "affectedEntity": "Affected Entity",
+    "selectTimePeriod": "Select a time period"
+  },
+  "success": {
+    "requestSuccess": "Success when processing your request",
+    "intentNameChanged": "Intent name changed successfully.",
+    "intentDescriptionChanged": "Intent description changed successfully.",
+    "intentRemoveSuccess": "Intent removed successfully.",
+    "variableRemoveSuccess": "Variable removed successfully.",
+    "entityRemoveSuccess": "Entity removed successfully.",
+    "saveDesignFlow": "FLow saved successfully",
+    "learnProgram": "Program learned successfully",
+    "programCreateSuccess": "Program created successfully.",
+    "studentCreateSuccess": "Student created successfully.",
+    "modelAccuracyChange": "Accuracy changed successfully.",
+    "nameChange": "Name changed successfully.",
+    "FallbacksChange": "Fallbacks changed successfully."
+  },
+  "warnings": {
+    "noIXS": "Sem IXS para Selecionar",
+    "fieldRequired": "This field is required",
+    "success": "Success",
+    "maxTextLength3": "max Text Length 3",
+    "maxTextLength9": "max Text Length 9",
+    "maxTextLength32": "max Text Length 32",
+    "maxTextLength20": "max Text Length 20",
+    "maxTextLength200": "max Text Length 200",
+    "error": "Erro",
+    "nameExists": "Name allready exists!",
+    "numCharactersExceed": "Nº of characters exceeded",
+    "errorOcurred": "Error Ocurred",
+    "noRecords": "There are no records to show.",
+    "problemRetrievingSheet": "WARNING!\n Problem retrieving from Google Sheets. Check if there is a sheet ID <strong>'{{programGoogleSheetsId}}'</strong>.",
+    "wordWithoutSpecialCharacters": "Special characters not allowed in the word",
+    "saveDesignFlow": "Save changes made in designer flow?",
+    "programRemoveConfirm": "Are you sure you want to remove the program ",
+    "alreadyEditing": "Already editing other field."
+  },
+  "errors": {
+    "sheetInvalidTestSetName": "ERROR!\n Problem retrieving test set from Google Sheets. Check if there is a sheet named <strong>'{{testSetName}}'</strong>.",
+    "invalidTestSetName": "ERROR!\n Problem retrieving test set.",
+    "requestError": "Error when processing your request.",
+    "intentRemoveError": "ERROR!\n Could not remove intent because is being used!",
+    "entityRemoveError": "ERROR!\n Could not remove entity because is being used!",
+    "variableRemoveError": "ERROR!\n Could not remove variable.",
+    "saveDesignFlow": "Error saving Flow.",
+    "learnProgram": "Error learning Program.",
+    "shapeNameNotUnique": "Name is not unique",
+    "modelAccuracyChange": "ERROR!\n Could not change accuracy!",
+    "nameChange": "ERROR!\n Could not change name!",
+    "FallbacksChange": "ERROR!\n Could not change fallbacks."
+  },
+  "toggleComponents": {
+    "initTable": "View table",
+    "initCards": "View cards",
+    "initParameters": "View details"
+  },
+  "help": {
+    "student": {
+      "create": {
+        "name": "BOT Student name. It must be unique into your account to uniquely identify your student",
+        "language": "It is the language the Student will know",
+        "personality": "Choose the personality you would like to assign to your Bot Student"
+      },
+      "details": {
+        "name": "BOT Student name. It must be unique into your account to uniquely identify your Student.",
+        "language": "It is the language the Student will know.",
+        "status": "<p>Current BOT Student status. It can be:</p><p><b>Getting Ready:</b>It is the status when the BOT Student doesn’t still have a plan subscribed. Here it is possible to interact with the student but only on the BOT School.</p><p><b>Live:</b> It is the “normal” status of the BOT Student. On this status the BOT Student has a plan assigned and it is possible to interact with him, on the school and out of the school (on the customers systems)</p><p><b>Suspended:</b> It is the status assigned to the BOT Student due to not be possible to process automatically the monthly fee plan payment. All payments are stopped however the student is not able to to answer the user's questions.</p><p><b>Blocked:</b> It is the status assigned to the BOT Student when the available dialogues are exhausted. To get out and return to Live status it will be possible to buy Extra Dialogues.</p>",
+ 	"personality": "It is the personality assigned to your Bot Student"
+      },
+      "study":{
+    
+      },
+      "account":{
+        "plan":"Plan determines what your BOT Student has signed-up for (price, dialogues quantity, list of add-ons ) and how often they're charged recurring for it.",
+        "renewalDate":"The renewal date of an existing plan subscribed is the date on which it must be renewed by paying the monthly fee.",
+        "includedInThePlan":"<p>Is the current status about the dialogues obtained due the monthly subscription.</p><p><b>Contracted:</b> Total of dialogues given to the Bot Student due to the plan subscribed</p><p><b>Available:</b> Total of dialogues the BOT Student has available from the plan subscribed, to use until the next renewal subscription</p><p><b>Used:</b> Total of dialogues the BOT Student has already used from the plan subscribed.</p>",
+        "extraDialogs":"It the the current status about the dialogues obtained due to the purchase of extra dialogues.</p><p><b>Available:</b> Total of dialogues the BOT Student has available from the Extra Dialogues purchase. These dialogues doesn't have expiration date.</p><p><b>Used:</b> Total of dialogues the BOT Student has already used from the Extra Dialogues purchase.</p>",
+        "paymentDate":"It is the date when when the payment was received by the platform.",
+        "ammount":"It is the total amount paid for each item."
+      },
+      "exercises":{
+
+      },
+      "fallbacks": {
+        "details": {
+          "accuracy": "Defines the threshold value for the confidence score. If the returned value by machine learning algorithms is less than the threshold value defined, then fallback training phrases will be triggered.",
+          "fallbackAnswers": "Fallback answers are triggered if the user's question doesn't match by any of the regular learned questions, this is if your BOT Student doesn't recognize user input.<br />Answer will be selected in random mode."
+        },
+        "edit": {
+          "accuracy": "Defines the threshold value for the confidence score. This field allows to filter out false positive results and still get variety in matched inputs for your BOT Student, you can tune the machine learning classification threshold.<br />The score values range from 0.0 (completely uncertain) to 1.0 (completely certain). If set to 0.0, the default of 0.3 is used.",
+          "fallbackAnswer": "These are the answers your BOT Student answer when your user's input does not match any other intent; in other words, it's a kind of catch-all for any unrecognized user input.<br />You can define the fallback answers to anything you'd like, but they should communicate to the user that their input was not recognized.<br />Your BOT Student randomly selects a response variant to send to the user when the fallback is matched."
+        }
+      },
+      "integrations": {
+        "facebook": {
+          "callbackUrl": "This is the URL provided by BOT School to integrate with the Facebook Messenger integration page.",
+          "verifyToken": "It is the token created on Facebook Messenger integration page.",
+          "pageAccessToken": "It is the token generated in the Facebook Developer Console."
+        }
+      }
+    },
+
+    "program": {
+      "create": {
+        "name": "Program name. It must uniquely identify the content to prepare and to give to the BOT Student.",
+        "degree": "Degree name. It is related to the Degree to which the program will belong.",
+        "category": "It is the classification area assigned to the Program that allows to organize the programs based on the content.<br />Be possible to select at least one value."
+      },
+      "details": {
+        "name": "Program name. It identifies the content to prepare and to give to the BOT Student.",
+        "categories": "List of categories related to the program subject.",
+        "language": "Program language, by default it is inherited from the BOT Student's language.",
+        "degree": "Degree name. It is related to the Degree to which the program will belong",
+        "accuracy": ""
+      },
+      "content":{
+        "intentCreation":{
+          "name":""
+        }
+      },
+      "exercises": {
+        "create": {
+          "name": "Test set name. Test Sets let you organize your tests in the same way that you organize your work into cycles or tasks.<br />A test set is a secondary (or tertiary) data set that is used to test a machine learning program after it has been trained on an initial training data set.<br />Test Sets allows to re-use your tests as many times as you need, in order to make your program more efficient."
+        },
+        "details": {
+          "testSet": "Test set name. Test Sets let you organize your tests in the same way that you organize your work into cycles or tasks.",
+          "step": "",
+          "userSaying": "It is the training phrase the user says to dialog with BOT Student.",
+          "botResponse": "It is the expected response the BOT Student will answer in order to pass the test."          
+
+        }
+      }
+    },
+    "fullfilment": {
+      "create": {
+        "name": "Name that will identify the API when you use on the Designer flow.",
+        "endpoint": {
+          "method": "Method that will be invoked.",
+          "url": "API endpooint.",
+          "parameters": "Specify the parameters that will used in URL.",
+          "key": "String that represents a name of parameter",
+          "value": "You can specify a variable value with pattern ${varName}. This variable can be used on designer dialog."
+        },
+
+        "variableName": "Specify the variable that will be setle with value of API parameter path.",
+        "path": "Specify the path to the respective value on json. Use the pattern $.name in example {'name':'Jorge'}."
+      }
+    }
+  }
+}

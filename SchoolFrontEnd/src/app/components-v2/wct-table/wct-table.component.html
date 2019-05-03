@@ -1,0 +1,172 @@
+
+<table class="table" role="grid" [id]="getHtmlId(viewStructure)">
+    <thead>
+        <tr role="row" [id]="getHtmlId(viewStructure) + '-thead'">
+            <th
+                *ngFor="let column of columns"
+                [id]="getHtmlId(viewStructure) + '-' + getHtmlId(column, 'thead', false)"
+                [class.wct-cursor-pointer]="config && column.sort"
+                [hidden]="column.type == 'context' || column.hidden"
+                (click)="setSort(column)">
+                    <div [ngSwitch]="column.type">
+                        <div *ngSwitchCase="'input-checkbox'">
+                            <span *ngIf="column.text">{{column.text | myI18n}}</span>
+                            <input
+                                *ngIf="!column.text"
+                                type="checkbox"
+                                [id]="getHtmlId(viewStructure) + '-' + getHtmlId(column, 'thead', false) + '-checkAll'"
+                                [indeterminate]="checkedRows[column.id] && checkedRows[column.id].length && checkedRows[column.id].length < rows.value.length"
+                                [checked]="checkedRows[column.id] && checkedRows[column.id].length && checkedRows[column.id].length == rows.value.length"
+                                [disabled]="column.disabled"
+                                (click)="checkRows(column)" />
+                        </div>
+                        <div *ngSwitchDefault class="th-content-wrapper" [class.prevent-sort-icon]="column.sort !== undefined">
+                            {{column.text | myI18n}}
+                            <wct-loading [inputParameters]="column" *ngIf="column.lazyLoading && tableHasData" [size]="''"></wct-loading>
+                            <i
+                                *ngIf="config && column.sort"
+                                class="pull-right fa fa-2"
+                                [id]="getHtmlId(viewStructure) + '-' + getHtmlId(column, 'thead', false) + '-sort'"
+                                [ngClass]="{
+                                    'fa-sort': column.sort === true,
+                                    'fa-sort-desc':column.sort == 'DESC',
+                                    'fa-sort-asc':column.sort == 'ASC'}"></i>
+                        </div>
+                    </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody *ngIf="tableHasData && !dataRecsNoContent">
+        <ng-template ngFor let-row [ngForOf]="rows.value" let-rowIndex="index" let-rowIsOdd="odd" let-rowIsEven="even">
+            <tr
+                *ngIf="tableSearchHidden.indexOf(rowIndex) < 0"
+                [id]="getHtmlId(viewStructure) + '-row' + rowIndex"
+                [ngClass]="{'odd':rowIsOdd,'even':rowIsEven,'selected':isRowChecked(rowIndex)}">
+                    <td
+                        *ngFor="let column of columns;let columnIndex=index"
+                        [id]="getHtmlId(viewStructure) + '-' + getHtmlId(column, 'row'+rowIndex, false)"
+                        [ngStyle]="column.style"
+                        class="{{column.size?'limit-cell-'+column.size:''}}"
+                        [ngClass]="{
+                            'wct-cursor-pointer': columnIndex == 0 && columns[columns.length-1].key == 'actions',
+                            'wct-table-column-actions':  column.type == 'actions',
+                            'prevent-quickview': column.mockToLoad && column.type != 'expand',
+                            'wct-table-column-expand': column.type == 'expand' || column.type == 'input-checkbox',
+                            'wct-table-column-sorting': column.sort && column.sort !== true
+                        }"
+                        [hidden]="column.type == 'context' || column.hidden"
+                        [ngSwitch]="column.type">
+
+                        <ng-template [ngIf]="!column.lazyLoading">
+                            
+                                <ng-template [ngSwitchCase]="'actions'">
+                                    <app-wct-buttons
+                                        [tableOperations]="true"
+                                        [inputParameters]="column"
+                                        [operations]="column.groups.operations"
+                                        [btnSize]="'btn-xs'"
+                                        [dataRecs]="rows.originalValue[rowIndex]"
+                                        [operationIndex]="setOperationIndex(rowIndex)"
+                                        [btnMax]="column.groups.operations.size >= 0 ? column.groups.operations.size : 2"></app-wct-buttons>
+                                </ng-template>
+                                <ng-template [ngSwitchCase]="'expand'">
+                                    <a
+                                        *ngIf="!column.pathToValue || row[column.oid]"
+                                        class="fx-table-row-expand collapsed"
+                                        [id]="getHtmlId(viewStructure) + '-' + getHtmlId(column, 'row'+rowIndex, false) + '-openPanel'"
+                                        (click)="_toggleRows(rowIndex)">
+                                        <i class="fa" [ngClass]="{'fa-angle-down':expandedRows.indexOf(rowIndex) < 0,'fa-angle-up':expandedRows.indexOf(rowIndex) >= 0}"></i>
+                                    </a>
+                                </ng-template>
+                                <ng-template [ngSwitchCase]="'input-checkbox'">
+                                    <input
+                                        type="checkbox"
+                                        [id]="getHtmlId(viewStructure) + '-' + getHtmlId(column, 'row'+rowIndex, false) + '-checkbox'"
+                                        [checked]="checkedRows[column.id] && checkedRows[column.id].indexOf(rowIndex.toString()) >= 0"
+                                        [value]="column.value"
+                                        [disabled]="column.disabled"
+                                        (click)="checkRows(column,rowIndex)" />
+                                </ng-template>
+                                <ng-template [ngSwitchCase]="'boolean'">
+                                    <input
+                                        type="checkbox"
+                                        [id]="getHtmlId(viewStructure) + '-' + getHtmlId(column, 'row'+rowIndex, false) + '-checkbox'"
+                                        [checked]="rows.originalValue[rowIndex][column.oid]"
+                                        [(ngModel)]="rows.originalValue[rowIndex][column.oid]"
+                                        [disabled]="column.disabled"
+                                        (click)="checkRows(column,rowIndex)" />
+                                </ng-template>
+                                <ng-template [ngSwitchCase]="'text'">
+                                    <app-wct-label
+                                        *ngIf="row[column.oid]"
+                                        [inputParameters]="column"
+                                        [inputValue]="row[column.oid]"
+                                        [dataRecs]="rows.originalValue[rowIndex]"
+                                        [dataRecsFormated]="row"
+                                        [tableDisplay]="true"
+                                        [showTitle]="!!column.size"
+                                        [rowIndex]="rowIndex"></app-wct-label>
+                                    <p class="form-control-plaintext" *ngIf="!row[column.oid]">-</p>
+                                </ng-template>
+                                <ng-template [ngSwitchCase]="'custom-component'">
+                                    <app-wct-start-components
+                                        [viewStructure]="viewStructure"
+                                        [dataRecs]="rows.originalValue[rowIndex]"
+                                        [inputDataRecs]="inputDataRecs"
+                                        [inputParameters]="[column]"
+                                        [inputParametersContext]="columns"
+                                        [baseInfoForm]="baseInfoForm"
+                                        [loadingFromTable]="true"
+                                        [rowIndex]="rowIndex"
+                                        [parametersFormat]="false"></app-wct-start-components>
+                                </ng-template>
+                                <app-wct-start-components
+                                    *ngSwitchDefault
+                                    [viewStructure]="viewStructure"
+                                    [dataRecs]="rows.originalValue[rowIndex]"
+                                    [inputDataRecs]="inputDataRecs"
+                                    [inputParameters]="getRowColumnObject(column, rowIndex)"
+                                    [inputParametersContext]="columns"
+                                    [baseInfoForm]="baseInfoForm"
+                                    [loadingFromTable]="true"
+                                    [rowIndex]="rowIndex"
+                                    [parametersFormat]="false"></app-wct-start-components>
+
+                        </ng-template>
+
+                    </td>
+            </tr>
+            <tr
+                *ngIf="expandColumn.type == 'expand' && (!expandColumn.pathToValue || row[expandColumn.oid]) && expandedRows.indexOf(rowIndex) >= 0"
+                [id]="getHtmlId(viewStructure) + '-row' + rowIndex + '-panel'"
+                [ngClass]="{'odd':rowIsOdd,'even':rowIsEven}">
+                    <td [attr.colspan]="columns.length">
+                        <page-component
+                            #pageComponentOnTable
+                            [origin]="'table'"
+                            [cloneAs]="'${' + pagingSettings.currentPage + '-' + rowIndex + '}'"
+                            [inputMock]="expandColumn.mockToLoad"
+                            [inputDataRecs]="row"
+                            [componentIsLoading]="false"
+                            [allowReload]="false"
+                            [firstLevelLayer]="false"></page-component>
+                    </td>
+            </tr>
+        </ng-template>
+    </tbody>
+    <tbody
+        *ngIf="!tableHasData && !dataRecsNoContent"
+        [id]="getHtmlId(viewStructure) + '-noRecords'">
+        <tr class="odd">
+            <td [attr.colspan]="columns.length" style="padding-top:5px;padding-bottom:5px;text-align:center;">
+                <ng-template #loadingTable><wct-loading [inputParameters]="viewStructure"></wct-loading></ng-template>
+                <i *ngIf="!tableIsLoading; else loadingTable" class="fx-text-disabled" innerHtml="{{viewStructure.placeholder || 'warnings___noRecords' | myI18n}}"></i>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- <app-wct-alert
+    *ngIf="false && viewStructure.valueList?.length === 0"
+    [type]="'info'"
+    [message]="viewStructure.placeholder || 'warnings___noRecords' | myI18n"></app-wct-alert> -->

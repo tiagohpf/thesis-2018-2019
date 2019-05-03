@@ -1,0 +1,63 @@
+<h3 id="docs-tree-search">Tree com pesquisa</h3>
+<p>Este snippet demonstra uma tree sobre a qual se pode efetuar pesquisa.</p>
+<p>Não se apresenta detalhadamente o plugin de pesquisa da componente. Para isso deve consultar a documentação em <a class="fx-docs-btn-link" href="https://www.jstree.com/api/#/?f=search(" target="_blank">jsTree search plugin</a>.</p>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <div class="form-group fx-search-input">
+            <div class="fx-pos-rel">
+                <i class="glyphicon glyphicon-search"></i>
+                <input id="devguide-tree-search-input" type="text" placeholder="pesquisar..." class="form-control input-sm">
+            </div>
+        </div>
+        <div id="devguide-tree-search"></div>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!-- Ficheiros necessários a incluir no head-->
+<head>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/fuxi/lib/jstree/3.0/themes/fuxi/style.css" rel="stylesheet" />
+    <link href="/fuxi/common/html/css/fuxi.min.css" rel="stylesheet" />
+</head>
+
+<!--Ficheiros a colocar antes de fechar a tag body-->
+<script src="/basepack/jquery/1.11/jquery.min.js"></script>
+<script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+<script src="/fuxi/lib/jstree/3.0/jstree.min.js"></script>
+<script src="/fuxi/common/exec/fuxi.js"></script>
+
+<!--Markup necessário-->
+<div class="form-group fx-search-input">
+    <div class="fx-pos-rel">
+        <i class="glyphicon glyphicon-search"></i>
+        <input id="devguide-tree-search-input" type="text" placeholder="pesquisar..." class="form-control input-sm">
+    </div>
+</div>
+<div id="devguide-tree-search"></div>
+
+<!--Instanciação da tree-->
+<script type="text/javascript">
+    $('#devguide-tree-search').jstree({
+        'core': {
+            'data': [
+               { "id": "root-search-1", "parent": "#", "text": "Root 1" },
+               { "id": "root-search-2", "parent": "#", "text": "Root 2", "state": { "opened": true } },
+               { "id": "root-search-2-child-1", "parent": "root-search-2", "text": "Child 1", "state": { "selected": true }, },
+               { "id": "root-search-2-child-2", "parent": "root-search-2", "text": "Child 2" },
+            ],
+            themes: {
+                name: 'fuxi',
+                icons: false
+            },
+        },
+        'plugins': ["search"],
+        "search": {
+            "show_only_matches": true
+        },
+    });
+</script>
+        </textarea>
+    </form>
+</div>
+

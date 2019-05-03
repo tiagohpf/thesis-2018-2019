@@ -1,0 +1,60 @@
+{
+  "type": "initParameters",
+  "id": "pageRemove",
+  "header": {
+    "id": "pageHeader",
+    "seo": {
+      "text": "API Remove",
+      "_description": "Api remove confirm",
+      "icon": "fa fa-credit-card"
+    }
+  },
+  "details": [
+    {
+      "type": "label",
+      "id": "remove_id",
+      "pathToValue": "id",
+      "text": "application___fullfilmentID",
+      "hidden": true
+    },
+    {
+      "type": "label",
+      "id": "message",
+      "value": "Are you sure you want to remove the selected api"
+    }
+  ],
+  "buttons": [
+    {
+      "key": "cancel",
+      "text": "generic___operations___cancel",
+      "class": "btn-default"
+    },
+    {
+      "key": "submit",
+      "text": "generic___operations___remove",
+      "class": "btn-primary",
+      "parameters": [
+        {
+          "key": "requestEndpoint",
+          "value": "{{subscription_xapi_ms}}/services/{{remove_id}}"
+        },
+        {
+          "key": "requestType",
+          "value": "DELETE"
+        },
+        {
+          "key": "requestHeaders",
+          "value": {
+            "Authorization": "Bearer {{token}}",
+            "IXS": "{{IXS_id}}"
+          }
+        },
+        {
+          "key": "requestBody",
+          "type": "json",
+          "value": {}
+        }
+      ]
+    }
+  ]
+}

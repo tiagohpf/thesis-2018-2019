@@ -1,0 +1,64 @@
+.va-answer-component {
+    color: #000;
+
+    h3 {
+        width: 100%;
+    }
+
+    .palette-list {
+        padding: 0 3px;
+
+        >.row {
+            margin: 0 -5px;
+
+            .component {
+                text-align: center;
+                padding: 5px;
+
+                .component-wrapper {
+                    border: 1px solid #e1e1e1;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    padding: 10px;
+
+                    i {
+                        font-size: 3em;
+                        color: #c1c1c1;
+                    }
+                }
+            }
+        }
+    }
+
+    .add-response-buttons {
+        display: flex;
+        margin: 5px 0 10px 0;
+
+        .btn {
+            width: 100%;
+            margin: 0 !important;
+        }
+    }
+
+    .card {
+        padding: 15px;
+
+        hr {
+            background: #333;
+        }
+
+        .remove {
+            background: none;
+            border: none;
+
+            i {
+                float: right;
+            }
+        }
+    }
+
+    .card.selected {
+        background: #f1faff;
+    }
+
+}

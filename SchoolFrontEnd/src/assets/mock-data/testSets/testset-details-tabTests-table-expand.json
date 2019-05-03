@@ -1,0 +1,42 @@
+{
+    "type": "initTable",
+    "urlResource": [
+        {
+            "key": "pathToMainData",
+            "value": [
+                "steps"
+            ]
+        }
+    ],
+    "parameters": [
+        {
+            "key": "tableActions",
+            "value": {
+                "columnManager": false,
+                "export": false,
+                "search": false,
+                "pagination": false
+            }
+        }
+    ],
+    "columns": [
+        {
+            "type": "text",
+            "text": "program___testsUserSaying",
+            "id": "saying",
+            "pathToValue": [
+                "saying"
+            ]
+        },
+        {
+            "type": "text",
+            "text": "program___testsBotResponse",
+            "id": "botResponse",
+            "pathToValue": [
+                "expectedResponse",
+                "botResponse"
+            ]
+        }
+    ],
+    "rows": []
+}

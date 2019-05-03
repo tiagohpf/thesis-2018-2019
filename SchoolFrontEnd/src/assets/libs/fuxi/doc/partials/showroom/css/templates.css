@@ -1,0 +1,115 @@
+﻿.template-desc-container {
+    background: #666;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    z-index: 1021;
+}
+
+.template-desc-container.ui-draggable-dragging,
+.template-desc-container.ui-resizable-resizing {
+    opacity: 0.5;
+}
+
+.template-desc-container.ui-resizable {
+    background-image: url('../img/resizable-ltr-white.png');
+    background-repeat: no-repeat;
+    background-position: bottom left;
+}
+
+.template-desc-container.ui-resizable-disabled {
+    background-image: none;
+}
+
+.template-desc-container.ui-resizable .ui-resizable-s,
+.template-desc-container.ui-resizable .ui-resizable-sw {
+    bottom: 0;
+}
+
+
+.template-desc-container.bottom-pos {
+    bottom: 40px;
+    left: 0;
+    right: 0;
+}
+
+.template-desc-container.right-pos,
+.template-desc-container.left-pos {
+    bottom: 0;
+    overflow: auto;
+    right: 0;
+    top: 0;
+    width: 300px;
+}
+
+.template-desc-container.left-pos {
+    left: 0;
+    right: auto;
+}
+
+.template-desc-container.right-pos.minimized,
+.template-desc-container.left-pos.minimized {
+    height: auto;
+    bottom: auto;
+}
+
+.template-desc-container.right-pos.maximized,
+.template-desc-container.left-pos.maximized  {
+    height: auto;
+    bottom: 0;
+}
+
+.template-desc-container.right-pos.detached,
+.template-desc-container.left-pos.detached {
+    left: 50%;
+    top: 100px;
+    bottom: 100px;
+    margin-left: -150px;
+}
+
+.template-desc-container.right-pos.detached.minimized,
+.template-desc-container.left-pos.detached.minimized {
+    bottom: auto!important;
+    height: auto!important;
+}
+
+.template-desc-header {
+    margin-bottom: 10px;
+}
+
+.fx-drag-bright {
+    height: 19px;
+    padding: 0;
+    width: 4px;
+}
+
+.template-desc-container.fixed .fx-drag-bright {
+    display: none;
+}
+
+.template-desc-container.detached .fx-drag-bright {
+    display: inline-block;
+}
+
+.template-desc-container.minimized .template-desc-header {
+    margin-bottom: 0;
+}
+
+.template-desc-container.detached .template-desc-header h3 {
+    cursor: move;
+}
+
+.template-desc-container h3 {
+    margin: 0;
+}
+
+.template-desc-actions {
+    float: right;
+}
+
+.template-desc-actions button,
+.template-desc-actions button:hover,
+.template-desc-actions button:focus {
+    color: #fff;
+}
+

@@ -1,0 +1,180 @@
+<h3 id="docs-wizard-default">Wizard default</h3>
+<p>Este snippet demonstra um wizard default, em que o caminho a percorrer é completamente conhecido.</p>
+<p>O elemento com a class <code>.fx-wizard-wrapper</code> ocupará sempre 100% da altura do seu parent.</p>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <div style="height: 300px;">
+            <div id="devguide-wizard-default" class="fx-wizard-wrapper"
+                 data-wiz-prev="#devguide-wiz-prev-default"
+                 data-wiz-next="#devguide-wiz-next-default"
+                 data-wiz-complete="#devguide-wiz-complete-default"
+                 data-step-opened="1"
+                 data-wizard>
+                <nav>
+                    <ul class="list-unstyled fx-nav-items">
+                        <li id="devguide-wiz-default-step-1" class="fx-nav-link" data-client-validator="auxFuncs.wizard.devguideWizDefaultValidateStep">
+                            <span class="fx-wizardstep-number"> 1 </span>
+                            <span class="fx-wizardstep-title">Step 1</span>
+                            <button class="pull-right fx-wizardstep-error hidden fx-alert-button" type="button" rel="popover" data-toggle="popover" data-placement="right" data-html="true" data-content="Mensagem informativa">
+                                <i class="fuxicons fuxicons-error"></i>
+                            </button>
+                        </li>
+                        <li id="devguide-wiz-default-step-2" class="fx-nav-link blocked" data-client-validator="auxFuncs.wizard.devguideWizDefaultValidateStep">
+                            <span class="fx-wizardstep-number"> 2 </span>
+                            <span class="fx-wizardstep-title">Step 2</span>
+                            <button class="pull-right fx-wizardstep-error hidden fx-alert-button" type="button" rel="popover" data-toggle="popover" data-placement="right" data-html="true" data-content="Mensagem informativa">
+                                <i class="fuxicons fuxicons-error"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!--STEP 1-->
+                <section id="devguide-wiz-default-step-1-content" class="fx-wizardsteps-content">
+                    <h4><span class="fx-wizardstep-number">1</span> | Step 1</h4>
+                    <div class="fx-wizardsteps-content-block">
+                        Conteúdo do step 1.
+                    </div>
+                </section>
+
+                <!--STEP 2-->
+                <section id="devguide-wiz-default-step-2-content" class="fx-wizardsteps-content">
+                    <h4><span class="fx-wizardstep-number">2</span> | Step 2</h4>
+                    <div class="fx-wizardsteps-content-block">
+                        Conteúdo do step 2.
+                    </div>
+                </section>
+
+                <div class="fx-wizard-buttons-wrapper">
+                    <div class="fx-wizard-buttons-wrapper-inner">
+                        <button id="devguide-wiz-prev-default" class="btn btn-default btn-sm disabled" type="button">
+                            <i class="glyphicon glyphicon-chevron-left"></i>anterior
+                        </button>
+                        <button id="devguide-wiz-next-default" class="btn btn-default btn-sm" type="button">
+                            seguinte<i class="glyphicon glyphicon-chevron-right"></i>
+                        </button>
+                        <button id="devguide-wiz-complete-default" class="btn btn-primary btn-sm" type="button">
+                            finalizar
+                        </button>
+                        <button id="devguide-wiz-cancel-default" class="btn btn-default btn-sm" type="button">
+                            cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h4>Markup</h4>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<div id="devguide-wizard-default" class="fx-wizard-wrapper"
+        data-wiz-prev="#devguide-wiz-prev-default"
+        data-wiz-next="#devguide-wiz-next-default"
+        data-wiz-complete="#devguide-wiz-complete-default"
+        data-step-opened="1"
+        data-wizard>
+    <nav>
+        <ul class="list-unstyled fx-nav-items">
+            <li id="devguide-wiz-default-step-1" class="fx-nav-link" data-client-validator="devguideWizDefaultValidateStep">
+                <span class="fx-wizardstep-number"> 1 </span>
+                <span class="fx-wizardstep-title">Step 1</span>
+                <button class="pull-right fx-wizardstep-error hidden fx-alert-button" type="button" rel="popover" data-toggle="popover" data-placement="right" data-html="true" data-content="Mensagem informativa">
+                    <i class="fuxicons fuxicons-error"></i>
+                </button>
+            </li>
+            <li id="devguide-wiz-default-step-2" class="fx-nav-link blocked" data-client-validator="devguideWizDefaultValidateStep">
+                <span class="fx-wizardstep-number"> 2 </span>
+                <span class="fx-wizardstep-title">Step 2</span>
+                <button class="pull-right fx-wizardstep-error hidden fx-alert-button" type="button" rel="popover" data-toggle="popover" data-placement="right" data-html="true" data-content="Mensagem informativa">
+                    <i class="fuxicons fuxicons-error"></i>
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <!--STEP 1-->
+    <section id="devguide-wiz-default-step-1-content" class="fx-wizardsteps-content">
+        <h4><span class="fx-wizardstep-number">1</span> | Step 1</h4>
+        <div class="fx-wizardsteps-content-block">
+            Conteúdo do step 1.
+        </div>
+    </section>
+
+    <!--STEP 2-->
+    <section id="devguide-wiz-default-step-2-content" class="fx-wizardsteps-content">
+        <h4><span class="fx-wizardstep-number">2</span> | Step 2</h4>
+        <div class="fx-wizardsteps-content-block">
+            Conteúdo do step 2.
+        </div>
+    </section>
+
+    <div class="fx-wizard-buttons-wrapper">
+        <div class="fx-wizard-buttons-wrapper-inner">
+            <button id="devguide-wiz-prev-default" class="btn btn-default btn-sm disabled" type="button">
+                <i class="glyphicon glyphicon-chevron-left"></i>anterior
+            </button>
+            <button id="devguide-wiz-next-default" class="btn btn-default btn-sm" type="button">
+                seguinte<i class="glyphicon glyphicon-chevron-right"></i>
+            </button>
+            <button id="devguide-wiz-complete-default" class="btn btn-primary btn-sm" type="button">
+                finalizar
+            </button>
+            <button id="devguide-wiz-cancel-default" class="btn btn-default btn-sm" type="button">
+                cancelar
+            </button>
+        </div>
+    </div>
+</div>
+        </textarea>
+    </form>
+
+    <h4>Scripting</h4>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<script type="text/javascript">
+    function devguideWizDefaultValidateStep(args) {
+        var step = args.step;
+        var w = args.Wizard;
+
+        switch (step) {
+            case 1:
+                // função para validar o step 1...
+                return { isValid: true };
+                break;
+            case 2:
+                // função para validar o step 2...
+                return { isValid: true };
+                break;
+        }
+    }
+
+    $(document).ready(function () {
+        FUXI.Wizard.init({
+            'isAsync': true,
+            'mode': FUXI.Wizard.modeEnum.INSERT
+        });
+
+        //Wizard default
+        $(document).on('goto.wizard.fuxi', '#devguide-wizard-default', function (e) {
+            //evento disparado ao clicar numa das opções desbloqueadas na navegação lateral
+        });
+
+        $(document).on('next.wizard.fuxi', '#devguide-wizard-default', function (e) {
+            //evento disparado ao clicar em seguinte
+        });
+
+        $(document).on('prev.wizard.fuxi', '#devguide-wizard-default', function (e) {
+            //evento disparado ao clicar em anterior
+        });
+
+        $(document).on('complete.wizard.fuxi', '#devguide-wizard-default', function (e) {
+            //evento disparado ao clicar em finalizar
+        });
+    });
+</script>            
+        </textarea>
+    </form>
+</div>
+

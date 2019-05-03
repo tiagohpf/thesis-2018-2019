@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge; text/html;" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0,  user-scalable=yes" />
+    <link rel="icon" href="/fuxi/common/html/css/images/favicon.ico" type="image/x-icon" />
+    <title>Template dropdown menus</title>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.min.css" />
+
+    <style>
+        hr {
+            margin: 40px 0;
+        }
+    </style>
+
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/fuxi/lib/html5shiv/3.7/js/html5shiv.js"></script>
+    <script src="/fuxi/lib/respond/1.4/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body style="overflow: auto;">
+    <div class="fx-main-content">
+        <h1> Dropdown menu para links </h1>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                click me - menu will open from ltr
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                    <a href="#">Action</a>
+                </li>
+                <li>
+                    <a href="#">Another action</a>
+                </li>
+                <li>
+                    <a href="#">Something else here</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#">Separated link</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                click me - menu will open from rtl
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu fx-dropdown-open-to-left" role="menu">
+                <li>
+                    <a href="#">Action</a>
+                </li>
+                <li>
+                    <a href="#">Another action</a>
+                </li>
+                <li>
+                    <a href="#">Something else here</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#">Separated link</a>
+                </li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <h1> Dropdown menu para injetar conteúdo </h1>
+        <div class="btn-group">
+            <button type="button" title="gerir colunas" class="fx-dropdown-toggle btn btn-default btn-sm">
+                <i class="fuxicons fuxicons-manage-columns"></i>
+                click me - menu will open from ltr
+                <span class="caret"></span>
+            </button>
+            <div class="fx-dropdown">
+                <div class="fx-dropdown-header">
+                    Sou uma zona de header deste dropdown. Posso existir ou não.
+                </div>
+                <div class="fx-dropdown-body">
+                    Sou a zona de conteúdo. Posso ter qualquer tipo de conteúdo aqui dentro. Sou a única div obrigatória dentro de um fx-dropdown.
+                </div>
+                <footer class="fx-dropdown-menu-actions">
+                    Sou uma zona de footer para links ou botões. Posso existir ou não.
+                </footer>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <button type="button" title="gerir colunas" class="fx-dropdown-toggle btn btn-primary btn-sm">
+                <i class="fuxicons fuxicons-manage-columns"></i>
+                click me - menu will open from rtl
+                <span class="caret"></span>
+            </button>
+            <div class="fx-dropdown fx-dropdown-open-to-left">
+                <div class="fx-dropdown-header">
+                    Sou uma zona de header deste dropdown. Posso existir ou não.
+                </div>
+                <div class="fx-dropdown-body">
+                    Sou a zona de conteúdo. Posso ter qualquer tipo de conteúdo aqui dentro. Sou a única div obrigatória dentro de um fx-dropdown.
+                </div>
+                <footer class="fx-dropdown-menu-actions">
+                    Sou uma zona de footer para links ou botões. Posso existir ou não.
+                </footer>
+            </div>
+        </div>
+
+        <hr>
+
+        <h1> Dropdown menu destacável </h1>
+
+        <div class="btn-group">
+            <button type="button" title="gerir colunas" class="fx-dropdown-toggle btn btn-primary btn-sm" data-rel-dropdown="detach-drop">
+                <i class="fuxicons fuxicons-manage-columns"></i>
+                click me - menu will open from rtl
+                <span class="caret"></span>
+            </button>
+            <div class="fx-dropdown" id="detach-drop">
+                <div class="fx-dropdown-header">
+                    <div class="clearfix">
+                        <div class="pull-right">
+                            <button data-rel-dropdown-detach="detach-drop" title="destacar painel" class="btn btn-link btn-link-in-table"><i class="fuxicons fuxicons-open-in-window"></i></button>
+                        </div>
+                        <i class="fx-drag"></i>
+                        <h4 class="fx-dropdown-header-title"><span class="fx-info-icon"><i class="fa fa-cog"></i></span> <span>Título</span></h4>
+                        <p class="fx-dropdown-header-desc">Descrição</p>
+                    </div>
+                </div>
+                <div class="fx-dropdown-body">
+                    Sou a zona de conteúdo. Posso ter qualquer tipo de conteúdo aqui dentro. Sou a única div obrigatória dentro de um fx-dropdown.
+                </div>
+                <footer class="fx-dropdown-menu-actions">
+                    Sou uma zona de footer para links ou botões. Posso existir ou não.
+                </footer>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <button type="button" title="gerir colunas" class="fx-dropdown-toggle btn btn-primary btn-sm" data-rel-dropdown="detach-drop-l">
+                <i class="fuxicons fuxicons-manage-columns"></i>
+                click me - menu will open from rtl
+                <span class="caret"></span>
+            </button>
+            <div class="fx-dropdown fx-dropdown-open-to-left" id="detach-drop-l">
+                <div class="fx-dropdown-header">
+                    <div class="clearfix">
+                        <div class="pull-right">
+                            <button data-rel-dropdown-detach="detach-drop-l" title="destacar painel" class="btn btn-link btn-link-in-table"><i class="fuxicons fuxicons-open-in-window"></i></button>
+                        </div>
+                        <i class="fx-drag"></i>
+                        <h4 class="fx-dropdown-header-title"><span class="fx-info-icon"><i class="fa fa-cog"></i></span> <span>Título</span></h4>
+                        <p class="fx-dropdown-header-desc">Descrição</p>
+                    </div>
+                </div>
+                <div class="fx-dropdown-body">
+                    Sou a zona de conteúdo. Posso ter qualquer tipo de conteúdo aqui dentro. Sou a única div obrigatória dentro de um fx-dropdown.
+                </div>
+                <footer class="fx-dropdown-menu-actions">
+                    Sou uma zona de footer para links ou botões. Posso existir ou não.
+                </footer>
+            </div>
+        </div>
+    </div>
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/fuxi/lib/jqueryui/1.10/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+    <script src="/fuxi/common/exec/fuxi.min.js"></script>
+    <script>        
+        FUXI.DetachableDropdowns.init();
+    </script>
+</body>
+</html>

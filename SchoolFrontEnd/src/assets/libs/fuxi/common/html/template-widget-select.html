@@ -1,0 +1,1331 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Widget - Select</title>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/fuxi/lib/jstree/3.0/themes/fuxi/style.css" rel="stylesheet" />
+
+    <link type="text/css" rel="stylesheet" href="/fuxi/lib/toastr/toastr.css" />
+    <link type="text/css" rel="stylesheet" href="/fuxi/lib/uilayout/layout-default-latest.css" />
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.css" />
+
+    <link type="text/css" rel="stylesheet" href="/fuxi/lib/codemirror/5.1/css/codemirror.css" />
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi-ext-jqvalidate.css" />
+
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+
+    <script src="/fuxi/lib/jqueryui/1.10/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="/fuxi/lib/uilayout/jquery.layout-latest.js"></script>
+
+    <script src="/fuxi/lib/lodash/v3.0/lodash_3.0.1.min.js"></script>
+    
+
+    <style>
+        .CodeMirror{
+            height:auto;
+        }
+    </style>
+
+</head>
+<body class="container" style="overflow:auto; width:1230px">
+    <section class="well row">
+        <h1><strong>Widget select</strong></h1>
+        <div class="row">
+            <div id="ws-doc">
+
+                <h3><i class="caret"></i> <strong>Opções</strong></h3>
+                <div style="padding: 0 20px" class="hidden">
+                    <div>
+                        <label><strong>showAddView: </strong></label>
+                        <span>(<strong>true</strong> ou false) Mostra opção de criar</span>
+                    </div>
+                    <div>
+                        <label><strong>showPreviewView: </strong></label>
+                        <span>(<strong>true</strong> ou false) Mostra opção de pre-visualização</span>
+                    </div>
+                    <div>
+                        <label><strong>selectItemMandatory: </strong></label>
+                        <span>(true ou <strong>false</strong>) Obriga à seleção</span>
+                    </div>
+                    <div>
+                        <label><strong>multiSelection: </strong></label>
+                        <span>(<strong>true</strong> ou false) Permite multi-seleção</span>
+                    </div>
+                    <div>
+                        <label><strong>allowDrag: </strong></label>
+                        <span>(<strong>true</strong> ou false) Permite arrastar a modal</span>
+                    </div>
+                    <div>
+                        <label><strong>showPageOptionSelectAll: </strong></label>
+                        <span>(true ou <strong>false</strong> ) Permite mostrar a opção de selecionar todos os items visualizados da página</span>
+                    </div>
+                    <div>
+                        <label><strong>returnSelectedItemsSorted: </strong></label>
+                        <span>(true ou <strong>false</strong> ) Permite retornar os items ordenados</span>
+                    </div>
+                    <div>
+                        <label><strong>returnSelectedItemsHtml: </strong></label>
+                        <span>(true ou <strong>false</strong> ) Permite retornar os items em HTML</span>
+                    </div>
+
+                    <div>
+                        <label><strong>selectItemMandatoryMessage: </strong></label>
+                        <span>Mensagem no caso de não selecionar item(s) da lista</span>
+                    </div>
+                    <div>
+                        <label><strong>clientAddValidator: </strong></label>
+                        <span>Nome da função de validação no caso de adicionar</span>
+                    </div>
+                    <div>
+                        <label><strong>notificationCallback: </strong></label>
+                        <span>Nome da função de notificação</span>
+                    </div>
+                    <div>
+                        <label><strong>lazyLoadCallback: </strong></label>
+                        <span>Nome da função a chamar no <i>lazy load</i> <small>(recebe o nº da página actual)</small></span>
+                    </div>
+                    <div>
+                        <label><strong>itemsPerPage: </strong></label>
+                        <span>(default: <strong>20</strong>) Nº de items por página</span>
+                    </div>
+                    <div>
+                        <label><strong>itemsTemplate: </strong></label>
+                        <span>Template HTML para cada item da lista</span>&nbsp;<a href="#" id="show-template">template</a>
+                        <div id="item-template-container" class="hidden">
+                            <textarea id="item-template"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <label><strong>selectedItemTemplate: </strong></label>
+                        <span>Template HTML para cada item seleccionado da lista</span>&nbsp;<a href="#" id="show-sel-template">template</a>
+                        <div id="item-sel-template-container" class="hidden">
+                            <textarea id="item-sel-template"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <label><strong>selectedItemReturnTemplate: </strong></label>
+                        <span>Template HTML para cada item seleccionado retornado da lista</span>&nbsp;<a href="#" id="show-return-sel-template">template</a>
+                        <div id="item-return-sel-template-container" class="hidden">
+                            <textarea id="item-return-sel-template"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <label><strong>showMode: </strong></label>
+                        <span>(<strong>'grid'</strong> ou 'tree') Renderiza items da lista em forma de grelha ou árvore</span>
+                    </div>
+                    <div>
+                        <label><strong>openMode: </strong></label>
+                        <span>(<strong>'modal'</strong> ou 'inline') abre em modal ou in-line</span>
+                    </div>
+                    <div>
+                        <label><strong>layout: </strong></label>
+                        <a target="_blank" href="http://layout.jquery-dev.com/documentation.cfm#Options">http://layout.jquery-dev.com/documentation.cfm#Options</a>
+                    </div>
+                    <div>
+                        <label><strong>jstreePlugins: </strong></label>
+                        <span>Plugins adicionais a adicionar à jstree</span>
+                    </div>
+                    <div>
+                        <label><strong>jstreePluginsConfiguration: </strong></label>
+                        <span>dados de configuração dos plugins adicionais a adicionar à jstree</span>
+                    </div>
+                </div>
+
+                <h3><i class="caret"></i> <strong>Eventos</strong></h3>
+                <div style="padding: 0 20px" class="hidden">
+                    <div>
+                        <label><strong>shown.fx.widgetselect: </strong></label>
+                        <span>executado quando é mostrada a modal com o widget select</span>
+                    </div>
+                    <div>
+                        <label><strong>addsave.fx.widgetselect: </strong></label>
+                        <span>executado quando é criado um novo item. O item deve ser criado neste evento e após ser criado com sucesso deve ser invocado os métodos <strong><i>handleShowSelectView</i></strong> e <strong><i>drawItem</i></strong>.</span>
+                    </div>
+                    <div>
+                        <label><strong>addcancel.fx.widgetselect: </strong></label>
+                        <span>executado quando é cancelada a criação de um novo item</span>
+                    </div>
+                    <div>
+                        <label><strong>selectconfirm.fx.widgetselect: </strong></label>
+                        <span>executado quando são seleccionados os items. Retorna no argumento os items selecionados. Fecha a modal com o widget select.</span>
+                    </div>
+                    <div>
+                        <label><strong>selectcancel.fx.widgetselect: </strong></label>
+                        <span>executado quando é cancelada a selecção dos items. É feito o reset dos items que possam ter sido eleiminados ou selecionados. Fecha a modal com o widget select.</span>
+                    </div>
+                    <div>
+                        <label><strong>showadd.fx.widgetselect: </strong></label>
+                        <span>executado quando é mostrada a view de inserção de novo item.</span>
+                    </div>
+                    <div>
+                        <label><strong>showselect.fx.widgetselect: </strong></label>
+                        <span>executado quando é mostrada a view de selecção.</span>
+                    </div>
+                    <div>
+                        <label><strong>itempreview.fx.widgetselect: </strong></label>
+                        <span>executado quando é mostrada a pre-visualização do item.</span>
+                    </div>
+                    <div>
+                        <label><strong>itempreview.fx.widgetselect: </strong></label>
+                        <span>executado quando é clicado o botão de do item. É aqui que se deve ir buscar os dados de detalhe do item e depois de os carregar para o DOM deve ser invocado o método <strong><i>layout.resizeAll()</i></strong>.</span>
+                    </div>
+                    <div>
+                        <label><strong>itemremove.fx.widgetselect: </strong></label>
+                        <span>executado quando é removido um item.</span>
+                    </div>
+                    <div>
+                        <label><strong>removeall.fx.widgetselect: </strong></label>
+                        <span>executado quando são removidos todos os items.</span>
+                    </div>
+                    <div>
+                        <label><strong>search.fx.widgetselect: </strong></label>
+                        <span>executado quando se clicka sobre a lupa para efectuar uma pesquisa.</span>
+                    </div>
+                </div>
+
+                <h3><i class="caret"></i> <strong>Métodos</strong></h3>
+                <div style="padding: 0 20px" class="hidden">
+                    <div>
+                        <label><strong>itemsList(itemsToShow, itemsCount): </strong></label>
+                        <span>método que recebe a lista de items a serem mostrados. Necessita do nº total de items.</span>
+                    </div>
+                    <div>
+                        <label><strong>selectedItemsList(itemsSelected): </strong></label>
+                        <span>método que recebe a lista de items pre-selecionados.</span>
+                    </div>
+                    <div>
+                        <label><strong>reset(): </strong></label>
+                        <span>reset all (executa resetList).</span>
+                    </div>
+                    <div>
+                        <label><strong>resetList(): </strong></label>
+                        <span>limpa a lista dos items.</span>
+                    </div>
+                    <!--<div>
+                        <label><strong>drawItem(item, select): </strong></label>
+                        <span>desenha para o DOM o novo item. Caso passe true no 2 parametro o item é selecionado.</span>
+                    </div>
+                    <div>
+                        <label><strong>selectItem(item): </strong></label>
+                        <span>seleciona o item.</span>
+                    </div>
+                    <div>
+                        <label><strong>unselectItem(item): </strong></label>
+                        <span>desseleciona o item.</span>
+                    </div>
+                    <div>
+                        <label><strong>showPreviewContent(): </strong></label>
+                        <span>mostra o conteúdo de preview.</span>
+                    </div>
+                    <div>
+                        <label><strong>hidePreviewContent(): </strong></label>
+                        <span>oculta o conteúdo de preview e mostra a mensagem de informação.</span>
+                    </div>-->
+                </div>
+
+                <h3><i class="caret"></i> <strong>How To? Step by Step</strong></h3>
+                <div style="padding: 0 20px" class="hidden">
+
+                    <table class="table">
+                        <tr>
+                            <td>
+                                Verificar que tem incluído os seguintes ficheiros:
+                                <ul>
+                                    <li>
+                                        <strong>CSS</strong>
+                                        <ul>
+                                            <li>Bootstrap (/basepack/bootstrap-pt/3.0/css/bootstrap.min.css)</li>
+                                            <li>jsTree (/fuxi/lib/jstree/3.0/themes/fuxi/style.css)</li>
+                                            <li>jQuery UI Layout (/fuxi/lib/uilayout/layout-default-latest.css)</li>
+                                            <li>Fuxi (/fuxi/common/html/css/fuxi.css)</li>
+
+                                            <li>Toastr (/fuxi/lib/toastr/toastr.css) <strong>Só para efeitos demonstrativos.</strong></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>JS</strong>
+                                        <ul>
+                                            <li>Modernizr (/basepack/modernizr/2.6/modernizr.js)</li>
+                                            <li>jQuery (/basepack/jquery/1.9/jquery.min.js)</li>
+                                            <li>Bootstrap (/basepack/bootstrap-pt/3.0/js/bootstrap.min.js)</li>
+                                            <li>jQuery UI (/fuxi/lib/jqueryui/1.10/jquery-ui-1.10.4.custom.min.js)</li>
+                                            <li>jQuery UI Layout (/fuxi/lib/uilayout/jquery.layout-latest.js)</li>
+                                            <li>jsTree (/fuxi/lib/jstree/3.0/jstree.min.js)</li>
+                                            <li>Fuxi (/fuxi/common/exec/fuxi.min.js) <strong>Para efeitos demonstrativos está a ser usado a versão não minificada.</strong></li>
+
+                                            <li>Toastr (/fuxi/lib/toastr/toastr.js) <strong>Só para efeitos demonstrativos.</strong></li>
+                                            <li>Lodash (/fuxi/lib/lodash/v3.0/lodash_3.0.1.min.js) <strong>Só para efeitos demonstrativos.</strong></li>
+                                        </ul>
+                                    </li>
+
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                O Widget Select trabalha em modal, e como o "feel and look" pode variar entre sistemas, é necessário ter o html na página.
+                                Na demo pode verificar o elemento DOM:
+                                <br />
+                                <textarea id="codeHT1" name="codeHT1" data-codemirror-mode="xml" data-codemirror-html-mode="true" class="fx-codemirror">
+<div id="widget-select-modal" class="modal fx-widget-select">...</div>
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Na secção de script criar uma variável com as opções para a inicialização do WidgetSelect, e outra para referência do Widget Select.
+                                <br />
+                                <textarea id="codeJS1" name="codeJS1" data-codemirror-mode="javascript" class="fx-codemirror">
+var options = {
+};
+var $ws = null;
+                                </textarea>
+</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                No elemento DOM que despoleta o show da modal devemos inicializar o WidgetSelect para o elemento desejado e atribuir os eventos necessários:
+                                <br />
+                                <textarea id="codeHT" name="codeHT" data-codemirror-mode="javascript" data-codemirror-html-mode="true" class="fx-codemirror">
+$("#trigger-widget-select").on('click', function () {
+    // inicializar ws
+    $ws = $("#widget-select-modal").widgetSelect(options);
+
+    // eventos associados ao WS
+    $ws.$elem.off('shown.fx.widgetselect').on('shown.fx.widgetselect', widgetSelectShow);
+
+    // abrir modal
+    $("#widget-select-modal").modal('show');
+});
+                                </textarea>
+                                <br />Recomenda-se que o carregamento dos dados para o Widget Select seja feito no evento <i>'shown.fx.widgetselect'</i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Carregamento dos dados de forma directa
+                                <br />
+                                <textarea id="codeJS" name="codeJS" data-codemirror-mode="javascript" class="fx-codemirror">
+function widgetSelectShow(e) {
+    var items = [{ "id": 1, "text": "Item 1", "showPreview": false, "name": "Item 1 do nome", "description": "1 qq coisa aqui referente ao Item 1" },
+        { "id": 2, "text": "Item 2", "showPreview": false, "name": "Item 2 do nome", "description": "3 qq coisa aqui referente ao Item 2" },
+        { "id": 3, "text": "Item 3", "showPreview": false, "name": "Item 3 do nome", "description": "2 qq coisa aqui referente ao Item 3" },
+        { "id": 4, "text": "Item 4", "name": "Item 4 do nome", "description": "qq coisa aqui referente ao Item 4" }
+    ];
+    $ws.reset();
+    // no caso de ter items preselecionados
+    // têm q ser dados antes de chamar o método  itemsList().
+    $ws.selectedItemsList([
+        { "id": 1, "text": "Item 1" },
+        { "id": 4, "text": "Item 4" }
+    ]);
+    // dar os dados
+    $ws.itemsList(items, items.length);
+};
+                                </textarea>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+
+                <h3><i class="caret"></i> <strong>Definir opções</strong></h3>
+                <div style="padding: 0 20px" class="">
+                    <form id="frm-options">
+                        <table class="table">
+                            <tr>
+                                <td><label><strong>showAddView</strong></label></td>
+                                <td><label><strong>showPreviewView</strong></label></td>
+                                <td><label><strong>selectItemMandatory</strong></label></td>
+                                <td><label><strong>multiSelection</strong></label></td>
+                                <td><label><strong>allowDrag</strong></label></td>
+                                <td><label><strong>showPageOptionSelectAll</strong></label></td>
+                                <td><label><strong>returnSelectedItemsSorted</strong></label></td>
+                                <td><label><strong>returnSelectedItemsHtml</strong></label></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" id="showAddView" checked="checked" /></td>
+                                <td><input type="checkbox" id="showPreviewView" checked="checked" /></td>
+                                <td><input type="checkbox" id="selectItemMandatory" checked="checked" /></td>
+                                <td><input type="checkbox" id="multiSelection" checked="checked" /></td>
+                                <td><input type="checkbox" id="allowDrag" checked="checked" /></td>
+                                <td><input type="checkbox" id="showPageOptionSelectAll" /></td>
+                                <td><input type="checkbox" id="returnSelectedItemsSorted" /></td>
+                                <td><input type="checkbox" id="returnSelectedItemsHtml" /></td>
+                            </tr>
+                            <tr>
+                                <td><label><strong>selectItemMandatoryMessage: </strong></label></td>
+                                <td colspan="7"><input type="text" size="100" value="Verifique se selecionou os items pretendidos!" id="selectItemMandatoryMessage" /></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><strong>clientAddValidator: </strong></label>
+                                </td>
+                                <td colspan="7">
+                                    <textarea id="codeAddVal" name="codeAddVal" data-codemirror-mode="javascript" class="fx-codemirror">
+function validateAdd(e) {
+    console.log(["validateAdd", this]);
+    return (
+    {
+    'isValid': ($("#input-item", $ws.$elem).val() !== '') ? true : false,
+    'message': 'Verifique se preencheu correctamente todos os campos!' });
+}
+                                    </textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><strong>notificationCallback: </strong></label>
+                                </td>
+                                <td colspan="7">
+                                    <textarea id="codeNotCb" name="codeNotCb" data-codemirror-mode="javascript" class="fx-codemirror">
+// ATENÇÃO: usa o toastr...
+function notification(type, message) {
+    toastr[type](message);
+}
+                                    </textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><strong>lazyLoadCallback: </strong></label>
+                                </td>
+                                <td colspan="7">
+                                    <textarea id="codeLoadIt" name="codeLoadIt" data-codemirror-mode="javascript" class="fx-codemirror">
+function loadItems(currentPage) {
+    itemsPerPage = Number($("#itemsPerPage").val()) || 20;
+
+    var startPage = (currentPage - 1) * itemsPerPage;
+    var endPage = startPage + itemsPerPage;
+    var itemsToShow = items.slice(startPage, endPage);
+    console.log(["itemstoshow:", itemsToShow]);
+
+    $ws.itemsList(itemsToShow, items.length);
+}
+                                    </textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><strong>itemsPerPage: </strong></label>
+                                </td>
+                                <td colspan="7"><input type="number" value="20" id="itemsPerPage" /></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><strong>itemsTemplate: </strong></label>
+                                </td>
+                                <td colspan="7"><textarea id="itemsTemplate"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><strong>selectedItemTemplate: </strong></label>
+                                </td>
+                                <td colspan="7"><textarea id="selectedItemTemplate"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><strong>selectedItemReturnTemplate: </strong></label>
+                                </td>
+                                <td colspan="7"><textarea id="selectedItemReturnTemplate"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><strong>showMode: </strong></label>
+                                </td>
+                                <td colspan="3">
+                                    <select id="showMode">
+                                        <option value="grid">grid</option>
+                                        <option value="tree">tree</option>
+                                    </select>
+                                </td>
+
+                                <td>
+                                    <label><strong>openMode: </strong></label>
+                                </td>
+                                <td colspan="3">
+                                    <select id="openMode">
+                                        <option value="modal">modal</option>
+                                        <option value="inline">inline</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><strong>layout: </strong></label>
+                                </td>
+                                <td colspan="7">
+                                    <a target="_blank" href="http://layout.jquery-dev.com/documentation.cfm#Options">http://layout.jquery-dev.com/documentation.cfm#Options</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+
+            <div class="">
+                <button class="btn btn-primary btn-sm" id="trigger-widget-select" style="margin: 20px;">OPEN Widget Select</button>                
+                <form id="frmValidate" method="get" action="">
+                    <div class="form-group">
+                        <label for="txtNome" class="control-label fx-required-field">Items selecionados?</label>
+                        <div >
+                            <input id="inpResult" name="inpResult" value="" type="hidden" />
+                            <div id="result">?</div>
+                        </div>
+                    </div>
+                    <input id="btValidate" name="btValidate" type="submit" value="submit" />
+                </form>
+                <br /><br />
+            </div>
+
+            <div class="">
+                <label>Widget select Options</label><br />
+                <textarea id="wsOptions" data-codemirror-mode="javascript"></textarea>
+            </div>
+        </div>
+    </section>
+    <div id="widget-select-modal" class="modal fx-widget-select">
+
+        <div class="modal-dialog fx-modal-l">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="selectModelLabel">Título do widget select</h4>
+                    <p>Descrição do widget select</p>
+                    <div class="fx-widget-select-top-nav clearfix">
+                        <a class="btn btn-default btn-sm pull-right" data-ws-show-add>
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <span>botão para criar</span>
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </a>
+
+                        <a id="btBackModelSelection" class="btn btn-default btn-sm pull-left hidden" data-ws-show-select>
+                            <i class="glyphicon glyphicon-chevron-left"></i>
+                            <span>botão para voltar à seleção</span>
+
+                        </a>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="fx-widget-select-content">
+                        <!-- WE MUST SET HEIGHT TO THIS DIV BY SCRIPTING -->
+                        <div class="clearfix fx-widget-select-items-container" style="height: 400px;">
+                            <div id="modal-step-select-model" class="fx-widget-select-item select-model-layout">
+                                <div class="ui-layout-center">
+                                    <form role="search" class="fx-search-widget-select-items">
+                                        <div class="form-group fx-search-input">
+                                            <div class="fx-pos-rel">
+                                                <input type="text" id="txt-search" class="fx-widget-select-search-text fx-dropdown-search form-control input-sm full-width" placeholder="pesquisar ...">
+                                                <button class="glyphicon glyphicon-search fx-widget-select-search-button" id="bt-search"></button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <div class="fx-widget-select-choices-wrapper">
+                                        <table class="table fx-table table-condensed fx-table-widget-select-choices">
+                                            <thead>
+                                                <tr>
+                                                    <th class="fx-option-select">
+                                                        <div class="fx-widget-select-choices-options">
+                                                            <input type="checkbox" class="fx-widget-select-choices-options-select" title="selecionar/ não selecionar todos os items da página" id="chk-choices-options-select">
+                                                        </div>
+                                                    </th>
+                                                    <th>
+                                                        nome
+                                                        <span class="fx-widget-select-sort-column fx-sort-no" data-sort="0" data-column="name"></span>
+                                                        <span class="fx-widget-select-sort-column fx-sort-asc hide" data-sort="1" data-column="name"></span>
+                                                        <span class="fx-widget-select-sort-column fx-sort-desc hide" data-sort="-1" data-column="name"></span>
+                                                    </th>
+                                                    <th>
+                                                        desc
+                                                        <span class="fx-widget-select-sort-column fx-sort-no" data-sort="0" data-column="description"></span>
+                                                        <span class="fx-widget-select-sort-column fx-sort-asc hide" data-sort="1" data-column="description"></span>
+                                                        <span class="fx-widget-select-sort-column fx-sort-desc hide" data-sort="-1" data-column="description"></span>
+                                                    </th>
+                                                    <th class="fx-preview-action">&nbsp;</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <div class="fx-widget-select-tree-container"></div>
+                                    </div>
+
+                                    <!-- Paging -->
+                                    <div class="fx-widget-select-paging" style="display:table;width:100%">
+                                        <div style="display:table-cell"><button class="btn btn-link" data-paging-previous>« anterior</button></div>
+                                        <div style="display:table-cell"><span data-paging-num-current-page>0</span> de <span data-paging-total-pages>0</span></div>
+                                        <div style="display:table-cell"><button class="btn btn-link" data-paging-next>seguinte »</button></div>
+                                    </div>
+                                </div>
+
+                                <div class="ui-layout-east">
+
+                                    <div class="fx-widget-select-preview-aux-info">
+                                        <p class="fx-widget-select-preview-aux-info-message">
+                                            Clique no olho <i class="fuxicons fuxicons-eye"></i> para pré-visualizar a informação de cada item
+                                        </p>
+                                    </div>
+
+                                    <header class="fx-widget-select-preview-header hidden">
+                                        <span class="fx-info-icon"><i class="fuxicons fuxicons-catalogue"></i></span>
+                                        <span class="fx-widget-select-preview-title">Título da entidade</span>
+                                    </header>
+
+                                    <div class="fx-widget-select-preview-body hidden">
+                                        <a data-target="#block01" data-toggle="collapse" class="fx-expand">
+                                            <i class="caret"></i>
+                                            Título do bloco
+                                        </a>
+                                        <div class="collapse in fx-indent" id="block01">
+                                            <div class="form-horizontal">
+                                                <div class="form-group">
+                                                    <label class="col-sm-4 control-label">Nome do campo</label>
+                                                    <div class="col-sm-8">
+                                                        <p class="form-control-static">Descrição</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-4 control-label">Nome do campo</label>
+                                                    <div class="col-sm-8">
+                                                        <p class="form-control-static">Descrição</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-4 control-label">Nome do campo</label>
+                                                    <div class="col-sm-8">
+                                                        <p class="form-control-static">Descrição</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-4 control-label">Nome do campo</label>
+                                                    <div class="col-sm-8">
+                                                        <p class="form-control-static">Descrição</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="ui-layout-south">
+                                    <div class="fx-widget-select-tags-count">
+                                        <span data-msg-items>
+                                            Tem <strong data-num-items-selected>0</strong> items selecionados de <span data-total-items>0</span>
+                                            <a data-remove-all class="pull-right">
+                                                <i class="glyphicon glyphicon-remove"></i>&nbsp;limpar
+                                            </a>
+                                        </span>
+                                        <span data-msg-no-items class="fx-text-disabled">Não existem items selecionados</span>
+                                    </div>
+
+                                    <div class="fx-widget-selected-items-container">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="modalStepAddModel" class="fx-widget-select-item">
+                                <div class="fx-widget-select-add-wrapper">
+                                    <form class="form-horizontal" role="form">
+                                        <p class="fx-required-fields-message">campos obrigatórios</p>
+
+                                        <div class="form-group">
+
+                                            <label for="input-item" class="col-sm-2 control-label">Nome do campo</label>
+                                            <div class="col-sm-10">
+
+                                                <input type="text" class="form-control" id="input-item" placeholder="item name">
+                                                <br />
+
+                                                <div class="text-left">
+                                                    <button type="button" class="btn btn-primary btn-sm" data-ws-add-save>
+                                                        salvar
+                                                    </button>
+                                                    <button type="button" class="btn btn-default btn-sm" data-ws-add-cancel>
+                                                        cancelar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btSaveSelectModel" class="btn btn-primary btn-sm" data-ws-select>
+                        selecionar
+                    </button>
+                    <button type="button" id="btCancelSelectModel" class="btn btn-default btn-sm" data-dismiss="modal" data-ws-cancel>
+                        cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="widget-select-inline" class="fx-widget-select hidden">
+
+        <div class="fx-ws-inline-content">
+            <div class="fx-ws-inline-header">
+                <div class="fx-widget-select-top-nav clearfix">
+                    <a class="btn btn-default btn-sm pull-right" data-ws-show-add>
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span>botão para criar</span>
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                    </a>
+
+                    <a id="btBackModelSelection" class="btn btn-default btn-sm pull-left hidden" data-ws-show-select>
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                        <span>botão para voltar à seleção</span>
+
+                    </a>
+                </div>
+            </div>
+            <div class="fx-ws-inline-body">
+                <div class="fx-widget-select-content">
+                    <!-- WE MUST SET HEIGHT TO THIS DIV BY SCRIPTING -->
+                    <div class="clearfix fx-widget-select-items-container" style="height: 400px;">
+                        <div id="modal-step-select-model" class="fx-widget-select-item select-model-layout">
+                            <div class="ui-layout-center">
+                                <form role="search" class="fx-search-widget-select-items">
+                                    <div class="form-group fx-search-input">
+                                        <div class="fx-pos-rel">
+                                            <input type="text" id="txt-search" class="fx-widget-select-search-text fx-dropdown-search form-control input-sm full-width" placeholder="pesquisar ...">
+                                            <button class="glyphicon glyphicon-search fx-widget-select-search-button" id="bt-search"></button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <div class="fx-widget-select-choices-wrapper">
+                                    <table class="table fx-table table-condensed fx-table-widget-select-choices">
+                                        <thead>
+                                            <tr>
+                                                <th class="fx-option-select">
+                                                    <div class="fx-widget-select-choices-options">
+                                                        <input type="checkbox" class="fx-widget-select-choices-options-select" title="selecionar/ não selecionar todos os items da página" id="chk-choices-options-select">
+                                                    </div>
+                                                </th>
+                                                <th>
+                                                    nome
+                                                    <span class="fx-widget-select-sort-column fx-sort-no" data-sort="0" data-column="name"></span>
+                                                    <span class="fx-widget-select-sort-column fx-sort-asc hide" data-sort="1" data-column="name"></span>
+                                                    <span class="fx-widget-select-sort-column fx-sort-desc hide" data-sort="-1" data-column="name"></span>
+                                                </th>
+                                                <th>
+                                                    desc
+                                                    <span class="fx-widget-select-sort-column fx-sort-no" data-sort="0" data-column="description"></span>
+                                                    <span class="fx-widget-select-sort-column fx-sort-asc hide" data-sort="1" data-column="description"></span>
+                                                    <span class="fx-widget-select-sort-column fx-sort-desc hide" data-sort="-1" data-column="description"></span>
+                                                </th>
+                                                <th class="fx-preview-action">&nbsp;</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                    <div class="fx-widget-select-tree-container"></div>
+                                </div>
+
+                                <!-- Paging -->
+                                <div class="fx-widget-select-paging" style="display:table;width:100%">
+                                    <div style="display:table-cell"><button class="btn btn-link" data-paging-previous>« anterior</button></div>
+                                    <div style="display:table-cell"><span data-paging-num-current-page>0</span> de <span data-paging-total-pages>0</span></div>
+                                    <div style="display:table-cell"><button class="btn btn-link" data-paging-next>seguinte »</button></div>
+                                </div>
+                            </div>
+
+                            <div class="ui-layout-east">
+
+                                <div class="fx-widget-select-preview-aux-info">
+                                    <p class="fx-widget-select-preview-aux-info-message">
+                                        Clique no olho <i class="fuxicons fuxicons-eye"></i> para pré-visualizar a informação de cada item
+                                    </p>
+                                </div>
+
+                                <header class="fx-widget-select-preview-header hidden">
+                                    <span class="fx-info-icon"><i class="fuxicons fuxicons-catalogue"></i></span>
+                                    <span class="fx-widget-select-preview-title">Título da entidade</span>
+                                </header>
+
+                                <div class="fx-widget-select-preview-body hidden">
+                                    <a data-target="#block01" data-toggle="collapse" class="fx-expand">
+                                        <i class="caret"></i>
+                                        Título do bloco
+                                    </a>
+                                    <div class="collapse in fx-indent" id="block01">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Nome do campo</label>
+                                                <div class="col-sm-8">
+                                                    <p class="form-control-static">Descrição</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Nome do campo</label>
+                                                <div class="col-sm-8">
+                                                    <p class="form-control-static">Descrição</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Nome do campo</label>
+                                                <div class="col-sm-8">
+                                                    <p class="form-control-static">Descrição</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Nome do campo</label>
+                                                <div class="col-sm-8">
+                                                    <p class="form-control-static">Descrição</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="ui-layout-south">
+                                <div class="fx-widget-select-tags-count">
+                                    <span data-msg-items>
+                                        Tem <strong data-num-items-selected>0</strong> items selecionados de <span data-total-items>0</span>
+                                        <a data-remove-all class="pull-right">
+                                            <i class="glyphicon glyphicon-remove"></i>&nbsp;limpar
+                                        </a>
+                                    </span>
+                                    <span data-msg-no-items class="fx-text-disabled">Não existem items selecionados</span>
+                                </div>
+
+                                <div class="fx-widget-selected-items-container">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="modalStepAddModel" class="fx-widget-select-item">
+                            <div class="fx-widget-select-add-wrapper">
+                                <form class="form-horizontal" role="form">
+                                    <p class="fx-required-fields-message">campos obrigatórios</p>
+
+                                    <div class="form-group">
+
+                                        <label for="input-item" class="col-sm-2 control-label">Nome do campo</label>
+                                        <div class="col-sm-10">
+
+                                            <input type="text" class="form-control" id="input-item" placeholder="item name">
+                                            <br />
+
+                                            <div class="text-left">
+                                                <button type="button" class="btn btn-primary btn-sm" data-ws-add-save>
+                                                    salvar
+                                                </button>
+                                                <button type="button" class="btn btn-default btn-sm" data-ws-add-cancel>
+                                                    cancelar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fx-ws-inline-footer">
+                <!--<button type="button" id="btSaveSelectModel" class="btn btn-primary btn-sm" data-ws-select>
+                    selecionar
+                </button>-->
+                <!--<button type="button" id="btCancelSelectModel" class="btn btn-default btn-sm" data-dismiss="modal" data-ws-cancel>
+                    cancelar
+                </button>-->
+            </div>
+        </div>
+        <br />
+        <button type="button" id="btSubmit" class="btn btn-primary btn-sm">
+            submit
+        </button>
+    </div>
+    <br />
+    
+    <script id="template-ws-item-selected" type="text/template-ws-item-selected">
+        <div class="fx-widget-select-tag" data-id="{{id}}" data-text="{{text}}" data-show-preview="true">
+            <div class="fx-widget-select-tag-remove" title="remover" data-ws-remove>
+                <i class="glyphicon glyphicon-remove"></i>
+            </div>
+            <div class="fx-widget-select-tag-preview" title="pré-visualizar" data-ws-preview>
+                <span class="fx-widget-select-tag-name">{{text}}</span>
+                <i class="fuxicons fuxicons-eye fx-widget-select-tag-preview-icon"></i>
+            </div>
+        </div>
+    </script>
+    <script id="template-ws-item" type="text/template-ws-item">
+        <tr class="{{active}}" data-id="{{id}}" data-text="{{text}}" data-show-preview="true">
+            <td class="fx-option-select">
+                <input type="checkbox" data-multi-select name="chk-item-selected" value="{{id}}" {{checked}} />
+                <input type="radio" data-uni-select name="rd-item-selected" value="{{id}}" {{checked}} />
+            </td>
+            <td>
+                <span class="fx-truncate-table-cell">{{name}}</span>
+            </td>
+            <td>
+                <span class="fx-truncate-table-cell">{{description}}</span>
+            </td>
+            <td class="fx-widget-select-action-wrapper" title="pré-visualizar" data-ws-preview>
+                <i class="fuxicons fuxicons-eye fx-widget-select-tag-preview-icon"></i>
+            </td>
+        </tr>
+    </script>
+
+    <script src="/fuxi/lib/jstree/3.0/jstree.min.js"></script>
+    <script src="/fuxi/lib/jstree/3.0/jstree.misc.js"></script>
+    <script src="/fuxi/lib/toastr/toastr.js"></script>
+    <script src="/fuxi/common/exec/fuxi.js"></script>
+
+    <script src="/fuxi/lib/codemirror/5.1/js/codemirror.js"></script>
+    <script src="/fuxi/lib/codemirror/5.1/mode/xml/xml.js"></script>
+    <script src="/fuxi/lib/codemirror/5.1/addon/edit/matchbrackets.js"></script>
+    <script src="/fuxi/lib/codemirror/5.1/addon/comment/continuecomment.js"></script>
+    <script src="/fuxi/lib/codemirror/5.1/addon/comment/comment.js"></script>
+    <script src="/fuxi/lib/codemirror/5.1/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="/fuxi/lib/codemirror/5.1/mode/javascript/javascript.js"></script>
+
+    <script src="/fuxi/lib/jquery-validation/1.14/jquery.validate.js"></script>
+    <script src="/fuxi/lib/jquery-validation/1.14/additional-methods.js"></script>
+    <script src="/fuxi/lib/jquery-validation/1.14/localization/messages_pt_PT.js"></script>
+
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+                           
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "positionClass": "toast-top-center",
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+                //"target": ".modal-dialog"
+            };
+                        
+            // codemirror
+            var codeMirrorObjs = [];
+            codeMirrorObjs.push(CodeMirror.fromTextArea(document.getElementById("wsOptions"), {
+                mode: "javascript",
+                lineNumbers: true,
+                readOnly: true
+            }));
+            $(".fx-codemirror").each(function () {
+                codeMirrorObjs.push(CodeMirror.fromTextArea(this, {
+                    mode: $(this).data("codemirror-mode"),
+                    htmlMode: $(this).data("codemirror-html-mode") || false,
+                    lineNumbers: true,
+                    readOnly: true
+                }));
+            });
+
+            function refreshCodeMirrorObjs() {
+                $.each(codeMirrorObjs, function () {
+                    this.refresh();
+                });
+            }
+
+            $("#ws-doc h3").css("cursor", "pointer").on('click', function () {
+                $(this).next().toggleClass("hidden");
+                refreshCodeMirrorObjs();
+            });
+
+
+            var cmOptTmpl = {
+                mode: "xml",
+                htmlMode: true,
+                lineNumbers: false,
+                readOnly: true
+            };
+            var cmOpt = {
+                mode: "xml",
+                htmlMode: true,
+                lineNumbers: true,
+                readOnly: false
+            };
+
+            $("#item-template, #itemsTemplate").text($("#template-ws-item").html());
+            var cmItemTmpl = CodeMirror.fromTextArea(document.getElementById("item-template"), cmOptTmpl);
+            var cmItem = CodeMirror.fromTextArea(document.getElementById("itemsTemplate"), cmOpt);
+            $("#show-template").on('click', function () {
+                $("#item-template-container").toggleClass("hidden");
+                cmItemTmpl.refresh();
+            });
+                        
+            $("#item-sel-template, #selectedItemTemplate").text($("#template-ws-item-selected").html());
+            var cmItemSelTmpl = CodeMirror.fromTextArea(document.getElementById("item-sel-template"), cmOptTmpl);
+            var cmItemSel = CodeMirror.fromTextArea(document.getElementById("selectedItemTemplate"), cmOpt);
+            $("#show-sel-template").on('click', function () {
+                $("#item-sel-template-container").toggleClass("hidden");
+                cmItemSelTmpl.refresh();
+            });
+
+            $("#item-return-sel-template, #selectedItemReturnTemplate").text($("#template-ws-item-selected").html());
+            var cmItemRetSelTmpl = CodeMirror.fromTextArea(document.getElementById("item-return-sel-template"), cmOptTmpl);
+            var cmItemRetSel = CodeMirror.fromTextArea(document.getElementById("selectedItemReturnTemplate"), cmOpt);
+            $("#show-return-sel-template").on('click', function () {
+                $("#item-return-sel-template-container").toggleClass("hidden");
+                cmItemRetSelTmpl.refresh();
+            });
+
+            var formChanged = true; // first time
+            $("#frm-options").on('change', function () {
+                formChanged = true;
+            });
+
+            $("#multiSelection").on('change', function () {
+                $("#showPageOptionSelectAll").attr("checked", $("#showPageOptionSelectAll").is(":checked") && this.checked).attr("disabled", !this.checked);
+            });
+
+            var options;
+            function setOptions() {
+                //define options
+                var multiSelection = $("#multiSelection").is(":checked");
+                var lOptions = {
+                    south: {
+                        size: (multiSelection) ? 100 : 85
+                    }
+                };
+                options = {
+                    showPreviewView: $("#showPreviewView").is(":checked"),
+                    showAddView: $("#showAddView").is(":checked"),
+                    allowDrag: $("#allowDrag").is(":checked"),
+                    showPageOptionSelectAll: $("#showPageOptionSelectAll").is(":checked"),
+                    showMode: $("#showMode").val() || "grid",// grid or 'tree'
+                    openMode: $("#openMode").val() || "modal",// modal or 'inline'
+                    itemsPerPage: $("#itemsPerPage").val() || 20, // for grid mode
+                    multiSelection: multiSelection, // for grid mode
+                    layoutOptions: lOptions,
+                    itemsTemplate: $('#itemsTemplate').val(),
+                    selectedItemTemplate: $('#selectedItemTemplate').val(),
+                    selectedItemReturnTemplate: $('#selectedItemReturnTemplate').val(),
+                    returnSelectedItemsSorted: $("#returnSelectedItemsSorted").is(":checked"),
+                    returnSelectedItemsHtml: $("#returnSelectedItemsHtml").is(":checked"),
+
+                    notificationCallback: notification,
+                    selectItemMandatory: $("#selectItemMandatory").is(":checked"),
+                    selectItemMandatoryMessage: "Verifique se selecionou os items pretendidos!",
+
+                    clientAddValidator: validateAdd,
+
+                    lazyLoadCallback: loadItems,
+
+                    jstreePlugins: ['search', 'conditionalselect'],
+                    jstreePluginsConfiguration: [
+                        {
+                            key: 'search',
+                            value: {
+                                show_only_matches: true //false
+                            }
+                        }, {
+                            key: 'conditionalselect',
+                            value: function (node) {
+                                var allowSelect = (node.li_attr.showcheckbox === undefined) ? true : node.li_attr.showcheckbox;
+                                return allowSelect;
+                            }
+                        }
+                    ]
+
+
+                };
+
+                formChanged = false;
+            };
+
+            //$("#bt-search").on('click', function (e) {
+            //    console.log("bt-search clicked");
+
+            //    getItems(function () {
+            //        $ws.resetList();
+            //        loadItems(1);// first page
+            //    });
+
+            //    e.preventDefault();
+            //});
+
+            // show modal
+            $("#trigger-widget-select").on('click', function () {
+                if ($("#openMode").val() === 'modal') {
+                    if (formChanged) {
+                        setOptions();
+                        loadWS("widget-select-modal", true);
+                    };
+                    $("#widget-select-modal").modal('show');
+                    toastr.options = {
+                        "target": ".modal-dialog"
+                    };
+                }
+                else {
+                    $("#widget-select-inline").removeClass("hidden");
+                    setOptions();
+                    loadWS("widget-select-inline", true);
+
+                    // show
+                    $ws.shownWidgetSelect();
+
+                    $("#btSubmit").on('click', function () {
+                        var selItems = $ws.getSelectedItems();
+                        console.log(selItems);
+                        var html = "";
+                        $.each(selItems, function (idx, item) {
+                            html += " <span>[" + item.id + "] " + item.text + "</span><br />";
+                        });
+
+                        $("#result").html(html);
+                    });
+                }
+            });
+
+            var $ws;
+            function loadWS(wsID, destroy) {
+                if (destroy && $ws) $ws.destroy();
+
+                $ws = $("#" + wsID).widgetSelect(options);
+                // event fired after widget select is shown (in this case after modal shown event);
+                $ws.$elem.off('shown.fx.widgetselect').on('shown.fx.widgetselect', widgetSelectShow)
+                // event fired after save button clicked on add view
+                .off('addsave.fx.widgetselect').on('addsave.fx.widgetselect', saveNewItem)
+                // event fired after cancel button clicked on add view
+                .off('addcancel.fx.widgetselect').on('addcancel.fx.widgetselect', function (e) { console.log("addcancel fired!!!"); console.log(e); })
+                // event fired after select button clicked on select view
+                .off('selectconfirm.fx.widgetselect').on('selectconfirm.fx.widgetselect', selectconfirm)
+                // event fired after cancel button clicked on select view
+                .off('selectcancel.fx.widgetselect').on('selectcancel.fx.widgetselect', function (e) {
+                    toastr.clear(); console.log("cancel fired!!!"); console.log(e);
+                })
+                // event fired after create model button clicked on select view
+                .off('showadd.fx.widgetselect').on('showadd.fx.widgetselect', showAddView)
+                // event fired after back to model selection button clicked on add view
+                .off('showselect.fx.widgetselect').on('showselect.fx.widgetselect', showSelectView)
+                // event fired after preview button clicked on select view
+                .off('itempreview.fx.widgetselect').on('itempreview.fx.widgetselect', itemPreview)
+                // event fired after remove button clicked
+                .off('itemremove.fx.widgetselect').on('itemremove.fx.widgetselect', function (e) { console.log("item remove fired!!!"); console.log(e); })
+                // event fired after remove all button clicked
+                .off('removeall.fx.widgetselect').on('removeall.fx.widgetselect', function (e) { console.log("remove all fired!!!"); console.log(e); })
+                // event fired on sort by
+                .off('sortby.fx.widgetselect').on('sortby.fx.widgetselect', function (e) { console.log(e); sortItems(e.column, e.desc); })
+                // event fired on search
+                .off('search.fx.widgetselect').on('search.fx.widgetselect', function (e) { console.log(e); searchItems(e.search); });
+            }
+
+            var loaded = false, items = undefined, itemsSelected = undefined, itemsPerPage = 20, selDefault = undefined;
+            function loadItems(currentPage) {
+                itemsPerPage = Number($("#itemsPerPage").val()) || 20;
+
+                var startPage = (currentPage - 1) * itemsPerPage;
+                var endPage = startPage + itemsPerPage;
+                var itemsToShow = items.slice(startPage, endPage);
+                console.log(["itemstoshow:", itemsToShow]);
+
+                $ws.itemsList(itemsToShow, items.length);
+            }
+            function widgetSelectShow(e) {
+                var value = 'widgetselect.options=' + JSON.stringify(e.widgetselect.options, null, 2);                
+                codeMirrorObjs[0].setValue(value);
+
+                getItems(function () {
+                    console.log("########################################################################");
+                    $ws.reset();
+                    $ws.selectedItemsList(itemsSelected);
+                    loadItems(1);// first page
+                    //$ws.layout.resizeAll();
+                });
+            }
+
+            // sort items
+            function sortItems(column, desc) {
+
+                items = _.sortBy(items, function (i) { var propVal = i[column]; if (typeof propVal !== 'string') { return propVal; } else { return propVal.toLowerCase(); } });
+                if (desc) items.reverse();
+                //console.table(items);
+
+                $ws.resetList();
+                loadItems(1);// first page
+            }
+
+            //search items
+            function searchItems(str) {
+
+                // the tree have all items loaded
+                if ($ws.options.showMode === 'tree') {
+                    $ws.$wsTree.jstree().search(str);
+                } else {
+
+                    getItems(function () {
+                        if (str !== "") {
+                            var result = _.filter(items,
+                                        function (k) {
+                                            var res = false;
+                                            _.forOwn(k, function (val, key) {
+                                                res = FUXI.Utils.like(val, str);
+                                                if (res) return false;
+                                            });
+                                            return res;
+                                        });
+                            console.table(result);
+                            items = result;
+                        }
+                        $ws.resetList();
+                        loadItems(1);
+                    });
+                }
+            }
+
+            function getItems(callback) {
+
+                $.getJSON("../data-demo/widget-select-items.json", function (data) {
+
+                    if ($ws.options.showMode === "grid") {
+                        items = data.items;
+                        itemsSelected = selDefault || data.itemsSelected;
+                    }
+                    else if ($ws.options.showMode === "tree") {
+                        items = data.itemsTree;
+                        itemsSelected = selDefault || data.itemsTreeSelected;
+                    }
+                    if (callback) callback();
+
+                }).fail(function () {
+                    alert("error laod json items!");
+                });
+            }
+
+            // ATENÇÃO: usa o toastr...
+            function notification(type, message) {
+                toastr[type](message);
+            }
+
+            function validateAdd(e) {
+                console.log(["validateAdd", this]);
+                return ({ 'isValid': ($("#input-item", $ws.$elem).val() !== '') ? true : false, 'message': 'Verifique se preencheu correctamente todos os campos!' });
+            }
+
+            function saveNewItem(e) {
+                console.log('saveNewItem:');
+
+                // send data with ajax to server?
+                // for demo porpose
+                var d = new Date();
+                var n = d.getSeconds();
+                if ((n % 2) > 0) {
+                    // error!
+                    e.widgetselect.showNotification('error', 'ups! something wrong on server!');
+                    return;
+                }
+                //******************
+
+                // for demo purpose data of new item
+                var item = { "id": Math.floor((Math.random() * 9999999) + 1), "text": $("#input-item", $ws.$elem).val(), "name": $("#input-item", $ws.$elem).val() }
+                // ******************
+
+                // insert succed! show selectView
+                e.widgetselect.handleShowSelectView.call(e.widgetselect, function () {
+                    e.widgetselect.showNotification('success', "Item criado com sucesso!");
+                });
+
+                e.widgetselect.drawItem(item, true);
+            }
+            function selectconfirm(e) {
+                console.log(e);
+                console.log(e.selectedItems);
+                var html = "",
+                    ids=[];
+                selDefault = e.selectedItems;
+                $.each(e.selectedItems, function (idx, item) {
+                    html += " <span>[" + item.id + "] " + item.text + "</span><br />";
+                    ids.push(item.id)
+                });
+
+                $("#inpResult").val(ids.join(","));
+
+                if (e.widgetselect.options.returnSelectedItemsHtml) {
+                    $("#result").html(e.selectedItemsHtml);
+
+                } else {
+
+                    $("#result").html(html);
+                }
+            }
+            function showAddView(e) {
+                console.log(e);
+                $("#input-item").val('').focus();
+            }
+            function showSelectView(e) {
+                console.log(e);
+                $("#input-item").val('');
+                $(".fx-search-input input[type=text]", e.widgetselect.$widgetBody).focus();
+            }
+
+            function loadItemPreview(id) {
+                console.log("item id: " + id);
+
+                // call ajax to load info?
+                // set data
+                $('.fx-widget-select-preview-title').html('Titulo - ' + id);
+
+
+            }
+            function itemPreview(e) {
+                console.log('itempreview.fx.widgetselect...');
+                console.log(e.item);
+
+                loadItemPreview(e.id);
+
+                // show preview content
+                $ws.showPreviewContent();
+            }
+
+        });
+
+        $.validator.setDefaults({
+            submitHandler: function () {
+                alert("submitted!");
+            }
+            , debug: true
+            , ignore: null // por defeito ignora os campos :hidden
+            , errorClass: "fx-validation-status-error"
+            , highlight: function (element, errorClass, validClass) {
+                var $elm = $(element);
+                $elm.closest('.form-group').addClass("has-error").removeClass(validClass);
+            }
+            , unhighlight: function (element, errorClass, validClass) {
+                var $elm = $(element);
+                $elm.closest('.form-group').removeClass("has-error").addClass(validClass);
+                
+            }
+        });
+        // validate form
+        $("#frmValidate").validate({
+            rules: {
+                inpResult: {
+                    required: true,
+                }
+            }, messages: {
+                inpResult: {
+                    required: "Selecione os items no widget select!!!",
+                },
+            }
+        });
+
+
+    </script>
+
+</body>
+
+</html>

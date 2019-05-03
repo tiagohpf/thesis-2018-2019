@@ -1,0 +1,22 @@
+﻿{
+    "data": [
+        { "id": "1", "text": "[1] Root 1", "type": "root",
+          "children": [
+                    { "id": "111", "text": "Child 1" },
+                    { "id": "112", "text": "Child 2" },
+                    { "id": "113", "text": "Child 3" },
+                    { "id": "114", "text": "Child 4" },
+                    { "id": "115", "text": "Child 5" },
+                    { "id": "116", "text": "Child 6" },
+                    { "id": "117", "text": "Child 7" },
+                    { "id": "118", "text": "Child 8" },
+                    { "id": "119", "text": "Child 9" },
+                    { "id": "120", "text": "Child 10" },
+                    { "id": "121", "text": "Child 11" }
+          ]
+        },
+        { "id": "2", "text": "[2] Root a2", "type": "root" },
+        { "id": "3", "text": "[3] Root a3", "type": "root" },
+        { "id": "4", "text": "[4] Root a4", "type": "root" }
+    ]
+}

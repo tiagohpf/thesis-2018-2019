@@ -1,0 +1,73 @@
+{
+    "type": "initParameters",
+    "id": "creditCard",
+    "details": [
+
+      {
+          "type": "textbox",
+          "text": "selected plan",
+          "size": "lg",
+          "hidden":true,
+          "dynamicProps": {
+              "value": "'{{selectedPlanId}}'"
+          }
+      },
+
+    {
+      "type": "textbox",
+      "text": "studentId",
+      "size": "lg",
+      "hidden":true,
+      "dynamicProps": {
+          "value": "'{{selected-student}}'"
+      }
+    },
+ 
+
+    {
+      "type": "stripe-card-list",
+      "id": "stripe-card-list",
+      "text": "Choose your card",
+      "_class": "col-sm-7",
+      "dynamicProps": {
+        "_value": "'{{selected-student}}'",
+        "parameters":[
+          {"key":"customerId", "value":"{{selectedCustomerId}}"}
+        ]
+
+      },
+      "urlResource": [
+        {
+          "key": "path",
+          "value": "{{BillingService}}/customers/{{selectedCustomerId}}/cards"
+        },
+        {
+          "key": "headers",
+          "value": {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer {{token}}"
+          }
+        }
+      ],
+      "pathToValueList": ["response", "items"]
+    },
+    {
+      "type": "text",
+      "id": "stripe-selected-card",
+      "text": "selected card",
+      "dynamicProps": {
+        "value": "'{{stripe-card-list}}'"
+      },
+      "validator": {
+        "required": [
+        true,
+        "warnings___fieldRequired"
+        ]
+      }
+    }
+
+    ]
+
+
+    
+  }

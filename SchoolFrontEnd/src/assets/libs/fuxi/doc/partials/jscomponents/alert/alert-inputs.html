@@ -1,0 +1,185 @@
+<h3 id="docs-alert-inputs">Alertas em inputs</h3>
+<p>Este snippet demonstra os diferentes tipos de alertas que podem ser associados a campos de formulário.</p>
+
+<h4>Text Inputs e Selects</h4>
+<p>O snippet de código abaixo exemplifica um alerta de erro. Substitua <code>error</code> por <code>success, info ou warning</code> para instanciar cada um dos outros tipos.</p>
+<div class="fx-docs-snippet-code">
+    <div>
+        <div class="form-group has-success">
+            <label class="control-label" for="input-text-alert-success">Input no estado de sucesso</label>
+            <input class="form-control input-sm" type="text" id="input-text-alert-success">
+            <div class="alert alert-success">
+                <div class="fx-alert-icon">
+                    <i class="fuxicons fuxicons-success"></i>
+                </div>
+                <div class="fx-alert-desc">
+                    <p>
+                        Descrição da mensagem de sucesso
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group has-info">
+            <label class="control-label" for="input-text-alert-info">Input no estado informativo</label>
+            <input class="form-control input-sm" type="text" id="input-text-alert-info">
+            <div class="alert alert-info">
+                <div class="fx-alert-icon">
+                    <i class="fuxicons fuxicons-info"></i>
+                </div>
+                <div class="fx-alert-desc">
+                    <p>
+                        Descrição da mensagem informativa
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group has-warning">
+            <label class="control-label" for="input-text-alert-warning">Input no estado de aviso</label>
+            <input class="form-control input-sm" type="text" id="input-text-alert-warning">
+            <div class="alert alert-warning">
+                <div class="fx-alert-icon">
+                    <i class="fuxicons fuxicons-warning"></i>
+                </div>
+                <div class="fx-alert-desc">
+                    <p>
+                        Descrição da mensagem de aviso
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group has-error">
+            <label class="control-label" for="input-text-alert-error">Input no estado de erro</label>
+            <input class="form-control input-sm" type="text" id="input-text-alert-error">
+            <div class="alert alert-error">
+                <div class="fx-alert-icon">
+                    <i class="fuxicons fuxicons-error"></i>
+                </div>
+                <div class="fx-alert-desc">
+                    <p>
+                        Descrição da mensagem de erro
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<div class="form-group has-error">
+    <label class="control-label" for="input-text-alert-error">Input no estado de erro</label>
+    <input class="form-control input-sm" type="text" id="input-text-alert-error">
+    <div class="alert alert-error">
+        <div class="fx-alert-icon">
+            <i class="fuxicons fuxicons-error"></i>
+        </div>
+        <div class="fx-alert-desc">
+            <p>
+                Descrição da mensagem de erro
+            </p>
+        </div>
+    </div>
+</div>
+        </textarea>
+    </form>
+</div>
+
+<h4>Checkbox e Radio</h4>
+<p>O snippet de código abaixo exemplifica um alerta de erro. Substitua <code>error</code> por <code>success, info ou warning</code> para instanciar cada um dos outros tipos.</p>
+<p>Para um input do tipo <code>radio</code> bastará alterar o tipo de input e substituir a class <code>checkbox-inline</code> por <code>radio-inline</code>.</p>
+<div class="fx-docs-snippet-code">
+    <div>
+        <div class="form-group has-success">
+            <label class="control-label" for="cb-alert-success">Label no estado de sucesso</label>
+            <div>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="cb-alert-success" value="cb-alert-success"> Checkbox estado de sucesso
+                </label>
+            </div>
+            <div class="alert alert-success">
+                <div class="fx-alert-icon">
+                    <i class="fuxicons fuxicons-success"></i>
+                </div>
+                <div class="fx-alert-desc">
+                    <p>
+                        Descrição da mensagem de sucesso
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group has-info">
+            <label class="control-label" for="cb-alert-info">Label no estado informativo</label>
+            <div>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="cb-alert-info" value="cb-alert-info"> Checkbox estado informativo
+                </label>
+            </div>
+            <div class="alert alert-info">
+                <div class="fx-alert-icon">
+                    <i class="fuxicons fuxicons-info"></i>
+                </div>
+                <div class="fx-alert-desc">
+                    <p>
+                        Descrição da mensagem informativa
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group has-warning">
+            <label class="control-label" for="cb-alert-warning">Label no estado de aviso</label>
+            <div>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="cb-alert-warning" value="cb-alert-warning"> Checkbox estado de aviso
+                </label>
+            </div>
+            <div class="alert alert-warning">
+                <div class="fx-alert-icon">
+                    <i class="fuxicons fuxicons-warning"></i>
+                </div>
+                <div class="fx-alert-desc">
+                    <p>
+                        Descrição da mensagem de aviso
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group has-error">
+            <label class="control-label" for="cb-alert-error">Label no estado de erro</label>
+            <div>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="cb-alert-error" value="cb-alert-error"> Checkbox estado de erro
+                </label>
+            </div>
+            <div class="alert alert-error">
+                <div class="fx-alert-icon">
+                    <i class="fuxicons fuxicons-error"></i>
+                </div>
+                <div class="fx-alert-desc">
+                    <p>
+                        Descrição da mensagem de erro
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<div class="form-group has-error">
+    <label class="control-label" for="cb-alert-error">Label no estado de erro</label>
+    <div>
+        <label class="checkbox-inline">
+            <input type="checkbox" id="cb-alert-error" value="cb-alert-error"> Checkbox estado de erro
+        </label>
+    </div>
+    <div class="alert alert-error">
+        <div class="fx-alert-icon">
+            <i class="fuxicons fuxicons-error"></i>
+        </div>
+        <div class="fx-alert-desc">
+            <p>
+                Descrição da mensagem de erro
+            </p>
+        </div>
+    </div>
+</div>
+        </textarea>
+    </form>
+</div>

@@ -1,0 +1,530 @@
+{
+    "type": "initParameters",
+    "id": "intentNameInitParams",
+    "_header": {
+        "seo": {
+            "text": "Intent"
+        }
+    },
+    "details": [
+        {
+            "type": "label",
+            "id": "originalDisplayNameDtl",
+            "text": "originalDisplayName",
+            "pathToValue": [
+                "originalDisplayName"
+            ],
+            "hidden": true
+        },
+        {
+            "type": "label",
+            "id": "intentDisplayName",
+            "text": "program___intent___intentName",
+            "pathToValueList": "_embedded",
+            "pathToValue": "displayName",
+            "class": "col-sm-10",
+            "validator": {
+                "required": [
+                    true,
+                    "warnings___fieldRequired"
+                ],
+                "unique": [
+                    {
+                        "urlResource": [
+                            {
+                                "key": "path",
+                                "value": "{{AppAPIBotConfig}}/programs"
+                            },
+                            {
+                                "key": "queryString",
+                                "value": {
+                                    "filter": "{\"_id\": { \"$oid\":\"[[programID]]\"},\"lessons\":{\"$elemMatch\":{\"displayName\":\"{{@fv()@replaceTagVars('programCodeDtl')+'_'+@replaceTagVars('intentDisplayName')}}\"}}}",
+                                    "keys": "{\"_id\":1,\"name\":1}"
+                                }
+                            },
+                            {
+                                "key": "headers",
+                                "value": {
+                                    "Authorization": "Bearer {{token}}",
+                                    "IXS": "{{IXS_id}}"
+                                }
+                            }
+                        ]
+                    },
+                    "warnings___nameExists"
+                ]
+            },
+            "parameters": [
+                {
+                    "key": "updatePageParameter",
+                    "value": {
+                        "delaySaveButtonEnable": {
+                            "lazyLoading": false,
+                            "value": "''"
+                        }
+                    }
+                },
+                {
+                    "key": "inlineHelp",
+                    "value": {
+                        "text": "help___program___content___intentCreation___name"
+                    }
+                }
+            ],
+            "dynamicProps": {
+                "type": "'{{operationContext}}'==='create' ? 'textbox' : 'label'"
+            }
+        },
+        {
+            "type": "operations",
+            "_role": "Programs.Intents.Operations.Name.Edit",
+            "class": "col-sm-2 hide-label editFieldButtons",
+            "operations": {
+                "text": "generic___operations___operations",
+                "icon": "glyphicon glyphicon-cog",
+                "size": 3,
+                "parameters": [
+                    {
+                        "type": "updatePage",
+                        "id": "intentNameEdit",
+                        "class": "editButton btn-default",
+                        "icon": "icomoon icon-edit",
+                        "parameters": [
+                            {
+                                "key": "updatePageParameter",
+                                "value": {
+                                    "intentDisplayName": {
+                                        "type": "textbox"
+                                    },
+                                    "intentNameEdit": {
+                                        "hidden": true
+                                    },
+                                    "intentNameCancel": {
+                                        "hidden": false
+                                    },
+                                    "intentNameSave": {
+                                        "hidden": false
+                                    },
+                                    "intentDescriptionEdit": {
+                                        "disabled": true,
+                                        "title": "warnings___alreadyEditing"
+                                    },
+                                    "variableAdd": {
+                                        "disabled": true,
+                                        "title": "warnings___alreadyEditing"
+                                    },
+                                    "variableActions": {
+                                        "hidden": true
+                                    },
+                                    "trainingPhrasesEdit": {
+                                        "disabled": true,
+                                        "title": "warnings___alreadyEditing"
+                                    }
+                                }
+                            },
+                            {
+                                "key": "keepModal",
+                                "value": true
+                            }
+                        ],
+                        "dynamicProps": {
+                            "hidden": "'{{operationContext}}'==='create' ? true : false"
+                        }
+                    },
+                    {
+                        "type": "execute",
+                        "id": "intentNameSave",
+                        "class": "btn-primary",
+                        "text": "generic___operations___save",
+                        "hidden": true,
+                        "parameters": [
+                            {
+                                "key": "requestEndpoint",
+                                "value": "{{SchoolBE}}/programs/[[programID]]/intents/{{originalDisplayNameDtl}}/name"
+                            },
+                            {
+                                "key": "requestType",
+                                "value": "PATCH"
+                            },
+                            {
+                                "key": "requestBody",
+                                "type": "json",
+                                "value": {
+                                    "name": "{{@fv()@replaceTagVars('programCodeDtl')+'_'+@replaceTagVars('intentDisplayName')}}"
+                                }
+                            },
+                            {
+                                "key": "requestHeaders",
+                                "value": {
+                                    "Authorization": "Bearer {{token}}",
+                                    "IXS": "{{IXS_id}}"
+                                }
+                            },
+                            {
+                                "key": "errorText",
+                                "value": "ERROR!\n Could not edit intent name."
+                            },
+                            {
+                                "key": "onSuccess",
+                                "value": {
+                                    "keepModal": true,
+                                    "request": [
+                                        {
+                                            "key": "requestEndpoint",
+                                            "value": "{{SchoolBE}}/programs/[[programID]]"
+                                        },
+                                        {
+                                            "key": "requestType",
+                                            "value": "PATCH"
+                                        },
+                                        {
+                                            "key": "requestBody",
+                                            "type": "json",
+                                            "value": {
+                                                "$set": {
+                                                    "model.status": "deprecated"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "key": "requestHeaders",
+                                            "value": {
+                                                "Authorization": "Bearer {{token}}",
+                                                "IXS": "{{IXS_id}}"
+                                            }
+                                        },
+                                        {
+                                            "key": "errorText",
+                                            "value": "ERROR!\n Could not update program modal."
+                                        },
+                                        {
+                                            "key": "successText",
+                                            "value": false
+                                        },
+                                        {
+                                            "key": "onSuccess",
+                                            "value": {
+                                                "keepModal": true,
+                                                "request": [
+                                                    {
+                                                        "key": "updatePageParameter",
+                                                        "value": {
+                                                            "intentDisplayName": {
+                                                                "originalValue": "{{intentDisplayName}}",
+                                                                "type": "label"
+                                                            },
+                                                            "originalDisplayNameDtl": {
+                                                                "value": "{{@fv()@replaceTagVars('programCodeDtl')+'_'+@replaceTagVars('intentDisplayName')}}"
+                                                            },
+                                                            "intentNameEdit": {
+                                                                "hidden": false
+                                                            },
+                                                            "intentNameCancel": {
+                                                                "hidden": true
+                                                            },
+                                                            "intentNameSave": {
+                                                                "hidden": true
+                                                            },
+                                                            "intentDescriptionEdit": {
+                                                                "disabled": false,
+                                                                "title": null
+                                                            },
+                                                            "variableAdd": {
+                                                                "disabled": false,
+                                                                "title": null
+                                                            },
+                                                            "variableActions": {
+                                                                "hidden": false
+                                                            },
+                                                            "trainingPhrasesEdit": {
+                                                                "disabled": false,
+                                                                "title": null
+                                                            },
+                                                            "programIntentsTable": {
+                                                                "lazyLoading": false
+                                                            },
+                                                            "learnDraft": {
+                                                                "key": "onSuccess"
+                                                            },
+                                                            "notLearnDraft": {
+                                                                "key": "_onSuccess"
+                                                            },
+                                                            "designerFlowComponent": {
+                                                                "sendEvent": "loadIntents"
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "key": "successText",
+                                                        "value": "success___intentNameChanged"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "updatePage",
+                        "id": "intentNameCancel",
+                        "hidden": true,
+                        "class": "btn-force-default btn-default",
+                        "text": "generic___operations___cancel",
+                        "parameters": [
+                            {
+                                "key": "updatePageParameter",
+                                "value": {
+                                    "intentDisplayName": {
+                                        "value": "{{@fv()@getDisplayNameFormated(@replaceTagVars('originalDisplayNameDtl'),@replaceTagVars('programCodeDtl')+'_')}}",
+                                        "type": "label"
+                                    },
+                                    "intentNameEdit": {
+                                        "hidden": false
+                                    },
+                                    "intentNameCancel": {
+                                        "hidden": true
+                                    },
+                                    "intentNameSave": {
+                                        "hidden": true
+                                    },
+                                    "intentDescriptionEdit": {
+                                        "disabled": false,
+                                        "title": null
+                                    },
+                                    "variableAdd": {
+                                        "disabled": false,
+                                        "title": null
+                                    },
+                                    "variableActions": {
+                                        "hidden": false
+                                    },
+                                    "trainingPhrasesEdit": {
+                                        "disabled": false,
+                                        "title": null
+                                    }
+                                }
+                            },
+                            {
+                                "key": "keepModal",
+                                "value": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "label",
+            "id": "originalIntentDescription",
+            "text": "originalIntentDescription",
+            "pathToValue": [
+                "intentDescription"
+            ],
+            "hidden": true
+        },
+        {
+            "type": "label",
+            "subType": "textarea",
+            "id": "intentDescriptionDtl",
+            "text": "program___intent___description",
+            "pathToValue": [
+                "intentDescription"
+            ],
+            "class": "col-sm-10",
+            "dynamicProps": {
+                "type": "'{{operationContext}}'==='create' ? 'textbox' : 'label'"
+            }
+        },
+        {
+            "type": "operations",
+            "_role": "Programs.Intents.Operations.Description.Edit",
+            "class": "col-sm-2 hide-label editFieldButtons",
+            "operations": {
+                "text": "generic___operations___operations",
+                "icon": "glyphicon glyphicon-cog",
+                "size": 3,
+                "parameters": [
+                    {
+                        "type": "updatePage",
+                        "id": "intentDescriptionEdit",
+                        "class": "editButton btn-default",
+                        "icon": "icomoon icon-edit",
+                        "parameters": [
+                            {
+                                "key": "updatePageParameter",
+                                "value": {
+                                    "intentDescriptionDtl": {
+                                        "type": "textbox"
+                                    },
+                                    "intentDescriptionEdit": {
+                                        "hidden": true
+                                    },
+                                    "intentDescriptionCancel": {
+                                        "hidden": false
+                                    },
+                                    "intentDescriptionSave": {
+                                        "hidden": false
+                                    },
+                                    "intentNameEdit": {
+                                        "disabled": true,
+                                        "title": "warnings___alreadyEditing"
+                                    },
+                                    "variableAdd": {
+                                        "disabled": true,
+                                        "title": "warnings___alreadyEditing"
+                                    },
+                                    "variableActions": {
+                                        "hidden": true
+                                    },
+                                    "trainingPhrasesEdit": {
+                                        "disabled": true,
+                                        "title": "warnings___alreadyEditing"
+                                    }
+                                }
+                            },
+                            {
+                                "key": "keepModal",
+                                "value": true
+                            }
+                        ],
+                        "dynamicProps": {
+                            "hidden": "'{{operationContext}}'==='create' ? true : false"
+                        }
+                    },
+                    {
+                        "type": "execute",
+                        "id": "intentDescriptionSave",
+                        "class": "btn-primary",
+                        "text": "generic___operations___save",
+                        "hidden": true,
+                        "parameters": [
+                            {
+                                "key": "requestEndpoint",
+                                "value": "{{SchoolBE}}/programs/[[programID]]/intents/{{originalDisplayNameDtl}}"
+                            },
+                            {
+                                "key": "requestType",
+                                "value": "PATCH"
+                            },
+                            {
+                                "key": "requestBody",
+                                "type": "json",
+                                "value": {
+                                    "$set": {
+                                        "lessons.[intentIdx].description": "{{@fv()@replaceTagVars('intentDescriptionDtl')}}"
+                                    }
+                                }
+                            },
+                            {
+                                "key": "requestHeaders",
+                                "value": {
+                                    "Authorization": "Bearer {{token}}",
+                                    "IXS": "{{IXS_id}}"
+                                }
+                            },
+                            {
+                                "key": "errorText",
+                                "value": "ERROR!\n Could not edit intent name."
+                            },
+                            {
+                                "key": "onSuccess",
+                                "value": {
+                                    "keepModal": true,
+                                    "request": [
+                                        {
+                                            "key": "updatePageParameter",
+                                            "value": {
+                                                "intentDescriptionDtl": {
+                                                    "type": "label"
+                                                },
+                                                "originalIntentDescription": {
+                                                    "value": "{{@fv()@replaceTagVars('intentDescriptionDtl')}}"
+                                                },
+                                                "intentDescriptionEdit": {
+                                                    "hidden": false
+                                                },
+                                                "intentDescriptionCancel": {
+                                                    "hidden": true
+                                                },
+                                                "intentDescriptionSave": {
+                                                    "hidden": true
+                                                },
+                                                "intentNameEdit": {
+                                                    "disabled": false,
+                                                    "title": null
+                                                },
+                                                "variableAdd": {
+                                                    "disabled": false,
+                                                    "title": null
+                                                },
+                                                "variableActions": {
+                                                    "hidden": false
+                                                },
+                                                "trainingPhrasesEdit": {
+                                                    "disabled": false,
+                                                    "title": null
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "key": "successText",
+                                            "value": "success___intentDescriptionChanged"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "updatePage",
+                        "id": "intentDescriptionCancel",
+                        "hidden": true,
+                        "class": "btn-force-default btn-default",
+                        "text": "generic___operations___cancel",
+                        "parameters": [
+                            {
+                                "key": "updatePageParameter",
+                                "value": {
+                                    "intentDescriptionDtl": {
+                                        "value": "{{@fv()@replaceTagVars('originalIntentDescription')}}",
+                                        "type": "label"
+                                    },
+                                    "intentDescriptionEdit": {
+                                        "hidden": false
+                                    },
+                                    "intentDescriptionCancel": {
+                                        "hidden": true
+                                    },
+                                    "intentDescriptionSave": {
+                                        "hidden": true
+                                    },
+                                    "intentNameEdit": {
+                                        "disabled": false,
+                                        "title": null
+                                    },
+                                    "variableAdd": {
+                                        "disabled": false,
+                                        "title": null
+                                    },
+                                    "variableActions": {
+                                        "hidden": false
+                                    },
+                                    "trainingPhrasesEdit": {
+                                        "disabled": false,
+                                        "title": null
+                                    }
+                                }
+                            },
+                            {
+                                "key": "keepModal",
+                                "value": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

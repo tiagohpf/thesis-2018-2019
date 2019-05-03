@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" [class.wct-prevent-side-menu]="hasSideMenu()" [class.wct-is-loading]="!viewStructure">
+    <p *ngIf="!viewStructure; else mainMenu" class="loading-app-menu"><app-wct-loading></app-wct-loading></p>
+    <ng-template #mainMenu>
+        <!-- APP LOGO -->
+        <a *ngIf="logoParameter" id="wct-app-logo" class="navbar-brand" href="#" (mousedown)="navigateTo($event,logoParameter)">
+            <img *ngIf="logoParameter.icon" class="fx-app-logo" alt="logo" [src]="logoParameter.icon" />
+            <ng-template [ngIf]="logoParameter.text">{{logoParameter.text}}</ng-template>
+        </a>
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" id="wct-hamburger-button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- APP MENU -->
+        <app-wct-navbar-menu [viewStructure]="viewStructure"></app-wct-navbar-menu>
+
+        <div
+            *ngIf="viewStructure?.groups?.operations?.parameters?.length > 0 || viewStructure?.groups?.details?.parameters?.length > 0"
+            class="wct-navbar-details wct-prevent-paragraph-margins">
+            <div class="wct-navbar-align-buttons">
+                <app-wct-buttons
+                    *ngIf="viewStructure?.groups?.operations?.parameters?.length > 0"
+                    [operations]="viewStructure.groups.operations"
+                    [btnSize]="'btn-sm'"
+                    [btnPrimary]="false"
+                    [btnMax]="viewStructure.groups.operations.size >= 0 ? viewStructure.groups.operations.size : 1"></app-wct-buttons>
+            </div>
+            <app-wct-start-components
+                *ngIf="viewStructure?.groups?.details?.parameters?.length > 0"
+                [viewStructure]="viewStructure"
+                [inputParameters]="viewStructure.groups.details.parameters"
+                [parametersFormat]="false"></app-wct-start-components>
+        </div>
+
+    </ng-template>
+</nav>
+
+<!--
+************* RESPONSIVE MENU *************
+<ul class="nav navbar-nav" *ngIf="showResponsiveMenu">
+    <ng-template ngFor let-menu [ngForOf]="viewStructure?.groups?.menus?.parameters">
+        <li
+            [id]="menu.id ? 'wct-responsive-menu-' + menu.id : ''"
+            [class.active]="checkActivatedRoute(menu)">
+                <a href="#" (mousedown)="navigateTo($event,menu)">
+                    <i *ngIf="menu.icon" class="{{menu.icon}}"></i><span>{{menu.text | myI18n}}</span>
+                </a>
+        </li>
+        <li
+            *ngFor="let sm of menu.groups?.menus?.parameters"
+            [id]="sm.id ? 'wct-responsive-submenu-' + sm.id : ''">
+                <a href="#" (mousedown)="navigateTo($event,sm)">
+                    <i *ngIf="sm.icon" class="{{sm.icon}}"></i><span>{{sm.text | myI18n}}</span>
+                </a>
+        </li>
+    </ng-template>
+</ul>
+************* RESPONSIVE MENU *************
+-->

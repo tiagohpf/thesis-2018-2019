@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--# include file="/fuxi/doc/partials/showroom/partials/head-templates.html" -->
+    <title>Template Login</title>
+</head>
+<body class="fx-login-bg">
+    <div class="fx-push-footer">
+        <!-- header -->
+        <header class="fx-login-header"></header>
+        <!-- content -->
+        <div class="fx-prevent-content-behind-footer-login">
+            <div class="fx-login-wrapper">
+                <h2 class="fx-product-title">Produto</h2>
+                <p class="fx-product-slogan">
+                    Slogan do produto
+                </p>
+                <h1 class="fx-framework-title">FRAMEWORK</h1>
+                <div class="fx-login-box" id="auth-box">
+                    <div class="fx-login-box-header">
+                        <p>
+                            Faça a autenticação na sua conta cliente
+                        </p>
+                    </div>
+                    <form id="auth" role="form">
+                        <!--Alert div must be shown if the login fails-->
+                        <div class="alert alert-error hidden">
+                            <div class="fx-alert-icon">
+                                <i class="fuxicons fuxicons-error"></i>
+                            </div>
+                            <div class="fx-alert-desc">
+                                <p>
+                                    O nome de utilizador ou a palavra-passe inseridos estão incorretos
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Login form -->
+                        <div class="form-group">
+                            <label class="control-label" for="inputLogin">Nome de utilizador</label>
+                            <input class="form-control" type="text" id="inputLogin" autofocus>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="inputPassword">Palavra-passe</label>
+                            <input class="form-control" type="password" id="inputPassword">
+                        </div>
+
+                        <div class="fx-captcha-block"></div>
+
+                        <div class="fx-login-submit">
+                            <a href="#">Esqueceu-se da palavra-passe?</a>
+                            <button class="btn btn-primary">
+                                entrar
+                            </button>
+                        </div>
+                    </form>
+
+
+                </div>
+
+                <div class="fx-login-box hidden" id="change-pass-box">
+                    <div class="fx-login-box-header">
+                        <p>
+                            Introduza a sua nova palavra-passe
+                        </p>
+                    </div>
+                    <form id="change-pass" role="form">
+                        <!-- Change password form -->
+                        <div class="form-group">
+                            <label class="control-label">Nome de utilizador</label>
+
+                            <p class="form-control-static fx-truncate">
+                                Daniela Teixeira Rei
+                            </p>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="inputPasswordAtual">Palavra-passe atual</label>
+                            <input class="form-control" type="password" id="inputPasswordAtual" autofocus="">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="inputPasswordNova">Nova palavra-passe</label>
+                            <input class="form-control" type="password" id="inputPasswordNova">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="inputPasswordConfNova">Confirmar nova palavra-passe</label>
+                            <input class="form-control" type="password" id="inputPasswordConfNova">
+                        </div>
+
+                        <div class="fx-captcha-block"></div>
+
+                        <div class="fx-login-submit">
+                            <button class="btn btn-default btn-sm">cancelar</button>
+                            <button type="submit" class="btn btn-primary btn-sm">confirmar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER ABOUT -->
+        <!--# include file="/fuxi/doc/partials/showroom/partials/footer-templates.html" -->
+
+    </div>
+    <div class="template-desc-container right-pos fixed maximized">
+        <div class="template-desc-header clearfix">
+            <div class="template-desc-actions">
+                <button id="btn-detach" class="btn btn-xs btn-link" title="destacar">
+                    <i class="fuxicons fuxicons-open-in-window"></i>
+                </button>
+                <button id="btn-fix" class="btn btn-xs btn-link hidden" title="fixar">
+                    <i class="fuxicons fuxicons-restore-from-window"></i>
+                </button>
+                <button id="btn-minimize" class="btn btn-xs btn-link" title="minimizar">
+                    <i class="glyphicon glyphicon-minus"></i>
+                </button>
+                <button id="btn-maximize" class="btn btn-xs btn-link hidden" title="maximizar">
+                    <i class="glyphicon glyphicon-plus"></i>
+                </button>
+            </div>
+            <h3><i class="fx-drag-bright"></i> Informação útil</h3>
+        </div>
+        <div class="template-desc-body">
+            <ul class="list-unstyled">
+                <li>
+                    <p>Por defeito a página de login terá aspeto semelhante a este.</p>
+                    <button id="bt-default" class="btn btn-default btn-sm active">login estado default</button>
+                </li>
+                <li>
+                    <hr />
+                    <p>Quando a validação dispara, os campos ficam assinalados e deverá ser disparada uma mensagem de erro</p>
+                    <button id="bt-error" class="btn btn-default btn-sm">login falhou</button>
+                </li>
+                <li>
+                    <hr />
+                    <p>Existem sistemas que após a primeira autenticação solicitam alteração de password. As regras de validação são idênticas ao do formulário de autenticação.</p>
+                    <button id="bt-change-pass" class="btn btn-default btn-sm">mudar password</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--# include file="/fuxi/doc/partials/showroom/partials/scripts-templates.html" -->
+    <script>
+        $(document).ready(function () {
+
+            utils.templateDesc();
+            utils.activeButton();
+
+            $('#bt-default').on('click', function () {
+                $('#auth .form-group').removeClass('has-error');
+                $('#auth .alert').addClass('hidden');
+                $('#change-pass-box').addClass('hidden');
+                $('#auth-box').removeClass('hidden');
+            });
+
+            $('#bt-error').on('click', function () {
+                $('#auth .form-group').addClass('has-error');
+                $('#auth .alert').removeClass('hidden');
+                $('#change-pass-box').addClass('hidden');
+                $('#auth-box').removeClass('hidden');
+            });
+
+            $('#bt-change-pass').on('click', function () {
+                $('#change-pass-box').removeClass('hidden');
+                $('#auth-box').addClass('hidden');
+            });
+
+            $('.fx-about').addClass('hidden');
+        })
+
+    </script>
+
+
+</body>
+
+
+
+</html>

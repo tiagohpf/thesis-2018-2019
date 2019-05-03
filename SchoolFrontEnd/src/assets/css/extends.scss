@@ -1,0 +1,19 @@
+/* form-lable-title */
+%component-text {
+  font-family: FallingSky;
+  font-size: 18px;
+  color: #4f4f4f;
+  font-weight: 400 !important;
+  text-decoration: none solid rgb(79, 79, 79);
+  line-height: 26px;
+  text-transform: lowercase;
+}
+
+%edit-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+  background-color: #265be0;
+  background-size: cover;
+  box-shadow: 0px 7px 30px rgba(38, 91, 224, 1);
+}

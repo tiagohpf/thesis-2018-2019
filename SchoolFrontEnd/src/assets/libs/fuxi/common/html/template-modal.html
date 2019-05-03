@@ -1,0 +1,339 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge; text/html;" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0,  user-scalable=yes" />
+    <link rel="icon" href="/fuxi/common/html/css/images/favicon.ico" type="image/x-icon" />
+    <title>Template modal</title>
+
+    <!-- CSS -->
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.min.css" />
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+
+    <!-- Respond.js - IE8 support of media queries -->
+    <!--[if lt IE 9]>
+    <script src="/fuxi/lib/respond/1.4/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- Only for explanation purposes. Don't remove this piece of styles from here-->
+    <style type="text/css">
+        .template-explanation {
+            background-color: #ddd;
+            padding: 20px;
+        }
+
+        .area-btn {
+            padding: 20px;
+        }
+
+        .buttons-wrapper {
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="template-explanation">
+        <h4>Template Modal</h4>
+        <p>
+            Este template serve para exemplificar a utilização de uma janela modal.
+            O seu tamanho pode ser personalizado aplicando uma combinação das classes abaixo listadas.
+            <br />
+            Caso não se pretenda fazer override do tamanho default da modal não é necessário acrescentar a classe fx-modal-*definir-tamanho-aqui*.
+            <br />
+            A janela modal, independentemente da sua largura, tem uma altura máxima definida para a classe .modal-body. Essa altura máxima é de 550px. A partir daqui será gerado um scroll vertical.
+        </p>
+        <p>A modal aberta pelo botão "preview default bootstrap modal" apresenta um exemplo no qual o título da modal está definido como link para representar a possibilidade de abrir o conteúdo da modal em página. Caso não se pretenda implementar este racional bastará não fazer uso da tag para o hyperlink e disponibilizar o nome da entidade diretamente no heading.  </p>
+        <button class="btn btn-primary disabled">
+            .modal-dialog
+        </button>
+
+        <button class="btn btn-primary disabled">
+            .modal-dialog.fx-modal-s
+        </button>
+
+        <button class="btn btn-primary disabled">
+            .modal-dialog.fx-modal-m
+        </button>
+
+        <button class="btn btn-primary disabled">
+            .modal-dialog.fx-modal-l
+        </button>
+
+    </div>
+    <div class="area-btn">
+        <!-- Área de botões-->
+        <div class="buttons-wrapper">
+            <a href="#" id="modalStandard" type="button" class="btn btn-default" data-toggle="modal" data-target="#default"> preview default bootstrap modal</a>
+            <a href="#" id="modalStandardDraggable" type="button" class="btn btn-default" data-toggle="modal" data-target="#draggable-modal"> modal (draggable)</a>
+            <a href="#" id="modalS" type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-s"> preview fuxi small modal</a>
+            <a href="#" id="modalM" type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-m"> preview fuxi medium modal</a>
+            <a href="#" id="ModalL" type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-l"> preview fuxi large modal</a>
+            <a href="#" id="ModalConfirm" type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-confirm"> preview fuxi confirm window</a>
+
+        </div>
+    </div>
+    <!-- default bootstrap modal-->
+    <div class="modal fade" id="default" role="dialog" aria-labelledby="defaultModal" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="defaultModal">
+                        <a href="#" target="_blank">Título da modal <i class="fuxicons fuxicons-open-in-window"></i></a>
+                    </h4>
+                    <p>
+                        Breve descrição da modal
+                    </p>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="input1" class="col-sm-2 control-label">Input 1</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control input-sm" id="input1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="input2" class="col-sm-2 control-label">Input 2</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control input-sm" id="input2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm">
+                        botão primário
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">
+                        cancelar
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-s" role="dialog" aria-labelledby="modalS" aria-hidden="true">
+        <div class="modal-dialog fx-modal-s">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="modalM">Título da modal</h4>
+                    <p>
+                        Breve descrição da modal
+                    </p>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="input3" class="col-sm-2 control-label">Input 1</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control input-sm" id="input3">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="input4" class="col-sm-2 control-label">Input 4</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control input-sm" id="input4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm">
+                        botão primário
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">
+                        cancelar
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-m" role="dialog" aria-labelledby="modalM" aria-hidden="true">
+        <div class="modal-dialog fx-modal-m">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="modalM">Título da modal</h4>
+                    <p>
+                        Breve descrição da modal
+                    </p>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="input5" class="col-sm-2 control-label">Input 1</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control input-sm" id="input5">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="input6" class="col-sm-2 control-label">Input 2</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control input-sm" id="input6">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm">
+                        botão primário
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">
+                        cancelar
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-l" role="dialog" aria-labelledby="modalL" aria-hidden="true">
+        <div class="modal-dialog fx-modal-l">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="modalL">Título da modal</h4>
+                    <p>
+                        Breve descrição da modal
+                    </p>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="input5" class="col-sm-2 control-label">Input 1</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control input-sm" id="input7">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="input8" class="col-sm-2 control-label">Input 2</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control input-sm" id="input8">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm">
+                        botão primário
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">
+                        cancelar
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-confirm" role="dialog" aria-labelledby="modalConfirm" aria-hidden="true">
+        <div class="modal-dialog fx-modal-m">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="modalL">Eliminar</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="fx-confirm-wrapper">
+                        <div class="alert alert-warning">
+                            <div class="fx-alert-icon">
+                                <i class="fuxicons fuxicons-warning"></i>
+                            </div>
+                            <div class="fx-alert-desc">
+                                <p>
+                                    Deseja eliminar esta entidade?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm">
+                        eliminar
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">
+                        cancelar
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DRAGGABLE MODAL -->
+    <div class="modal fade fx-modal-drag" id="draggable-modal" role="dialog" aria-labelledby="modalStandardDraggable" aria-hidden="true" data-backdrop="false">
+        <div id="draggable-modal-dialog" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="defaultModal"><i class="fx-drag"></i>Título da modal</h4>
+                    <p>
+                        Breve descrição da modal
+                    </p>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="input1" class="col-sm-2 control-label">Input 1</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control input-sm" id="input1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="input2" class="col-sm-2 control-label">Input 2</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control input-sm" id="input2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm">
+                        botão primário
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">
+                        cancelar
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BASEPACK-->
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+    <script src="/fuxi/lib/jqueryui/1.10/jquery-ui-1.10.4.custom.min.js"></script>
+
+    <script>
+
+        $(function () {
+            $("#draggable-modal-dialog").draggable({
+                scroll: true,
+                handle: ".fx-drag"
+            });
+        });
+
+    </script>
+</body>
+
+</html>

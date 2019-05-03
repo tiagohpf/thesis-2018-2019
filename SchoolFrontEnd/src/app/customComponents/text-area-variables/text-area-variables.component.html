@@ -1,0 +1,121 @@
+<!-- <ng-container *ngIf="componentReady">
+  <div [hidden]="inputParameters.hidden" [style.padding-bottom]="!fixedSize ? '10px' : 'auto'">
+    <div class="form-group div-as-table" [class.has-error]="showError">
+        <div class="tr">
+            <div
+                *ngIf="labelText !== null"
+                class="control-label td"
+                [id]="inputParameters.id ? 'wct-component-label-' + inputParameters.id : ''"
+                [class.fx-required-field]="required"
+                [style.padding-right]="!fixedSize ? '20px' : 'auto'">
+                <label *ngIf="labelText" [attr.for]="labelFor">{{labelText | myI18n}}</label>
+                <label *ngIf="!labelText" [attr.for]="labelFor">&nbsp;</label>
+            </div>
+            <div
+                class="td"
+                [id]="inputParameters.id ? 'wct-component-display-' + inputParameters.id : ''">
+                <ng-container *ngTemplateOutlet="fieldErrorTemplate"></ng-container>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <ng-template #fieldErrorTemplate>
+    <label
+          *ngIf="inputParameters.description"
+          style="padding-left: 12px"
+          [id]="inputParameters?.id ? 'wct-tagDescription-' + inputParameters.id : ''">{{inputParameters.description | myI18n}} ({{inputParameters.valueList.length}})
+    </label>
+    <div class="fx-tags-wrapper hide-label">
+      <div
+      *ngFor="let detail of inputParameters.valueList;let i=index"
+        class="fx-tag-m"
+        [id]="inputParameters?.id ? 'wct-tag-' + inputParameters.id + '-' + i : ''"
+        (click)="click(detail)">
+          <span class="fx-tag-name">
+            {{detail.value}}
+          </span>
+      </div>
+    </div>
+    <div
+    contenteditable="true"
+    [id]="'diveditable-' + componentElementsId.component"
+    (keypress)="valueChange($event)"
+    ></div>
+    <textarea
+      hidden
+      class="form-control input-{{inputParameters.size || 'sm'}} textarea"
+      placeholder="{{inputParameters.placeholder | myI18n}}"
+      title="{{inputParameters.title | myI18n}}"
+      [id]="componentElementsId.component"
+      [class.disabled]="inputParameters.disabled"
+      [readonly]="inputParameters.readonly"
+      [maxlength]="inputParameters.validator && inputParameters.validator['maxlength'] ? inputParameters.validator['maxlength']['value'] : false"
+      [attr.disabled]="inputParameters.disabled"
+      [disabled]="inputParameters.disabled"
+      [(ngModel)]="inputParameters.value"
+      [formControl]="formModel.controls[inputParameters.id]"
+      [ngStyle]="inputParameters.style">
+    </textarea>
+    <div class="clear"></div>
+    <p
+        *ngIf="showError"
+        class="help-block"
+        [id]="inputParameters.id ? 'wct-component-invalidMessage-' + inputParameters.id : ''"
+        [ngStyle]="{
+            'padding-left':inputParameters.size == 'lg' ? '13px' : '9px',
+            'margin-bottom':'0'}">
+                {{errorMessage | myI18n}}
+    </p>
+  </ng-template>
+  <div class="btn btn-info" (click)="test()">test!</div>
+</ng-container> -->
+<div>
+	<div class="form-group div-as-table">
+		<div class="tr">
+			<div class="control-label td" [ngClass]="{'fx-required-field': required}">
+				<label>{{inputParameters.text | myI18n}}</label>
+			</div>
+			<div class="td">
+
+				<div>
+					<div class="fx-variable-parts" *ngIf="editable">
+						<div id="variable-parts-container" class="fx-variable-parts-container">
+							<button *ngFor="let token of tokens" type="button" (click)="clickTokenButton(); forceRefresh()" class="btn btn-default btn-xs fx-variable-part token" data-var-token="[%SALDO%]">{{token}}</button>
+						</div>
+					</div>
+					<div (click)="forceRefresh()" (input)="onInput($event)" (blur)="onInput($event)" id="content-editable" [attr.contenteditable]="editable"
+					 [ngClass]="editable ? 'fx-compose-msg': 'fx-show-msg'" data-var-validate-maxlength="true"
+					 data-var-maxlength="160" [attr.data-var-feedback]="charactersFeedback | myI18n"
+					 [attr.data-var-feedback-warning]="warningFeedback | myI18n"
+					 [attr.data-var-feedback-error]="errorFeedback | myI18n"></div>
+
+					<div *ngIf="editable" id="content-editable-feedback" class="fx-msg-feedback" [hidden]="!feedback"></div>
+					<div *ngIf="editable" id="content-editable-feedback-warning" [hidden]="!feedback"
+						class="alert alert-warning fx-alert-after-compose hidden">
+						<div class="fx-alert-icon">
+							<i class="fa fa-exclamation-triangle"></i>
+						</div>
+						<div id="content-editable-feedback-warning-p" class="fx-alert-desc"></div>
+					</div>
+					<div *ngIf="editable" id="content-editable-feedback-error"
+						[hidden]="!feedback"
+					 	class="alert alert-error fx-alert-after-compose hidden">
+						<div class="fx-alert-icon">
+							<i class="fuxicons fuxicons-error"></i>
+						</div>
+						<div id="content-editable-feedback-error-p" class="fx-alert-desc"></div>
+					</div>
+
+					<div *ngIf="editable" id="content-editable-feedback" class="fx-msg-feedback" [hidden]="!feedback">
+						{{specialCharactersFeedback | myI18n}}
+					</div>
+				</div>
+
+				 <!-- <input type="hidden" [name]="inputParameters.id" [formControl]="control" [(ngModel)]="valueControl" />  -->
+				<!-- <span>{{feedback}}</span> -->
+
+			</div>
+		</div>
+	</div>
+</div>

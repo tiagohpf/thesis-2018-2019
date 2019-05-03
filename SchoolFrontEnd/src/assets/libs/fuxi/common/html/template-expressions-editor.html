@@ -1,0 +1,870 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Editor de expressões</title>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/fuxi/lib/jstree/3.0/themes/fuxi/style.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="/fuxi/lib/uilayout/layout-default-latest.css" />
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.css" />
+
+    <script src="/basepack/modernizr/2.6/modernizr.js"></script>
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/fuxi/lib/jqueryui/1.10/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+    <script src="/fuxi/lib/uilayout/jquery.layout-latest.js"></script>
+</head>
+<body>
+    <div class="fx-push-footer fx-full-height">
+        <header id="fx-header">
+            <nav class="fx-navbar" role="navigation">
+                <a class="fx-brand" href="#"><h1 class="fx-logo-brand">Fuxi</h1></a>
+            </nav>
+            <!-- breadcrumb -->
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#"><i class="fuxicons fuxicons-home"></i>Início</a>
+                </li>
+                <li>
+                    <a href="#">Link</a>
+                </li>
+                <li class="active">
+                    Ativo
+                </li>
+            </ul>
+        </header>
+        <div class="fx-prevent-content-behind-footer fx-full-height">
+            <div style="height:100%; overflow:auto">
+                <div class="container">
+
+                    <section class="well row">
+                        <h1><strong>Template Editor de expressões</strong></h1>
+                        <div class="row">
+                            <div id="ws-doc">
+
+                                <h3><i class="caret"></i> <strong>Opções</strong></h3>
+                                <div style="padding: 0 20px" class="hidden">
+                                    <div>
+                                        <label><strong>layoutOptions: </strong></label>
+                                        <span>Opções do jQuery UI Layout</span>
+                                    </div>
+                                    <div>
+                                        <label><strong>clientCheckRuleSyntaxValidator: </strong></label>
+                                        <span>Função utilizada para verificar a sintaxe da regra</span>
+                                    </div>
+                                    <div>
+                                        <label><strong>expressionItems: </strong></label>
+                                        <span>Items a mostrar na jsTree. JSON no formato permitido pela jsTree.</span>
+                                    </div>
+                                    <div>
+                                        <label><strong>operatorItems: </strong></label>
+                                        <span>
+                                            Items de operadores e operações a mostrar para construção da regra. Deve ser em formato JSON com a seguinte estrutura:
+                                            <code>
+                                                [{ "name": "","cssname": "","maxitems": 3,"items": [] }]
+                                            </code>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <label><strong>templateGroup: </strong></label>
+                                        <span>Template HTML para o grupo de acções</span>&nbsp;<a href="#" id="show-template-group">template</a>
+                                        <div id="template-group-container" class="hidden">
+                                            <textarea id="template-group" rows="5" style="width:100%" readonly="readonly"></textarea>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label><strong>templateGroupItem: </strong></label>
+                                        <span>Template HTML para os items do grupo de acções</span>&nbsp;<a href="#" id="show-template-group-item">template</a>
+                                        <div id="template-group-item-container" class="hidden">
+                                            <textarea id="template-group-item" rows="5" style="width:100%" readonly="readonly"></textarea>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label><strong>templateAllActions: </strong></label>
+                                        <span>Template HTML para todas as acções definidas</span>&nbsp;<a href="#" id="show-template-all-actions">template</a>
+                                        <div id="template-all-actions-container" class="hidden">
+                                            <textarea id="template-all-actions" rows="8" style="width:100%" readonly="readonly"></textarea>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label><strong>languageStrings: </strong></label>
+                                        <span>Objeto com as mensagens utilizadas</span>
+                                        <div style="margin-left:15px">
+                                            <div>
+                                                <label><strong>feedbackSucceed: </strong></label>
+                                                <span>Mensagem de sucesso</span>
+                                            </div>
+                                            <div>
+                                                <label><strong>feedbackError: </strong></label>
+                                                <span>Mensagem de erro</span>
+                                            </div>
+                                            <div>
+                                                <label><strong>feedbackEmptyRule: </strong></label>
+                                                <span>Mensagem de regra a vazio</span>
+                                            </div>
+                                            <div>
+                                                <label><strong>noActins: </strong></label>
+                                                <span>Mensagem de ações não definidas</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h3><i class="caret"></i> <strong>Eventos</strong></h3>
+                                <div style="padding: 0 20px" class="hidden">
+                                    <div>
+                                        <label><strong>confirmclick.ee: </strong></label>
+                                        <span>executado quando se clica no botão aplicar</span>
+                                    </div>
+                                    <div>
+                                        <label><strong>cancelclick.ee: </strong></label>
+                                        <span>executado quando se clica no botão cancelar</span>
+                                    </div>
+                                    <div>
+                                        <label><strong>loaded.ee: </strong></label>
+                                        <span>executado quando carregou o editor de expressões</span>
+                                    </div>
+                                    <div>
+                                        <label><strong>addexpression.ee: </strong></label>
+                                        <span>executado quando se clica numa expressão para se adicionar à regra</span>
+                                    </div>
+                                    <div>
+                                        <label><strong>clearrule.ee: </strong></label>
+                                        <span>executado quando se clica no botão para limpar a regra</span>
+                                    </div>
+                                    <div>
+                                        <label><strong>checksyntax.ee: </strong></label>
+                                        <span>executado quando se clica no botão para verificar a sintaxe</span>
+                                    </div>
+                                    <div>
+                                        <label><strong>operatorclick.ee: </strong></label>
+                                        <span>executado quando se clica num operador</span>
+                                    </div>
+                                    <div>
+                                        <label><strong>searchexpressionclick.ee: </strong></label>
+                                        <span>executado quando se clica no "search" das expressões</span>
+                                    </div>
+                                    <div>
+                                        <label><strong>searchactionclick.ee: </strong></label>
+                                        <span>executado quando se clica no "search" das acções</span>
+                                    </div>
+                                </div>
+
+                                <h3><i class="caret"></i> <strong>Métodos</strong></h3>
+                                <div style="padding: 0 20px" class="hidden">
+                                    <div>
+                                        <label><strong>destroy(): </strong></label>
+                                        <span>método que elimina a regra e todos os eventos associados ao elemento</span>
+                                    </div>
+                                </div>
+                                <h3><i class="caret"></i> <strong>How To? Step by Step</strong></h3>
+                                <div style="padding: 0 20px" class="hidden">
+                                    <form id="frm-options">
+                                        <table class="table">
+                                            <tr>
+                                                <td>
+                                                    Verificar que tem incluído os seguintes ficheiros:
+                                                    <ul>
+                                                        <li>
+                                                            <strong>CSS</strong>
+                                                            <ul>
+                                                                <li>Bootstrap (/basepack/bootstrap-pt/3.0/css/bootstrap.min.css)</li>
+                                                                <li>jsTree (/fuxi/lib/jstree/3.0/themes/fuxi/style.css)</li>
+                                                                <li>jQuery UI Layout (/fuxi/lib/uilayout/layout-default-latest.css)</li>
+                                                                <li>Fuxi (/fuxi/common/html/css/fuxi.css)</li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <strong>JS</strong>
+                                                            <ul>
+                                                                <li>Modernizr (/basepack/modernizr/2.6/modernizr.js)</li>
+                                                                <li>jQuery (/basepack/jquery/1.9/jquery.min.js)</li>
+                                                                <li>Bootstrap (/basepack/bootstrap-pt/3.0/js/bootstrap.min.js)</li>
+                                                                <li>jQuery UI (/fuxi/lib/jqueryui/1.10/jquery-ui-1.10.4.custom.min.js)</li>
+                                                                <li>jQuery UI Layout (/fuxi/lib/uilayout/jquery.layout-latest.js)</li>
+                                                                <li>jsTree (/fuxi/lib/jstree/3.0/jstree.min.js)</li>
+                                                                <li>Fuxi (/fuxi/common/exec/fuxi.min.js) <strong>Para efeitos demonstrativos está a ser usado a versão não minificada.</strong></li>
+                                                                <li>Fuxi jsTree Plugin Popoverinfo (/fuxi/common/exec/jstree.plugin.popoverinfo.js)</li>
+                                                                <li>Fuxi Expression Editor (/fuxi/common/exec/common-expression-editor.js)</li>
+                                                                <li>Fuxi Resources (/fuxi/resources/fuxi_pt.js)</li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    O Editor de Expressões trabalha em modal e in-line, e como o "feel and look" pode variar entre sistemas, é necessário ter o html na página.
+                                                    Na demo pode verificar o elemento DOM:
+                                                    <br />
+                                                    Modal:<br />
+                                                    <code>&ltdiv id="expressions-editor-modal" class="modal"&gt...&lt/div&gt</code><br />
+                                                    In-line:<br />
+                                                    <code>&ltdiv id="expressions-editor" &gt...&lt/div&gt</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Na secção de script criar uma variável com as opções para a inicialização do Editor de Expressões.
+                                                    <br />
+                                                    <code language="javascript">
+                                                        var options = {<br />
+                                                        expressionItems: eexpItems,<br />
+                                                        operatorItems: eeOperItems<br />
+                                                        };<br />
+                                                    </code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Abrir o Editor em Modal:<br />
+                                                    O editor em modal deve ser inicializado no evento <i>shown</i> da modal.
+                                                    <br />
+                                                    <code language="javascript">
+                                                        $('#expressions-editor-modal').on('shown.bs.modal', function () {<br />
+                                                        // init editor<br />
+                                                        var $eem = $("#expressions-editor-modal").eEditor(options);<br />
+                                                        // event attach <br />
+                                                        $eem.$elem.on('confirmclick.ee', function (e) {<br />
+                                                        console.log(e);<br />
+                                                        $("#result").html(e.returntype + ": " + e.rule);<br />
+                                                        });<br />
+                                                        });<br />
+                                                        // destroy on hidden <br />
+                                                        $('#expressions-editor-modal').on('hidden.bs.modal', function () {<br />
+                                                        if ($eem) $eem.destroy();<br />
+                                                        });
+                                                    </code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Abrir o Editor In-line:
+                                                    <br />
+                                                    <code language="javascript">
+                                                        // init editor<br />
+                                                        var $ee = $("#expressions-editor-modal").eEditor(options);<br />
+                                                        // event attach <br />
+                                                        $ee.$elem.on('confirmclick.ee', function (e) {<br />
+                                                        console.log(e);<br />
+                                                        $("#result").html(e.returntype + ": " + e.rule);<br />
+                                                        });<br />
+                                                    </code>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <button class="btn btn-primary btn-sm" id="trigger-expressions-editor">Open MODAL Expressions Editor</button>
+                    <br />
+                    <br />
+                    <p><strong>O resultado da expressão aparece aqui, após clicar no botão confirmar!</strong></p>
+                    <br />
+                    <div id="result" style="border:1px solid #ccc; padding:10px"></div>
+                    <br />
+
+                    <div id="expressions-editor">
+                        <div class="fx-ee-dialog">
+                            <div class="fx-ee-content">
+                                <div class="fx-ee-header">
+                                    <h4 class="fx-ee-title">Título do editor de expressões</h4>
+                                    <p>Descrição do editor de expressões</p>
+                                </div>
+                                <div class="fx-ee-body">
+                                    <div class="clearfix" style="height: 450px;">
+                                        <!-- WE MUST HARDCODE THIS DIV HEIGHT -->
+                                        <div class="fx-ee-wrapper">
+                                            <div class="ui-layout-west">
+                                                <form role="search">
+                                                    <div class="form-group fx-search-input">
+                                                        <div class="fx-pos-rel">
+                                                            <input type="text" class="fx-ee-search-expression-value fx-dropdown-search form-control input-sm full-width" placeholder="pesquisar ...">
+                                                            <button class="glyphicon glyphicon-search fx-ee-search-expression" id="bt-search" type="button"></button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <div class="fx-ee-options">
+                                                    <div class="fx-ee-tree-container"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="ui-layout-center">
+
+                                                <div class="fx-ee-more-actions-wrapper clearfix">
+                                                    <p class="fx-ee-type-area-title">Operadores</p>
+                                                    <button type="button" class="btn btn-default btn-xs pull-right fx-ee-toogle-all-actions">
+                                                        <span class="sr-only">
+                                                            ver todas as ações
+                                                        </span>
+                                                        ver todos <i class="caret"></i>
+                                                    </button>
+                                                    <div class="fx-ee-all-actions-wrapper hidden">
+                                                        <div class="fx-ee-all-actions-inner">
+                                                            <form role="search">
+                                                                <div class="form-group fx-search-input">
+                                                                    <div class="fx-pos-rel">
+                                                                        <input type="text" class="fx-ee-search-action-value fx-dropdown-search form-control input-sm full-width" placeholder="pesquisar ...">
+                                                                        <button class="glyphicon glyphicon-search fx-ee-search-action" id="bt-search" type="button"></button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                            <div class="fx-ee-all-actions">
+                                                                <!--load template here-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="fx-ee-common-actions clearfix">
+                                                    <!--load template here-->
+                                                </div>
+
+                                                <div class="fx-ee-type-area-tools clearfix">
+                                                    <p class="fx-ee-type-area-title">Rule</p>
+                                                    <button type="button" id="clear-rule" class="btn btn-default btn-xs pull-right fx-clear-rule">
+                                                        <i class="fa fa-eraser"></i> limpar
+                                                    </button>
+                                                    <button type="submit" class="btn btn-default btn-xs pull-right fx-check-syntax" id="check-syntax">
+                                                        <i class="glyphicon glyphicon-ok"></i> verificar sintaxe
+                                                    </button>
+                                                    <div class="alert fx-ee-feedback">
+                                                        <div class="fx-alert-icon">
+                                                            <i class="fuxicons fuxicons-error fx-validation-feedback-icon"></i>
+                                                        </div>
+                                                        <div class="fx-alert-desc">
+                                                            <p class="fx-validation-feedback-messsage"><!--Mensagem de feedback aqui--></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="fx-ee-constructors">
+                                                    <div class="form-group fx-ee-form-group-type-rule">
+                                                        <textarea class="form-control fx-ee-editable-area" spellcheck="false"></textarea>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="ui-layout-east">
+                                                <div class="fx-ee-options">
+                                                    !!! ola mundo !!!
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="fx-ee-footer">
+                                    <label>output</label>
+                                    <select class="form-control fx-ee-return-type">
+                                        <option>string</option>
+                                        <option>list</option>
+                                        <option>integer</option>
+                                    </select>
+                                    <button id="btn-confirm" type="button" class="btn btn-primary btn-sm fx-ee-confirm">
+                                        aplicar
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-sm fx-ee-cancel">
+                                        cancelar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+                    <h2>Skeleton</h2>
+                    <!-- skeleton of the expression editor -->
+                    <div id="expressions-editor-skeleton">
+                        <div class="fx-ee-dialog">
+                            <div class="fx-ee-content">
+                                <div class="fx-ee-header">
+                                    <h4 class="fx-ee-title">Título do editor de expressões</h4>
+                                    <p>Descrição do editor de expressões</p>
+                                </div>
+                                <div class="fx-ee-body">
+                                    <div class="clearfix" style="height: 450px;">
+                                        <!-- WE MUST HARDCODE THIS DIV HEIGHT -->
+                                        <div class="fx-ee-wrapper">
+                                            <div class="ui-layout-west">
+                                                <form role="search">
+                                                    <div class="form-group fx-search-input">
+                                                        <div class="fx-pos-rel">
+                                                            <input type="text" class="fx-ee-search-expression-value fx-dropdown-search form-control input-sm full-width" placeholder="pesquisar ...">
+                                                            <button class="glyphicon glyphicon-search fx-ee-search-expression" id="bt-search" type="button"></button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <div class="fx-ee-options">
+                                                    <div class="fx-ee-tree-container"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="ui-layout-center">
+
+                                                <div class="fx-ee-more-actions-wrapper clearfix">
+                                                    <p class="fx-ee-type-area-title">Operadores</p>
+                                                    <button type="button" class="btn btn-default btn-xs pull-right fx-ee-toogle-all-actions">
+                                                        <span class="sr-only">
+                                                            ver todas as ações
+                                                        </span>
+                                                        ver todos <i class="caret"></i>
+                                                    </button>
+                                                    <div class="fx-ee-all-actions-wrapper hidden">
+                                                        <div class="fx-ee-all-actions-inner">
+                                                            <form role="search">
+                                                                <div class="form-group fx-search-input">
+                                                                    <div class="fx-pos-rel">
+                                                                        <input type="text" class="fx-ee-search-action-value fx-dropdown-search form-control input-sm full-width" placeholder="pesquisar ...">
+                                                                        <button class="glyphicon glyphicon-search fx-ee-search-action" id="bt-search" type="button"></button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                            <div class="fx-ee-all-actions">
+                                                                <!--load template here-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="fx-ee-common-actions clearfix">
+                                                    <!--load template here-->
+                                                </div>
+
+                                                <div class="fx-ee-type-area-tools clearfix">
+                                                    <p class="fx-ee-type-area-title">Rule</p>
+                                                    <button type="button" id="clear-rule" class="btn btn-default btn-xs pull-right fx-clear-rule">
+                                                        <i class="fa fa-eraser"></i> limpar
+                                                    </button>
+                                                    <button type="submit" class="btn btn-default btn-xs pull-right fx-check-syntax" id="check-syntax">
+                                                        <i class="glyphicon glyphicon-ok"></i> verificar sintaxe
+                                                    </button>
+                                                    <div class="alert fx-ee-feedback alert-error">
+                                                        <div class="fx-alert-icon">
+                                                            <i class="fuxicons fuxicons-error"></i>
+                                                        </div>
+                                                        <div class="fx-alert-desc">
+                                                            <p class="fx-validation-feedback-messsage">Mensagem de feedback aqui</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="fx-ee-constructors">
+                                                    <div class="form-group fx-ee-form-group-type-rule">
+                                                        <textarea class="form-control fx-ee-editable-area" spellcheck="false"></textarea>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="ui-layout-east">
+                                                <div class="fx-ee-options">
+                                                    !!! ola mundo !!!
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="fx-ee-footer">
+                                    <label>output</label>
+                                    <select class="form-control fx-ee-return-type">
+                                        <option>string</option>
+                                        <option>list</option>
+                                        <option>integer</option>
+                                    </select>
+                                    <button id="btn-confirm" type="button" class="btn btn-primary btn-sm fx-ee-confirm">
+                                        aplicar
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-sm fx-ee-cancel">
+                                        cancelar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br /><br />
+                </div>
+            </div>
+        </div>
+        <!-- FOOTER ABOUT -->
+        <!--# include file="/fuxi/partials/html/partial-footer-about.html" -->
+    </div>   
+
+    <!-- modal -->
+    <div id="expressions-editor-modal" class="modal">
+        <div class="modal-dialog fx-modal-l fx-ee-dialog">
+            <div class="modal-content fx-ee-content">
+                <div class="modal-header fx-ee-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="fx-ee-title">Título do editor de expressões</h4>
+                    <p>Descrição do editor de expressões</p>
+                </div>
+                <div class="modal-body fx-ee-body">
+                    <div class="clearfix" style="height: 450px;">
+                        <!-- WE MUST HARDCODE THIS DIV HEIGHT -->
+                        <div class="fx-ee-wrapper">
+                            <div class="ui-layout-west">
+                                <form role="search">
+                                    <div class="form-group fx-search-input">
+                                        <div class="fx-pos-rel">
+                                            <input type="text" class="fx-ee-search-expression-value fx-dropdown-search form-control input-sm full-width" placeholder="pesquisar ...">
+                                            <button class="glyphicon glyphicon-search fx-ee-search-expression" id="bt-search" type="button"></button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="fx-ee-options">
+                                    <div class="fx-ee-tree-container"></div>
+                                </div>
+                            </div>
+
+                            <div class="ui-layout-center">
+
+                                <div class="fx-ee-more-actions-wrapper clearfix">
+                                    <p class="fx-ee-type-area-title">Operadores</p>
+                                    <button type="button" class="btn btn-default btn-xs pull-right fx-ee-toogle-all-actions">
+                                        <span class="sr-only">
+                                            ver todas as ações
+                                        </span>
+                                        ver todos <i class="caret"></i>
+                                    </button>
+                                    <div class="fx-ee-all-actions-wrapper hidden">
+                                        <div class="fx-ee-all-actions-inner">
+                                            <form role="search">
+                                                <div class="form-group fx-search-input">
+                                                    <div class="fx-pos-rel">
+                                                        <input type="text" class="fx-ee-search-action-value fx-dropdown-search form-control input-sm full-width" placeholder="pesquisar ...">
+                                                        <button class="glyphicon glyphicon-search fx-ee-search-action" id="bt-search" type="button"></button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <div class="fx-ee-all-actions">
+                                                <!--load template here-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="fx-ee-common-actions clearfix">
+                                    <!--load template here-->
+                                </div>
+
+                                <div class="fx-ee-type-area-tools clearfix">
+                                    <p class="fx-ee-type-area-title">Rule</p>
+                                    <button type="button" id="clear-rule" class="btn btn-default btn-xs pull-right fx-clear-rule">
+                                        <i class="fa fa-eraser"></i> limpar
+                                    </button>
+                                    <button type="submit" class="btn btn-default btn-xs pull-right fx-check-syntax" id="check-syntax">
+                                        <i class="glyphicon glyphicon-ok"></i> verificar sintaxe
+                                    </button>
+                                    <div class="alert fx-ee-feedback">
+                                        <div class="fx-alert-icon">
+                                            <i class="fuxicons fuxicons-error"></i>
+                                        </div>
+                                        <div class="fx-alert-desc">
+                                            <p class="fx-validation-feedback-messsage"><!--Mensagem de feedback aqui--></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="fx-ee-constructors">
+                                    <div class="form-group fx-ee-form-group-type-rule">
+                                        <textarea class="form-control fx-ee-editable-area" spellcheck="false"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="ui-layout-east">
+                                <div class="fx-ee-options">
+                                    !!! ola mundo !!!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer fx-ee-footer">
+                    <label>output</label>
+                    <select class="form-control fx-ee-return-type">
+                        <option>string</option>
+                        <option>list</option>
+                        <option>integer</option>
+                    </select>
+                    <button id="btn-confirm" type="button" class="btn btn-primary btn-sm fx-ee-confirm">
+                        confirmar
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm fx-ee-cancel" data-dismiss="modal">
+                        cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/template-expression-editor" id="template-expression-editor-all-actions">
+        <div class="col-sm-6 fx-ee-all-actions-block {{CSSNAME}}" data-name="{{NAME}}">
+            <p class="fx-ee-all-actions-block-title">{{NAME}}</p>
+            <div>
+                {{ITEMS}}
+            </div>
+        </div>
+    </script>
+
+    <script type="text/template-expression-editor" id="template-expression-editor-group">
+        <div class="fx-ee-actions-group {{CSSNAME}}" data-name="{{NAME}}">
+            {{ITEMS}}
+        </div>
+    </script>
+
+    <script type="text/template-expression-editor" id="template-expression-editor-group-items">
+        <button type="button" class="btn btn-default btn-xs fx-ee-btn-action" data-action="{{ACTION}}">
+            {{TEXT}}
+        </button>
+    </script>
+
+    <script src="/fuxi/lib/jstree/3.0/jstree.min.js"></script>
+    <script src="/fuxi/common/exec/fuxi.js"></script>
+    <script src="/fuxi/common/exec/jstree.plugin.popoverinfo.js"></script>
+    <script src="/fuxi/common/exec/common-expression-editor.js"></script>
+
+    <script src="/fuxi/resources/fuxi_pt.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#ws-doc h3").css("cursor", "pointer").on('click', function () {
+                $(this).next().toggleClass("hidden");
+            });
+            $("#template-group").text($("#template-expression-editor-group").html());
+            $("#show-template-group").on('click', function () {
+                $("#template-group-container").toggleClass("hidden");
+            });
+            $("#template-group-item").text($("#template-expression-editor-group-items").html());
+            $("#show-template-group-item").on('click', function () {
+                $("#template-group-item-container").toggleClass("hidden");
+            });
+            $("#template-all-actions").text($("#template-expression-editor-all-actions").html());
+            $("#show-template-all-actions").on('click', function () {
+                $("#template-all-actions-container").toggleClass("hidden");
+            });
+
+
+            // init ui layout on the skeleton --------------------------
+            var $skl = $("#expressions-editor-skeleton");
+            var sklLayoutOptions = {
+                defaults: {
+                    resizable: true,
+                    livePaneResizing: true,
+                    resizerTip: "Resize",
+                    spacing_closed: 10,
+                    spacing_open: 10
+                },
+                center: {
+                    size: 450,
+                    minSize: 100,
+                    maxSize: 450,
+                    contentSelector: '.fx-ee-constructors'
+                },
+                east: {
+                    size: 100,
+                    contentSelector: '.fx-ee-options'
+                },
+                west: {
+                    size: 250,
+                    contentSelector: '.fx-ee-options'
+                }
+            };
+            var sklLayout = $('.fx-ee-wrapper', $skl).layout(sklLayoutOptions);
+            // --------------------------------------------------------
+
+
+            $('#trigger-expressions-editor').on('click', function () {
+                $('#expressions-editor-modal').modal({
+                    keyboard: false,
+                    backdrop: "static"
+                });
+            });
+
+            var eeOperItems = [
+                {
+                    "name": "operations",
+                    "cssname": "fx-ee-operations-wrapper",
+                    "maxitems": 3,
+                    "items": [
+                        {
+                            "text": "not",
+                            "action": "not"
+                        },
+                        {
+                            "text": "or",
+                            "action": "or"
+                        },
+                        {
+                            "text": "and",
+                            "action": "and"
+                        },
+                        {
+                            "text": "Mod",
+                            "action": "Mod"
+                        }
+                    ]
+                },
+                {
+                    "name": "operators",
+                    "cssname": "fx-ee-operators-wrapper",
+                    "maxitems": 5,
+                    "items": [
+                        {
+                            "text": "+",
+                            "action": "sum"
+                        },
+                        {
+                            "text": "-",
+                            "action": "subtract"
+                        },
+                        {
+                            "text": "*",
+                            "action": "multiply"
+                        },
+                        {
+                            "text": "/",
+                            "action": "divide"
+                        },
+                        {
+                            "text": "=",
+                            "action": "equals",
+                            "weight": "10"
+                        },
+                        {
+                            "text": ">",
+                            "action": "greater"
+                        },
+                        {
+                            "text": "<",
+                            "action": "less"
+                        },
+                        {
+                            "text": ">=",
+                            "action": "greater-equal"
+                        },
+                        {
+                            "text": "<=",
+                            "action": "less-equal"
+                        }
+                    ]
+                }
+            ];
+            var eexpItems = [
+                { "id": "demo_root_1", "parent": "#", "text": "Most used", "li_attr": { "data-showinfo": "false" }, "icon": "fa fa-file" },
+                    { "id": "demo_child_1", "parent": "demo_root_1", "text": "createNew()", "icon": "fa fa-square", "li_attr": { "data-showinfo": "true", "data-expression": "createNew()", "data-drag": true }, "info": "A informação a mostrar no (i)!" },
+                    { "id": "demo_child_2", "parent": "demo_root_1", "text": "createNewestObject()", "icon": "fa fa-circle", "li_attr": { "data-showinfo": "true", "data-expression": "createNewestObject()", "data-drag": true }, "info": "A informação a mostrar no (i)!" },
+                    { "id": "demo_child_3", "parent": "demo_root_1", "text": "objectCreateNewest()", "icon": "fa fa-star", "li_attr": { "data-showinfo": "true", "data-expression": "objectCreateNewest()", "data-drag": true }, "info": "A informação a mostrar no (i)!" },
+                    { "id": "demo_child_4", "parent": "demo_root_1", "text": "otherFunction()", "icon": "fa fa-certificate", "li_attr": { "data-showinfo": "true", "data-expression": "otherFunction()", "data-drag": true }, "info": "A informação a mostrar no (i)!" },
+                { "id": "demo_root_2", "parent": "#", "text": "Customer account", "li_attr": { "data-showinfo": "false" }, "icon": "fa fa-file" },
+                { "id": "demo_root_3", "parent": "#", "text": "QRE functions", "li_attr": { "data-showinfo": "false" }, "icon": "fa fa-file" },
+                { "id": "demo_root_4", "parent": "#", "text": "QRE operators", "li_attr": { "data-showinfo": "false" }, "icon": "fa fa-file" },
+                { "id": "demo_root_5", "parent": "#", "text": "QRE operators", "li_attr": { "data-showinfo": "false" }, "icon": "fa fa-file" },
+                { "id": "demo_root_6", "parent": "#", "text": "QRE operators", "li_attr": { "data-showinfo": "false" }, "icon": "fa fa-file" },
+                { "id": "demo_root_7", "parent": "#", "text": "QRE operators", "li_attr": { "data-showinfo": "false" }, "icon": "fa fa-file" },
+                { "id": "demo_root_8", "parent": "#", "text": "QRE operators", "li_attr": { "data-showinfo": "false" }, "icon": "fa fa-file" },
+                { "id": "demo_root_9", "parent": "#", "text": "QRE operators", "li_attr": { "data-showinfo": "false" }, "icon": "fa fa-file" },
+                { "id": "demo_root_10", "parent": "#", "text": "QRE operators", "li_attr": { "data-showinfo": "false" }, "icon": "fa fa-file" },
+                { "id": "demo_root_11", "parent": "#", "text": "QRE operators", "li_attr": { "data-showinfo": "false" }, "icon": "fa fa-file" },
+                { "id": "demo_root_12", "parent": "#", "text": "QRE operators", "li_attr": { "data-showinfo": "false" }, "icon": "fa fa-file" },
+                { "id": "demo_root_13", "parent": "#", "text": "QRE operators", "li_attr": { "data-showinfo": "false" }, "icon": "fa fa-file" },
+                { "id": "demo_root_14", "parent": "#", "text": "QRE operators", "li_attr": { "data-showinfo": "false" }, "icon": "fa fa-file" },
+                { "id": "demo_root_15", "parent": "#", "text": "QRE operators", "li_attr": { "data-showinfo": "false" }, "icon": "fa fa-file" },
+                { "id": "demo_root_16", "parent": "#", "text": "QRE operators", "li_attr": { "data-showinfo": "false" }, "icon": "fa fa-file" },
+            ];
+
+            var options = {
+                expressionItems: eexpItems,
+                operatorItems: eeOperItems,
+                templateGroup: $("#template-expression-editor-group").html(),
+                templateGroupItem: $("#template-expression-editor-group-items").html(),
+                templateAllActions: $("#template-expression-editor-all-actions").html(),
+                languageStrings: {
+                    feedbackSucceed: "Mensagem de sucesso!!!",
+                    feedbackError: "Mensagem de erro!!!",
+                    feedbackEmptyRule: "Mensagem de regra a vazio!!!",
+                    noActins: "<p>Não existem ações!</p>"
+                },
+                clientCheckRuleSyntaxValidator: "checkRuleSyntax",
+
+                //layoutOptions: {},
+                hideWestPanel: false,
+                hideEastPanel: true,
+            };
+
+            // init editor
+            var $ee = $("#expressions-editor");
+            $ee.on('confirmclick.ee', function (e) {
+                console.log(e);
+                $("#result").html(e.returntype + ": " + e.rule);
+            }).on('cancelclick.ee', function (e) {
+                console.log(e);
+            }).on('loaded.ee', function (e) {
+                console.log(e);
+            }).on('addexpression.ee', function (e) {
+                console.log(e);
+            }).on('clearrule.ee', function (e) {
+                console.log(e);
+            }).on('checksyntax.ee', function (e) {
+                console.log(e);
+            }).on('operatorclick.ee', function (e) {
+                console.log(e);
+            }).on('searchexpressionclick.ee', function (e) {
+                console.log(e);
+            }).on('searchactionclick.ee', function (e) {
+                console.log(e);
+            }).eEditor(options);
+
+            var $eem = null;
+            $('#expressions-editor-modal').on('shown.bs.modal', function () {
+                // init editor
+                $eem = $("#expressions-editor-modal").eEditor(options);
+                $eem.$elem.on('confirmclick.ee', function (e) {
+                    console.log(e);
+                    $("#result").html(e.returntype + ": " + e.rule);
+                }).on('cancelclick.ee', function (e) {
+                    console.log(e);
+                }).on('loaded.ee', function (e) {
+                    console.log(e);
+                }).on('addexpression.ee', function (e) {
+                    console.log(e);
+                }).on('clearrule.ee', function (e) {
+                    console.log(e);
+                }).on('checksyntax.ee', function (e) {
+                    console.log(e);
+                }).on('operatorclick.ee', function (e) {
+                    console.log(e);
+                }).on('searchexpressionclick.ee', function (e) {
+                    console.log(e);
+                }).on('searchactionclick.ee', function (e) {
+                    console.log(e);
+                });
+            });
+            $('#expressions-editor-modal').on('hidden.bs.modal', function () {
+                if ($eem) $eem.destroy();
+            });
+
+            // demo check syntax
+            window.checkRuleSyntax = function (rule) {
+                console.log("validating rule: " + rule);
+                // do something !!!
+                return (Math.floor((Math.random() * 100) + 1) % 2 === 0);
+
+            };
+        });
+    </script>
+</body>
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,31 @@
+﻿.fx-docs-container {
+    background: white;
+    position: relative;
+}
+
+.fx-docs-main-content,
+.fx-docs-footer {
+    padding: 0 15px;
+}
+
+
+//The homepage features description
+.fx-features-group-inner {
+   border-bottom: 1px solid $app-components-border;
+   margin: 0 auto 30px;
+   padding-bottom: 30px;
+}
+
+
+//The showroom thumbnails
+@media screen and (min-width: 768px) and (max-width: 991px) { 
+    .fx-docs-showroom-thumbs .fx-docs-showroom-thumb-container:nth-child(2n+3) { //breaks line on thumb 3,5,7,9...
+        clear: both;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .fx-docs-showroom-thumbs .fx-docs-showroom-thumb-container:nth-child(4n+1) { //breaks line on thumb 5,9,13...
+        clear: both;
+    }
+} 

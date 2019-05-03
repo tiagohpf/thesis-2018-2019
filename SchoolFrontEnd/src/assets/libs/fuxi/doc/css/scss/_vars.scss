@@ -1,0 +1,124 @@
+﻿//*************************************************************************
+//COLORS
+//*************************************************************************
+$color-emphasize: #049fb1;
+$color-white: #fff;
+$color-black: #000;
+$color-slate: #666;
+$color-smoke: #e4e4e4;
+$color-light-smoke: lighten($color-smoke, 6%); //#f3f3f3;
+$color-dark-smoke: darken($color-smoke, 12%); //#c5c5c5;
+$color-extra-dark-smoke: darken($color-smoke, 24%); //#a7a7a7
+
+
+//*************************************************************************
+//FONTS
+//*************************************************************************
+$app-main-regular-font: open_sansregular;
+$app-main-bold-font: open_sansbold;
+$app-main-italic-font: open_sansitalic;
+
+$fuxi-main-font: Arial,Helvetica,Helvetica Neue,sans-serif;
+$fuxi-headings-font: open_sanslight;
+
+$glyphicon-icon-font: Glyphicons Halflings;
+
+
+//*************************************************************************
+//APP DEFAULTS
+//*************************************************************************
+
+//borders
+$app-components-border: $color-dark-smoke;
+
+//links
+$app-links-color: $color-emphasize;
+
+
+//*************************************************************************
+//TEXT STATES
+//*************************************************************************
+$secondary-txt-color: $color-slate;
+$danger-txt-color: #d9534f;
+$success-txt-color: #5cb85c;
+
+
+//*************************************************************************
+//BUTTONS
+//*************************************************************************
+$btn-negative-txt-color: $color-white;
+$btn-negative-bg-color: lighten($color-black, 22%); //#383838
+$btn-negative-border-color: lighten($color-black, 18%); //#2e2e2e
+
+
+//*************************************************************************
+//CARDS
+//*************************************************************************
+$card-txt-color: $color-slate;
+$card-hover-txt-color: $color-slate;
+$card-hover-bg-color: $color-light-smoke;
+$card-icon-color: $color-black;
+
+
+//*************************************************************************
+//THUMBNAILS
+//*************************************************************************
+$thumbnail-border-color: $app-components-border;
+
+
+//*************************************************************************
+//NAVBARS
+//*************************************************************************
+
+//main nav
+$main-nav-bg-color: $color-white;
+$main-nav-border-color: $app-components-border;
+$main-nav-icon-toggler-color: $color-extra-dark-smoke;
+$main-nav-icon-toggler-hover-bg-color: $color-light-smoke;
+$main-nav-icon-toggler-hover-border-color: $app-components-border;
+
+
+//docs nav
+$docs-nav-border-color: $app-components-border;
+$docs-nav-first-level-active-txt-color: $color-black;
+
+
+//links inside navs
+$nav-link-txt-color: $color-slate;
+$nav-link-hover-bg-color: $color-light-smoke;
+
+
+
+//*************************************************************************
+//HEADINGS
+//*************************************************************************
+$headings-txt-color: $color-black;
+$headings-font: $app-main-bold-font;
+
+$doc-section-heading-bg-color: $color-light-smoke;
+
+
+//*************************************************************************
+//MASTER HEADER
+//*************************************************************************
+$master-header-bg-color: lighten($color-black, 22%); //#383838
+$master-header-title-txt-color: $color-white;
+$master-header-txt-color: $color-extra-dark-smoke;
+$master-header-txt-font: $app-main-italic-font;
+
+
+//*************************************************************************
+//DISCLAIMER
+//*************************************************************************
+$disclaimer-title-txt-color: $color-emphasize;
+$disclaimer-title-font: $app-main-italic-font;
+
+
+
+//*************************************************************************
+//CODE SNIPPETS COMPONENT
+//*************************************************************************
+$code-snippet-container-border-color: $app-components-border;
+$codemirror-bg-color: $color-light-smoke;
+
+

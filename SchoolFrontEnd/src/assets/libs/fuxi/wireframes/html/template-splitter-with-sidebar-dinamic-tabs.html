@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge; text/html;" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0,  user-scalable=yes" />
+		<link rel="icon" href="/fuxi/common/html/css/images/favicon.ico" type="image/x-icon" />
+		<title>Template Splitter + Main Page Nav + Dynamic Tabs</title>
+		<link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/fuxi/common/html/css/fuxi.min.css" rel="stylesheet">
+		<script src="/basepack/modernizr/2.6/modernizr.js"></script>
+		<!-- Respond.js - IE8 support of media queries -->
+		<!--[if lt IE 9]>
+			<script src="/fuxi/lib/respond/1.4/js/respond.min.js"></script>
+		<![endif]-->
+
+        <style>
+
+            .nav-tabs>li>a, .nav-tabs>li>a:hover {
+              
+              border: 1px solid #ddd;
+              border-top-width: 1px;
+            }
+        </style>
+
+	</head>
+<body>
+    <div class="fx-push-footer fx-full-height">
+        <header id="fx-header">
+            <nav class="fx-navbar" role="navigation">
+                <a class="fx-brand" href="#"><h1 class="fx-logo-brand">Fuxi</h1></a>
+            </nav>
+            <!-- breadcrumb -->
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#"><i class="fuxicons fuxicons-home"></i>Início</a>
+                </li>
+                <li>
+                    <a href="#">Link</a>
+                </li>
+                <li class="active">
+                    Ativo
+                </li>
+            </ul>
+        </header>
+        <div class="fx-prevent-content-behind-footer fx-full-height">
+            <div id="splitter-parent" class="fx-splitter-area">
+                <nav id="fx-page-main-nav" class="fx-page-main-menu">
+                    <ul class="list-unstyled">
+                        <li data-original-title="Opção 1" data-placement="right" data-toggle="tooltip">
+                            <a class="active" href="#"> <i class="glyphicon glyphicon-hdd"></i> </a>
+                        </li>
+                        <li data-original-title="Opção 2" data-placement="right" data-toggle="tooltip">
+                            <a href="#"> <i class="glyphicon glyphicon-briefcase"></i> </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div id="fx-sidebar" class="fx-splitter-sidebar">
+                    <div class="fx-visible-when-collapsed">
+                        <i class="glyphicon glyphicon-filter fx-icon-represent-feature"></i>
+                    </div>
+                    <div class="fx-splitter-sidebar-content">
+                        <header class="fx-sidebar-header fx-fixed-position" data-fix-to="top">
+                            <div class="fx-sidebar-header-inner">
+                                <div class="pull-left">
+                                    <p>
+                                        <i class="glyphicon glyphicon-filter"></i> pesquisa
+                                    </p>
+                                </div>
+                            </div>
+                        </header>
+
+                        <form class="fx-sidebar-content-wrapper" role="form">
+                            <div class="fx-sidebar-area">
+                                <div class="fx-sidebar-area-content">
+                                    <button id="btnAddTab" class="btn btn-primary btn-sm" type="button">
+                                        Add tab <i class="glyphicon glyphicon-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="fx-splitter-bar" class="fx-splitter-bar" data-toggle="splitter" data-splitter-position="left" data-splitter-parent="#splitter-parent" data-splitter-sidebar="#fx-sidebar" data-splitter-content="#fx-splitter-content"></div>
+                </div>
+
+                <div id="fx-splitter-content" class="fx-splitter-content">
+                    <div class="fx-splitter-content-inner">
+                        <div class="fx-entity-header fx-fixed-position" data-fix-to="top">
+                            <div class="fx-entity-header-inner">
+                                <div class="fx-entity-header-headings clearfix">
+                                    <div class="fx-constraint two-rows">
+                                        <div class="pull-left">
+                                            <i class="fa fa-cog"></i>
+                                        </div>
+                                        <div class="pull-left">
+                                            <h1>Title</h1>
+                                            <p>
+                                                Description...
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div data-fx-slider-tab>
+                                <div id="left-div" class="pull-left" data-fx-slider-tab-left>
+                                    <button id="left" class="btn btn-link fx-tab-overflow-arrows" type="button">
+                                        <i class="glyphicon glyphicon-chevron-left"></i>
+                                    </button>
+                                </div>
+
+                                <div id="right-div" class="pull-right" data-fx-slider-tab-right>
+                                    <button id="right" class="btn btn-link fx-tab-overflow-arrows" type="button">
+                                        <i class="glyphicon glyphicon-chevron-right"></i>
+                                    </button>
+                                </div>
+
+                                <div id="div1" class="fx-tab-overflow" data-fx-slider-tab-viewport>
+                                    <ul id="pageTab" class="nav nav-tabs fx-main-tabs" data-fx-slider-tab-overview>
+                                        <li class="active">
+                                            <a href="#tab1" class="fx-tab" data-toggle="tab"> Tab 1 </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab2" class="fx-tab" data-toggle="tab">
+                                                <i class="fx-ico-loading"></i> Tab 2
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <i class="glyphicon glyphicon-remove"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab3" class="fx-tab" data-toggle="tab"><i class="fuxicons fuxicons-warning"></i> Tab 3 </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab4" class="fx-tab" data-toggle="tab"><i class="glyphicon glyphicon-time fx-status-warning"></i> Tab 4 </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="fx-tab-overflow-border"></div>
+                            </div>
+
+                        </div>
+
+                        <div id="pageTabContent" class="tab-content fx-main-tab-content">
+                            <div class="tab-pane active" id="tab1">
+                                CONTENT TAB 1<br />
+                                CONTENT TAB 1<br />
+                                CONTENT TAB 1<br />
+                                CONTENT TAB 1<br /><br />
+                                <button id="btnAddTab2" class="btn btn-primary btn-sm" type="button">
+                                    Add tab 2 <i class="glyphicon glyphicon-plus"></i>
+                                </button><br /><br />
+                                <div data-fx-slider-tab>
+                                    <div id="left-div2" class="pull-left" data-fx-slider-tab-left>
+                                        <button id="left2" class="btn btn-link fx-tab-overflow-arrows" type="button">
+                                            <i class="glyphicon glyphicon-chevron-left"></i>
+                                        </button>
+                                    </div>
+
+                                    <div id="right-div2" class="pull-right" data-fx-slider-tab-right>
+                                        <button id="right2" class="btn btn-link fx-tab-overflow-arrows" type="button">
+                                            <i class="glyphicon glyphicon-chevron-right"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="fx-tab-overflow" data-fx-slider-tab-viewport>
+                                        <ul id="pageTab2" class="nav nav-tabs fx-main-tabs" data-fx-slider-tab-overview>
+                                            <li class="active">
+                                                <a href="#tab21" class="fx-tab" data-toggle="tab"> Tab 1 </a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab22" class="fx-tab" data-toggle="tab"><i class="fx-ico-loading"></i> Tab 2 </a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab23" class="fx-tab" data-toggle="tab"><i class="fuxicons fuxicons-warning"></i> Tab 3 </a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab24" class="fx-tab" data-toggle="tab"><i class="glyphicon glyphicon-time fx-status-warning"></i> Tab 4 </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="fx-tab-overflow-border"></div>
+                                </div>
+
+                                <div id="pageTabContent2" class="tab-content fx-main-tab-content">
+                                    <div class="tab-pane active" id="tab21">
+                                        Content tab 1
+                                    </div>
+                                    <div class="tab-pane" id="tab22">
+                                        Content tab 2
+                                    </div>
+                                    <div class="tab-pane" id="tab23">
+                                        Content tab 3
+                                    </div>
+                                    <div class="tab-pane" id="tab24">
+                                        Content tab 4
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="tab-pane" id="tab2">
+                                Content tab 2
+                            </div>
+                            <div class="tab-pane" id="tab3">
+                                Content tab 3
+                            </div>
+                            <div class="tab-pane" id="tab4">
+                                Content tab 4
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER ABOUT -->
+    <!--# include file="/fuxi/partials/html/partial-footer-about.html" -->
+
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+    <script src="/fuxi/common/exec/fuxi.js"></script>
+
+    <script src="/fuxi/wireframes/exec/template-splitter-with-sidebar-dinamic-tabs.js"></script>
+
+    <!-- RESOURCES EN / PT : include according culture-->
+    <!--<script src="/fuxi/resources/fuxi_en.js" language="javascript" type="text/javascript"></script>-->
+    <script src="/fuxi/resources/fuxi_pt.js" language="javascript" type="text/javascript"></script>
+    <script>
+        FUXI.Splitter.init(true);
+        FUXI.FixedPositions.init(true);
+
+        FUXI.SliderTabs.init({
+            isAsync: true,
+            animateDuration: 'slow',
+            fixedIncrement: 0 //by default use the width of data-fx-slider-tab-viewport element
+        });
+
+    </script>
+</body>
+</html>

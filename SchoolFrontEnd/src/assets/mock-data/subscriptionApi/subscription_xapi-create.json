@@ -1,0 +1,201 @@
+{
+  "type": "page",
+  "id": "pageConfiguration",
+  "header": {
+    "id": "pageHeader",
+    "seo": {
+      "text": "Create New Api",
+      "icon": "fa fa-briefcase"
+    },
+    "operations": {
+      "id": "pageHeaderOperations",
+      "text": "generic___operations___operations",
+      "icon": "glyphicon glyphicon-cog",
+      "parameters": [
+        {
+          "type": "submit",
+          "id": "customerCreateSave",
+          "text": "generic___operations___save",
+          "class": "btn-primary",
+          "mappingId": [
+            "customerDateTime"
+          ],
+          "parameters": [
+            {
+              "key": "onSuccess",
+              "value": {
+                "navigateTo": {
+                  "route": "subscription_xapi"
+                }
+              }
+            },
+            {
+              "key": "requestEndpoint",
+              "value": "{{subscription_xapi_ms}}/services"
+            },
+            {
+              "key": "requestHeaders",
+              "value": {
+                "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+              }
+            },
+            {
+              "key": "requestType",
+              "value": "POST"
+            },
+            {
+              "key": "requestBody",
+              "type": "json",
+              "value": "{\"name\": \"{{name}}\",\"description\": \"{{description}}\",\"endpoint\": \"{{endpoint}}\",\"httpMethod\": \"{{httpMethod}}\",\"authorizationStatus\": \"{{authorizationStatus}}\",\"authorizationType\": \"{{authorizationType}}\",\"headers\": {{headers}},\"body\": {{@fv()JSON.stringify(JSON.stringify(JSON.parse(@replaceTagVars('body'))))}},\"responseFilterMapper\": {{responseFilterMapper}}}"
+            },
+            {
+              "key": "reload",
+              "value": false
+            }
+          ]
+        },
+        {
+          "type": "navigate",
+          "text": "generic___operations___cancel",
+          "navigateTo": "subscription_xapi"
+        }
+      ]
+    }
+  },
+  "tabs": [
+    {
+      "id": "accountsList",
+      "text": "customers___accounts",
+      "icon": "fx-ico-loading",
+      "components": [
+        {
+          "type": "initParameters",
+          "id": "customerMainInformation",
+          "details": [
+            {
+              "type": "textbox",
+              "id": "name",
+              "text": "Name",
+              "value": "",
+              "validator": {
+                "required": [
+                  false,
+                  "warnings___fieldRequired"
+                ]
+              }
+            },
+            {
+              "type": "textbox",
+              "id": "description",
+              "text": "Description",
+              "value": "",
+              "validator": {
+                "required": [
+                  false,
+                  "warnings___fieldRequired"
+                ]
+              }
+            },
+            {
+              "type": "textbox",
+              "id": "endpoint",
+              "text": "endpoint",
+              "description": "http://api.test.pt/?var1=<code>${var1}</code>&var2=<code>${var2}</code>&id=1234",
+              "value": "",
+              "validator": {
+                "required": [
+                  false,
+                  "warnings___fieldRequired"
+                ]
+              }
+            },
+            {
+              "type": "input-select",
+              "id": "httpMethod",
+              "text": "Method",
+              "valueList": [
+                {
+                  "key": "post",
+                  "value": "post"
+                },
+                {
+                  "key": "get",
+                  "value": "get"
+                }
+              ],
+              "value": "get"
+            },
+            {
+              "type": "boolean",
+              "id": "authorizationStatus",
+              "text": "Authorization Status"
+            },
+            {
+              "type": "input-select",
+              "id": "authorizationType",
+              "text": "Authorization Type",
+              "valueList": [
+                {
+                  "key": "BearerToken",
+                  "value": "BearerToken"
+                },
+                {
+                  "key": "BasicAuth",
+                  "value": "BasicAuth"
+                },
+                {
+                  "key": "None",
+                  "value": "None"
+                }
+              ],
+              "value": "None"
+            },
+            {
+              "type": "textbox",
+              "subType": "textarea",
+              "id": "headers",
+              "text": "Headers",
+              "value": "",
+              "description": "{ \"header\" : \"value\" , \"header2\" : \"<code>${dynvalue}</code>\" }",
+              "validator": {
+                "required": [
+                  false,
+                  "warnings___fieldRequired"
+                ]
+              }
+            },
+            {
+              "type": "textbox",
+              "subType": "textarea",
+              "id": "body",
+              "text": "Body",
+              "value": "",
+              "description": "{\"city\":\"<code>${city}</code>\", \"date\":\"<code>${date}</code>\"}",
+              "validator": {
+                "required": [
+                  false,
+                  "warnings___fieldRequired"
+                ]
+              }
+            },
+            {
+              "type": "textbox",
+              "subType": "textarea",
+              "id": "responseFilterMapper",
+              "text": "Fullfilment answer variables",
+              "value": "",
+              "description": "{ \"data\" : \"<code>$.data</code>\"  , \"element\" : \"<code>$data.array[0].element</code>\" }",
+              "validator": {
+                "required": [
+                  false,
+                  "warnings___fieldRequired"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

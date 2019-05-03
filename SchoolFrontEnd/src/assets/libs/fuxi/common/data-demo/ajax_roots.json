@@ -1,0 +1,8 @@
+﻿[
+    { "id": "demo_root_1", "text": "GPON OR SOMETHING BIGGER", "li_attr": { "showinfo": "true", "showactionbuttons": "false"}, "info": { "id": "demo_root_1", "title": "Gpon", "subtitle": "General characteristics", "columns": [ { "title": "Domain name", "text": "GPON" }, { "title": "Description", "text": "Lorem ipsum dolor sit amet, mais qq coisa aqui!!!!" } ] }, "children": true, "type": "root" },
+    { "id": "demo_root_2", "text": "Root 2", "li_attr": {"showinfo": "true", "showactionbuttons": "false"}, "type": "root" },
+    { "id": "demo_root_3", "text": "Root 3", "li_attr": {"showinfo": "true", "showactionbuttons": "false"}, "info": { "id": "demo_root_3", "title": "Root 3", "subtitle": "General characteristics", "columns": [ { "title": "Domain name", "text": "Gpon" }, { "title": "Description", "text": "Lorem ipsum dolor sit amet, mais qq coisa aqui!!!!" } ] } , "type": "root" },
+    { "id": "demo_root_4", "text": "Root 4", "li_attr": {"showinfo": "true"}, "type": "root-error" },
+    { "id": "demo_root_5", "text": "Root 5", "li_attr": {"showinfo": "true"}, "type": "root-danger" },
+    { "id": "demo_root_6", "text": "Root 6", "li_attr": {"showinfo": "true"}, "type": "root-warning" }
+]

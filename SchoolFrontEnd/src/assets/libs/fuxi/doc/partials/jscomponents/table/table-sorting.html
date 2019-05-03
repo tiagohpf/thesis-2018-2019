@@ -1,0 +1,58 @@
+<h3 id="docs-table-sorting">Sorting</h3>
+<p>Uma tabela DataTable permite fazer sorting da informação das colunas. Pode-se fazer sorting ascendente ou descendente. Em <a class="fx-docs-btn-link" href="http://legacy.datatables.net/release-datatables/examples/basic_init/table_sorting.html" target="_blank">DataTables Sorting</a> pode encontrar informação mais detalhada. O exemplo abaixo mostra uma tabela ordenada por distrito de maneira descendente.</p>
+<div class="alert alert-warning">
+    <p>
+        Deverá fazer inclusão dos ficheiros necessários à instanciação de um objeto como DataTable, anteriormente referidos no ponto <a href="#docs-table-general-vision">tabela - overview</a>.
+    </p>
+</div>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <table class="table" id="devguide-sorting-table">
+            <thead>
+                <tr>
+                    <th>Cidade</th>
+                    <th>Concelho</th>
+                    <th>Distrito</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<table class="table" id="devguide-sorting-table">
+    <thead>
+        <tr>
+            <th>Cidade</th>
+            <th>Concelho</th>
+            <th>Distrito</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    var tableSortingConf = $.extend({}, FUXI.Presets.DataTables, {
+        'iDisplayLength': 10,
+        'aLengthMenu': [5, 10, 25, 50],
+        'aoColumns': [null, null, null],
+        'aaSorting': [[2, "desc"]],
+        "aaData": [
+            ["Aveiro", "Aveiro", "Aveiro", ],
+            ["Cantanhede", "Cantanhede", "Coimbra", ],
+            ["Coimbra", "Coimbra", "Coimbra", ],
+            ["Faro", "Faro", "Faro", ],
+            ["Figueira da Foz", "Figueira da Foz", "Coimbra", ],
+            ["Gouveia", "Gouveia", "Guarda", ],
+        ]
+    });
+
+    $('#devguide-sorting-table').on('init.dt', FUXI.Utils.SetDTPagination).dataTable(tableSortingConf);
+</script>
+        </textarea>
+    </form>
+</div>

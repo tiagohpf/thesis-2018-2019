@@ -1,0 +1,23 @@
+
+
+/* DATEPICKER */
+datepicker .card{ border: 0; background: none; border-radius: 0; }
+datepicker .card:hover{ background: none; }
+timepicker > table{ margin: 0 auto; }
+
+bs-datepicker-container{ margin-left: 34px; z-index: 1051; }
+.date-time-picker{ position: relative; }
+.date-time-picker .dp-popup { position: absolute; padding:15px 60px; background-color: #fff; box-shadow: 0 0 10px 0 #aaa; display: inline-flex; z-index: 1051; }
+.date-time-picker .dp-popup .bottom-controls{ transform: translateY(50%); -moz-transform: translateY(50%); -webkit-transform: translateY(50%); -o-transform: translateY(50%); -ms-transform: translateY(50%); margin-top: -30px; }
+.date-time-picker .input-group .input-group-addon{ cursor: pointer; }
+.date-time-picker .invalid-date-format{ padding-left: 48px; color: #d37214; }
+
+
+
+.datetimepicker-wrapper{ position: relative; }
+.datetimepicker-wrapper .dp-popup.date-time-options{ position: absolute; left: 41px; padding: 10px; }
+.datetimepicker-wrapper .dp-popup.date-time-options.position-top{ bottom: 100%; }
+.datetimepicker-wrapper .dp-popup.date-time-options.position-bottom{ top: 100%; }
+.datetimepicker-wrapper .dp-popup.date-time-calendar{ position: absolute; left: 41px; max-width: 330px; padding: 15px 30px; }
+.datetimepicker-wrapper .dp-popup.date-time-calendar.position-top{ bottom: 100%; }
+.datetimepicker-wrapper .dp-popup.date-time-calendar.position-bottom{ top: 100%; }

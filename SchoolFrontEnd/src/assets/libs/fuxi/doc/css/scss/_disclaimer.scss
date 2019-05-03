@@ -1,0 +1,16 @@
+﻿//DISCLAIMER - A page punchline
+
+.fx-disclaimer {
+    padding: 0 0 35px;
+    text-align: center;
+
+    h2 {
+        color: $disclaimer-title-txt-color;
+        font-family: 'open_sansitalic';
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+}

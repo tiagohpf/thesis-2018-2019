@@ -1,0 +1,285 @@
+@import url('../../../bootstrap/2.3/css/bootstrap.css');
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #666;
+}
+
+a {
+  color: #0096A8;
+}
+
+a:hover,
+a:focus {
+  color: #02707E;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+border-color: #2C99AA;
+-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #2C99AA;
+-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #2C99AA;
+      
+}
+
+input.search-query {
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-submenu:hover > a,
+.dropdown-submenu:focus > a {
+  background-color: #69BAC4;
+  background-image: none;
+  filter: 0;
+}
+
+.btn-primary {
+  background-color: #2C99AA;
+  *background-color: #2C99AA;
+  background-image: linear-gradient(top, #2C99AA, #0C616B);
+  background-image: -o-linear-gradient(top, #2C99AA, #0C616B);
+  background-image: -moz-linear-gradient(top, #2C99AA, #0C616B);
+  background-image: -webkit-linear-gradient(top, #2C99AA, #0C616B);
+  background-image: -ms-linear-gradient(top, #2C99AA, #0C616B);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2C99AA', endColorstr='#0C616B', GradientType=0);
+  border-bottom-color: #b3b3b3;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+  background-color: #0C616B;
+  *background-color: #0C616B;
+}
+
+.btn-group.open .btn-primary.dropdown-toggle {
+  background-color: #02707E;
+}
+
+.nav-list > .active > a,
+.nav-list > .active > a:hover,
+.nav-list > .active > a:focus {
+  background-color: #2C99AA;
+}
+
+.nav-pills > .active > a,
+.nav-pills > .active > a:hover,
+.nav-pills > .active > a:focus {
+  background-color: #2C99AA;
+}
+
+.navbar-inner {
+  height: auto;
+  width: 100%;
+  border: none;
+  -webkit-border-radius: 0;
+     -moz-border-radius: 0;
+          border-radius: 0;
+  background-color: #0C616B;
+  *background-color: #0C616B;
+  background-image: linear-gradient(top, #2C99AA, #0C616B);
+  background-image: -o-linear-gradient(top, #2C99AA, #0C616B);
+  background-image: -moz-linear-gradient(top, #2C99AA, #0C616B);
+  background-image: -webkit-linear-gradient(top, #2C99AA, #0C616B);
+  background-image: -ms-linear-gradient(top, #2C99AA, #0C616B);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2C99AA', endColorstr='#0C616B', GradientType=0);
+}
+
+.nav > li > a:hover {
+  /* Escureceu-se o "hover" default dos controlos de navegação */
+  background-color: #ececec;
+}
+
+.navbar .brand {
+  color: #F5F5F5;
+  text-shadow: none;
+}
+
+.navbar .divider-vertical {
+  border-right: 1px solid #3C3C3C;
+  border-left: 1px solid #3C3C3C;
+}
+
+.navbar-search .search-query {
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+.navbar .nav > li > a {
+  color: #fff;
+  text-shadow: none;
+}
+
+.navbar .nav > li > a:focus,
+.navbar .nav > li > a:hover {
+  /* definição de um hover "visível" para o menu default do Basepack;
+    O hover é uma "cortina" preta a 20%; essencialmente, escurece um pouco o menu item que está hovered. */
+  color: #fff;
+  background-color: #086772;
+  background-color: rgba(0, 0, 0, 0.1);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#0A000000,endColorstr=#0A000000);
+}
+
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  color: #FFF;
+  background-color: #02707E;
+}
+
+.navbar .nav li.dropdown > .dropdown-toggle .caret {
+  border-top-color: #FFF;
+  border-bottom-color: #FFF;
+}
+
+/* Estilização do item dropdown, quando aberto */
+.navbar .nav li.dropdown.open > .dropdown-toggle,
+.navbar .nav li.dropdown.active > .dropdown-toggle,
+.navbar .nav li.dropdown.open.active > .dropdown-toggle {
+  color: #FFF;
+  background-color: #02707E;
+}
+
+.navbar .nav li.dropdown > a:hover .caret,
+.navbar .nav li.dropdown > a:focus .caret {
+/* adição do estado hover para o caret - surgia a cinza escuro */
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+}
+
+.navbar .nav li.dropdown.open > .dropdown-toggle .caret,
+.navbar .nav li.dropdown.active > .dropdown-toggle .caret,
+.navbar .nav li.dropdown.open.active > .dropdown-toggle .caret {
+  border-top-color: #FFF;
+  border-bottom-color: #FFF;
+}
+
+.navbar-inverse .navbar-inner {
+  /* Adicionou-se um tema mais escuro, para a navbar invertida (como no Bootstrap) */
+  background-repeat: repeat-x;
+  background-color: #152020;
+  *background-color: #152020;
+  background-image: linear-gradient(top, #203132, #152020);
+  background-image: -o-linear-gradient(top, #203132, #152020);
+  background-image: -moz-linear-gradient(top, #203132, #152020);
+  background-image: -webkit-linear-gradient(top, #203132, #152020);
+  background-image: -ms-linear-gradient(top, #203132, #152020);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#203132', endColorstr='#152020', GradientType=0);
+  border: none;
+}
+
+.navbar-inverse .brand,
+.navbar-inverse .nav > li > a {
+  color: #FFF;
+}
+
+.navbar-inverse .brand {
+  color: #FFF;
+}
+
+.navbar-inverse .navbar-text {
+  color: #FFF;
+}
+
+.navbar-inverse .nav > li > a:focus,
+.navbar-inverse .nav > li > a:hover {
+  /* Configuração do hover para a navbar invertida */
+  color: #fff;
+  background-color: #12555f;
+  background-color: rgba(255, 255, 255 , 0.05);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#0A000000,endColorstr=#0A000000);
+}
+
+.navbar-inverse .nav .active > a,
+.navbar-inverse .nav .active > a:hover,
+.navbar-inverse .nav .active > a:focus {
+  /* Configuração do item selecionado, na navbar invertida */
+  background-color: #0c444c;
+}
+
+.navbar-inverse .nav li.dropdown.open > .dropdown-toggle,
+.navbar-inverse .nav li.dropdown.active > .dropdown-toggle,
+.navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle {
+  background-color: #02707E;
+  -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+  -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+}
+
+.navbar-inverse .btn-navbar {
+  background-color: #0C616B;
+  background-image: linear-gradient(top, #2C99AA, #0C616B);
+  background-image: -o-linear-gradient(top, #2C99AA, #0C616B);
+  background-image: -moz-linear-gradient(top, #2C99AA, #0C616B);
+  background-image: -webkit-linear-gradient(top, #2C99AA, #0C616B);
+  background-image: -ms-linear-gradient(top, #2C99AA, #0C616B);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2C99AA', endColorstr='#0C616B', GradientType=0);
+  border: none;
+}
+
+.navbar-inverse .btn-navbar:hover,
+.navbar-inverse .btn-navbar:focus,
+.navbar-inverse .btn-navbar:active,
+.navbar-inverse .btn-navbar.active,
+.navbar-inverse .btn-navbar.disabled,
+.navbar-inverse .btn-navbar[disabled] {
+  background-color: #105D68;
+  *background-color: #105D68;
+}
+
+.modal-header {
+  background-color: #45B2C3;
+}
+
+.modal-header h3 {
+  color: #FFF;
+}
+
+.modal-body {
+  background-color: #F2F2F2;
+}
+
+.pagination ul > li > a:hover,
+.pagination ul > li > a:focus,
+.pagination ul > .active > a,
+.pagination ul > .active > span,
+.pager li > a:hover,
+.pager li > a:focus {
+  /* Escureceu-se o "hover" dos controlos de paginação */
+  background-color: #ececec;
+}
+
+.progress .bar {
+  background-image: -moz-linear-gradient(top, #278D9C, #2C99AA);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#278D9C), to(#2C99AA));
+  background-image: -webkit-linear-gradient(top, #278D9C, #2C99AA);
+  background-image: -o-linear-gradient(top, #278D9C, #2C99AA);
+  background-image: linear-gradient(to bottom, #278D9C, #2C99AA);
+}
+
+.progress-striped .bar {
+  background-color: #2C99AA;
+}

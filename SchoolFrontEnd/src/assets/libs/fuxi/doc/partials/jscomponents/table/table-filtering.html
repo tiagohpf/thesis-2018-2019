@@ -1,0 +1,79 @@
+<h3 id="docs-table-filtering">Filtering</h3>
+<p>Uma tabela DataTable permite fazer filtering da informação das colunas. Em <a class="fx-docs-btn-link" href=http://legacy.datatables.net/development/filtering" target="_blank">DataTables filtering</a> pode encontrar informação mais detalhada. O exemplo abaixo mostra uma tabela que permite filtragem em todas as colunas.</p>
+<p>O Basepack disponibiliza um plug-in que permite colocar o input de filtragem imediatamente abaixo do título da coluna. Para isso deverá incluir o ficheiro <code>jquery.dataTables.columnFilter.js</code> disponível em <code>src="/basepack/datatables-pt/1.9/js/jquery.dataTables.columnFilter.js".</code></p>
+<div class="alert alert-warning">
+    <p><strong>Atenção:</strong> Este plug-in apesar de listado no site do DataTables não é um plugin oficial pelo que poderão ser necessários desenvolvimentos adicionais por parte das equipas de produto.</p>
+    <p>
+        Deverá fazer inclusão dos ficheiros necessários à instanciação de um objeto como DataTable, anteriormente referidos no ponto <a href="#docs-table-general-vision">tabela - overview</a>.
+    </p>
+</div>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <table class="table" id="devguide-filtering-table">
+            <thead>
+                <tr class="fx-table-filter">
+                    <td>pesquisar</td>
+                    <td>pesquisar</td>
+                    <td>pesquisar</td>
+                </tr>
+                <tr>
+                    <th>Cidade</th>
+                    <th>Concelho</th>
+                    <th>Distrito</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<table class="table" id="devguide-filtering-table">
+    <thead>
+        <tr class="fx-table-filter">
+            <td>pesquisar</td>
+            <td>pesquisar</td>
+            <td>pesquisar</td>
+        </tr>
+        <tr>
+            <th>Cidade</th>
+            <th>Concelho</th>
+            <th>Distrito</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+<script src="/basepack/datatables-pt/1.9/js/jquery.dataTables.columnFilter.js"></script>
+<script type="text/javascript">
+    var tableFilteringConf = $.extend({}, FUXI.Presets.DataTables, {
+        'iDisplayLength': 10,
+        'aLengthMenu': [5, 10, 25, 50],
+        "aoColumns": [
+            { "bSortable": false },
+            { "bSortable": false },
+            { "bSortable": false },
+        ],
+        "aaData": [
+            ["Aveiro", "Aveiro", "Aveiro", ],
+            ["Cantanhede", "Cantanhede", "Coimbra", ],
+            ["Coimbra", "Coimbra", "Coimbra", ],
+            ["Faro", "Faro", "Faro", ],
+            ["Figueira da Foz", "Figueira da Foz", "Coimbra", ],
+            ["Gouveia", "Gouveia", "Guarda", ],
+        ]
+    });
+
+    var tableFilteringColFilter = $.extend({}, FUXI.Presets.DataTablesColFilter, {
+        'aoColumns': [
+            { 'type': 'text' },
+            { 'type': 'text' },
+            { 'type': 'text' }]
+    });
+    $('#devguide-filtering-table').on('init.dt', FUXI.Utils.SetDTPagination).dataTable(tableFilteringConf).columnFilter(tableFilteringColFilter);
+</script>
+        </textarea>
+    </form>
+</div>

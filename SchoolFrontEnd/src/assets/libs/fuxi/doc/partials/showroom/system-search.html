@@ -1,0 +1,537 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--# include file="/fuxi/doc/partials/showroom/partials/head-templates.html" -->
+    <title>Template pesquisa</title>
+</head>
+<body>
+    <div class="fx-push-footer fx-full-height">
+        <!--# include file="/fuxi/doc/partials/showroom/partials/header-templates.html" -->
+        <div class="fx-prevent-content-behind-footer fx-full-height">
+            <div class="fx-splitter-content-inner">
+                <div class="fx-entity-header">
+                    <div class="fx-entity-header-inner" id="table-actions-container">
+                        <div class="fx-entity-header-headings clearfix">
+                            <div class="pull-left fx-constraint">
+                                <h1 class="pull-left">
+                                    <span class="fx-info-icon">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </span>
+                                    Resultados da pesquisa
+                                </h1>
+                            </div>
+                        </div>
+
+                        <!--SEARCH BOX-->
+                        <div id="table-search-container" class="fx-form-search collapse in">
+                            <!--TOGGLE SEARCH MODE-->
+                            <div class="fx-wrapper-toggle-search-type">
+                                <a class="link-toggle" title="Advanced search" id="bt-toggle-adv-search">
+                                    Pesquisar por query
+                                </a>
+                                <a class="link-toggle hidden" title="Basic search" id="bt-toggle-simple-search">
+                                    Pesquisar
+                                </a>
+                            </div>
+
+                            <!--SEARCH MODE-->
+                            <div id="table-simple-search" class="fx-simple-search">
+                                <div class="fx-simple-search-container">
+                                    <form class="form-group fx-search-input">
+                                        <div class="fx-simple-search-input">
+                                            <div class="form-inline fx-simple-search" role="form">
+                                                <div class="form-group fx-simple-search-form-group">
+                                                    <label for="txt-filter-term">Termo da pesquisa</label>
+                                                    <input type="search" id="txt-filter-term" class="form-control input-sm" />
+                                                </div>
+                                                <div class="form-group fx-simple-search-form-group">
+                                                    <label for="txt-filter-module">Módulo</label>
+                                                    <input type="text" id="txt-filter-module" class="form-control input-sm fx-txt-filter-module">
+                                                </div>
+                                                <div class="form-group fx-simple-search-form-group">
+                                                    <label for="txt-filter-grouping">Mostrar resultados</label>
+                                                    <select id="txt-filter-grouping" class="form-control input-sm">
+                                                        <option value="module">agrupados por módulo</option>
+                                                        <option value="none">não agrupados</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="fx-search-actions-container clearfix" id="simpleSearchActionsContainer">
+                                            <div class="pull-right">
+                                                <button type="submit" class="btn btn-primary btn-sm" id="btSimpleSearchSubmit">
+                                                    pesquisar
+                                                </button>
+                                                <button type="reset" class="btn btn-default btn-sm" id="btSimpleSearchReset">
+                                                    limpar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- QUERY SEARCH -->
+                            <div id="table-advanced-search" class="fx-advanced-search hidden">
+                                <div class="fx-advanced-search-container">
+                                    <div class="fx-advanced-search-title">
+                                        Query
+                                    </div>
+                                    <div class="fx-advanced-search-input">
+                                        <form class="form-group fx-search-input">
+                                            <div class="fx-pos-rel">
+                                                <button class="glyphicon glyphicon-search"></button>
+                                                <input type="search" placeholder="search..." class="form-control input-sm full-width">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="fx-advanced-search-help">
+                                        <button class="fx-alert-button" id="bt-helper-query" rel="popover">
+                                            <i class="fuxicons fuxicons-help"></i>
+                                        </button>
+                                        <div class="query-popover-content hide clearfix">
+                                            <div class="fx-popover-main-content">
+                                                <div class="fx-popover-inner clearfix">
+                                                    <p>Permite construir <i>queries</i> usando campos, operadores e valores ou funções.</p>
+                                                    <p>Ex: <span class="fx-query-example">(services=All AND clients=Sara) OR operator=Oi</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--SEARCH ACTIONS-->
+                        <div class="fx-search-actions hidden clearfix">
+                            <div class="pull-left">
+                                <h3 id="results-found" class="fx-results-title">4075 resultados para <strong class="fx-search-query">critério de pesquisa</strong>.</h3>
+                                <h3 id="no-results-found" class="fx-results-title hidden">Não foram encontrados resultados para <strong class="fx-search-query">critério de pesquisa</strong>. Pesquisar antes por <a>outro critério de pesquisa</a></h3>
+                            </div>
+                            <div id="search-tools" class="pull-right">
+                                <div class="checkbox-inline">
+                                    <label class="fx-search-description">
+                                        <input id="fx-search-description" type="checkbox">Mostrar descrição
+                                    </label>
+                                </div>
+                                <label for="fx-search-sort">Ordenar por</label>
+                                <select id="fx-search-sort" class="input-sm form-control fx-search-sort-by">
+                                    <option>data de criação</option>
+                                    <option>última modificação</option>
+                                    <option>alfabeticamente</option>
+                                </select>
+                                <div id="view-modes" class="btn-group">
+                                    <button id="fx-search-view-list" type="button" class="btn btn-default btn-xs active" title="ver em lista"> <i class="fa fa-list"></i></button>
+                                    <button id="fx-search-view-table" type="button" class="btn btn-default btn-xs" title="ver em tabela"> <i class="fa fa-table"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="fx-entity-info">
+                    <p id="fx-no-search-records" class="fx-empty-data-msg">Sem resultados para apresentar. Selecione os parâmetros da pesquisa.</p>
+
+                    <div class="fx-search-content hidden">
+                        <ul class="nav nav-tabs nav-stacked nav-tabs-stacked-left pull-left">
+                            <li class="active">
+                                <a data-show-tab="" href="#search-module-a" class="fx-tab" data-toggle="tab">Módulo A<span class="badge pull-right">3.657</span></a>
+                            </li>
+                            <li>
+                                <a data-show-tab="" href="#search-module-b" class="fx-tab" data-toggle="tab">Módulo B<span class="badge pull-right">350</span></a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content nav-tabs-stacked-left-content">
+                            <section id="search-module-a" class="tab-pane active">
+                                <ul class="fx-search-list list-unstyled">
+                                    <li class="fx-search-list-entry">
+                                        <div class="pull-left fx-search-list-icon">
+                                            <span class="fx-info-icon"><i class="glyphicon glyphicon-hdd"></i></span>
+                                        </div>
+                                        <div class="fx-search-list-entry-title-wrapper">
+                                            <h4 class="fx-search-list-entry-title">
+                                                <a>
+                                                    <strong class="fx-search-query"></strong>Título da entidade
+                                                </a>
+                                            </h4>
+                                            <p>Descrição da entidade com <strong>critério de pesquisa</strong>.....</p>
+                                        </div>
+                                        <!-- Usar apenas se produto tiver esta info -->
+                                        <div class="fx-search-list-info">
+                                            <div class="fx-search-list-entry-metadadata">
+                                                <span><i class="fa fa-history"></i> criado há 5 dias | modificado há 12h32m</span>
+                                                <span><i class="glyphicon glyphicon-user"></i> criado por André Damasco | modificado por Sérgio Almeida</span>
+                                            </div>
+
+                                            <div class="fx-search-list-entry-actions">
+                                                <a class="btn btn-link btn-link-in-table"><i class="fuxicons fuxicons-eye"></i></a>
+                                                <div class="btn-group">
+                                                    <button title="Mais ações" class="btn btn-link btn-link-in-table dropdown-toggle" data-toggle="dropdown">
+                                                        <i class="fa fa-cog"></i>
+                                                        <i class="caret"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu fx-dropdown-open-to-left" role="menu">
+                                                        <li>
+                                                            <a>Ação 1</a>
+                                                        </li>
+                                                        <li>
+                                                            <a>Ação 2</a>
+                                                        </li>
+                                                        <li>
+                                                            <a>Ação 3</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <div class="fx-search-table hidden">
+                                    <table class="table" id="resTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Tipo</th>
+                                                <th>Nome</th>
+                                                <th>Descrição</th>
+                                                <th>Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <span title="alarme" class="fx-info-icon"><i class="glyphicon glyphicon-hdd"></i></span> Tipo da entidade
+                                                </td>
+                                                <td><a><strong class="fx-search-query"></strong>Título da entidade</a></td>
+                                                <td>Descrição da entidade <strong>critério de pesquisa</strong>...</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-link btn-link-in-table" title="Consultar"><i class="fuxicons fuxicons-eye"></i></a>
+                                                    <div class="btn-group">
+                                                        <button title="Mais ações" class="btn btn-link btn-link-in-table dropdown-toggle" data-toggle="dropdown">
+                                                            <i class="fa fa-cog"></i>
+                                                            <i class="caret"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu fx-dropdown-open-to-left" role="menu">
+                                                            <li>
+                                                                <a href="#">
+                                                                    Ação 1
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    Ação 2
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    Ação 3
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--# include file="/fuxi/doc/partials/showroom/partials/footer-templates.html" -->
+    </div>
+
+    <div class="template-desc-container right-pos fixed maximized">
+        <div class="template-desc-header clearfix">
+            <div class="template-desc-actions">
+                <button id="btn-detach" class="btn btn-xs btn-link" title="destacar">
+                    <i class="fuxicons fuxicons-open-in-window"></i>
+                </button>
+                <button id="btn-fix" class="btn btn-xs btn-link hidden" title="fixar">
+                    <i class="fuxicons fuxicons-restore-from-window"></i>
+                </button>
+                <button id="btn-minimize" class="btn btn-xs btn-link" title="minimizar">
+                    <i class="glyphicon glyphicon-minus"></i>
+                </button>
+                <button id="btn-maximize" class="btn btn-xs btn-link hidden" title="maximizar">
+                    <i class="glyphicon glyphicon-plus"></i>
+                </button>
+            </div>
+            <h3><i class="fx-drag-bright"></i> Informação útil</h3>
+        </div>
+        <div class="template-desc-body">
+            <ul class="list-unstyled">
+                <li>
+                    <p>Por defeito sugere-se que a página de resultados de pesquisa tenha este aspeto.</p>
+                    <button id="bt-default" class="btn btn-default btn-sm active">pesquisa estado inicial</button>
+                </li>
+                <li>
+                    <hr />
+                    <p>Prevemos que a pesquisa possa ser feita de duas formas. A pesquisa por query poderá ou não fazer sentido, dependendo do sistema.</p>
+                    <div class="btn-group">
+                        <button id="bt-std-search" class="btn btn-default btn-sm">pesquisa standard</button>
+                        <button id="bt-query-search" class="btn btn-default btn-sm">pesquisa por query</button>
+                    </div>
+                </li>
+                <li>
+                    <hr />
+                    <p>Ao efetuar a pesquisa, caso haja um match, surgem os resultados sob a forma de lista. Caso contrário deverá surgir a mensagem de sem resultados para apresentar.</p>
+                    <div class="btn-group">
+                        <button id="bt-trigger-search-match" class="btn btn-default btn-sm">com matches</button>
+                        <button id="bt-trigger-search-no-match" class="btn btn-default btn-sm">sem matches</button>
+                    </div>
+                </li>
+                <li>
+                    <hr />
+                    <p>Os resultados da pesquisa podem ser vistos em lista ou em tabela.</p>
+                    <div class="btn-group">
+                        <button id="bt-trigger-list-view" class="btn btn-default btn-sm">ver em lista</button>
+                        <button id="bt-trigger-table-view" class="btn btn-default btn-sm">ver em tabela</button>
+                    </div>
+                </li>
+                <li>
+                    <hr />
+                    <p>Os resultados obtidos, caso tal faça sentido, podem ser agrupados por módulo.</p>
+                    <div class="btn-group">
+                        <button id="bt-trigger-results-grouped" class="btn btn-default btn-sm">agrupados</button>
+                        <button id="bt-trigger-results-ungrouped" class="btn btn-default btn-sm">não agrupados</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--# include file="/fuxi/doc/partials/showroom/partials/scripts-templates.html" -->
+
+    <script>
+
+        //options para o alerta que surge no ready da página
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "timeOut": "30000",
+            "extendedTimeOut": "10000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+        $(document).ready(function () {
+            utils.templateDesc();
+            $('#btn-minimize').click(); //faz trigger para que a barra surja por defeito minimizada
+            utils.activeButton();
+
+            //Demo purpose only
+            //input para seleção dos módulos
+            $('#txt-filter-module').select2({
+                placeholder: "Todos os módulos",
+                query: function (query) {
+                    var data = {
+                        results: [
+                            { id: 1, text: "Módulo x" },
+                            { id: 2, text: "Módulo y" },
+                            { id: 3, text: "Módulo z" },
+                            { id: 4, text: "Módulo z1" },
+                            { id: 5, text: "Módulo z2" },
+                            { id: 6, text: "Módulo z3" }
+                        ]
+                    };
+
+                    query.callback(data);
+                },
+                multiple: true
+            });
+            
+            //inputs para ordenar por e agrupar por
+            $('#fx-search-sort, #txt-filter-grouping').select2({
+                minimumResultsForSearch: -1
+            });
+
+            // TOGGLE ADVANCED/BASIC SEARCH
+            var filterContainer = "#table-search-container",
+            simpleSearch = $("#table-simple-search", filterContainer),
+            advancedSearch = $("#table-advanced-search", filterContainer);
+
+            //toggles between simple and advanced search
+            $("#bt-toggle-adv-search", filterContainer).on('click', function () {
+                $(this).addClass("hidden");
+                advancedSearch.removeClass("hidden");
+                $("#bt-toggle-simple-search", filterContainer).removeClass("hidden");
+                simpleSearch.addClass("hidden");
+                $(".fx-advanced-search-input input:first").focus();
+            });
+
+            $("#bt-toggle-simple-search", filterContainer).on('click', function () {
+                $(this).addClass("hidden");
+                simpleSearch.removeClass("hidden");
+                $("#bt-toggle-adv-search", filterContainer).removeClass("hidden");
+                advancedSearch.addClass("hidden");
+                $(".fx-simple-search-input input:first", filterContainer).focus();
+            });
+
+            //group or ungroup search results
+            $('#txt-filter-grouping').on('change', function () {
+                if ($(this).val() === 'none') {
+                    $('.fx-search-content > .nav').hide();
+                } else if ($(this).val() === 'module') {
+                    $('.fx-search-content > .nav').show();
+                }
+            });
+
+            //POPOVER WITH HELP FOR QUERY EDITOR
+            $("#bt-helper-query").popover({
+                html: true,
+                placement: 'left',
+                template: '<div class="popover fx-popover-s">' +
+                '<div class="arrow"></div>' +
+                '<div class="popover-content no-padding"></div>' +
+                '</div>',
+                content: function () {
+                    return $(this).next('.query-popover-content').html();
+                }
+            });
+
+            //TABLE 
+            var $table = $('#resTable');
+
+            var resTable = $.extend({}, FUXI.Presets.DataTables, {
+                'iDisplayLength': 20,
+                'bPaginate': true,
+                'bInfo': true,
+                'aoColumns': [{
+                    'bSortable': true
+                }, {
+                    'bSortable': true
+                }, {
+                    'bSortable': true
+                }, {
+                    'bSortable': false
+                }]
+            });
+
+            $table.dataTable(resTable);
+
+            
+            //toggle between list and table view
+            $('#fx-search-view-list').on('click', function () {
+                $('.fx-search-table').addClass('hidden');
+                $('.fx-search-list').removeClass('hidden');
+            });
+
+            $('#fx-search-view-table').on('click', function () {
+                $('.fx-search-list').addClass('hidden');
+                $('.fx-search-table').removeClass('hidden');
+            });
+
+            $('#view-modes > button').on('click', function () {
+                $(this).addClass('active').siblings().removeClass('active');
+            });
+            
+            //fakes search behaviour
+            $('#btSimpleSearchSubmit, .fx-advanced-search-input button').off('click').on('click', function (e) {
+                $('#fx-no-search-records').addClass('hidden');
+                $('.fx-search-actions, .fx-search-content').removeClass('hidden');
+                e.preventDefault();
+            });
+
+            //the alert message displayed on document ready
+            toastr["warning"]("O scripting colocado inline nesta página serve apenas o propósito da demo e não deve ser considerado como válido para implementação pelas equipas de produto que queiram usar este template.")
+
+            
+
+            
+
+
+            //TEMPLATE DESC BEHAVIOURS
+            $('#bt-default').on('click', function () {
+                $('#fx-no-search-records').removeClass('hidden');
+                $('.fx-search-actions, .fx-search-content').addClass('hidden');
+                $("#bt-toggle-simple-search", filterContainer).trigger('click');
+            });
+
+            $('#bt-std-search').on('click', function () {
+                $("#bt-toggle-simple-search", filterContainer).trigger('click');
+                $('.fx-search-content, #search-tools').removeClass('hidden');
+                $("#results-found").removeClass('hidden');
+                $("#no-results-found").addClass('hidden');
+            });
+
+            $('#bt-query-search').on('click', function () {
+                $("#bt-toggle-adv-search", filterContainer).trigger('click');
+                $('.fx-search-content, #search-tools').removeClass('hidden');
+                $("#results-found").removeClass('hidden');
+                $("#no-results-found").addClass('hidden');
+            });
+
+            $('#bt-trigger-search-match').on('click', function () {
+                $("#btSimpleSearchSubmit", filterContainer).trigger('click');
+                $("#fx-search-view-list").trigger('click');
+                $("#results-found").removeClass('hidden');
+                $("#no-results-found").addClass('hidden');
+                $('.fx-search-content, #search-tools').removeClass('hidden');
+            });
+
+            $('#bt-trigger-search-no-match').on('click', function () {
+                $("#btSimpleSearchSubmit", filterContainer).trigger('click');
+                $("#fx-search-view-list").trigger('click');
+                $("#results-found").addClass('hidden');
+                $("#no-results-found").removeClass('hidden');
+                $('.fx-search-content, #search-tools').addClass('hidden');
+            });
+
+            $('#bt-trigger-list-view').on('click', function () {
+                $("#btSimpleSearchSubmit", filterContainer).trigger('click');
+                $("#fx-search-view-list").trigger('click');
+                $('.fx-search-content, #search-tools').removeClass('hidden');
+                $("#results-found").removeClass('hidden');
+                $("#no-results-found").addClass('hidden');
+            });
+
+            $('#bt-trigger-table-view').on('click', function () {
+                $("#btSimpleSearchSubmit", filterContainer).trigger('click');
+                $("#fx-search-view-table").trigger('click');
+                $('.fx-search-content, #search-tools').removeClass('hidden');
+                $("#results-found").removeClass('hidden');
+                $("#no-results-found").addClass('hidden');
+            });
+
+            $('#bt-trigger-results-grouped').on('click', function () {
+                $("#btSimpleSearchSubmit", filterContainer).trigger('click');
+                $("#fx-search-view-list").trigger('click');
+                $('#txt-filter-grouping').val('module').trigger('change');
+                $('.fx-search-content > .nav').show();
+                $('.fx-search-content, #search-tools').removeClass('hidden');
+                $("#results-found").removeClass('hidden');
+                $("#no-results-found").addClass('hidden');
+            });
+
+            $('#bt-trigger-results-ungrouped').on('click', function () {
+                $("#btSimpleSearchSubmit", filterContainer).trigger('click');
+                $("#fx-search-view-list").trigger('click');
+                $('#txt-filter-grouping').val('none').trigger('change');
+                $('.fx-search-content > .nav').hide();
+                $('.fx-search-content, #search-tools').removeClass('hidden');
+                $("#results-found").removeClass('hidden');
+                $("#no-results-found").addClass('hidden');
+            });
+
+            
+
+        });
+    </script>
+</body>
+
+
+
+</html>

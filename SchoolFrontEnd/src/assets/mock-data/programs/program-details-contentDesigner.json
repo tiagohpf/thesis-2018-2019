@@ -1,0 +1,279 @@
+{
+    "type": "initParameters",
+    "id": "initParametersContentDesigner",
+    "details": [
+        {
+            "type": "operations",
+            "id": "initParametersContentsOperations",
+            "text": null,
+            "operations": [
+                {
+                    "parameters": [
+                        {
+                            "type": "updatePage",
+                            "id": "studentInfoButtonAreasIntents",
+                            "text": "program___intent___namePlural",
+                            "class": "active",
+                            "parameters": [
+                                {
+                                    "key": "updatePageParameter",
+                                    "value": {
+                                        "studentInfoButtonAreasIntents": {
+                                            "class": "active"
+                                        },
+                                        "studentInfoButtonAreasDesigner": {
+                                            "class": ""
+                                        },
+                                        "studentInfoButtonAreasEntities": {
+                                            "class": ""
+                                        },
+                                        "studentInfoButtonAreasVariables": {
+                                            "class": ""
+                                        },
+                                        "entityInfoButtonAreasIntents": {
+                                            "class": ""
+                                        },
+                                        "studentInfoButtonAreasAlias": {
+                                            "class": ""
+                                        },
+                                        "programIntentsTable": {
+                                            "hidden": false
+                                        },
+                                        "designerFlowComponent": {
+                                            "hidden": true
+                                        },
+                                        "programEntitiesTable": {
+                                            "hidden": true
+                                        },
+                                        "programVariablesTable": {
+                                            "hidden": true
+                                        },
+                                        "programAliasTable": {
+                                            "hidden": true
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "parameters": [
+                        {
+                            "type": "updatePage",
+                            "id": "studentInfoButtonAreasDesigner",
+                            "text": "designerFlow___title",
+                            "parameters": [
+                                {
+                                    "key": "updatePageParameter",
+                                    "value": {
+                                        "studentInfoButtonAreasIntents": {
+                                            "class": ""
+                                        },
+                                        "studentInfoButtonAreasDesigner": {
+                                            "class": "active"
+                                        },
+                                        "studentInfoButtonAreasEntities": {
+                                            "class": ""
+                                        },
+                                        "studentInfoButtonAreasVariables": {
+                                            "class": ""
+                                        },
+                                        "entityInfoButtonAreasIntents": {
+                                            "class": ""
+                                        },
+                                        "studentInfoButtonAreasAlias": {
+                                            "class": ""
+                                        },
+                                        "programIntentsTable": {
+                                            "hidden": true
+                                        },
+                                        "designerFlowComponent": {
+                                            "hidden": false,
+                                            "lazyLoading": false
+                                        },
+                                        "programEntitiesTable": {
+                                            "hidden": true
+                                        },
+                                        "programVariablesTable": {
+                                            "hidden": true
+                                        },
+                                        "programAliasTable": {
+                                            "hidden": true
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "parameters": [
+                        {
+                            "type": "updatePage",
+                            "id": "studentInfoButtonAreasEntities",
+                            "text": "program___entity___namePlural",
+                            "parameters": [
+                                {
+                                    "key": "updatePageParameter",
+                                    "value": {
+                                        "studentInfoButtonAreasIntents": {
+                                            "class": ""
+                                        },
+                                        "studentInfoButtonAreasDesigner": {
+                                            "class": ""
+                                        },
+                                        "studentInfoButtonAreasEntities": {
+                                            "class": "active"
+                                        },
+                                        "studentInfoButtonAreasVariables": {
+                                            "class": ""
+                                        },
+                                        "entityInfoButtonAreasIntents": {
+                                            "class": ""
+                                        },
+                                        "programIntentsTable": {
+                                            "hidden": true
+                                        },
+                                        "designerFlowComponent": {
+                                            "hidden": true
+                                        },
+                                        "programEntitiesTable": {
+                                            "hidden": false
+                                        },
+                                        "programVariablesTable": {
+                                            "hidden": true
+                                        },
+                                        "programAliasTable": {
+                                            "hidden": true
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "parameters": [
+                        {
+                            "type": "updatePage",
+                            "id": "studentInfoButtonAreasVariables",
+                            "text": "program___variable___namePlural",
+                            "parameters": [
+                                {
+                                    "key": "updatePageParameter",
+                                    "value": {
+                                        "studentInfoButtonAreasIntents": {
+                                            "class": ""
+                                        },
+                                        "studentInfoButtonAreasDesigner": {
+                                            "class": ""
+                                        },
+                                        "studentInfoButtonAreasEntities": {
+                                            "class": ""
+                                        },
+                                        "studentInfoButtonAreasVariables": {
+                                            "class": "active"
+                                        },
+                                        "entityInfoButtonAreasIntents": {
+                                            "class": ""
+                                        },
+                                        "studentInfoButtonAreasAlias": {
+                                            "class": ""
+                                        },
+                                        "programIntentsTable": {
+                                            "hidden": true
+                                        },
+                                        "designerFlowComponent": {
+                                            "hidden": true
+                                        },
+                                        "programEntitiesTable": {
+                                            "hidden": true
+                                        },
+                                        "programVariablesTable": {
+                                            "hidden": false
+                                        },
+                                        "programAliasTable": {
+                                            "hidden": true
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "parameters": [
+                        {
+                            "type": "updatePage",
+                            "id": "studentInfoButtonAreasAlias",
+                            "text": "program___alias___namePlural",
+                            "role": "Programs.Alias.Operations.Read",
+                            "parameters": [
+                                {
+                                    "key": "updatePageParameter",
+                                    "value": {
+                                        "studentInfoButtonAreasIntents": {
+                                            "class": ""
+                                        },
+                                        "studentInfoButtonAreasDesigner": {
+                                            "class": ""
+                                        },
+                                        "studentInfoButtonAreasEntities": {
+                                            "class": ""
+                                        },
+                                        "studentInfoButtonAreasVariables": {
+                                            "class": ""
+                                        },
+                                        "studentInfoButtonAreasAlias": {
+                                            "class": "active"
+                                        },
+                                        "programIntentsTable": {
+                                            "hidden": true
+                                        },
+                                        "designerFlowComponent": {
+                                            "hidden": true
+                                        },
+                                        "programEntitiesTable": {
+                                            "hidden": true
+                                        },
+                                        "programVariablesTable": {
+                                            "hidden": true
+                                        },
+                                        "programAliasTable": {
+                                            "hidden": false
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "include": "programs/program-intent-list"
+        },
+        {
+            "id": "designerFlowComponent",
+            "text": null,
+            "type": "designer-flow-DELETE-component",
+            "subType": "program",
+            "hidden": true,
+            "lazyLoading": true,
+            "readonly": true,
+            "pathToValue": [
+                "programJsonDetail"
+            ]
+        },
+        {
+            "include": "programs/program-entity-list"
+        },
+        {
+            "include": "programs/program-variable-list"
+        },
+        {
+            "include": "programs/program-alias-list"
+        }
+    ]
+}

@@ -1,0 +1,267 @@
+{
+  "type": "initParameters",
+  "header": {
+    "seo": {
+      "text": "designerFlow___modalTitle___shapeProgram"
+    }
+  },
+  "details": [
+    {
+      "type": "label",
+      "id": "shapeId",
+      "text": "designerFlow___shapes___shapeId",
+      "hidden": true,
+      "pathToValue": [
+        "shape",
+        "id"
+      ]
+    },
+    {
+      "type": "wct-ng-select",
+      "id": "jumpToProgram",
+      "text": "designerFlow___shapes___selectProgramToJump",
+      "urlResource": [
+        {
+          "key": "path",
+          "value": "{{SchoolBOT}}/programs"
+        },
+        {
+          "key": "queryString",
+          "value": {
+            "keys": "{\"name\":1}",
+            "filter": "{\"IXS\" :\"{{IXS_id}}\" }"
+          }
+        },
+        {
+          "key": "headers",
+          "value": {
+            "Authorization": "Bearer {{token}}",
+            "IXS": "{{IXS_id}}"
+          }
+        }
+      ],
+      "pathToValueList": [
+        "_embedded",
+        "$this.filter(obj => obj._id.$oid != '[[programID]]')",
+        "$this.map(obj => ({\"key\": obj._id.$oid, \"value\": obj.name}))",
+        "@formatValueList($this,'key','value')"
+      ],
+      "pathToValue": [
+        "shape",
+        "dataRecs",
+        "jumpToProgramId"
+      ],
+      "parameters": [
+        {
+          "key": "updatePageParameter",
+          "value": {
+            "jumpToProgramShapeWrapper": {
+              "lazyLoading": false
+            },
+            "jumpToProgramShape": {
+              "value": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "wrapper",
+      "id": "jumpToProgramShapeWrapper",
+      "pathToValue": [
+        ""
+      ],
+      "dynamicProps": {
+        "hidden": "!'{{jumpToProgram}}'",
+        "lazyLoading": "!'{{jumpToProgram}}'"
+      },
+      "details": [
+        {
+          "type": "label",
+          "id": "serviceGroupId",
+          "text": "serviceGroupId",
+          "hidden": true,
+          "urlResource": [
+            {
+              "key": "path",
+              "value": "{{SchoolBOT}}/programs/{{jumpToProgram___id}}"
+            },
+            {
+              "key": "queryString",
+              "value": {
+                "keys": "{\"name\":1, \"code\":1, \"version\":1}",
+                "filter": "{\"IXS\" :\"{{IXS_id}}\" }"
+              }
+            },
+            {
+              "key": "headers",
+              "value": {
+                "Authorization": "Bearer {{token}}",
+                "IXS": "{{IXS_id}}"
+              }
+            }
+          ],
+          "pathToValue": [
+            "$this['code'] + '_' + $this['name'] + '_' + $this['version']"
+          ]
+        },
+        {
+          "type": "wct-ng-select",
+          "id": "jumpToProgramShape",
+          "text": "designerFlow___shapes___selectProgramShapeToJump",
+          "urlResource": [
+            {
+              "key": "path",
+              "value": "{{SchoolBE}}/designer/programAccessPoints/{{jumpToProgram___id}}"
+            },
+            {
+              "key": "headers",
+              "value": {
+                "Authorization": "Bearer {{token}}",
+                "IXS": "{{IXS_id}}"
+              }
+            }
+          ],
+          "pathToValueList": [
+            "shapes",
+            "@forceArray($this).map(obj => ({\"key\": obj.id + '||' + obj.type, \"value\": obj.text}))",
+            "@formatValueList($this,'key','value')"
+          ],
+          "pathToValue": [
+            "jumpToProgramShapeWrapper",
+            "shape",
+            "dataRecs",
+            "jumpToProgramShape"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "wct-tuple-list",
+      "id": "outputVariables",
+      "text": "designerFlow___setValues",
+      "pathToValueList": [
+        "outputVariables",
+        "@findOutputVariables($this)"
+      ],
+      "details": [
+        {
+          "type": "wct-ng-select",
+          "id": "variableName",
+          "text": "designerFlow___variableName",
+          "class": "col-sm-4",
+          "pathToValueList": [
+            "config::designerFlowComponent",
+            "variables",
+            "@formatValueList($this,'displayName','displayName', {\"line1\": \"displayName\",\"line2\": \"description\"})",
+            "@formatValueListTwoLines($this)"
+          ],
+          "pathToValue": [
+            "variableName"
+          ]
+        },
+        {
+          "type": "custom-mentions",
+          "id": "path",
+          "class": "col-sm-5",
+          "text": "designerFlow___newValue",
+          "pathToValue": [
+            "path",
+            "$this.toString()"
+          ],
+          "pathToValueList": [
+            "@createApiPathOptions(@getJsonParam('responseFilterMapper').value,@getJsonParam('config::designerFlowComponent'))"
+          ],
+          "parameters": [
+            {
+              "key": "updatePageParameter",
+              "value": {
+                "pathType": {
+                  "value": "{{@fv()@getPathType(@replaceTagVars('path'))}}"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "input-select",
+          "id": "pathType",
+          "text": "designerFlow___valueType",
+          "class": "col-sm-3",
+          "placeholder": null,
+          "valueList": [
+            {
+                "key": "string",
+                "value": "designerFlow___valueTypeOptions___string"
+            },
+            {
+                "key": "number",
+                "value": "designerFlow___valueTypeOptions___number"
+            },
+            {
+                "key": "boolean",
+                "value": "designerFlow___valueTypeOptions___boolean"
+            },
+            {
+                "key": "reset",
+                "value": "designerFlow___valueTypeOptions___reset"
+            },
+            {
+                "key": "null",
+                "value": "designerFlow___valueTypeOptions___empty"
+            }
+          ],
+          "pathToValue": [
+            "@evaluatePathType($this['pathType'],$this['path'])"
+          ]
+        }
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "parameters": [
+        {
+          "id": "calcelFilter",
+          "text": "generic___operations___cancel",
+          "class": "btn-force-default btn-default"
+        },
+        {
+          "type": "updatePage",
+          "text": "generic___operations___save",
+          "class": "btn-primary btn-submit",
+          "parameters": [
+            {
+              "key": "updatePageParameter",
+              "value": {
+                "designerFlowComponent": {
+                  "sendEvent": [
+                    {
+                      "key": "saveShapeName",
+                      "value": {
+                        "shapeId": "{{shapeId}}",
+                        "name": "{{@fv()@programShapeName(@replaceTagVars('jumpToProgram___label'),@replaceTagVars('jumpToProgramShape___label'))}}"
+                      }
+                    },
+                    {
+                      "key": "saveDataRecs",
+                      "value": {
+                        "shapeId": "{{shapeId}}",
+                        "dataRecs": {
+                          "outputVariables": "{{@fv()@mapOutputVariables(@getJsonParam('outputVariables').value)}}",
+                          "serviceGroupId": "{{serviceGroupId}}",
+                          "jumpToProgramId": "{{jumpToProgram___id}}",
+                          "jumpToProgramShape": "{{jumpToProgramShape___id}}"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

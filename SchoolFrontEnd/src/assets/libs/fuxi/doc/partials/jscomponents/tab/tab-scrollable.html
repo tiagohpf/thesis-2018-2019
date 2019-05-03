@@ -1,0 +1,504 @@
+<h3 id="docs-tab-scrollable">Scrollable tabs</h3>
+<p>Por vezes existe a necessidade de disponibilizar um sistema de tabs composto por bastantes elementos. Para fazer face a esse cenário disponibiliza-se um mecanismo de slider de forma a permitir encaixar quantos tabs se desejar sem aumentar o espaço vertical consumido.</p>
+
+<h4>Instanciação</h4>
+<p>O markup da componente Scrollable tabs deverá ser explicitamente disponibilizado na página.</p>
+<p>O snippet de código abaixo ilustra os ficheiros necessários ao correto funcionamento da componente. Demonstra ainda de forma muito resumida a sua instanciação. O markup necessário não está demonstrado para que esta secção não fique demasiado extensa. Por favor, inspecione a página e copie o markup necessário.</p>
+
+<div id="devguide-scroll-tab-example" class="fx-scrollable-tabs-container" data-fx-slider-tab>
+    <div class="fx-scrollable-tabs-actions fx-left-placement">
+        <span class="fx-tab-hint fx-tab-hint-left" data-fx-slider-tab-hint-left><span class="sr-only">ver conteúdo à esquerda</span></span>
+    </div>
+    <div class="fx-scrollable-tabs-list-wrapper" data-fx-slider-tab-viewport>
+        <ul id="pageTab" class="fx-main-tabs nav nav-tabs" data-fx-slider-tab-overview>
+            <li class="active fx-dismissible fx-sortable" id="1">
+                <a href="#tab1" data-toggle="tab" data-tab-id="1" id="fx-a-1">
+                    <span class="fx-tab-title">tab 1</span>
+                </a>
+                <button class="fx-del-tab" id="fx-btn-del-1">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="fx-add-action-wrapper fx-right-placement" data-fx-add-action-wrapper>
+        <button class="btn btn-primary btn-sm fx-tab-overflow-add-action" type="button">
+            <i class="glyphicon glyphicon-plus"></i>
+            <span class="fx-tab-overflow-add-action-text">novo tab</span>
+        </button>
+    </div>
+
+    <div class="fx-scrollable-tabs-actions fx-right-placement">
+        <span class="fx-tab-hint fx-tab-hint-right" data-fx-slider-tab-hint-left><span class="sr-only">ver conteúdo à direita</span></span>
+
+        <div class="fx-scrollable-tabs-nav">
+            <div class="btn-group fx-view-all-tabs" data-fx-slider-tab-dropdown>
+                <button class="btn btn-default btn-sm dropdown-toggle fx-dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <i class="glyphicon glyphicon-th-list"></i>
+                    <i class="caret"></i>
+                    <span class="sr-only">ver todos os tabs</span>
+                </button>
+
+                <div class="fx-dropdown fx-dropdown-open-to-left">
+                    <div class="fx-dropdown-header">
+                        <div name="frm-search-fx-tabs" class="form-group fx-search-input">
+                            <div class="fx-pos-rel">
+                                <input type="text" placeholder="filtrar..." class="form-control input-sm full-width fx-dropdown-search" name="txt-fx-tab-search">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fx-dropdown-body">
+                        <ul id="pageTabDropdown" class="nav" data-fx-slider-tab-dropdown-overview>
+                            <li class="active" data-tab-target-id="1">
+                                <a data-toggle="tab" id="fx-dd-a-1" data-tab-id="1">tab 1</a>
+                            </li>
+                            <li data-tab-target-id="2">
+                                <a data-toggle="tab" id="fx-dd-a-2" data-tab-id="2">tab 2</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div name="left-div" class="fx-arrow-left" data-fx-slider-tab-left>
+                <button class="btn btn-default btn-sm fx-tab-overflow-arrows" type="button">
+                    <i class="glyphicon glyphicon-chevron-left"></i>
+                </button>
+            </div>
+            <div name="right-div" class="fx-arrow-right" data-fx-slider-tab-right>
+                <button class="btn btn-default btn-sm fx-tab-overflow-arrows" type="button">
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                </button>
+            </div>
+
+            <button class="btn btn-primary btn-sm fx-tab-overflow-add-action" type="button" data-fx-slider-tab-add-action>
+                <i class="glyphicon glyphicon-plus"></i>
+            </button>
+
+        </div>
+    </div>
+    <div class="fx-tab-overflow-border"></div>
+
+    <div id="pageTabContent" class="tab-content fx-main-tab-content with-padding" data-fx-slider-tab-content-wrapper>
+        <div class="tab-pane active" id="tab1" data-tab-target-id="1">
+            <div class="fx-tab-pane-inner">
+                Content tab 1
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<form class="fx-codemirror">
+    <textarea class="fx-codemirror-textarea">
+<!-- Ficheiros necessários a incluir no head-->
+<head>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/fuxi/common/html/css/fuxi.min.css" rel="stylesheet" />   
+</head>
+    </textarea>
+</form>
+
+<form class="fx-codemirror">
+    <textarea class="fx-codemirror-textarea">
+<!--Ficheiros a colocar antes de fechar a tag body-->
+<script src="/basepack/jquery/1.11/jquery.min.js"></script>
+<script src="/fuxi/lib/jqueryui/1.11/js/jquery-ui.min.js"></script>
+<script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+<script src="/fuxi/common/exec/fuxi.js"></script>
+<script src="/fuxi/resources/fuxi_pt.js"></script>
+
+    </textarea>
+</form>
+
+<form class="fx-codemirror">
+    <textarea class="fx-codemirror-textarea">
+<!--Instanciação do scrollable tabs-->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //function that adds a tab
+        var addTab = function (name, id, dismissible, sortable, selected, customParams, actions, actionsList) {
+            var fxSliderTab = $("#devguide-scroll-tab-example").data("fxslidertab");
+            fxSliderTab.addTab(name, id, dismissible, sortable, selected, customParams, actions, actionsList);
+        };
+
+        //bt that will trigger addTAb function
+        $(".fx-tab-overflow-add-action").on("click", function () {
+            var id = Math.floor((Math.random() * new Date()) + 1);
+            addTab("tab" + id, id, true, true, true, { contentUrl: (id % 2) ? 'tabcontent.html?id=' + id : "" }, false, null);
+        });
+
+
+        var initializeTab = function () {
+
+            FUXI.SliderTabs.init({});
+
+            $("#devguide-scroll-tab-example").on("added.fx.slider.tab", function (ev) {
+
+                // append tab content DEMO
+                var id = ev.tab.attr("id");
+                var tabId = "tab" + id;
+
+                $("#pageTabContent").append($('<div class="tab-pane active" id="' + tabId + '" data-tab-target-id="' + id + '"><div class="fx-tab-pane-inner">' + tabId + '</div></div>'));
+                $(document).trigger('fx::tabContentLoaded', { tab: ev.tab, sliderTab: ev.fxslidertab });
+            });
+        }
+        initializeTab();
+    });
+</script>
+
+    </textarea>
+</form>
+
+
+<h4>
+    Opções
+</h4>
+<div class="table-responsive">
+    <table class="table fx-table fx-table-with-codemirror">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th class="fx-col-type">Tipo</th>
+                <th>Default</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>isAsync</td>
+                <td>booleano</td>
+                <td><code>false</code></td>
+                <td>Define se o comportamento é executado quando se instancia ou no evento window.load. <code>False</code> faz com que ocorra no window.load. </td>
+            </tr>
+            <tr>
+                <td>animateDuration</td>
+                <td>número | string</td>
+                <td>400</td>
+                <td>Define a duração da animação em milisegundos ou através de algumas constantes. Quanto maior o valor indicado mais lenta será a animação. As constantes poderão ser: <code>fast</code> (200ms) ou <code>slow</code> (600ms)</td>
+            </tr>
+            <tr>
+                <td>fixedIncrement</td>
+                <td>número</td>
+                <td>80</td>
+                <td>Define o incremento que será dado cada vez que se navega na seta de navegação.</td>
+            </tr>
+            <tr>
+                <td>tabTemplate</td>
+                <td>HTML</td>
+                <td>
+                    <a class="fx-devguide-toggle-code-vis" role="button">
+                        <i class="fa fa-angle-down"></i>ver código
+                    </a>
+                    <div class="fx-devguide-toggled-code-vis hidden">
+                        <form class="fx-codemirror">
+                            <textarea class="fx-codemirror-textarea-hidden">
+<li class="fx-status fx-dismissible fx-sortable" id="{{id}}" title="{{name}}">
+    <a href="#tab{{id}}" data-toggle="tab" id="fx-a-{{id}}" data-tab-id="{{id}}">
+        <i class="fx-ico-loading"></i>
+        <span class="fx-tab-title">{{name}}</span>
+    </a>
+</li>
+                            </textarea>
+                        </form>
+                    </div>
+                </td>
+                <td>Template de um tab.</td>
+            </tr>
+            <tr>
+                <td>tabDismissibleTemplate</td>
+                <td>HTML</td>
+                <td>
+                    <a class="fx-devguide-toggle-code-vis" role="button">
+                        <i class="fa fa-angle-down"></i>ver código
+                    </a>
+                    <div class="fx-devguide-toggled-code-vis hidden">
+                        <form class="fx-codemirror">
+                            <textarea class="fx-codemirror-textarea-hidden">
+<button class="fx-del-tab" id="fx-btn-del-{{id}}" title="' + FUXI.Resources.SliderTabs.RemoveTab + '">
+    <i class="glyphicon glyphicon-remove"></i>
+</button>
+                            </textarea>
+                        </form>
+                    </div>
+                </td>
+                <td>Template para o elemento que permite fazer dismiss a um tab. Caso se defina um template de ações para um botão, a opção de dismiss deverá ser colocada dentro dessa área de ações.</td>
+            </tr>
+            <tr>
+                <td>tabStatusTemplate</td>
+                <td>HTML</td>
+                <td>
+                    <a class="fx-devguide-toggle-code-vis" role="button">
+                        <i class="fa fa-angle-down"></i>ver código
+                    </a>
+                    <div class="fx-devguide-toggled-code-vis hidden">
+                        <form class="fx-codemirror">
+                            <textarea class="fx-codemirror-textarea-hidden">
+<span class="fx-status-tab" id="fx-s-{{id}}" title="{{title}}">
+    <i class="fuxicons fuxicons-{{status}} fx-status-{{status}}"></i>
+</span>
+                            </textarea>
+                        </form>
+                    </div>
+                </td>
+                <td>Template para indicar se existe algum estado de validação subjacente ao tab.</td>
+            </tr>
+            <tr>
+                <td>tabActionsTemplate</td>
+                <td>HTML</td>
+                <td>
+                    <a class="fx-devguide-toggle-code-vis" role="button">
+                        <i class="fa fa-angle-down"></i>ver código
+                    </a>
+                    <div class="fx-devguide-toggled-code-vis hidden">
+                        <form class="fx-codemirror">
+                            <textarea class="fx-codemirror-textarea-hidden">
+<div style="position:absolute;" class="fx-actions-tab-hldr">
+    <div class="btn-group dropdown" fx-dropdown-attachToBody>
+        <button id="fx-btn-action-{{id}}" type="button" class="fx-actions-tab dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-cog"></i>
+            <i class="caret"></i>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+            {{actionsList}}
+        </ul>
+    </div>
+</div>
+                            </textarea>
+                        </form>
+                    </div>
+                </td>
+                <td>Template para colocar ações dentro de um tab que afetem o mesmo tab.</td>
+            </tr>
+            <tr>
+                <td>tabDropdownTemplate</td>
+                <td>HTML</td>
+                <td>
+                    <a class="fx-devguide-toggle-code-vis" role="button">
+                        <i class="fa fa-angle-down"></i>ver código
+                    </a>
+                    <div class="fx-devguide-toggled-code-vis hidden">
+                        <form class="fx-codemirror">
+                            <textarea class="fx-codemirror-textarea-hidden">
+<li data-tab-target-id="{{id}}">
+    <a data-toggle="tab" id="fx-dd-a-{{id}}" data-tab-id="{{id}}">
+        {{name}}
+    </a>
+</li>
+                            </textarea>
+                        </form>
+                    </div>
+                </td>
+                <td>Template para cada uma das opções colocadas dentro do dropdown menu que permite ver a informação do tab.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h4>Eventos</h4>
+<div class="table-responsive">
+    <table class="table fx-table">
+        <thead>
+            <tr>
+                <th>Evento</th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>selected.fx.slider.tab</td>
+                <td>Executado quando se seleciona uma tab.</td>
+            </tr>
+            <tr>
+                <td>moved.fx.slider.tab</td>
+                <td>Executado quando se move uma tab</td>
+            </tr>
+            <tr>
+                <td>added.fx.slider.tab</td>
+                <td>Executado quando se adiciona uma nova tab.</td>
+            </tr>
+            <tr>
+                <td>removed.fx.slider.tab</td>
+                <td>Executado quando se remove uma tab.</td>
+            </tr>
+            <tr>
+                <td>removedAll.fx.slider.tab</td>
+                <td>Executado quando se removem todas as tabs.</td>
+            </tr>
+            <tr>
+                <td>left.fx.slider.tab</td>
+                <td>Executado quando se clica sobre o botão que permite mover os tabs para a esquerda.</td>
+            </tr>
+            <tr>
+                <td>right.fx.slider.tab</td>
+                <td>Executado quando se clica sobre o botão que permite mover os tabs para a direita.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h4>Métodos</h4>
+<div class="fx-method-desc">
+    <h5><code>tabContentLoaded(tab, status, title)</code></h5>
+    <p>Método que remove o ícone de loading e coloca um ícone de status e respetivo title, caso seja definido e passado no método. Deve ser invocado quando o conteúdo da tab se encontra completamente carregado.</p>
+    <div class="table-responsive">
+        <table class="table fx-table">
+            <thead>
+                <tr>
+                    <th>Parâmetro</th>
+                    <th>Tipo</th>
+                    <th>Default</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>tab</td>
+                    <td>objeto</td>
+                    <td>--</td>
+                    <td>O tab ao qual vai ser aplicado o estado.</td>
+                </tr>
+
+                <tr>
+                    <td>status</td>
+                    <td>string</td>
+                    <td>--</td>
+                    <td>O ícone colocado na tab a representar o seu estado. Pode ser passado qualquer valor desde que haja um match num ficheiro CSS. A FUXI disponibiliza status de <code>success, info, warning, danger</code>.</td>
+                </tr>
+
+                <tr>
+                    <td>title</td>
+                    <td>string</td>
+                    <td>--</td>
+                    <td>A tooltip aplicada ao ícone de estado colocado na tab.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>addTab(name, id, dismissible, sortable, selected, customParams, actions, actionsList)</code></h5>
+    <p>Método que permite adicionar uma nova tab.</p>
+    <div class="table-responsive">
+        <table class="table fx-table">
+            <thead>
+                <tr>
+                    <th>Parâmetro</th>
+                    <th>Tipo</th>
+                    <th>Default</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>name</td>
+                    <td>string</td>
+                    <td>--</td>
+                    <td>Define o título do tab.</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td>string</td>
+                    <td>--</td>
+                    <td>Define o identificador único aplicado ao tab. Este id é aplicado à tag <code>li</code>.</td>
+                </tr>
+                <tr>
+                    <td>dismissible</td>
+                    <td>booleano</td>
+                    <td>--</td>
+                    <td>Define se um tab pode ser removido. Caso se defina o parâmetro <code>actions</code> a <code>true</code> o botão de remover tab não será apresentado e deverá ser disponibilizado pelo programador dentro do array das ações passadas no parâmetro <code>actionsList</code>.</td>
+                </tr>
+                <tr>
+                    <td>sortable</td>
+                    <td>booleano</td>
+                    <td>--</td>
+                    <td>Define se um tab pode ser reordenado.</td>
+                </tr>
+                <tr>
+                    <td>selected</td>
+                    <td>booleano</td>
+                    <td>--</td>
+                    <td>Define se ao adicionar um tab este fica automaticamente selecionado.</td>
+                </tr>
+                <tr>
+                    <td>customParams</td>
+                    <td>objeto</td>
+                    <td>--</td>
+                    <td>Permite ao programador passar para dentro da tab informação que ache relevante. No caso de ser necessário passar informação para dentro do template da tab deverá utilizar a propriedade <code>itemTemplParams</code>.
+                        <a class="fx-devguide-toggle-code-vis" role="button">
+                            <i class="fa fa-angle-down"></i>ver código
+                        </a>
+                        <div class="fx-devguide-toggled-code-vis hidden">
+                            <form class="fx-codemirror">
+                                <textarea class="fx-codemirror-textarea-hidden">
+<script type="text/javascript">
+    var customParams = {
+            itemTemplParams: {
+                imgSrc: 'url.png',
+                imgTitle: 'image title'
+            }
+    };
+
+    var tabTmpl = '<li class="fx-status fx-dismissible fx-sortable" id="{{id}}" title="{{name}}">' +
+                    '<a href="#tab{{id}}" data-toggle="tab" id="fx-a-{{id}}" data-tab-id="{{id}}"> ' +
+                        '<span class="fx-category-icon"><img src="{{imgSrc}}" title="{{imgTitle}}" class="" /></span>' +
+                        '<span class="fx-tab-title">{{name}}</span>' +
+                    '</a>' + 
+                  '</li>';
+</script>
+                                </textarea>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>actions</td>
+                    <td>booleano</td>
+                    <td>--</td>
+                    <td>Define se o tab disponibiliza um conjunto de ações. Se definido a <code>true</code> o botão de remover tab não será apresentado e deverá ser disponibilizado pelo programador dentro do array das ações passadas no parâmetro <code>actionsList</code>.</td>
+                </tr>
+                <tr>
+                    <td>actionsList</td>
+                    <td>array</td>
+                    <td>--</td>
+                    <td>
+                    Define uma lista com objetos de ações. 
+                        <a class="fx-devguide-toggle-code-vis" role="button">
+                            <i class="fa fa-angle-down"></i>ver código
+                        </a>
+                        <div class="fx-devguide-toggled-code-vis hidden">
+                            <form class="fx-codemirror">
+                                <textarea class="fx-codemirror-textarea-hidden">
+var getRndActionsList = function () {
+    var tabactions = [
+        { label: "Ação 1 sobre a tab", action: "#" },
+        { label: "Ação 2 sobre a tab", action: "#" },
+    ];
+    return tabactions;
+}
+                                </textarea>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="fx-method-desc">
+    <h5><code>selectTabById(tabId)</code></h5>
+    <p>Método que permite selecionar a tab pelo identificador único presente no <code>li</code>.</p>
+</div>
+
+
+<div class="fx-method-desc">
+    <h5><code>removeAllTabs()</code></h5>
+    <p>Método que permite eliminar todas as tabs.</p>
+</div>
+

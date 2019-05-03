@@ -1,0 +1,137 @@
+{
+    "key": "rendering",
+    "type": "wrapper",
+    "details": [
+        {
+            "type": "input-radio",
+            "id": "imageInputType",
+            "text": "designerFlow___shapes___answer___imageForm___inputType",
+            "valueList": [
+                {
+                    "key": "url",
+                    "value": "designerFlow___shapes___answer___imageForm___url"
+                },
+                {
+                    "key": "file",
+                    "value": "designerFlow___shapes___answer___imageForm___file"
+                }
+            ]
+        },
+        {
+            "type": "label",
+            "text": null,
+            "class": "align-titles",
+            "hidden": true,
+            "dynamicProps": {
+                "hidden": "'{{imageInputType}}' != 'url'",
+                "value": "'<h4>{{@fv()@i18n('designerFlow___shapes___answer___imageForm___url')}}</h4>'"
+            }
+        },
+        {
+            "type": "custom-mentions",
+            "id": "image_url_txt",
+            "text": "designerFlow___shapes___answer___imageForm___imageUrl",
+            "hidden": true,
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ],
+            "dynamicProps": {
+                "hidden": "'{{imageInputType}}' != 'url'"
+            }
+        },
+        {
+            "type": "label",
+            "text": null,
+            "class": "align-titles",
+            "hidden": true,
+            "dynamicProps": {
+                "hidden": "'{{imageInputType}}' != 'file'",
+                "value": "'<h4>{{@fv()@i18n('designerFlow___shapes___answer___imageForm___file')}}</h4>'"
+            }
+        },
+        {
+            "type": "custom-mentions",
+            "id": "image_ipAddress_txt",
+            "text": "designerFlow___shapes___answer___imageForm___ipAddress",
+            "hidden": true,
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ],
+            "dynamicProps": {
+                "hidden": "'{{imageInputType}}' != 'file'"
+            }
+        },
+        {
+            "type": "custom-mentions",
+            "id": "image_path_txt",
+            "text": "designerFlow___shapes___answer___imageForm___path",
+            "hidden": true,
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ],
+            "dynamicProps": {
+                "hidden": "'{{imageInputType}}' != 'file'"
+            }
+        },
+        {
+            "type": "custom-mentions",
+            "id": "image_file_txt",
+            "text": "designerFlow___shapes___answer___imageForm___fileName",
+            "hidden": true,
+            "pathToValueList": [
+                "config::designerFlowComponent",
+                "variables",
+                "@mentionsComponentFormat($this)"
+            ],
+            "dynamicProps": {
+                "hidden": "'{{imageInputType}}' != 'file'"
+            }
+        },
+        {
+            "type": "label",
+            "text": null,
+            "class": "align-titles",
+            "hidden": true,
+            "dynamicProps": {
+                "hidden": "'{{imageInputType}}' != 'localFile'",
+                "value": "'<h4>{{@fv()@i18n('designerFlow___shapes___answer___imageForm___localFile')}}</h4>'"
+            }
+        },
+        {
+            "type": "file-upload-input",
+            "id": "image_localFile_upload",
+            "class": "col-sm-12",
+            "text": null,
+            "hidden": true,
+            "dynamicProps": {
+                "hidden": "'{{imageInputType}}' != 'localFile'"
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "key": "chatAnswer",
+            "id": "chatAnswerImageUrl",
+            "type": "image",
+            "dynamicProps": {
+                "key": "'{{imageInputType}}' == 'url' ? 'chatAnswer' : 'chatAnswerFromUrl'",
+                "value": "'{{image_url_txt}}'"
+            }
+        },
+        {
+            "key": "chatAnswer",
+            "id": "chatAnswerImageFile",
+            "type": "image",
+            "dynamicProps": {
+                "key": "'{{imageInputType}}' == 'file' ? 'chatAnswer' : 'chatAnswerFromFile'",
+                "value": "'{{image_ipAddress_txt}}/{{image_path_txt}}/{{image_file_txt}}'"
+            }
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+﻿{
+    "data": [
+        { "id": "z01", "text": "Z Root 1", "type": "root"},
+        { "id": "z02", "text": "Z Root 2", "type": "root" },
+        { "id": "z03", "text": "Z Root 3", "type": "root-error" },
+        { "id": "z04", "text": "Z Root 4", "type": "root-error" },
+        { "id": "a5", "text": "Root a5", "type": "root-danger" },
+        { "id": "z06", "text": "Z Root 6", "type": "root-warning",
+          "children": [
+                    { "id": "z10", "text": "Z Child 1" },
+                    { "id": "z11", "text": "Z Child 2" },
+                    { "id": "z12", "text": "Z Child 3" },
+                    { "id": "z13", "text": "Z Child 4" }]
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+  "type": "footer",
+  "id": "appFooter",
+  "class": "footer-component",
+  "navigateTo": "",
+  "details": [
+    {
+      "type": "label",
+      "id": "copyright",
+      "class": "col-sm-6",
+      "value": "BOT School © 2019 Altice Labs - all rights reserved"
+    }
+  ]
+}

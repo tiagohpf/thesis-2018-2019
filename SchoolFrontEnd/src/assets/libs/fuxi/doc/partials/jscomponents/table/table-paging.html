@@ -1,0 +1,22 @@
+<h3 id="docs-table-paging">Paging</h3>
+<p>Existem diversos mecanismos para fazer a paginação de uma tabela do tipo DataTable. Em <a class="fx-docs-btn-link" href="http://legacy.datatables.net/plug-ins/pagination" target="_blank">DataTables Custom pagination types</a> pode encontrar informação mais detalhada dos plug-ins de paginação disponíveis.</p>
+<p>A FUXI inclui paginação do tipo input, que consiste em disponibilizar os elementos abaixo referidos.</p>
+<ul>
+    <li>Botão para voltar ao início da listagem</li>
+    <li>Botão para retroceder uma página</li>
+    <li>Botão para avançar uma página</li>
+    <li>Botão para ir para o fim da lsitagem</li>
+    <li>Input para ir para uma determinada página</li>
+</ul>
+<div class="alert alert-warning">
+    <p>
+        Deverá fazer inclusão dos ficheiros necessários à instanciação de um objeto como DataTable, anteriormente referidos no ponto <a href="#docs-table-general-vision">tabela - overview</a>.
+    </p>
+    <p>Através da utilização da função <code>FUXI.Presets.DataTables</code> já será definido o tipo de paginação como <code>input</code>. Contudo, caso não use os presets, deverá definir a propriedade <code>sPaginationType</code> da seguinte forma: <code>'sPaginationType': 'input'</code>.</p>
+</div>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <!--# include file="/fuxi/doc/partials/jscomponents/table/partials/simple-table.html" -->
+    </div>
+</div>

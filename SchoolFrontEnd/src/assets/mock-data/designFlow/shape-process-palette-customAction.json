@@ -1,0 +1,56 @@
+{
+    "key": "action",
+    "type": "wrapper",
+    "id": "customActionWrapper",
+    "details": [
+        {
+            "type": "textbox",
+            "id": "actionName",
+            "text": "designerFlow___shapes___actions___customForm___actionName",
+            "class": "col-sm-12"
+        },
+        {
+            "type": "wct-tuple-list",
+            "id": "actionObj",
+            "class": "col-sm-12",
+            "text": "Action Values",
+            "min": 1,
+            "details": [
+                {
+                    "type": "textbox",
+                    "id": "key",
+                    "text": "designerFlow___shapes___actions___customForm___key",
+                    "class": "col-sm-6",
+                    "pathToValue": [
+                        "key"
+                    ]
+                },
+                {
+                    "type": "custom-mentions",
+                    "id": "value",
+                    "text": "designerFlow___shapes___actions___customForm___value",
+                    "class": "col-sm-6",
+                    "pathToValue": [
+                        "value"
+                    ],
+                    "pathToValueList": [
+                        "config::designerFlowComponent",
+                        "variables",
+                        "@mentionsComponentFormat($this)"
+                    ]
+                }
+            ],
+            "dynamicProps": {
+                "valueList": "{{actionObj}}"
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "key": "chatAction",
+            "dynamicProps": {
+                "value": "new Object({\"name\": \"{{actionName}}\", \"data\": {{actionObj}}})"
+            }
+        }
+    ]
+}

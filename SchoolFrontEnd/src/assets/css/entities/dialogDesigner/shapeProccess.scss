@@ -1,0 +1,70 @@
+
+#wct-modal-shapeConfig_process{
+    #modalComponent{ max-width: 1024px; }
+
+    #wct-each-parameter-markAsEndWrapper{ background: #e9ffbd; padding-top: 15px; margin-bottom: 15px; margin-top: -15px;
+        #wct-each-parameter-isEnd{ margin-bottom: 10px;
+            p{ padding: 0;
+                >label{ padding-left: 5px; font-size: 17px; }
+            }
+        }
+    }
+
+    .va-answer-component{
+
+        .each-parameter{
+            
+            .cards-list-templates{ padding: 12px 0;
+                .wct-components-wrapper{ padding: 8px; 
+                    .card-list-container{ display: flex; flex-flow: row; padding: 1px 8px;
+                        .card-wrapper{ padding: 0 7px;
+                            >.card{ margin: 0; box-shadow: 0 0 1px #999;
+                                &.card-selected{
+                                    *{ color: #333; }
+                                }
+                                &:hover{ box-shadow: 0 0 1px #333; }
+
+                                >.card-body{ padding: 5px; text-align: center;
+                                    *{ padding: 0; }
+
+                                    p.form-control-plaintext{ font-size:16px;
+                                        i{ font-size: 50px; }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            &.pr-0{
+                input, .ng-select-container, textarea{ border-top-right-radius: 0; border-bottom-right-radius: 0; border-right: 0; }
+            }
+            &.pl-0{
+                input, .ng-select-container, textarea{ border-top-left-radius: 0; border-bottom-left-radius: 0; }
+            }
+
+            &.align-titles{ padding-left: calc(15px + 0.75rem);
+                h4{ margin: 0; padding: 0; }
+            }
+
+        }
+
+    }
+
+}
+
+div[id^="wct-each-parameter-buttonsWrapper"]{
+
+    .button-camption{ padding-left: calc(15px - .75rem); padding-right: 0;
+        .form-control{ border-top-right-radius: 0; border-bottom-right-radius: 0; }
+    }
+    .button-action{ padding: 0;
+        .form-group{ padding: 0;
+            .wct-field-format-label{ padding-left: 15px; }
+            select{ padding-left: 10px; border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 0; }
+        }
+    }   
+
+}

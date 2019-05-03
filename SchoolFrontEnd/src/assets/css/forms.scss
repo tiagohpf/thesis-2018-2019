@@ -1,0 +1,500 @@
+.form-label-title {
+  p {
+    @extend %component-text;
+  }
+}
+
+/** FORMS LABELS **/
+.each-parameter {
+  .wct-field-format-label {
+    label {
+      @extend %component-text;
+    }
+  }
+  .wct-field-format-component {
+    .label-grouper {
+      width: 100%;
+      p {
+        font-family: FallingSky;
+        font-size: 30px;
+        color: $primary-text-color;
+        font-weight: 400;
+        text-decoration: none solid rgb(181, 181, 181);
+        line-height: 26px;
+        margin-left: -2px;
+      }
+    }
+  }
+}
+
+/** CARDS LABELS **/
+.card-list-container {
+  .card {
+    .card-body {
+      .each-parameter {
+        .wct-field-format-label {
+          label {
+            font-size: 16px;
+            font-size: 16px;
+            color: $primary-text-color;
+            font-weight: 400;
+            text-decoration: none solid rgb(181, 181, 181);
+          }
+        }
+        .wct-field-format-component {
+          .label-grouper {
+            width: 100%;
+            p {
+              color: $secundary-text-color !important;
+              a {
+                font-family: FallingSky;
+                font-size: 30px;
+                color: $secundary-text-color;
+                font-weight: 400;
+                text-decoration: none solid rgb(89, 89, 89);
+                line-height: 26px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/** GROUP PARAMETERS TITLE LABELS **/
+.each-parameter {
+  .init-header-component {
+    .wct-header-info {
+      p,
+      i {
+        color: $primary-color;
+        text-transform: lowercase;
+      }
+      i {
+        font-size: 30px;
+      }
+    }
+  }
+}
+
+/** BUTTON HEADERS LABELS **/
+.wct-header-buttons {
+  .btn {
+    border-radius: 3px;
+    background-size: cover;
+    padding: 6px;
+    margin: 6px !important;
+    color: white;
+    transition: all 0.2s ease-in-out;
+    background-image: linear-gradient(90deg, #7958ec 1%, #be4ce4 100%);
+    box-shadow: 0px 7px 30px rgba(190, 76, 228, 0.5);
+    border: none;
+    i {
+      font-size: 16px !important;
+    }
+    &:hover {
+      transition: all 0.2s ease-in-out;
+      padding: 8px;
+      margin: 4px !important;
+    }
+  }
+}
+
+/** BUTTON DEFAULT **/
+.btn {
+  color: white;
+  background-size: cover;
+  border-radius: 3px;
+  padding: 3px 6px;
+  margin: 6px !important;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  &.btn-default {
+    background-color: $btn-primary-color !important;
+    box-shadow: $btn-primary-shadow-color 0px 7px 30px 0px !important;
+    color: white !important;
+    &.male {
+      background-color: #265be0 !important;
+      box-shadow: #265be0 0px 7px 30px 0px !important;
+      right: 0;
+      position: absolute;
+      top: -3px;
+    }
+    &.female {
+      background-color: #f551a0 !important;
+      box-shadow: #f551a0 0px 7px 30px 0px !important;
+      right: 0;
+      position: absolute;
+      top: -3px;
+    }
+  }
+  &:hover {
+    //background-color: rgb(37, 58, 165);
+    //box-shadow: rgba(37, 58, 165, 0.5) 0px 7px 30px 0px;
+    color: white;
+    transition: all 0.2s ease-in-out;
+    padding: 5px 8px;
+    margin: 2px 4px !important;
+  }
+  i {
+    font-size: 16px !important;
+  }
+}
+
+/** BUTTON LINK **/
+.btn {
+  color: white;
+  background-size: cover;
+  border-radius: 3px !important;
+  padding: 6px !important;
+  margin: 6px !important;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  &.btn-link {
+    background-color: $btn-primary-color !important;
+      box-shadow: $btn-primary-shadow-color 0px 7px 30px 0px !important;
+  }
+  &:hover {
+    color: white;
+    transition: all 0.2s ease-in-out;
+    padding: 6px !important;
+    margin: 6px !important;
+  }
+  i {
+    font-size: 16px !important;
+  }
+}
+/** BUTTON PRIMARY **/
+.btn {
+  &.btn-primary {
+    background-color: #ffffff;
+    box-shadow: rgba(37, 58, 165, 0.5) 0px 7px 30px 0px !important;
+  }
+ 
+}
+
+/** BUTTON SECUNDARY **/
+.btn {
+  color: white;
+  background-size: cover;
+  border-radius: 3px;
+  padding: 6px !important;
+  margin: 6px !important;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  &.btn-secundary {
+    background-color: $btn-primary-color !important;
+    box-shadow: $btn-primary-shadow-color 0px 7px 30px 0px !important;
+  }
+  &:hover {
+    color: white;
+    transition: all 0.2s ease-in-out;
+    padding: 6px !important;
+    margin: 6px !important;
+  }
+  i {
+    font-size: 16px !important;
+  }
+}
+/** TAGS **/
+
+.wct-component-type-tag {
+  .btn {
+    background: #ebebeb !important;
+    border: 1px solid #d6d6d6 !important;
+    border-radius: 3px;
+    display: inline-block;
+    margin: 0 4px 4px 0;
+    padding: 1px !important;
+    position: relative;
+    box-shadow: none !important;
+    &:hover {
+      margin: 0 4px 4px 0;
+      padding: 1px !important;
+      cursor: context-menu;
+    }
+    p {
+      font-size: 13px;
+      color: $secundary-text-color !important;
+      padding: 2px;
+    }
+  }
+}
+
+/** TABLE **/
+.table {
+  color: $secundary-text-color;
+  .wct-component-type-tag {
+    .btn {
+      background: #ebebeb !important;
+      border: 1px solid #d6d6d6 !important;
+      border-radius: 3px;
+      display: inline-block;
+      margin: 0 4px 4px 0;
+      padding: 1px 3px;
+      position: relative;
+      box-shadow: none !important;
+      &:hover {
+        margin: 0 4px 4px 0;
+        padding: 1px 3px;
+        cursor: context-menu;
+      }
+      p {
+        font-size: 13px;
+        color: $secundary-text-color !important;
+        padding: 2px;
+      }
+    }
+  }
+  .wct-table-column-expand {
+    a {
+      color: $secundary-text-color;
+    }
+  }
+}
+
+/* ALINHAMENTO DA LABEL COM O CONTEÚDO DO COMPONENTE (textbox, select, etc) */
+.each-parameter.component-type-textbox,
+.each-parameter.component-type-wct-ng-select,
+.each-parameter.component-type-bs-order-connections,
+.each-parameter.component-type-custom-mentions,
+.each-parameter.component-type-number {
+  app-wct-fields-format {
+    > .form-group {
+      padding: 0;
+    }
+  }
+  .wct-field-format-label {
+    label {
+      padding-left: 0.75rem;
+    }
+  }
+}
+
+/* ng-select */
+.ng-select-container {
+  height: 38px !important;
+  .ng-value-container {
+    line-height: 100%;
+  }
+  .ng-clear-wrapper {
+    // display: none;
+  }
+}
+.ng-dropdown-panel {
+  .ng-option {
+    line-height: 100%;
+  }
+}
+
+/*
+    TUPLE LIST COMPONENT
+ */
+.each-parameter.component-type-wct-tuple-list {
+  margin-top: 0px;
+  .tuplelist-component {
+    app-wct-fields-format {
+
+      .wct-field-format-label {
+        label {
+          font-size: 14px;
+        }
+      }
+    }
+
+    .form-control-plaintext {
+      font-size: 18px;
+    }
+  }
+}
+
+/*
+  WIZARD BUTTOS
+*/
+
+.fx-wizard-wrapper{
+
+  .fx-wizard-buttons-wrapper-inner {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    button {
+      margin-left: 5px;
+      
+      &.fx-wizard-buttons-previous {
+        order: 2;
+        margin-left: auto !important;
+      }
+      &.fx-wizard-buttons-next {
+        order: 3;
+        margin-left: auto !important;
+      }
+      &.fx-wizard-buttons-submit {
+        order: 3;
+      }
+      &.fx-wizard-buttons-cancel {
+        order: 1;
+        margin: 0;
+      }
+      &.fx-wizard-buttons-previous:disabled {
+        display: none;
+      }
+      &.fx-wizard-buttons-next.btn-default {
+        display: none;
+      }
+      &.fx-wizard-buttons-submit.btn-default {
+        display: none;
+      }
+      &.fx-wizard-buttons-submit.btn-primary {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      i{ display: none; }
+
+    }
+
+  }
+
+}
+
+/*
+  WIZARD BUTTOS
+*/
+
+// Retirar estilo dos cards dentro dos tuplos
+.tuplelist-component {
+  .card {
+    box-shadow: none;
+    margin: 0;
+    background: transparent;
+  }
+}
+
+
+
+// Formatação de radio-buttons + label
+input-radio{
+  p{ display: flex; align-items: center; margin: 0!important; padding: 0!important;
+    label{ margin: 0; margin-left: 10px; }
+  }
+}
+
+
+// Disabled do componente custom-mentions
+
+.mentions-component{
+  textarea{
+    &:disabled{
+      ~ mwl-text-input-highlight{
+        .text-highlight-element{ background: #f9f9f9; }
+      }
+    }
+  }
+}
+
+// intents - training phrases
+#wct-content-trainingPhrasesInitParams{
+  #wct-page-header-trainingPhrasesInitParams{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    #wct-each-parameter-buttonsTrainingPhrases{
+      padding-left: 0px;
+    }
+  }
+  .wct-components-wrapper{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    #wct-content-trainingPhrasesTable{
+      .component-type-custom-mentions{
+        padding-right: 0px;
+        padding-left: 0px; 
+      }
+      #wct-table-trainingPhrasesTable-thead-trainingPhraseConsult{
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+      .wct-components-wrapper{
+        padding-top: 0px;
+        padding-bottom: 0px;
+        .mentions-component{
+          textarea{
+            border: 0px;
+            &:disabled{
+              ~ mwl-text-input-highlight{
+                .text-highlight-element{ background: transparent; }
+              }
+            }
+          }
+        }        
+      }
+    }
+    #wct-tuple-trainingPhrases_Tuple{
+      .card>.ng-star-inserted{        
+        margin-right: 10px;
+        padding-right: 10px;
+      }
+      .card>.remove-card{        
+        padding-right: 0px;
+      }
+    }
+  }
+}
+
+// intents - variables
+#wct-content-variables_Table{
+  .wct-header-content{
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  .wct-components-wrapper{
+    padding-top: 0px;
+  }
+}
+
+i.alert-notUsed{
+  color: #ce79eb;
+}
+
+#wct-each-parameter-initParametersIntentContents {
+  display: flex;
+  justify-content: flex-start;
+  button {
+      position: relative;
+      color: #595959;
+      background: transparent;
+      border: 0 !important;
+      font-weight: 400;
+      font-size: 16px;
+      padding: 5px 20px !important;
+
+      span.active-bar {
+          position: absolute;
+          top: 0;
+          left: 30%;
+          right: 30%;
+          height: 5px;
+          background-image: linear-gradient(90deg, #9059f7 3%, #de6af7 100%);
+          border-radius: 5px;
+          opacity: 0;
+          transition: .2s;
+      }
+
+      &.active {
+          span.active-bar {
+              opacity: 1;
+              transition: .2s;
+          }
+      }
+  }
+}
+
+
+.select-multiple{
+  .ng-value{
+    padding: 5px;    
+    color: #9059f7;
+  } 
+}

@@ -1,0 +1,125 @@
+<h3 id="docs-table-bulk-actions">Ações em bulk sobre a tabela</h3>
+<p>O exemplo abaixo apresenta como disponibilizar ações em bulk sobre uma tabela. A FUXI sugere que do lado esquerdo sejam colocadas as operações que afetem diretamente as linhas e do lado direito as que afetem a tabela como um todo. </p>
+<p>Cada um dos botões que afetem as linhas apenas deverão ficar ativos se pelo menos uma linha da tabela estiver selecionada.</p>
+<div class="alert alert-warning">
+    <p>
+        Deverá fazer inclusão dos ficheiros necessários à instanciação de um objeto como DataTable, anteriormente referidos no ponto <a href="#docs-table-general-vision">tabela - overview</a>.
+    </p>
+    <p>
+        <strong>Atenção: </strong>O código abaixo é meramente exemplificativo como forma de demonstrar a ativação/desativação dos botões e o aspeto de uma linha selecionada. A implementação da funcionalidade é responsabilidade das equipas de produto. Ao selecionar uma checkbox deve garantir-se que a class <code>.disabled</code> é removida do botão e que ao respetivo <code>tr</code> é aplicada a class <code>.selected</code>.
+    </p>
+</div>
+
+<div class="fx-docs-snippet-code">
+    <div>
+        <div class="fx-bulk-actions clearfix">
+            <div id="devguide-bulk-actions-row-ops" class="pull-left">
+                <button class="btn btn-default btn-xs disabled">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    eliminar
+                </button>
+            </div>
+            <div id="devguide-bulk-actions-table-ops" class="pull-right">
+                <!--# include file="/fuxi/doc/partials/jscomponents/table/partials/colvis-table.html" -->
+                <!--# include file="/fuxi/doc/partials/jscomponents/table/partials/export-table-standard.html" -->
+            </div>
+        </div>
+        <table class="table" id="devguide-bulk-actions-table">
+            <thead>
+                <tr>
+                    <th class="fx-table-actions">
+                        <input type="checkbox" data-fx-check="all" data-fx-set="devguide-check-bulk-actions-table-attrs" />
+                    </th>
+                    <th>Cidade</th>
+                    <th>Concelho</th>
+                    <th>Distrito</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="fx-table-actions">
+                        <input type="checkbox" data-fx-check data-fx-set="devguide-check-bulk-actions-table-attrs">
+                    </td>
+                    <td>Ílhavo</td>
+                    <td>Ílhavo</td>
+                    <td>Aveiro</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <form class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<div class="fx-bulk-actions clearfix">
+    <div id="devguide-bulk-actions-row-ops" class="pull-left">
+        <button class="btn btn-default btn-xs disabled bulk-remove-model">
+            <i class="glyphicon glyphicon-remove"></i>
+            eliminar
+        </button>
+    </div>
+    <div id="devguide-bulk-actions-table-ops" class="pull-right">
+        <div class="btn-group">
+            <button data-toggle="dropdown" type="button" class="fx-dropdown-toggle dropdown-toggle btn btn-default btn-xs">
+                <i class="fa fa-cog"></i>
+                colunas <span class="caret"></span>
+            </button>
+            <div class="fx-dropdown fx-dropdown-open-to-left">
+                <div class="fx-dropdown-body">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="devguide-table-colvis-city" value="colvis-city" checked>
+                            Cidade
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="devguide-table-colvis-county" value="colvis-county" checked>
+                            Concelho
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="devguide-table-colvis-district" value="colvis-district" checked>
+                            Distrito
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-group">
+            <button data-toggle="dropdown" type="button" class="btn btn-default btn-xs dropdown-toggle">
+                <i class="glyphicon glyphicon-export"></i>
+                exportar <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu fx-dropdown-open-to-left">
+                <li><a href="#">PDF</a></li>
+                <li><a href="#">XLS</a></li>
+                <li><a href="#">CSV</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<table class="table" id="devguide-bulk-actions-table">
+    <thead>
+        <tr>
+            <th class="fx-table-actions">
+                <input type="checkbox" />
+            </th>
+            <th>Cidade</th>
+            <th>Concelho</th>
+            <th>Distrito</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="fx-table-actions">
+                <input type="checkbox">
+            </td>
+            <td>Ílhavo</td>
+            <td>Ílhavo</td>
+            <td>Aveiro</td>
+        </tr>
+    </tbody>
+</table>   
+        </textarea>
+    </form>
+</div>

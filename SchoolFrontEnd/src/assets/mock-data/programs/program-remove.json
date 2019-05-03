@@ -1,0 +1,69 @@
+{
+    "type": "initParameters",
+    "id": "removeIntentPage",
+    "header": {
+        "id": "pageHeader",
+        "seo": {
+            "text": "program___programRemove",
+            "icon": "fa fa-reply"
+        }
+    },
+    "details": [
+        {
+            "type": "label",
+            "id": "programName",
+            "pathToValue": [
+                "programName"
+            ],
+            "hidden": true
+        },
+        {
+            "type": "label",
+            "id": "pageBodyConfirm",
+            "value": "{{@fv()@i18n('warnings___programRemoveConfirm') + '<strong>' + @replaceTagVars('programName') + '</strong>?'}}"
+        }
+    ],
+    "buttons": [
+        {
+            "id": "programRemoveSubmitBtn",
+            "key": "submit",
+            "text": "generic___operations___remove",
+            "class": "btn-primary",
+            "parameters": [
+                {
+                    "key": "requestEndpoint",
+                    "value": "{{SchoolBE}}/programs/[[programID]]"
+                },
+                {
+                    "key": "requestHeaders",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                },
+                {
+                    "key": "requestType",
+                    "value": "DELETE"
+                },
+                {
+                    "key": "successText",
+                    "value": "program removed successfully."
+                },
+                {
+                    "key": "errorText",
+                    "value": "ERROR!\n Could not remove. Program is being used."
+                },
+                {
+                    "key": "successRouter",
+                    "value": "/knowledgecenter"
+                }
+            ]
+        },
+        {
+            "key": "cancel",
+            "id": "intentRemoveCancelBtn",
+            "text": "generic___operations___cancel",
+            "class": "btn-force-default btn-default"
+        }
+    ]
+}

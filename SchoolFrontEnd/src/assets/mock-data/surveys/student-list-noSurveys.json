@@ -1,0 +1,33 @@
+{
+    "type": "initParameters",
+    "details": [
+        {
+            "type": "label",
+            "class": "col-sm-6",
+            "value": "surveys___istEasyCreateSurvey",
+            "text": null
+        },
+        {
+            "type": "operations",
+            "class": "col-sm-6",
+            "operations": {
+                "size": 1,
+                "parameters": [
+                    {
+                        "type": "navigate",
+                        "id": "courseEdit",
+                        "_role": "Execute",
+                        "text": "surveys___letsCreateSurvey",
+                        "navigateTo": "survey/create"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "customVideo"
+        }
+    ],
+    "dynamicProps": {
+        "hidden": "!{{hasSurveys}} == false"
+    }
+}

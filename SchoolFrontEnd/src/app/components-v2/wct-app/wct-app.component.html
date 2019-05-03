@@ -1,0 +1,14 @@
+<div id="windowSizeControl" (window:resize)="detectBrowserSize($event.target.innerWidth)"></div>
+
+<div 
+    class="wct-container h-100"
+    [class.wct-prevent-fixed-side-menu]="isSideMenuFixed()"
+    [class.show-side-menu]="showSideMenu()"
+    [hidden]="!kc.loggedIn">
+        <app-wct-side-navbar *ngIf="config.isI18n() && kc.loggedIn"></app-wct-side-navbar>
+        <app-wct-navbar *ngIf="config.isI18n() && kc.loggedIn"></app-wct-navbar>
+        <router-outlet></router-outlet>
+</div>
+
+<app-wct-notification></app-wct-notification>
+<app-wct-modal></app-wct-modal>

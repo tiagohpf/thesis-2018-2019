@@ -1,0 +1,77 @@
+<h3 id="docs-tree-instance">Instanciação de uma tree</h3>
+<p>
+    A directiva fxTree foi desenvolvida de forma a se conseguir costumizar. Não é capaz de se auto instanciar, sendo necessário ter uma outra directiva que faça o require da mesma e que depois a instancie.
+</p>
+<p>O snippet de código abaixo ilustra os ficheiros necessários ao correto funcionamento da tree. Demonstra ainda a instanciação com carregamento de dados via ficheiro json.</p>
+
+<div class="fx-docs-snippet-code" data-ng-controller="DevGuideTreeController as tree">
+    <form name="formDemoTree">
+        <div id="demo-tree"
+             data-fx-tree
+             data-fx-inst-tree
+             data-tree-load-url="partials/angularcomponents/tree/data.json">
+        </div>
+    </form>
+
+    <div class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<!--Ficheiros necessários a incluir no head-->
+<head>
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/fuxi/lib/jstree/3.0/themes/fuxi/style.css" rel="stylesheet" />
+    <link href="/fuxi/common/html/css/fuxi.min.css" rel="stylesheet" />
+    <script src="/basepack/modernizr/3.3/modernizr-custom.js"></script>
+</head></textarea>
+    </div>
+
+    <div class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+            <!--Ficheiros a colocar antes de fechar a tag body-->
+            <script src="/basepack/jquery/1.11/jquery.min.js"></script>
+            <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+            <script src="/fuxi/lib/jstree/3.0/jstree.min.js"></script>
+            <script src="/fuxi/lib/jstree/3.0/jstree.misc.min.js"></script>
+            <script src="/fuxi/lib/jstree/3.0/jstree-search-match.js"></script>
+            <script src="/fuxi/lib/lodash/v3.0/lodash_3.0.1.min.js"></script>
+            <script src="/basepack/angularjs/1.3/angular.min.js"></script>
+            <script src="/fuxi/components/jstree/dist/fxtree.min.js"></script>
+        </textarea>
+    </div>
+
+    <div class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+            <!--Elemento DOM-->
+            <div id="demo-tree"
+                    data-fx-tree
+                    data-fx-inst-tree
+                    data-tree-load-url="partials/angularcomponents/tree/data.json">
+            </div>
+        </textarea>
+    </div>
+
+    <div class="fx-codemirror">
+        <textarea class="fx-codemirror-textarea">
+<script type="text/javascript">
+    // Instanciação (app.js)
+    var myApp = angular.module('ngApp', ['fxtree']);
+
+    myApp.controller('DevGuideTreeController', ['$scope', 'treeServices', function ($scope, treeServices) {
+
+        // DO SOMETHING!
+
+    }]).directive('fxInstTree', ['$timeout', 'treeServices', function ($timeout, treeServices) {
+
+        // DO SOMETHING ELSE!
+
+        return {
+            restrict: 'A',
+            require: '?fxTree',
+            link: function (scope, element, attrs, ctrl) {
+                // LINK CODE
+            }
+        };
+    }]);
+</script>
+        </textarea>
+    </div>
+</div>

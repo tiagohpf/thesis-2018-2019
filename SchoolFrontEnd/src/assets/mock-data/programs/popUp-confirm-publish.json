@@ -1,0 +1,98 @@
+{
+    "type": "initParameters",
+    "id": "pageLearn",
+    "header": {
+        "id": "pageHeader",
+        "seo": {
+            "text": "application___knowledgeCenter___programs___publishProgram",
+            "icon": "icomoon icon-programs"
+        }
+    },
+    "details": [
+        {
+            "type": "label",
+            "id": "programName",
+            "pathToValue": [
+                "name"
+            ],
+            "urlResource": [
+                {
+                    "key": "path",
+                    "value": "{{SchoolBE}}/programs/[[programID]]"
+                },
+                {
+                    "key": "queryString",
+                    "value": {
+                        "keys": "{\"name\":1,\"status\":1}"
+                    }
+                },
+                {
+                    "key": "headers",
+                    "value": {
+                        "Authorization": "Bearer {{token}}",
+                        "IXS": "{{IXS_id}}"
+                    }
+                }
+            ],
+            "hidden": true
+        },
+        {
+            "type": "label",
+            "id": "pageBodyConfirm",
+            "dynamicProps": {
+                "lazyLoading": "!'{{programName}}'"
+            },
+            "value": "{{@fv()@i18n('student___confirmPublish')}}"
+        }
+    ],
+    "operations": {
+        "parameters": [
+            {
+                "type": "updatePage",
+                "text": "generic___operations___cancel",
+                "class": "btn-default"
+            },
+            {
+                "type": "execute",
+                "id": "executePublish",
+                "text": "generic___operations___publish",
+                "class": "btn-primary",
+                "parameters": [
+                    {
+                        "key": "successText",
+                        "value": "Program published to Available Programs with success."
+                    },
+                    {
+                        "key": "errorText",
+                        "value": "warnings___errorOcurred"
+                    },
+                    {
+                        "key": "requestEndpoint",
+                        "value": "{{SchoolBE}}/programs/[[programID]]/publish"
+                    },
+                    {
+                        "key": "requestType",
+                        "value": "POST"
+                    },
+                    {
+                        "key": "requestHeaders",
+                        "value": {
+                            "Authorization": "Bearer {{token}}",
+                            "IXS": "{{IXS_id}}"
+                        }
+                    },
+                    {
+                        "key": "requestBody",
+                        "type": "json",
+                        "value": {
+                            "requestedBy": "{{logged-user}}"
+                        }
+                    }
+                ],
+                "_dynamicProps": {
+                    "hidden": "({{program___status}} == 1 || {{program___status}} == 4)? false : true"
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,260 @@
+@import "shapeApi";
+@import "shapeProccess";
+@import "shapeIntent";
+@import "connections";
+
+// #wct-page-tabsContent-programPropertiesViewTab4{ height: 100%!important; }
+#wct-content-initParametersContentDesigner {
+    >.wct-components-wrapper {
+        padding: 0;
+
+        >app-wct-start-components {
+            >.row {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+
+                >#wct-each-parameter-designerFlowNavBar {
+                    position: fixed;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    z-index: 1040;
+                    background: #fff;
+                    padding-top: 15px;
+                    padding-bottom: 15px;
+
+                    >app-wct-start-components {
+                        >.row {
+                            display: flex;
+                            flex-flow: row;
+                            align-items: center;
+                        }
+                    }
+
+                    .app-fullscreen-logo { padding-left: 0;
+                        .form-control-plaintext {
+                            padding: 0;
+
+                            >a {
+                                display: flex;
+                                flex-flow: row;
+                                color: #000;
+
+                                i {
+                                    display: flex;
+                                    align-items: center;
+                                    font-size: 30px;
+                                    transform: rotate(180deg);
+                                    padding: 10px;
+                                    padding-left: 0;
+                                    transition: padding .2s;
+                                }
+
+                                img {
+                                    height: 43px;
+                                }
+
+                                .program-info {
+                                    padding-left: 10px;
+
+                                    .program-name {
+                                        color: #b5b5b5;
+                                        font-size: 22px;
+                                        line-height: 26px;
+                                    }
+                                }
+
+                                .designerBack {
+                                    align-items: center;
+                                    display: flex;
+                                    padding: 0 10px;
+                                    transition: padding .2s;
+                                }
+
+                                &:hover {
+                                    cursor: pointer;
+
+                                    i {
+                                        //padding-left: 20px;
+                                        padding-right: 0;
+                                        transition: padding .2s;
+                                    }
+
+                                    .designerBack {
+                                        padding-right: 20px;
+                                        padding-left: 10px;
+                                        transition: padding .2s;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    #wct-each-parameter-initParametersContentsOperations {
+                        display: flex;
+                        justify-content: flex-end;
+                        button {
+                            position: relative;
+                            color: #595959;
+                            background: transparent;
+                            border: 0 !important;
+                            font-weight: 400;
+                            font-size: 16px;
+                            padding: 5px 20px !important;
+
+                            span.active-bar {
+                                position: absolute;
+                                top: 0;
+                                left: 30%;
+                                right: 30%;
+                                height: 5px;
+                                background-image: linear-gradient(90deg, #9059f7 3%, #de6af7 100%);
+                                border-radius: 5px;
+                                opacity: 0;
+                                transition: .2s;
+                            }
+
+                            &.active {
+                                span.active-bar {
+                                    opacity: 1;
+                                    transition: .2s;
+                                }
+                            }
+                        }
+                    }
+
+                    #wct-each-parameter-designerFlowComponentOperations {
+                        display: flex;
+                        justify-content: flex-end;
+
+                        button {
+                            padding: 5px 25px !important;
+                            color: #fff;
+                            margin: 5px !important;
+                            transition: padding .2s, margin .2s;
+
+                            &.publish-button {
+                                // background-image: linear-gradient(90deg, #9059f7 3%, #de6af7 100%);
+                                background: #9e3ec4;
+                            }
+
+                            &.try-button {
+                                background: rgb(37, 58, 165);
+                            }
+
+                            &.save-button {
+                                background: rgb(87, 210, 212);
+                            }
+
+                            &:hover {
+                                margin: 3px !important;
+                                padding: 7px 27px !important;
+                                transition: padding .2s, margin .2s;
+                            }
+                        }
+                    }
+                }
+
+                >.component-type-designer-flow-component {
+                    padding: 0 !important;
+
+                    &.full-screen {
+                        .designer-wrapper {
+                            position: fixed;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            z-index: 1039;
+                            transition: .2s;
+                            margin: 0;
+                        }
+                    }
+
+                    .designer-wrapper {
+                        height: 750px;
+                        transition: .2s;
+                    }
+
+                    .form-handler-wrapper {
+
+                        app-wct-breadcrumb,
+                        app-wct-footer {
+                            display: none !important;
+                        }
+                    }
+                }
+
+                #wct-each-parameter-programIntentsTable,
+                #wct-each-parameter-programEntitiesTable,
+                #wct-each-parameter-programVariablesTable,
+                #wct-each-parameter-programAliasTable {
+                    position: absolute;
+                    height: calc(100% - 80px);
+                    top: 80px;
+                    left: 0;
+                    background: #fff;
+                    z-index: 1038;
+                }
+
+            }
+        }
+
+    }
+}
+
+
+.designerBack { width: auto;
+    display: block;
+    flex: 0;
+    padding-right: 0;
+    
+    .btn {
+        background: transparent;
+        color: #000!important;
+        font-size: 20px;
+        font-weight: normal;
+        text-transform: lowercase;
+        >span{ display: flex; align-items: center;
+            >i {
+                display: inline-block;
+                transform: rotate(180deg);
+                font-size: 25px!important;
+                margin-right: 5px;
+            }
+        }
+
+        &:hover{ transform: translateX(-10px); }
+        
+    }
+}
+
+#wct-each-parameter-outputVariables{
+    #wct-tuple-outputVariables{
+        .component-type-wct-ng-select{ padding-left: calc(15px - .75rem); padding-right: 0; }
+
+        .component-type-custom-mentions{ padding-right: 0;
+
+            textarea{ border-top-right-radius: 0; border-bottom-right-radius: 0; }
+
+            +.component-type-input-select{ padding-left: 0;
+                .form-group{ padding: 0;
+                    .wct-field-format-label{ padding-left: 15px; }
+                    select{ padding-left: 10px; border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 0; }
+                }
+            }
+        }
+
+    }
+}
+
+
+/**
+ *  DesignerFlow no detalhe de um Estudante
+ */
+#wct-page-header-pageEntityDetails{ z-index: 1;
+    #wct-each-parameter-designerFlowComponent{ position: fixed; left: 80px; top: 70px; width: 100%; height: 100%; z-index: 1040; background: #fff; padding: 0;
+        .board{ margin-top: 0; }
+    }
+}

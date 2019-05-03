@@ -1,0 +1,394 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Selectbox tree angular</title>
+
+    <link href="/basepack/bootstrap-pt/3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/fuxi/lib/jstree/3.0/themes/fuxi/style.css" rel="stylesheet" />
+    
+    <link type="text/css" rel="stylesheet" href="/fuxi/common/html/css/fuxi.css" />
+
+    <script src="/basepack/jquery/1.9/jquery.min.js"></script>
+    <script src="/basepack/bootstrap-pt/3.0/js/bootstrap.min.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="/fuxi/lib/codemirror/5.1/css/codemirror.css" />
+
+    <!--min-->
+    <script src="/fuxi/lib/jstree/3.0/jstree.min.js"></script>
+    <script src="/fuxi/lib/jstree/3.0/jstree.misc.min.js"></script>
+    <script src="/fuxi/lib/jstree/3.0/jstree-search-match.js"></script>
+
+    <script src="/fuxi/lib/lodash/v3.0/lodash_3.0.1.min.js"></script>
+    
+    <script src="/fuxi/lib/codemirror/5.1/js/codemirror.js"></script>
+    <script src="/fuxi/lib/codemirror/5.1/mode/xml/xml.js"></script>
+    <script src="/fuxi/lib/codemirror/5.1/addon/edit/matchbrackets.js"></script>
+    <script src="/fuxi/lib/codemirror/5.1/addon/comment/continuecomment.js"></script>
+    <script src="/fuxi/lib/codemirror/5.1/addon/comment/comment.js"></script>
+    <script src="/fuxi/lib/codemirror/5.1/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="/fuxi/lib/codemirror/5.1/mode/javascript/javascript.js"></script>
+
+    <style>
+        body{
+            overflow:auto;
+        }
+        .CodeMirror {
+            height: auto;
+        }               
+    </style>    
+</head>
+<body class="container" ng-app="ngApp">
+    <section class="well row">
+        <h1><strong>Selectbox Tree -  AngularJS (directive)</strong></h1>
+        (<a target="_blank" href="/fuxi/common/html/template-selectbox-tree.html">ver versão similar em javascript</a>)
+        <div class="row">
+            <div id="ws-doc">
+                <h3><i class="caret"></i> <strong>Opções</strong></h3>
+                <div style="padding: 0 20px" class="hidden">
+                    <div>
+                        <label><strong>data-fx-select-box-tree: </strong></label>
+                        <span>Diretiva encarregada de dar o comportamento desejado ao elemento DOM</span>
+                    </div>
+                    <div>
+                        <label><strong>data-select-box-tree-data: </strong></label>
+                        <span><i>Data attribute</i> que recebe os dados a serem carregados na JSTREE. Este atributo é mandatório sobre o atributo <strong>data-select-box-tree-url</strong></span>
+                    </div>
+                    <div>
+                        <label><strong>data-select-box-tree-url: </strong></label>
+                        <span><i>Data attribute</i> que indica o caminho para o ficheiro com os dados a serem carregados na JSTREE. O carregamento dos dados utilizando este método permite que os mesmos sejam carregados aquando a instanciação da directiva ou então quando clicamos sobre a dropdown para exapndir e visualizar os dados da JSTRE.</span>
+                    </div>
+                    <div>
+                        <label><strong>data-select-box-tree-demand-mode: </strong></label>
+                        <span>
+                            (<strong>onInstantiation</strong> ou onDemand) data attribute que indica o modo de carregamento dos dados.<br />
+                            - <strong>onInstantiation: </strong>Os dados são carregados na instanciação da directiva,<br />
+                            - <strong>onDemand: </strong>Os dados são carregados quando abrimos por primeira vez a dropdown.
+                        </span>
+                    </div>
+                    <div>
+                        <label><strong>data-select-box-tree-selected-values: </strong></label>
+                        <span><i>Data attribute</i> que recebe os dados pré selecionados</span>
+                    </div>
+                    <div>
+                        <label><strong>data-select-box-tree-multi-values: </strong></label>
+                        <span><i>Data attribute</i> que indica que o componente permite a multi seleção</span>
+                    </div>
+                    <div>
+                        <label><strong>data-select-box-tree-full-width: </strong></label>
+                        <span><i>Data attribute</i> que indica que o componente ocupa 100% da largura do seu <i>parent</i></span>
+                    </div>
+                    <div>
+                        <label><strong>data-select-box-tree-language: </strong></label>
+                        <span>
+                            <i>Data attribute</i> que indica o ídioma em que são mostradas as mensagens. <br />
+                        </span>
+                    </div>
+                    <div>
+                        <label><strong>data-fx-select-box-tree-target: </strong></label>
+                        <span>
+                            Directiva (aplicada ao input) encarregada de dar o comportamento de obrigatoriedade ao elemento DOM.
+                        </span>
+                    </div>
+
+                    <div>
+                        <label><strong>data-select-box-tree-remote-search: </strong></label>
+                        <span>
+                            <i>Data attribute</i> que indica se o componente utiliza pesquisa remota. <br />
+                        </span>
+                    </div>
+                    <div>
+                        <label><strong>data-select-box-tree-url-params: </strong></label>
+                        <span>
+                            <i>Data attribute</i> que permite passar parametros extra a passar no pedido da pesquisa remota.
+                            É aqui que devemos definir a key que irá passar o valor de pesquisa, caso não se defina é utilizado o valor default <i>qs</i><br />
+                        </span>
+                    </div>
+                    <div>
+                        <label><strong>data-select-box-tree-full-label: </strong></label>
+                        <span>
+                            <i>Data attribute</i> que permite indicar se é para obter uma string com todos os valores selecionados na tree, utiliza o valor do parser definido no atributo abaixo.<br />
+                        </span>
+                    </div>
+                    <div>
+                        <label><strong>data-select-box-tree-full-label-parser: </strong></label>
+                        <span>
+                            <i>Data attribute</i> que permite passar a string a utilizar quando se mostra todos os valores selecionados (<i>default: " , "</i>)<br />
+                        </span>
+                    </div>
+                    <div>
+                        <label><strong>data-select-box-tree-write-interval: </strong></label>
+                        <span>
+                            <i>Data attribute</i> que permite definir o intervalo de tempo entre escrita até fazer o pedido para a busca remota (<i>default: 300ms</i>)<br />
+                        </span>
+                    </div>
+                    <div>
+                        <label><strong>data-select-box-tree-submitted-event-name: </strong></label>
+                        <span>
+                            <i>Data attribute</i> que permite definir o nome do evento a executar no caso do form ser submitido (<i>default: selectBoxTree::formSubmitted</i>)<br />
+                        </span>
+                    </div>
+                    <div>
+                        <label><strong>data-select-box-tree-read-only: </strong></label>
+                        <span>
+                            <i>Data attribute</i> que permite indicar se é para carregar o componente em modo readonly.<br />
+                        </span>
+                    </div>
+                </div>
+
+                <h3><i class="caret"></i> <strong style="color:red">Issues (não corrigidos: <span id="number-bugs"></span>)</strong></h3>
+                <div class="hidden">
+                    <ul id="bugs-list"></ul>
+                </div>
+                <h3><i class="caret"></i> <strong style="color:green">New Features (não implementadas: <span id="number-newfeatures"></span>)</strong></h3>
+                <div class="hidden">
+                    <ul id="newfeatures-list"></ul>
+                </div>
+
+                <h3><i class="caret"></i> <strong>How To? Step by Step</strong></h3>
+                <div style="padding: 0 20px" class="hidden">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Verificar que tem incluído os seguintes ficheiros:
+                                    <ul>
+                                        <li>
+                                            <strong>CSS</strong>
+                                            <ul>
+                                                <li>Bootstrap (/basepack/bootstrap-pt/3.0/css/bootstrap.min.css)</li>
+                                                <li>jsTree (/fuxi/lib/jstree/3.0/themes/fuxi/style.css)</li>
+                                                <li>Fuxi (/fuxi/common/html/css/fuxi.css)</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>JS</strong>
+                                            <ul>
+                                                <li>jQuery (/basepack/jquery/1.9/jquery.min.js)</li>
+                                                <li>Bootstrap (/basepack/bootstrap-pt/3.0/js/bootstrap.min.js)</li>
+                                                <li>Lodash (/fuxi/lib/lodash/v3.0/lodash_3.0.1.min.js)</li>
+                                                <li>jsTree (/fuxi/lib/jstree/3.0/jstree.min.js)</li>
+
+                                                <li>Angular JS (/basepack/angularjs/1.3/angular.min.js)</li>
+                                                <li>fxtree (/fuxi/components/jstree/dist/fxtree.js)</li>
+                                                <li>fxselectboxtree (/fuxi/components/selectboxtree/dist/fxselectboxtree.js)</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Elemento DOM utilizado no Exemplo #1</strong><br />
+                                    <textarea id="code" name="code" data-codemirror-mode="xml" codemirror-html-mode="true" class="fx-codemirror">
+<div data-fx-select-box-tree
+        data-select-box-tree-data="{{getData()}}"
+        data-select-box-tree-selected-values="{{getSelectedValues()}}"
+        data-select-box-tree-multi-values
+        data-select-box-tree-full-width
+        data-select-box-tree-language="fr"
+        id="teste1"
+        data-ng-model="form.teste1">
+    <input type="hidden"
+        name="batatas"
+        data-ng-model="form.teste1"
+        required
+        data-fx-select-box-tree-target
+        value="" />
+</div>
+                                    </textarea>
+
+                                    No ficheiro <a href="app.js" target="_blank">app.js</a> pode verificar:
+                                    <ul>
+                                        <li>a forma de instanciar os módulos necessários para o correcto funcionamento do componente</li>
+                                        <li>a forma de instanciar um novo idioma para ser utilizado pelo componente,</li>
+                                        <li>métodos de exemplo para o carregamento dos dados em JSON para o componente.</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding:10px;margin:10px !important; background:white; border:1px solid #CCC" data-ng-controller="DemoController">
+            <form name="formDemo" data-ng-submit="submit()">
+
+                <p><strong><label for="batatas0">Exemplo #0: Carregamento dos dados diretamente (data-select-box-tree-data="[dados]")</label></strong></p>
+                <div data-fx-select-box-tree fx-dummy
+                     data-select-box-tree-data="{{getData()}}"
+                     data-select-box-tree-selected-values="{{getSelectedValues()}}"
+                     data-select-box-tree-multi-values
+                     data-select-box-tree-full-label
+                     data-select-box-tree-full-label-parser=" ; "
+                     data-select-box-tree-language="pt"                     
+                     data-select-box-tree-disabled-browser-contextmenu="true"
+                     id="teste0">
+
+                    <input type="text"
+                           name="batatas0"
+                           id="batatas0"
+                           data-ng-model="form.teste0"
+                           required
+                           data-fx-select-box-tree-target
+                           value="" />
+                </div>
+                <p style="color:red">Passados 5000ms vai ficar disabled, e passados 10000ms volta a ficar enabled.</p>
+                teste0: {{form.teste0}}
+                <br /><br />
+                <p><strong><label for="batatas">Exemplo #1: Carregamento dos dados com pesquisa remota</label></strong></p>
+
+                teste1: {{form.teste1}}
+                <br />
+
+                <div data-fx-select-box-tree
+                     data-select-box-tree-url="data.json"
+                     data-select-box-tree-selected-values="[]"
+                     data-select-box-tree-demand-mode="onDemand"
+                     data-select-box-tree-language="pt"
+                     data-select-box-tree-multi-values
+                     data-select-box-tree-full-width
+                     data-select-box-tree-remote-search
+                     data-select-box-tree-url-params="{'idcat':25, 'fxSearchkey':'search'}"
+                     data-select-box-tree-full-label
+                     data-select-box-tree-full-label-parser=" ; "
+                     data-select-box-tree-disabled-browser-contextmenu="true"
+                     data-select-box-tree-write-interval="350"
+                     id="teste1">
+                    <input type="text"
+                           name="batatas"
+                           id="batatas"
+                           data-ng-model="form.teste1"
+                           required
+                           data-fx-select-box-tree-target
+                           value="" />
+                </div>
+                teste1: {{form.teste1}}
+                <br />
+                Valid?{{formDemo.batatas.$valid}}, Pristine?{{formDemo.batatas.$pristine}}, Dirty?{{formDemo.batatas.$dirty}}
+                <div style="z-index:9999999">
+                    <select style="z-index:99999999">
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                </div>
+                <br /><br />
+                <br /><br />
+                <br /><br />
+                <br /><br />
+                <br /><br />
+                <br /><br />
+                <br /><br />
+                <p><strong>Exemplo #2: Carregamento dos dados de um ficheiro JSON (data-select-box-tree-url="data.json")</strong></p>
+
+                <div data-fx-select-box-tree
+                     data-select-box-tree-url="data.json"
+                     data-select-box-tree-selected-values="{{getSelectedValues2()}}"
+                     data-select-box-tree-demand-mode="onInstantiation"
+                     data-select-box-tree-language="pt"
+                     data-select-box-tree-read-only
+                     id="teste2">
+                    <input type="text"
+                           name="batatas2"
+                           id="batatas2"
+                           data-ng-model="form.teste2"
+                           data-fx-select-box-tree-target
+                           value="" />
+                </div>
+                teste2: {{form.teste2}}
+
+                <br /><br />
+
+                <p><strong>Exemplo #3: Em modal. Carregamento dos dados de um ficheiro JSON (data-select-box-tree-url="data.json") com pesquisa remota</strong></p>
+
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                    Launch demo modal
+                </button>
+
+                <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div data-fx-select-box-tree
+                                     data-select-box-tree-url="data.json"
+                                     data-select-box-tree-demand-mode="onDemand"
+                                     data-select-box-tree-language="pt"
+                                     id="teste3">
+
+                                    <input type="hidden"
+                                           name="batatas3"
+                                           data-ng-model="form.teste3"
+                                           value=""
+                                           required
+                                           data-fx-select-box-tree-target />
+                                </div>
+                                teste3: {{form.teste3}}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-ng-click="saveChanges()">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br /><br />
+
+                <input type="submit" value="submit" />
+            </form>
+        </div>
+    </section>
+    <script>
+        $(document).ready(function () {
+
+            $("#number-bugs").text($("#bugs-list li").length);
+            $("#number-newfeatures").text($("#newfeatures-list li").length);
+
+            $("#ws-doc h3").css("cursor", "pointer").on('click', function () {
+                $(this).next().toggleClass("hidden");
+                refreshCodeMirrorObjs();
+            });
+
+            function refreshCodeMirrorObjs() {
+                $.each(codeMirrorObjs, function () {
+                    this.refresh();
+                });
+            }
+            var codeMirrorObjs = [];
+            $(".fx-codemirror").each(function () {
+                codeMirrorObjs.push(CodeMirror.fromTextArea(this, {
+                    mode: $(this).data("codemirror-mode"),
+                    htmlMode: $(this).data("codemirror-html-mode") || false,
+                    lineNumbers: true,
+                    readOnly: true
+                }));
+            });
+
+        });
+    </script>
+
+
+    <!--angular js 1.3-->
+    <script src="/basepack/angularjs/1.3/angular.min.js"></script>
+
+    <!--app module-->
+    <script src="app.js"></script>
+
+    <!--fx-jstree-->
+    <script src="/fuxi/components/jstree/dist/fxtree.js"></script>
+    <!--<script src="/fuxi/components/jstree/src/services/jstreeService.js"></script>
+    <script src="/fuxi/components/jstree/src/controllers/jstreeController.js"></script>
+    <script src="/fuxi/components/jstree/src/directives/jstreeDirective.js"></script>-->
+    <!--fx-selectboxtree-->
+    <script src="/fuxi/components/selectboxtree/dist/fxselectboxtree.js"></script>
+    <!--<script src="/fuxi/components/selectboxtree/src/services/selectboxtreeService.js"></script>
+    <script src="/fuxi/components/selectboxtree/src/controllers/selectboxtreeController.js"></script>
+    <script src="/fuxi/components/selectboxtree/src/directives/selectboxtreeDirective.js"></script>-->
+
+</body>
+</html>

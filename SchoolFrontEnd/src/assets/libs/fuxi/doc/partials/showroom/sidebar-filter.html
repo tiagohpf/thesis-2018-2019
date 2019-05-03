@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--# include file="/fuxi/doc/partials/showroom/partials/head-templates.html" -->
+    <title>Template Filtros de pesquisa avançada</title>
+</head>
+<body>
+    <div class="fx-push-footer fx-full-height">
+        <!--# include file="/fuxi/doc/partials/showroom/partials/header-templates.html" -->
+        <div class="fx-prevent-content-behind-footer fx-full-height">
+
+            <div class="fx-full-height">
+                <div id="layout_container" class="fx-uilayout-container fx-uilayout-sidebared">
+                    <!-- Outer Layout Container -->
+                    <!--WILL BE SHOWN WHEN PANEL IS COLLAPSED-->
+                    <div class="fx-info-sidebar-collapsed left hidden"><span class="fx-info-icon"><i class="glyphicon glyphicon-filter"></i></span></div>
+
+                    <div class="outer-west fx-sidebar">
+                        <header class="fx-sidebar-header">
+                            <div class="fx-sidebar-header-inner">
+                                <p>
+                                    <span class="fx-info-icon">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </span>
+                                    pesquisa
+                                </p>
+                                <div class="form-group">
+                                    <label for="ddlSelectQueryFilter">Filtro de pesquisa</label>
+                                    <div class="fx-sidebar-select-filter-group">
+                                        <div class="fx-sidebar-select-filter">
+                                            <input type="text" id="ddlSelectQueryFilter" class="form-control">
+                                        </div>
+                                        <div class="fx-sidebar-selected-filter-actions">
+                                            <div class="btn-group">
+                                                <button data-toggle="dropdown" class="btn btn-link btn-group btn-link-in-table dropdown-toggle">
+                                                    <i class="fa fa-cog"></i> <i class="caret"></i>
+                                                </button>
+                                                <ul id="filter-actions" class="dropdown-menu fx-dropdown-open-to-left">
+                                                    <li>
+                                                        <a data-target="#save-filter" data-toggle="modal" data-open-mode="Renomear"> <i class="glyphicon glyphicon-pencil"></i> Renomear filtro</a>
+                                                    </li>
+                                                    <li>
+                                                        <a data-target="#delete-filter" data-toggle="modal"> <i class="glyphicon glyphicon-remove"></i> Eliminar filtro</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+                        <div class="fx-sidebar-content">
+                            <div class="fx-sidebar-content-inner">
+                                <div class="form-group">
+                                    <label class="control-label" for="filter-1">Campo 1</label>
+                                    <input type="text" class="form-control" id="filter-1"/>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="filter-2">Campo 2</label>
+                                    <input type="text" class="form-control" id="filter-2" />
+                                </div>
+                                <div class="form-group text-right">
+                                    <button type="button" data-target="#manage-options" data-toggle="modal" class="btn btn-default btn-sm">
+                                        <i class="fa fa-cog"></i>
+                                        gerir opções
+                                    </button>
+                                </div>
+                                <div class="form-group text-right">
+                                    <div class="btn-group">
+                                        <button type="button" id="bt-save-filter" class="btn btn-default btn-sm" data-open-mode="Guardar">
+                                            <i class="fuxicons fuxicons-floppy-disk"></i>
+                                            guardar
+                                        </button>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                                                <span class="caret"></span>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <ul class="dropdown-menu fx-dropdown-open-to-left" role="menu">
+                                                <li>
+                                                    <a href="#" data-toggle="modal" data-target="#save-filter" data-open-mode="Guardar novo">guardar como</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fx-sidebar-footer">
+                            <div class="fx-sidebar-footer-inner">
+                                <button type="submit" class="btn btn-primary btn-sm">pesquisar</button>
+                                <button type="button" class="btn btn-default btn-sm">limpar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="outer-center">
+
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!--# include file="/fuxi/doc/partials/showroom/partials/footer-templates.html" -->
+    </div>
+
+    <!--Modal de save filter-->
+    <div class="modal fade" id="save-filter" tabindex="-1" role="dialog" aria-labelledby="save-filter-modal-label">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="save-filter-modal-label">Guardar filtro</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-3" for="new-filter-name">
+                                Nome do filtro
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" id="new-filter-name" placeholder="Defina um nome para o filtro" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">guardar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--MOdal de delete filter-->
+    <div class="modal fade" id="delete-filter" tabindex="-1" role="dialog" aria-labelledby="delete-filter-modal-label">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="delete-filter-modal-label">Eliminar filtro</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="fx-confirm-wrapper">
+                        <div class="alert alert-warning">
+                            <div class="fx-alert-icon">
+                                <i class="fuxicons fuxicons-warning"></i>
+                            </div>
+                            <div class="fx-alert-desc">
+                                <p>
+                                    Deseja eliminar o filtro <strong>meu filtro principal</strong>?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">eliminar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--# include file="/fuxi/doc/partials/showroom/partials/scripts-templates.html" -->
+
+    <script>
+        var outerLayout;
+        function createLayouts() {
+            var defaults = {
+                resizable: true,
+                livePaneResizing: true,
+                slidable: false,
+                spacing_closed: 10,
+                spacing_open: 10
+            };
+
+            outerLayout = $('#layout_container').layout({
+                name: "outer"
+                , defaults: defaults
+                , center__paneSelector: ".outer-center"
+                , west: {
+                    size: 250
+                    , maxSize: 500
+                    , minSize: 200
+                    , paneSelector: ".outer-west"
+                    , contentSelector: '.fx-sidebar-content'
+                    , onopen: function () {
+                        outerLayout.container.find('.fx-info-sidebar-collapsed').addClass('hidden');
+                    }
+                    , onclose: function () {
+                        var sidebar = outerLayout.container.find('.fx-info-sidebar-collapsed');
+
+                        sidebar.removeClass('hidden');
+
+                        var containerWidth = outerLayout.state.container.outerWidth;
+                        var sidebarCollapsedWidth = sidebar.outerWidth();
+                        var resizerWidth = outerLayout.resizers.west.width();
+
+                        outerLayout.center.pane.css({
+                            'width': containerWidth - sidebarCollapsedWidth - resizerWidth,
+                            'left': sidebarCollapsedWidth + resizerWidth
+                        })
+                        outerLayout.resizers.west.css({
+                            'left': sidebarCollapsedWidth
+                        })
+                    }
+                }
+            });
+            //add shadow on sidebar content once selector is scrolled
+            outerLayout.west.pane.find('.fx-sidebar-content').on('scroll', function () {
+                $this = $(this);
+                $prev = $this.prev();
+
+                if ($this.scrollTop() > 7 && !$this.hasClass("fx-sticky-shadow")) {
+                    $prev.addClass('fx-sticky-shadow');
+                } else if ($this.scrollTop() <= 7 && $prev.hasClass("fx-sticky-shadow")) {
+                    $prev.removeClass('fx-sticky-shadow');
+                }
+            });
+        };
+
+        $(function () {
+            createLayouts();
+
+            $('#ddlSelectQueryFilter').select2({
+                placeholder: 'selecione um filtro',
+                allowClear: true,
+                data: [
+                    { id: 0, text: 'meu filtro principal' }
+                ]
+            });
+
+            $('#ddlSelectQueryFilter').on("select2-selecting", function (e) {
+                switch (e.val) {
+                    case 0:
+                        $('#filter-1').val('meu filtro principal campo 1');
+                        $('#filter-2').val('meu filtro principal campo 2');
+                        break;
+                    default:    
+                        $('#filter-1').val('');
+                        $('#filter-2').val('');
+                };
+            }).on("select2-clearing", function (e) {
+                $('#filter-1').val('');
+                $('#filter-2').val('');
+            });
+
+
+
+            $('#bt-save-filter').on('click', function (e) {
+                if ($("#ddlSelectQueryFilter").val() === '') {
+                    $('#save-filter').modal('show', $(this));
+                    var modal = $('#save-filter');
+                    modal.find('.modal-title').text('Guardar filtro');
+                } else {
+                    toastr["success"]("O filtro <strong>meu filtro pincipal</strong> foi atualizado.");
+                }
+            });
+
+            $('#save-filter').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget) // Button that triggered the modal
+                var recipient = button.data('open-mode') // Extract info from data-* attributes
+               
+                var modal = $(this);
+                modal.find('.modal-title').text(recipient + ' filtro');
+
+                var data = $('#ddlSelectQueryFilter').select2("data"),
+                    filterName = $('#new-filter-name');
+               
+                if (!data || data.text === '') {
+                    filterName.val('');
+                    return;
+                };
+
+                filterName.val(data.text).select();
+
+            });
+
+            $('#save-filter').on('shown.bs.modal', function (event) {
+                $('#new-filter-name').focus();
+            });
+        });
+    </script>
+</body>
+</html>
