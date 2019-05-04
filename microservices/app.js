@@ -3,6 +3,7 @@ let axios = require('axios');
 let bodyParser = require('body-parser');
 let Promise = require('es6-promise').Promise;
 const utf8 = require('utf8');
+const cors = require('cors');
 
 let AUDIO_FILES_DIR = 'data/audio_files/';
 //let DB_PREFIX = 'http://amalia-cluster-master.c.ptin.corppt.com:8091/';
@@ -14,7 +15,7 @@ let DB_AACONFIG = DB_PREFIX + 'alticeAssistantConfig/';
 //let DB_AACORE = DB_PREFIX + 'alticeAssistantCore/';
 let DB_STUDENTS = DB_AACONFIG + 'students';
 //let DB_DIALOGUE_HIST = `${DB_AACONFIG}/analytics`
-let DB_DIALOGUE_HIST = 'http://10.113.134.43:8090/analytics/DialogueHistory';
+let DB_DIALOGUE_HIST = 'http://amalia-cluster-master.c.ptin.corppt.com:8091/analytics/DialogueHistory';
 
 //let ENTITIES_SERVICE = "http://10.113.134.43:4567/getEntities/";
 let ENTITIES_SERVICE = "http://0.0.0.0:4567/getEntities/";
@@ -26,6 +27,7 @@ let PY_SERVER_DOWNLOAD = 'http://10.113.155.13:5400/';
 
 let app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 app.set('json spaces', 4);
 
@@ -65,6 +67,7 @@ app.get("/transcript", (req, res) => {
 });
 
 app.get("/getEntities", (req, res) => {
+
     axios.get(DB_ENTITIES)
         .then(response => res.send(response.data._embedded))
         .catch(error => res.send(getAxiosErrorMessage(error)));
@@ -108,14 +111,13 @@ app.get("/getSuggestionsOfIntents", (req, res) => {
         .catch(error => res.send(getAxiosErrorMessage(error)));
 });
 
-app.get("/suggestIntents/:studentName", (req, res) => {
+app.get("/suggestIntents/:studentId", (req, res) => {
     let student;
-    getStudent(req.params.studentName)
+    getStudent(req.params.studentId)
         .then(studentResponse => {
             student = studentResponse;
-            let studentId = student._id.$oid;
             // Get Dialogue History of Student
-            return getDialoguesOfStudent(studentId);
+            return getDialoguesOfStudent(student._id.$oid);
         })
         .then(dialoguesResponse => {
             let promises = dialoguesResponse.map(dialogue => {
@@ -130,11 +132,10 @@ app.get("/suggestIntents/:studentName", (req, res) => {
                         }
                         if (intent === "NO_INTENT" || intent === "fallbackIntent") {
                             console.log("General fallback");
-                            return suggestWithGeneralFallback(student.programs, entitiesResponse, text)
-                            console.log(p);
+                            return suggestWithGeneralFallback(student._id.$oid, student.programs, entitiesResponse, text)
                         } else {
                             console.log("Specific fallbacks");
-                            return Promise.resolve('Specific Fallback');
+                            //return Promise.resolve('Specific Fallback');
                         }
                     })
             });
@@ -144,8 +145,10 @@ app.get("/suggestIntents/:studentName", (req, res) => {
             console.log('Done Generating suggestions');
             result = flattenArray(result).map(instance => JSON.stringify(instance));
             result = Array.from(new Set(result));
+            // Remove undefined instances after flatten array
+            result = result.filter(suggestion => typeof suggestion !== "undefined");
             return uploadSuggestions(result)
-                .then(() => {
+                .then(response => {
                     res.send(result.map((string) => JSON.parse(string)))
                 });
         })
@@ -171,6 +174,10 @@ app.get("/getProgramName/:id", (req, res) => {
             if (error.response.status === 404)
                 res.send([]);
         });
+});
+
+app.post("/addPhrasesAndEntities", (req, res) => {
+    
 });
 
 function uploadSuggestions(suggestions) {
@@ -366,13 +373,13 @@ function getIntent(sentence, sourceData, sessionId) {
     }).then(response => response.data.nlpResponse.intent);
 }
 
-function suggestWithGeneralFallback(studentPrograms, entitiesResponse, text) {
+function suggestWithGeneralFallback(studentId, studentPrograms, entitiesResponse, text) {
+    let botId = studentId;
     return parseEntities(entitiesResponse.data).then((NER) => {
         // Foreach in all Programs
         return Promise.all(studentPrograms.map(studentProgram => {
             // Get Program's info
             return getProgram(studentProgram.programId).then(programResponse => {
-            //return getProgram("5cb5bd2d339bdccd5d171d59").then(programResponse => {
                 // Get entities and synonyms
                 let program = programResponse[0];
                 let entities = getEntitiesOfProgram(program);
@@ -387,27 +394,31 @@ function suggestWithGeneralFallback(studentPrograms, entitiesResponse, text) {
                                     return entitiesMatch
                                         .filter(entity => entity === parameter.displayName)
                                         .map(entity => ({
-                                            _id: `${text}_${studentProgram.programId}`,
+                                            _id: removeAccents(`${text}_${studentProgram.programId}`),
                                             message: text,
                                             programId: studentProgram.programId,
+                                            program: program.name,
                                             intent: dataIntent.displayName,
                                             entity: entity,
                                             NER: NER,
                                             lastUpdate: new Date().toISOString(),
                                             validated: false,
-                                            ignore: false
+                                            ignore: false,
+                                            botId
                                         }));
                                 });
                             }
                             else if (intentMatchesEntities(displayName, entitiesResponse.data)) {
                                 return {
-                                    _id: `${text}_${studentProgram.programId}`,
+                                    _id: removeAccents(`${text}_${studentProgram.programId}`),
                                     message: text,
                                     programId: studentProgram.programId,
+                                    program: program.name,
                                     intent: dataIntent.displayName,
                                     lastUpdate: new Date().toISOString(),
                                     validated: false,
-                                    ignore: false
+                                    ignore: false,
+                                    botId
                                 }
                             }
                             console.log('No matches with parameters/entities');
@@ -417,15 +428,18 @@ function suggestWithGeneralFallback(studentPrograms, entitiesResponse, text) {
             });
         })).then((result) => {
             return flattenArray(result);
-        }).catch(error =>  getAxiosErrorMessage(error));
+        }).catch(error => getAxiosErrorMessage(error));
     })
-
 }
 
-function getStudent(studentName) {
-    return axios.get(`${DB_STUDENTS}?filter={'name':'${studentName}'}`)
-        .then(response => response.data._embedded[0])
-        .catch(error => getAxiosErrorMessage(error));
+function getStudent(studentId) {
+    return axios.get(`${DB_STUDENTS}/${studentId}`)
+        .then(response => response.data)
+        .catch(error => {
+            if (error.response.status === 404)
+                return [];
+            return error;
+        });
 }
 
 function getDialoguesOfStudent(studentId) {
@@ -578,4 +592,16 @@ const manageSentence = (sentence) => {
     return axios.get(encodeURI(`${SW_SERVICE}${newSentence}`))
         .then(response => response.data.data)
         .catch(error => getAxiosErrorMessage(error));
+}
+
+const removeAccents = (sentence) => {
+    sentence = sentence.replace(/[àáâãäå]/, "a");
+    sentence = sentence.replace(/[èéêëẽ]/, "e");
+    sentence = sentence.replace(/[ìíîï]/, "i");
+    sentence = sentence.replace("ñ", "n");                
+    sentence = sentence.replace(/[òóôõö]/, "o");
+    sentence = sentence.replace("œ", "oe");
+    sentence = sentence.replace(/[ùúûü]/, "u");
+    sentence = sentence.replace(/[ýÿ]/, "y");
+    return sentence;
 }
