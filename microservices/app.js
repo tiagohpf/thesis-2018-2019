@@ -5,6 +5,9 @@ let Promise = require('es6-promise').Promise;
 const utf8 = require('utf8');
 const cors = require('cors');
 
+let DB_RPD = 'http://amalia-cluster-master.c.ptin.corppt.com:8091/'
+let RPD_AACONFIG = `${DB_RPD}alticeAssistantConfig/`;
+
 let AUDIO_FILES_DIR = 'data/audio_files/';
 //let DB_PREFIX = 'http://amalia-cluster-master.c.ptin.corppt.com:8091/';
 let DB_PREFIX = 'http://10.113.141.31:8080/';
@@ -177,24 +180,48 @@ app.get("/getProgramName/:id", (req, res) => {
 });
 
 app.post("/addPhrasesAndEntities", (req, res) => {
-    
+    if (req.body.NER) {
+        console.log("Add traning phrase and entities");
+        res.send("In process...");
+    } else {
+        console.log("Add just training phrase");
+        addTrainingPhrase(req.body)
+            .then(response => res.send(response))
+            .catch(error => res.send(error));
+    }
 });
+
+function addTrainingPhrase(body) {
+    return getProgram(body.programId)
+        .then(program => {
+            let lessons = [];
+            program[0].lessons.forEach(lesson => {
+                if (lesson.displayName === body.intent)
+                    lesson.trainingPhrases.push(createSimpleTrainingPhrase(body.text));
+                lessons.push(lesson);
+            })
+            return axios.patch(`${RPD_AACONFIG}programs/${body.programId}`, {
+                lessons
+            }).then(response => response)
+            .catch(error => getAxiosErrorMessage(error));
+        }).catch(error => getAxiosErrorMessage(error));
+}
 
 function uploadSuggestions(suggestions) {
     let promises = suggestions.map(suggestion => {
         return getSuggestion(JSON.parse(suggestion)._id)
-                .then(response => {
-                    // Post just new instances
-                    if (response.length === 0) {
-                        return axios({
-                            method: 'post',
-                            url: `${DB_AACONFIG}intentsSuggestions`,
-                            headers: {"Content-Type": "application/json"},
-                            data: suggestion
-                        }).then(response => response);
-                    }
-                })
-                .catch(error => getAxiosErrorMessage(error))
+            .then(response => {
+                // Post just new instances
+                if (response.length === 0) {
+                    return axios({
+                        method: 'post',
+                        url: `${DB_AACONFIG}intentsSuggestions`,
+                        headers: { "Content-Type": "application/json" },
+                        data: suggestion
+                    }).then(response => response);
+                }
+            })
+            .catch(error => getAxiosErrorMessage(error))
     })
     return Promise.all(promises);
 }
@@ -207,7 +234,8 @@ function updateSuggestionValidation(id) {
                 validated = true;
             return axios.patch(utf8.encode(`${DB_AACONFIG}intentsSuggestions/${id}`), {
                 validated,
-                lastUpdate: new Date().toISOString()})
+                lastUpdate: new Date().toISOString()
+            })
                 .then(r => r);
         }).catch(error => getAxiosErrorMessage(error))
 }
@@ -217,7 +245,8 @@ function ignoreSuggestion(id) {
         .then(response => {
             return axios.patch(utf8.encode(`${DB_AACONFIG}intentsSuggestions/${id}`), {
                 ignore: true,
-                lastUpdate: new Date().toISOString()})
+                lastUpdate: new Date().toISOString()
+            })
                 .then(r => r);
         }).catch(error => getAxiosErrorMessage(error))
 }
@@ -598,10 +627,22 @@ const removeAccents = (sentence) => {
     sentence = sentence.replace(/[àáâãäå]/, "a");
     sentence = sentence.replace(/[èéêëẽ]/, "e");
     sentence = sentence.replace(/[ìíîï]/, "i");
-    sentence = sentence.replace("ñ", "n");                
+    sentence = sentence.replace("ñ", "n");
     sentence = sentence.replace(/[òóôõö]/, "o");
     sentence = sentence.replace("œ", "oe");
     sentence = sentence.replace(/[ùúûü]/, "u");
     sentence = sentence.replace(/[ýÿ]/, "y");
     return sentence;
 }
+
+const createSimpleTrainingPhrase = (text) => {
+    return {
+        "type": "EXAMPLE",
+        "parts": [
+            {
+                "text": text
+            }
+        ],
+        "timesAddedCount": 2
+    }
+} 

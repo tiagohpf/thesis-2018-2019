@@ -72,6 +72,13 @@
             },
             {
               "type": "text",
+              "size": "sm",
+              "id": "programId",
+              "pathToValue": "programId",
+              "hidden": true
+            },
+            {
+              "type": "text",
               "size": "lg",
               "id": "intent",
               "pathToValue": "intent",
@@ -83,6 +90,13 @@
               "id": "validated",
               "pathToValue": "validated",
               "text": "Validated"
+            },
+            {
+              "type": "text",
+              "size": "lg",
+              "id": "NER",
+              "pathToValue": "NER",
+              "hidden": true
             },
             {
               "type": "text",
@@ -139,7 +153,10 @@
                             "key": "requestBody",
                             "type": "json",
                             "value": {
-                              "xxxx": "{{validated}}"
+                              "text": "{{message}}",
+                              "programId": "{{programId}}",
+                              "intent": "{{intent}}",
+                              "NER": "{{NER}}"
                             }
                           },
                           {
