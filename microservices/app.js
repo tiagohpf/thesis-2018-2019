@@ -181,8 +181,10 @@ app.get("/getProgramName/:id", (req, res) => {
 
 app.post("/addPhrasesAndEntities", (req, res) => {
     if (req.body.NER) {
-        console.log("Add traning phrase and entities");
-        res.send("In process...");
+        console.log("Add training phrase and entities");
+        addPhraseWithEntities(req.body)
+            .then(response => res.send(response))
+            .catch(error => res.send(error));
     } else {
         console.log("Add just training phrase");
         addTrainingPhrase(req.body)
@@ -203,8 +205,87 @@ function addTrainingPhrase(body) {
             return axios.patch(`${RPD_AACONFIG}programs/${body.programId}`, {
                 lessons
             }).then(response => response)
-            .catch(error => getAxiosErrorMessage(error));
+                .catch(error => getAxiosErrorMessage(error));
         }).catch(error => getAxiosErrorMessage(error));
+}
+
+function addPhraseWithEntities(body) {
+    return getProgram(body.programId)
+        .then(program => {
+            let lessons = [], chapters = [];
+            let matches = getMatchesOfWordsAndEntities(body.text, body.NER);
+            body.text = replaceTextByEntities(body.text, matches).split("\\")
+                .map(value => value = value.trim())
+                .filter(value => value.length > 0);
+
+            program[0].lessons.forEach(lesson => {
+                if (lesson.displayName === body.intent) 
+                    lesson.trainingPhrases.push(createComplexTrainingPhrase(body.text, matches, program[0].code));
+                lessons.push(lesson);
+            })
+            
+            let entities = getAllEntitiesOfChapters(program[0].chapters);
+            entities = flattenArray(mergeEntities(entities, matches));
+            let notUsedEntities = entities.slice();
+            program[0].chapters.forEach(chapter => {
+                chapter.entities.map(entity => {
+                    entities.filter(e => e.value === entity.value)
+                        .map(e => {
+                            entity.synonyms = e.synonyms
+                            notUsedEntities = notUsedEntities.filter(notEntity => notEntity.value != e.value);
+                        })
+                });
+                chapters.push(chapter);
+            })
+            notUsedEntities.map(entity => chapters.push(createChapter(entity, program[0].code)));
+            return axios.patch(`${RPD_AACONFIG}programs/${body.programId}`, {
+                lessons,
+                chapters
+            }).then(response => response)
+                .catch(error => getAxiosErrorMessage(error));
+
+        }).catch(error => getAxiosErrorMessage(error));
+}
+
+function mergeEntities(entities, matches) {
+    let entitiesMerge = [];
+    matches.forEach(match => {
+        let entitiesFound = entities.filter(entity => entity.value === match.entity)
+        if (entitiesFound.length > 0) {
+            entitiesFound.map(entity => {
+                if (!entity.synonyms.includes(match.value))
+                    entity.synonyms.push(match.value);
+            });
+        } else
+            entitiesFound.push({
+                value: match.entity,
+                synonyms: Array.from(new Set([match.value, match.value]))
+            });
+        entitiesMerge.push(entitiesFound);
+    })
+    return entitiesMerge;
+}
+
+function getMatchesOfWordsAndEntities(text, NER) {
+    let matches = [];
+    NER.forEach(entity => {
+        let values = entity.values.filter(value => text.includes(value));
+        if (values.length > 0) {
+            let longest = values.reduce((a, b) => a.length > b.length ? a : b, '');
+            matches.push({
+                entity: entity.entity,
+                value: longest
+            });
+        }
+    });
+    return matches
+}
+
+function replaceTextByEntities(text, matches) {
+    matches.forEach(entity => {
+        text = text.replace(entity.value, `\\${entity.entity}\\`);
+    })
+    return text;
 }
 
 function uploadSuggestions(suggestions) {
@@ -500,6 +581,7 @@ function getEntitiesOfProgram(program) {
     });
     return entities;
 }
+
 const parseNerEntities = (nerEntities) => {
     return Promise.all(nerEntities.map(nerEntity => manageSentence(nerEntity._id)))
 };
@@ -645,4 +727,49 @@ const createSimpleTrainingPhrase = (text) => {
         ],
         "timesAddedCount": 2
     }
-} 
+}
+
+const createComplexTrainingPhrase = (text, matches, code) => {
+    matches = matches.map(entity => entity.entity);
+    let parts = [];
+    text.map(value => {
+        if (matches.includes(value)) {
+            parts.push({
+                "text": value,
+                "alias": value,
+                "entityType": `@${code}_${value}`
+            });
+        } else {
+            parts.push({
+                "text": value
+            });
+        }
+    });
+    return parts;
+}
+
+const getAllEntitiesOfChapters = (chapters) => {
+    let entities = [];
+    chapters.forEach(chapter => {
+        chapter.entities.map(entity => {
+            entities.push({
+                value: entity.value,
+                synonyms: entity.synonyms
+            })
+        })
+    })
+    return entities;
+}
+
+const createChapter = (entity, code) => {
+    return {
+        displayName: `${code}_${entity.value}`,
+        kind: 'KIND_MAP',
+        entities: [
+            {
+                value: entity.value,
+                synonyms: entity.synonyms
+            }
+        ]
+    }
+}
