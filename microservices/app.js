@@ -7,6 +7,7 @@ const cors = require('cors');
 
 let DB_RPD = 'http://amalia-cluster-master.c.ptin.corppt.com:8091/'
 let RPD_AACONFIG = `${DB_RPD}alticeAssistantConfig/`;
+let RPD_DH = `${DB_RPD}analytics/DialogueHistory`;
 
 let AUDIO_FILES_DIR = 'data/audio_files/';
 //let DB_PREFIX = 'http://amalia-cluster-master.c.ptin.corppt.com:8091/';
@@ -114,9 +115,9 @@ app.get("/getSuggestionsOfIntents", (req, res) => {
         .catch(error => res.send(getAxiosErrorMessage(error)));
 });
 
-app.get("/suggestIntents/:studentId", (req, res) => {
+app.post("/suggestIntents", (req, res) => {
     let student;
-    getStudent(req.params.studentId)
+    getStudent(req.body.studentId)
         .then(studentResponse => {
             student = studentResponse;
             // Get Dialogue History of Student
@@ -152,7 +153,9 @@ app.get("/suggestIntents/:studentId", (req, res) => {
             result = result.filter(suggestion => typeof suggestion !== "undefined");
             return uploadSuggestions(result)
                 .then(response => {
-                    res.send(result.map((string) => JSON.parse(string)))
+                    console.log(response);
+                    res.send(response);
+                    //res.send(result.map((string) => JSON.parse(string)))
                 });
         })
         .catch(error => res.send(error));
@@ -336,7 +339,7 @@ function uploadSuggestions(suggestions) {
                 if (response.length === 0) {
                     return axios({
                         method: 'post',
-                        url: `${DB_AACONFIG}intentsSuggestions`,
+                        url: `${RPD_AACONFIG}intentsSuggestions`,
                         headers: { "Content-Type": "application/json" },
                         data: suggestion
                     }).then(response => response);
@@ -593,7 +596,7 @@ function getStudent(studentId) {
 }
 
 function getDialoguesOfStudent(studentId) {
-    return axios.get(`${DB_DIALOGUE_HIST}?filter={'botId':'${studentId}'}`)
+    return axios.get(`${RPD_DH}?filter={'botId':'${studentId}'}`)
         .then(response => response.data._embedded)
         .catch(error => getAxiosErrorMessage(error));
 }
