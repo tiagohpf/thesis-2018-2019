@@ -193,15 +193,14 @@ app.post("/addPhrasesAndEntities", (req, res) => {
     }
 });
 
-app.post("/removePhrasesAndEntitities", (req,res) => {
-    if (req.body.NER) {
+app.post("/removePhrasesAndEntities", (req,res) => {
+    if (req.body.NER)
         console.log("Remove training phrase and entities");
-    } else {
+    else
         console.log("Just remove training phrase");
-        removeTrainingPhrase(req.body)
+    removeTrainingPhrase(req.body)
             .then(response => res.send(response))
             .catch(error => res.send(error));
-    }
 });
 
 function removeTrainingPhrase(body) {
