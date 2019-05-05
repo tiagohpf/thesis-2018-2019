@@ -186,12 +186,39 @@ app.post("/addPhrasesAndEntities", (req, res) => {
             .then(response => res.send(response))
             .catch(error => res.send(error));
     } else {
-        console.log("Add just training phrase");
+        console.log("Just add training phrase");
         addTrainingPhrase(req.body)
             .then(response => res.send(response))
             .catch(error => res.send(error));
     }
 });
+
+app.post("/removePhrasesAndEntitities", (req,res) => {
+    if (req.body.NER) {
+        console.log("Remove training phrase and entities");
+    } else {
+        console.log("Just remove training phrase");
+        removeTrainingPhrase(req.body)
+            .then(response => res.send(response))
+            .catch(error => res.send(error));
+    }
+});
+
+function removeTrainingPhrase(body) {
+    return getProgram(body.programId)
+        .then(program => {
+            let lessons = [];
+            program[0].lessons.forEach(lesson => {
+                if (lesson.displayName === body.intent)
+                    lesson.trainingPhrases = removeSimpleTrainingPhrase(body.text, lesson.trainingPhrases);
+                lessons.push(lesson)
+            })
+            return axios.patch(`${RPD_AACONFIG}programs/${body.programId}`, {
+                lessons
+            }).then(response => response)
+                .catch(error => getAxiosErrorMessage(error));
+        }).catch(error => getAxiosErrorMessage(error));
+}
 
 function addTrainingPhrase(body) {
     return getProgram(body.programId)
@@ -207,6 +234,11 @@ function addTrainingPhrase(body) {
             }).then(response => response)
                 .catch(error => getAxiosErrorMessage(error));
         }).catch(error => getAxiosErrorMessage(error));
+}
+
+function removeSimpleTrainingPhrase(text, trainingPhrases) {
+    return trainingPhrases
+        .filter(trainingPhrase => getTextOfParts(trainingPhrase.parts) !== text);
 }
 
 function addPhraseWithEntities(body) {
@@ -772,4 +804,10 @@ const createChapter = (entity, code) => {
             }
         ]
     }
+}
+
+const getTextOfParts = (parts) => {
+    let text = new String();
+    parts.forEach(part => text += part.text + " ")
+    return text.trim().replace(/\s\s+/g, ' ');
 }
