@@ -250,8 +250,14 @@ function addPhraseWithEntities(body) {
                 .filter(value => value.length > 0);
 
             program[0].lessons.forEach(lesson => {
-                if (lesson.displayName === body.intent) 
-                    lesson.trainingPhrases.push(createComplexTrainingPhrase(body.text, matches, program[0].code));
+                if (lesson.displayName === body.intent){
+                    let parts = createParts(body.text, matches, program[0].code) 
+                    lesson.trainingPhrases.push({
+                        type: 'EXAMPLE',
+                        parts,
+                        timesAddedCount: 2
+                    });
+                }
                 lessons.push(lesson);
             })
             
@@ -763,7 +769,7 @@ const createSimpleTrainingPhrase = (text) => {
     }
 }
 
-const createComplexTrainingPhrase = (text, matches, code) => {
+const createParts = (text, matches, code) => {
     matches = matches.map(entity => entity.entity);
     let parts = [];
     text.map(value => {
