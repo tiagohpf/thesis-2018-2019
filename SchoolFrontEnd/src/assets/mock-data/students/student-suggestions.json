@@ -1,6 +1,61 @@
 {
   "type": "page",
   "id": "pageEntitySuggestions",
+  "header": {
+    "id": "pageHeader",
+    "operations": [
+      {
+        "id": "suggestionsButtons",
+        "size": 3,
+        "parameters": [
+          {
+            "type": "execute",
+            "id": "refreshButton",
+            "text": "",
+            "icon": "fa fa-refresh",
+            "class": "btn-primary",
+            "parameters": [
+              {
+                "key": "requestEndpoint",
+                "value": "{{SuggestionsMS}}/suggestIntents"
+              },
+              {
+                "key": "requestType",
+                "value": "POST"
+              },
+              {
+                "key": "requestBody",
+                "type": "json",
+                "value": "{\"studentId\": \"[[id]]\"}"
+              },
+              {
+                "key": "requestHeaders",
+                "value": {
+                  "Authorization": "Bearer {{token}}",
+                  "IXS": "{{IXS_id}}"
+                }
+              },
+              {
+                "key": "onSuccess",
+                "value": {
+                  "request": [
+                    {
+                      "key": "updatePageParameter",
+                      "value": {
+                        "dialogsMain": {
+                          "lazyLoading": false
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
   "tabs": [
     {
       "id": "customerList",
@@ -119,16 +174,21 @@
                   "parameters": [
                     {
                       "key": "requestEndpoint",
-                      "value": "{{AlticeAssistantConfig_rpd}}/intentsSuggestions/{{suggestionId}}"
+                      "value": "{{SuggestionsMS}}/addPhrasesAndEntities"
                     },
                     {
                       "key": "requestType",
-                      "value": "PATCH"
+                      "value": "POST"
                     },
                     {
                       "key": "requestBody",
                       "type": "json",
-                      "value": "{\"validated\": true}"
+                      "value": {
+                        "text": "{{message}}",
+                        "programId": "{{programId}}",
+                        "intent": "{{intent}}",
+                        "NER": "{{NER}}"
+                      }
                     },
                     {
                       "key": "requestHeaders",
@@ -143,21 +203,16 @@
                         "request": [
                           {
                             "key": "requestEndpoint",
-                            "value": "{{SuggestionsMS}}/addPhrasesAndEntities"
+                            "value": "{{AlticeAssistantConfig_rpd}}/intentsSuggestions/{{suggestionId}}"
                           },
                           {
                             "key": "requestType",
-                            "value": "POST"
+                            "value": "PATCH"
                           },
                           {
                             "key": "requestBody",
                             "type": "json",
-                            "value": {
-                              "text": "{{message}}",
-                              "programId": "{{programId}}",
-                              "intent": "{{intent}}",
-                              "NER": "{{NER}}"
-                            }
+                            "value": "{\"validated\": true}"
                           },
                           {
                             "key": "requestHeaders",
@@ -201,16 +256,21 @@
                   "parameters": [
                     {
                       "key": "requestEndpoint",
-                      "value": "{{AlticeAssistantConfig_rpd}}/intentsSuggestions/{{suggestionId}}"
+                      "value": "{{SuggestionsMS}}/removePhrasesAndEntities"
                     },
                     {
                       "key": "requestType",
-                      "value": "PATCH"
+                      "value": "POST"
                     },
                     {
                       "key": "requestBody",
                       "type": "json",
-                      "value": "{\"validated\": false}"
+                      "value": {
+                        "text": "{{message}}",
+                        "programId": "{{programId}}",
+                        "intent": "{{intent}}",
+                        "NER": "{{NER}}"
+                      }
                     },
                     {
                       "key": "requestHeaders",
@@ -224,16 +284,43 @@
                       "value": {
                         "request": [
                           {
-                            "key": "updatePageParameter",
+                            "key": "requestEndpoint",
+                            "value": "{{AlticeAssistantConfig_rpd}}/intentsSuggestions/{{suggestionId}}"
+                          },
+                          {
+                            "key": "requestType",
+                            "value": "PATCH"
+                          },
+                          {
+                            "key": "requestBody",
+                            "type": "json",
+                            "value": "{\"validated\": false}"
+                          },
+                          {
+                            "key": "requestHeaders",
                             "value": {
-                              "dialogsMain": {
-                                "lazyLoading": false
-                              }
+                              "Authorization": "Bearer {{token}}",
+                              "IXS": "{{IXS_id}}"
                             }
                           },
                           {
-                            "key": "successText",
-                            "value": "Suggestion Unchecked"
+                            "key": "onSuccess",
+                            "value": {
+                              "request": [
+                                {
+                                  "key": "updatePageParameter",
+                                  "value": {
+                                    "dialogsMain": {
+                                      "lazyLoading": false
+                                    }
+                                  }
+                                },
+                                {
+                                  "key": "successText",
+                                  "value": "Suggestion Unchecked"
+                                }
+                              ]
+                            }
                           }
                         ]
                       }
