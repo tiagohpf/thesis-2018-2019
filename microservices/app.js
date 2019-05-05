@@ -244,7 +244,7 @@ function removeSimpleTrainingPhrase(text, trainingPhrases) {
 function addPhraseWithEntities(body) {
     return getProgram(body.programId)
         .then(program => {
-            let lessons = [], chapters = [];
+            let lessons = [], chapters = [], variables = [];
             let matches = getMatchesOfWordsAndEntities(body.text, body.NER);
             body.text = replaceTextByEntities(body.text, matches).split("\\")
                 .map(value => value = value.trim())
@@ -270,9 +270,12 @@ function addPhraseWithEntities(body) {
                 chapters.push(chapter);
             })
             notUsedEntities.map(entity => chapters.push(createChapter(entity, program[0].code)));
+            program[0].variables.forEach(variable => variables.push(variable));
+            notUsedEntities.map(variable => variables.push(createVariable(variable, program[0].code)));
             return axios.patch(`${RPD_AACONFIG}programs/${body.programId}`, {
                 lessons,
-                chapters
+                chapters,
+                variables
             }).then(response => response)
                 .catch(error => getAxiosErrorMessage(error));
 
@@ -803,6 +806,17 @@ const createChapter = (entity, code) => {
                 synonyms: entity.synonyms
             }
         ]
+    }
+}
+
+const createVariable = (variable, code) => {
+    return {
+        displayName: variable.value,
+        description: variable.value,
+        initialValue: null,
+        nature: 'custom',
+        entity: `${code}_${variable.value}`,
+        channel: null
     }
 }
 
