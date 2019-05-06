@@ -102,7 +102,8 @@
               "type": "text",
               "id": "suggestionId",
               "pathToValue": "_id",
-              "text": "Id"
+              "text": "Id",
+              "hidden": true
             },
             {
               "type": "text",
@@ -144,7 +145,8 @@
               "size": "sm",
               "id": "validated",
               "pathToValue": "validated",
-              "text": "Validated"
+              "text": "Validated",
+              "hidden": true
             },
             {
               "type": "text",
@@ -158,7 +160,8 @@
               "size": "sm",
               "id": "ignore",
               "pathToValue": "ignore",
-              "text": "Ignore"
+              "text": "Ignore",
+              "hidden": true
             },
             {
               "type": "actions",
