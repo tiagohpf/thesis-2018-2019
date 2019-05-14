@@ -5,6 +5,8 @@ let Promise = require('es6-promise').Promise;
 const utf8 = require('utf8');
 const cors = require('cors');
 
+let DB_MVP = 'http://10.113.134.43:8090/'
+
 let DB_RPD = 'http://amalia-cluster-master.c.ptin.corppt.com:8091/'
 let RPD_AACONFIG = `${DB_RPD}alticeAssistantConfig/`;
 let RPD_DH = `${DB_RPD}analytics/DialogueHistory`;
@@ -21,12 +23,13 @@ let DB_STUDENTS = DB_AACONFIG + 'students';
 //let DB_DIALOGUE_HIST = `${DB_AACONFIG}/analytics`
 let DB_DIALOGUE_HIST = 'http://amalia-cluster-master.c.ptin.corppt.com:8091/analytics/DialogueHistory';
 
-//let ENTITIES_SERVICE = "http://10.113.134.43:4567/getEntities/";
-let ENTITIES_SERVICE = "http://0.0.0.0:4567/getEntities/";
-let SW_SERVICE = "http://0.0.0.0:4567/removeStopwords/";
+//let ENTITIES_SERVICE = "http://0.0.0.0:4567/getEntities/";
+//let SW_SERVICE = "http://0.0.0.0:4567/removeStopwords/";
+let ENTITIES_SERVICE = "http://10.113.134.43:4567/getEntities/";
+let SW_SERVICE = "http://10.113.134.43:4567/getEntities/";
 let INTENTS_SERVICE = 'http://10.113.141.31:8900/sofia/question';
-//let TRANSCRIPT_SERVICE = 'http://10.113.155.13:5500/';
-let TRANSCRIPT_SERVICE = 'http://127.0.0.1:5000/';
+let TRANSCRIPT_SERVICE = 'http://10.113.155.13:5500/';
+//let TRANSCRIPT_SERVICE = 'http://127.0.0.1:5000/';
 let PY_SERVER_DOWNLOAD = 'http://10.113.155.13:5400/';
 
 let app = express();
@@ -53,18 +56,18 @@ app.get("/getTranscription/:id", (req, res) => {
         .catch(error => res.send(getAxiosErrorMessage(error)));
 });
 
-app.get("/transcript", (req, res) => {
+app.post("/transcript", (req, res) => {
     let params = createRequestParams(req);
     if (!params.path)
         return res.send("You must define path parameter");
 
     generateTranscription(req, res).then(response => {
         console.log("Transcription done");
-        return generateIntents(req, res, params.fileId).then(() => {
+        return generateIntents(req, res, params.fileId, req.body.studentId).then(() => {
             console.log("Intents done");
-            return generateEntities(params.fileId).then(() => {
+            return generateEntities(params.fileId).then(entities => {
                 console.log("Entities done");
-                res.send(response)
+                res.send(response);
             })
         })
     }).catch(error => res.send(getAxiosErrorMessage(error)));
@@ -153,7 +156,6 @@ app.post("/suggestIntents", (req, res) => {
             result = result.filter(suggestion => typeof suggestion !== "undefined");
             return uploadSuggestions(result)
                 .then(response => {
-                    console.log(response);
                     res.send(response);
                     //res.send(result.map((string) => JSON.parse(string)))
                 });
@@ -215,7 +217,7 @@ function removeTrainingPhrase(body) {
                     lesson.trainingPhrases = removeSimpleTrainingPhrase(body.text, lesson.trainingPhrases);
                 lessons.push(lesson)
             })
-            return axios.patch(`${RPD_AACONFIG}programs/${body.programId}`, {
+            return axios.patch(`${DB_AACONFIG}programs/${body.programId}`, {
                 lessons
             }).then(response => response)
                 .catch(error => getAxiosErrorMessage(error));
@@ -231,7 +233,7 @@ function addTrainingPhrase(body) {
                     lesson.trainingPhrases.push(createSimpleTrainingPhrase(body.text));
                 lessons.push(lesson);
             })
-            return axios.patch(`${RPD_AACONFIG}programs/${body.programId}`, {
+            return axios.patch(`${DB_AACONFIG}programs/${body.programId}`, {
                 lessons
             }).then(response => response)
                 .catch(error => getAxiosErrorMessage(error));
@@ -280,7 +282,7 @@ function addPhraseWithEntities(body) {
             notUsedEntities.map(entity => chapters.push(createChapter(entity, program[0].code)));
             program[0].variables.forEach(variable => variables.push(variable));
             notUsedEntities.map(variable => variables.push(createVariable(variable, program[0].code)));
-            return axios.patch(`${RPD_AACONFIG}programs/${body.programId}`, {
+            return axios.patch(`${DB_AACONFIG}programs/${body.programId}`, {
                 lessons,
                 chapters,
                 variables
@@ -339,7 +341,8 @@ function uploadSuggestions(suggestions) {
                 if (response.length === 0) {
                     return axios({
                         method: 'post',
-                        url: `${RPD_AACONFIG}intentsSuggestions`,
+                        //url: `${RPD_AACONFIG}intentsSuggestions`,
+                        url: `${DB_AACONFIG}intentsSuggestions`,
                         headers: { "Content-Type": "application/json" },
                         data: suggestion
                     }).then(response => response);
@@ -445,7 +448,7 @@ function generateEntities(id) {
     })
 }
 
-function generateIntents(req, res, id) {
+function generateIntents(req, res, id, studentId) {
     console.log("Start Intents");
     return axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
         let dialogues = sortDialoguesByIndex(response.data.dialogues);
@@ -456,6 +459,13 @@ function generateIntents(req, res, id) {
         return getIntentsFromDialogues(clientDialogues, sourceData, sessionId).then(() => {
             let operatorDialogues = filterBySpeaker(dialogues, 0);
             dialogues = sortDialoguesByIndex(clientDialogues.concat(operatorDialogues));
+            clientDialogues.forEach(dialogue => {
+                if (dialogue.intent.displayName === 'NO_INTENT') {
+                    return addToDialogueHistory(studentId, dialogue.text, sessionId)
+                        .then(() => console.log("Dialogue added"))
+                        .catch(error => getAxiosErrorMessage(error));
+                }
+            })
             return axios.patch(`${DB_DIALOGUES}/${id}`,
                 {
                     _id: response.id,
@@ -466,6 +476,16 @@ function generateIntents(req, res, id) {
                 });
         }).then(() => dialogues);
     });
+}
+
+function addToDialogueHistory(studentId, text, sessionId) {
+    let dialogue = createDialogue(studentId, text, sessionId);
+    return axios({
+        method: 'post',
+        url: `${DB_MVP}analytics/DialogueHistory`,
+        headers: { "Content-Type": "application/json" },
+        data: dialogue
+    }).then(response => response);
 }
 
 function getTranscription(id) {
@@ -596,8 +616,11 @@ function getStudent(studentId) {
 }
 
 function getDialoguesOfStudent(studentId) {
-    return axios.get(`${RPD_DH}?filter={'botId':'${studentId}'}`)
-        .then(response => response.data._embedded)
+    //return axios.get(`${RPD_DH}?filter={'botId':'${studentId}'}`)
+    return axios.get(`${DB_MVP}analytics/DialogueHistory?filter={'botId':'${studentId}'}`)  
+        .then(response => {
+            return response.data._embedded;
+        })
         .catch(error => getAxiosErrorMessage(error));
 }
 
@@ -744,7 +767,10 @@ const getAxiosErrorMessage = (e) => {
 const manageSentence = (sentence) => {
     let newSentence = sentence.replace(/[-_,&]/, ' ').toLowerCase();
     return axios.get(encodeURI(`${SW_SERVICE}${newSentence}`))
-        .then(response => response.data.data)
+        .then(response => {
+            if (typeof response.data.data === "object")
+                return response.data.data[0].value;
+            return response.data.data})
         .catch(error => getAxiosErrorMessage(error));
 }
 
@@ -832,4 +858,18 @@ const getTextOfParts = (parts) => {
     let text = new String();
     parts.forEach(part => text += part.text + " ")
     return text.trim().replace(/\s\s+/g, ' ');
+}
+
+const createDialogue = (studentId, text, sessionId) => {
+    return {
+        IXS: "IXS.ALB.",
+        Source: "DialogueHistory",
+        botAnswer: "Desculpe, mas não percebi",
+        botId: studentId,
+        sessionId,
+        topic: "fallbackIntent",
+        userCache: true,
+        userSays: text,
+        date: new Date().toISOString()
+    }
 }
