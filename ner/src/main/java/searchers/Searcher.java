@@ -3,7 +3,6 @@ package searchers;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import managers.SentenceManager;
-import models.Stopword;
 import models.Subject;
 import org.mongodb.morphia.Datastore;
 
@@ -37,7 +36,7 @@ public class Searcher {
             for (String value : entity.getValues()) {
                 String newValue = SentenceManager.removeStopWordsFromSentence(value, datastore);
                 if (newValue.length() > 0) {
-                    String pattern = "(.*)" + newValue + "(.*)";
+                    String pattern = String.format("\\b%s\\b", newValue);
                     if (sentence.matches(pattern))
                         found.put(value, entity.getId());
                 }
