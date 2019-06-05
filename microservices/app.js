@@ -67,7 +67,9 @@ app.post("/transcript", (req, res) => {
             console.log("Intents done");
             return generateEntities(params.fileId).then(entities => {
                 console.log("Entities done");
-                res.send(response);
+                res.send(Object.assign({
+                    "path": response
+                }));
             })
         })
     }).catch(error => res.send(getAxiosErrorMessage(error)));
@@ -87,7 +89,7 @@ app.get("/getEntities/:sentence", (req, res) => {
 });
 
 app.get("/getIntent/:sentence", (req, res) => {
-    let sourceData = getSourceTypeAndName(req.query.program, req.query.student);
+    let sourceData = getSourceTypeAndName(req.query.student);
     let sessionId = createSessionId();
     getIntent(req.params.sentence, sourceData, sessionId)
         .then(response => res.send(response))
@@ -404,7 +406,9 @@ function generateTranscription(req) {
                 .then(response => response.data)
         }
         else
-            throw params.downloadPath;
+            throw Object.assign({
+                "path": params.downloadPath
+            });
     });
 }
 
@@ -452,7 +456,7 @@ function generateIntents(req, res, id, studentId) {
     console.log("Start Intents");
     return axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
         let dialogues = sortDialoguesByIndex(response.data.dialogues);
-        let sourceData = getSourceTypeAndName(req.query.program, req.query.student);
+        let sourceData = getSourceTypeAndName(studentId);
         let clientDialogues = filterBySpeaker(dialogues, 1);
         let sessionId = createSessionId();
 
@@ -460,11 +464,9 @@ function generateIntents(req, res, id, studentId) {
             let operatorDialogues = filterBySpeaker(dialogues, 0);
             dialogues = sortDialoguesByIndex(clientDialogues.concat(operatorDialogues));
             clientDialogues.forEach(dialogue => {
-                if (dialogue.intent.displayName === 'NO_INTENT') {
-                    return addToDialogueHistory(studentId, dialogue.text, sessionId)
-                        .then(() => console.log("Dialogue added"))
-                        .catch(error => getAxiosErrorMessage(error));
-                }
+                return addToDialogueHistory(dialogue.botAnswer, studentId, sessionId, dialogue.intent.displayName, dialogue.text)
+                    .then(() => console.log("Dialogue added"))
+                    .catch(error => getAxiosErrorMessage(error));
             })
             return axios.patch(`${DB_DIALOGUES}/${id}`,
                 {
@@ -478,8 +480,8 @@ function generateIntents(req, res, id, studentId) {
     });
 }
 
-function addToDialogueHistory(studentId, text, sessionId) {
-    let dialogue = createDialogue(studentId, text, sessionId);
+function addToDialogueHistory(botAnswer, studentId, sessionId, topic, text) {
+    let dialogue = createDialogue(botAnswer, studentId, sessionId, topic, text);
     return axios({
         method: 'post',
         url: `${DB_MVP}analytics/DialogueHistory`,
@@ -524,7 +526,10 @@ function getIntentsFromDialogues(dialogues, sourceData, sessionId) {
             }).then(response => {
                 Object.assign(
                     dialogues[i],
-                    { intent: response.data.nlpResponse.intent });
+                    {
+                        intent: response.data.nlpResponse.intent,
+                        botAnswer: response.data.message
+                    });
             })
         })
     }, Promise.resolve()).catch(error => {
@@ -616,7 +621,6 @@ function getStudent(studentId) {
 }
 
 function getDialoguesOfStudent(studentId) {
-    //return axios.get(`${RPD_DH}?filter={'botId':'${studentId}'}`)
     return axios.get(`${DB_MVP}analytics/DialogueHistory?filter={'botId':'${studentId}'}`)  
         .then(response => {
             return response.data._embedded;
@@ -700,9 +704,9 @@ function flattenArray(array) {
     return array.reduce((acc, val) => Array.isArray(val) ? acc.concat(flattenArray(val)) : acc.concat(val), []);
 }
 
-const intentMatchesEntities = (intent, entities) => entities.filter(entity => entity._id.toLowerCase() === intent.toLowerCase()).length > 0;
-
-const getCustomParameters = (parameters) => parameters.filter(entitie => !entitie.entityTypeDisplayName.includes("@sys"));
+const intentMatchesEntities = (intent, entities) => {
+    entities.filter(entity => intent.toLowerCase().match(entity._id.toLowerCase())).length > 0;
+}
 
 const createFileId = (path, volume, speed) => `${path}_${volume}_${speed}`;
 
@@ -744,14 +748,12 @@ const sortDialoguesByIndex = (dialogues) => {
 
 const filterBySpeaker = (dialogues, speaker) => dialogues.filter(dialogue => parseInt(dialogue.speaker) === speaker);
 
-const getSourceTypeAndName = (program, student) => {
-    if (program)
-        return { sourceName: program, sourceType: 'PROGRAM' };
-    else if (student)
-        return { sourceName: student, sourceType: 'STUDENT' };
-    else
-        return { sourceName: 'pin_puk_Transcriptor', sourceType: 'PROGRAM' };
-}
+const getSourceTypeAndName = (studentId) => {
+    return {
+        sourceName: studentId,
+        sourceType: "STUDENT"
+    }
+};
 
 const getAxiosErrorMessage = (e) => {
     let error = e;
@@ -860,16 +862,17 @@ const getTextOfParts = (parts) => {
     return text.trim().replace(/\s\s+/g, ' ');
 }
 
-const createDialogue = (studentId, text, sessionId) => {
+const createDialogue = (botAnswer, studentId, sessionId, topic, text) => {
     return {
-        IXS: "IXS.ALB.",
-        Source: "DialogueHistory",
-        botAnswer: "Desculpe, mas não percebi",
+        IXS: 'IXS.ALB',
+        Source: 'DialogueHistory',
+        botAnswer,
         botId: studentId,
-        sessionId,
-        topic: "fallbackIntent",
-        userCache: true,
-        userSays: text,
-        date: new Date().toISOString()
+        channel: 'web',
+        date: new Date().toISOString(),
+        sId: sessionId,
+        topic,
+        useCache: true,
+        userSays: text
     }
 }
