@@ -22,50 +22,50 @@
         {
             "key": "ChatComponentSocketIp",
             "protocol": "https",
-            "host": "api-gw.rpd.ai.alticelabs.com",
+            "host": "api-gw.dev.ai.alticelabs.com",
             "path": ""
         },
         {
             "key": "AnalyticsAPI",
             "protocol": "https",
-            "host": "api-gw.rpd.ai.alticelabs.com",
+            "host": "api-gw.dev.ai.alticelabs.com",
             "path": "analytics"
         },
         {
             "key": "AppAPIBotConfig",
             "protocol": "https",
-            "host": "api-gw.rpd.ai.alticelabs.com",
+            "host": "api-gw.dev.ai.alticelabs.com",
             "path": "alticeAssistantConfig"
         },
         {
             "key": "SchoolBOT",
             "protocol": "https",
-            "host": "api-gw.rpd.ai.alticelabs.com",
+            "host": "api-gw.dev.ai.alticelabs.com",
             "path": "alticeAssistantConfig"
         },
         {
             "key": "SchoolBE",
             "protocol": "https",
-            "host": "api-gw.rpd.ai.alticelabs.com",
+            "host": "api-gw.dev.ai.alticelabs.com",
             "path": "schoolbackend"
         },
         {
             "key": "surveyService",
             "protocol": "https",
-            "host": "api-gw.rpd.ai.alticelabs.com",
+            "host": "api-gw.dev.ai.alticelabs.com",
             "path": "survey"
         },
         {
             "key": "IxsService",
             "protocol": "https",
-            "host": "api-gw.rpd.ai.alticelabs.com",
+            "host": "api-gw.dev.ai.alticelabs.com",
             "_port": 8180,
             "path": "ixsservice"
         },
-		{
+        {
             "key": "BillingService",
             "protocol": "https",
-            "host": "api-gw.rpd.ai.alticelabs.com",
+            "host": "api-gw.dev.ai.alticelabs.com",
             "port": null,
             "path": ""
         },
@@ -73,7 +73,7 @@
             "key": "OICIpPort",
             "description": "Login with Keycloak",
             "protocol": "https",
-            "host": "authz.rpd.ai.alticelabs.com",
+            "host": "botschool.dev.alticelabs.com",
             "port": null,
             "path": "auth",
             "entries": [
@@ -94,31 +94,31 @@
         {
             "key": "subscription_xapi_ms",
             "protocol": "https",
-            "host": "api-gw.rpd.ai.alticelabs.com",
+            "host": "api-gw.dev.ai.alticelabs.com",
             "path": "subxapi"
         },
         {
             "key": "ChatBot",
             "protocol": "https",
-            "host": "api-gw.rpd.ai.alticelabs.com",
+            "host": "api-gw.dev.ai.alticelabs.com",
             "path": "chatbot"
         },
         {
             "key": "ImageService",
             "protocol": "https",
-            "host": "img.rpd.ai.alticelabs.com",
-            "path": ""
+            "host": "botschool.dev.alticelabs.com",
+            "path": "images"
         },
         {
             "key": "AlticeAssistantConfig_rpd",
             "protocol": "https",
-            "host": "api-gw.rpd.ai.alticelabs.com",
+            "host": "api-gw.dev.ai.alticelabs.com",
             "path": "alticeAssistantConfig"
         },
         {
             "key": "SuggestionsMS",
             "protocol": "http",
-            "host": "127.0.0.1",
+            "host": "10.113.155.13",
             "port": 3500
         }
     ],

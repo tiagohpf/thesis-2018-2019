@@ -8,10 +8,14 @@ from recognizer import Recognizer
 from splitter import Splitter
 from transcription_requests import TranscriptionRequest
 
+import time
+
 app = Flask(__name__)
 
 
 def transcript_dialogues(path, n_speakers, volume, speed, file_id, download_path):
+    start_time = time.time()
+
     args_parser = FilesAggregator()
     input_files = args_parser.collect_input_files(path)
     if not input_files:
@@ -51,6 +55,9 @@ def transcript_dialogues(path, n_speakers, volume, speed, file_id, download_path
                     out_file.write(str(line) + "\n\n")
                     i +=1
             out_file.close()
+
+
+            print(file_id, duration, time.time() - start_time)
         return download_path
 
 
