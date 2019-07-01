@@ -5,9 +5,9 @@ let Promise = require('es6-promise').Promise;
 const utf8 = require('utf8');
 const cors = require('cors');
 
-let DB_MVP = 'http://10.113.134.43:8090/'
+let DB_MVP = 'http://10.113.134.43:8090/';
 
-let DB_RPD = 'http://amalia-cluster-master.c.ptin.corppt.com:8091/'
+let DB_RPD = 'http://amalia-cluster-master.c.ptin.corppt.com:8091/';
 let RPD_AACONFIG = `${DB_RPD}alticeAssistantConfig/`;
 let RPD_DH = `${DB_RPD}analytics/DialogueHistory`;
 
@@ -76,7 +76,6 @@ app.post("/transcript", (req, res) => {
 });
 
 app.get("/getEntities", (req, res) => {
-
     axios.get(DB_ENTITIES)
         .then(response => res.send(response.data._embedded))
         .catch(error => res.send(getAxiosErrorMessage(error)));
@@ -89,11 +88,13 @@ app.get("/getEntities/:sentence", (req, res) => {
 });
 
 app.get("/getIntent/:sentence", (req, res) => {
-    let sourceData = getSourceTypeAndName(req.query.student);
-    let sessionId = createSessionId();
-    getIntent(req.params.sentence, sourceData, sessionId)
-        .then(response => res.send(response))
-        .catch(error => res.send(getAxiosErrorMessage(error)));
+    getSourceTypeAndName(req.query.student)
+        .then(sourceDataRes => {
+            let sessionId = createSessionId();
+            return getIntent(req.params.sentence, sourceDataRes, sessionId)
+                .then(response => res.send(response))
+                .catch(error => res.send(getAxiosErrorMessage(error)));
+        });
 });
 
 app.get("/generateTranscription", (req, res) => {
@@ -200,14 +201,14 @@ app.post("/addPhrasesAndEntities", (req, res) => {
     }
 });
 
-app.post("/removePhrasesAndEntities", (req,res) => {
+app.post("/removePhrasesAndEntities", (req, res) => {
     if (req.body.NER)
         console.log("Remove training phrase and entities");
     else
         console.log("Just remove training phrase");
     removeTrainingPhrase(req.body)
-            .then(response => res.send(response))
-            .catch(error => res.send(error));
+        .then(response => res.send(response))
+        .catch(error => res.send(error));
 });
 
 function removeTrainingPhrase(body) {
@@ -218,7 +219,7 @@ function removeTrainingPhrase(body) {
                 if (lesson.displayName === body.intent)
                     lesson.trainingPhrases = removeSimpleTrainingPhrase(body.text, lesson.trainingPhrases);
                 lessons.push(lesson)
-            })
+            });
             return axios.patch(`${DB_AACONFIG}programs/${body.programId}`, {
                 lessons
             }).then(response => response)
@@ -234,7 +235,7 @@ function addTrainingPhrase(body) {
                 if (lesson.displayName === body.intent)
                     lesson.trainingPhrases.push(createSimpleTrainingPhrase(body.text));
                 lessons.push(lesson);
-            })
+            });
             return axios.patch(`${DB_AACONFIG}programs/${body.programId}`, {
                 lessons
             }).then(response => response)
@@ -257,8 +258,8 @@ function addPhraseWithEntities(body) {
                 .filter(value => value.length > 0);
 
             program[0].lessons.forEach(lesson => {
-                if (lesson.displayName === body.intent){
-                    let parts = createParts(body.text, matches, program[0].code) 
+                if (lesson.displayName === body.intent) {
+                    let parts = createParts(body.text, matches, program[0].code);
                     lesson.trainingPhrases.push({
                         type: 'EXAMPLE',
                         parts,
@@ -266,8 +267,8 @@ function addPhraseWithEntities(body) {
                     });
                 }
                 lessons.push(lesson);
-            })
-            
+            });
+
             let entities = getAllEntitiesOfChapters(program[0].chapters);
             entities = flattenArray(mergeEntities(entities, matches));
             let notUsedEntities = entities.slice();
@@ -275,12 +276,12 @@ function addPhraseWithEntities(body) {
                 chapter.entities.map(entity => {
                     entities.filter(e => e.value === entity.value)
                         .map(e => {
-                            entity.synonyms = e.synonyms
+                            entity.synonyms = e.synonyms;
                             notUsedEntities = notUsedEntities.filter(notEntity => notEntity.value != e.value);
                         })
                 });
                 chapters.push(chapter);
-            })
+            });
             notUsedEntities.map(entity => chapters.push(createChapter(entity, program[0].code)));
             program[0].variables.forEach(variable => variables.push(variable));
             notUsedEntities.map(variable => variables.push(createVariable(variable, program[0].code)));
@@ -290,14 +291,13 @@ function addPhraseWithEntities(body) {
                 variables
             }).then(response => response)
                 .catch(error => getAxiosErrorMessage(error));
-
         }).catch(error => getAxiosErrorMessage(error));
 }
 
 function mergeEntities(entities, matches) {
     let entitiesMerge = [];
     matches.forEach(match => {
-        let entitiesFound = entities.filter(entity => entity.value === match.entity)
+        let entitiesFound = entities.filter(entity => entity.value === match.entity);
         if (entitiesFound.length > 0) {
             entitiesFound.map(entity => {
                 if (!entity.synonyms.includes(match.value))
@@ -309,7 +309,7 @@ function mergeEntities(entities, matches) {
                 synonyms: Array.from(new Set([match.value, match.value]))
             });
         entitiesMerge.push(entitiesFound);
-    })
+    });
     return entitiesMerge;
 }
 
@@ -331,7 +331,7 @@ function getMatchesOfWordsAndEntities(text, NER) {
 function replaceTextByEntities(text, matches) {
     matches.forEach(entity => {
         text = text.replace(entity.value, `\\${entity.entity}\\`);
-    })
+    });
     return text;
 }
 
@@ -345,13 +345,13 @@ function uploadSuggestions(suggestions) {
                         method: 'post',
                         //url: `${RPD_AACONFIG}intentsSuggestions`,
                         url: `${DB_AACONFIG}intentsSuggestions`,
-                        headers: { "Content-Type": "application/json" },
+                        headers: {"Content-Type": "application/json"},
                         data: suggestion
                     }).then(response => response);
                 }
             })
             .catch(error => getAxiosErrorMessage(error))
-    })
+    });
     return Promise.all(promises);
 }
 
@@ -393,7 +393,7 @@ function getSuggestion(id) {
 function generateTranscription(req) {
     let params = createRequestParams(req);
     if (!params.path)
-        return Promise.reject("You must define path parameter")
+        return Promise.reject("You must define path parameter");
     return getTranscription(params.fileId).then(response => {
         if (response.length === 0) {
             console.log("Start Transcription");
@@ -401,11 +401,10 @@ function generateTranscription(req) {
                 method: 'get',
                 url: `${TRANSCRIPT_SERVICE}generateTranscription/`,
                 params
-            }
+            };
             return axios(axiosConfig)
                 .then(response => response.data)
-        }
-        else
+        } else
             throw Object.assign({
                 "path": params.downloadPath
             });
@@ -429,7 +428,7 @@ function generateEntities(id) {
                     if (dialogue.intent)
                         jsonObj.intent = dialogue.intent;
                     dialogues.push(jsonObj);
-                    return { dialogues };
+                    return {dialogues};
                 });
                 promises.push(p)
             } else
@@ -456,26 +455,27 @@ function generateIntents(req, res, id, studentId) {
     console.log("Start Intents");
     return axios.get(`${DB_DIALOGUES}/${id}`).then(response => {
         let dialogues = sortDialoguesByIndex(response.data.dialogues);
-        let sourceData = getSourceTypeAndName(studentId);
-        let clientDialogues = filterBySpeaker(dialogues, 1);
-        let sessionId = createSessionId();
+        return getSourceTypeAndName(studentId).then(sourceDataRes => {
+            let clientDialogues = filterBySpeaker(dialogues, 1);
+            let sessionId = createSessionId();
 
-        return getIntentsFromDialogues(clientDialogues, sourceData, sessionId).then(() => {
-            let operatorDialogues = filterBySpeaker(dialogues, 0);
-            dialogues = sortDialoguesByIndex(clientDialogues.concat(operatorDialogues));
-            clientDialogues.forEach(dialogue => {
-                return addToDialogueHistory(dialogue.botAnswer, studentId, sessionId, dialogue.intent.displayName, dialogue.text)
-                    .then(() => console.log("Dialogue added"))
-                    .catch(error => getAxiosErrorMessage(error));
-            })
-            return axios.patch(`${DB_DIALOGUES}/${id}`,
-                {
-                    _id: response.id,
-                    lastUpdate: new Date().toISOString(),
-                    dialogues: dialogues,
-                    sourceType: sourceData.sourceType,
-                    sourceName: sourceData.sourceName
+            return getIntentsFromDialogues(clientDialogues, sourceDataRes, sessionId).then(() => {
+                let operatorDialogues = filterBySpeaker(dialogues, 0);
+                dialogues = sortDialoguesByIndex(clientDialogues.concat(operatorDialogues));
+                clientDialogues.forEach(dialogue => {
+                    return addToDialogueHistory(dialogue.botAnswer, studentId, sessionId, dialogue.intent.displayName, dialogue.text)
+                        .then(() => console.log("Dialogue added"))
+                        .catch(error => getAxiosErrorMessage(error));
                 });
+                return axios.patch(`${DB_DIALOGUES}/${id}`,
+                    {
+                        _id: response.id,
+                        lastUpdate: new Date().toISOString(),
+                        dialogues: dialogues,
+                        sourceType: sourceDataRes.sourceType,
+                        sourceName: sourceDataRes.sourceName
+                    });
+            });
         }).then(() => dialogues);
     });
 }
@@ -485,7 +485,7 @@ function addToDialogueHistory(botAnswer, studentId, sessionId, topic, text) {
     return axios({
         method: 'post',
         url: `${DB_MVP}analytics/DialogueHistory`,
-        headers: { "Content-Type": "application/json" },
+        headers: {"Content-Type": "application/json"},
         data: dialogue
     }).then(response => response);
 }
@@ -504,7 +504,6 @@ function getEntities(sentence) {
     return axios.get(encodeURI(ENTITIES_SERVICE + sentence))
         .then(response => response.data)
         .catch(error => res.send(getAxiosErrorMessage(error)));
-    ;
 }
 
 function getIntentsFromDialogues(dialogues, sourceData, sessionId) {
@@ -512,7 +511,7 @@ function getIntentsFromDialogues(dialogues, sourceData, sessionId) {
         return {
             question: dialogue.text,
             sessionId,
-            VA: { id: sourceData.sourceName, type: sourceData.sourceType },
+            VA: {id: sourceData.sourceName, type: sourceData.sourceType},
             isTest: true
         };
     });
@@ -545,7 +544,7 @@ function getIntent(sentence, sourceData, sessionId) {
         data: {
             question: sentence,
             sessionId,
-            VA: { id: sourceData.sourceName, type: sourceData.sourceType },
+            VA: {id: sourceData.sourceName, type: sourceData.sourceType},
             isTest: true
         }
     }).then(response => response.data.nlpResponse.intent);
@@ -585,8 +584,7 @@ function suggestWithGeneralFallback(studentId, studentPrograms, entitiesResponse
                                             botId
                                         }));
                                 });
-                            }
-                            else if (intentMatchesEntities(displayName, entitiesResponse.data)) {
+                            } else if (intentMatchesEntities(displayName, entitiesResponse.data)) {
                                 return {
                                     _id: removeAccents(`${text}_${studentProgram.programId}`),
                                     message: text,
@@ -621,7 +619,7 @@ function getStudent(studentId) {
 }
 
 function getDialoguesOfStudent(studentId) {
-    return axios.get(`${DB_MVP}analytics/DialogueHistory?filter={'botId':'${studentId}'}`)  
+    return axios.get(`${DB_MVP}analytics/DialogueHistory?filter={'botId':'${studentId}'}`)
         .then(response => {
             return response.data._embedded;
         })
@@ -647,7 +645,10 @@ function getEntitiesOfProgram(program) {
                 values: Array.from(new Set(synonyms))
             };
         });
-        entities.push({ displayName: displayName, values: entitiesFound });
+        entities.push({
+            displayName: displayName,
+            values: entitiesFound
+        });
     });
     return entities;
 }
@@ -681,7 +682,7 @@ function getMatchOfEntities(nerEntities, programEntities) {
         parsedNer.forEach(nerEntity => {
             parsedEntities.filter(entity => entity.values.includes(nerEntity))
                 .map(entity => entityMatches.push(entity.entity));
-        })
+        });
         return entityMatches;
     })
 }
@@ -706,7 +707,7 @@ function flattenArray(array) {
 
 const intentMatchesEntities = (intent, entities) => {
     entities.filter(entity => intent.toLowerCase().match(entity._id.toLowerCase())).length > 0;
-}
+};
 
 const createFileId = (path, volume, speed) => `${path}_${volume}_${speed}`;
 
@@ -727,9 +728,8 @@ const createRequestParams = (req) => {
     if (path) {
         transcriptPath = `${fileId}.trs`;
         path = `${AUDIO_FILES_DIR + path}.wav`;
-    }
-    else
-        return {}
+    } else
+        return {};
 
     return {
         path: path,
@@ -738,22 +738,38 @@ const createRequestParams = (req) => {
         fileId: fileId,
         downloadPath: PY_SERVER_DOWNLOAD + transcriptPath
     };
-}
+};
 
 const sortDialoguesByIndex = (dialogues) => {
     return dialogues.sort((before, next) => {
         return parseInt(before.index) < parseInt(next.index) ? -1 : 1;
     })
-}
+};
 
 const filterBySpeaker = (dialogues, speaker) => dialogues.filter(dialogue => parseInt(dialogue.speaker) === speaker);
 
 const getSourceTypeAndName = (studentId) => {
-    return {
-        sourceName: studentId,
-        sourceType: "STUDENT"
-    }
+    let VA_type = getStudent(studentId).then(student => {
+        if (student.length > 0)
+            return 'STUDENT';
+        else {
+            return getProgram(studentId).then(program => {
+                if (program.length > 0)
+                    return 'PROGRAM';
+                else
+                    return [];
+            })
+        }
+    });
+
+    return VA_type.then(sourceType => {
+        if (sourceType.length > 0)
+            return {sourceName: studentId, sourceType};
+        else
+            return {sourceName: 'ThesisProgram', sourceType: 'PROGRAM'};
+    });
 };
+
 
 const getAxiosErrorMessage = (e) => {
     let error = e;
@@ -772,9 +788,10 @@ const manageSentence = (sentence) => {
         .then(response => {
             if (typeof response.data.data === "object")
                 return response.data.data[0].value;
-            return response.data.data})
+            return response.data.data
+        })
         .catch(error => getAxiosErrorMessage(error));
-}
+};
 
 const removeAccents = (sentence) => {
     sentence = sentence.replace(/[àáâãäå]/, "a");
@@ -786,7 +803,7 @@ const removeAccents = (sentence) => {
     sentence = sentence.replace(/[ùúûü]/, "u");
     sentence = sentence.replace(/[ýÿ]/, "y");
     return sentence;
-}
+};
 
 const createSimpleTrainingPhrase = (text) => {
     return {
@@ -798,7 +815,7 @@ const createSimpleTrainingPhrase = (text) => {
         ],
         "timesAddedCount": 2
     }
-}
+};
 
 const createParts = (text, matches, code) => {
     matches = matches.map(entity => entity.entity);
@@ -817,7 +834,7 @@ const createParts = (text, matches, code) => {
         }
     });
     return parts;
-}
+};
 
 const getAllEntitiesOfChapters = (chapters) => {
     let entities = [];
@@ -828,9 +845,9 @@ const getAllEntitiesOfChapters = (chapters) => {
                 synonyms: entity.synonyms
             })
         })
-    })
+    });
     return entities;
-}
+};
 
 const createChapter = (entity, code) => {
     return {
@@ -843,7 +860,7 @@ const createChapter = (entity, code) => {
             }
         ]
     }
-}
+};
 
 const createVariable = (variable, code) => {
     return {
@@ -854,13 +871,13 @@ const createVariable = (variable, code) => {
         entity: `${code}_${variable.value}`,
         channel: null
     }
-}
+};
 
 const getTextOfParts = (parts) => {
-    let text = new String();
-    parts.forEach(part => text += part.text + " ")
+    let text;
+    parts.forEach(part => text += part.text + " ");
     return text.trim().replace(/\s\s+/g, ' ');
-}
+};
 
 const createDialogue = (botAnswer, studentId, sessionId, topic, text) => {
     return {
@@ -875,4 +892,4 @@ const createDialogue = (botAnswer, studentId, sessionId, topic, text) => {
         useCache: true,
         userSays: text
     }
-}
+};
