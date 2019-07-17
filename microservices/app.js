@@ -142,6 +142,7 @@ app.post("/suggestIntents", (req, res) => {
                         }
                         if (intent === "NO_INTENT" || intent === "fallbackIntent") {
                             console.log("General fallback");
+                            console.log(text);
                             return suggestWithGeneralFallback(student._id.$oid, student.programs, entitiesResponse, text)
                         } else {
                             console.log("Specific fallbacks");
@@ -706,7 +707,7 @@ function flattenArray(array) {
 }
 
 const intentMatchesEntities = (intent, entities) => {
-    entities.filter(entity => intent.toLowerCase().match(entity._id.toLowerCase())).length > 0;
+    return entities.filter(entity => intent.toLowerCase().match(entity._id.toLowerCase())).length > 0;
 };
 
 const createFileId = (path, volume, speed) => `${path}_${volume}_${speed}`;

@@ -36,7 +36,7 @@ public class Searcher {
             for (String value : entity.getValues()) {
                 String newValue = SentenceManager.removeStopWordsFromSentence(value, datastore);
                 if (newValue.length() > 0) {
-                    String pattern = String.format("\\b%s\\b", newValue);
+                    String pattern = String.format(".*\\b%s\\b.*", newValue);
                     if (sentence.matches(pattern))
                         found.put(value, entity.getId());
                 }
