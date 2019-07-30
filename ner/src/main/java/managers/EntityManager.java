@@ -14,7 +14,9 @@ import searchers.Searcher;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class EntityManager {
     private Datastore datastore;
@@ -35,6 +37,16 @@ public class EntityManager {
             Gson gson = new GsonBuilder().create();
             try {
                 Subject subject = gson.fromJson(new FileReader(filename), Subject.class);
+
+                Set<String> values = new HashSet<>(subject.getValues());
+                List<String> newValues = new ArrayList<>();
+                for (String value : values) {
+                    String newValue = SentenceManager.removeStopWordsFromSentence(value, datastore);
+                    if (newValue.length() > 0)
+                        newValues.add(newValue);
+                }
+
+                subject.setValues(newValues);
                 entities.add(subject);
                 datastore.save(subject);
             } catch (FileNotFoundException e) {

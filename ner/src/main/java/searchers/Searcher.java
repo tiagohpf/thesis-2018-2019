@@ -19,30 +19,21 @@ public class Searcher {
     }
 
     public JsonArray searchForEntities(String sentence) {
-        Map<String, String> entities = new HashMap<>();
-        Map<String, String> entitiesFound;
+        Map<String, String> entitiesFound = new HashMap<>();
         String newSentence = SentenceManager.removeStopWordsFromSentence(sentence, datastore);
-        String[] words = newSentence.split("\\s+");
-        for (int i = 0; i < words.length; i++)
-            entities.putAll(searchInContext(newSentence));
-        entitiesFound = fixAmbiguities(entities);
-        return getEntitiesFound(entitiesFound);
-    }
-
-    private Map<String, String> searchInContext(String sentence) {
-        List<Subject> entities = datastore.find(Subject.class).asList();
-        Map<String, String> found = new HashMap<>();
-        for (Subject entity : entities) {
-            for (String value : entity.getValues()) {
-                String newValue = SentenceManager.removeStopWordsFromSentence(value, datastore);
-                if (newValue.length() > 0) {
-                    String pattern = String.format(".*\\b%s\\b.*", newValue);
-                    if (sentence.matches(pattern))
-                        found.put(value, entity.getId());
+        System.out.println(newSentence);
+        List<Subject> categories = datastore.find(Subject.class).asList();
+        for (Subject category: categories) {
+            for (String value : category.getValues()) {
+                if (value.length() > 0) {
+                    String pattern = String.format(".*\\b%s\\b.*", value);
+                    if (newSentence.matches(pattern))
+                        entitiesFound.put(value, category.getId());
                 }
             }
         }
-        return found;
+        Map <String, String> entitiesFixed = fixAmbiguities(entitiesFound);
+        return getEntitiesFound(entitiesFixed);
     }
 
     private Map<String, String> fixAmbiguities(Map<String, String> found) {

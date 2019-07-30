@@ -9,19 +9,22 @@ import java.util.stream.Collectors;
 public class SentenceManager {
     public static String removeStopWordsFromSentence(String sentence, Datastore datastore) {
         StringBuilder sb = new StringBuilder();
-        String[] words = removeSpecialCharacters(sentence).split("\\s+");
+        String[] words = editSentence(sentence).split("\\s+");
         List<String> stopwords = datastore.find(Stopword.class).asList()
                 .stream().map(Stopword::getId).collect(Collectors.toList());
         if (words.length > 0) {
             for (String word : words) {
-                if (!stopwords.contains(word.toLowerCase().trim()))
+                if (!stopwords.contains(word.trim()))
                     sb.append(word).append(" ");
             }
         }
-        return sb.toString().trim().toLowerCase();
+        return sb.toString().trim();
     }
 
-    private static String removeSpecialCharacters(String sentence) {
-        return sentence.replaceAll("[/\\-_]", " ");
+    private static String editSentence(String sentence) {
+        return sentence
+                .replaceAll("[/\\-_]", " ")
+                .replaceAll("[,.;:]", "")
+                .toLowerCase();
     }
 }

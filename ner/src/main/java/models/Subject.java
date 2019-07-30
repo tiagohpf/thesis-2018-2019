@@ -38,6 +38,8 @@ public class Subject {
         return values;
     }
 
+    public void setValues(List<String> values) { this.values = values; }
+
     @Override
     public String toString() {
         return "Subject{" +
