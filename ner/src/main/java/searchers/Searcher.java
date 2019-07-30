@@ -21,7 +21,6 @@ public class Searcher {
     public JsonArray searchForEntities(String sentence) {
         Map<String, String> entitiesFound = new HashMap<>();
         String newSentence = SentenceManager.removeStopWordsFromSentence(sentence, datastore);
-        System.out.println(newSentence);
         List<Subject> categories = datastore.find(Subject.class).asList();
         for (Subject category: categories) {
             for (String value : category.getValues()) {
